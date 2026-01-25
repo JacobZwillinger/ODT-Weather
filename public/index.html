@@ -68,9 +68,22 @@
       }
 
       .forecast-cell {
-        min-width: 80px;
+        min-width: 70px;
         font-size: 0.85rem;
         color: #666;
+        text-align: center;
+      }
+
+      .forecast-cell .icon {
+        width: 28px;
+        height: 28px;
+        margin: 0 auto 4px;
+        display: block;
+      }
+
+      .forecast-cell .temps {
+        font-weight: 500;
+        color: #333;
       }
 
       .loading {
@@ -138,6 +151,24 @@
         return `<a href="${googleUrl}" target="_blank" rel="noopener">(${latStr}, ${lonStr})</a>`;
       };
 
+      // Inline SVG weather icons - minimal file size, no external requests
+      const icons = {
+        "clear-day": `<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`,
+        "clear-night": `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>`,
+        "rain": `<svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="M16 13v8M8 13v8M12 15v8"/><path d="M6 10a4 4 0 01.09-.79A6 6 0 1118 10h1a3 3 0 110 6H5a3 3 0 110-6z" fill="#e5e7eb" stroke="#9ca3af"/></svg>`,
+        "snow": `<svg viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M6 10a4 4 0 01.09-.79A6 6 0 1118 10h1a3 3 0 110 6H5a3 3 0 110-6z" fill="#e5e7eb" stroke="#9ca3af"/><circle cx="8" cy="20" r="1" fill="#60a5fa"/><circle cx="12" cy="18" r="1" fill="#60a5fa"/><circle cx="16" cy="20" r="1" fill="#60a5fa"/></svg>`,
+        "sleet": `<svg viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M6 10a4 4 0 01.09-.79A6 6 0 1118 10h1a3 3 0 110 6H5a3 3 0 110-6z" fill="#e5e7eb" stroke="#9ca3af"/><path d="M8 14v4M16 14v4"/><circle cx="12" cy="19" r="1" fill="#60a5fa"/></svg>`,
+        "wind": `<svg viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M9.59 4.59A2 2 0 1111 8H2m10.59 11.41A2 2 0 1014 16H2m15.73-8.27A2.5 2.5 0 1119.5 12H2"/></svg>`,
+        "fog": `<svg viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M4 10h16M4 14h16M6 18h12"/></svg>`,
+        "cloudy": `<svg viewBox="0 0 24 24" fill="none"><path d="M6 10a4 4 0 01.09-.79A6 6 0 1118 10h1a3 3 0 110 6H5a3 3 0 110-6z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="2"/></svg>`,
+        "partly-cloudy-day": `<svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="8" r="3" fill="none" stroke="#f59e0b" stroke-width="2"/><path d="M8 2v1M8 13v1M3 8H2M14 8h1M4.22 4.22l.71.71M11.07 11.07l.71.71M4.22 11.78l.71-.71M11.07 4.93l.71-.71"/><path d="M10 13a4 4 0 01.09-.79 5 5 0 019.82.79h.09a2.5 2.5 0 110 5H10a2.5 2.5 0 110-5z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1.5"/></svg>`,
+        "partly-cloudy-night": `<svg viewBox="0 0 24 24" fill="none"><path d="M10 6a4 4 0 01-4 4 4 4 0 014-4z" stroke="#6366f1" stroke-width="2"/><path d="M10 13a4 4 0 01.09-.79 5 5 0 019.82.79h.09a2.5 2.5 0 110 5H10a2.5 2.5 0 110-5z" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1.5"/></svg>`
+      };
+
+      const getIcon = (iconName) => {
+        return icons[iconName] || icons["cloudy"];
+      };
+
       const renderTable = (forecasts) => {
         const dayHeaders = getDayHeaders();
 
@@ -170,10 +201,10 @@
               const day = forecast.daily[i];
               const high = day.high !== undefined ? Math.round(day.high) : "--";
               const low = day.low !== undefined ? Math.round(day.low) : "--";
-              const summary = day.summary || "";
-              html += `<td class="forecast-cell">${high}° / ${low}°<br>${summary}</td>`;
+              const icon = day.icon || "cloudy";
+              html += `<td class="forecast-cell"><span class="icon">${getIcon(icon)}</span><span class="temps">${high}° / ${low}°</span></td>`;
             } else {
-              html += `<td class="forecast-cell">Unable to load forecast.</td>`;
+              html += `<td class="forecast-cell">--</td>`;
             }
           }
 
