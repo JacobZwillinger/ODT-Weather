@@ -5,155 +5,177 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Oregon Desert Trail Weather</title>
     <style>
-      :root {
-        color-scheme: light dark;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        line-height: 1.4;
-      }
-
       body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         margin: 0;
-        padding: 24px;
-        background: #f6f4ee;
+        padding: 16px;
+        background: #fff;
         color: #1b1b1b;
-      }
-
-      header {
-        margin-bottom: 16px;
+        font-size: 14px;
       }
 
       h1 {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         margin: 0 0 4px;
+        font-weight: 600;
       }
 
-      p {
-        margin: 0;
-        color: #3f3f3f;
-        font-size: 0.95rem;
+      .subtitle {
+        margin: 0 0 16px;
+        color: #666;
+        font-size: 0.9rem;
       }
 
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 12px;
-        margin-top: 16px;
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ccc;
       }
 
-      .card {
-        background: #ffffff;
-        border-radius: 12px;
-        padding: 16px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      th, td {
+        border: 1px solid #ccc;
+        padding: 8px 12px;
+        text-align: left;
+        vertical-align: top;
       }
 
-      .card h2 {
-        font-size: 1.1rem;
-        margin: 0 0 6px;
-      }
-
-      .meta {
+      th {
+        background: #f5f5f5;
+        font-weight: 600;
         font-size: 0.85rem;
-        color: #5f5f5f;
       }
 
-      .temp {
-        font-size: 2rem;
-        margin: 6px 0 0;
+      .location-name {
+        font-weight: 500;
+      }
+
+      .coords {
+        font-size: 0.8rem;
+        margin-top: 2px;
+      }
+
+      .coords a {
+        color: #0066cc;
+        text-decoration: none;
+      }
+
+      .coords a:hover {
+        text-decoration: underline;
+      }
+
+      .mile {
+        text-align: center;
+      }
+
+      .forecast-cell {
+        min-width: 80px;
+        font-size: 0.85rem;
+        color: #666;
       }
 
       .loading {
+        padding: 20px;
+        text-align: center;
+        color: #666;
         font-style: italic;
-        color: #6b6b6b;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        body {
-          background: #161616;
-          color: #f4f4f4;
-        }
-
-        p {
-          color: #c1c1c1;
-        }
-
-        .card {
-          background: #1f1f1f;
-          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .meta {
-          color: #a7a7a7;
-        }
       }
     </style>
   </head>
   <body>
-    <header>
-      <h1>Oregon Desert Trail Weather</h1>
-      <p>Quick snapshots for five placeholder points along the ODT.</p>
-    </header>
+    <h1>Oregon Desert Trail Weather</h1>
+    <p class="subtitle">Five placeholder points, updated from PirateWeather.</p>
 
-    <section class="grid" id="weatherGrid">
-      <div class="card loading">Loading forecasts…</div>
-    </section>
+    <div id="container">
+      <div class="loading">Loading forecasts...</div>
+    </div>
 
     <script>
       const points = [
-        { name: "Owyhee Canyonlands", lat: 43.156, lon: -117.201 },
-        { name: "Summer Lake Flats", lat: 42.998, lon: -120.661 },
-        { name: "Christmas Valley", lat: 43.246, lon: -120.666 },
-        { name: "Hart Mountain", lat: 42.510, lon: -119.646 },
-        { name: "Steens Mountain", lat: 42.710, lon: -118.590 }
+        { name: "Owyhee Canyonlands", lat: 43.1560, lon: -117.2010, mile: 0.0 },
+        { name: "Summer Lake Flats", lat: 42.9980, lon: -120.6610, mile: 145.0 },
+        { name: "Christmas Valley", lat: 43.2460, lon: -120.6660, mile: 250.0 },
+        { name: "Hart Mountain", lat: 42.5100, lon: -119.6460, mile: 420.0 },
+        { name: "Steens Mountain", lat: 42.7100, lon: -118.5900, mile: 750.0 }
       ];
 
-      const grid = document.getElementById("weatherGrid");
+      const container = document.getElementById("container");
 
-      const formatTemp = (value) =>
-        Number.isFinite(value) ? `${Math.round(value)}°F` : "--";
+      // Get next 7 days starting from today
+      const getDayHeaders = () => {
+        const days = [];
+        const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        const today = new Date();
 
-      const formatTime = (unix) => {
-        if (!Number.isFinite(unix)) {
-          return "Updated time unavailable";
+        for (let i = 0; i < 7; i++) {
+          const date = new Date(today);
+          date.setDate(today.getDate() + i);
+          const dayName = dayNames[date.getDay()];
+          const month = date.getMonth() + 1;
+          const day = date.getDate();
+          days.push(`${dayName}, ${month}/${day}`);
         }
-        const date = new Date(unix * 1000);
-        return `Updated ${date.toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit"
-        })}`;
+        return days;
       };
 
-      const renderCard = (point, forecast) => {
-        const card = document.createElement("article");
-        card.className = "card";
-
-        card.innerHTML = `
-          <h2>${point.name}</h2>
-          <div class="meta">${point.lat.toFixed(3)}, ${point.lon.toFixed(3)}</div>
-          <div class="temp">${formatTemp(forecast.temperature)}</div>
-          <div>${forecast.summary || "Conditions unavailable"}</div>
-          <div class="meta">${formatTime(forecast.time)}</div>
-        `;
-
-        return card;
+      const formatCoords = (lat, lon) => {
+        const latStr = lat.toFixed(4);
+        const lonStr = lon.toFixed(4);
+        const googleUrl = `https://www.google.com/maps?q=${lat},${lon}`;
+        return `<a href="${googleUrl}" target="_blank" rel="noopener">(${latStr}, ${lonStr})</a>`;
       };
 
-      const renderError = (point) => {
-        const card = document.createElement("article");
-        card.className = "card";
-        card.innerHTML = `
-          <h2>${point.name}</h2>
-          <div class="meta">${point.lat.toFixed(3)}, ${point.lon.toFixed(3)}</div>
-          <div class="temp">--</div>
-          <div>Unable to load forecast.</div>
+      const renderTable = (forecasts) => {
+        const dayHeaders = getDayHeaders();
+
+        let html = `
+          <table>
+            <thead>
+              <tr>
+                <th>Location</th>
+                <th>Mile</th>
+                ${dayHeaders.map(d => `<th>${d}</th>`).join("")}
+              </tr>
+            </thead>
+            <tbody>
         `;
-        return card;
+
+        points.forEach((point, index) => {
+          const forecast = forecasts[index];
+          html += `
+            <tr>
+              <td>
+                <div class="location-name">${point.name}</div>
+                <div class="coords">${formatCoords(point.lat, point.lon)}</div>
+              </td>
+              <td class="mile">${point.mile.toFixed(1)}</td>
+          `;
+
+          // Add 7 day cells
+          for (let i = 0; i < 7; i++) {
+            if (forecast && forecast.daily && forecast.daily[i]) {
+              const day = forecast.daily[i];
+              const high = day.high !== undefined ? Math.round(day.high) : "--";
+              const low = day.low !== undefined ? Math.round(day.low) : "--";
+              const summary = day.summary || "";
+              html += `<td class="forecast-cell">${high}° / ${low}°<br>${summary}</td>`;
+            } else {
+              html += `<td class="forecast-cell">Unable to load forecast.</td>`;
+            }
+          }
+
+          html += `</tr>`;
+        });
+
+        html += `
+            </tbody>
+          </table>
+        `;
+
+        container.innerHTML = html;
       };
 
       const loadForecasts = async () => {
-        grid.innerHTML = "";
-
-        const results = await Promise.all(
+        const forecasts = await Promise.all(
           points.map(async (point) => {
             try {
               const response = await fetch(
@@ -162,15 +184,14 @@
               if (!response.ok) {
                 throw new Error("Bad response");
               }
-              const forecast = await response.json();
-              return renderCard(point, forecast);
+              return await response.json();
             } catch (error) {
-              return renderError(point);
+              return null;
             }
           })
         );
 
-        results.forEach((card) => grid.appendChild(card));
+        renderTable(forecasts);
       };
 
       loadForecasts();
