@@ -166,6 +166,26 @@
         `;
       };
 
+      const defaultDays = () => {
+        const now = Math.floor(Date.now() / 1000);
+        return Array.from({ length: 7 }, (_, index) => ({
+          time: now + index * 86400
+        }));
+      };
+
+      const fetchWithTimeout = async (url, timeoutMs = 8000) => {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+        try {
+          const response = await fetch(url, { signal: controller.signal });
+          clearTimeout(timeoutId);
+          return response;
+        } catch (error) {
+          clearTimeout(timeoutId);
+          throw error;
+        }
+      };
+
       const buildRow = (point, forecast, timeZone) => {
         const daily = Array.isArray(forecast?.daily) ? forecast.daily : [];
         const cells = daily.map((day) => {
@@ -211,16 +231,20 @@
       `;
 
       const loadForecasts = async () => {
+        const placeholderDays = defaultDays();
+        buildHeader(placeholderDays, "America/Los_Angeles");
         tbody.innerHTML = `
           <tr>
-            <td class="loading" colspan="10">Loading forecasts…</td>
+            <td class="loading" colspan="${placeholderDays.length + 2}">
+              Loading forecasts…
+            </td>
           </tr>
         `;
 
         const results = await Promise.all(
           points.map(async (point) => {
             try {
-              const response = await fetch(
+              const response = await fetchWithTimeout(
                 `/api/forecast?lat=${point.lat}&lon=${point.lon}`
               );
               if (!response.ok) {
@@ -237,7 +261,7 @@
         const firstForecast = results.find(
           (result) => !result.error && result.forecast?.daily?.length
         );
-        const daily = firstForecast?.forecast?.daily || Array.from({ length: 7 });
+        const daily = firstForecast?.forecast?.daily || placeholderDays;
         const timeZone = firstForecast?.forecast?.timeZone || "America/Los_Angeles";
 
         buildHeader(daily, timeZone);
