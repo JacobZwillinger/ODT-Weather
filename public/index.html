@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Oregon Desert Trail Weather</title>
+    <style>
+      :root {
+        font-family: Arial, Helvetica, sans-serif;
+        color: #1b1b1b;
+        background: #f3f3f3;
+      }
+
+      body {
+        margin: 0;
+        padding: 16px;
+      }
+
+      h1 {
+        font-size: 20px;
+        margin: 0 0 6px;
+      }
+
+      .subtitle {
+        margin: 0 0 16px;
+        font-size: 12px;
+        color: #444;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        background: #fff;
+        border: 1px solid #666;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        min-width: 860px;
+      }
+
+      th,
+      td {
+        border: 1px solid #666;
+        padding: 8px 10px;
+        vertical-align: top;
+        font-size: 12px;
+      }
+
+      th {
+        background: #eee;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      .location {
+        width: 200px;
+      }
+
+      .mile {
+        width: 60px;
+        text-align: center;
+      }
+
+      .coords {
+        color: #1a63c7;
+        text-decoration: none;
+      }
+
+      .day {
+        min-width: 120px;
+        text-align: center;
+      }
+
+      .icon {
+        font-size: 20px;
+        margin-bottom: 4px;
+      }
+
+      .temps {
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      .summary {
+        font-size: 11px;
+        color: #333;
+      }
+
+      .loading {
+        text-align: center;
+        padding: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Oregon Desert Trail Weather</h1>
+    <p class="subtitle">Five placeholder points, updated from PirateWeather.</p>
+
+    <div class="table-wrap">
+      <table id="forecastTable">
+        <thead></thead>
+        <tbody>
+          <tr>
+            <td class="loading" colspan="10">Loading forecasts…</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      const points = [
+        { name: "Owyhee Canyonlands", mile: 0.0, lat: 43.156, lon: -117.201 },
+        { name: "Summer Lake Flats", mile: 145.0, lat: 42.998, lon: -120.661 },
+        { name: "Christmas Valley", mile: 250.0, lat: 43.246, lon: -120.666 },
+        { name: "Hart Mountain", mile: 420.0, lat: 42.51, lon: -119.646 },
+        { name: "Steens Mountain", mile: 750.0, lat: 42.71, lon: -118.59 }
+      ];
+
+      const iconMap = {
+        "clear-day": "☀️",
+        "clear-night": "🌙",
+        rain: "🌧️",
+        snow: "❄️",
+        sleet: "🌨️",
+        wind: "💨",
+        fog: "🌫️",
+        cloudy: "☁️",
+        "partly-cloudy-day": "⛅",
+        "partly-cloudy-night": "☁️"
+      };
+
+      const table = document.getElementById("forecastTable");
+      const thead = table.querySelector("thead");
+      const tbody = table.querySelector("tbody");
+
+      const formatDay = (unix, timeZone) => {
+        if (!Number.isFinite(unix)) {
+          return "--";
+        }
+        return new Date(unix * 1000).toLocaleDateString("en-US", {
+          weekday: "short",
+          month: "numeric",
+          day: "numeric",
+          timeZone
+        });
+      };
+
+      const formatTemp = (value) =>
+        Number.isFinite(value) ? `${Math.round(value)}°` : "--";
+
+      const formatChance = (value) =>
+        Number.isFinite(value) ? `${Math.round(value * 100)}%` : "--";
+
+      const buildHeader = (daily, timeZone) => {
+        const headerCells = daily.map(
+          (day) => `<th class="day">${formatDay(day.time, timeZone)}</th>`
+        );
+
+        thead.innerHTML = `
+          <tr>
+            <th class="location">Location</th>
+            <th class="mile">Mile</th>
+            ${headerCells.join("")}
+          </tr>
+        `;
+      };
+
+      const buildRow = (point, forecast, timeZone) => {
+        const daily = Array.isArray(forecast?.daily) ? forecast.daily : [];
+        const cells = daily.map((day) => {
+          const icon = iconMap[day.icon] || "⛅";
+          return `
+            <td class="day">
+              <div class="icon">${icon}</div>
+              <div class="temps">${formatTemp(day.temperatureHigh)} / ${formatTemp(
+            day.temperatureLow
+          )}</div>
+              <div class="summary">${day.summary || "Forecast unavailable"}</div>
+              <div class="summary">Rain ${formatChance(day.precipProbability)}</div>
+            </td>
+          `;
+        });
+
+        return `
+          <tr>
+            <td class="location">
+              ${point.name}<br />
+              <a
+                class="coords"
+                href="https://maps.google.com/?q=${point.lat},${point.lon}"
+                target="_blank"
+                rel="noreferrer"
+              >(${point.lat.toFixed(4)}, ${point.lon.toFixed(4)})</a>
+            </td>
+            <td class="mile">${point.mile.toFixed(1)}</td>
+            ${cells.join("")}
+          </tr>
+        `;
+      };
+
+      const buildErrorRow = (point, colspan) => `
+        <tr>
+          <td class="location">
+            ${point.name}<br />
+            <span class="coords">(${point.lat.toFixed(4)}, ${point.lon.toFixed(4)})</span>
+          </td>
+          <td class="mile">${point.mile.toFixed(1)}</td>
+          <td class="day" colspan="${colspan}">Unable to load forecast.</td>
+        </tr>
+      `;
+
+      const loadForecasts = async () => {
+        tbody.innerHTML = `
+          <tr>
+            <td class="loading" colspan="10">Loading forecasts…</td>
+          </tr>
+        `;
+
+        const results = await Promise.all(
+          points.map(async (point) => {
+            try {
+              const response = await fetch(
+                `/api/forecast?lat=${point.lat}&lon=${point.lon}`
+              );
+              if (!response.ok) {
+                throw new Error("Bad response");
+              }
+              const forecast = await response.json();
+              return { point, forecast };
+            } catch (error) {
+              return { point, error };
+            }
+          })
+        );
+
+        const firstForecast = results.find(
+          (result) => !result.error && result.forecast?.daily?.length
+        );
+        const daily = firstForecast?.forecast?.daily || Array.from({ length: 7 });
+        const timeZone = firstForecast?.forecast?.timeZone || "America/Los_Angeles";
+
+        buildHeader(daily, timeZone);
+
+        const rows = results.map((result) => {
+          if (result.error || !result.forecast?.daily?.length) {
+            return buildErrorRow(result.point, daily.length || 7);
+          }
+          return buildRow(result.point, result.forecast, timeZone);
+        });
+
+        tbody.innerHTML = rows.join("");
+      };
+
+      loadForecasts();
+    </script>
+  </body>
+</html>
