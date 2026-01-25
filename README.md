@@ -25,8 +25,8 @@ Lightweight frontend + backend for quick weather snapshots along the Oregon Dese
 - **Local development**: put your key in `.env` (already gitignored) so it never lands in Git history.
 - **Vercel**: add `PIRATEWEATHER_API_KEY` in your project’s Environment Variables, then redeploy.
   The serverless `/api/forecast` route reads it from the environment at runtime.
-  If your Vercel deployment shows a 404, make sure `vercel.json` is present so the
-  static frontend routes to `/public/index.html`.
+  If your Vercel deployment shows a 404, ensure `vercel.json` is present so the
+  fallback rewrite serves `index.html` from `/public`.
 
 ## Troubleshooting npm install
 
