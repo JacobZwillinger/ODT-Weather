@@ -43,7 +43,8 @@ module.exports = async function handler(req, res) {
       time: day.time,
       high: day.temperatureHigh,
       low: day.temperatureLow,
-      summary: day.summary || day.icon || ""
+      icon: day.icon || "",
+      summary: day.summary || ""
     }));
 
     return res.json({
