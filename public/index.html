@@ -57,10 +57,12 @@
         min-height: 40px;
       }
 
-      .section-1 { background: #22c55e; }
-      .section-2 { background: #3b82f6; }
-      .section-3 { background: #f59e0b; }
-      .section-4 { background: #ef4444; }
+      /* Section colors by region */
+      .section-1, .section-2, .section-3, .section-4 { background: #22c55e; } /* Region 1: Central Oregon */
+      .section-5, .section-6 { background: #84cc16; } /* Region 1-2 transition */
+      .section-7, .section-8, .section-9, .section-10, .section-11, .section-12 { background: #3b82f6; } /* Region 2: West Basin */
+      .section-13, .section-14, .section-15, .section-16, .section-17, .section-18, .section-19, .section-20 { background: #f59e0b; } /* Region 3: East Basin */
+      .section-21, .section-22, .section-23, .section-24, .section-25 { background: #ef4444; } /* Region 4: Owyhee */
 
       .location-name {
         font-weight: 500;
@@ -115,7 +117,7 @@
   </head>
   <body>
     <h1>Oregon Desert Trail Weather</h1>
-    <p class="subtitle">Key sections along the 750-mile Oregon Desert Trail, updated from PirateWeather.</p>
+    <p class="subtitle">All 25 sections of the 750-mile Oregon Desert Trail, updated from PirateWeather.</p>
 
     <div id="container">
       <div class="loading">Loading forecasts...</div>
@@ -123,25 +125,38 @@
 
     <script>
       const points = [
-        // Region 1: Oregon Badlands to Paisley (161 mi)
-        { name: "Oregon Badlands", lat: 43.954, lon: -121.015, mile: 0, elevation: 3595, section: 1 },
-        { name: "Christmas Valley", lat: 43.238, lon: -120.671, mile: 84, elevation: 4321, section: 1 },
-        { name: "Paisley", lat: 42.694, lon: -120.546, mile: 161, elevation: 4366, section: 1 },
+        // Region 1: Central Oregon Volcanic
+        { name: "1: Badlands to Sand Spring", lat: 44.045, lon: -121.038, mile: 0, elevation: 3406, section: 1 },
+        { name: "2: Sand Spring to South Reservoir", lat: 43.708, lon: -120.847, mile: 36, elevation: 4944, section: 2 },
+        { name: "3: South Reservoir to Lost Forest", lat: 43.521, lon: -120.777, mile: 53, elevation: 4833, section: 3 },
+        { name: "4: Lost Forest to Burma Rim", lat: 43.379, lon: -120.374, mile: 81, elevation: 4426, section: 4 },
+        { name: "5: Burma Rim to Diablo Peak North", lat: 43.202, lon: -120.278, mile: 99, elevation: 4524, section: 5 },
+        { name: "6: Diablo Peak North to Paisley", lat: 43.053, lon: -120.564, mile: 127, elevation: 5220, section: 6 },
 
-        // Region 2: Paisley to Frenchglen (214 mi)
-        { name: "Hart Mountain Hot Springs", lat: 42.502, lon: -119.690, mile: 266, elevation: 5945, section: 2 },
-        { name: "Frenchglen", lat: 42.827, lon: -118.915, mile: 374, elevation: 4194, section: 2 },
+        // Region 2: West Basin and Range
+        { name: "7: Paisley to Abert Rim South", lat: 42.694, lon: -120.546, mile: 161, elevation: 4366, section: 7 },
+        { name: "8: Abert Rim South to Colvin Timbers", lat: 42.329, lon: -120.301, mile: 211, elevation: 4711, section: 8 },
+        { name: "9: Colvin Timbers to Plush", lat: 42.507, lon: -120.202, mile: 242, elevation: 6512, section: 9 },
+        { name: "10: Plush to Hart Mountain HQ", lat: 42.425, lon: -119.905, mile: 266, elevation: 4518, section: 10 },
+        { name: "11: Hart Mountain HQ to Orejana Canyon", lat: 42.548, lon: -119.655, mile: 311, elevation: 5617, section: 11 },
+        { name: "12: Orejana Canyon to Frenchglen", lat: 42.790, lon: -119.483, mile: 334, elevation: 5010, section: 12 },
 
-        // Region 3: Frenchglen to McDermitt (165 mi)
-        { name: "Steens Mountain Summit", lat: 42.636, lon: -118.577, mile: 400, elevation: 9738, section: 3 },
-        { name: "Alvord Desert", lat: 42.535, lon: -118.456, mile: 420, elevation: 4006, section: 3 },
-        { name: "Fields", lat: 42.264, lon: -118.676, mile: 439, elevation: 4232, section: 3 },
-        { name: "Pueblo Mountains", lat: 42.099, lon: -118.651, mile: 480, elevation: 8632, section: 3 },
-        { name: "McDermitt", lat: 41.998, lon: -117.719, mile: 539, elevation: 4432, section: 3 },
+        // Region 3: East Basin and Range
+        { name: "13: Frenchglen to South Steens", lat: 42.825, lon: -118.914, mile: 374, elevation: 4196, section: 13 },
+        { name: "14: South Steens to East Steens Road", lat: 42.657, lon: -118.728, mile: 393, elevation: 5348, section: 14 },
+        { name: "15: East Steens Road to Fields", lat: 42.520, lon: -118.531, mile: 417, elevation: 4042, section: 15 },
+        { name: "16: Fields to Denio Creek", lat: 42.265, lon: -118.675, mile: 438, elevation: 4226, section: 16 },
+        { name: "17: Denio Creek to No Name Creek", lat: 42.002, lon: -118.634, mile: 467, elevation: 4255, section: 17 },
+        { name: "18: No Name Creek to Oregon Canyon", lat: 42.042, lon: -118.352, mile: 486, elevation: 6227, section: 18 },
+        { name: "19: Oregon Canyon to Hwy 95", lat: 42.116, lon: -117.984, mile: 517, elevation: 7726, section: 19 },
+        { name: "20: Hwy 95 to Anderson Crossing", lat: 42.121, lon: -117.746, mile: 539, elevation: 4600, section: 20 },
 
-        // Region 4: McDermitt to Lake Owyhee (212 mi)
-        { name: "Rome", lat: 42.838, lon: -117.627, mile: 661, elevation: 3390, section: 4 },
-        { name: "Lake Owyhee State Park", lat: 43.628, lon: -117.232, mile: 750, elevation: 2782, section: 4 }
+        // Region 4: Owyhee Canyonlands
+        { name: "21: Anderson Crossing to Three Forks", lat: 42.130, lon: -117.316, mile: 577, elevation: 5502, section: 21 },
+        { name: "22: Three Forks to Rome", lat: 42.545, lon: -117.166, mile: 621, elevation: 3980, section: 22 },
+        { name: "23: Rome to Lambert Rocks", lat: 42.839, lon: -117.628, mile: 661, elevation: 3383, section: 23 },
+        { name: "24: Lambert Rocks to Leslie Gulch", lat: 43.064, lon: -117.681, mile: 684, elevation: 3389, section: 24 },
+        { name: "25: Leslie Gulch to Owyhee Reservoir", lat: 43.299, lon: -117.270, mile: 725, elevation: 3517, section: 25 }
       ];
 
       const container = document.getElementById("container");
