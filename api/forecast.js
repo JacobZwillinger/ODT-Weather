@@ -38,6 +38,11 @@ module.exports = async function handler(req, res) {
     const currently = data.currently || {};
     const dailyData = data.daily?.data || [];
 
+    // Extract API usage from response headers
+    const apiCalls = response.headers.get("x-forecast-api-calls");
+    const rateLimit = response.headers.get("ratelimit-limit");
+    const rateRemaining = response.headers.get("ratelimit-remaining");
+
     // Format daily forecast for 7 days
     const daily = dailyData.slice(0, 7).map((day) => ({
       time: day.time,
@@ -56,7 +61,12 @@ module.exports = async function handler(req, res) {
       windSpeed: currently.windSpeed,
       windGust: currently.windGust,
       humidity: currently.humidity,
-      daily
+      daily,
+      _usage: {
+        calls: apiCalls ? parseInt(apiCalls, 10) : null,
+        limit: rateLimit ? parseInt(rateLimit, 10) : null,
+        remaining: rateRemaining ? parseInt(rateRemaining, 10) : null
+      }
     });
   } catch (error) {
     console.error(error);
