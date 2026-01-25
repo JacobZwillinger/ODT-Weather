@@ -45,22 +45,41 @@
         font-size: 0.85rem;
       }
 
+      .section-cell {
+        width: 6px;
+        padding: 0;
+        border-right: none;
+      }
+
+      .section-indicator {
+        width: 6px;
+        height: 100%;
+        min-height: 40px;
+      }
+
+      .section-1 { background: #22c55e; }
+      .section-2 { background: #3b82f6; }
+      .section-3 { background: #f59e0b; }
+      .section-4 { background: #ef4444; }
+
       .location-name {
         font-weight: 500;
       }
 
-      .coords {
-        font-size: 0.8rem;
-        margin-top: 2px;
-      }
-
-      .coords a {
-        color: #0066cc;
+      .location-name a {
+        color: inherit;
         text-decoration: none;
       }
 
-      .coords a:hover {
+      .location-name a:hover {
+        color: #0066cc;
         text-decoration: underline;
+      }
+
+      .elevation {
+        font-size: 0.8rem;
+        color: #666;
+        margin-top: 2px;
       }
 
       .mile {
@@ -105,24 +124,24 @@
     <script>
       const points = [
         // Region 1: Oregon Badlands to Paisley (161 mi)
-        { name: "Oregon Badlands (Western Terminus)", lat: 43.954, lon: -121.015, mile: 0 },
-        { name: "Christmas Valley", lat: 43.238, lon: -120.671, mile: 84 },
-        { name: "Paisley", lat: 42.694, lon: -120.546, mile: 161 },
+        { name: "Oregon Badlands", lat: 43.954, lon: -121.015, mile: 0, elevation: 3595, section: 1 },
+        { name: "Christmas Valley", lat: 43.238, lon: -120.671, mile: 84, elevation: 4321, section: 1 },
+        { name: "Paisley", lat: 42.694, lon: -120.546, mile: 161, elevation: 4366, section: 1 },
 
         // Region 2: Paisley to Frenchglen (214 mi)
-        { name: "Hart Mountain Hot Springs", lat: 42.502, lon: -119.690, mile: 266 },
-        { name: "Frenchglen", lat: 42.827, lon: -118.915, mile: 374 },
+        { name: "Hart Mountain Hot Springs", lat: 42.502, lon: -119.690, mile: 266, elevation: 5945, section: 2 },
+        { name: "Frenchglen", lat: 42.827, lon: -118.915, mile: 374, elevation: 4194, section: 2 },
 
         // Region 3: Frenchglen to McDermitt (165 mi)
-        { name: "Steens Mountain Summit", lat: 42.636, lon: -118.577, mile: 400 },
-        { name: "Alvord Desert", lat: 42.535, lon: -118.456, mile: 420 },
-        { name: "Fields", lat: 42.264, lon: -118.676, mile: 439 },
-        { name: "Pueblo Mountains", lat: 42.099, lon: -118.651, mile: 480 },
-        { name: "McDermitt", lat: 41.998, lon: -117.719, mile: 539 },
+        { name: "Steens Mountain Summit", lat: 42.636, lon: -118.577, mile: 400, elevation: 9738, section: 3 },
+        { name: "Alvord Desert", lat: 42.535, lon: -118.456, mile: 420, elevation: 4006, section: 3 },
+        { name: "Fields", lat: 42.264, lon: -118.676, mile: 439, elevation: 4232, section: 3 },
+        { name: "Pueblo Mountains", lat: 42.099, lon: -118.651, mile: 480, elevation: 8632, section: 3 },
+        { name: "McDermitt", lat: 41.998, lon: -117.719, mile: 539, elevation: 4432, section: 3 },
 
         // Region 4: McDermitt to Lake Owyhee (212 mi)
-        { name: "Rome", lat: 42.838, lon: -117.627, mile: 661 },
-        { name: "Lake Owyhee State Park (Eastern Terminus)", lat: 43.628, lon: -117.232, mile: 750 }
+        { name: "Rome", lat: 42.838, lon: -117.627, mile: 661, elevation: 3390, section: 4 },
+        { name: "Lake Owyhee State Park", lat: 43.628, lon: -117.232, mile: 750, elevation: 2782, section: 4 }
       ];
 
       const container = document.getElementById("container");
@@ -144,11 +163,8 @@
         return days;
       };
 
-      const formatCoords = (lat, lon) => {
-        const latStr = lat.toFixed(4);
-        const lonStr = lon.toFixed(4);
-        const googleUrl = `https://www.google.com/maps?q=${lat},${lon}`;
-        return `<a href="${googleUrl}" target="_blank" rel="noopener">(${latStr}, ${lonStr})</a>`;
+      const getMapUrl = (lat, lon) => {
+        return `https://www.google.com/maps?q=${lat},${lon}`;
       };
 
       // Inline SVG weather icons - minimal file size, no external requests
@@ -176,6 +192,7 @@
           <table>
             <thead>
               <tr>
+                <th class="section-cell"></th>
                 <th>Location</th>
                 <th>Mile</th>
                 ${dayHeaders.map(d => `<th>${d}</th>`).join("")}
@@ -188,11 +205,12 @@
           const forecast = forecasts[index];
           html += `
             <tr>
+              <td class="section-cell"><div class="section-indicator section-${point.section}"></div></td>
               <td>
-                <div class="location-name">${point.name}</div>
-                <div class="coords">${formatCoords(point.lat, point.lon)}</div>
+                <div class="location-name"><a href="${getMapUrl(point.lat, point.lon)}" target="_blank" rel="noopener">${point.name}</a></div>
+                <div class="elevation">${point.elevation.toLocaleString()}′</div>
               </td>
-              <td class="mile">${point.mile.toFixed(1)}</td>
+              <td class="mile">${point.mile}</td>
           `;
 
           // Add 7 day cells
