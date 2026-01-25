@@ -83,7 +83,7 @@
   </head>
   <body>
     <h1>Oregon Desert Trail Weather</h1>
-    <p class="subtitle">Five placeholder points, updated from PirateWeather.</p>
+    <p class="subtitle">Key sections along the 750-mile Oregon Desert Trail, updated from PirateWeather.</p>
 
     <div id="container">
       <div class="loading">Loading forecasts...</div>
@@ -91,11 +91,25 @@
 
     <script>
       const points = [
-        { name: "Owyhee Canyonlands", lat: 43.1560, lon: -117.2010, mile: 0.0 },
-        { name: "Summer Lake Flats", lat: 42.9980, lon: -120.6610, mile: 145.0 },
-        { name: "Christmas Valley", lat: 43.2460, lon: -120.6660, mile: 250.0 },
-        { name: "Hart Mountain", lat: 42.5100, lon: -119.6460, mile: 420.0 },
-        { name: "Steens Mountain", lat: 42.7100, lon: -118.5900, mile: 750.0 }
+        // Region 1: Oregon Badlands to Paisley (161 mi)
+        { name: "Oregon Badlands (Western Terminus)", lat: 43.954, lon: -121.015, mile: 0 },
+        { name: "Christmas Valley", lat: 43.238, lon: -120.671, mile: 84 },
+        { name: "Paisley", lat: 42.694, lon: -120.546, mile: 161 },
+
+        // Region 2: Paisley to Frenchglen (214 mi)
+        { name: "Hart Mountain Hot Springs", lat: 42.502, lon: -119.690, mile: 266 },
+        { name: "Frenchglen", lat: 42.827, lon: -118.915, mile: 374 },
+
+        // Region 3: Frenchglen to McDermitt (165 mi)
+        { name: "Steens Mountain Summit", lat: 42.636, lon: -118.577, mile: 400 },
+        { name: "Alvord Desert", lat: 42.535, lon: -118.456, mile: 420 },
+        { name: "Fields", lat: 42.264, lon: -118.676, mile: 439 },
+        { name: "Pueblo Mountains", lat: 42.099, lon: -118.651, mile: 480 },
+        { name: "McDermitt", lat: 41.998, lon: -117.719, mile: 539 },
+
+        // Region 4: McDermitt to Lake Owyhee (212 mi)
+        { name: "Rome", lat: 42.838, lon: -117.627, mile: 661 },
+        { name: "Lake Owyhee State Park (Eastern Terminus)", lat: 43.628, lon: -117.232, mile: 750 }
       ];
 
       const container = document.getElementById("container");
