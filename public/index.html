@@ -20,10 +20,29 @@
         font-weight: 600;
       }
 
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+
+      .header-left {
+        flex: 1;
+      }
+
       .subtitle {
-        margin: 0 0 16px;
+        margin: 0;
         color: #666;
         font-size: 0.9rem;
+      }
+
+      .api-usage {
+        font-size: 0.75rem;
+        color: #999;
+        text-align: right;
       }
 
       table {
@@ -116,8 +135,13 @@
     </style>
   </head>
   <body>
-    <h1>Oregon Desert Trail Weather</h1>
-    <p class="subtitle">All 25 sections of the 750-mile Oregon Desert Trail, updated from PirateWeather.</p>
+    <div class="header">
+      <div class="header-left">
+        <h1>Oregon Desert Trail Weather</h1>
+        <p class="subtitle">All 25 sections of the 750-mile Oregon Desert Trail, updated from PirateWeather.</p>
+      </div>
+      <div class="api-usage" id="apiUsage"></div>
+    </div>
 
     <div id="container">
       <div class="loading">Loading forecasts...</div>
@@ -272,7 +296,22 @@
         renderTable(forecasts);
       };
 
+      const loadApiUsage = async () => {
+        try {
+          const response = await fetch('/api/usage');
+          if (response.ok) {
+            const data = await response.json();
+            if (data.apiCalls !== null) {
+              document.getElementById('apiUsage').textContent = `API calls this month: ${data.apiCalls.toLocaleString()}`;
+            }
+          }
+        } catch (e) {
+          // Silently fail - usage display is optional
+        }
+      };
+
       loadForecasts();
+      loadApiUsage();
     </script>
   </body>
 </html>
