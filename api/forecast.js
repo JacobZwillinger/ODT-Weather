@@ -36,6 +36,15 @@ module.exports = async function handler(req, res) {
 
     const data = await response.json();
     const currently = data.currently || {};
+    const dailyData = data.daily?.data || [];
+
+    // Format daily forecast for 7 days
+    const daily = dailyData.slice(0, 7).map((day) => ({
+      time: day.time,
+      high: day.temperatureHigh,
+      low: day.temperatureLow,
+      summary: day.summary || day.icon || ""
+    }));
 
     return res.json({
       time: currently.time,
@@ -45,7 +54,8 @@ module.exports = async function handler(req, res) {
       apparentTemperature: currently.apparentTemperature,
       windSpeed: currently.windSpeed,
       windGust: currently.windGust,
-      humidity: currently.humidity
+      humidity: currently.humidity,
+      daily
     });
   } catch (error) {
     console.error(error);
