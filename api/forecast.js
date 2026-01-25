@@ -22,7 +22,7 @@ module.exports = async function handler(req, res) {
   url.searchParams.set("exclude", "minutely,hourly,alerts");
   url.searchParams.set("units", "us");
 
-  res.setHeader("Cache-Control", "public, max-age=60");
+  res.setHeader("Cache-Control", "public, max-age=43200"); // 12 hours
 
   try {
     const response = await fetch(url);
