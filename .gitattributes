@@ -1,0 +1,2 @@
+# Mark PMTiles files as binary to prevent any text transformations
+*.pmtiles binary
