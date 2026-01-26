@@ -1,3 +1,17 @@
 node_modules/
 .env
 .DS_Store
+
+# Build artifacts
+build/basemap.pmtiles
+build/region.osm.pbf
+build/corridor.osm.pbf
+build/planetiler.jar
+build/planetiler-tmp/
+build/tile_weights.tsv.gz
+
+# Data sources (large files, can be re-downloaded)
+data/
+
+# Track files in repo for reference
+# Track Files/

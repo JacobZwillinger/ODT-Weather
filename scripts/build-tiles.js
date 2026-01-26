@@ -148,20 +148,29 @@ const sectionsPath = path.join(buildDir, 'sections.geojson');
 fs.writeFileSync(sectionsPath, JSON.stringify(sectionsGeoJSON));
 console.log(`   Written: ${sectionsPath} (${sections.length} sections)`);
 
-// 4. Run Tippecanoe to create PMTiles
+// 4. Run Tippecanoe to create overlay PMTiles
 console.log('\n4. Running Tippecanoe...');
 
+// Create both in public/ (for dev) and dist/ (for production)
+const distDir = path.join(projectRoot, 'dist');
+if (!fs.existsSync(distDir)) fs.mkdirSync(distDir, { recursive: true });
+
 const pmtilesPath = path.join(publicDir, 'route.pmtiles');
+const overlayPath = path.join(distDir, 'overlay.pmtiles');
 
 try {
   // Create PMTiles with all layers using named-layer option
   // Each file becomes its own layer
-  execSync(`tippecanoe -o "${pmtilesPath}" --force --minimum-zoom=0 --maximum-zoom=13 --named-layer=route:"${routeLinePath}" --named-layer=waypoints:"${waypointsPath}" --named-layer=sections:"${sectionsPath}"`, {
-    stdio: 'inherit'
-  });
+  const tippecanoeCmd = `tippecanoe -o "${pmtilesPath}" --force --minimum-zoom=0 --maximum-zoom=13 --named-layer=route:"${routeLinePath}" --named-layer=waypoints:"${waypointsPath}" --named-layer=sections:"${sectionsPath}"`;
+
+  execSync(tippecanoeCmd, { stdio: 'inherit' });
 
   const stats = fs.statSync(pmtilesPath);
   console.log(`\n✓ Created: ${pmtilesPath} (${(stats.size / 1024).toFixed(1)} KB)`);
+
+  // Copy to dist/overlay.pmtiles for production use
+  fs.copyFileSync(pmtilesPath, overlayPath);
+  console.log(`✓ Copied to: ${overlayPath}`);
 
 } catch (error) {
   console.error('Error running Tippecanoe:', error.message);
