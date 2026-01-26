@@ -45,32 +45,47 @@ const projectRoot = path.join(__dirname, '..');
 const buildDir = path.join(projectRoot, 'build');
 const publicDir = path.join(projectRoot, 'public');
 const gpxPath = path.join(projectRoot, 'data', 'route.gpx');
+const detailedRoutePath = path.join(projectRoot, 'data', 'route.geojson');
 
 // Ensure directories exist
 if (!fs.existsSync(buildDir)) fs.mkdirSync(buildDir, { recursive: true });
 
 console.log('Building route tiles...\n');
 
-// 1. Create route line GeoJSON from sections
-console.log('1. Creating route line from sections...');
-const routeLine = {
-  type: 'FeatureCollection',
-  features: [{
-    type: 'Feature',
-    properties: {
-      name: 'Oregon Desert Trail',
-      length_miles: 751.1
-    },
-    geometry: {
-      type: 'LineString',
-      coordinates: sections.map(s => [s.lon, s.lat])
-    }
-  }]
-};
+// 1. Use detailed route line from KML track files
+console.log('1. Using detailed route line from KML tracks...');
 
+let routeLine;
 const routeLinePath = path.join(buildDir, 'route_line.geojson');
+
+if (fs.existsSync(detailedRoutePath)) {
+  // Use the detailed route parsed from KML files
+  routeLine = JSON.parse(fs.readFileSync(detailedRoutePath, 'utf8'));
+  const totalPoints = routeLine.features[0].geometry.coordinates.reduce(
+    (sum, line) => sum + line.length, 0
+  );
+  console.log(`   Using detailed route with ${totalPoints} points from KML tracks`);
+} else {
+  // Fallback: Create simple route line from section waypoints
+  console.log('   Detailed route not found, creating simple line from sections...');
+  routeLine = {
+    type: 'FeatureCollection',
+    features: [{
+      type: 'Feature',
+      properties: {
+        name: 'Oregon Desert Trail',
+        length_miles: 751.1
+      },
+      geometry: {
+        type: 'LineString',
+        coordinates: sections.map(s => [s.lon, s.lat])
+      }
+    }]
+  };
+}
+
 fs.writeFileSync(routeLinePath, JSON.stringify(routeLine));
-console.log(`   Written: ${routeLinePath} (${sections.length} points)`);
+console.log(`   Written: ${routeLinePath}`);
 
 // 2. Parse GPX and create waypoints GeoJSON
 console.log('\n2. Parsing GPX waypoints...');
