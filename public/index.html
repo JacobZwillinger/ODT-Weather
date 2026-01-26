@@ -329,50 +329,8 @@
       }
 
       /* Map tab styles */
-      .map-controls {
-        margin-bottom: 12px;
-        display: flex;
-        gap: 8px;
-        align-items: center;
-      }
-
-      .offline-btn {
-        padding: 8px 16px;
-        border: 1px solid #3b82f6;
-        background: #3b82f6;
-        color: #fff;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 0.85rem;
-        font-weight: 500;
-      }
-
-      .offline-btn:hover {
-        background: #2563eb;
-        border-color: #2563eb;
-      }
-
-      .offline-btn:disabled {
-        background: #94a3b8;
-        border-color: #94a3b8;
-        cursor: not-allowed;
-      }
-
-      .offline-status {
-        font-size: 0.85rem;
-        color: #666;
-      }
-
-      .offline-status.success {
-        color: #16a34a;
-      }
-
-      .offline-status.error {
-        color: #dc2626;
-      }
-
       #mapContainer {
-        height: calc(100vh - 180px);
+        height: calc(100vh - 140px);
         min-height: 400px;
         border-radius: 8px;
         overflow: hidden;
@@ -427,10 +385,6 @@
     </div>
 
     <div id="mapTab" class="tab-content">
-      <div class="map-controls">
-        <button id="offlineBtn" class="offline-btn">Download Offline Basemap</button>
-        <span id="offlineStatus" class="offline-status"></span>
-      </div>
       <div id="mapContainer"></div>
     </div>
 
@@ -658,149 +612,17 @@
       // Render water table on load
       renderWaterTable();
 
-      // Offline basemap management
-      const BASEMAP_CACHE_KEY = 'odt-basemap';
-      const BASEMAP_URL = 'dist/basemap.pmtiles';
-
-      const openDB = () => {
-        return new Promise((resolve, reject) => {
-          const request = indexedDB.open('ODTWeatherMaps', 1);
-
-          request.onupgradeneeded = (e) => {
-            const db = e.target.result;
-            if (!db.objectStoreNames.contains('tiles')) {
-              db.createObjectStore('tiles');
-            }
-          };
-
-          request.onsuccess = () => resolve(request.result);
-          request.onerror = () => reject(request.error);
-        });
-      };
-
-      const saveBasemapToCache = async (arrayBuffer) => {
-        const db = await openDB();
-        return new Promise((resolve, reject) => {
-          const tx = db.transaction('tiles', 'readwrite');
-          const store = tx.objectStore('tiles');
-          const request = store.put(arrayBuffer, BASEMAP_CACHE_KEY);
-
-          request.onsuccess = () => resolve();
-          request.onerror = () => reject(request.error);
-        });
-      };
-
-      const getBasemapFromCache = async () => {
-        const db = await openDB();
-        return new Promise((resolve, reject) => {
-          const tx = db.transaction('tiles', 'readonly');
-          const store = tx.objectStore('tiles');
-          const request = store.get(BASEMAP_CACHE_KEY);
-
-          request.onsuccess = () => resolve(request.result);
-          request.onerror = () => reject(request.error);
-        });
-      };
-
-      const checkOfflineBasemap = async () => {
-        try {
-          const cached = await getBasemapFromCache();
-          const statusEl = document.getElementById('offlineStatus');
-          const btnEl = document.getElementById('offlineBtn');
-
-          if (cached) {
-            statusEl.textContent = 'Offline basemap ready';
-            statusEl.className = 'offline-status success';
-            btnEl.textContent = 'Re-download Basemap';
-          }
-        } catch (err) {
-          console.error('Error checking offline basemap:', err);
-        }
-      };
-
-      const downloadOfflineBasemap = async () => {
-        const btnEl = document.getElementById('offlineBtn');
-        const statusEl = document.getElementById('offlineStatus');
-
-        btnEl.disabled = true;
-        statusEl.textContent = 'Downloading...';
-        statusEl.className = 'offline-status';
-
-        try {
-          const response = await fetch(BASEMAP_URL);
-          if (!response.ok) throw new Error('Download failed');
-
-          const totalBytes = parseInt(response.headers.get('content-length') || '0');
-          const reader = response.body.getReader();
-          let receivedBytes = 0;
-          const chunks = [];
-
-          while (true) {
-            const {done, value} = await reader.read();
-            if (done) break;
-
-            chunks.push(value);
-            receivedBytes += value.length;
-
-            if (totalBytes > 0) {
-              const percent = Math.round((receivedBytes / totalBytes) * 100);
-              statusEl.textContent = `Downloading... ${percent}%`;
-            }
-          }
-
-          const arrayBuffer = new Uint8Array(receivedBytes);
-          let position = 0;
-          for (const chunk of chunks) {
-            arrayBuffer.set(chunk, position);
-            position += chunk.length;
-          }
-
-          statusEl.textContent = 'Saving...';
-          await saveBasemapToCache(arrayBuffer.buffer);
-
-          statusEl.textContent = 'Offline basemap ready!';
-          statusEl.className = 'offline-status success';
-          btnEl.textContent = 'Re-download Basemap';
-        } catch (err) {
-          console.error('Error downloading basemap:', err);
-          statusEl.textContent = 'Download failed';
-          statusEl.className = 'offline-status error';
-        } finally {
-          btnEl.disabled = false;
-        }
-      };
-
-      // Check for offline basemap on load
-      checkOfflineBasemap();
-
-      // Wire up download button
-      document.getElementById('offlineBtn').addEventListener('click', downloadOfflineBasemap);
-
       // Map initialization
       let map = null;
       let mapInitialized = false;
 
-      const initMap = async () => {
+      const initMap = () => {
         if (mapInitialized) return;
         mapInitialized = true;
 
         // Register PMTiles protocol
         const protocol = new pmtiles.Protocol();
         maplibregl.addProtocol('pmtiles', protocol.tile);
-
-        // Try to load basemap from IndexedDB cache
-        let basemapUrl = 'pmtiles://dist/basemap.pmtiles';
-        try {
-          const cachedBasemap = await getBasemapFromCache();
-          if (cachedBasemap) {
-            // Create blob URL from cached data
-            const blob = new Blob([cachedBasemap], { type: 'application/vnd.pmtiles' });
-            basemapUrl = 'pmtiles://' + URL.createObjectURL(blob);
-            console.log('Using cached offline basemap');
-          }
-        } catch (err) {
-          console.log('No cached basemap, using network', err);
-        }
 
         // Calculate bounds from route coordinates
         const routeCoords = points.map(p => [p.lon, p.lat]);
@@ -816,157 +638,32 @@
           style: {
             version: 8,
             sources: {
-              'basemap': {
-                type: 'vector',
-                url: basemapUrl
+              'osm': {
+                type: 'raster',
+                tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
+                tileSize: 256,
+                attribution: '&copy; OpenStreetMap contributors'
               },
               'overlay': {
                 type: 'vector',
                 url: 'pmtiles://dist/overlay.pmtiles'
               }
             },
-            layers: []
+            layers: [
+              {
+                id: 'osm-tiles',
+                type: 'raster',
+                source: 'osm',
+                minzoom: 0,
+                maxzoom: 19
+              }
+            ]
           },
           bounds: bounds,
           fitBoundsOptions: { padding: 40 }
         });
 
         map.on('load', () => {
-          // Add basemap layers (OpenMapTiles style)
-          // Background
-          map.addLayer({
-            id: 'background',
-            type: 'background',
-            paint: {
-              'background-color': '#f8f4f0'
-            }
-          });
-
-          // Water
-          map.addLayer({
-            id: 'water',
-            type: 'fill',
-            source: 'basemap',
-            'source-layer': 'water',
-            paint: {
-              'fill-color': '#a8c5db',
-              'fill-opacity': 0.7
-            }
-          });
-
-          // Landuse - parks and protected areas
-          map.addLayer({
-            id: 'landuse',
-            type: 'fill',
-            source: 'basemap',
-            'source-layer': 'landuse',
-            filter: ['in', 'class', 'park', 'nature_reserve', 'wood'],
-            paint: {
-              'fill-color': '#d8e8c8',
-              'fill-opacity': 0.3
-            }
-          });
-
-          // Roads - casing
-          map.addLayer({
-            id: 'road-casing',
-            type: 'line',
-            source: 'basemap',
-            'source-layer': 'transportation',
-            filter: ['in', 'class', 'motorway', 'trunk', 'primary', 'secondary', 'tertiary', 'minor', 'service', 'track'],
-            paint: {
-              'line-color': '#fff',
-              'line-width': [
-                'interpolate',
-                ['exponential', 1.5],
-                ['zoom'],
-                5, ['match', ['get', 'class'],
-                  ['motorway', 'trunk'], 1,
-                  ['primary'], 0.8,
-                  0.5
-                ],
-                15, ['match', ['get', 'class'],
-                  ['motorway', 'trunk'], 12,
-                  ['primary'], 10,
-                  ['secondary', 'tertiary'], 8,
-                  ['minor', 'service'], 6,
-                  ['track'], 4,
-                  4
-                ]
-              ]
-            }
-          });
-
-          // Roads - main
-          map.addLayer({
-            id: 'road',
-            type: 'line',
-            source: 'basemap',
-            'source-layer': 'transportation',
-            filter: ['in', 'class', 'motorway', 'trunk', 'primary', 'secondary', 'tertiary', 'minor', 'service', 'track'],
-            paint: {
-              'line-color': [
-                'match',
-                ['get', 'class'],
-                ['motorway', 'trunk'], '#fbb03b',
-                ['primary'], '#f59a3c',
-                ['secondary', 'tertiary'], '#fdd997',
-                ['track'], '#c6a89c',
-                '#fff'
-              ],
-              'line-width': [
-                'interpolate',
-                ['exponential', 1.5],
-                ['zoom'],
-                5, ['match', ['get', 'class'],
-                  ['motorway', 'trunk'], 0.8,
-                  ['primary'], 0.6,
-                  0.4
-                ],
-                15, ['match', ['get', 'class'],
-                  ['motorway', 'trunk'], 10,
-                  ['primary'], 8,
-                  ['secondary', 'tertiary'], 6,
-                  ['minor', 'service'], 4,
-                  ['track'], 2,
-                  3
-                ]
-              ]
-            }
-          });
-
-          // Place labels
-          map.addLayer({
-            id: 'place-labels',
-            type: 'symbol',
-            source: 'basemap',
-            'source-layer': 'place',
-            layout: {
-              'text-field': ['get', 'name'],
-              'text-size': [
-                'interpolate',
-                ['linear'],
-                ['zoom'],
-                5, ['match', ['get', 'class'],
-                  'city', 14,
-                  'town', 11,
-                  9
-                ],
-                15, ['match', ['get', 'class'],
-                  'city', 24,
-                  'town', 18,
-                  14
-                ]
-              ],
-              'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold']
-            },
-            paint: {
-              'text-color': '#333',
-              'text-halo-color': '#fff',
-              'text-halo-width': 2
-            }
-          });
-
           // Add route line layer from overlay
           map.addLayer({
             id: 'route-line',
