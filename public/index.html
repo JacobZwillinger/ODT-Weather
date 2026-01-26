@@ -367,6 +367,7 @@
       <button class="tab-btn active" data-tab="weather">Weather</button>
       <button class="tab-btn" data-tab="water">Water</button>
       <button class="tab-btn" data-tab="progress">Progress</button>
+      <button class="tab-btn" data-tab="elevation">Elevation</button>
       <button class="tab-btn" data-tab="map">Map</button>
     </div>
 
@@ -382,6 +383,10 @@
 
     <div id="progressTab" class="tab-content">
       <div id="progressContainer"></div>
+    </div>
+
+    <div id="elevationTab" class="tab-content">
+      <canvas id="elevationChart" style="width: 100%; height: 400px; border: 1px solid #ddd; border-radius: 8px;"></canvas>
     </div>
 
     <div id="mapTab" class="tab-content">
@@ -612,6 +617,127 @@
       // Render water table on load
       renderWaterTable();
 
+      // Elevation profile chart
+      const renderElevationChart = () => {
+        const canvas = document.getElementById('elevationChart');
+        const ctx = canvas.getContext('2d');
+
+        // Set canvas size
+        canvas.width = canvas.offsetWidth;
+        canvas.height = 400;
+
+        const padding = { top: 40, right: 40, bottom: 60, left: 60 };
+        const chartWidth = canvas.width - padding.left - padding.right;
+        const chartHeight = canvas.height - padding.top - padding.bottom;
+
+        // Get elevation data
+        const elevations = points.map(p => p.elevation);
+        const miles = points.map(p => p.mile);
+        const minElev = Math.min(...elevations);
+        const maxElev = Math.max(...elevations);
+        const maxMile = Math.max(...miles);
+
+        // Scale functions
+        const xScale = (mile) => padding.left + (mile / maxMile) * chartWidth;
+        const yScale = (elev) => padding.top + chartHeight - ((elev - minElev) / (maxElev - minElev)) * chartHeight;
+
+        // Clear canvas
+        ctx.fillStyle = '#fafafa';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Draw grid lines
+        ctx.strokeStyle = '#e0e0e0';
+        ctx.lineWidth = 1;
+
+        // Horizontal grid lines (elevation)
+        for (let i = 0; i <= 5; i++) {
+          const elev = minElev + (maxElev - minElev) * (i / 5);
+          const y = yScale(elev);
+          ctx.beginPath();
+          ctx.moveTo(padding.left, y);
+          ctx.lineTo(padding.left + chartWidth, y);
+          ctx.stroke();
+
+          // Y-axis labels
+          ctx.fillStyle = '#666';
+          ctx.font = '12px system-ui';
+          ctx.textAlign = 'right';
+          ctx.fillText(Math.round(elev) + ' ft', padding.left - 10, y + 4);
+        }
+
+        // Vertical grid lines (distance)
+        for (let i = 0; i <= 10; i++) {
+          const mile = (maxMile / 10) * i;
+          const x = xScale(mile);
+          ctx.strokeStyle = '#e0e0e0';
+          ctx.beginPath();
+          ctx.moveTo(x, padding.top);
+          ctx.lineTo(x, padding.top + chartHeight);
+          ctx.stroke();
+
+          // X-axis labels
+          ctx.fillStyle = '#666';
+          ctx.font = '12px system-ui';
+          ctx.textAlign = 'center';
+          ctx.fillText(Math.round(mile) + ' mi', x, padding.top + chartHeight + 20);
+        }
+
+        // Draw elevation profile
+        ctx.beginPath();
+        ctx.strokeStyle = '#e11d48';
+        ctx.lineWidth = 2;
+
+        points.forEach((point, i) => {
+          const x = xScale(point.mile);
+          const y = yScale(point.elevation);
+
+          if (i === 0) {
+            ctx.moveTo(x, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
+        });
+
+        ctx.stroke();
+
+        // Fill area under line
+        ctx.lineTo(xScale(points[points.length - 1].mile), padding.top + chartHeight);
+        ctx.lineTo(xScale(points[0].mile), padding.top + chartHeight);
+        ctx.closePath();
+        ctx.fillStyle = 'rgba(225, 29, 72, 0.1)';
+        ctx.fill();
+
+        // Draw axes
+        ctx.strokeStyle = '#333';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(padding.left, padding.top);
+        ctx.lineTo(padding.left, padding.top + chartHeight);
+        ctx.lineTo(padding.left + chartWidth, padding.top + chartHeight);
+        ctx.stroke();
+
+        // Axis labels
+        ctx.fillStyle = '#333';
+        ctx.font = 'bold 14px system-ui';
+        ctx.textAlign = 'center';
+        ctx.fillText('Distance (miles)', padding.left + chartWidth / 2, canvas.height - 10);
+
+        ctx.save();
+        ctx.translate(15, padding.top + chartHeight / 2);
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillText('Elevation (feet)', 0, 0);
+        ctx.restore();
+
+        // Title
+        ctx.font = 'bold 16px system-ui';
+        ctx.fillText('Oregon Desert Trail Elevation Profile', canvas.width / 2, 25);
+      };
+
+      // Render elevation chart when tab is shown
+      document.querySelector('[data-tab="elevation"]').addEventListener('click', () => {
+        setTimeout(() => renderElevationChart(), 100);
+      });
+
       // Map initialization
       let map = null;
       let mapInitialized = false;
@@ -647,10 +773,6 @@
               'overlay': {
                 type: 'vector',
                 url: 'pmtiles://overlay.pmtiles'
-              },
-              'contours': {
-                type: 'vector',
-                url: 'pmtiles://contours.pmtiles'
               }
             },
             layers: []
@@ -839,51 +961,6 @@
               'text-color': '#666',
               'text-halo-color': '#fff',
               'text-halo-width': 2
-            }
-          });
-
-          // Contour lines (50-foot intervals, visible at z12+)
-          map.addLayer({
-            id: 'contours',
-            type: 'line',
-            source: 'contours',
-            'source-layer': 'contours',
-            minzoom: 12,
-            paint: {
-              'line-color': '#b8845c',
-              'line-width': [
-                'interpolate',
-                ['linear'],
-                ['zoom'],
-                12, 0.5,
-                14, 1
-              ],
-              'line-opacity': 0.6
-            }
-          });
-
-          // Contour labels (elevation values)
-          map.addLayer({
-            id: 'contour-labels',
-            type: 'symbol',
-            source: 'contours',
-            'source-layer': 'contours',
-            minzoom: 13,
-            layout: {
-              'text-field': [
-                'concat',
-                ['get', 'ELEVATION'],
-                'm'
-              ],
-              'text-size': 9,
-              'symbol-placement': 'line',
-              'text-font': ['Noto Sans Regular'],
-              'text-max-angle': 30
-            },
-            paint: {
-              'text-color': '#8b6f47',
-              'text-halo-color': '#fff',
-              'text-halo-width': 1.5
             }
           });
 
