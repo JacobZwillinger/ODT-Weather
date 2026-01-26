@@ -13,5 +13,8 @@ build/tile_weights.tsv.gz
 # Data sources (large files, can be re-downloaded)
 data/
 
+# Basemap PMTiles (too large/binary for git, gets corrupted)
+dist/basemap.pmtiles
+
 # Track files in repo for reference
 # Track Files/
