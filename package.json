@@ -7,6 +7,9 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "@turf/bbox": "^7.3.2",
+    "@turf/buffer": "^7.3.2",
+    "@turf/line-to-polygon": "^7.3.2",
     "compression": "^1.7.4",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
