@@ -182,6 +182,11 @@ function updateProgress(currentMile) {
   // Update current position display
   document.getElementById('progressCurrent').textContent = `Mile ${progress.currentMile.toFixed(1)}`;
 
+  // Update elevation chart (if function is available)
+  if (typeof window.renderElevationChart === 'function') {
+    window.renderElevationChart(currentMile);
+  }
+
   // Update next water panel
   const nextWaterName = document.getElementById('nextWaterName');
   const nextWaterDistance = document.getElementById('nextWaterDistance');
