@@ -367,7 +367,6 @@
       <button class="tab-btn active" data-tab="weather">Weather</button>
       <button class="tab-btn" data-tab="water">Water</button>
       <button class="tab-btn" data-tab="progress">Progress</button>
-      <button class="tab-btn" data-tab="elevation">Elevation</button>
       <button class="tab-btn" data-tab="map">Map</button>
     </div>
 
@@ -383,10 +382,10 @@
 
     <div id="progressTab" class="tab-content">
       <div id="progressContainer"></div>
-    </div>
-
-    <div id="elevationTab" class="tab-content">
-      <canvas id="elevationChart" style="width: 100%; height: 400px; border: 1px solid #ddd; border-radius: 8px;"></canvas>
+      <div style="margin-top: 24px;">
+        <h3 style="margin: 0 0 12px; font-size: 1.1rem; font-weight: 600;">Next 20 Miles Elevation</h3>
+        <canvas id="elevationChart" style="width: 100%; height: 300px; border: 1px solid #ddd; border-radius: 8px;"></canvas>
+      </div>
     </div>
 
     <div id="mapTab" class="tab-content">
@@ -633,8 +632,10 @@
         }
       };
 
-      const renderElevationChart = async () => {
+      const renderElevationChart = async (startMile = 0) => {
         const canvas = document.getElementById('elevationChart');
+        if (!canvas) return; // Chart not in DOM yet
+
         const ctx = canvas.getContext('2d');
 
         // Load elevation profile data
@@ -646,24 +647,40 @@
           return;
         }
 
+        // Filter to next 20 miles from startMile
+        const endMile = startMile + 20;
+        const segmentProfile = profile.filter(p => p.distance >= startMile && p.distance <= endMile);
+
+        if (segmentProfile.length === 0) {
+          ctx.fillStyle = '#fafafa';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = '#666';
+          ctx.font = '14px system-ui';
+          ctx.textAlign = 'center';
+          ctx.fillText('End of trail', canvas.width / 2, canvas.height / 2);
+          return;
+        }
+
         // Set canvas size
         canvas.width = canvas.offsetWidth;
-        canvas.height = 400;
+        canvas.height = 300;
 
-        const padding = { top: 40, right: 40, bottom: 60, left: 60 };
+        const padding = { top: 30, right: 40, bottom: 50, left: 60 };
         const chartWidth = canvas.width - padding.left - padding.right;
         const chartHeight = canvas.height - padding.top - padding.bottom;
 
-        // Get elevation data from profile
-        const elevations = profile.map(p => p.elevation);
-        const miles = profile.map(p => p.distance);
+        // Get elevation data from segment
+        const elevations = segmentProfile.map(p => p.elevation);
         const minElev = Math.min(...elevations);
         const maxElev = Math.max(...elevations);
-        const maxMile = Math.max(...miles);
+        const elevRange = maxElev - minElev;
 
-        // Scale functions
-        const xScale = (mile) => padding.left + (mile / maxMile) * chartWidth;
-        const yScale = (elev) => padding.top + chartHeight - ((elev - minElev) / (maxElev - minElev)) * chartHeight;
+        // Scale functions (for 20-mile window)
+        const xScale = (mile) => padding.left + ((mile - startMile) / 20) * chartWidth;
+        const yScale = (elev) => {
+          if (elevRange === 0) return padding.top + chartHeight / 2;
+          return padding.top + chartHeight - ((elev - minElev) / elevRange) * chartHeight;
+        };
 
         // Clear canvas
         ctx.fillStyle = '#fafafa';
@@ -689,9 +706,9 @@
           ctx.fillText(Math.round(elev) + ' ft', padding.left - 10, y + 4);
         }
 
-        // Vertical grid lines (distance)
-        for (let i = 0; i <= 10; i++) {
-          const mile = (maxMile / 10) * i;
+        // Vertical grid lines (distance) - every 4 miles over 20-mile span
+        for (let i = 0; i <= 5; i++) {
+          const mile = startMile + (i * 4);
           const x = xScale(mile);
           ctx.strokeStyle = '#e0e0e0';
           ctx.beginPath();
@@ -711,7 +728,7 @@
         ctx.strokeStyle = '#e11d48';
         ctx.lineWidth = 2;
 
-        profile.forEach((point, i) => {
+        segmentProfile.forEach((point, i) => {
           const x = xScale(point.distance);
           const y = yScale(point.elevation);
 
@@ -725,8 +742,8 @@
         ctx.stroke();
 
         // Fill area under line
-        ctx.lineTo(xScale(profile[profile.length - 1].distance), padding.top + chartHeight);
-        ctx.lineTo(xScale(profile[0].distance), padding.top + chartHeight);
+        ctx.lineTo(xScale(segmentProfile[segmentProfile.length - 1].distance), padding.top + chartHeight);
+        ctx.lineTo(xScale(segmentProfile[0].distance), padding.top + chartHeight);
         ctx.closePath();
         ctx.fillStyle = 'rgba(225, 29, 72, 0.1)';
         ctx.fill();
@@ -753,14 +770,13 @@
         ctx.restore();
 
         // Title
-        ctx.font = 'bold 16px system-ui';
-        ctx.fillText('Oregon Desert Trail Elevation Profile', canvas.width / 2, 25);
+        ctx.font = 'bold 14px system-ui';
+        const titleText = `Miles ${Math.round(startMile)} - ${Math.round(endMile)}`;
+        ctx.fillText(titleText, canvas.width / 2, 20);
       };
 
-      // Render elevation chart when tab is shown
-      document.querySelector('[data-tab="elevation"]').addEventListener('click', () => {
-        setTimeout(() => renderElevationChart(), 100);
-      });
+      // Expose elevation chart function globally for progress.js
+      window.renderElevationChart = renderElevationChart;
 
       // Map initialization
       let map = null;
