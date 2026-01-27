@@ -618,9 +618,33 @@
       renderWaterTable();
 
       // Elevation profile chart
-      const renderElevationChart = () => {
+      let elevationProfile = null;
+
+      const loadElevationProfile = async () => {
+        if (elevationProfile) return elevationProfile;
+
+        try {
+          const response = await fetch('elevation-profile.json');
+          elevationProfile = await response.json();
+          return elevationProfile;
+        } catch (error) {
+          console.error('Failed to load elevation profile:', error);
+          return null;
+        }
+      };
+
+      const renderElevationChart = async () => {
         const canvas = document.getElementById('elevationChart');
         const ctx = canvas.getContext('2d');
+
+        // Load elevation profile data
+        const profile = await loadElevationProfile();
+        if (!profile) {
+          ctx.fillStyle = '#333';
+          ctx.font = '14px system-ui';
+          ctx.fillText('Failed to load elevation data', 50, 50);
+          return;
+        }
 
         // Set canvas size
         canvas.width = canvas.offsetWidth;
@@ -630,9 +654,9 @@
         const chartWidth = canvas.width - padding.left - padding.right;
         const chartHeight = canvas.height - padding.top - padding.bottom;
 
-        // Get elevation data
-        const elevations = points.map(p => p.elevation);
-        const miles = points.map(p => p.mile);
+        // Get elevation data from profile
+        const elevations = profile.map(p => p.elevation);
+        const miles = profile.map(p => p.distance);
         const minElev = Math.min(...elevations);
         const maxElev = Math.max(...elevations);
         const maxMile = Math.max(...miles);
@@ -687,8 +711,8 @@
         ctx.strokeStyle = '#e11d48';
         ctx.lineWidth = 2;
 
-        points.forEach((point, i) => {
-          const x = xScale(point.mile);
+        profile.forEach((point, i) => {
+          const x = xScale(point.distance);
           const y = yScale(point.elevation);
 
           if (i === 0) {
@@ -701,8 +725,8 @@
         ctx.stroke();
 
         // Fill area under line
-        ctx.lineTo(xScale(points[points.length - 1].mile), padding.top + chartHeight);
-        ctx.lineTo(xScale(points[0].mile), padding.top + chartHeight);
+        ctx.lineTo(xScale(profile[profile.length - 1].distance), padding.top + chartHeight);
+        ctx.lineTo(xScale(profile[0].distance), padding.top + chartHeight);
         ctx.closePath();
         ctx.fillStyle = 'rgba(225, 29, 72, 0.1)';
         ctx.fill();
