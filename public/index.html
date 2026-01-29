@@ -332,12 +332,12 @@
       #mapTab {
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 8px;
       }
 
       #mapContainer {
-        height: 65vh;
-        min-height: 400px;
+        height: 50vh;
+        min-height: 350px;
         border-radius: 8px;
         overflow: hidden;
         border: 1px solid #ccc;
@@ -403,10 +403,10 @@
       .map-info-header {
         display: flex;
         flex-wrap: wrap;
-        gap: 12px;
+        gap: 10px;
         justify-content: space-between;
         align-items: flex-start;
-        margin-bottom: 16px;
+        margin-bottom: 10px;
       }
 
       .map-info-header-left {
@@ -418,7 +418,7 @@
       }
 
       .map-info-current-mile {
-        font-size: 1.8rem;
+        font-size: 2.5rem;
         font-weight: 700;
         color: #1b1b1b;
         white-space: nowrap;
@@ -476,8 +476,8 @@
       .map-info-cards {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 10px;
-        margin-bottom: 12px;
+        gap: 8px;
+        margin-bottom: 10px;
       }
 
       @media (min-width: 640px) {
@@ -490,11 +490,11 @@
       .map-info-card {
         border: 1px solid #ccc;
         border-radius: 6px;
-        padding: 14px;
+        padding: 10px;
         background: #fff;
         cursor: pointer;
         transition: all 0.15s ease;
-        min-height: 80px;
+        min-height: 70px;
       }
 
       .map-info-card:active {
@@ -528,7 +528,7 @@
       }
 
       .map-info-value {
-        font-size: 1.4rem;
+        font-size: 2rem;
         font-weight: 600;
         color: #1b1b1b;
         margin-bottom: 4px;
@@ -542,8 +542,8 @@
       }
 
       .map-info-icon {
-        width: 16px;
-        height: 16px;
+        width: 20px;
+        height: 20px;
         flex-shrink: 0;
       }
 
@@ -839,7 +839,7 @@
         </div>
         <div class="map-elevation-chart">
           <h4>Next 20 Miles Elevation</h4>
-          <canvas id="mapElevationChart" style="width: 100%; height: 200px;"></canvas>
+          <canvas id="mapElevationChart" style="width: 100%; height: 150px;"></canvas>
         </div>
       </div>
     </div>
