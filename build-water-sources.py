@@ -199,12 +199,50 @@ def build_towns(csv_waypoints, gpx_coords):
 
     return unique_towns
 
+def build_all_waypoints(csv_waypoints, gpx_coords):
+    """Build complete waypoints list with GPS coordinates for navigation"""
+    all_waypoints = []
+
+    for wp in csv_waypoints:
+        waypoint_name = wp['name']
+
+        # Get GPS coordinates from GPX
+        if waypoint_name in gpx_coords:
+            coords = gpx_coords[waypoint_name]
+
+            waypoint_entry = {
+                'mile': float(wp['mile']) if wp['mile'] else 0,
+                'lat': coords['lat'],
+                'lon': coords['lon'],
+                'name': waypoint_name,
+                'landmark': wp['landmark']
+            }
+
+            all_waypoints.append(waypoint_entry)
+        else:
+            print(f"Warning: No GPS coordinates found for waypoint {waypoint_name}")
+
+    # Sort by mile marker and remove duplicates
+    all_waypoints.sort(key=lambda x: x['mile'])
+
+    # Remove duplicates (same name and mile)
+    seen = set()
+    unique_waypoints = []
+    for wp in all_waypoints:
+        key = (wp['name'], wp['mile'])
+        if key not in seen:
+            seen.add(key)
+            unique_waypoints.append(wp)
+
+    return unique_waypoints
+
 def main():
     # File paths
     gpx_file = 'waypoints-including-alternates.gpx'
     csv_file = 'Water Sources Sanitized.csv'
     water_output = 'public/water-sources.json'
     towns_output = 'public/towns.json'
+    waypoints_output = 'public/waypoints.json'
 
     print("Parsing GPX waypoints...")
     gpx_coords = parse_gpx_waypoints(gpx_file)
@@ -214,6 +252,10 @@ def main():
     csv_waypoints = parse_csv_metadata(csv_file)
     print(f"Found {len(csv_waypoints)} waypoints in CSV file")
 
+    print("\nBuilding all waypoints...")
+    all_waypoints = build_all_waypoints(csv_waypoints, gpx_coords)
+    print(f"Generated {len(all_waypoints)} waypoints")
+
     print("\nBuilding water sources...")
     water_sources = build_water_sources(csv_waypoints, gpx_coords)
     print(f"Generated {len(water_sources)} water sources")
@@ -222,7 +264,11 @@ def main():
     towns = build_towns(csv_waypoints, gpx_coords)
     print(f"Generated {len(towns)} towns")
 
-    print("\nWriting water-sources.json...")
+    print("\nWriting waypoints.json...")
+    with open(waypoints_output, 'w', encoding='utf-8') as f:
+        json.dump(all_waypoints, f, indent=2)
+
+    print("Writing water-sources.json...")
     with open(water_output, 'w', encoding='utf-8') as f:
         json.dump(water_sources, f, indent=2)
 
@@ -231,10 +277,15 @@ def main():
         json.dump(towns, f, indent=2)
 
     print("\n✓ Complete! Files generated:")
+    print(f"  - {waypoints_output}")
     print(f"  - {water_output}")
     print(f"  - {towns_output}")
 
     # Show sample of first few entries
+    print(f"\nSample waypoints (first 3 of {len(all_waypoints)}):")
+    for wp in all_waypoints[:3]:
+        print(f"  {wp['mile']} mi - {wp['name']} - {wp['landmark'][:40]}... @ ({wp['lat']}, {wp['lon']})")
+
     print("\nSample water sources (first 3):")
     for ws in water_sources[:3]:
         print(f"  {ws['mile']} mi - {ws['landmark'][:50]}... @ ({ws['lat']}, {ws['lon']})")
