@@ -444,15 +444,19 @@
         text-transform: uppercase;
         letter-spacing: 0.5px;
         margin-bottom: 4px;
+        font-weight: 500;
       }
 
       .map-info-waypoint-value {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         font-weight: 600;
-        color: #666;
+        color: #1b1b1b;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        line-height: 1.3;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: -0.01em;
       }
 
       @media (min-width: 768px) {
@@ -465,11 +469,11 @@
         }
 
         .map-info-waypoint-label {
-          font-size: 0.75rem;
+          font-size: 0.8rem;
         }
 
         .map-info-waypoint-value {
-          font-size: 1.1rem;
+          font-size: 1.25rem;
         }
       }
 
@@ -1277,7 +1281,15 @@
 
         const nearest = findNearestWaypoint(mile);
         if (nearest) {
-          document.getElementById('mapNearestWaypoint').textContent = getWaypointShortName(nearest.waypoint);
+          const waypointName = nearest.waypoint.name || 'Unknown';
+          const distance = nearest.distance;
+          const direction = nearest.waypoint.mile < mile ? 'back' : 'ahead';
+
+          if (distance < 0.05) {
+            document.getElementById('mapNearestWaypoint').textContent = waypointName;
+          } else {
+            document.getElementById('mapNearestWaypoint').textContent = `${waypointName} · ${distance.toFixed(1)} mi ${direction}`;
+          }
         }
 
         const nextWaterCard = document.getElementById('nextWaterCard');
