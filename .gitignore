@@ -9,9 +9,16 @@ build/corridor.osm.pbf
 build/planetiler.jar
 build/planetiler-tmp/
 build/tile_weights.tsv.gz
+build/contours.geojson
+build/contours_clipped.geojson
+build/narrow_buffer.geojson
+dist/contours.pmtiles
 
 # Data sources (large files, can be re-downloaded)
 data/
 
 # Track files in repo for reference
 # Track Files/
+
+# Backup files
+*.old

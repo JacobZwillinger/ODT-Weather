@@ -1,866 +1,3252 @@
 [
   {
-    "mile": 0,
-    "distToNext": 0.5,
+    "mile": 0.0,
+    "lat": 44.045438,
+    "lon": -121.038164,
     "onTrail": true,
     "offTrailDist": "",
     "landmark": "trailhead/water/Bend 14 miles W (all services)",
-    "details": "canal, reliable late April to mid October"
+    "details": "canal, reliable late April to mid October",
+    "distToNext": 0.0
+  },
+  {
+    "mile": 0,
+    "lat": 43.53241,
+    "lon": -120.760317,
+    "onTrail": false,
+    "offTrailDist": "off trail",
+    "landmark": "1.5 miles off trail",
+    "details": "relieable: Aspen Butte Well (trough) turned on in early May, off at end of Sept",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 43.486725,
+    "lon": -120.518684,
+    "onTrail": false,
+    "offTrailDist": "off trail",
+    "landmark": "Peter's Creek OHV campground entrance .2 miles off trail",
+    "details": "",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 43.487376,
+    "lon": -120.521934,
+    "onTrail": false,
+    "offTrailDist": "off trail",
+    "landmark": ".1 miles off trail",
+    "details": "reliable: water spigots - Peters OHV Campground ",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 42.411472,
+    "lon": -119.904047,
+    "onTrail": false,
+    "offTrailDist": "off trail",
+    "landmark": "(off trail) Plush (all services) Adel 18 miles S on Hwy 3-10 (limited resupply)",
+    "details": "reliable: Plush - water spigot in park at south end of town",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 42.296852,
+    "lon": -119.777436,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": ".4 miles south of WB182",
+    "details": "questionable: WB183 Fisher hot springs to S. On private land. Quality of water in the canyon for drinking is debatable",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 42.80931,
+    "lon": -118.86813,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "reliable: Donner & Blitzen River",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 42.801142,
+    "lon": -118.867115,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "reliable: Donner & Blitzen River",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 42.790909,
+    "lon": -118.867084,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "reliable: Donner & Blitzen River",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 42.764334,
+    "lon": -118.84279,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "confluence with Fish Creek",
+    "details": "reliable: Donner & Blitzen River",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 42.755764,
+    "lon": -118.837528,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "meet ODT route at Big Spring",
+    "details": "reliable: Big Spring",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 42.542539,
+    "lon": -118.534875,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Alvord Hot Springs",
+    "details": "reliable: water for sale at Hot Springs",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 42.112244,
+    "lon": -118.710746,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Cairn/spring",
+    "details": "questionable in fall: spring",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 42.051425,
+    "lon": -118.695715,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Cairn",
+    "details": "questionable in fall: spring half way between data points",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 42.154923,
+    "lon": -117.614996,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "trough .1 W",
+    "details": "reliable: Chicken Springs",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 42.179895,
+    "lon": -117.312837,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "questionable: Full stock tank",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 42.192324,
+    "lon": -117.277462,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "questionable: Stock tank full ",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 42.235322,
+    "lon": -117.258432,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "West Little Owyhee",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 42.27237257755062,
+    "lon": -117.2617969871247,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "questionable: trough full, a tad green",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 42.657107,
+    "lon": -117.231987,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Canyon Hike down Indian Canyon, approx 1.2 miles to access water",
+    "details": "",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 42.647779,
+    "lon": -117.245607,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "reliable: Owyhee River",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 42.757625,
+    "lon": -117.321311,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Canyon Hike down Soldier Creek approx 3.1 miles to access water",
+    "details": "",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 42.738525,
+    "lon": -117.359717,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "reliable: Owyhee River",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 43.115531,
+    "lon": -117.707208,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river/camping OC136 .2 N",
+    "details": "reliable: Owyhee River .2 N",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 43.203028,
+    "lon": -117.610106,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Owyhee River",
+    "details": "reliable: Owyhee River",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 43.204725,
+    "lon": -117.59479,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "reliable: Owyhee River",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 43.203795,
+    "lon": -117.566986,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "reliable: Owyhee River",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 43.209248,
+    "lon": -117.541079,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Hot springs across the river",
+    "details": "reliable: Owyhee River",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 43.220183,
+    "lon": -117.512434,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "reliable: Owyhee River",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 43.215005,
+    "lon": -117.503488,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Birch Creek Historical Ranch",
+    "details": "reliable: Owyhee River",
+    "distToNext": 0
+  },
+  {
+    "mile": 0,
+    "lat": 43.249829,
+    "lon": -117.344224,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "There are multiple options for this alternate. We suggest going high as indicated on the map with the solid purple line, and then you can choose to hike to Slocum Creek Campground or closer to Juniper Gulch \nTotal distance of alternate route is 9 miles versus 7 on orginal route",
+    "details": "",
+    "distToNext": 0.5
   },
   {
     "mile": 0.5,
-    "distToNext": 35.9,
+    "lat": 44.043714,
+    "lon": -121.028474,
     "onTrail": true,
     "offTrailDist": "",
     "landmark": "junction Black Lava Trail",
-    "details": "canal, reliable late April to mid October"
+    "details": "canal, reliable late April to mid October",
+    "distToNext": 11.0
   },
   {
-    "mile": 36.4,
-    "distToNext": 47.9,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "Sand Springs Campground (primitive)",
-    "details": "reliable until dry years in fall: Sand Spring in campground"
-  },
-  {
-    "mile": 84.3,
-    "distToNext": 18.6,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "Christmas Valley",
-    "details": "reliable: Christmas Valley"
-  },
-  {
-    "mile": 102.9,
-    "distToNext": 64.7,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "left at junction/trough",
-    "details": "reliable: water trough (big blue tub of water)"
-  },
-  {
-    "mile": 167.6,
-    "distToNext": 0.6,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "campground/pit toilets/water from Chewaucan River",
-    "details": "reliable: Chewaucan River"
-  },
-  {
-    "mile": 168.2,
-    "distToNext": 2.2,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "Chewaucan Crossing/campground/pit toilets/water/join trail",
-    "details": "reliable: Chewaucan River"
-  },
-  {
-    "mile": 170.4,
-    "distToNext": 16.8,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "Cat Canyon",
-    "details": "reliable: creek"
-  },
-  {
-    "mile": 187.2,
-    "distToNext": 6,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "Moss Pass - cross road/spring",
-    "details": "reliable: Moss spring"
-  },
-  {
-    "mile": 193.2,
-    "distToNext": 19.2,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek",
-    "details": "reliable: Pine creek"
-  },
-  {
-    "mile": 212.4,
-    "distToNext": 0.8,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "Mill Trail Head - start to walk along creek",
-    "details": "reliable: Crooked creek until WB118"
-  },
-  {
-    "mile": 213.2,
-    "distToNext": 0.5,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "",
-    "details": "reliable: Crooked creek until WB118"
-  },
-  {
-    "mile": 213.7,
-    "distToNext": 1.6,
+    "mile": 11.5,
+    "lat": 43.940931,
+    "lon": -121.091802,
     "onTrail": true,
     "offTrailDist": "",
     "landmark": "junction",
-    "details": "reliable: Crooked creek until WB118"
+    "details": "unreliable stock tanks",
+    "distToNext": 1.9
   },
   {
-    "mile": 215.3,
-    "distToNext": 1.9,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "junction",
-    "details": "reliable: Crooked creek until WB118"
-  },
-  {
-    "mile": 217.2,
-    "distToNext": 1.4,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "",
-    "details": "reliable: Crooked creek until WB118"
-  },
-  {
-    "mile": 218.6,
-    "distToNext": 7,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "continue uphill at intersection",
-    "details": "reliable: Crooked creek until WB118"
-  },
-  {
-    "mile": 225.6,
-    "distToNext": 2.1,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek",
-    "details": "reliable: First Swale creek"
-  },
-  {
-    "mile": 227.7,
-    "distToNext": 2.3,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek",
-    "details": "reliable: Honey creek"
-  },
-  {
-    "mile": 230,
-    "distToNext": 2.4,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek",
-    "details": "reliable: creek"
-  },
-  {
-    "mile": 232.4,
-    "distToNext": 10.6,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek",
-    "details": "reliable: Little Honey creek"
-  },
-  {
-    "mile": 243,
-    "distToNext": 22.8,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "Colvin Lake to south",
-    "details": "reliable: Colvin Lake"
-  },
-  {
-    "mile": 265.8,
-    "distToNext": 7.6,
-    "onTrail": false,
-    "offTrailDist": "",
-    "landmark": "(off trail) Plush (all services) Adel 18 miles S on Hwy 3-10 (limited resupply)",
-    "details": "reliable: Plush - water spigot in park at south end of town"
-  },
-  {
-    "mile": 273.4,
-    "distToNext": 1.4,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "spring under road",
-    "details": "reliable: spring"
-  },
-  {
-    "mile": 274.8,
-    "distToNext": 22.5,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "spring uphill from road",
-    "details": "reliable: spring"
-  },
-  {
-    "mile": 297.3,
-    "distToNext": 2.8,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek",
-    "details": "reliable: Guano Creek"
-  },
-  {
-    "mile": 300.1,
-    "distToNext": 1,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek",
-    "details": "reliable: Guano Creek"
-  },
-  {
-    "mile": 301.1,
-    "distToNext": 1.9,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek",
-    "details": "reliable: Guano Creek"
-  },
-  {
-    "mile": 303,
-    "distToNext": 3.8,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "junction",
-    "details": "reliable: at start of Guano Creek .5 mile S"
-  },
-  {
-    "mile": 306.8,
-    "distToNext": 0.3,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek/Hot Springs Campground - pit toilets & hot springs!",
-    "details": "reliable: Rock Creek"
-  },
-  {
-    "mile": 307.1,
-    "distToNext": 4.2,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "",
-    "details": "reliable: Rock Creek"
-  },
-  {
-    "mile": 311.3,
-    "distToNext": 31.7,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "Hart Headquarters",
-    "details": "reliable: spigot in parking lot"
-  },
-  {
-    "mile": 343,
-    "distToNext": 9.4,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "gate/start x-country",
-    "details": "Reliable: Augustine Gilbert Place (1.25 miles one way to homestead)"
-  },
-  {
-    "mile": 352.4,
-    "distToNext": 24.6,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "trough to N, hikers have permission to access water at Miller Place. Please respect the private land. No camping.",
-    "details": "reliable: Miller Place trough & electric pump (on private land) to the N"
-  },
-  {
-    "mile": 377,
-    "distToNext": 5.3,
-    "onTrail": false,
-    "offTrailDist": "0.5",
-    "landmark": "junction/ .5 head E for Steens Mountain Ranch (camp store!) and over the river to Page Springs Campground ($8, water and pit toilets)",
-    "details": "reliable: water off trail at Steens Mountain Ranch and Page Springs Campground"
-  },
-  {
-    "mile": 382.3,
-    "distToNext": 0.8,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "cross river",
-    "details": "reliable: Donner & Blitzen River"
-  },
-  {
-    "mile": 383.1,
-    "distToNext": 6.7,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "spring",
-    "details": "reliable: Big Spring"
-  },
-  {
-    "mile": 389.8,
-    "distToNext": 1.9,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "reservoir to SW",
-    "details": "reliable: Desert Meadow Reservoir"
-  },
-  {
-    "mile": 391.7,
-    "distToNext": 0.8,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek",
-    "details": "reliable: Little Blitzen Creek"
-  },
-  {
-    "mile": 392.5,
-    "distToNext": 2.2,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "0.1 before EB018 join maintained road/South Steens Campground -$6, water & pit toilets",
-    "details": "reliable: South Steens Campground - spigot near pumphouse at entrance"
-  },
-  {
-    "mile": 394.7,
-    "distToNext": 2.3,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek",
-    "details": "reliable: Little Indian Creek"
-  },
-  {
-    "mile": 397,
-    "distToNext": 1.1,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek",
-    "details": "reliable: Little Indian Creek"
-  },
-  {
-    "mile": 398.1,
-    "distToNext": 3.9,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek",
-    "details": "reliable: Big Indian Creek"
-  },
-  {
-    "mile": 402,
-    "distToNext": 4.3,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "join Steens Mountain Loop Road",
-    "details": "reliable: spring at marshy bench area at top of climb"
-  },
-  {
-    "mile": 406.3,
-    "distToNext": 0.9,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "lake/follow creek at outlet",
-    "details": "reliable: Wildhorse Lake/creek until EB026"
-  },
-  {
-    "mile": 407.2,
-    "distToNext": 1.6,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek",
-    "details": "reliable: Wildhorse Creek until EB026"
-  },
-  {
-    "mile": 408.8,
-    "distToNext": 7.7,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek",
-    "details": "reliable: Wildhorse Creek until EB026"
-  },
-  {
-    "mile": 416.5,
-    "distToNext": 21.9,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "join road/Alvord Hot Spring 1.7 N on road (bathrooms, $5 hotsprings, camping, store)",
-    "details": "reliable: Frog springs about a mile to the south"
-  },
-  {
-    "mile": 438.4,
-    "distToNext": 8.4,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "Fields (all services)",
-    "details": "reliable: Fields"
-  },
-  {
-    "mile": 446.8,
-    "distToNext": 14.6,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "spring",
-    "details": "reliable: Roux Spring"
-  },
-  {
-    "mile": 461.4,
-    "distToNext": 5.6,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "",
-    "details": "reliable: Denio Creek"
-  },
-  {
-    "mile": 467,
-    "distToNext": 22.2,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "junction to Denio 1 mile S (no resupply) Denio Junction 3 mile S (some services)",
-    "details": "reliable: Denio: library has spigot outside"
-  },
-  {
-    "mile": 489.2,
-    "distToNext": 1.9,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "junction",
-    "details": "reliable: trough"
-  },
-  {
-    "mile": 491.1,
-    "distToNext": 0.7,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "spring",
-    "details": "reliable: spring"
-  },
-  {
-    "mile": 491.8,
-    "distToNext": 26.2,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek",
-    "details": "reliable: Trout Creek"
-  },
-  {
-    "mile": 518,
-    "distToNext": 0.7,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek/confluence Island Canyon",
-    "details": "reliable: Oregon Canyon Creek"
-  },
-  {
-    "mile": 518.7,
-    "distToNext": 0.5,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek/confluence Fall Canyon",
-    "details": "reliable: Oregon Canyon Creek"
-  },
-  {
-    "mile": 519.2,
-    "distToNext": 0.6,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek/confluence Buck Corral Canyon",
-    "details": "reliable: Oregon Canyon Creek"
-  },
-  {
-    "mile": 519.8,
-    "distToNext": 0.8,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek/confluence west fork",
-    "details": "reliable: Oregon Canyon Creek"
-  },
-  {
-    "mile": 520.6,
-    "distToNext": 0.5,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "start x-country down cottonwood creek drainage",
-    "details": "reliable: Cottonwood Creek"
-  },
-  {
-    "mile": 521.1,
-    "distToNext": 0.9,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek",
-    "details": "reliable: Oregon Canyon Creek"
-  },
-  {
-    "mile": 522,
-    "distToNext": 0.2,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek/confluence east canyon",
-    "details": "reliable: Oregon Canyon Creek"
-  },
-  {
-    "mile": 522.2,
-    "distToNext": 0.3,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek",
-    "details": "reliable: Oregon Canyon Creek"
-  },
-  {
-    "mile": 522.5,
-    "distToNext": 1.5,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek",
-    "details": "reliable: Oregon Canyon Creek"
-  },
-  {
-    "mile": 524,
-    "distToNext": 1.2,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek/climb up canyon",
-    "details": "reliable: Oregon Canyon Creek"
-  },
-  {
-    "mile": 525.2,
-    "distToNext": 2.8,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "",
-    "details": "reliable: water tank"
-  },
-  {
-    "mile": 528,
-    "distToNext": 0.8,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "trough",
-    "details": "reliable: water trough"
-  },
-  {
-    "mile": 528.8,
-    "distToNext": 8.3,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "trough",
-    "details": "reliable: water trough"
-  },
-  {
-    "mile": 537.1,
-    "distToNext": 26.1,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "McDermitt",
-    "details": "reliable: town"
-  },
-  {
-    "mile": 563.2,
-    "distToNext": 1.1,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek/fence",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 564.3,
-    "distToNext": 12.2,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 576.5,
-    "distToNext": 0.2,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 576.7,
-    "distToNext": 1.5,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 578.2,
-    "distToNext": 1.4,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 579.6,
-    "distToNext": 1.6,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 581.2,
-    "distToNext": 1.8,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river/confluence with Dry Canyon",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 583,
-    "distToNext": 1.7,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 584.7,
-    "distToNext": 1.4,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 586.1,
-    "distToNext": 1.3,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river/old water gauge",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 587.4,
-    "distToNext": 1.4,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 588.8,
-    "distToNext": 1.2,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 590,
-    "distToNext": 0.6,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 590.6,
-    "distToNext": 1.1,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 591.7,
-    "distToNext": 1.6,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 593.3,
-    "distToNext": 2,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 595.3,
-    "distToNext": 1,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 596.3,
-    "distToNext": 0.3,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 596.6,
-    "distToNext": 0.4,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 597,
-    "distToNext": 1.5,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 598.5,
-    "distToNext": 1,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 599.5,
-    "distToNext": 1.7,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 601.2,
-    "distToNext": 10.4,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river",
-    "details": "reliable: West Little Owyhee"
-  },
-  {
-    "mile": 611.6,
-    "distToNext": 8.8,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "join Owyhee River",
-    "details": "reliable: Owyhee River"
-  },
-  {
-    "mile": 620.4,
-    "distToNext": 0.6,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "join Owyhee River",
-    "details": "reliable: Owyhee River"
-  },
-  {
-    "mile": 621,
-    "distToNext": 9.9,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "pit toilet",
-    "details": "reliable: Owyhee River"
-  },
-  {
-    "mile": 630.9,
-    "distToNext": 29.3,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "river 1.2ish down Indian Canyon/reservoir",
-    "details": "reliable: Owyhee River 1.2ish miles down Indian Canyon"
-  },
-  {
-    "mile": 660.2,
-    "distToNext": 5.1,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "campground/pit toilets",
-    "details": "reliable: Rome Launch Campground spigot"
-  },
-  {
-    "mile": 665.3,
-    "distToNext": 18.2,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "",
-    "details": "reliable: Jordan Creek"
-  },
-  {
-    "mile": 683.5,
-    "distToNext": 29.1,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": ".5 W river/camping/jeep road to river OC130",
-    "details": "reliable: Owyhee River .5 W"
-  },
-  {
-    "mile": 712.6,
-    "distToNext": 5.7,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "spring",
-    "details": "reliable: developed spring"
-  },
-  {
-    "mile": 718.3,
-    "distToNext": 1.3,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "reservoir",
-    "details": "reliable: Owyhee Reservoir (cloudy but filterable)"
-  },
-  {
-    "mile": 719.6,
-    "distToNext": 1.6,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "creek",
-    "details": "Reliable: Spring Creek"
-  },
-  {
-    "mile": 721.2,
-    "distToNext": 11.6,
-    "onTrail": true,
-    "offTrailDist": "",
-    "landmark": "reservoir/Slocum Creek campground/pit toilets",
-    "details": "reliable: Owyhee Reservoir (cloudy but filterable)"
-  },
-  {
-    "mile": 732.8,
-    "distToNext": 11.2,
+    "mile": 13.4,
+    "lat": 43.921103,
+    "lon": -121.06576,
     "onTrail": true,
     "offTrailDist": "",
     "landmark": "start x-country",
-    "details": "reliable: Owyhee Reservoir 1 mile W"
+    "details": "new 2021 observation",
+    "distToNext": 13.8
   },
   {
-    "mile": 744,
-    "distToNext": 5.9,
+    "mile": 27.2,
+    "lat": 43.791182,
+    "lon": -120.942597,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Pine Mountain campground (pit toilets, no water)",
+    "details": "",
+    "distToNext": 0.5
+  },
+  {
+    "mile": 27.7,
+    "lat": 43.791733,
+    "lon": -120.934351,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "unreliable stock tanks",
+    "distToNext": 4.1
+  },
+  {
+    "mile": 31.8,
+    "lat": 43.759627,
+    "lon": -120.897117,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "unreliable: Antelope Spring (historically dry)",
+    "distToNext": 3.7
+  },
+  {
+    "mile": 35.5,
+    "lat": 43.719213,
+    "lon": -120.854292,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "cross fence at Sand Spring Compensation Station",
+    "details": "questionable: Pumice Spring",
+    "distToNext": 0.9
+  },
+  {
+    "mile": 36.4,
+    "lat": 43.708179,
+    "lon": -120.846542,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Sand Springs Campground (primitive)",
+    "details": "reliable until dry years in fall: Sand Spring in campground",
+    "distToNext": 0.0
+  },
+  {
+    "mile": 36.4,
+    "lat": 43.708179,
+    "lon": -120.846542,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Sand Springs Campground",
+    "details": "reliable until dry years in fall: Sand Spring in campground",
+    "distToNext": 2.2
+  },
+  {
+    "mile": 38.6,
+    "lat": 43.690266,
+    "lon": -120.822894,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "cross road",
+    "details": "unreliable: Plot Butte Waterhole",
+    "distToNext": 0.2
+  },
+  {
+    "mile": 38.8,
+    "lat": 43.690416,
+    "lon": -120.819817,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "cross road",
+    "details": "unreliable: trough.2 East on road may have rainwater",
+    "distToNext": 1.1
+  },
+  {
+    "mile": 39.9,
+    "lat": 43.67504,
+    "lon": -120.822639,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "cross gate",
+    "details": "unreliable: trough may have rainwater",
+    "distToNext": 0.7
+  },
+  {
+    "mile": 40.6,
+    "lat": 43.665638,
+    "lon": -120.828325,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "left at junction",
+    "details": "unreliable: water trough/guzzler between CV060a & CV061",
+    "distToNext": 1.5
+  },
+  {
+    "mile": 42.1,
+    "lat": 43.649045,
+    "lon": -120.814347,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "unreliable: trough may have rainwater",
+    "distToNext": 1.1
+  },
+  {
+    "mile": 43.2,
+    "lat": 43.634963,
+    "lon": -120.8152,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "left on FS 2315 road",
+    "details": "unreliable: trough half way from next CV067 off trail uphill from road",
+    "distToNext": 0.3
+  },
+  {
+    "mile": 43.5,
+    "lat": 43.635986,
+    "lon": -120.809916,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "unreliable: trough half way from next CV067 off trail uphill from road",
+    "distToNext": 1.5
+  },
+  {
+    "mile": 45.0,
+    "lat": 43.619795,
+    "lon": -120.805046,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "unreliable: fenced in water hole .3 east",
+    "distToNext": 4.5
+  },
+  {
+    "mile": 49.5,
+    "lat": 43.563447,
+    "lon": -120.78135,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "unreliable: trough may have rainwater",
+    "distToNext": 3.7
+  },
+  {
+    "mile": 53.2,
+    "lat": 43.52128,
+    "lon": -120.776723,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction/reservoir",
+    "details": "unreliable: South Reservoir cow pond",
+    "distToNext": 0.0
+  },
+  {
+    "mile": 53.2,
+    "lat": 43.52128,
+    "lon": -120.776723,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "start x-country/reservoir",
+    "details": "unreliable: South Reservoir cow pond",
+    "distToNext": 14.1
+  },
+  {
+    "mile": 67.3,
+    "lat": 43.477183,
+    "lon": -120.536487,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "cross dry Peter's Creek drainage",
+    "details": "",
+    "distToNext": 0.9
+  },
+  {
+    "mile": 68.2,
+    "lat": 43.483778,
+    "lon": -120.520848,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction to Peters OHV  campground & water",
+    "details": "",
+    "distToNext": 0.6
+  },
+  {
+    "mile": 68.8,
+    "lat": 43.399729,
+    "lon": -120.734212,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction - make a side trip to Ice Cave Pothole",
+    "details": "unreliable guzzler",
+    "distToNext": 2.0
+  },
+  {
+    "mile": 70.8,
+    "lat": 43.37858,
+    "lon": -120.725694,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "join road",
+    "details": "unreliable: Boundary well, ward reservoir",
+    "distToNext": 0.8
+  },
+  {
+    "mile": 71.6,
+    "lat": 43.444708,
+    "lon": -120.49615,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "unreliable cow troughs",
+    "distToNext": 5.7
+  },
+  {
+    "mile": 77.3,
+    "lat": 43.411516,
+    "lon": -120.422231,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "start x-country",
+    "details": "questionable: Mean Rock Well (trough)",
+    "distToNext": 7.0
+  },
+  {
+    "mile": 84.3,
+    "lat": 43.23786514613157,
+    "lon": -120.680779289677,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Christmas Valley",
+    "details": "reliable: Christmas Valley ",
+    "distToNext": 9.0
+  },
+  {
+    "mile": 93.3,
+    "lat": 43.122377,
+    "lon": -120.661452,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "start x-country",
+    "details": "unreliable: Upper Corral Res",
+    "distToNext": 2.4
+  },
+  {
+    "mile": 95.7,
+    "lat": 43.107726,
+    "lon": -120.618589,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "join road",
+    "details": "unreliable: Dead Reservoir",
+    "distToNext": 0.4
+  },
+  {
+    "mile": 96.1,
+    "lat": 43.102165,
+    "lon": -120.615472,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "start x-country",
+    "details": "unreliable: St. Patrick Res #2",
+    "distToNext": 2.1
+  },
+  {
+    "mile": 98.2,
+    "lat": 43.082272,
+    "lon": -120.594515,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "join road",
+    "details": "unreliable: Lower Juniper Res (at base of canyon)",
+    "distToNext": 2.7
+  },
+  {
+    "mile": 100.9,
+    "lat": 43.074578,
+    "lon": -120.5629,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "unreliable: Coyote Bedground Res (half way to ALTCV29) and wildlife guzzler 1 mile north of Coyote Bedground Res",
+    "distToNext": 0.2
+  },
+  {
+    "mile": 101.1,
+    "lat": 43.182852,
+    "lon": -120.276409,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "water trough",
+    "details": "unreliable: water trough",
+    "distToNext": 0.2
+  },
+  {
+    "mile": 101.3,
+    "lat": 43.179472,
+    "lon": -120.276396,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Midway Well",
+    "details": "questionable: water trough",
+    "distToNext": 1.6
+  },
+  {
+    "mile": 102.9,
+    "lat": 43.18141,
+    "lon": -120.297075,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "left at junction/trough",
+    "details": "reliable: water trough (big blue tub of water)",
+    "distToNext": 0.7
+  },
+  {
+    "mile": 103.6,
+    "lat": 43.173353,
+    "lon": -120.300885,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "cattle guard/power line/trough",
+    "details": "unreliable: water trough",
+    "distToNext": 1.1
+  },
+  {
+    "mile": 104.7,
+    "lat": 43.159507,
+    "lon": -120.308629,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "trough",
+    "details": "unreliable: water trough",
+    "distToNext": 0.7
+  },
+  {
+    "mile": 105.4,
+    "lat": 43.150958,
+    "lon": -120.315954,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "unreliable: water trough",
+    "distToNext": 7.3
+  },
+  {
+    "mile": 112.7,
+    "lat": 43.067614,
+    "lon": -120.378881,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "waterholes to south",
+    "details": "unreliable: Depaoli & Packsaddle Lake",
+    "distToNext": 2.4
+  },
+  {
+    "mile": 115.1,
+    "lat": 43.052006,
+    "lon": -120.409407,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "cross 2-track road/waterhole to south",
+    "details": "unreliable: Handy waterhole",
+    "distToNext": 1.1
+  },
+  {
+    "mile": 116.2,
+    "lat": 43.045068,
+    "lon": -120.426175,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "unreliable: pond",
+    "distToNext": 3.7
+  },
+  {
+    "mile": 119.9,
+    "lat": 43.047925,
+    "lon": -120.479985,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "county waterhole",
+    "details": "unreliable: county waterhole 15",
+    "distToNext": 1.5
+  },
+  {
+    "mile": 121.4,
+    "lat": 43.06045,
+    "lon": -120.503138,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "county waterhole",
+    "details": "unreliable: county waterhole 9",
+    "distToNext": 0.8
+  },
+  {
+    "mile": 122.2,
+    "lat": 43.069712,
+    "lon": -120.512853,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "county waterhole mid way to WB035",
+    "details": "unreliable: county waterhole 7",
+    "distToNext": 3.2
+  },
+  {
+    "mile": 125.4,
+    "lat": 43.074578,
+    "lon": -120.5629,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "left at junction ",
+    "details": "Contact ONDA for water cache info in the area odt@onda.org",
+    "distToNext": 15.4
+  },
+  {
+    "mile": 140.8,
+    "lat": 42.886621,
+    "lon": -120.507036,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "join 2-track road",
+    "details": "unreliable: Slim Reservoir to west",
+    "distToNext": 1.7
+  },
+  {
+    "mile": 142.5,
+    "lat": 42.86512,
+    "lon": -120.492475,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "waterhole",
+    "details": "unreliable: Between Rim waterhole",
+    "distToNext": 1.1
+  },
+  {
+    "mile": 143.6,
+    "lat": 42.855323,
+    "lon": -120.480836,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "waterhole",
+    "details": "unreliable: Inter Mountain waterhole",
+    "distToNext": 2.8
+  },
+  {
+    "mile": 146.4,
+    "lat": 42.818317,
+    "lon": -120.469652,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "waterhole",
+    "details": "Giant Waterhole",
+    "distToNext": 3.1
+  },
+  {
+    "mile": 149.5,
+    "lat": 42.788595,
+    "lon": -120.436489,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "waterhole",
+    "details": "unreliable: Rocky waterhole",
+    "distToNext": 11.0
+  },
+  {
+    "mile": 160.5,
+    "lat": 42.69378,
+    "lon": -120.545828,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "walk through town of Paisley (all services) 6.2 miles W to Summer Lake Hot springs. 29.3 miles W to town of Summer Lake",
+    "details": "Paisley",
+    "distToNext": 0.0
+  },
+  {
+    "mile": 160.5,
+    "lat": 42.69378,
+    "lon": -120.545828,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "walk through town of Paisley (all services) 6.2 miles W to Summer Lake Hot springs. 29.3 miles W to town of Summer Lake",
+    "details": "Paisley",
+    "distToNext": 7.1
+  },
+  {
+    "mile": 167.6,
+    "lat": 42.623223,
+    "lon": -120.605983,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "campground/pit toilets/water from Chewaucan River",
+    "details": "reliable: Chewaucan River",
+    "distToNext": 0.6
+  },
+  {
+    "mile": 168.2,
+    "lat": 42.616073,
+    "lon": -120.606158,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Chewaucan Crossing/campground/pit toilets/water/join trail",
+    "details": "reliable: Chewaucan River",
+    "distToNext": 2.2
+  },
+  {
+    "mile": 170.4,
+    "lat": 42.607907,
+    "lon": -120.583974,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Cat Canyon",
+    "details": "reliable: creek",
+    "distToNext": 2.4
+  },
+  {
+    "mile": 172.8,
+    "lat": 42.584925,
+    "lon": -120.573378,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Skunk Hollow",
+    "details": "questionable in the fall: creek",
+    "distToNext": 2.9
+  },
+  {
+    "mile": 175.7,
+    "lat": 42.571135,
+    "lon": -120.553637,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Avery Pass",
+    "details": "questionable: spring .5 miles W on road",
+    "distToNext": 3.4
+  },
+  {
+    "mile": 179.1,
+    "lat": 42.540148,
+    "lon": -120.543068,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Morgan Butte/short side trip to lookout tower",
+    "details": "pit toilet",
+    "distToNext": 2.0
+  },
+  {
+    "mile": 181.1,
+    "lat": 42.524324,
+    "lon": -120.53031,
+    "onTrail": false,
+    "offTrailDist": "off trail",
+    "landmark": "spring off trail",
+    "details": "questionable in the fall: Myers Meadow spring ",
+    "distToNext": 2.4
+  },
+  {
+    "mile": 183.5,
+    "lat": 42.501506,
+    "lon": -120.50836,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring  ",
+    "details": "questionable in the fall: Round Mountain spring trough",
+    "distToNext": 1.7
+  },
+  {
+    "mile": 185.2,
+    "lat": 42.486875,
+    "lon": -120.514616,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring between WB097",
+    "details": "questionable: spring",
+    "distToNext": 2.0
+  },
+  {
+    "mile": 187.2,
+    "lat": 42.470864,
+    "lon": -120.499091,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Moss Pass - cross road/spring",
+    "details": "reliable: Moss spring",
+    "distToNext": 2.7
+  },
+  {
+    "mile": 189.9,
+    "lat": 42.463818,
+    "lon": -120.473625,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "unreliable: Green creek",
+    "distToNext": 3.3
+  },
+  {
+    "mile": 193.2,
+    "lat": 42.456713,
+    "lon": -120.438255,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "reliable: Pine creek",
+    "distToNext": 2.2
+  },
+  {
+    "mile": 195.4,
+    "lat": 42.441225,
+    "lon": -120.408946,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction/water north on trail in creek",
+    "details": "questionable: creek",
+    "distToNext": 7.5
+  },
+  {
+    "mile": 202.9,
+    "lat": 42.368922,
+    "lon": -120.371539,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction/creek",
+    "details": "unreliable: Fawn creek",
+    "distToNext": 1.2
+  },
+  {
+    "mile": 204.1,
+    "lat": 42.353794,
+    "lon": -120.367219,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "follow Cox Creek",
+    "details": "unreliable: possible agricultural runoff",
+    "distToNext": 1.3
+  },
+  {
+    "mile": 205.4,
+    "lat": 42.336925,
+    "lon": -120.356173,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "join road",
+    "details": "Agricultural runoff ",
+    "distToNext": 1.4
+  },
+  {
+    "mile": 206.8,
+    "lat": 42.317033,
+    "lon": -120.355025,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "Pond under road",
+    "distToNext": 1.2
+  },
+  {
+    "mile": 208.0,
+    "lat": 42.309541,
+    "lon": -120.340805,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "left on 295/Lakeview 8 miles south )on 295 (all services)",
+    "details": "",
+    "distToNext": 4.4
+  },
+  {
+    "mile": 212.4,
+    "lat": 42.337051,
+    "lon": -120.273322,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Mill Trail Head - start to walk along creek",
+    "details": "reliable: Crooked creek until WB118",
+    "distToNext": 0.8
+  },
+  {
+    "mile": 213.2,
+    "lat": 42.33715,
+    "lon": -120.259283,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "reliable: Crooked creek until WB118",
+    "distToNext": 0.5
+  },
+  {
+    "mile": 213.7,
+    "lat": 42.334316,
+    "lon": -120.251387,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "reliable: Crooked creek until WB118",
+    "distToNext": 1.6
+  },
+  {
+    "mile": 215.3,
+    "lat": 42.330293,
+    "lon": -120.225773,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "reliable: Crooked creek until WB118",
+    "distToNext": 1.9
+  },
+  {
+    "mile": 217.2,
+    "lat": 42.330267,
+    "lon": -120.193976,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "reliable: Crooked creek until WB118",
+    "distToNext": 1.4
+  },
+  {
+    "mile": 218.6,
+    "lat": 42.315849,
+    "lon": -120.178549,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "continue uphill at intersection",
+    "details": "reliable: Crooked creek until WB118",
+    "distToNext": 0.6
+  },
+  {
+    "mile": 219.2,
+    "lat": 42.316112,
+    "lon": -120.168135,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "cross road/South Crooked Creek Trailhead",
+    "details": "",
+    "distToNext": 2.1
+  },
+  {
+    "mile": 221.3,
+    "lat": 42.336271,
+    "lon": -120.163453,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction/spring",
+    "details": "questionable: Hanks spring",
+    "distToNext": 4.3
+  },
+  {
+    "mile": 225.6,
+    "lat": 42.377417,
+    "lon": -120.145624,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "reliable: First Swale creek",
+    "distToNext": 2.1
+  },
+  {
+    "mile": 227.7,
+    "lat": 42.397613,
+    "lon": -120.160213,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "reliable: Honey creek",
+    "distToNext": 2.3
+  },
+  {
+    "mile": 230.0,
+    "lat": 42.419699,
+    "lon": -120.160292,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "reliable: creek",
+    "distToNext": 0.3
+  },
+  {
+    "mile": 230.3,
+    "lat": 42.422141,
+    "lon": -120.15986,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "lake/campground/pit toilets",
+    "details": "questionable: V Lake",
+    "distToNext": 2.1
+  },
+  {
+    "mile": 232.4,
+    "lat": 42.414435,
+    "lon": -120.1894,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "reliable: Little Honey creek",
+    "distToNext": 1.0
+  },
+  {
+    "mile": 233.4,
+    "lat": 42.421987,
+    "lon": -120.201233,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "marsh",
+    "details": "questionable in fall: Lower White Pine marsh",
+    "distToNext": 7.9
+  },
+  {
+    "mile": 241.3,
+    "lat": 42.500885,
+    "lon": -120.206331,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "left on road",
+    "details": "unreliable: Priday Lake",
+    "distToNext": 1.7
+  },
+  {
+    "mile": 243.0,
+    "lat": 42.507127,
+    "lon": -120.180982,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Colvin Lake to south",
+    "details": "reliable: Colvin Lake",
+    "distToNext": 0.6
+  },
+  {
+    "mile": 243.6,
+    "lat": 42.505644,
+    "lon": -120.169581,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "unreliable: Snyder Creek",
+    "distToNext": 1.0
+  },
+  {
+    "mile": 244.6,
+    "lat": 42.508774,
+    "lon": -120.153076,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction, head downhill",
+    "details": "questionable: Lake",
+    "distToNext": 0.8
+  },
+  {
+    "mile": 245.4,
+    "lat": 42.515131,
+    "lon": -120.141088,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "rejoin road",
+    "details": "unreliable: Snyder Creek",
+    "distToNext": 2.8
+  },
+  {
+    "mile": 248.2,
+    "lat": 42.533085,
+    "lon": -120.10645,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "unreliable: Pond 1/4 mile north",
+    "distToNext": 4.4
+  },
+  {
+    "mile": 252.6,
+    "lat": 42.526647,
+    "lon": -120.036229,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "unreliable: Mud Spring .2 to the S along road",
+    "distToNext": 0.5
+  },
+  {
+    "mile": 253.1,
+    "lat": 42.523583,
+    "lon": -120.028769,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "trough",
+    "details": "questionable: water trough",
+    "distToNext": 0.4
+  },
+  {
+    "mile": 253.5,
+    "lat": 42.518566,
+    "lon": -120.02785,
     "onTrail": true,
     "offTrailDist": "",
     "landmark": "spring",
-    "details": "reliable: Rookie Canyon Spring"
+    "details": "unreliable: Juniper Spring",
+    "distToNext": 1.3
+  },
+  {
+    "mile": 254.8,
+    "lat": 42.531493,
+    "lon": -120.012158,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "unreliable: Pond near the word \"Miners\" in between WB165 and WB166",
+    "distToNext": 0.6
+  },
+  {
+    "mile": 255.4,
+    "lat": 42.530507,
+    "lon": -120.00373,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "trough",
+    "details": "unreliable: George Spring",
+    "distToNext": 0.9
+  },
+  {
+    "mile": 256.3,
+    "lat": 42.531376,
+    "lon": -119.987923,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "trough/join maintained road",
+    "details": "unreliable: spring",
+    "distToNext": 9.5
+  },
+  {
+    "mile": 265.8,
+    "lat": 42.42473,
+    "lon": -119.904736,
+    "onTrail": false,
+    "offTrailDist": "off trail",
+    "landmark": "(off trail) Plush (all services) Adel 18 miles S on Hwy 3-10 (limited resupply)",
+    "details": "reliable: Plush - water spigot in park at south end of town",
+    "distToNext": 3.1
+  },
+  {
+    "mile": 268.9,
+    "lat": 42.439079,
+    "lon": -119.863857,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "begin walk around Hart Lake",
+    "details": "unreliable: alkaline with heavy ag use",
+    "distToNext": 4.5
+  },
+  {
+    "mile": 273.4,
+    "lat": 42.413015,
+    "lon": -119.824584,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring under road",
+    "details": "reliable: spring",
+    "distToNext": 1.4
+  },
+  {
+    "mile": 274.8,
+    "lat": 42.393586,
+    "lon": -119.829709,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring uphill from road",
+    "details": "reliable: spring",
+    "distToNext": 5.3
+  },
+  {
+    "mile": 280.1,
+    "lat": 42.342829,
+    "lon": -119.797632,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "trough inside fence south of jeep road",
+    "details": "questionable: spring water in trough",
+    "distToNext": 0.5
+  },
+  {
+    "mile": 280.6,
+    "lat": 42.337131,
+    "lon": -119.792622,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring",
+    "details": "unreliable: spring",
+    "distToNext": 5.8
+  },
+  {
+    "mile": 286.4,
+    "lat": 42.278813,
+    "lon": -119.738765,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Robinson Lake",
+    "details": "unreliable: Robinson Lake",
+    "distToNext": 2.8
+  },
+  {
+    "mile": 289.2,
+    "lat": 42.312408,
+    "lon": -119.758437,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "dry lake on left",
+    "details": "unreliable: Wool Lake",
+    "distToNext": 1.5
+  },
+  {
+    "mile": 290.7,
+    "lat": 42.329593,
+    "lon": -119.750524,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "left at junction",
+    "details": "unreliable: Pond 2 miles north",
+    "distToNext": 3.0
+  },
+  {
+    "mile": 293.7,
+    "lat": 42.363895,
+    "lon": -119.76187,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring north along trail",
+    "details": "unreliable: spring",
+    "distToNext": 1.2
+  },
+  {
+    "mile": 294.9,
+    "lat": 42.373683,
+    "lon": -119.750084,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "questionable in fall: Warner Creek",
+    "distToNext": 2.4
+  },
+  {
+    "mile": 297.3,
+    "lat": 42.396342,
+    "lon": -119.728244,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "reliable: Guano Creek",
+    "distToNext": 2.8
+  },
+  {
+    "mile": 300.1,
+    "lat": 42.42832,
+    "lon": -119.716795,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "reliable: Guano Creek",
+    "distToNext": 1.0
+  },
+  {
+    "mile": 301.1,
+    "lat": 42.437796,
+    "lon": -119.720966,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "reliable: Guano Creek",
+    "distToNext": 1.9
+  },
+  {
+    "mile": 303.0,
+    "lat": 42.46318,
+    "lon": -119.728429,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "reliable: at start of Guano Creek .5 mile S",
+    "distToNext": 1.4
+  },
+  {
+    "mile": 304.4,
+    "lat": 42.476554,
+    "lon": -119.716279,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "old homestead to west/spring at homestead",
+    "details": "questionable in fall: spring",
+    "distToNext": 2.4
+  },
+  {
+    "mile": 306.8,
+    "lat": 42.498917,
+    "lon": -119.693061,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek/Hot Springs Campground - pit toilets & hot springs!",
+    "details": "reliable: Rock Creek",
+    "distToNext": 0.3
+  },
+  {
+    "mile": 307.1,
+    "lat": 42.500037,
+    "lon": -119.687727,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "reliable: Rock Creek",
+    "distToNext": 4.2
+  },
+  {
+    "mile": 311.3,
+    "lat": 42.548337,
+    "lon": -119.655269,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Hart Headquarters",
+    "details": "reliable: spigot in parking lot ",
+    "distToNext": 0.0
+  },
+  {
+    "mile": 311.3,
+    "lat": 42.548337,
+    "lon": -119.655269,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Hart Headquarters",
+    "details": "reliable: spigot in parking lot ",
+    "distToNext": 1.4
+  },
+  {
+    "mile": 312.7,
+    "lat": 42.563819,
+    "lon": -119.653622,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "questionable in the fall: Rock Creek",
+    "distToNext": 4.6
+  },
+  {
+    "mile": 317.3,
+    "lat": 42.61659,
+    "lon": -119.610241,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "start x-country/spring/lake  1/2 mile E",
+    "details": "questionable: Poker Jim Spring (ontrail) /Poker Jim Lake 1/2 mile E",
+    "distToNext": 4.6
+  },
+  {
+    "mile": 321.9,
+    "lat": 42.659326,
+    "lon": -119.554037,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "questionable: Rock Creek - lower water in late summer",
+    "distToNext": 0.9
+  },
+  {
+    "mile": 322.8,
+    "lat": 42.665765,
+    "lon": -119.53936,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "questionable: Rock Creek - lower water in late summer",
+    "distToNext": 1.5
+  },
+  {
+    "mile": 324.3,
+    "lat": 42.685598,
+    "lon": -119.535838,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek/rejoin trail",
+    "details": "questionable: Rock Creek - lower water in late summer",
+    "distToNext": 2.6
+  },
+  {
+    "mile": 326.9,
+    "lat": 42.715318,
+    "lon": -119.514986,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "water hole/creek",
+    "details": "questionable: Rock Creek - lower water in late summer",
+    "distToNext": 14.3
+  },
+  {
+    "mile": 341.2,
+    "lat": 42.840957,
+    "lon": -119.374081,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring pond",
+    "details": "unreliable: Buckhorn Spring",
+    "distToNext": 1.8
+  },
+  {
+    "mile": 343.0,
+    "lat": 42.858337,
+    "lon": -119.357698,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "gate/start x-country",
+    "details": "Reliable: Augustine Gilbert Place (1.25 miles one way to homestead)",
+    "distToNext": 5.5
+  },
+  {
+    "mile": 348.5,
+    "lat": 42.835094,
+    "lon": -119.259592,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring reservoir",
+    "details": "questionable: Mud Spring Reservoir (muddy). Landowners have given permission to continue on road to Millerplace to access the water at the old homestead",
+    "distToNext": 3.9
+  },
+  {
+    "mile": 352.4,
+    "lat": 42.811011,
+    "lon": -119.208298,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "trough to N, hikers have permission to access water at Miller Place. Please respect the private land. No camping.",
+    "details": "reliable: Miller Place trough & electric pump (on private land) to the N",
+    "distToNext": 1.5
+  },
+  {
+    "mile": 353.9,
+    "lat": 42.819366,
+    "lon": -119.18239,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "parellel power lines",
+    "details": "Landowners have given permission to continue on road to Miller Place to access the water at the old homestead",
+    "distToNext": 5.7
+  },
+  {
+    "mile": 359.6,
+    "lat": 42.841155,
+    "lon": -119.098619,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "unreliable: Little Walls Lake .5 ESE",
+    "distToNext": 1.8
+  },
+  {
+    "mile": 361.4,
+    "lat": 42.860985,
+    "lon": -119.092932,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "unreliable: Walls Lake .5 N on trail",
+    "distToNext": 2.2
+  },
+  {
+    "mile": 363.6,
+    "lat": 42.847085,
+    "lon": -119.063166,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "water hole",
+    "details": "unreliable: waterhole/seasonal creek",
+    "distToNext": 4.4
+  },
+  {
+    "mile": 368.0,
+    "lat": 42.854508,
+    "lon": -118.989364,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "left at junction",
+    "details": "unreliable: Water hole .75 E on trail",
+    "distToNext": 2.0
+  },
+  {
+    "mile": 370.0,
+    "lat": 42.863617,
+    "lon": -118.955525,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "reservoir",
+    "details": "questionable: Griffith Spring Reservoir",
+    "distToNext": 0.7
+  },
+  {
+    "mile": 370.7,
+    "lat": 42.855468,
+    "lon": -118.948313,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "water hole",
+    "details": "unreliable: water hole",
+    "distToNext": 3.5
+  },
+  {
+    "mile": 374.2,
+    "lat": 42.82531,
+    "lon": -118.913909,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Frenchglen (all services) Burns 60 miles N on Hwy 205 (all services)",
+    "details": "Frenchglen",
+    "distToNext": 0.0
+  },
+  {
+    "mile": 374.2,
+    "lat": 42.82531,
+    "lon": -118.913909,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Frenchglen (all services) Burns 60 miles N on Hwy 205 (all services)",
+    "details": "Frenchglen",
+    "distToNext": 2.8
+  },
+  {
+    "mile": 377.0,
+    "lat": 42.8095,
+    "lon": -118.870878,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction/ .5 head E for Steens Mountain Ranch (camp store!) and over the river to Page Springs Campground ($8, water and pit toilets)",
+    "details": "reliable: water off trail at Steens Mountain Ranch and Page Springs Campground",
+    "distToNext": 5.3
+  },
+  {
+    "mile": 382.3,
+    "lat": 42.749277,
+    "lon": -118.843856,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "cross river",
+    "details": "reliable: Donner & Blitzen River",
+    "distToNext": 0.8
+  },
+  {
+    "mile": 383.1,
+    "lat": 42.74332,
+    "lon": -118.835057,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring",
+    "details": "reliable: Big Spring",
+    "distToNext": 6.7
+  },
+  {
+    "mile": 389.8,
+    "lat": 42.687353,
+    "lon": -118.757681,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "reservoir to SW",
+    "details": "reliable: Desert Meadow Reservoir",
+    "distToNext": 1.9
+  },
+  {
+    "mile": 391.7,
+    "lat": 42.665211,
+    "lon": -118.736771,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "reliable: Little Blitzen Creek",
+    "distToNext": 0.8
+  },
+  {
+    "mile": 392.5,
+    "lat": 42.657045,
+    "lon": -118.728475,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "0.1 before EB018 join maintained road/South Steens Campground -$6, water & pit toilets",
+    "details": "reliable: South Steens Campground - spigot near pumphouse at entrance",
+    "distToNext": 0.0
+  },
+  {
+    "mile": 392.5,
+    "lat": 42.657045,
+    "lon": -118.728475,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "0.1 before EB018 join maintained road/South Steens Campground - water & pit toilets",
+    "details": "reliable: South Steens Campground - spigot near pumphouse at entrance",
+    "distToNext": 2.2
+  },
+  {
+    "mile": 394.7,
+    "lat": 42.651783,
+    "lon": -118.690518,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "reliable: Little Indian Creek",
+    "distToNext": 2.3
+  },
+  {
+    "mile": 397.0,
+    "lat": 42.669489,
+    "lon": -118.67173,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "reliable: Little Indian Creek",
+    "distToNext": 1.1
+  },
+  {
+    "mile": 398.1,
+    "lat": 42.666216,
+    "lon": -118.650843,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "reliable: Big Indian Creek",
+    "distToNext": 3.9
+  },
+  {
+    "mile": 402.0,
+    "lat": 42.667651,
+    "lon": -118.587483,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "join Steens Mountain Loop Road",
+    "details": "reliable: spring at marshy bench area at top of climb",
+    "distToNext": 4.3
+  },
+  {
+    "mile": 406.3,
+    "lat": 42.630343,
+    "lon": -118.587793,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "lake/follow creek at outlet",
+    "details": "reliable: Wildhorse Lake/creek until EB026",
+    "distToNext": 0.9
+  },
+  {
+    "mile": 407.2,
+    "lat": 42.619327,
+    "lon": -118.584048,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "reliable: Wildhorse Creek until EB026",
+    "distToNext": 1.6
+  },
+  {
+    "mile": 408.8,
+    "lat": 42.600426,
+    "lon": -118.593797,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "reliable: Wildhorse Creek until EB026",
+    "distToNext": 1.6
+  },
+  {
+    "mile": 410.4,
+    "lat": 42.581584,
+    "lon": -118.588417,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "cairn/spring",
+    "details": "questionable: spring just before next waypoint",
+    "distToNext": 1.4
+  },
+  {
+    "mile": 411.8,
+    "lat": 42.567483,
+    "lon": -118.575219,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "questionable: trough",
+    "distToNext": 3.7
+  },
+  {
+    "mile": 415.5,
+    "lat": 42.527474,
+    "lon": -118.547704,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "join trail",
+    "details": "questionable: spring north of waypoint",
+    "distToNext": 1.0
+  },
+  {
+    "mile": 416.5,
+    "lat": 42.520205,
+    "lon": -118.531297,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "join road/Alvord Hot Spring 1.7 N on road (bathrooms, $5 hotsprings, camping, store)",
+    "details": "reliable: Frog springs about a mile to the south",
+    "distToNext": 0.0
+  },
+  {
+    "mile": 416.5,
+    "lat": 42.520205,
+    "lon": -118.531297,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "join road/Alvord Hot Spring 1.7 N on road (bathrooms, $ hotsprings, camping, store)",
+    "details": "reliable : Frog springs about a mile south at public access to Alvord Desert",
+    "distToNext": 9.7
+  },
+  {
+    "mile": 426.2,
+    "lat": 42.405071,
+    "lon": -118.583772,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring",
+    "details": "unreliable: Dixon Spring - brackish",
+    "distToNext": 5.5
+  },
+  {
+    "mile": 431.7,
+    "lat": 42.330881,
+    "lon": -118.605726,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "hot springs",
+    "details": "unreliable: high levels of arsenic and extremely hot temps",
+    "distToNext": 0.2
+  },
+  {
+    "mile": 431.9,
+    "lat": 42.327487,
+    "lon": -118.605907,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "hot springs/join 2-track road",
+    "details": "unreliable: high levels of arsenic and extremely hot temps",
+    "distToNext": 6.5
+  },
+  {
+    "mile": 438.4,
+    "lat": 42.264509,
+    "lon": -118.674712,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Fields (all services)",
+    "details": "reliable: Fields",
+    "distToNext": 0.0
+  },
+  {
+    "mile": 438.4,
+    "lat": 42.264509,
+    "lon": -118.674712,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Fields (all services)",
+    "details": "reliable: Fields",
+    "distToNext": 4.8
+  },
+  {
+    "mile": 443.2,
+    "lat": 42.226957,
+    "lon": -118.681513,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "questionable: Sesena Creek",
+    "distToNext": 1.2
+  },
+  {
+    "mile": 444.4,
+    "lat": 42.214907,
+    "lon": -118.697546,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "questionable: Sesena Creek",
+    "distToNext": 1.5
+  },
+  {
+    "mile": 445.9,
+    "lat": 42.206675,
+    "lon": -118.720423,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "questionable: Starr Spring outlet 1 mile N",
+    "distToNext": 0.9
+  },
+  {
+    "mile": 446.8,
+    "lat": 42.189799,
+    "lon": -118.728803,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring",
+    "details": "reliable: Roux Spring",
+    "distToNext": 6.2
+  },
+  {
+    "mile": 453.0,
+    "lat": 42.134093,
+    "lon": -118.737112,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring",
+    "details": "questionable in fall: spring",
+    "distToNext": 0.1
+  },
+  {
+    "mile": 453.1,
+    "lat": 42.132687,
+    "lon": -118.736391,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring",
+    "details": "questionable in fall: spring",
+    "distToNext": 4.2
+  },
+  {
+    "mile": 457.3,
+    "lat": 42.093459,
+    "lon": -118.691499,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring/start x-country",
+    "details": "questionable in fall: Ten Cent Meadow Spring",
+    "distToNext": 4.1
+  },
+  {
+    "mile": 461.4,
+    "lat": 42.044857,
+    "lon": -118.697389,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "reliable: Denio Creek",
+    "distToNext": 3.8
+  },
+  {
+    "mile": 465.2,
+    "lat": 42.01581069687293,
+    "lon": -118.6564363448434,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "unreliable: spring",
+    "distToNext": 1.8
+  },
+  {
+    "mile": 467.0,
+    "lat": 42.002467,
+    "lon": -118.633507,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction to Denio 1 mile S (no resupply) Denio Junction 3 mile S (some services)",
+    "details": "reliable: Denio: library has spigot outside",
+    "distToNext": 0.0
+  },
+  {
+    "mile": 467.0,
+    "lat": 42.002467,
+    "lon": -118.633507,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction to Denio 1 mile S (no resupply) Denio Junction 3 mile S (some services)",
+    "details": "reliable: Denio: library has spigot outside",
+    "distToNext": 14.0
+  },
+  {
+    "mile": 481.0,
+    "lat": 42.054083,
+    "lon": -118.414708,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "water tank/start x-country",
+    "details": "unreliable: Windy Pass tank",
+    "distToNext": 1.3
+  },
+  {
+    "mile": 482.3,
+    "lat": 42.036953,
+    "lon": -118.408861,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "follow No Name Creek",
+    "details": "questionable in fall: No Name Creek",
+    "distToNext": 0.5
+  },
+  {
+    "mile": 482.8,
+    "lat": 42.037325,
+    "lon": -118.399912,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "questionable in fall: No Name Creek",
+    "distToNext": 2.8
+  },
+  {
+    "mile": 485.6,
+    "lat": 42.041975,
+    "lon": -118.351791,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring",
+    "details": "questionable: No Name Spring",
+    "distToNext": 0.0
+  },
+  {
+    "mile": 485.6,
+    "lat": 42.041975,
+    "lon": -118.351791,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring",
+    "details": "questionable: No Name Spring",
+    "distToNext": 2.5
+  },
+  {
+    "mile": 488.1,
+    "lat": 42.04435,
+    "lon": -118.318732,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "corral",
+    "details": "questionable: Government Corral",
+    "distToNext": 1.1
+  },
+  {
+    "mile": 489.2,
+    "lat": 42.034857,
+    "lon": -118.313336,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "reliable: trough",
+    "distToNext": 1.9
+  },
+  {
+    "mile": 491.1,
+    "lat": 42.019889,
+    "lon": -118.29905,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring",
+    "details": "reliable: spring",
+    "distToNext": 0.7
+  },
+  {
+    "mile": 491.8,
+    "lat": 42.025641,
+    "lon": -118.290315,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "reliable: Trout Creek",
+    "distToNext": 13.3
+  },
+  {
+    "mile": 505.1,
+    "lat": 42.090364,
+    "lon": -118.142286,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring",
+    "details": "questionable: Chicken Spring",
+    "distToNext": 3.6
+  },
+  {
+    "mile": 508.7,
+    "lat": 42.122278,
+    "lon": -118.102413,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction/creek",
+    "details": "questionable in fall: Fifteenmile Creek",
+    "distToNext": 2.6
+  },
+  {
+    "mile": 511.3,
+    "lat": 42.123308,
+    "lon": -118.066221,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring",
+    "details": "questionable: Gopher Spring",
+    "distToNext": 1.4
+  },
+  {
+    "mile": 512.7,
+    "lat": 42.115262,
+    "lon": -118.045602,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "questionable: Sheepline Canyon Spring to North",
+    "distToNext": 2.5
+  },
+  {
+    "mile": 515.2,
+    "lat": 42.115651,
+    "lon": -118.012363,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring",
+    "details": "questionable: Beaver Log Spring",
+    "distToNext": 2.8
+  },
+  {
+    "mile": 518.0,
+    "lat": 42.130427,
+    "lon": -117.97806,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek/confluence Island Canyon",
+    "details": "reliable: Oregon Canyon Creek",
+    "distToNext": 0.7
+  },
+  {
+    "mile": 518.7,
+    "lat": 42.136764,
+    "lon": -117.969865,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek/confluence Fall Canyon",
+    "details": "reliable: Oregon Canyon Creek",
+    "distToNext": 0.5
+  },
+  {
+    "mile": 519.2,
+    "lat": 42.144139,
+    "lon": -117.968774,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek/confluence Buck Corral Canyon",
+    "details": "reliable: Oregon Canyon Creek",
+    "distToNext": 0.6
+  },
+  {
+    "mile": 519.8,
+    "lat": 42.151086,
+    "lon": -117.97427,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek/confluence west fork",
+    "details": "reliable: Oregon Canyon Creek",
+    "distToNext": 0.8
+  },
+  {
+    "mile": 520.6,
+    "lat": 42.097131,
+    "lon": -117.941421,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "start x-country down cottonwood creek drainage",
+    "details": "reliable: Cottonwood Creek",
+    "distToNext": 0.5
+  },
+  {
+    "mile": 521.1,
+    "lat": 42.167913,
+    "lon": -117.980279,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "reliable: Oregon Canyon Creek",
+    "distToNext": 0.9
+  },
+  {
+    "mile": 522.0,
+    "lat": 42.179193,
+    "lon": -117.983166,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek/confluence east canyon",
+    "details": "reliable: Oregon Canyon Creek",
+    "distToNext": 0.2
+  },
+  {
+    "mile": 522.2,
+    "lat": 42.181297,
+    "lon": -117.983366,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "reliable: Oregon Canyon Creek",
+    "distToNext": 0.1
+  },
+  {
+    "mile": 522.3,
+    "lat": 42.093576,
+    "lon": -117.915974,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "join primitive road at cottonwood creek",
+    "details": "",
+    "distToNext": 0.2
+  },
+  {
+    "mile": 522.5,
+    "lat": 42.184993,
+    "lon": -117.986802,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "reliable: Oregon Canyon Creek",
+    "distToNext": 1.5
+  },
+  {
+    "mile": 524.0,
+    "lat": 42.204422,
+    "lon": -117.989997,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek/climb up canyon",
+    "details": "reliable: Oregon Canyon Creek",
+    "distToNext": 1.1
+  },
+  {
+    "mile": 525.1,
+    "lat": 42.208457,
+    "lon": -117.97305,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "trough",
+    "details": "questionable: Schoolhouse Spring",
+    "distToNext": 0.1
+  },
+  {
+    "mile": 525.2,
+    "lat": 42.091712,
+    "lon": -117.871319,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "reliable: water tank",
+    "distToNext": 0.4
+  },
+  {
+    "mile": 525.6,
+    "lat": 42.095752,
+    "lon": -117.855117,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "right at junction",
+    "details": "questionable: water tank",
+    "distToNext": 1.0
+  },
+  {
+    "mile": 526.6,
+    "lat": 42.206756,
+    "lon": -117.949977,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "reservoir",
+    "details": "unreliable: Schoolhouse Reservoir",
+    "distToNext": 1.2
+  },
+  {
+    "mile": 527.8,
+    "lat": 42.064779,
+    "lon": -117.820327,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "questionable: water tank",
+    "distToNext": 0.2
+  },
+  {
+    "mile": 528.0,
+    "lat": 42.199067,
+    "lon": -117.926108,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "trough",
+    "details": "reliable: water trough",
+    "distToNext": 0.8
+  },
+  {
+    "mile": 528.8,
+    "lat": 42.198974,
+    "lon": -117.909777,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "trough",
+    "details": "reliable: water trough",
+    "distToNext": 3.2
+  },
+  {
+    "mile": 532.0,
+    "lat": 42.181454,
+    "lon": -117.85333,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "trough/start x-country",
+    "details": "questionable: water trough",
+    "distToNext": 6.9
+  },
+  {
+    "mile": 538.9,
+    "lat": 42.121363,
+    "lon": -117.745714,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "meet hwy 95, McDermitt 9 miles S (all services",
+    "details": "McDermitt 9 miles S",
+    "distToNext": 0.0
+  },
+  {
+    "mile": 538.9,
+    "lat": 42.121363,
+    "lon": -117.745714,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "meet hwy 95, McDermitt 9 miles S (all services",
+    "details": "McDermitt 9 miles S",
+    "distToNext": 6.7
+  },
+  {
+    "mile": 545.6,
+    "lat": 42.157753,
+    "lon": -117.66965,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring",
+    "details": "unreliable: spring",
+    "distToNext": 0.3
+  },
+  {
+    "mile": 545.9,
+    "lat": 42.157652,
+    "lon": -117.674186,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "trough  ",
+    "details": "unreliable: trough",
+    "distToNext": 4.8
+  },
+  {
+    "mile": 550.7,
+    "lat": 42.195634,
+    "lon": -117.643239,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek/start x-country",
+    "details": "unreliable: creek",
+    "distToNext": 0.3
+  },
+  {
+    "mile": 551.0,
+    "lat": 42.192831,
+    "lon": -117.639748,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek/spring",
+    "details": "questionable: Tenmile Creek & Spring",
+    "distToNext": 1.1
+  },
+  {
+    "mile": 552.1,
+    "lat": 42.179853,
+    "lon": -117.63715,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring",
+    "details": "unreliable: Cottonwood Spring",
+    "distToNext": 9.1
+  },
+  {
+    "mile": 561.2,
+    "lat": 42.110609,
+    "lon": -117.533859,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring/gate",
+    "details": "unreliable: spring (muddy)",
+    "distToNext": 0.9
+  },
+  {
+    "mile": 562.1,
+    "lat": 42.1111,
+    "lon": -117.518285,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "questionable in fall: West Little Owyhee",
+    "distToNext": 1.1
+  },
+  {
+    "mile": 563.2,
+    "lat": 42.105741,
+    "lon": -117.500397,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek/fence",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 1.1
+  },
+  {
+    "mile": 564.3,
+    "lat": 42.096125,
+    "lon": -117.485488,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 4.9
+  },
+  {
+    "mile": 569.2,
+    "lat": 42.115906,
+    "lon": -117.408174,
+    "onTrail": false,
+    "offTrailDist": "off trail",
+    "landmark": "spring at OC036 off trail",
+    "details": "unreliable: spring",
+    "distToNext": 2.9
+  },
+  {
+    "mile": 572.1,
+    "lat": 42.131659,
+    "lon": -117.376438,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring/trough .25 N on trail",
+    "details": "questionable in fall: Three Week Spring/New Road Spring",
+    "distToNext": 4.4
+  },
+  {
+    "mile": 576.5,
+    "lat": 42.13035,
+    "lon": -117.316031,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 0.0
+  },
+  {
+    "mile": 576.5,
+    "lat": 42.13035,
+    "lon": -117.316031,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 0.2
+  },
+  {
+    "mile": 576.7,
+    "lat": 42.131177,
+    "lon": -117.311761,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 1.5
+  },
+  {
+    "mile": 578.2,
+    "lat": 42.138546,
+    "lon": -117.304126,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 1.4
+  },
+  {
+    "mile": 579.6,
+    "lat": 42.140479,
+    "lon": -117.286048,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 1.6
+  },
+  {
+    "mile": 581.2,
+    "lat": 42.152054,
+    "lon": -117.280343,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river/confluence with Dry Canyon",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 1.8
+  },
+  {
+    "mile": 583.0,
+    "lat": 42.168695,
+    "lon": -117.272546,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 1.7
+  },
+  {
+    "mile": 584.7,
+    "lat": 42.178458,
+    "lon": -117.264508,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 1.4
+  },
+  {
+    "mile": 586.1,
+    "lat": 42.187869,
+    "lon": -117.258277,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river/old water gauge",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 1.3
+  },
+  {
+    "mile": 587.4,
+    "lat": 42.200716,
+    "lon": -117.251468,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 1.4
+  },
+  {
+    "mile": 588.8,
+    "lat": 42.21915,
+    "lon": -117.258066,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 1.2
+  },
+  {
+    "mile": 590.0,
+    "lat": 42.23383,
+    "lon": -117.256714,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 0.6
+  },
+  {
+    "mile": 590.6,
+    "lat": 42.240496,
+    "lon": -117.255203,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 1.1
+  },
+  {
+    "mile": 591.7,
+    "lat": 42.251266,
+    "lon": -117.249033,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 1.6
+  },
+  {
+    "mile": 593.3,
+    "lat": 42.263214,
+    "lon": -117.236471,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 2.0
+  },
+  {
+    "mile": 595.3,
+    "lat": 42.276992,
+    "lon": -117.217253,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 1.0
+  },
+  {
+    "mile": 596.3,
+    "lat": 42.283843,
+    "lon": -117.222141,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 0.3
+  },
+  {
+    "mile": 596.6,
+    "lat": 42.287883,
+    "lon": -117.22143,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 0.4
+  },
+  {
+    "mile": 597.0,
+    "lat": 42.292632,
+    "lon": -117.223299,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 1.5
+  },
+  {
+    "mile": 598.5,
+    "lat": 42.30229,
+    "lon": -117.244715,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 1.0
+  },
+  {
+    "mile": 599.5,
+    "lat": 42.312385,
+    "lon": -117.256537,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 1.7
+  },
+  {
+    "mile": 601.2,
+    "lat": 42.333819,
+    "lon": -117.251421,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "reliable: West Little Owyhee",
+    "distToNext": 0.8
+  },
+  {
+    "mile": 602.0,
+    "lat": 42.343308,
+    "lon": -117.25031,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "questionable: West Little Owyhee",
+    "distToNext": 1.9
+  },
+  {
+    "mile": 603.9,
+    "lat": 42.362917,
+    "lon": -117.236951,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "questionable: West Little Owyhee",
+    "distToNext": 1.4
+  },
+  {
+    "mile": 605.3,
+    "lat": 42.377993,
+    "lon": -117.230147,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "questionable: West Little Owyhee",
+    "distToNext": 1.1
+  },
+  {
+    "mile": 606.4,
+    "lat": 42.390079,
+    "lon": -117.223273,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "questionable: West Little Owyhee",
+    "distToNext": 1.2
+  },
+  {
+    "mile": 607.6,
+    "lat": 42.402467,
+    "lon": -117.211569,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "questionable: West Little Owyhee",
+    "distToNext": 1.4
+  },
+  {
+    "mile": 609.0,
+    "lat": 42.420219,
+    "lon": -117.217487,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "questionable: West Little Owyhee",
+    "distToNext": 2.0
+  },
+  {
+    "mile": 611.0,
+    "lat": 42.442799,
+    "lon": -117.207838,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river",
+    "details": "questionable: West Little Owyhee",
+    "distToNext": 0.6
+  },
+  {
+    "mile": 611.6,
+    "lat": 42.449493,
+    "lon": -117.209694,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "join Owyhee River",
+    "details": "reliable: Owyhee River",
+    "distToNext": 8.0
+  },
+  {
+    "mile": 619.6,
+    "lat": 42.532335,
+    "lon": -117.163021,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "turn west here at the junction to access hot springs a few miles down the road",
+    "details": "",
+    "distToNext": 0.8
+  },
+  {
+    "mile": 620.4,
+    "lat": 42.543079,
+    "lon": -117.158681,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "join Owyhee River",
+    "details": "reliable: Owyhee River",
+    "distToNext": 0.6
+  },
+  {
+    "mile": 621.0,
+    "lat": 42.545042,
+    "lon": -117.166053,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "pit toilet",
+    "details": "reliable: Owyhee River",
+    "distToNext": 0.0
+  },
+  {
+    "mile": 621.0,
+    "lat": 42.545042,
+    "lon": -117.166053,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "join trail",
+    "details": "reliable: Owyhee River",
+    "distToNext": 2.7
+  },
+  {
+    "mile": 623.7,
+    "lat": 42.57728,
+    "lon": -117.17309,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "trough",
+    "details": "unreliable: Long Canyon Reservoir",
+    "distToNext": 2.1
+  },
+  {
+    "mile": 625.8,
+    "lat": 42.59992,
+    "lon": -117.19629,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "Whitehorse Creek Reservoir to the E",
+    "distToNext": 5.1
+  },
+  {
+    "mile": 630.9,
+    "lat": 42.657549,
+    "lon": -117.231338,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "river 1.2ish down Indian Canyon/reservoir",
+    "details": "reliable: Owyhee River 1.2ish miles down Indian Canyon/unreliable: Short Canyon Reservoir ",
+    "distToNext": 1.9
+  },
+  {
+    "mile": 632.8,
+    "lat": 42.67184,
+    "lon": -117.256699,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "reservoir",
+    "details": "unreliable: Paux Reservoir",
+    "distToNext": 7.7
+  },
+  {
+    "mile": 640.5,
+    "lat": 42.757568,
+    "lon": -117.32061,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek/ ",
+    "details": "unreliable: Soldier Creek",
+    "distToNext": 2.5
+  },
+  {
+    "mile": 643.0,
+    "lat": 42.767079,
+    "lon": -117.36057,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "join 2-track road",
+    "details": "unreliable: reservoir off trail to N",
+    "distToNext": 3.8
+  },
+  {
+    "mile": 646.8,
+    "lat": 42.774053,
+    "lon": -117.429053,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "unreliable: reservoir off trail to N",
+    "distToNext": 4.1
+  },
+  {
+    "mile": 650.9,
+    "lat": 42.787644,
+    "lon": -117.503505,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "join 2-track road",
+    "details": "questionable: water tank off trail to N",
+    "distToNext": 6.8
+  },
+  {
+    "mile": 657.7,
+    "lat": 42.817592,
+    "lon": -117.599013,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "questionable: water tank at OC105 W of trail - another tire trough with questionable water 0.6 m N of OC105 along road",
+    "distToNext": 2.5
+  },
+  {
+    "mile": 660.2,
+    "lat": 42.836608,
+    "lon": -117.621287,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "campground/pit toilets",
+    "details": "reliable: Rome Launch Campground spigot",
+    "distToNext": 0.6
+  },
+  {
+    "mile": 660.8,
+    "lat": 42.83903,
+    "lon": -117.628144,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Rome (all services) Jordan Valley 32.6 miles E (all services)",
+    "details": "Rome",
+    "distToNext": 0.0
+  },
+  {
+    "mile": 660.8,
+    "lat": 42.83903,
+    "lon": -117.628144,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "Rome (all services) Jordan Valley 32.6 miles E (all services)",
+    "details": "Rome",
+    "distToNext": 3.2
+  },
+  {
+    "mile": 664.0,
+    "lat": 42.871209,
+    "lon": -117.589666,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "unreliable: trough ",
+    "distToNext": 1.3
+  },
+  {
+    "mile": 665.3,
+    "lat": 42.887397,
+    "lon": -117.585261,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "reliable: Jordan Creek",
+    "distToNext": 1.0
+  },
+  {
+    "mile": 666.3,
+    "lat": 42.899913,
+    "lon": -117.596927,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "unreliable: Pascual Reservoir btwn OC115b and c",
+    "distToNext": 5.7
+  },
+  {
+    "mile": 672.0,
+    "lat": 42.931628,
+    "lon": -117.692659,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "trough",
+    "details": "unreliable: trough ",
+    "distToNext": 6.8
+  },
+  {
+    "mile": 678.8,
+    "lat": 43.003722,
+    "lon": -117.689012,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "reservoir to W",
+    "details": "unreliable: water trough / White Rock reservoir W ",
+    "distToNext": 0.9
+  },
+  {
+    "mile": 679.7,
+    "lat": 43.015551,
+    "lon": -117.683776,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "reservoir  ",
+    "details": "unreliable: Red Line Reservoir",
+    "distToNext": 3.2
+  },
+  {
+    "mile": 682.9,
+    "lat": 43.056883,
+    "lon": -117.682097,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "Unreliable :Spring ",
+    "distToNext": 0.6
+  },
+  {
+    "mile": 683.5,
+    "lat": 43.0642,
+    "lon": -117.681487,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": ".5 W river/camping/jeep road to river OC130",
+    "details": "reliable: Owyhee River .5 W",
+    "distToNext": 0.0
+  },
+  {
+    "mile": 683.5,
+    "lat": 43.0642,
+    "lon": -117.681487,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": ".5 W river/camping/jeep road to river OC130",
+    "details": "reliable: Owyhee River .5 W",
+    "distToNext": 2.5
+  },
+  {
+    "mile": 686.0,
+    "lat": 43.094355,
+    "lon": -117.688801,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "questionable: Bogus Creek",
+    "distToNext": 3.4
+  },
+  {
+    "mile": 689.4,
+    "lat": 43.116434,
+    "lon": -117.689127,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "join trail/reservoir to E",
+    "details": "unreliable: Morcum Reservoir to E of trail",
+    "distToNext": 4.7
+  },
+  {
+    "mile": 694.1,
+    "lat": 43.143389,
+    "lon": -117.62333,
+    "onTrail": false,
+    "offTrailDist": "off trail",
+    "landmark": "troughs SE off trail",
+    "details": "unreliable: 2 troughs at bottom of hill to SE off map",
+    "distToNext": 2.9
+  },
+  {
+    "mile": 697.0,
+    "lat": 43.167912,
+    "lon": -117.581074,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "reservoir to E",
+    "details": "unreliable: Riley Horn Reservoir",
+    "distToNext": 2.4
+  },
+  {
+    "mile": 699.4,
+    "lat": 43.174059,
+    "lon": -117.535236,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "junction",
+    "details": "unreliable: water tank & trough",
+    "distToNext": 4.1
+  },
+  {
+    "mile": 703.5,
+    "lat": 43.184217,
+    "lon": -117.466421,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "reservoir   ",
+    "details": "unreliable: Bench Reservoir",
+    "distToNext": 3.7
+  },
+  {
+    "mile": 707.2,
+    "lat": 43.217123,
+    "lon": -117.434876,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "reservoir",
+    "details": "unreliable: Claude Reservoir",
+    "distToNext": 2.3
+  },
+  {
+    "mile": 709.5,
+    "lat": 43.212772,
+    "lon": -117.398965,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "reservoir/start x-country",
+    "details": "unreliable: Wild Rose Reservoir",
+    "distToNext": 3.1
+  },
+  {
+    "mile": 712.6,
+    "lat": 43.234056,
+    "lon": -117.355582,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring",
+    "details": "reliable: developed spring",
+    "distToNext": 5.7
+  },
+  {
+    "mile": 718.3,
+    "lat": 43.301293,
+    "lon": -117.359452,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "reservoir",
+    "details": "reliable: Owyhee Reservoir (cloudy but filterable)",
+    "distToNext": 1.3
+  },
+  {
+    "mile": 719.6,
+    "lat": 43.30524,
+    "lon": -117.339955,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "creek",
+    "details": "Reliable: Spring Creek",
+    "distToNext": 1.6
+  },
+  {
+    "mile": 721.2,
+    "lat": 43.32204,
+    "lon": -117.321548,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "reservoir/Slocum Creek campground/pit toilets",
+    "details": "reliable: Owyhee Reservoir (cloudy but filterable)",
+    "distToNext": 3.7
+  },
+  {
+    "mile": 724.9,
+    "lat": 43.298566,
+    "lon": -117.270437,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "start x-country/spring 1 mile E",
+    "details": "questionable in fall: Mud Spring 1 mile E",
+    "distToNext": 0.0
+  },
+  {
+    "mile": 724.9,
+    "lat": 43.298566,
+    "lon": -117.270437,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "",
+    "details": "questionable in fall: Mud Spring 1 mile E",
+    "distToNext": 3.0
+  },
+  {
+    "mile": 727.9,
+    "lat": 43.335925,
+    "lon": -117.268865,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring about 1 mile N",
+    "details": "unreliable: Shadescale Spring",
+    "distToNext": 3.3
+  },
+  {
+    "mile": 731.2,
+    "lat": 43.371063,
+    "lon": -117.281942,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "trough",
+    "details": "unreliable: trough (murky water)",
+    "distToNext": 1.6
+  },
+  {
+    "mile": 732.8,
+    "lat": 43.390124,
+    "lon": -117.281008,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "start x-country",
+    "details": "reliable: Owyhee Reservoir 1 mile W",
+    "distToNext": 8.5
+  },
+  {
+    "mile": 741.3,
+    "lat": 43.486217,
+    "lon": -117.256213,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "trough start x-country",
+    "details": "unreliable: South Sheephead Spring",
+    "distToNext": 2.7
+  },
+  {
+    "mile": 744.0,
+    "lat": 43.518697,
+    "lon": -117.252839,
+    "onTrail": true,
+    "offTrailDist": "",
+    "landmark": "spring",
+    "details": "reliable: Rookie Canyon Spring",
+    "distToNext": 5.9
   },
   {
     "mile": 749.9,
-    "distToNext": 0.5,
+    "lat": 43.59264,
+    "lon": -117.246888,
     "onTrail": true,
     "offTrailDist": "",
     "landmark": "creek",
-    "details": "reliable: Birch Creek (watch for poison ivy)"
+    "details": "reliable: Birch Creek (watch for poison ivy)",
+    "distToNext": 0.5
   },
   {
     "mile": 750.4,
-    "distToNext": 0.2,
+    "lat": 43.599216,
+    "lon": -117.251008,
     "onTrail": true,
     "offTrailDist": "",
     "landmark": "creek",
-    "details": "reliable: Birch Creek (watch for poison ivy)"
+    "details": "reliable: Birch Creek (watch for poison ivy)",
+    "distToNext": 0.2
   },
   {
     "mile": 750.6,
-    "distToNext": 0.5,
+    "lat": 43.602044,
+    "lon": -117.251357,
     "onTrail": true,
     "offTrailDist": "",
     "landmark": "creek/join 2-track road",
-    "details": "reliable: Birch Creek (watch for poison ivy)"
+    "details": "reliable: Birch Creek (watch for poison ivy)",
+    "distToNext": 0.5
   },
   {
     "mile": 751.1,
-    "distToNext": "-",
+    "lat": 43.606384,
+    "lon": -117.254787,
     "onTrail": true,
     "offTrailDist": "",
     "landmark": "campground",
-    "details": "reliable: Indian Creek Campground spigot"
+    "details": "reliable: Indian Creek Campground spigot",
+    "distToNext": "-"
   }
 ]

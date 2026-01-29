@@ -1,68 +1,138 @@
 [
   {
-    "mile": 0,
-    "name": "Bend",
+    "mile": 0.0,
+    "lat": 44.045438,
+    "lon": -121.038164,
+    "name": "trailhead/water/Bend 14 miles W",
     "services": "all",
     "offTrail": "14 miles W"
   },
   {
-    "mile": 84.3,
-    "name": "Christmas Valley",
+    "mile": 0,
+    "lat": 42.411472,
+    "lon": -119.904047,
+    "name": "(off trail) Plush (all services) Adel 18 miles S on Hwy 3-10 (limited resupply)",
+    "services": "all",
+    "offTrail": "18 miles S"
+  },
+  {
+    "mile": 0,
+    "lat": 43.215005,
+    "lon": -117.503488,
+    "name": "Birch Creek Historical Ranch",
     "services": "limited",
     "offTrail": null
   },
   {
-    "mile": 265.8,
-    "name": "Plush",
+    "mile": 8.9,
+    "lat": 43.95712,
+    "lon": -121.052438,
+    "name": "trailhead/Bend 20 miles W",
     "services": "all",
-    "offTrail": "off trail"
+    "offTrail": "20 miles W"
+  },
+  {
+    "mile": 99.4,
+    "lat": 43.201378,
+    "lon": -120.27676,
+    "name": "meet paved Wagontire Road. Christmas Valley 19 miles to west",
+    "services": "all",
+    "offTrail": null
+  },
+  {
+    "mile": 160.5,
+    "lat": 42.69378,
+    "lon": -120.545828,
+    "name": "walk through town of Paisley",
+    "services": "all",
+    "offTrail": "6.2 miles W"
+  },
+  {
+    "mile": 208.0,
+    "lat": 42.309541,
+    "lon": -120.340805,
+    "name": "left on 295/Lakeview 8 miles south )on 295",
+    "services": "all",
+    "offTrail": "8 miles south"
+  },
+  {
+    "mile": 210.6,
+    "lat": 42.32919,
+    "lon": -120.300903,
+    "name": "juction with Hwy 395/Valley Falls 14 miles north",
+    "services": "limited",
+    "offTrail": "14 miles north"
   },
   {
     "mile": 265.8,
-    "name": "Adel",
-    "services": "limited resupply",
-    "offTrail": "18 miles S on Hwy 3-10"
+    "lat": 42.42473,
+    "lon": -119.904736,
+    "name": "Plush .9 South",
+    "services": "all",
+    "offTrail": null
   },
   {
-    "mile": 377,
-    "name": "Steens Mountain Ranch",
-    "services": "camp store",
-    "offTrail": "0.5 mi E"
+    "mile": 265.8,
+    "lat": 42.42473,
+    "lon": -119.904736,
+    "name": "(off trail) Plush (all services) Adel 18 miles S on Hwy 3-10 (limited resupply)",
+    "services": "all",
+    "offTrail": "18 miles S"
+  },
+  {
+    "mile": 374.2,
+    "lat": 42.82531,
+    "lon": -118.913909,
+    "name": "Frenchglen",
+    "services": "all",
+    "offTrail": "60 miles N"
+  },
+  {
+    "mile": 377.0,
+    "lat": 42.8095,
+    "lon": -118.870878,
+    "name": "junction/ .5 head E for Steens Mountain Ranch",
+    "services": "store",
+    "offTrail": null
   },
   {
     "mile": 416.5,
-    "name": "Alvord Hot Spring",
-    "services": "store, camping",
-    "offTrail": "1.7 mi N"
+    "lat": 42.520205,
+    "lon": -118.531297,
+    "name": "join road/Alvord Hot Spring 1.7 N on road",
+    "services": "store",
+    "offTrail": null
   },
   {
     "mile": 438.4,
+    "lat": 42.264509,
+    "lon": -118.674712,
     "name": "Fields",
     "services": "all",
     "offTrail": null
   },
   {
-    "mile": 467,
-    "name": "Denio",
-    "services": "no resupply",
+    "mile": 467.0,
+    "lat": 42.002467,
+    "lon": -118.633507,
+    "name": "junction to Denio 1 mile S",
+    "services": "limited",
     "offTrail": "1 mile S"
   },
   {
-    "mile": 467,
-    "name": "Denio Junction",
-    "services": "some",
-    "offTrail": "3 miles S"
+    "mile": 538.9,
+    "lat": 42.121363,
+    "lon": -117.745714,
+    "name": "meet hwy 95",
+    "services": "all",
+    "offTrail": "9 miles S"
   },
   {
-    "mile": 537.1,
-    "name": "McDermitt",
-    "services": "limited",
-    "offTrail": null
-  },
-  {
-    "mile": 660.2,
+    "mile": 660.8,
+    "lat": 42.83903,
+    "lon": -117.628144,
     "name": "Rome",
-    "services": "limited",
-    "offTrail": null
+    "services": "all",
+    "offTrail": "32.6 miles E"
   }
 ]

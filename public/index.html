@@ -1580,7 +1580,7 @@
               type: 'Feature',
               geometry: {
                 type: 'Point',
-                coordinates: [0, 0] // Will be populated from elevation profile
+                coordinates: [source.lon, source.lat] // GPS coordinates from GPX waypoints
               },
               properties: {
                 type: 'water',
@@ -1597,7 +1597,7 @@
               type: 'Feature',
               geometry: {
                 type: 'Point',
-                coordinates: [0, 0] // Will be populated from elevation profile
+                coordinates: [town.lon, town.lat] // GPS coordinates from GPX waypoints
               },
               properties: {
                 type: 'town',
@@ -1613,37 +1613,8 @@
             const profile = await loadElevationProfile();
             if (!profile) return;
 
-            // Find coordinates for water sources
-            waterGeoJSON.features.forEach(feature => {
-              const mile = feature.properties.mile;
-              let closest = profile[0];
-              let minDist = Math.abs(profile[0].distance - mile);
-
-              for (const point of profile) {
-                const dist = Math.abs(point.distance - mile);
-                if (dist < minDist) {
-                  minDist = dist;
-                  closest = point;
-                }
-              }
-              feature.geometry.coordinates = [closest.lon, closest.lat];
-            });
-
-            // Find coordinates for towns
-            townGeoJSON.features.forEach(feature => {
-              const mile = feature.properties.mile;
-              let closest = profile[0];
-              let minDist = Math.abs(profile[0].distance - mile);
-
-              for (const point of profile) {
-                const dist = Math.abs(point.distance - mile);
-                if (dist < minDist) {
-                  minDist = dist;
-                  closest = point;
-                }
-              }
-              feature.geometry.coordinates = [closest.lon, closest.lat];
-            });
+            // Coordinates are now loaded directly from water-sources.json and towns.json
+            // which are generated from GPX waypoints (authoritative GPS coordinates)
 
             // Add clustered sources
             map.addSource('water-points', {
