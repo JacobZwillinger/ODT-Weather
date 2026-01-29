@@ -111,6 +111,7 @@ def build_water_sources(csv_waypoints, gpx_coords):
                     'mile': float(wp['mile']) if wp['mile'] else 0,
                     'lat': coords['lat'],
                     'lon': coords['lon'],
+                    'name': waypoint_name,
                     'onTrail': on_trail,
                     'offTrailDist': off_trail_dist,
                     'landmark': wp['landmark'],
