@@ -869,18 +869,21 @@
     <script src="https://unpkg.com/maplibre-gl@4.1.2/dist/maplibre-gl.js"></script>
     <script src="https://unpkg.com/pmtiles@3.0.6/dist/pmtiles.js"></script>
     <script>
-      // Load water sources and towns data
+      // Load water sources, towns, and waypoints data
       let waterSources = [];
       let towns = [];
+      let allWaypoints = [];
       let elevationProfile = null;
 
       Promise.all([
+        fetch('waypoints.json').then(r => r.json()),
         fetch('water-sources.json').then(r => r.json()),
         fetch('towns.json').then(r => r.json())
-      ]).then(([water, townData]) => {
+      ]).then(([waypoints, water, townData]) => {
+        allWaypoints = waypoints;
         waterSources = water;
         towns = townData;
-        console.log('Loaded', waterSources.length, 'water sources and', towns.length, 'towns');
+        console.log('Loaded', allWaypoints.length, 'waypoints,', waterSources.length, 'water sources, and', towns.length, 'towns');
         // Initialize info panel with mile 0
         showMapInfo(0);
       }).catch(err => {
@@ -1080,16 +1083,16 @@
       };
 
       const findNearestWaypoint = (mile) => {
-        if (waterSources.length === 0) return null;
+        if (allWaypoints.length === 0) return null;
 
-        let nearest = waterSources[0];
-        let minDist = Math.abs(waterSources[0].mile - mile);
+        let nearest = allWaypoints[0];
+        let minDist = Math.abs(allWaypoints[0].mile - mile);
 
-        for (const source of waterSources) {
-          const dist = Math.abs(source.mile - mile);
+        for (const waypoint of allWaypoints) {
+          const dist = Math.abs(waypoint.mile - mile);
           if (dist < minDist) {
             minDist = dist;
-            nearest = source;
+            nearest = waypoint;
           }
         }
 
