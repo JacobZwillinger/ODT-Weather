@@ -12,13 +12,6 @@
         background: #fff;
         color: #1b1b1b;
         font-size: 14px;
-        overflow-x: hidden;
-      }
-
-      #app-container {
-        position: relative;
-        max-width: 100%;
-        overflow: hidden;
       }
 
       h1 {
@@ -54,36 +47,23 @@
 
       .tabs {
         display: flex;
-        gap: 12px;
+        gap: 8px;
         margin-bottom: 16px;
       }
 
       .tab-btn {
-        flex: 1;
-        padding: 16px 24px;
-        border: 2px solid #ccc;
+        padding: 8px 16px;
+        border: 1px solid #ccc;
         background: #f5f5f5;
-        border-radius: 8px;
+        border-radius: 4px;
         cursor: pointer;
-        font-size: 1.1rem;
-        font-weight: 600;
+        font-size: 0.9rem;
+        font-weight: 500;
         color: #666;
-        min-height: 56px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        -webkit-tap-highlight-color: transparent;
-        touch-action: manipulation;
       }
 
-      .tab-btn:active {
-        background: #e0e0e0;
-      }
-
-      @media (hover: hover) {
-        .tab-btn:hover {
-          background: #e5e5e5;
-        }
+      .tab-btn:hover {
+        background: #e5e5e5;
       }
 
       .tab-btn.active {
@@ -94,19 +74,10 @@
 
       .tab-content {
         display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
       }
 
       .tab-content.active {
         display: block;
-        position: relative;
       }
 
       table {
@@ -397,21 +368,22 @@
         top: 10px;
         left: 10px;
         background: rgba(255, 255, 255, 0.95);
-        border: 2px solid rgba(0,0,0,0.2);
-        border-radius: 6px;
-        padding: 14px 20px;
+        border: 3px solid rgba(0,0,0,0.3);
+        border-radius: 10px;
+        padding: 20px 32px;
         cursor: pointer;
-        font-size: 1rem;
-        font-weight: 600;
+        font-size: 1.3rem;
+        font-weight: 700;
         color: #333;
         z-index: 10;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
         -webkit-tap-highlight-color: transparent;
-        min-width: 130px;
-        min-height: 48px;
+        min-width: 180px;
+        min-height: 64px;
         display: flex;
         align-items: center;
         justify-content: center;
+        touch-action: manipulation;
       }
 
       .map-fullscreen-btn:active {
@@ -813,21 +785,20 @@
     <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.1.2/dist/maplibre-gl.css" />
   </head>
   <body>
-    <div id="app-container">
-      <div class="header">
-        <div class="header-left">
-          <h1>Oregon Desert Trail Weather</h1>
-          <p class="subtitle">All 25 sections of the 750-mile Oregon Desert Trail, updated from PirateWeather.</p>
-        </div>
-        <div class="api-usage" id="apiUsage"></div>
+    <div class="header">
+      <div class="header-left">
+        <h1>Oregon Desert Trail Weather</h1>
+        <p class="subtitle">All 25 sections of the 750-mile Oregon Desert Trail, updated from PirateWeather.</p>
       </div>
+      <div class="api-usage" id="apiUsage"></div>
+    </div>
 
-      <div class="tabs">
-        <button class="tab-btn active" data-tab="map">Map</button>
-        <button class="tab-btn" data-tab="weather">Weather</button>
-      </div>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="map">Map</button>
+      <button class="tab-btn" data-tab="weather">Weather</button>
+    </div>
 
-      <div id="mapTab" class="tab-content active">
+    <div id="mapTab" class="tab-content active">
       <div id="mapContainer">
         <button class="map-fullscreen-btn" id="mapFullscreenBtn">⛶ Fullscreen</button>
       </div>
@@ -873,10 +844,9 @@
       </div>
     </div>
 
-      <div id="weatherTab" class="tab-content">
-        <div id="container">
-          <div class="loading">Loading forecasts...</div>
-        </div>
+    <div id="weatherTab" class="tab-content">
+      <div id="container">
+        <div class="loading">Loading forecasts...</div>
       </div>
     </div>
 
