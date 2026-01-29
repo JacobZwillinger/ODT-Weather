@@ -336,11 +336,17 @@
       }
 
       #mapContainer {
-        height: 500px;
-        min-height: 400px;
+        height: 60vh;
+        min-height: 300px;
         border-radius: 8px;
         overflow: hidden;
         border: 1px solid #ccc;
+      }
+
+      @media (min-width: 768px) {
+        #mapContainer {
+          height: 500px;
+        }
       }
 
       .map-info-panel {
@@ -353,23 +359,74 @@
 
       .map-info-header {
         display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
         margin-bottom: 16px;
       }
 
+      .map-info-header-left {
+        display: flex;
+        gap: 16px;
+        align-items: baseline;
+        flex: 1;
+        min-width: 0;
+      }
+
       .map-info-current-mile {
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: 700;
         color: #1b1b1b;
+        white-space: nowrap;
       }
 
       .map-info-current-label {
-        font-size: 0.75rem;
+        font-size: 0.65rem;
         color: #999;
         text-transform: uppercase;
         letter-spacing: 0.5px;
         margin-bottom: 4px;
+      }
+
+      .map-info-waypoint-section {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .map-info-waypoint-label {
+        font-size: 0.65rem;
+        color: #999;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 4px;
+      }
+
+      .map-info-waypoint-value {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #666;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      @media (min-width: 768px) {
+        .map-info-current-mile {
+          font-size: 2rem;
+        }
+
+        .map-info-current-label {
+          font-size: 0.75rem;
+        }
+
+        .map-info-waypoint-label {
+          font-size: 0.75rem;
+        }
+
+        .map-info-waypoint-value {
+          font-size: 1rem;
+        }
       }
 
       .map-info-close {
@@ -389,23 +446,37 @@
 
       .map-info-cards {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
+        grid-template-columns: 1fr;
+        gap: 10px;
         margin-bottom: 12px;
+      }
+
+      @media (min-width: 640px) {
+        .map-info-cards {
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
       }
 
       .map-info-card {
         border: 1px solid #ccc;
         border-radius: 6px;
-        padding: 12px;
+        padding: 14px;
         background: #fff;
         cursor: pointer;
         transition: all 0.15s ease;
+        min-height: 80px;
       }
 
-      .map-info-card:hover {
-        border-color: #999;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      .map-info-card:active {
+        transform: scale(0.98);
+      }
+
+      @media (hover: hover) {
+        .map-info-card:hover {
+          border-color: #999;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
       }
 
       .map-info-card.warning {
@@ -413,8 +484,10 @@
         background: #fef2f2;
       }
 
-      .map-info-card.warning:hover {
-        border-color: #f87171;
+      @media (hover: hover) {
+        .map-info-card.warning:hover {
+          border-color: #f87171;
+        }
       }
 
       .map-info-label {
@@ -422,14 +495,14 @@
         color: #666;
         text-transform: uppercase;
         letter-spacing: 0.5px;
-        margin-bottom: 4px;
+        margin-bottom: 6px;
       }
 
       .map-info-value {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
         font-weight: 600;
         color: #1b1b1b;
-        margin-bottom: 2px;
+        margin-bottom: 4px;
       }
 
       .map-info-value.warning {
@@ -437,29 +510,23 @@
       }
 
       .map-info-detail {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         color: #666;
+        line-height: 1.3;
       }
 
-      .map-info-secondary {
-        padding: 10px;
-        background: #fafafa;
-        border-radius: 6px;
-        margin-bottom: 12px;
-        font-size: 0.85rem;
-      }
+      @media (min-width: 768px) {
+        .map-info-card {
+          padding: 12px;
+        }
 
-      .map-info-secondary-label {
-        font-size: 0.7rem;
-        color: #666;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-bottom: 2px;
-      }
+        .map-info-value {
+          font-size: 1.3rem;
+        }
 
-      .map-info-secondary-value {
-        font-weight: 600;
-        color: #1b1b1b;
+        .map-info-detail {
+          font-size: 0.85rem;
+        }
       }
 
       /* Water/Town sources list modal */
@@ -470,10 +537,11 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(0,0,0,0.5);
+        background: rgba(0,0,0,0.6);
         z-index: 1000;
-        padding: 20px;
+        padding: 0;
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
       }
 
       .sources-modal.visible {
@@ -482,11 +550,31 @@
 
       .sources-modal-content {
         max-width: 800px;
-        margin: 0 auto;
+        margin: 20px auto;
         background: #fff;
         border-radius: 8px;
-        padding: 20px;
+        padding: 16px;
         box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        min-height: calc(100vh - 40px);
+      }
+
+      @media (max-width: 640px) {
+        .sources-modal {
+          padding: 0;
+        }
+
+        .sources-modal-content {
+          margin: 0;
+          border-radius: 0;
+          min-height: 100vh;
+          padding: 12px;
+        }
+      }
+
+      @media (min-width: 641px) {
+        .sources-modal-content {
+          padding: 20px;
+        }
       }
 
       .sources-modal-header {
@@ -496,35 +584,59 @@
         margin-bottom: 16px;
         padding-bottom: 12px;
         border-bottom: 2px solid #e5e5e5;
+        position: sticky;
+        top: 0;
+        background: #fff;
+        z-index: 10;
       }
 
       .sources-modal-header h3 {
         margin: 0;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         font-weight: 600;
+      }
+
+      @media (min-width: 768px) {
+        .sources-modal-header h3 {
+          font-size: 1.3rem;
+        }
       }
 
       .sources-modal-close {
         background: none;
         border: 1px solid #ccc;
         border-radius: 4px;
-        padding: 6px 14px;
+        padding: 8px 16px;
         cursor: pointer;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         color: #666;
+        -webkit-tap-highlight-color: transparent;
       }
 
-      .sources-modal-close:hover {
+      .sources-modal-close:active {
         background: #e5e5e5;
       }
 
+      @media (hover: hover) {
+        .sources-modal-close:hover {
+          background: #e5e5e5;
+        }
+      }
+
       .sources-list {
-        max-height: 60vh;
+        max-height: calc(100vh - 120px);
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      @media (max-width: 640px) {
+        .sources-list {
+          max-height: calc(100vh - 100px);
+        }
       }
 
       .source-item {
-        padding: 12px;
+        padding: 14px 12px;
         border-bottom: 1px solid #e5e5e5;
       }
 
@@ -537,23 +649,36 @@
       .source-item-header {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 4px;
+        align-items: baseline;
+        margin-bottom: 6px;
+        gap: 12px;
       }
 
       .source-mile {
         font-weight: 600;
         color: #1b1b1b;
+        font-size: 0.95rem;
+        white-space: nowrap;
       }
 
       .source-name {
         font-weight: 500;
         color: #333;
+        font-size: 0.95rem;
+        margin-top: 2px;
       }
 
       .source-details {
         font-size: 0.85rem;
         color: #666;
-        margin-top: 4px;
+        margin-top: 6px;
+        line-height: 1.4;
+      }
+
+      @media (min-width: 768px) {
+        .source-item {
+          padding: 12px;
+        }
       }
 
       /* Map scale styling */
@@ -570,18 +695,37 @@
 
       .map-elevation-chart {
         margin-top: 12px;
-        padding: 12px;
+        padding: 10px;
         background: #fafafa;
         border-radius: 6px;
       }
 
       .map-elevation-chart h4 {
         margin: 0 0 8px;
-        font-size: 0.85rem;
+        font-size: 0.75rem;
         font-weight: 600;
         color: #666;
         text-transform: uppercase;
         letter-spacing: 0.5px;
+      }
+
+      @media (min-width: 768px) {
+        .map-elevation-chart {
+          padding: 12px;
+        }
+
+        .map-elevation-chart h4 {
+          font-size: 0.85rem;
+        }
+      }
+
+      /* Touch improvements */
+      * {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      button {
+        touch-action: manipulation;
       }
 
       .maplibregl-popup-content {
@@ -626,9 +770,15 @@
       <div id="mapContainer"></div>
       <div id="mapInfoPanel" class="map-info-panel">
         <div class="map-info-header">
-          <div>
-            <div class="map-info-current-label">Current Mile</div>
-            <div class="map-info-current-mile" id="mapCurrentMile">--</div>
+          <div class="map-info-header-left">
+            <div>
+              <div class="map-info-current-label">Current Mile</div>
+              <div class="map-info-current-mile" id="mapCurrentMile">--</div>
+            </div>
+            <div class="map-info-waypoint-section">
+              <div class="map-info-waypoint-label">Nearest Waypoint</div>
+              <div class="map-info-waypoint-value" id="mapNearestWaypoint">--</div>
+            </div>
           </div>
           <button class="map-info-close" id="closeMapInfo">Close</button>
         </div>
@@ -643,10 +793,6 @@
             <div class="map-info-value" id="mapNextTown">--</div>
             <div class="map-info-detail" id="mapNextTownDetail">--</div>
           </div>
-        </div>
-        <div class="map-info-secondary">
-          <div class="map-info-secondary-label">Nearest Waypoint</div>
-          <div class="map-info-secondary-value" id="mapNearestWaypoint">--</div>
         </div>
         <div class="map-elevation-chart">
           <h4>Next 20 Miles Elevation</h4>
@@ -953,7 +1099,11 @@
         canvas.width = canvas.offsetWidth;
         canvas.height = 200;
 
-        const padding = { top: 25, right: 40, bottom: 40, left: 65 };
+        // Responsive padding for mobile
+        const isMobile = canvas.width < 500;
+        const padding = isMobile
+          ? { top: 20, right: 30, bottom: 35, left: 55 }
+          : { top: 25, right: 40, bottom: 40, left: 65 };
         const chartWidth = canvas.width - padding.left - padding.right;
         const chartHeight = canvas.height - padding.top - padding.bottom;
 
@@ -996,9 +1146,10 @@
           ctx.stroke();
 
           ctx.fillStyle = '#666';
-          ctx.font = '11px system-ui';
+          ctx.font = isMobile ? '10px system-ui' : '11px system-ui';
           ctx.textAlign = 'right';
-          ctx.fillText(Math.round(elev).toLocaleString() + ' ft', padding.left - 8, y + 4);
+          const elevText = isMobile ? Math.round(elev).toLocaleString() : Math.round(elev).toLocaleString() + ' ft';
+          ctx.fillText(elevText, padding.left - 6, y + 3);
         }
 
         // X-axis grid lines
@@ -1012,9 +1163,9 @@
           ctx.stroke();
 
           ctx.fillStyle = '#666';
-          ctx.font = '11px system-ui';
+          ctx.font = isMobile ? '10px system-ui' : '11px system-ui';
           ctx.textAlign = 'center';
-          ctx.fillText(Math.round(mile) + ' mi', x, padding.top + chartHeight + 16);
+          ctx.fillText(Math.round(mile), x, padding.top + chartHeight + (isMobile ? 14 : 16));
         }
 
         // Draw elevation profile
@@ -1052,14 +1203,16 @@
 
         // Axis labels
         ctx.fillStyle = '#666';
-        ctx.font = '11px system-ui';
+        ctx.font = isMobile ? '10px system-ui' : '11px system-ui';
         ctx.textAlign = 'center';
-        ctx.fillText('Distance (miles)', padding.left + chartWidth / 2, canvas.height - 8);
+        if (!isMobile) {
+          ctx.fillText('Distance (miles)', padding.left + chartWidth / 2, canvas.height - 8);
+        }
 
         ctx.save();
-        ctx.translate(12, padding.top + chartHeight / 2);
+        ctx.translate(isMobile ? 10 : 12, padding.top + chartHeight / 2);
         ctx.rotate(-Math.PI / 2);
-        ctx.fillText('Elevation (feet)', 0, 0);
+        ctx.fillText(isMobile ? 'Elev (ft)' : 'Elevation (feet)', 0, 0);
         ctx.restore();
       };
 
