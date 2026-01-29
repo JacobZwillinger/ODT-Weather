@@ -1,0 +1,68 @@
+[
+  {
+    "mile": 0,
+    "name": "Bend",
+    "services": "all",
+    "offTrail": "14 miles W"
+  },
+  {
+    "mile": 84.3,
+    "name": "Christmas Valley",
+    "services": "limited",
+    "offTrail": null
+  },
+  {
+    "mile": 265.8,
+    "name": "Plush",
+    "services": "all",
+    "offTrail": "off trail"
+  },
+  {
+    "mile": 265.8,
+    "name": "Adel",
+    "services": "limited resupply",
+    "offTrail": "18 miles S on Hwy 3-10"
+  },
+  {
+    "mile": 377,
+    "name": "Steens Mountain Ranch",
+    "services": "camp store",
+    "offTrail": "0.5 mi E"
+  },
+  {
+    "mile": 416.5,
+    "name": "Alvord Hot Spring",
+    "services": "store, camping",
+    "offTrail": "1.7 mi N"
+  },
+  {
+    "mile": 438.4,
+    "name": "Fields",
+    "services": "all",
+    "offTrail": null
+  },
+  {
+    "mile": 467,
+    "name": "Denio",
+    "services": "no resupply",
+    "offTrail": "1 mile S"
+  },
+  {
+    "mile": 467,
+    "name": "Denio Junction",
+    "services": "some",
+    "offTrail": "3 miles S"
+  },
+  {
+    "mile": 537.1,
+    "name": "McDermitt",
+    "services": "limited",
+    "offTrail": null
+  },
+  {
+    "mile": 660.2,
+    "name": "Rome",
+    "services": "limited",
+    "offTrail": null
+  }
+]
