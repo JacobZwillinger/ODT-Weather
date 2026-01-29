@@ -329,11 +329,92 @@
       }
 
       /* Map tab styles */
+      #mapTab {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
       #mapContainer {
-        height: calc(100vh - 140px);
-        min-height: 400px;
+        height: 400px;
+        min-height: 300px;
         border-radius: 8px;
         overflow: hidden;
+        border: 1px solid #ccc;
+      }
+
+      .map-info-panel {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 16px;
+        background: #fafafa;
+        position: relative;
+      }
+
+      .map-info-panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+
+      .map-info-panel-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      .map-info-close {
+        background: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 4px 12px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        color: #666;
+      }
+
+      .map-info-close:hover {
+        background: #e5e5e5;
+      }
+
+      .map-info-row {
+        margin-bottom: 12px;
+      }
+
+      .map-info-label {
+        font-size: 0.75rem;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 4px;
+      }
+
+      .map-info-value {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #1b1b1b;
+      }
+
+      .map-info-detail {
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: 2px;
+      }
+
+      .map-info-warning {
+        color: #dc2626;
+      }
+
+      .map-elevation-chart {
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid #ddd;
+      }
+
+      .map-elevation-chart h4 {
+        margin: 0 0 12px;
+        font-size: 0.95rem;
+        font-weight: 600;
       }
 
       .maplibregl-popup-content {
@@ -365,8 +446,6 @@
 
     <div class="tabs">
       <button class="tab-btn active" data-tab="weather">Weather</button>
-      <button class="tab-btn" data-tab="water">Water</button>
-      <button class="tab-btn" data-tab="progress">Progress</button>
       <button class="tab-btn" data-tab="map">Map</button>
     </div>
 
@@ -376,26 +455,70 @@
       </div>
     </div>
 
-    <div id="waterTab" class="tab-content">
-      <div id="waterContainer"></div>
-    </div>
-
-    <div id="progressTab" class="tab-content">
-      <div id="progressContainer"></div>
-      <div style="margin-top: 24px;">
-        <h3 style="margin: 0 0 12px; font-size: 1.1rem; font-weight: 600;">Next 20 Miles Elevation</h3>
-        <canvas id="elevationChart" style="width: 100%; height: 300px; border: 1px solid #ddd; border-radius: 8px;"></canvas>
-      </div>
-    </div>
-
     <div id="mapTab" class="tab-content">
       <div id="mapContainer"></div>
+      <div id="mapInfoPanel" class="map-info-panel" style="display: none;">
+        <div class="map-info-panel-header">
+          <div class="map-info-panel-title">Location Info</div>
+          <button class="map-info-close" id="closeMapInfo">Close</button>
+        </div>
+        <div class="map-info-row">
+          <div class="map-info-label">Current Mileage</div>
+          <div class="map-info-value" id="mapCurrentMile">--</div>
+        </div>
+        <div class="map-info-row">
+          <div class="map-info-label">Nearest Waypoint</div>
+          <div class="map-info-value" id="mapNearestWaypoint">--</div>
+        </div>
+        <div class="map-info-row">
+          <div class="map-info-label">Distance to Next Water</div>
+          <div class="map-info-value" id="mapNextWater">--</div>
+          <div class="map-info-detail" id="mapNextWaterDetail">--</div>
+        </div>
+        <div class="map-info-row">
+          <div class="map-info-label">Distance to Next Town</div>
+          <div class="map-info-value" id="mapNextTown">--</div>
+          <div class="map-info-detail" id="mapNextTownDetail">--</div>
+        </div>
+        <div class="map-elevation-chart">
+          <h4>Next 20 Miles Elevation</h4>
+          <canvas id="mapElevationChart" style="width: 100%; height: 250px;"></canvas>
+        </div>
+      </div>
     </div>
 
     <script src="https://unpkg.com/maplibre-gl@4.1.2/dist/maplibre-gl.js"></script>
     <script src="https://unpkg.com/pmtiles@3.0.6/dist/pmtiles.js"></script>
-    <script src="water-data.js"></script>
-    <script src="progress.js"></script>
+    <script>
+      // Load water sources and towns data
+      let waterSources = [];
+      let towns = [];
+      let elevationProfile = null;
+
+      Promise.all([
+        fetch('water-sources.json').then(r => r.json()),
+        fetch('towns.json').then(r => r.json())
+      ]).then(([water, townData]) => {
+        waterSources = water;
+        towns = townData;
+        console.log('Loaded', waterSources.length, 'water sources and', towns.length, 'towns');
+      }).catch(err => {
+        console.error('Failed to load data:', err);
+      });
+
+      // Load elevation profile
+      const loadElevationProfile = async () => {
+        if (elevationProfile) return elevationProfile;
+        try {
+          const response = await fetch('elevation-profile.json');
+          elevationProfile = await response.json();
+          return elevationProfile;
+        } catch (error) {
+          console.error('Failed to load elevation profile:', error);
+          return null;
+        }
+      };
+    </script>
     <script>
       const points = [
         // Region 1: Central Oregon Volcanic
@@ -557,6 +680,206 @@
 
       loadForecasts();
 
+      // Map info panel functions
+      const getWaypointName = (source) => {
+        if (source.landmark && source.landmark.trim()) {
+          return source.landmark;
+        }
+        return source.details.replace(/^reliable:\s*/i, '').trim();
+      };
+
+      const findNearestWaypoint = (mile) => {
+        if (waterSources.length === 0) return null;
+
+        let nearest = waterSources[0];
+        let minDist = Math.abs(waterSources[0].mile - mile);
+
+        for (const source of waterSources) {
+          const dist = Math.abs(source.mile - mile);
+          if (dist < minDist) {
+            minDist = dist;
+            nearest = source;
+          }
+        }
+
+        return { waypoint: nearest, distance: minDist };
+      };
+
+      const findNextWater = (mile) => {
+        const epsilon = 0.01;
+        return waterSources.find(s => s.mile > mile + epsilon) || null;
+      };
+
+      const findNextTown = (mile) => {
+        const epsilon = 0.01;
+        return towns.find(t => t.mile > mile + epsilon) || null;
+      };
+
+      const renderElevationChart = async (startMile, canvasId) => {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        const profile = await loadElevationProfile();
+
+        if (!profile) {
+          ctx.fillStyle = '#333';
+          ctx.font = '14px system-ui';
+          ctx.fillText('Failed to load elevation data', 50, 50);
+          return;
+        }
+
+        const endMile = startMile + 20;
+        const segmentProfile = profile.filter(p => p.distance >= startMile && p.distance <= endMile);
+
+        if (segmentProfile.length === 0) {
+          ctx.fillStyle = '#fafafa';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = '#666';
+          ctx.font = '14px system-ui';
+          ctx.textAlign = 'center';
+          ctx.fillText('End of trail', canvas.width / 2, canvas.height / 2);
+          return;
+        }
+
+        canvas.width = canvas.offsetWidth;
+        canvas.height = 250;
+
+        const padding = { top: 30, right: 40, bottom: 50, left: 60 };
+        const chartWidth = canvas.width - padding.left - padding.right;
+        const chartHeight = canvas.height - padding.top - padding.bottom;
+
+        const elevations = segmentProfile.map(p => p.elevation);
+        const minElev = Math.min(...elevations);
+        const maxElev = Math.max(...elevations);
+        const elevRange = maxElev - minElev;
+
+        const xScale = (mile) => padding.left + ((mile - startMile) / 20) * chartWidth;
+        const yScale = (elev) => {
+          if (elevRange === 0) return padding.top + chartHeight / 2;
+          return padding.top + chartHeight - ((elev - minElev) / elevRange) * chartHeight;
+        };
+
+        ctx.fillStyle = '#fafafa';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.strokeStyle = '#e0e0e0';
+        ctx.lineWidth = 1;
+
+        for (let i = 0; i <= 5; i++) {
+          const elev = minElev + (maxElev - minElev) * (i / 5);
+          const y = yScale(elev);
+          ctx.beginPath();
+          ctx.moveTo(padding.left, y);
+          ctx.lineTo(padding.left + chartWidth, y);
+          ctx.stroke();
+
+          ctx.fillStyle = '#666';
+          ctx.font = '12px system-ui';
+          ctx.textAlign = 'right';
+          ctx.fillText(Math.round(elev) + ' ft', padding.left - 10, y + 4);
+        }
+
+        for (let i = 0; i <= 5; i++) {
+          const mile = startMile + (i * 4);
+          const x = xScale(mile);
+          ctx.strokeStyle = '#e0e0e0';
+          ctx.beginPath();
+          ctx.moveTo(x, padding.top);
+          ctx.lineTo(x, padding.top + chartHeight);
+          ctx.stroke();
+
+          ctx.fillStyle = '#666';
+          ctx.font = '12px system-ui';
+          ctx.textAlign = 'center';
+          ctx.fillText(Math.round(mile) + ' mi', x, padding.top + chartHeight + 20);
+        }
+
+        ctx.beginPath();
+        ctx.strokeStyle = '#e11d48';
+        ctx.lineWidth = 2;
+
+        segmentProfile.forEach((point, i) => {
+          const x = xScale(point.distance);
+          const y = yScale(point.elevation);
+          if (i === 0) {
+            ctx.moveTo(x, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
+        });
+
+        ctx.stroke();
+
+        ctx.lineTo(xScale(segmentProfile[segmentProfile.length - 1].distance), padding.top + chartHeight);
+        ctx.lineTo(xScale(segmentProfile[0].distance), padding.top + chartHeight);
+        ctx.closePath();
+        ctx.fillStyle = 'rgba(225, 29, 72, 0.1)';
+        ctx.fill();
+
+        ctx.strokeStyle = '#333';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(padding.left, padding.top);
+        ctx.lineTo(padding.left, padding.top + chartHeight);
+        ctx.lineTo(padding.left + chartWidth, padding.top + chartHeight);
+        ctx.stroke();
+
+        ctx.fillStyle = '#333';
+        ctx.font = 'bold 14px system-ui';
+        ctx.textAlign = 'center';
+        ctx.fillText('Distance (miles)', padding.left + chartWidth / 2, canvas.height - 10);
+
+        ctx.save();
+        ctx.translate(15, padding.top + chartHeight / 2);
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillText('Elevation (feet)', 0, 0);
+        ctx.restore();
+
+        ctx.font = 'bold 14px system-ui';
+        const titleText = `Miles ${Math.round(startMile)} - ${Math.round(endMile)}`;
+        ctx.fillText(titleText, canvas.width / 2, 20);
+      };
+
+      const showMapInfo = (mile) => {
+        const panel = document.getElementById('mapInfoPanel');
+        panel.style.display = 'block';
+
+        document.getElementById('mapCurrentMile').textContent = `Mile ${mile.toFixed(1)}`;
+
+        const nearest = findNearestWaypoint(mile);
+        if (nearest) {
+          document.getElementById('mapNearestWaypoint').textContent = getWaypointName(nearest.waypoint);
+        }
+
+        const nextWater = findNextWater(mile);
+        if (nextWater) {
+          const dist = nextWater.mile - mile;
+          document.getElementById('mapNextWater').textContent = `${dist.toFixed(1)} mi`;
+          document.getElementById('mapNextWaterDetail').textContent = getWaypointName(nextWater);
+          document.getElementById('mapNextWater').className = dist >= 20 ? 'map-info-value map-info-warning' : 'map-info-value';
+        } else {
+          document.getElementById('mapNextWater').textContent = 'None';
+          document.getElementById('mapNextWaterDetail').textContent = 'Past last water source';
+        }
+
+        const nextTown = findNextTown(mile);
+        if (nextTown) {
+          const dist = nextTown.mile - mile;
+          document.getElementById('mapNextTown').textContent = `${dist.toFixed(1)} mi`;
+          document.getElementById('mapNextTownDetail').textContent = `${nextTown.name} (${nextTown.services})`;
+        } else {
+          document.getElementById('mapNextTown').textContent = 'None';
+          document.getElementById('mapNextTownDetail').textContent = 'Past last town';
+        }
+
+        renderElevationChart(mile, 'mapElevationChart');
+      };
+
+      document.getElementById('closeMapInfo').addEventListener('click', () => {
+        document.getElementById('mapInfoPanel').style.display = 'none';
+      });
+
       const renderWaterTable = () => {
         let html = `
           <div style="margin-bottom: 24px;">
@@ -644,171 +967,6 @@
           document.getElementById(tab + 'Tab').classList.add('active');
         });
       });
-
-      // Render water table on load
-      renderWaterTable();
-
-      // Elevation profile chart
-      let elevationProfile = null;
-
-      const loadElevationProfile = async () => {
-        if (elevationProfile) return elevationProfile;
-
-        try {
-          const response = await fetch('elevation-profile.json');
-          elevationProfile = await response.json();
-          return elevationProfile;
-        } catch (error) {
-          console.error('Failed to load elevation profile:', error);
-          return null;
-        }
-      };
-
-      const renderElevationChart = async (startMile = 0) => {
-        const canvas = document.getElementById('elevationChart');
-        if (!canvas) return; // Chart not in DOM yet
-
-        const ctx = canvas.getContext('2d');
-
-        // Load elevation profile data
-        const profile = await loadElevationProfile();
-        if (!profile) {
-          ctx.fillStyle = '#333';
-          ctx.font = '14px system-ui';
-          ctx.fillText('Failed to load elevation data', 50, 50);
-          return;
-        }
-
-        // Filter to next 20 miles from startMile
-        const endMile = startMile + 20;
-        const segmentProfile = profile.filter(p => p.distance >= startMile && p.distance <= endMile);
-
-        if (segmentProfile.length === 0) {
-          ctx.fillStyle = '#fafafa';
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
-          ctx.fillStyle = '#666';
-          ctx.font = '14px system-ui';
-          ctx.textAlign = 'center';
-          ctx.fillText('End of trail', canvas.width / 2, canvas.height / 2);
-          return;
-        }
-
-        // Set canvas size
-        canvas.width = canvas.offsetWidth;
-        canvas.height = 300;
-
-        const padding = { top: 30, right: 40, bottom: 50, left: 60 };
-        const chartWidth = canvas.width - padding.left - padding.right;
-        const chartHeight = canvas.height - padding.top - padding.bottom;
-
-        // Get elevation data from segment
-        const elevations = segmentProfile.map(p => p.elevation);
-        const minElev = Math.min(...elevations);
-        const maxElev = Math.max(...elevations);
-        const elevRange = maxElev - minElev;
-
-        // Scale functions (for 20-mile window)
-        const xScale = (mile) => padding.left + ((mile - startMile) / 20) * chartWidth;
-        const yScale = (elev) => {
-          if (elevRange === 0) return padding.top + chartHeight / 2;
-          return padding.top + chartHeight - ((elev - minElev) / elevRange) * chartHeight;
-        };
-
-        // Clear canvas
-        ctx.fillStyle = '#fafafa';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        // Draw grid lines
-        ctx.strokeStyle = '#e0e0e0';
-        ctx.lineWidth = 1;
-
-        // Horizontal grid lines (elevation)
-        for (let i = 0; i <= 5; i++) {
-          const elev = minElev + (maxElev - minElev) * (i / 5);
-          const y = yScale(elev);
-          ctx.beginPath();
-          ctx.moveTo(padding.left, y);
-          ctx.lineTo(padding.left + chartWidth, y);
-          ctx.stroke();
-
-          // Y-axis labels
-          ctx.fillStyle = '#666';
-          ctx.font = '12px system-ui';
-          ctx.textAlign = 'right';
-          ctx.fillText(Math.round(elev) + ' ft', padding.left - 10, y + 4);
-        }
-
-        // Vertical grid lines (distance) - every 4 miles over 20-mile span
-        for (let i = 0; i <= 5; i++) {
-          const mile = startMile + (i * 4);
-          const x = xScale(mile);
-          ctx.strokeStyle = '#e0e0e0';
-          ctx.beginPath();
-          ctx.moveTo(x, padding.top);
-          ctx.lineTo(x, padding.top + chartHeight);
-          ctx.stroke();
-
-          // X-axis labels
-          ctx.fillStyle = '#666';
-          ctx.font = '12px system-ui';
-          ctx.textAlign = 'center';
-          ctx.fillText(Math.round(mile) + ' mi', x, padding.top + chartHeight + 20);
-        }
-
-        // Draw elevation profile
-        ctx.beginPath();
-        ctx.strokeStyle = '#e11d48';
-        ctx.lineWidth = 2;
-
-        segmentProfile.forEach((point, i) => {
-          const x = xScale(point.distance);
-          const y = yScale(point.elevation);
-
-          if (i === 0) {
-            ctx.moveTo(x, y);
-          } else {
-            ctx.lineTo(x, y);
-          }
-        });
-
-        ctx.stroke();
-
-        // Fill area under line
-        ctx.lineTo(xScale(segmentProfile[segmentProfile.length - 1].distance), padding.top + chartHeight);
-        ctx.lineTo(xScale(segmentProfile[0].distance), padding.top + chartHeight);
-        ctx.closePath();
-        ctx.fillStyle = 'rgba(225, 29, 72, 0.1)';
-        ctx.fill();
-
-        // Draw axes
-        ctx.strokeStyle = '#333';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(padding.left, padding.top);
-        ctx.lineTo(padding.left, padding.top + chartHeight);
-        ctx.lineTo(padding.left + chartWidth, padding.top + chartHeight);
-        ctx.stroke();
-
-        // Axis labels
-        ctx.fillStyle = '#333';
-        ctx.font = 'bold 14px system-ui';
-        ctx.textAlign = 'center';
-        ctx.fillText('Distance (miles)', padding.left + chartWidth / 2, canvas.height - 10);
-
-        ctx.save();
-        ctx.translate(15, padding.top + chartHeight / 2);
-        ctx.rotate(-Math.PI / 2);
-        ctx.fillText('Elevation (feet)', 0, 0);
-        ctx.restore();
-
-        // Title
-        ctx.font = 'bold 14px system-ui';
-        const titleText = `Miles ${Math.round(startMile)} - ${Math.round(endMile)}`;
-        ctx.fillText(titleText, canvas.width / 2, 20);
-      };
-
-      // Expose elevation chart function globally for progress.js
-      window.renderElevationChart = renderElevationChart;
 
       // Map initialization
       let map = null;
@@ -1117,22 +1275,47 @@
           });
         });
 
-        // Popup on section click
+        // Click on section markers to show info panel
         map.on('click', 'section-circles', (e) => {
+          e.preventDefault();
           const props = e.features[0].properties;
-          new maplibregl.Popup()
-            .setLngLat(e.lngLat)
-            .setHTML(`<strong>${props.name}</strong><span class="mile-marker">Mile ${props.mile}</span>`)
-            .addTo(map);
+          showMapInfo(props.mile);
         });
 
-        // Popup on waypoint click
+        // Click on waypoint circles to show info panel
         map.on('click', 'waypoint-circles', (e) => {
+          e.preventDefault();
           const props = e.features[0].properties;
-          new maplibregl.Popup()
-            .setLngLat(e.lngLat)
-            .setHTML(`<strong>${props.name}</strong>`)
-            .addTo(map);
+          // Waypoints don't have mile markers, so find nearest section
+          const coords = e.features[0].geometry.coordinates;
+          // Find closest section point
+          let closestPoint = points[0];
+          let minDist = Math.hypot(coords[0] - closestPoint.lon, coords[1] - closestPoint.lat);
+          for (const point of points) {
+            const dist = Math.hypot(coords[0] - point.lon, coords[1] - point.lat);
+            if (dist < minDist) {
+              minDist = dist;
+              closestPoint = point;
+            }
+          }
+          showMapInfo(closestPoint.mile);
+        });
+
+        // Click anywhere on the route line to show info panel
+        map.on('click', 'route-line', (e) => {
+          e.preventDefault();
+          const coords = e.lngLat;
+          // Find closest section point
+          let closestPoint = points[0];
+          let minDist = Math.hypot(coords.lng - closestPoint.lon, coords.lat - closestPoint.lat);
+          for (const point of points) {
+            const dist = Math.hypot(coords.lng - point.lon, coords.lat - point.lat);
+            if (dist < minDist) {
+              minDist = dist;
+              closestPoint = point;
+            }
+          }
+          showMapInfo(closestPoint.mile);
         });
 
         // Change cursor on hover
@@ -1140,6 +1323,8 @@
         map.on('mouseleave', 'section-circles', () => map.getCanvas().style.cursor = '');
         map.on('mouseenter', 'waypoint-circles', () => map.getCanvas().style.cursor = 'pointer');
         map.on('mouseleave', 'waypoint-circles', () => map.getCanvas().style.cursor = '');
+        map.on('mouseenter', 'route-line', () => map.getCanvas().style.cursor = 'pointer');
+        map.on('mouseleave', 'route-line', () => map.getCanvas().style.cursor = '');
 
         // Add navigation controls
         map.addControl(new maplibregl.NavigationControl(), 'top-right');
