@@ -355,17 +355,32 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 12px;
+        margin-bottom: 16px;
+      }
+
+      .map-info-current-mile {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1b1b1b;
+      }
+
+      .map-info-current-label {
+        font-size: 0.75rem;
+        color: #999;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 4px;
       }
 
       .map-info-close {
         background: none;
         border: 1px solid #ccc;
         border-radius: 4px;
-        padding: 4px 12px;
+        padding: 6px 14px;
         cursor: pointer;
         font-size: 0.85rem;
         color: #666;
+        align-self: flex-start;
       }
 
       .map-info-close:hover {
@@ -384,11 +399,22 @@
         border-radius: 6px;
         padding: 12px;
         background: #fff;
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+
+      .map-info-card:hover {
+        border-color: #999;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       }
 
       .map-info-card.warning {
         border-color: #fca5a5;
         background: #fef2f2;
+      }
+
+      .map-info-card.warning:hover {
+        border-color: #f87171;
       }
 
       .map-info-label {
@@ -416,16 +442,10 @@
       }
 
       .map-info-secondary {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-        margin-bottom: 12px;
         padding: 10px;
         background: #fafafa;
         border-radius: 6px;
-      }
-
-      .map-info-secondary-item {
+        margin-bottom: 12px;
         font-size: 0.85rem;
       }
 
@@ -434,11 +454,118 @@
         color: #666;
         text-transform: uppercase;
         letter-spacing: 0.5px;
+        margin-bottom: 2px;
       }
 
       .map-info-secondary-value {
         font-weight: 600;
         color: #1b1b1b;
+      }
+
+      /* Water/Town sources list modal */
+      .sources-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 1000;
+        padding: 20px;
+        overflow-y: auto;
+      }
+
+      .sources-modal.visible {
+        display: block;
+      }
+
+      .sources-modal-content {
+        max-width: 800px;
+        margin: 0 auto;
+        background: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      }
+
+      .sources-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #e5e5e5;
+      }
+
+      .sources-modal-header h3 {
+        margin: 0;
+        font-size: 1.3rem;
+        font-weight: 600;
+      }
+
+      .sources-modal-close {
+        background: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 6px 14px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        color: #666;
+      }
+
+      .sources-modal-close:hover {
+        background: #e5e5e5;
+      }
+
+      .sources-list {
+        max-height: 60vh;
+        overflow-y: auto;
+      }
+
+      .source-item {
+        padding: 12px;
+        border-bottom: 1px solid #e5e5e5;
+      }
+
+      .source-item.highlight {
+        background: #fef3c7;
+        border-left: 4px solid #f59e0b;
+        padding-left: 8px;
+      }
+
+      .source-item-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 4px;
+      }
+
+      .source-mile {
+        font-weight: 600;
+        color: #1b1b1b;
+      }
+
+      .source-name {
+        font-weight: 500;
+        color: #333;
+      }
+
+      .source-details {
+        font-size: 0.85rem;
+        color: #666;
+        margin-top: 4px;
+      }
+
+      /* Map scale styling */
+      .maplibregl-ctrl-scale {
+        background: rgba(255, 255, 255, 0.95) !important;
+        border: 2px solid #1b1b1b !important;
+        border-top: none !important;
+        color: #1b1b1b !important;
+        font-size: 12px !important;
+        font-weight: 600 !important;
+        padding: 4px 8px !important;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2) !important;
       }
 
       .map-elevation-chart {
@@ -499,7 +626,11 @@
       <div id="mapContainer"></div>
       <div id="mapInfoPanel" class="map-info-panel">
         <div class="map-info-header">
-          <button class="map-info-close" id="closeMapInfo">Close Info</button>
+          <div>
+            <div class="map-info-current-label">Current Mile</div>
+            <div class="map-info-current-mile" id="mapCurrentMile">--</div>
+          </div>
+          <button class="map-info-close" id="closeMapInfo">Close</button>
         </div>
         <div class="map-info-cards">
           <div class="map-info-card" id="nextWaterCard">
@@ -514,19 +645,24 @@
           </div>
         </div>
         <div class="map-info-secondary">
-          <div class="map-info-secondary-item">
-            <div class="map-info-secondary-label">Current Mile</div>
-            <div class="map-info-secondary-value" id="mapCurrentMile">--</div>
-          </div>
-          <div class="map-info-secondary-item">
-            <div class="map-info-secondary-label">Nearest Waypoint</div>
-            <div class="map-info-secondary-value" id="mapNearestWaypoint">--</div>
-          </div>
+          <div class="map-info-secondary-label">Nearest Waypoint</div>
+          <div class="map-info-secondary-value" id="mapNearestWaypoint">--</div>
         </div>
         <div class="map-elevation-chart">
           <h4>Next 20 Miles Elevation</h4>
           <canvas id="mapElevationChart" style="width: 100%; height: 200px;"></canvas>
         </div>
+      </div>
+    </div>
+
+    <!-- Water/Town Sources Modal -->
+    <div id="sourcesModal" class="sources-modal">
+      <div class="sources-modal-content">
+        <div class="sources-modal-header">
+          <h3 id="sourcesModalTitle">Water Sources</h3>
+          <button class="sources-modal-close" id="closeSourcesModal">Close</button>
+        </div>
+        <div id="sourcesList" class="sources-list"></div>
       </div>
     </div>
 
@@ -927,11 +1063,14 @@
         ctx.restore();
       };
 
+      let currentMile = 0;
+
       const showMapInfo = (mile) => {
+        currentMile = mile;
         const panel = document.getElementById('mapInfoPanel');
         panel.classList.add('visible');
 
-        document.getElementById('mapCurrentMile').textContent = `${mile.toFixed(1)}`;
+        document.getElementById('mapCurrentMile').textContent = `Mile ${mile.toFixed(1)}`;
 
         const nearest = findNearestWaypoint(mile);
         if (nearest) {
@@ -967,8 +1106,87 @@
         renderElevationChart(mile, 'mapElevationChart');
       };
 
+      const showSourcesList = (type) => {
+        const modal = document.getElementById('sourcesModal');
+        const title = document.getElementById('sourcesModalTitle');
+        const list = document.getElementById('sourcesList');
+
+        if (type === 'water') {
+          title.textContent = 'Water Sources';
+          let html = '';
+          waterSources.forEach(source => {
+            const isNear = Math.abs(source.mile - currentMile) < 5;
+            const isPast = source.mile <= currentMile;
+            html += `
+              <div class="source-item ${isNear ? 'highlight' : ''}">
+                <div class="source-item-header">
+                  <span class="source-mile">Mile ${source.mile}</span>
+                  <span style="color: ${isPast ? '#999' : '#059669'}; font-weight: 600;">
+                    ${isPast ? 'Past' : `${(source.mile - currentMile).toFixed(1)} mi ahead`}
+                  </span>
+                </div>
+                <div class="source-name">${getWaypointShortName(source)}</div>
+                <div class="source-details">${source.details}</div>
+                ${source.distToNext !== '-' ? `<div class="source-details" style="margin-top: 4px;">Next water: ${source.distToNext} mi</div>` : ''}
+              </div>
+            `;
+          });
+          list.innerHTML = html;
+        } else {
+          title.textContent = 'Towns & Resupply Points';
+          let html = '';
+          towns.forEach(town => {
+            const isNear = Math.abs(town.mile - currentMile) < 20;
+            const isPast = town.mile <= currentMile;
+            html += `
+              <div class="source-item ${isNear ? 'highlight' : ''}">
+                <div class="source-item-header">
+                  <span class="source-mile">Mile ${town.mile}</span>
+                  <span style="color: ${isPast ? '#999' : '#059669'}; font-weight: 600;">
+                    ${isPast ? 'Past' : `${(town.mile - currentMile).toFixed(1)} mi ahead`}
+                  </span>
+                </div>
+                <div class="source-name">${town.name}</div>
+                <div class="source-details">Services: ${town.services}</div>
+                ${town.offTrail ? `<div class="source-details">Location: ${town.offTrail}</div>` : ''}
+              </div>
+            `;
+          });
+          list.innerHTML = html;
+        }
+
+        modal.classList.add('visible');
+
+        // Scroll to highlighted item
+        setTimeout(() => {
+          const highlighted = list.querySelector('.highlight');
+          if (highlighted) {
+            highlighted.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 100);
+      };
+
       document.getElementById('closeMapInfo').addEventListener('click', () => {
         document.getElementById('mapInfoPanel').classList.remove('visible');
+      });
+
+      document.getElementById('nextWaterCard').addEventListener('click', () => {
+        showSourcesList('water');
+      });
+
+      document.getElementById('nextTownCard').addEventListener('click', () => {
+        showSourcesList('town');
+      });
+
+      document.getElementById('closeSourcesModal').addEventListener('click', () => {
+        document.getElementById('sourcesModal').classList.remove('visible');
+      });
+
+      // Close modal when clicking outside
+      document.getElementById('sourcesModal').addEventListener('click', (e) => {
+        if (e.target.id === 'sourcesModal') {
+          document.getElementById('sourcesModal').classList.remove('visible');
+        }
       });
 
       const renderWaterTable = () => {
@@ -1400,6 +1618,12 @@
 
         // Add navigation controls
         map.addControl(new maplibregl.NavigationControl(), 'top-right');
+
+        // Add scale control (very visible)
+        map.addControl(new maplibregl.ScaleControl({
+          maxWidth: 150,
+          unit: 'imperial'
+        }), 'bottom-left');
       };
 
       // Initialize map when tab is shown (lazy load)
