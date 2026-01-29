@@ -369,15 +369,20 @@
         left: 10px;
         background: rgba(255, 255, 255, 0.95);
         border: 2px solid rgba(0,0,0,0.2);
-        border-radius: 4px;
-        padding: 8px 12px;
+        border-radius: 6px;
+        padding: 14px 20px;
         cursor: pointer;
-        font-size: 0.85rem;
+        font-size: 1rem;
         font-weight: 600;
         color: #333;
         z-index: 10;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
         -webkit-tap-highlight-color: transparent;
+        min-width: 130px;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .map-fullscreen-btn:active {
@@ -2056,7 +2061,7 @@
             minzoom: 9
           });
 
-          // Add waypoint icons (smaller, shown at higher zoom)
+          // Add waypoint icons (smaller, shown at very high zoom only)
           map.addLayer({
             id: 'waypoint-icons',
             type: 'symbol',
@@ -2067,7 +2072,7 @@
               'icon-size': 0.8,
               'icon-allow-overlap': false
             },
-            minzoom: 11
+            minzoom: 13
           });
         });
 
