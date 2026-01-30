@@ -2101,38 +2101,40 @@
             },
             minzoom: 13
           });
-        });
 
-        // Click on section markers to show info panel
-        map.on('click', 'section-circles', async (e) => {
-          e.preventDefault();
-          const coords = e.features[0].geometry.coordinates;
-          const mile = await findMileFromCoords(coords[1], coords[0]);
-          showMapInfo(mile);
-        });
+          // Click on section markers to show info panel
+          map.on('click', 'section-circles', async (e) => {
+            if (!e.features || e.features.length === 0) return;
+            e.preventDefault();
+            const coords = e.features[0].geometry.coordinates;
+            const mile = await findMileFromCoords(coords[1], coords[0]);
+            showMapInfo(mile);
+          });
 
-        // Click on waypoint icons to show waypoint detail modal
-        map.on('click', 'waypoint-icons', async (e) => {
-          e.preventDefault();
-          const coords = e.features[0].geometry.coordinates;
-          showWaypointDetail(coords[1], coords[0]);
-        });
+          // Click on waypoint icons to show waypoint detail modal
+          map.on('click', 'waypoint-icons', async (e) => {
+            if (!e.features || e.features.length === 0) return;
+            e.preventDefault();
+            const coords = e.features[0].geometry.coordinates;
+            showWaypointDetail(coords[1], coords[0]);
+          });
 
-        // Click anywhere on the route line to show info panel
-        map.on('click', 'route-line', async (e) => {
-          e.preventDefault();
-          const coords = e.lngLat;
-          const mile = await findMileFromCoords(coords.lat, coords.lng);
-          showMapInfo(mile);
-        });
+          // Click anywhere on the route line to show info panel
+          map.on('click', 'route-line', async (e) => {
+            e.preventDefault();
+            const coords = e.lngLat;
+            const mile = await findMileFromCoords(coords.lat, coords.lng);
+            showMapInfo(mile);
+          });
 
-        // Change cursor on hover
-        map.on('mouseenter', 'section-circles', () => map.getCanvas().style.cursor = 'pointer');
-        map.on('mouseleave', 'section-circles', () => map.getCanvas().style.cursor = '');
-        map.on('mouseenter', 'waypoint-icons', () => map.getCanvas().style.cursor = 'pointer');
-        map.on('mouseleave', 'waypoint-icons', () => map.getCanvas().style.cursor = '');
-        map.on('mouseenter', 'route-line', () => map.getCanvas().style.cursor = 'pointer');
-        map.on('mouseleave', 'route-line', () => map.getCanvas().style.cursor = '');
+          // Change cursor on hover
+          map.on('mouseenter', 'section-circles', () => map.getCanvas().style.cursor = 'pointer');
+          map.on('mouseleave', 'section-circles', () => map.getCanvas().style.cursor = '');
+          map.on('mouseenter', 'waypoint-icons', () => map.getCanvas().style.cursor = 'pointer');
+          map.on('mouseleave', 'waypoint-icons', () => map.getCanvas().style.cursor = '');
+          map.on('mouseenter', 'route-line', () => map.getCanvas().style.cursor = 'pointer');
+          map.on('mouseleave', 'route-line', () => map.getCanvas().style.cursor = '');
+        });
 
         // Add navigation controls
         map.addControl(new maplibregl.NavigationControl(), 'top-right');
