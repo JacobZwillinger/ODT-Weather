@@ -66,7 +66,7 @@ export const initMap = () => {
   }, [[routeCoords[0][0], routeCoords[0][1]], [routeCoords[0][0], routeCoords[0][1]]]);
 
   // Create map with vector basemap + overlay
-  map = new maplibregl.Map({
+  map = window._odtMap = new maplibregl.Map({
     container: 'mapContainer',
     style: {
       version: 8,
@@ -91,33 +91,39 @@ export const initMap = () => {
     pitchWithRotate: false
   });
 
-  map.on('load', () => {
-    // Load custom marker icons
-    const waterIcon = new Image(24, 24);
-    waterIcon.src = 'data:image/svg+xml;base64,' + btoa(`
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="11" fill="#3b82f6" stroke="#fff" stroke-width="2"/>
-        <path d="M12 7c-1.5 2-3 3.5-3 5.5a3 3 0 0 0 6 0c0-2-1.5-3.5-3-5.5z" fill="#fff"/>
-      </svg>
-    `);
-    waterIcon.onload = () => map.addImage('water-icon', waterIcon);
+  map.on('load', async () => {
+    // Helper function to load an image and add it to the map
+    const loadIcon = (name, width, height, svgContent) => {
+      return new Promise((resolve) => {
+        const img = new Image(width, height);
+        img.onload = () => {
+          map.addImage(name, img);
+          resolve();
+        };
+        img.src = 'data:image/svg+xml;base64,' + btoa(svgContent);
+      });
+    };
 
-    const townIcon = new Image(24, 24);
-    townIcon.src = 'data:image/svg+xml;base64,' + btoa(`
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="11" fill="#059669" stroke="#fff" stroke-width="2"/>
-        <path d="M8 16h8v-3h-2v-2h-1V9h-2v2H10v2H8v3zm3-7h2v1h-2V9z" fill="#fff"/>
-      </svg>
-    `);
-    townIcon.onload = () => map.addImage('town-icon', townIcon);
-
-    const waypointIcon = new Image(20, 20);
-    waypointIcon.src = 'data:image/svg+xml;base64,' + btoa(`
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="10" cy="10" r="9" fill="#6366f1" stroke="#fff" stroke-width="2"/>
-      </svg>
-    `);
-    waypointIcon.onload = () => map.addImage('waypoint-icon', waypointIcon);
+    // Load all custom marker icons before adding layers that use them
+    await Promise.all([
+      loadIcon('water-icon', 24, 24, `
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="11" fill="#3b82f6" stroke="#fff" stroke-width="2"/>
+          <path d="M12 7c-1.5 2-3 3.5-3 5.5a3 3 0 0 0 6 0c0-2-1.5-3.5-3-5.5z" fill="#fff"/>
+        </svg>
+      `),
+      loadIcon('town-icon', 24, 24, `
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="11" fill="#059669" stroke="#fff" stroke-width="2"/>
+          <path d="M8 16h8v-3h-2v-2h-1V9h-2v2H10v2H8v3zm3-7h2v1h-2V9z" fill="#fff"/>
+        </svg>
+      `),
+      loadIcon('waypoint-icon', 20, 20, `
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="10" cy="10" r="9" fill="#6366f1" stroke="#fff" stroke-width="2"/>
+        </svg>
+      `)
+    ]);
 
     // Create GeoJSON sources for water and towns with clustering
     const waterGeoJSON = {
@@ -484,7 +490,8 @@ export const initMap = () => {
       layout: {
         'icon-image': 'waypoint-icon',
         'icon-size': 0.8,
-        'icon-allow-overlap': false
+        'icon-allow-overlap': true,
+        'icon-ignore-placement': true
       },
       minzoom: 13
     });
