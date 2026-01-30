@@ -517,6 +517,11 @@ export const initMap = () => {
     });
 
     map.on('click', 'route-line', async (e) => {
+      // Check if a waypoint icon was clicked at this location - if so, skip route-line handling
+      const waypointFeatures = map.queryRenderedFeatures(e.point, { layers: ['waypoint-icons'] });
+      if (waypointFeatures.length > 0) {
+        return; // Let waypoint-icons handler deal with it
+      }
       e.preventDefault();
       const coords = e.lngLat;
       const mile = await findMileFromCoords(coords.lat, coords.lng);
