@@ -194,4 +194,195 @@ test.describe('ODT Weather App', () => {
       await expect(canvas).toBeVisible();
     });
   });
+
+  test.describe('Waypoint Modal via Map Click', () => {
+    test('map tiles load correctly', async ({ page }) => {
+      // Collect console messages
+      const logs = [];
+      page.on('console', msg => logs.push(`${msg.type()}: ${msg.text()}`));
+      page.on('pageerror', err => logs.push(`ERROR: ${err.message}`));
+
+      // Track network requests for pmtiles
+      const pmtilesRequests = [];
+      page.on('response', res => {
+        if (res.url().includes('pmtiles')) {
+          pmtilesRequests.push({ url: res.url(), status: res.status() });
+        }
+      });
+
+      // Wait for map to initialize
+      await page.waitForTimeout(5000);
+
+      // Log what we found
+      console.log('PMTiles requests:', pmtilesRequests);
+      console.log('Console logs:', logs.filter(l => l.includes('error') || l.includes('Error')));
+
+      // Check that canvas exists
+      const hasCanvas = await page.evaluate(() => {
+        const canvas = document.querySelector('#mapContainer canvas');
+        return canvas !== null;
+      });
+      expect(hasCanvas).toBe(true);
+
+      // Check that pmtiles were requested
+      expect(pmtilesRequests.length).toBeGreaterThan(0);
+    });
+
+    test('clicking on waypoint icon opens waypoint modal', async ({ page }) => {
+      // Wait for map to fully initialize
+      await page.waitForTimeout(3000);
+
+      // Fly to exact waypoint location (CV001 - trailhead) at zoom 14 (max for overlay pmtiles)
+      const waypointResult = await page.evaluate(() => {
+        return new Promise((resolve) => {
+          const map = window._odtMap;
+          if (!map) {
+            resolve({ error: 'no map' });
+            return;
+          }
+
+          // Use section 2 area (mile 36) to avoid edge cases at mile 0
+          // Section 2: Sand Spring to South Reservoir
+          const waypointLon = -120.847;
+          const waypointLat = 43.708;
+
+          // Zoom to level 13 (max zoom for overlay PMTiles, also minzoom for waypoint-icons)
+          map.flyTo({
+            center: [waypointLon, waypointLat],
+            zoom: 13,
+            duration: 0
+          });
+
+          map.once('idle', () => {
+            // Wait for tiles to fully render
+            setTimeout(() => {
+              // Debug: Check all sources and their loaded state
+              const sources = Object.keys(map.getStyle().sources);
+              const layers = map.getStyle().layers.map(l => ({
+                id: l.id,
+                source: l.source,
+                sourceLayer: l['source-layer'],
+                minzoom: l.minzoom
+              }));
+
+              // Check if waypoint-icon image is loaded
+              const hasWaypointIcon = map.hasImage('waypoint-icon');
+              console.log('Has waypoint-icon image:', hasWaypointIcon);
+
+              // Query for waypoint features across the whole viewport
+              const waypointFeatures = map.queryRenderedFeatures({ layers: ['waypoint-icons'] });
+
+              // Also try querying without layer filter to see all features from overlay source
+              const overlayFeatures = map.querySourceFeatures('overlay', { sourceLayer: 'waypoints' });
+              console.log('Overlay waypoints source features:', overlayFeatures.length);
+
+              // Check layer visibility and get layer details
+              const waypointLayer = map.getLayer('waypoint-icons');
+              const waypointLayerDetails = waypointLayer ? {
+                id: waypointLayer.id,
+                type: waypointLayer.type,
+                visibility: map.getLayoutProperty('waypoint-icons', 'visibility'),
+                iconImage: map.getLayoutProperty('waypoint-icons', 'icon-image')
+              } : null;
+              console.log('Waypoint layer details:', waypointLayerDetails);
+
+              // Get first waypoint from source
+              const firstWaypoint = overlayFeatures.length > 0 ? {
+                coords: overlayFeatures[0].geometry.coordinates,
+                props: overlayFeatures[0].properties
+              } : null;
+              console.log('First waypoint from source:', firstWaypoint);
+
+              // Also query for ALL features to see what's rendering
+              const allFeatures = map.queryRenderedFeatures();
+              const featuresByLayer = {};
+              allFeatures.forEach(f => {
+                const layerId = f.layer?.id || 'unknown';
+                featuresByLayer[layerId] = (featuresByLayer[layerId] || 0) + 1;
+              });
+
+              if (waypointFeatures.length > 0) {
+                // Get screen coordinates of first waypoint
+                const feature = waypointFeatures[0];
+                const coords = feature.geometry.coordinates;
+                const point = map.project(coords);
+                resolve({
+                  success: true,
+                  waypointCount: waypointFeatures.length,
+                  clickX: point.x,
+                  clickY: point.y,
+                  waypointName: feature.properties?.name || 'unknown',
+                  zoom: map.getZoom()
+                });
+              } else {
+                // Check layer visibility and get layer details
+                const waypointLayer = map.getLayer('waypoint-icons');
+                const waypointLayerDetails = waypointLayer ? {
+                  id: waypointLayer.id,
+                  type: waypointLayer.type,
+                  visibility: map.getLayoutProperty('waypoint-icons', 'visibility'),
+                  iconImage: map.getLayoutProperty('waypoint-icons', 'icon-image')
+                } : 'layer not found';
+
+                // Get first waypoint from source
+                const firstWaypoint = overlayFeatures.length > 0 ? {
+                  coords: overlayFeatures[0].geometry.coordinates,
+                  props: overlayFeatures[0].properties
+                } : null;
+
+                resolve({
+                  success: false,
+                  waypointCount: 0,
+                  zoom: map.getZoom(),
+                  center: map.getCenter(),
+                  sources,
+                  layerCount: layers.length,
+                  totalFeatures: allFeatures.length,
+                  featuresByLayer,
+                  hasWaypointIcon,
+                  sourceWaypointCount: overlayFeatures.length,
+                  waypointLayerDetails,
+                  firstWaypoint
+                });
+              }
+            }, 2000); // Give more time for tiles to load
+          });
+
+          // Fallback timeout
+          setTimeout(() => resolve({ error: 'timeout' }), 8000);
+        });
+      });
+
+      console.log('Waypoint query result:', JSON.stringify(waypointResult, null, 2));
+      await page.screenshot({ path: 'test-results/map-at-waypoint-zoom.png' });
+
+      // If no waypoint icons found, the overlay might not be loading correctly
+      if (!waypointResult.success) {
+        console.log('DEBUG: No waypoint icons found. Features by layer:', waypointResult.featuresByLayer);
+      }
+
+      // Click on the waypoint if found, otherwise click center
+      const canvas = page.locator('#mapContainer canvas.maplibregl-canvas');
+      const box = await canvas.boundingBox();
+
+      let clickX, clickY;
+      if (waypointResult.success && waypointResult.clickX !== undefined) {
+        clickX = waypointResult.clickX;
+        clickY = waypointResult.clickY;
+        console.log(`Clicking on waypoint at (${clickX}, ${clickY})`);
+      } else {
+        clickX = box.width / 2;
+        clickY = box.height / 2;
+        console.log(`Clicking center at (${clickX}, ${clickY})`);
+      }
+
+      await canvas.click({ position: { x: clickX, y: clickY } });
+      await page.waitForTimeout(500);
+      await page.screenshot({ path: 'test-results/map-after-click.png' });
+
+      // Check if waypoint modal opened
+      const modal = page.locator('#waypointModal');
+      await expect(modal).toHaveClass(/visible/, { timeout: 5000 });
+    });
+  });
 });
