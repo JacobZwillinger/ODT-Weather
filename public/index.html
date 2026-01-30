@@ -376,76 +376,40 @@
         padding: 4px 8px;
       }
 
-      /* Map tab styles */
+      /* Map tab styles - fullscreen with overlays */
       #mapTab {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
+        position: relative;
+        width: 100%;
+        height: 100%;
       }
 
       #mapContainer {
-        height: 40vh;
-        min-height: 300px;
-        border-radius: 8px;
-        overflow: hidden;
-        border: 1px solid #ccc;
-        position: relative;
-      }
-
-      @media (min-width: 768px) {
-        #mapContainer {
-          height: 70vh;
-        }
-      }
-
-      #mapContainer.fullscreen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: 999;
-        border-radius: 0;
-        min-height: 100vh;
-      }
-
-      .map-fullscreen-btn {
         position: absolute;
-        top: 10px;
-        left: 10px;
-        background: rgba(255, 255, 255, 0.95);
-        border: 3px solid rgba(0,0,0,0.3);
-        border-radius: 10px;
-        padding: 20px 32px;
-        cursor: pointer;
-        font-size: 1.3rem;
-        font-weight: 700;
-        color: #333;
-        z-index: 10;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-        -webkit-tap-highlight-color: transparent;
-        min-width: 180px;
-        min-height: 64px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        touch-action: manipulation;
-      }
-
-      .map-fullscreen-btn:active {
-        background: rgba(240, 240, 240, 0.95);
-      }
-
-      @media (hover: hover) {
-        .map-fullscreen-btn:hover {
-          background: rgba(240, 240, 240, 0.95);
-        }
+        inset: 0;
+        width: 100%;
+        height: 100%;
       }
 
       .map-info-panel {
-        display: block;
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        right: 16px;
+        max-width: 500px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 16px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        z-index: 10;
+        pointer-events: auto;
+      }
+
+      @media (min-width: 640px) {
+        .map-info-panel {
+          max-width: 600px;
+        }
       }
 
       .map-info-header {
@@ -527,14 +491,13 @@
 
       .map-info-cards {
         display: grid;
-        grid-template-columns: 1fr;
-        gap: 8px;
-        margin-bottom: 10px;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 0;
       }
 
-      @media (min-width: 640px) {
+      @media (min-width: 500px) {
         .map-info-cards {
-          grid-template-columns: 1fr 1fr;
           gap: 12px;
         }
       }
@@ -834,11 +797,17 @@
       }
 
       .map-elevation-chart {
-        margin-top: 14px;
-        padding: 14px;
-        background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
-        border-radius: 8px;
-        border: 1.5px solid #e5e5e5;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 16px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(0,0,0,0.1);
+        z-index: 10;
+        pointer-events: auto;
       }
 
       .map-elevation-chart h4 {
@@ -852,12 +821,12 @@
 
       .map-elevation-chart canvas {
         display: block;
-        max-height: 100px;
+        max-height: 80px;
       }
 
       @media (min-width: 768px) {
         .map-elevation-chart {
-          padding: 16px;
+          padding: 20px;
         }
 
         .map-elevation-chart h4 {
@@ -865,7 +834,7 @@
         }
 
         .map-elevation-chart canvas {
-          max-height: 120px;
+          max-height: 100px;
         }
       }
 
@@ -912,10 +881,8 @@
 
     <div class="main-content">
       <div id="mapTab" class="tab-content active">
-      <div id="mapContainer">
-        <button class="map-fullscreen-btn" id="mapFullscreenBtn">⛶ Fullscreen</button>
-      </div>
-      <div id="mapInfoPanel" class="map-info-panel">
+        <div id="mapContainer"></div>
+        <div id="mapInfoPanel" class="map-info-panel">
         <div class="map-info-header">
           <div class="map-info-header-left">
             <div>
@@ -952,10 +919,11 @@
             <div class="map-info-meta" id="mapNextTownMeta"></div>
           </div>
         </div>
-        <div class="map-elevation-chart">
-          <h4>Next 20 Miles Elevation</h4>
-          <canvas id="mapElevationChart"></canvas>
-        </div>
+      </div>
+
+      <div class="map-elevation-chart">
+        <h4>Next 20 Miles Elevation</h4>
+        <canvas id="mapElevationChart"></canvas>
       </div>
     </div>
 
@@ -1660,26 +1628,6 @@
           document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
           document.getElementById(tab + 'Tab').classList.add('active');
         });
-      });
-
-      // Fullscreen toggle
-      document.getElementById('mapFullscreenBtn').addEventListener('click', () => {
-        const container = document.getElementById('mapContainer');
-        const btn = document.getElementById('mapFullscreenBtn');
-
-        if (container.classList.contains('fullscreen')) {
-          container.classList.remove('fullscreen');
-          btn.textContent = '⛶ Fullscreen';
-          if (map) {
-            setTimeout(() => map.resize(), 100);
-          }
-        } else {
-          container.classList.add('fullscreen');
-          btn.textContent = '⛶ Exit Fullscreen';
-          if (map) {
-            setTimeout(() => map.resize(), 100);
-          }
-        }
       });
 
       // Map initialization
