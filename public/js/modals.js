@@ -4,8 +4,9 @@ import { state, getWaypointShortName } from './utils.js';
 // Setup a modal with close button and backdrop click handlers
 const setupModal = (modalId, closeButtonId) => {
   const modal = document.getElementById(modalId);
-  const closeBtn = document.getElementById(closeButtonId);
+  if (!modal) return;
 
+  const closeBtn = document.getElementById(closeButtonId);
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
       modal.classList.remove('visible');
@@ -39,11 +40,19 @@ export const showWaypointDetail = (lat, lon) => {
     const title = document.getElementById('waypointModalTitle');
     const detail = document.getElementById('waypointDetail');
 
+    if (!modal || !title || !detail) return null;
+
     title.textContent = closestWaypoint.name;
-    detail.innerHTML = `
-      <p><strong>Mile:</strong> ${closestWaypoint.mile.toFixed(1)}</p>
-      <p><strong>Description:</strong> ${closestWaypoint.landmark || 'No description'}</p>
-    `;
+    // Sanitize landmark text to prevent XSS
+    const milePara = document.createElement('p');
+    milePara.innerHTML = `<strong>Mile:</strong> ${closestWaypoint.mile.toFixed(1)}`;
+    const descPara = document.createElement('p');
+    descPara.innerHTML = '<strong>Description:</strong> ';
+    descPara.appendChild(document.createTextNode(closestWaypoint.landmark || 'No description'));
+
+    detail.innerHTML = '';
+    detail.appendChild(milePara);
+    detail.appendChild(descPara);
 
     modal.classList.add('visible');
     return closestWaypoint;
@@ -120,16 +129,26 @@ export const initModals = () => {
   setupModal('waypointModal', 'closeWaypointModal');
 
   // Info button opens info modal
-  document.getElementById('infoBtn').addEventListener('click', () => {
-    document.getElementById('infoModal').classList.add('visible');
-  });
+  const infoBtn = document.getElementById('infoBtn');
+  const infoModal = document.getElementById('infoModal');
+  if (infoBtn && infoModal) {
+    infoBtn.addEventListener('click', () => {
+      infoModal.classList.add('visible');
+    });
+  }
 
   // Water/Town card click handlers
-  document.getElementById('nextWaterCard').addEventListener('click', () => {
-    showSourcesList('water');
-  });
+  const waterCard = document.getElementById('nextWaterCard');
+  if (waterCard) {
+    waterCard.addEventListener('click', () => {
+      showSourcesList('water');
+    });
+  }
 
-  document.getElementById('nextTownCard').addEventListener('click', () => {
-    showSourcesList('town');
-  });
+  const townCard = document.getElementById('nextTownCard');
+  if (townCard) {
+    townCard.addEventListener('click', () => {
+      showSourcesList('town');
+    });
+  }
 };

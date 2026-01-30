@@ -6,6 +6,9 @@ import { showWaypointDetail } from './modals.js';
 let map = null;
 let mapInitialized = false;
 
+// Track pending async operations to prevent race conditions
+let pendingMileUpdate = 0;
+
 // Update map info panel with current mile data
 export const showMapInfo = (mile) => {
   state.currentMile = mile;
@@ -265,8 +268,12 @@ export const initMap = () => {
       // Cluster click handlers
       map.on('click', 'water-clusters', (e) => {
         const features = map.queryRenderedFeatures(e.point, { layers: ['water-clusters'] });
-        const clusterId = features[0].properties.cluster_id;
-        map.getSource('water-points').getClusterExpansionZoom(clusterId, (err, zoom) => {
+        if (!features || features.length === 0) return;
+        const clusterId = features[0].properties?.cluster_id;
+        if (clusterId === undefined) return;
+        const source = map.getSource('water-points');
+        if (!source) return;
+        source.getClusterExpansionZoom(clusterId, (err, zoom) => {
           if (err) return;
           map.easeTo({ center: features[0].geometry.coordinates, zoom: zoom });
         });
@@ -274,28 +281,38 @@ export const initMap = () => {
 
       map.on('click', 'town-clusters', (e) => {
         const features = map.queryRenderedFeatures(e.point, { layers: ['town-clusters'] });
-        const clusterId = features[0].properties.cluster_id;
-        map.getSource('town-points').getClusterExpansionZoom(clusterId, (err, zoom) => {
+        if (!features || features.length === 0) return;
+        const clusterId = features[0].properties?.cluster_id;
+        if (clusterId === undefined) return;
+        const source = map.getSource('town-points');
+        if (!source) return;
+        source.getClusterExpansionZoom(clusterId, (err, zoom) => {
           if (err) return;
           map.easeTo({ center: features[0].geometry.coordinates, zoom: zoom });
         });
       });
 
-      // Unclustered point click handlers
+      // Unclustered point click handlers with race condition guard
       map.on('click', 'water-points-unclustered', async (e) => {
         if (!e.features || e.features.length === 0) return;
         e.preventDefault();
+        const updateId = ++pendingMileUpdate;
         const coords = e.features[0].geometry.coordinates;
         const mile = await findMileFromCoords(coords[1], coords[0]);
-        showMapInfo(mile);
+        if (updateId === pendingMileUpdate) {
+          showMapInfo(mile);
+        }
       });
 
       map.on('click', 'town-points-unclustered', async (e) => {
         if (!e.features || e.features.length === 0) return;
         e.preventDefault();
+        const updateId = ++pendingMileUpdate;
         const coords = e.features[0].geometry.coordinates;
         const mile = await findMileFromCoords(coords[1], coords[0]);
-        showMapInfo(mile);
+        if (updateId === pendingMileUpdate) {
+          showMapInfo(mile);
+        }
       });
 
       // Cursor changes
@@ -497,17 +514,22 @@ export const initMap = () => {
     });
 
     // Click handlers for overlay layers (inside map.on('load') to ensure layers exist)
+    // Use pendingMileUpdate to prevent race conditions from rapid clicks
     map.on('click', 'section-circles', async (e) => {
       if (!e.features || e.features.length === 0) return;
       e.preventDefault();
+      const updateId = ++pendingMileUpdate;
       const coords = e.features[0].geometry.coordinates;
       const mile = await findMileFromCoords(coords[1], coords[0]);
-      showMapInfo(mile);
+      if (updateId === pendingMileUpdate) {
+        showMapInfo(mile);
+      }
     });
 
     map.on('click', 'waypoint-icons', async (e) => {
       if (!e.features || e.features.length === 0) return;
       e.preventDefault();
+      ++pendingMileUpdate; // Increment to cancel any pending route-line updates
       const coords = e.features[0].geometry.coordinates;
       const waypoint = showWaypointDetail(coords[1], coords[0]);
       // Update info panel with the waypoint's actual mile marker
@@ -523,9 +545,12 @@ export const initMap = () => {
         return; // Let waypoint-icons handler deal with it
       }
       e.preventDefault();
+      const updateId = ++pendingMileUpdate;
       const coords = e.lngLat;
       const mile = await findMileFromCoords(coords.lat, coords.lng);
-      showMapInfo(mile);
+      if (updateId === pendingMileUpdate) {
+        showMapInfo(mile);
+      }
     });
 
     // Cursor changes for overlay layers
