@@ -13,6 +13,10 @@
         background: #fff;
         color: #1b1b1b;
         font-size: 14px;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
       }
 
       h1 {
@@ -73,12 +77,30 @@
         border-color: #1b1b1b;
       }
 
+      /* Main content area - fixed height with overlaid panels */
+      .main-content {
+        position: relative;
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+      }
+
       .tab-content {
-        display: none;
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+        overflow-y: auto;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
       }
 
       .tab-content.active {
-        display: block;
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.2s ease, visibility 0s linear 0s;
       }
 
       table {
@@ -803,7 +825,8 @@
       <button class="tab-btn" data-tab="weather">Weather</button>
     </div>
 
-    <div id="mapTab" class="tab-content active">
+    <div class="main-content">
+      <div id="mapTab" class="tab-content active">
       <div id="mapContainer">
         <button class="map-fullscreen-btn" id="mapFullscreenBtn">⛶ Fullscreen</button>
       </div>
@@ -849,9 +872,10 @@
       </div>
     </div>
 
-    <div id="weatherTab" class="tab-content">
-      <div id="container">
-        <div class="loading">Loading forecasts...</div>
+      <div id="weatherTab" class="tab-content">
+        <div id="container">
+          <div class="loading">Loading forecasts...</div>
+        </div>
       </div>
     </div>
 
