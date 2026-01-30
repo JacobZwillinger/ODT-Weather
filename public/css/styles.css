@@ -1,0 +1,752 @@
+/* ODT Weather - Main Styles */
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 16px;
+  background: #fff;
+  color: #1b1b1b;
+  font-size: 14px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.header-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.info-btn {
+  background: transparent;
+  border: 1.5px solid #ccc;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.info-btn:hover {
+  border-color: #1b1b1b;
+  color: #1b1b1b;
+  background: #f5f5f5;
+}
+
+.api-usage {
+  font-size: 0.75rem;
+  color: #999;
+  text-align: right;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tab-btn {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  background: #f5f5f5;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #666;
+}
+
+.tab-btn:hover {
+  background: #e5e5e5;
+}
+
+.tab-btn.active {
+  background: #1b1b1b;
+  color: #fff;
+  border-color: #1b1b1b;
+}
+
+/* Main content area */
+.main-content {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.tab-content {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-content.active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.2s ease, visibility 0s linear 0s;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #f5f5f5;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.section-cell {
+  width: 6px;
+  padding: 0;
+  border-right: none;
+}
+
+.section-indicator {
+  width: 6px;
+  height: 100%;
+  min-height: 40px;
+}
+
+/* Section colors by region */
+.section-1, .section-2, .section-3, .section-4 { background: #22c55e; }
+.section-5, .section-6 { background: #84cc16; }
+.section-7, .section-8, .section-9, .section-10, .section-11, .section-12 { background: #3b82f6; }
+.section-13, .section-14, .section-15, .section-16, .section-17, .section-18, .section-19, .section-20 { background: #f59e0b; }
+.section-21, .section-22, .section-23, .section-24, .section-25 { background: #ef4444; }
+
+.location-name {
+  font-weight: 500;
+}
+
+.location-name a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.location-name a:hover {
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+.elevation {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 2px;
+}
+
+.mile {
+  text-align: center;
+}
+
+/* Forecast cells */
+.forecast-cell {
+  min-width: 70px;
+  font-size: 0.85rem;
+  color: #666;
+  text-align: center;
+}
+
+.forecast-cell .icon {
+  width: 28px;
+  height: 28px;
+  margin: 0 auto 4px;
+  display: block;
+}
+
+.forecast-cell .temps {
+  font-weight: 500;
+  color: #333;
+}
+
+.loading {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+/* Water table styles */
+.water-source {
+  font-weight: 500;
+}
+
+.water-details {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 2px;
+}
+
+.dist-warning {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.off-trail-badge {
+  display: inline-block;
+  background: #fef3c7;
+  color: #92400e;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Progress tab styles */
+.progress-container {
+  max-width: 500px;
+}
+
+.progress-panel {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  background: #fafafa;
+}
+
+.progress-panel-label {
+  font-size: 0.75rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.progress-panel-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1b1b1b;
+}
+
+.progress-panel-detail {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 4px;
+}
+
+.progress-slider-container {
+  margin-bottom: 20px;
+}
+
+.progress-slider-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.progress-slider {
+  width: 100%;
+  height: 8px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #e5e5e5;
+  border-radius: 4px;
+  outline: none;
+}
+
+.progress-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #1b1b1b;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.progress-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #1b1b1b;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+.progress-current {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.progress-summary {
+  text-align: center;
+  padding: 12px;
+  background: #f5f5f5;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.progress-warning {
+  color: #dc2626;
+}
+
+.progress-complete {
+  color: #16a34a;
+}
+
+.error-banner {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.debug-toggle {
+  margin-top: 20px;
+  font-size: 0.85rem;
+}
+
+.debug-toggle button {
+  background: none;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #666;
+}
+
+.debug-table {
+  margin-top: 12px;
+  font-size: 0.8rem;
+}
+
+.debug-table table {
+  width: 100%;
+}
+
+.debug-table th, .debug-table td {
+  padding: 4px 8px;
+}
+
+/* Map tab styles */
+#mapTab {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#mapContainer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.map-info-panel {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  z-index: 10;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.map-info-current-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-right: 1px solid rgba(0,0,0,0.1);
+  padding-right: 16px;
+}
+
+.map-info-current-label {
+  font-size: 0.6rem;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.map-info-current-mile {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1b1b1b;
+  line-height: 1;
+}
+
+.map-info-waypoint-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-right: 1px solid rgba(0,0,0,0.1);
+  padding-right: 16px;
+}
+
+.map-info-waypoint-label {
+  font-size: 0.6rem;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.map-info-waypoint-value {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1b1b1b;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.map-info-cards {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.map-info-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.map-info-card:active {
+  transform: scale(0.95);
+}
+
+.map-info-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.map-info-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1b1b1b;
+  line-height: 1;
+}
+
+.map-info-value.warning {
+  color: #dc2626;
+}
+
+@media (min-width: 768px) {
+  .map-info-panel {
+    padding: 14px 20px;
+    gap: 20px;
+  }
+
+  .map-info-current-section {
+    padding-right: 20px;
+  }
+
+  .map-info-current-label {
+    font-size: 0.65rem;
+  }
+
+  .map-info-current-mile {
+    font-size: 2.2rem;
+  }
+
+  .map-info-waypoint-section {
+    padding-right: 20px;
+  }
+
+  .map-info-waypoint-label {
+    font-size: 0.65rem;
+  }
+
+  .map-info-waypoint-value {
+    font-size: 1rem;
+  }
+
+  .map-info-cards {
+    gap: 20px;
+  }
+
+  .map-info-card {
+    gap: 10px;
+  }
+
+  .map-info-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .map-info-value {
+    font-size: 1.8rem;
+  }
+}
+
+/* Modal styles */
+.sources-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1000;
+  padding: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sources-modal.visible {
+  display: block;
+}
+
+.sources-modal-content {
+  max-width: 800px;
+  margin: 20px auto;
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  min-height: calc(100vh - 40px);
+}
+
+@media (max-width: 640px) {
+  .sources-modal {
+    padding: 0;
+  }
+
+  .sources-modal-content {
+    margin: 0;
+    border-radius: 0;
+    min-height: 100vh;
+    padding: 12px;
+  }
+}
+
+@media (min-width: 641px) {
+  .sources-modal-content {
+    padding: 20px;
+  }
+}
+
+.sources-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 10;
+}
+
+.sources-modal-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .sources-modal-header h3 {
+    font-size: 1.3rem;
+  }
+}
+
+.sources-modal-close {
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #666;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sources-modal-close:active {
+  background: #e5e5e5;
+}
+
+@media (hover: hover) {
+  .sources-modal-close:hover {
+    background: #e5e5e5;
+  }
+}
+
+.sources-list {
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 640px) {
+  .sources-list {
+    max-height: calc(100vh - 100px);
+  }
+}
+
+.source-item {
+  padding: 14px 12px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.source-item.highlight {
+  background: #fef3c7;
+  border-left: 4px solid #f59e0b;
+  padding-left: 8px;
+}
+
+.source-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+  gap: 12px;
+}
+
+.source-mile {
+  font-weight: 600;
+  color: #1b1b1b;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.source-name {
+  font-weight: 500;
+  color: #333;
+  font-size: 0.95rem;
+  margin-top: 2px;
+}
+
+.source-details {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+  .source-item {
+    padding: 12px;
+  }
+}
+
+/* Map controls */
+.maplibregl-ctrl-scale {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid #1b1b1b !important;
+  border-top: none !important;
+  color: #1b1b1b !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  padding: 4px 8px !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2) !important;
+}
+
+.map-elevation-chart {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0;
+  background: transparent;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.map-elevation-chart h4 {
+  display: none;
+}
+
+.map-elevation-chart canvas {
+  display: block;
+  max-height: 180px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .map-elevation-chart canvas {
+    max-height: 220px;
+  }
+}
+
+/* Touch improvements */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  touch-action: manipulation;
+}
+
+.maplibregl-popup-content {
+  padding: 8px 12px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 13px;
+}
+
+.maplibregl-popup-content strong {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.maplibregl-popup-content .mile-marker {
+  color: #666;
+  font-size: 12px;
+}
