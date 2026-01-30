@@ -489,11 +489,11 @@ export const initMap = () => {
       'source-layer': 'waypoints',
       layout: {
         'icon-image': 'waypoint-icon',
-        'icon-size': 0.8,
-        'icon-allow-overlap': true,
-        'icon-ignore-placement': true
+        'icon-size': ['interpolate', ['linear'], ['zoom'], 8, 0.5, 13, 0.8],
+        'icon-allow-overlap': ['step', ['zoom'], false, 12, true],
+        'icon-ignore-placement': ['step', ['zoom'], false, 12, true]
       },
-      minzoom: 11
+      minzoom: 8
     });
 
     // Click handlers for overlay layers (inside map.on('load') to ensure layers exist)
