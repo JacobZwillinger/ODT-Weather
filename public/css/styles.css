@@ -629,6 +629,46 @@ th {
   }
 }
 
+/* Compact waypoint modal */
+.waypoint-modal .sources-modal-content {
+  max-width: 360px;
+  min-height: auto;
+  margin: 15vh auto;
+}
+
+@media (max-width: 640px) {
+  .waypoint-modal .sources-modal-content {
+    max-width: calc(100% - 32px);
+    margin: 20vh 16px;
+    min-height: auto;
+    border-radius: 8px;
+  }
+}
+
+.waypoint-modal .sources-modal-header {
+  position: static;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.waypoint-detail {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+.waypoint-detail p {
+  margin: 0 0 8px 0;
+}
+
+.waypoint-detail p:last-child {
+  margin-bottom: 0;
+}
+
+.waypoint-detail strong {
+  color: #1b1b1b;
+}
+
 .sources-list {
   max-height: calc(100vh - 120px);
   overflow-y: auto;

@@ -509,7 +509,11 @@ export const initMap = () => {
       if (!e.features || e.features.length === 0) return;
       e.preventDefault();
       const coords = e.features[0].geometry.coordinates;
-      showWaypointDetail(coords[1], coords[0]);
+      const waypoint = showWaypointDetail(coords[1], coords[0]);
+      // Update info panel with the waypoint's actual mile marker
+      if (waypoint && waypoint.mile > 0) {
+        showMapInfo(waypoint.mile);
+      }
     });
 
     map.on('click', 'route-line', async (e) => {
