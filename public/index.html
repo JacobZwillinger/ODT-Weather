@@ -703,17 +703,13 @@
 
       .map-elevation-chart {
         position: absolute;
-        bottom: 16px;
-        left: 16px;
-        right: 16px;
-        padding: 16px;
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        z-index: 10;
-        pointer-events: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0;
+        background: transparent;
+        z-index: 5;
+        pointer-events: none;
       }
 
       .map-elevation-chart h4 {
@@ -722,16 +718,13 @@
 
       .map-elevation-chart canvas {
         display: block;
-        max-height: 100px;
+        max-height: 180px;
+        width: 100%;
       }
 
       @media (min-width: 768px) {
-        .map-elevation-chart {
-          padding: 20px;
-        }
-
         .map-elevation-chart canvas {
-          max-height: 140px;
+          max-height: 220px;
         }
       }
 
@@ -1167,7 +1160,7 @@
 
         const dpr = window.devicePixelRatio || 1;
         const displayWidth = canvas.offsetWidth;
-        const displayHeight = window.innerWidth < 768 ? 100 : 120;
+        const displayHeight = window.innerWidth < 768 ? 180 : 220;
 
         canvas.width = displayWidth * dpr;
         canvas.height = displayHeight * dpr;
@@ -1178,8 +1171,8 @@
         // Responsive padding for mobile
         const isMobile = displayWidth < 500;
         const padding = isMobile
-          ? { top: 20, right: 30, bottom: 35, left: 55 }
-          : { top: 25, right: 40, bottom: 40, left: 65 };
+          ? { top: 30, right: 40, bottom: 50, left: 70 }
+          : { top: 35, right: 50, bottom: 55, left: 80 };
         const chartWidth = displayWidth - padding.left - padding.right;
         const chartHeight = displayHeight - padding.top - padding.bottom;
 
