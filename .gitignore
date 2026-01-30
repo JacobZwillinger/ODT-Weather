@@ -22,3 +22,8 @@ data/
 
 # Backup files
 *.old
+
+# Test artifacts
+test-results/
+playwright-report/
+coverage/
