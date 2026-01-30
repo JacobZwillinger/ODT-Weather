@@ -865,6 +865,17 @@
       </div>
     </div>
 
+    <!-- Waypoint Detail Modal -->
+    <div id="waypointModal" class="sources-modal">
+      <div class="sources-modal-content">
+        <div class="sources-modal-header">
+          <h3 id="waypointModalTitle">Waypoint</h3>
+          <button class="sources-modal-close" id="closeWaypointModal">Close</button>
+        </div>
+        <div id="waypointDetail" style="padding: 16px; font-size: 1rem; line-height: 1.6;"></div>
+      </div>
+    </div>
+
     <script src="https://unpkg.com/maplibre-gl@4.1.2/dist/maplibre-gl.js"></script>
     <script src="https://unpkg.com/pmtiles@3.0.6/dist/pmtiles.js"></script>
     <script>
@@ -1323,6 +1334,36 @@
         renderElevationChart(mile, 'mapElevationChart');
       };
 
+      const showWaypointDetail = (lat, lon) => {
+        // Find the waypoint closest to these coordinates
+        let closestWaypoint = null;
+        let minDistance = Infinity;
+
+        for (const wp of allWaypoints) {
+          const distance = Math.sqrt(
+            Math.pow(wp.lat - lat, 2) + Math.pow(wp.lon - lon, 2)
+          );
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestWaypoint = wp;
+          }
+        }
+
+        if (closestWaypoint) {
+          const modal = document.getElementById('waypointModal');
+          const title = document.getElementById('waypointModalTitle');
+          const detail = document.getElementById('waypointDetail');
+
+          title.textContent = closestWaypoint.name;
+          detail.innerHTML = `
+            <p><strong>Mile:</strong> ${closestWaypoint.mile.toFixed(1)}</p>
+            <p><strong>Description:</strong> ${closestWaypoint.landmark}</p>
+          `;
+
+          modal.classList.add('visible');
+        }
+      };
+
       const showSourcesList = (type) => {
         const modal = document.getElementById('sourcesModal');
         const title = document.getElementById('sourcesModalTitle');
@@ -1400,6 +1441,17 @@
       document.getElementById('sourcesModal').addEventListener('click', (e) => {
         if (e.target.id === 'sourcesModal') {
           document.getElementById('sourcesModal').classList.remove('visible');
+        }
+      });
+
+      // Waypoint modal handlers
+      document.getElementById('closeWaypointModal').addEventListener('click', () => {
+        document.getElementById('waypointModal').classList.remove('visible');
+      });
+
+      document.getElementById('waypointModal').addEventListener('click', (e) => {
+        if (e.target.id === 'waypointModal') {
+          document.getElementById('waypointModal').classList.remove('visible');
         }
       });
 
@@ -2066,12 +2118,11 @@
           showMapInfo(mile);
         });
 
-        // Click on waypoint icons to show info panel
+        // Click on waypoint icons to show waypoint detail modal
         map.on('click', 'waypoint-icons', async (e) => {
           e.preventDefault();
           const coords = e.features[0].geometry.coordinates;
-          const mile = await findMileFromCoords(coords[1], coords[0]);
-          showMapInfo(mile);
+          showWaypointDetail(coords[1], coords[0]);
         });
 
         // Click anywhere on the route line to show info panel
