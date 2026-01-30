@@ -4,7 +4,12 @@
   "description": "Oregon Desert Trail weather snapshots using PirateWeather.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:all": "npm run test && npm run test:e2e"
   },
   "dependencies": {
     "@turf/bbox": "^7.3.2",
@@ -16,6 +21,11 @@
     "fast-xml-parser": "^5.3.3"
   },
   "devDependencies": {
-    "pmtiles": "^4.3.2"
+    "@playwright/test": "^1.58.0",
+    "@vitest/coverage-v8": "^1.6.0",
+    "happy-dom": "^14.12.0",
+    "playwright": "^1.58.0",
+    "pmtiles": "^4.3.2",
+    "vitest": "^1.6.0"
   }
 }
