@@ -19,7 +19,7 @@ const setupModal = (modalId, closeButtonId) => {
   });
 };
 
-// Show waypoint detail modal
+// Show waypoint detail modal and return the waypoint data
 export const showWaypointDetail = (lat, lon) => {
   let closestWaypoint = null;
   let minDistance = Infinity;
@@ -42,11 +42,13 @@ export const showWaypointDetail = (lat, lon) => {
     title.textContent = closestWaypoint.name;
     detail.innerHTML = `
       <p><strong>Mile:</strong> ${closestWaypoint.mile.toFixed(1)}</p>
-      <p><strong>Description:</strong> ${closestWaypoint.landmark}</p>
+      <p><strong>Description:</strong> ${closestWaypoint.landmark || 'No description'}</p>
     `;
 
     modal.classList.add('visible');
+    return closestWaypoint;
   }
+  return null;
 };
 
 // Show sources list modal (water or towns)
