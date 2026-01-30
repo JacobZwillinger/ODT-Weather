@@ -4,14 +4,29 @@ import { loadForecasts } from './weather.js';
 import { initModals } from './modals.js';
 import { showMapInfo, scheduleMapInit } from './map.js';
 
+// Safe fetch with error handling
+const safeFetch = async (url, defaultValue = []) => {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      console.error(`Failed to fetch ${url}: ${response.status}`);
+      return defaultValue;
+    }
+    return await response.json();
+  } catch (err) {
+    console.error(`Error fetching ${url}:`, err);
+    return defaultValue;
+  }
+};
+
 // Load data and initialize app
 const init = async () => {
   try {
-    // Load all data in parallel
+    // Load all data in parallel with error handling
     const [waypoints, water, townData] = await Promise.all([
-      fetch('waypoints.json').then(r => r.json()),
-      fetch('water-sources.json').then(r => r.json()),
-      fetch('towns.json').then(r => r.json())
+      safeFetch('waypoints.json', []),
+      safeFetch('water-sources.json', []),
+      safeFetch('towns.json', [])
     ]);
 
     // Update shared state
@@ -24,7 +39,7 @@ const init = async () => {
     // Initialize info panel with mile 0
     showMapInfo(0);
   } catch (err) {
-    console.error('Failed to load data:', err);
+    console.error('Failed to initialize app:', err);
   }
 
   // Initialize modals
