@@ -493,7 +493,7 @@ export const initMap = () => {
         'icon-allow-overlap': true,
         'icon-ignore-placement': true
       },
-      minzoom: 13
+      minzoom: 11
     });
 
     // Click handlers for overlay layers (inside map.on('load') to ensure layers exist)
