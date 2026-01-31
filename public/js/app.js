@@ -3,6 +3,7 @@ import { state } from './utils.js';
 import { loadForecasts } from './weather.js';
 import { initModals } from './modals.js';
 import { showMapInfo, scheduleMapInit } from './map.js';
+import { initGpsButton } from './gps.js';
 
 // Safe fetch with error handling
 const safeFetch = async (url, defaultValue = []) => {
@@ -44,6 +45,9 @@ const init = async () => {
 
   // Initialize modals
   initModals();
+
+  // Initialize GPS button
+  initGpsButton();
 
   // Setup tab switching
   document.querySelectorAll('.tab-btn').forEach(btn => {

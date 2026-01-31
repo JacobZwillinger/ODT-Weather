@@ -790,3 +790,117 @@ button {
   color: #666;
   font-size: 12px;
 }
+
+/* GPS Toggle Button */
+.gps-toggle-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding-right: 12px;
+  border-right: 1px solid rgba(0,0,0,0.1);
+}
+
+.gps-toggle-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  padding: 0;
+  color: #666;
+}
+
+.gps-toggle-btn:hover {
+  border-color: #1b1b1b;
+  color: #1b1b1b;
+}
+
+.gps-toggle-btn.active {
+  background: #22c55e;
+  border-color: #16a34a;
+  color: #fff;
+}
+
+.gps-toggle-btn.active:hover {
+  background: #16a34a;
+}
+
+.gps-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.gps-status {
+  font-size: 0.6rem;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-weight: 600;
+  min-height: 12px;
+}
+
+.gps-status.acquiring {
+  color: #f59e0b;
+}
+
+.gps-status.active {
+  color: #22c55e;
+}
+
+.gps-status.error {
+  color: #dc2626;
+}
+
+/* User location marker */
+.user-location-marker {
+  width: 20px;
+  height: 20px;
+  background: #3b82f6;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.user-location-marker.pulsing {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(59, 130, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
+/* GPS accuracy circle styling is handled via MapLibre paint properties */
+
+@media (min-width: 768px) {
+  .gps-toggle-section {
+    padding-right: 16px;
+  }
+
+  .gps-toggle-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .gps-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .gps-status {
+    font-size: 0.65rem;
+  }
+}

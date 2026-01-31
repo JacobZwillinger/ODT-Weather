@@ -25,6 +25,19 @@
       <div id="mapTab" class="tab-content active">
         <div id="mapContainer"></div>
         <div id="mapInfoPanel" class="map-info-panel">
+          <div class="gps-toggle-section">
+            <button class="gps-toggle-btn" id="gpsToggleBtn" aria-label="Toggle GPS" aria-pressed="false">
+              <svg class="gps-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="3" fill="currentColor"/>
+                <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+                <line x1="12" y1="2" x2="12" y2="5" stroke="currentColor" stroke-width="2"/>
+                <line x1="12" y1="19" x2="12" y2="22" stroke="currentColor" stroke-width="2"/>
+                <line x1="2" y1="12" x2="5" y2="12" stroke="currentColor" stroke-width="2"/>
+                <line x1="19" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </button>
+            <span class="gps-status" id="gpsStatus"></span>
+          </div>
           <div class="map-info-current-section">
             <div class="map-info-current-label">Current Mile</div>
             <div class="map-info-current-mile" id="mapCurrentMile">0.0</div>

@@ -186,6 +186,31 @@ test.describe('ODT Weather App', () => {
       const town = page.locator('#mapNextTown span');
       await expect(town).toBeVisible();
     });
+
+    test('displays GPS toggle button', async ({ page }) => {
+      const gpsBtn = page.locator('#gpsToggleBtn');
+      await expect(gpsBtn).toBeVisible();
+      await expect(gpsBtn).toHaveAttribute('aria-pressed', 'false');
+    });
+
+    test('GPS button toggles active state on click', async ({ page, context }) => {
+      // Mock geolocation before interacting with GPS
+      await context.grantPermissions(['geolocation']);
+      await context.setGeolocation({ latitude: 43.708, longitude: -120.847 });
+
+      const gpsBtn = page.locator('#gpsToggleBtn');
+      await expect(gpsBtn).toBeVisible();
+
+      // Toggle on
+      await gpsBtn.click();
+      await expect(gpsBtn).toHaveClass(/active/, { timeout: 2000 });
+      await expect(gpsBtn).toHaveAttribute('aria-pressed', 'true');
+
+      // Toggle off
+      await gpsBtn.click();
+      await expect(gpsBtn).not.toHaveClass(/active/, { timeout: 2000 });
+      await expect(gpsBtn).toHaveAttribute('aria-pressed', 'false');
+    });
   });
 
   test.describe('Elevation Chart', () => {
