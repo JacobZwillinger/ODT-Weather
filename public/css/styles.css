@@ -912,3 +912,21 @@ button {
     font-size: 0.65rem;
   }
 }
+
+/* Zoom level display */
+.zoom-level-display {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+  margin-top: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+/* Scale control positioning - ensure it's above elevation chart */
+.maplibregl-ctrl-top-left .maplibregl-ctrl-scale {
+  margin-left: 10px;
+  margin-top: 10px;
+}

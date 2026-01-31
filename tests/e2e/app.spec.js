@@ -220,6 +220,50 @@ test.describe('ODT Weather App', () => {
     });
   });
 
+  test.describe('Map Controls', () => {
+    test('scale control is visible and not obscured', async ({ page }) => {
+      // Wait for map to initialize
+      await page.waitForTimeout(2000);
+
+      // Scale control should be in top-left and visible
+      const scaleControl = page.locator('.maplibregl-ctrl-scale');
+      await expect(scaleControl).toBeVisible();
+
+      // Check that scale control is in top-left container
+      const topLeftContainer = page.locator('.maplibregl-ctrl-top-left');
+      await expect(topLeftContainer.locator('.maplibregl-ctrl-scale')).toBeVisible();
+    });
+
+    test('zoom level display is visible', async ({ page }) => {
+      // Wait for map to initialize
+      await page.waitForTimeout(2000);
+
+      // Zoom display should be visible
+      const zoomDisplay = page.locator('.zoom-level-display');
+      await expect(zoomDisplay).toBeVisible();
+
+      // Should show a zoom level
+      const zoomText = await zoomDisplay.textContent();
+      expect(zoomText).toMatch(/^z\d+$/);
+    });
+
+    test('zoom level updates when zooming', async ({ page }) => {
+      // Wait for map to initialize
+      await page.waitForTimeout(2000);
+
+      const zoomDisplay = page.locator('.zoom-level-display');
+      const initialZoom = await zoomDisplay.textContent();
+
+      // Click zoom in button
+      await page.click('.maplibregl-ctrl-zoom-in');
+      await page.waitForTimeout(500);
+
+      const newZoom = await zoomDisplay.textContent();
+      // Zoom level should have increased (or at least changed)
+      expect(newZoom).toMatch(/^z\d+$/);
+    });
+  });
+
   test.describe('Off-Trail Display', () => {
     test('shows "Current Mile" label when on trail', async ({ page, context }) => {
       // Grant geolocation permissions

@@ -142,7 +142,7 @@ export const initMap = () => {
       `),
       loadIcon('waypoint-icon', 20, 20, `
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="10" cy="10" r="9" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
+          <circle cx="10" cy="10" r="9" fill="#8b5cf6" stroke="#fff" stroke-width="2"/>
         </svg>
       `)
     ]);
@@ -159,7 +159,8 @@ export const initMap = () => {
         properties: {
           type: 'water',
           mile: source.mile,
-          name: getWaypointShortName(source),
+          name: source.name, // Use original name (e.g. CV001) for lookup
+          displayName: getWaypointShortName(source),
           details: source.details
         }
       }))
@@ -600,11 +601,22 @@ export const initMap = () => {
   // Add navigation controls
   map.addControl(new maplibregl.NavigationControl(), 'top-right');
 
-  // Add scale control
+  // Add scale control - position it top-left to avoid elevation chart
   map.addControl(new maplibregl.ScaleControl({
     maxWidth: 150,
     unit: 'imperial'
-  }), 'bottom-left');
+  }), 'top-left');
+
+  // Add custom zoom level display
+  const zoomDisplay = document.createElement('div');
+  zoomDisplay.className = 'zoom-level-display';
+  zoomDisplay.textContent = `z${Math.round(map.getZoom())}`;
+  document.querySelector('.maplibregl-ctrl-top-right').appendChild(zoomDisplay);
+
+  // Update zoom display on zoom change
+  map.on('zoom', () => {
+    zoomDisplay.textContent = `z${Math.round(map.getZoom())}`;
+  });
 
   // Register GPS position update callback for map marker
   setPositionUpdateCallback(updateUserLocationMarker);
