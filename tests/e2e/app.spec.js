@@ -234,13 +234,17 @@ test.describe('ODT Weather App', () => {
       await expect(topLeftContainer.locator('.maplibregl-ctrl-scale')).toBeVisible();
     });
 
-    test('zoom level display is visible', async ({ page }) => {
+    test('zoom level display is visible in bottom-left', async ({ page }) => {
       // Wait for map to initialize
       await page.waitForTimeout(2000);
 
       // Zoom display should be visible
       const zoomDisplay = page.locator('.zoom-level-display');
       await expect(zoomDisplay).toBeVisible();
+
+      // Should be in bottom-left container
+      const bottomLeftContainer = page.locator('.maplibregl-ctrl-bottom-left');
+      await expect(bottomLeftContainer.locator('.zoom-level-display')).toBeVisible();
 
       // Should show a zoom level
       const zoomText = await zoomDisplay.textContent();

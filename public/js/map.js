@@ -607,11 +607,11 @@ export const initMap = () => {
     unit: 'imperial'
   }), 'top-left');
 
-  // Add custom zoom level display
+  // Add custom zoom level display in bottom-left (above elevation chart)
   const zoomDisplay = document.createElement('div');
   zoomDisplay.className = 'zoom-level-display';
   zoomDisplay.textContent = `z${Math.round(map.getZoom())}`;
-  document.querySelector('.maplibregl-ctrl-top-right').appendChild(zoomDisplay);
+  document.querySelector('.maplibregl-ctrl-bottom-left').appendChild(zoomDisplay);
 
   // Update zoom display on zoom change
   map.on('zoom', () => {
