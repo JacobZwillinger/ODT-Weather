@@ -428,6 +428,14 @@ th {
   line-height: 1;
 }
 
+.map-info-current-mile.off-trail {
+  color: #dc2626;
+}
+
+.map-info-current-label.off-trail-label {
+  color: #dc2626;
+}
+
 .map-info-waypoint-section {
   display: flex;
   flex-direction: column;

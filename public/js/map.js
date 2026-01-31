@@ -1,7 +1,7 @@
 import { sectionPoints, WATER_WARNING_MILES, MAP_INIT_DELAY_MS } from './config.js';
-import { state, loadElevationProfile, findNearestWaypoint, findMileFromCoords, findNextWater, findNextTown, getWaypointShortName } from './utils.js';
+import { state, loadElevationProfile, findNearestWaypoint, findMileFromCoords, findNextWater, findNextTown, getWaypointShortName, OFF_TRAIL_THRESHOLD } from './utils.js';
 import { renderElevationChart } from './elevation.js';
-import { showWaypointDetail } from './modals.js';
+import { showWaypointDetail, showWaterDetail } from './modals.js';
 import { setPositionUpdateCallback, shouldAllowMapClicks } from './gps.js';
 
 let map = null;
@@ -12,11 +12,27 @@ let userAccuracyCircle = null;
 // Track pending async operations to prevent race conditions
 let pendingMileUpdate = 0;
 
-// Update map info panel with current mile data
-export const showMapInfo = (mile) => {
-  state.currentMile = mile;
+// Track off-trail status
+let isOffTrail = false;
 
-  document.getElementById('mapCurrentMile').textContent = mile.toFixed(1);
+// Update map info panel with current mile data
+// distanceFromTrail is optional - if provided, shows off-trail indicator when > threshold
+export const showMapInfo = (mile, distanceFromTrail = 0) => {
+  state.currentMile = mile;
+  isOffTrail = distanceFromTrail > OFF_TRAIL_THRESHOLD;
+
+  const mileEl = document.getElementById('mapCurrentMile');
+  const labelEl = document.querySelector('.map-info-current-label');
+
+  if (isOffTrail) {
+    mileEl.textContent = `${distanceFromTrail.toFixed(1)} mi`;
+    mileEl.classList.add('off-trail');
+    labelEl.textContent = 'Off Trail';
+  } else {
+    mileEl.textContent = mile.toFixed(1);
+    mileEl.classList.remove('off-trail');
+    labelEl.textContent = 'Current Mile';
+  }
 
   const nearest = findNearestWaypoint(mile);
   if (nearest) {
@@ -126,7 +142,7 @@ export const initMap = () => {
       `),
       loadIcon('waypoint-icon', 20, 20, `
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="10" cy="10" r="9" fill="#6366f1" stroke="#fff" stroke-width="2"/>
+          <circle cx="10" cy="10" r="9" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
         </svg>
       `)
     ]);
@@ -295,29 +311,34 @@ export const initMap = () => {
         });
       });
 
-      // Unclustered point click handlers with race condition guard
-      // These only update mile info when GPS mode is off
-      map.on('click', 'water-points-unclustered', async (e) => {
+      // Unclustered point click handlers
+      // Water points show detail modal
+      map.on('click', 'water-points-unclustered', (e) => {
         if (!e.features || e.features.length === 0) return;
-        if (!shouldAllowMapClicks()) return; // GPS mode active, ignore clicks
         e.preventDefault();
-        const updateId = ++pendingMileUpdate;
-        const coords = e.features[0].geometry.coordinates;
-        const mile = await findMileFromCoords(coords[1], coords[0]);
-        if (updateId === pendingMileUpdate) {
-          showMapInfo(mile);
+        ++pendingMileUpdate;
+
+        // Get water source name and show detail modal
+        const sourceName = e.features[0].properties?.name;
+        const source = showWaterDetail(sourceName);
+
+        // Update mile info if GPS mode is off
+        if (!shouldAllowMapClicks()) return;
+        if (source && source.mile >= 0) {
+          showMapInfo(source.mile);
         }
       });
 
+      // Town points just update mile info (could add town detail modal later)
       map.on('click', 'town-points-unclustered', async (e) => {
         if (!e.features || e.features.length === 0) return;
         if (!shouldAllowMapClicks()) return; // GPS mode active, ignore clicks
         e.preventDefault();
         const updateId = ++pendingMileUpdate;
         const coords = e.features[0].geometry.coordinates;
-        const mile = await findMileFromCoords(coords[1], coords[0]);
+        const result = await findMileFromCoords(coords[1], coords[0]);
         if (updateId === pendingMileUpdate) {
-          showMapInfo(mile);
+          showMapInfo(result.mile, result.distanceFromTrail);
         }
       });
 
@@ -528,9 +549,9 @@ export const initMap = () => {
       e.preventDefault();
       const updateId = ++pendingMileUpdate;
       const coords = e.features[0].geometry.coordinates;
-      const mile = await findMileFromCoords(coords[1], coords[0]);
+      const result = await findMileFromCoords(coords[1], coords[0]);
       if (updateId === pendingMileUpdate) {
-        showMapInfo(mile);
+        showMapInfo(result.mile, result.distanceFromTrail);
       }
     });
 
@@ -561,9 +582,9 @@ export const initMap = () => {
       e.preventDefault();
       const updateId = ++pendingMileUpdate;
       const coords = e.lngLat;
-      const mile = await findMileFromCoords(coords.lat, coords.lng);
+      const result = await findMileFromCoords(coords.lat, coords.lng);
       if (updateId === pendingMileUpdate) {
-        showMapInfo(mile);
+        showMapInfo(result.mile, result.distanceFromTrail);
       }
     });
 

@@ -220,6 +220,71 @@ test.describe('ODT Weather App', () => {
     });
   });
 
+  test.describe('Off-Trail Display', () => {
+    test('shows "Current Mile" label when on trail', async ({ page, context }) => {
+      // Grant geolocation permissions
+      await context.grantPermissions(['geolocation']);
+      // Set location exactly on the trail (near section 1)
+      await context.setGeolocation({ latitude: 43.708, longitude: -120.847 });
+
+      // Toggle GPS on
+      await page.click('#gpsToggleBtn');
+      await page.waitForTimeout(2000);
+
+      // Check that "Current Mile" label is shown (not "Off Trail")
+      const label = page.locator('.map-info-current-label');
+      await expect(label).toContainText('Current Mile');
+
+      // Check that mile display does not have off-trail class
+      const mileDisplay = page.locator('#mapCurrentMile');
+      await expect(mileDisplay).not.toHaveClass(/off-trail/);
+    });
+
+    test('shows "Off Trail" indicator when far from trail', async ({ page, context }) => {
+      // Grant geolocation permissions
+      await context.grantPermissions(['geolocation']);
+      // Set location about 2 miles off trail (significantly east)
+      // The trail runs roughly N-S around -120.847 longitude
+      await context.setGeolocation({ latitude: 43.708, longitude: -120.80 });
+
+      // Toggle GPS on
+      await page.click('#gpsToggleBtn');
+      await page.waitForTimeout(2000);
+
+      // Check that "Off Trail" label is shown
+      const label = page.locator('.map-info-current-label');
+      await expect(label).toContainText('Off Trail');
+
+      // Check that mile display has off-trail class
+      const mileDisplay = page.locator('#mapCurrentMile');
+      await expect(mileDisplay).toHaveClass(/off-trail/);
+
+      // Check that it shows distance in "X.X mi" format instead of mile number
+      const mileText = await mileDisplay.textContent();
+      expect(mileText).toMatch(/[\d.]+\s*mi/);
+    });
+
+    test('shows "Current Mile" when off trail but within threshold', async ({ page, context }) => {
+      // Grant geolocation permissions
+      await context.grantPermissions(['geolocation']);
+      // Set location about 0.3 miles off trail (within 0.5 mile threshold)
+      // At 43°N: 0.006 degrees lon ≈ 0.3 miles
+      await context.setGeolocation({ latitude: 43.708, longitude: -120.841 });
+
+      // Toggle GPS on
+      await page.click('#gpsToggleBtn');
+      await page.waitForTimeout(2000);
+
+      // Should still show "Current Mile" since we're within threshold
+      const label = page.locator('.map-info-current-label');
+      await expect(label).toContainText('Current Mile');
+
+      // Check that mile display does not have off-trail class
+      const mileDisplay = page.locator('#mapCurrentMile');
+      await expect(mileDisplay).not.toHaveClass(/off-trail/);
+    });
+  });
+
   test.describe('Waypoint Modal via Map Click', () => {
     test('map tiles load correctly', async ({ page }) => {
       // Collect console messages

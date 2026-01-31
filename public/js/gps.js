@@ -55,8 +55,8 @@ const handlePositionSuccess = async (position) => {
   }
 
   // Find mile marker and update info panel
-  const mile = await findMileFromCoords(latitude, longitude);
-  showMapInfo(mile);
+  const result = await findMileFromCoords(latitude, longitude);
+  showMapInfo(result.mile, result.distanceFromTrail);
 };
 
 // Handle GPS errors
