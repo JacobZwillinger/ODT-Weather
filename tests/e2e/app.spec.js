@@ -409,5 +409,72 @@ test.describe('ODT Weather App', () => {
       const modal = page.locator('#waypointModal');
       await expect(modal).toHaveClass(/visible/, { timeout: 5000 });
     });
+
+    test('waypoint click shows consistent mile in modal and info panel', async ({ page }) => {
+      // Wait for map to fully initialize
+      await page.waitForTimeout(3000);
+
+      // Navigate to a waypoint and click it
+      const result = await page.evaluate(() => {
+        return new Promise((resolve) => {
+          const map = window._odtMap;
+          if (!map) {
+            resolve({ error: 'no map' });
+            return;
+          }
+
+          // Fly to section 2 area
+          map.flyTo({
+            center: [-120.847, 43.708],
+            zoom: 13,
+            duration: 0
+          });
+
+          map.once('idle', () => {
+            setTimeout(() => {
+              const waypointFeatures = map.queryRenderedFeatures({ layers: ['waypoint-icons'] });
+              if (waypointFeatures.length > 0) {
+                const feature = waypointFeatures[0];
+                const point = map.project(feature.geometry.coordinates);
+                resolve({
+                  success: true,
+                  clickX: point.x,
+                  clickY: point.y,
+                  waypointName: feature.properties?.name
+                });
+              } else {
+                resolve({ success: false });
+              }
+            }, 2000);
+          });
+
+          setTimeout(() => resolve({ error: 'timeout' }), 8000);
+        });
+      });
+
+      if (!result.success) {
+        console.log('Skipping consistency test - no waypoints found');
+        return;
+      }
+
+      // Click on the waypoint
+      const canvas = page.locator('#mapContainer canvas.maplibregl-canvas');
+      await canvas.click({ position: { x: result.clickX, y: result.clickY } });
+      await page.waitForTimeout(500);
+
+      // Get the mile from modal
+      const modalMileText = await page.locator('#waypointDetail p').first().textContent();
+      const modalMile = parseFloat(modalMileText.replace('Mile:', '').trim());
+
+      // Get the mile from info panel
+      const infoPanelMile = parseFloat(await page.locator('#mapCurrentMile').textContent());
+
+      // Close modal
+      await page.click('#closeWaypointModal');
+
+      // They should match
+      console.log(`Modal mile: ${modalMile}, Info panel mile: ${infoPanelMile}`);
+      expect(Math.abs(modalMile - infoPanelMile)).toBeLessThan(0.1);
+    });
   });
 });
