@@ -20,8 +20,15 @@ const setupModal = (modalId, closeButtonId) => {
   });
 };
 
-// Show waypoint detail modal and return the waypoint data
-export const showWaypointDetail = (lat, lon) => {
+// Find waypoint by name (preferred) or by coordinates (fallback)
+const findWaypoint = (name, lat, lon) => {
+  // First try to find by exact name match
+  if (name) {
+    const byName = state.allWaypoints.find(wp => wp.name === name);
+    if (byName) return byName;
+  }
+
+  // Fallback: find closest by coordinates
   let closestWaypoint = null;
   let minDistance = Infinity;
 
@@ -35,27 +42,43 @@ export const showWaypointDetail = (lat, lon) => {
     }
   }
 
-  if (closestWaypoint) {
+  return closestWaypoint;
+};
+
+// Show waypoint detail modal and return the waypoint data
+// Can pass name directly (from PMTiles feature) or use lat/lon lookup
+export const showWaypointDetail = (latOrName, lon) => {
+  let waypoint;
+
+  // If lon is undefined, first arg is a waypoint name
+  if (lon === undefined) {
+    waypoint = findWaypoint(latOrName, null, null);
+  } else {
+    // Legacy coordinate lookup - try to get name from nearest match
+    waypoint = findWaypoint(null, latOrName, lon);
+  }
+
+  if (waypoint) {
     const modal = document.getElementById('waypointModal');
     const title = document.getElementById('waypointModalTitle');
     const detail = document.getElementById('waypointDetail');
 
     if (!modal || !title || !detail) return null;
 
-    title.textContent = closestWaypoint.name;
+    title.textContent = waypoint.name;
     // Sanitize landmark text to prevent XSS
     const milePara = document.createElement('p');
-    milePara.innerHTML = `<strong>Mile:</strong> ${closestWaypoint.mile.toFixed(1)}`;
+    milePara.innerHTML = `<strong>Mile:</strong> ${waypoint.mile.toFixed(1)}`;
     const descPara = document.createElement('p');
     descPara.innerHTML = '<strong>Description:</strong> ';
-    descPara.appendChild(document.createTextNode(closestWaypoint.landmark || 'No description'));
+    descPara.appendChild(document.createTextNode(waypoint.landmark || 'No description'));
 
     detail.innerHTML = '';
     detail.appendChild(milePara);
     detail.appendChild(descPara);
 
     modal.classList.add('visible');
-    return closestWaypoint;
+    return waypoint;
   }
   return null;
 };

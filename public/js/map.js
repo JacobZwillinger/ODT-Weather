@@ -538,12 +538,15 @@ export const initMap = () => {
       if (!e.features || e.features.length === 0) return;
       e.preventDefault();
       ++pendingMileUpdate; // Increment to cancel any pending route-line updates
-      const coords = e.features[0].geometry.coordinates;
+
+      // Get waypoint name from PMTiles feature and look up by name
+      const waypointName = e.features[0].properties?.name;
       // Always show waypoint detail modal, even in GPS mode
-      const waypoint = showWaypointDetail(coords[1], coords[0]);
+      const waypoint = showWaypointDetail(waypointName);
+
       // Only update info panel if GPS mode is off
       if (!shouldAllowMapClicks()) return;
-      if (waypoint && waypoint.mile > 0) {
+      if (waypoint && waypoint.mile >= 0) {
         showMapInfo(waypoint.mile);
       }
     });
