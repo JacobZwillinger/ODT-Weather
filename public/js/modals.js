@@ -83,6 +83,54 @@ export const showWaypointDetail = (latOrName, lon) => {
   return null;
 };
 
+// Find water source by name
+const findWaterSource = (name) => {
+  if (!name) return null;
+  return state.waterSources.find(ws => ws.name === name);
+};
+
+// Show water source detail modal
+export const showWaterDetail = (name) => {
+  const source = findWaterSource(name);
+  if (!source) return null;
+
+  const modal = document.getElementById('waypointModal');
+  const title = document.getElementById('waypointModalTitle');
+  const detail = document.getElementById('waypointDetail');
+
+  if (!modal || !title || !detail) return null;
+
+  title.textContent = source.landmark || source.name;
+
+  // Build detail content
+  detail.innerHTML = '';
+
+  const milePara = document.createElement('p');
+  milePara.innerHTML = `<strong>Mile:</strong> ${source.mile.toFixed(1)}`;
+  detail.appendChild(milePara);
+
+  if (!source.onTrail && source.offTrailDist) {
+    const offTrailPara = document.createElement('p');
+    offTrailPara.innerHTML = `<strong>Location:</strong> `;
+    offTrailPara.appendChild(document.createTextNode(source.offTrailDist));
+    detail.appendChild(offTrailPara);
+  }
+
+  const detailsPara = document.createElement('p');
+  detailsPara.innerHTML = `<strong>Details:</strong> `;
+  detailsPara.appendChild(document.createTextNode(source.details || 'No details'));
+  detail.appendChild(detailsPara);
+
+  if (source.distToNext && source.distToNext !== '-' && source.distToNext > 0) {
+    const nextPara = document.createElement('p');
+    nextPara.innerHTML = `<strong>Next water:</strong> ${source.distToNext} mi`;
+    detail.appendChild(nextPara);
+  }
+
+  modal.classList.add('visible');
+  return source;
+};
+
 // Show sources list modal (water or towns)
 export const showSourcesList = (type) => {
   const modal = document.getElementById('sourcesModal');

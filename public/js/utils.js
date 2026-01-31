@@ -57,10 +57,22 @@ export const findNearestWaypoint = (mile) => {
   return { waypoint: nearest, distance: minDist };
 };
 
+// Convert degrees to approximate miles (at Oregon latitudes ~43°N)
+// 1 degree latitude ≈ 69 miles, 1 degree longitude ≈ 50 miles at 43°N
+const degreesToMiles = (latDiff, lonDiff, lat) => {
+  const latMiles = Math.abs(latDiff) * 69;
+  const lonMiles = Math.abs(lonDiff) * 69 * Math.cos(lat * Math.PI / 180);
+  return Math.sqrt(latMiles * latMiles + lonMiles * lonMiles);
+};
+
+// Threshold for considering someone "off trail" (in miles)
+export const OFF_TRAIL_THRESHOLD = 0.5;
+
 // Find mile marker from lat/lon coordinates
+// Returns { mile, distanceFromTrail } where distanceFromTrail is in miles
 export const findMileFromCoords = async (lat, lon) => {
   const profile = await loadElevationProfile();
-  if (!profile || profile.length === 0) return 0;
+  if (!profile || profile.length === 0) return { mile: 0, distanceFromTrail: 0 };
 
   let closest = profile[0];
   let minDist = Math.hypot(lon - closest.lon, lat - closest.lat);
@@ -73,7 +85,13 @@ export const findMileFromCoords = async (lat, lon) => {
     }
   }
 
-  return closest.distance;
+  // Convert the degree distance to miles
+  const distanceFromTrail = degreesToMiles(lat - closest.lat, lon - closest.lon, lat);
+
+  return {
+    mile: closest.distance,
+    distanceFromTrail: distanceFromTrail
+  };
 };
 
 // Find next water source after given mile
