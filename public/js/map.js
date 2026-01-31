@@ -2,9 +2,12 @@ import { sectionPoints, WATER_WARNING_MILES, MAP_INIT_DELAY_MS } from './config.
 import { state, loadElevationProfile, findNearestWaypoint, findMileFromCoords, findNextWater, findNextTown, getWaypointShortName } from './utils.js';
 import { renderElevationChart } from './elevation.js';
 import { showWaypointDetail } from './modals.js';
+import { setPositionUpdateCallback, shouldAllowMapClicks } from './gps.js';
 
 let map = null;
 let mapInitialized = false;
+let userLocationMarker = null;
+let userAccuracyCircle = null;
 
 // Track pending async operations to prevent race conditions
 let pendingMileUpdate = 0;
@@ -293,8 +296,10 @@ export const initMap = () => {
       });
 
       // Unclustered point click handlers with race condition guard
+      // These only update mile info when GPS mode is off
       map.on('click', 'water-points-unclustered', async (e) => {
         if (!e.features || e.features.length === 0) return;
+        if (!shouldAllowMapClicks()) return; // GPS mode active, ignore clicks
         e.preventDefault();
         const updateId = ++pendingMileUpdate;
         const coords = e.features[0].geometry.coordinates;
@@ -306,6 +311,7 @@ export const initMap = () => {
 
       map.on('click', 'town-points-unclustered', async (e) => {
         if (!e.features || e.features.length === 0) return;
+        if (!shouldAllowMapClicks()) return; // GPS mode active, ignore clicks
         e.preventDefault();
         const updateId = ++pendingMileUpdate;
         const coords = e.features[0].geometry.coordinates;
@@ -515,8 +521,10 @@ export const initMap = () => {
 
     // Click handlers for overlay layers (inside map.on('load') to ensure layers exist)
     // Use pendingMileUpdate to prevent race conditions from rapid clicks
+    // These only update mile info when GPS mode is off (except waypoint modal still opens)
     map.on('click', 'section-circles', async (e) => {
       if (!e.features || e.features.length === 0) return;
+      if (!shouldAllowMapClicks()) return; // GPS mode active, ignore clicks
       e.preventDefault();
       const updateId = ++pendingMileUpdate;
       const coords = e.features[0].geometry.coordinates;
@@ -531,8 +539,10 @@ export const initMap = () => {
       e.preventDefault();
       ++pendingMileUpdate; // Increment to cancel any pending route-line updates
       const coords = e.features[0].geometry.coordinates;
+      // Always show waypoint detail modal, even in GPS mode
       const waypoint = showWaypointDetail(coords[1], coords[0]);
-      // Update info panel with the waypoint's actual mile marker
+      // Only update info panel if GPS mode is off
+      if (!shouldAllowMapClicks()) return;
       if (waypoint && waypoint.mile > 0) {
         showMapInfo(waypoint.mile);
       }
@@ -544,6 +554,7 @@ export const initMap = () => {
       if (waypointFeatures.length > 0) {
         return; // Let waypoint-icons handler deal with it
       }
+      if (!shouldAllowMapClicks()) return; // GPS mode active, ignore clicks
       e.preventDefault();
       const updateId = ++pendingMileUpdate;
       const coords = e.lngLat;
@@ -570,6 +581,113 @@ export const initMap = () => {
     maxWidth: 150,
     unit: 'imperial'
   }), 'bottom-left');
+
+  // Register GPS position update callback for map marker
+  setPositionUpdateCallback(updateUserLocationMarker);
+};
+
+// Update user location marker on the map
+const updateUserLocationMarker = (lat, lon, accuracy) => {
+  if (!map) return;
+
+  // If lat/lon is null, remove the marker
+  if (lat === null || lon === null) {
+    if (userLocationMarker) {
+      userLocationMarker.remove();
+      userLocationMarker = null;
+    }
+    if (userAccuracyCircle) {
+      if (map.getLayer('user-accuracy-circle')) {
+        map.removeLayer('user-accuracy-circle');
+      }
+      if (map.getSource('user-accuracy')) {
+        map.removeSource('user-accuracy');
+      }
+      userAccuracyCircle = null;
+    }
+    return;
+  }
+
+  const lngLat = [lon, lat];
+
+  // Create or update the accuracy circle
+  const radiusInMeters = accuracy || 10;
+  const accuracyCircleData = createCircleGeoJSON(lat, lon, radiusInMeters);
+
+  if (!userAccuracyCircle) {
+    // Add accuracy circle source and layer
+    map.addSource('user-accuracy', {
+      type: 'geojson',
+      data: accuracyCircleData
+    });
+
+    map.addLayer({
+      id: 'user-accuracy-circle',
+      type: 'fill',
+      source: 'user-accuracy',
+      paint: {
+        'fill-color': '#3b82f6',
+        'fill-opacity': 0.15
+      }
+    }, 'route-line'); // Insert below route line
+
+    userAccuracyCircle = true;
+  } else {
+    // Update existing source
+    const source = map.getSource('user-accuracy');
+    if (source) {
+      source.setData(accuracyCircleData);
+    }
+  }
+
+  // Create or update the location marker
+  if (!userLocationMarker) {
+    const el = document.createElement('div');
+    el.className = 'user-location-marker pulsing';
+
+    userLocationMarker = new maplibregl.Marker({ element: el })
+      .setLngLat(lngLat)
+      .addTo(map);
+
+    // Pan to user location on first fix
+    map.flyTo({
+      center: lngLat,
+      zoom: Math.max(map.getZoom(), 12),
+      duration: 1000
+    });
+
+    // Update GPS status
+    const statusEl = document.getElementById('gpsStatus');
+    if (statusEl) {
+      statusEl.textContent = 'Active';
+      statusEl.className = 'gps-status active';
+    }
+  } else {
+    userLocationMarker.setLngLat(lngLat);
+  }
+};
+
+// Create a circle GeoJSON polygon for accuracy visualization
+const createCircleGeoJSON = (lat, lon, radiusMeters) => {
+  const points = 64;
+  const coords = [];
+
+  for (let i = 0; i < points; i++) {
+    const angle = (i / points) * 2 * Math.PI;
+    // Approximate degrees per meter at this latitude
+    const latOffset = (radiusMeters / 111320) * Math.cos(angle);
+    const lonOffset = (radiusMeters / (111320 * Math.cos(lat * Math.PI / 180))) * Math.sin(angle);
+    coords.push([lon + lonOffset, lat + latOffset]);
+  }
+  coords.push(coords[0]); // Close the polygon
+
+  return {
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [coords]
+    }
+  };
 };
 
 // Schedule map initialization
