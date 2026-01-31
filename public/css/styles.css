@@ -913,6 +913,12 @@ button {
   }
 }
 
+/* Bottom-left controls - position above elevation chart */
+.maplibregl-ctrl-bottom-left {
+  bottom: 200px; /* Above elevation chart */
+  z-index: 10;
+}
+
 /* Zoom level display */
 .zoom-level-display {
   background: rgba(255, 255, 255, 0.9);
@@ -929,4 +935,10 @@ button {
 .maplibregl-ctrl-top-left .maplibregl-ctrl-scale {
   margin-left: 10px;
   margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+  .maplibregl-ctrl-bottom-left {
+    bottom: 240px; /* Taller elevation chart on desktop */
+  }
 }

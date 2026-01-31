@@ -177,67 +177,61 @@ describe('OFF_TRAIL_THRESHOLD', () => {
 
 describe('findMileFromCoords', () => {
   beforeEach(() => {
-    // Mock elevation profile with known trail points
+    // Mock waypoints as the authoritative trail reference
     // Oregon latitude ~43°N, 1 degree lat ≈ 69 miles, 1 degree lon ≈ 50 miles
-    state.elevationProfile = [
-      { lat: 43.0, lon: -120.0, distance: 0 },
-      { lat: 43.1, lon: -120.0, distance: 7 },    // ~7 miles north (0.1 * 69)
-      { lat: 43.2, lon: -120.0, distance: 14 },   // ~14 miles north
-      { lat: 43.3, lon: -120.0, distance: 21 }    // ~21 miles north
+    state.allWaypoints = [
+      { name: 'WP001', lat: 43.0, lon: -120.0, mile: 0 },
+      { name: 'WP002', lat: 43.1, lon: -120.0, mile: 7 },    // ~7 miles north (0.1 * 69)
+      { name: 'WP003', lat: 43.2, lon: -120.0, mile: 14 },   // ~14 miles north
+      { name: 'WP004', lat: 43.3, lon: -120.0, mile: 21 }    // ~21 miles north
     ];
   });
 
-  it('returns mile and distanceFromTrail object', async () => {
-    const result = await findMileFromCoords(43.0, -120.0);
+  it('returns mile and distanceFromTrail object', () => {
+    const result = findMileFromCoords(43.0, -120.0);
     expect(result).toHaveProperty('mile');
     expect(result).toHaveProperty('distanceFromTrail');
   });
 
-  it('returns distance 0 when on trail', async () => {
-    // Exactly on a trail point
-    const result = await findMileFromCoords(43.0, -120.0);
+  it('returns distance 0 when on trail', () => {
+    // Exactly on a waypoint
+    const result = findMileFromCoords(43.0, -120.0);
     expect(result.mile).toBe(0);
     expect(result.distanceFromTrail).toBe(0);
   });
 
-  it('returns small distance when close to trail (within threshold)', async () => {
+  it('returns small distance when close to trail (within threshold)', () => {
     // About 0.2 miles east of trail (0.004 degrees lon at lat 43)
     // At 43°N: 1 degree lon ≈ 50 miles, so 0.004 degrees ≈ 0.2 miles
-    const result = await findMileFromCoords(43.0, -119.996);
-    expect(result.mile).toBe(0);
+    const result = findMileFromCoords(43.0, -119.996);
     expect(result.distanceFromTrail).toBeLessThan(OFF_TRAIL_THRESHOLD);
     expect(result.distanceFromTrail).toBeGreaterThan(0);
   });
 
-  it('returns distance > threshold when significantly off trail', async () => {
+  it('returns distance > threshold when significantly off trail', () => {
     // About 1 mile east of trail (0.02 degrees lon at lat 43)
     // At 43°N: 1 degree lon ≈ 50 miles, so 0.02 degrees ≈ 1 mile
-    const result = await findMileFromCoords(43.0, -119.98);
-    expect(result.mile).toBe(0);
+    const result = findMileFromCoords(43.0, -119.98);
     expect(result.distanceFromTrail).toBeGreaterThan(OFF_TRAIL_THRESHOLD);
     expect(result.distanceFromTrail).toBeCloseTo(1, 0); // ~1 mile off trail
   });
 
-  it('finds closest trail point when between points', async () => {
-    // Midway between mile 0 and mile 7
-    const result = await findMileFromCoords(43.05, -120.0);
-    // Should snap to nearest profile point (either 0 or 7)
-    expect(result.mile === 0 || result.mile === 7).toBe(true);
-    // Distance will be ~3.45 miles (0.05 degrees * 69 mi/deg) since
-    // our mock profile has sparse points. This is expected behavior.
-    expect(result.distanceFromTrail).toBeGreaterThan(3);
+  it('interpolates mile when between adjacent waypoints', () => {
+    // Set up closer waypoints that are adjacent (within 2 miles)
+    state.allWaypoints = [
+      { name: 'WP001', lat: 43.0, lon: -120.0, mile: 10 },
+      { name: 'WP002', lat: 43.01, lon: -120.0, mile: 11 },  // ~0.7 miles apart
+    ];
+    // Midway between the two waypoints
+    const result = findMileFromCoords(43.005, -120.0);
+    // Should interpolate to approximately 10.5 (halfway between 10 and 11)
+    expect(result.mile).toBeGreaterThan(10.2);
+    expect(result.mile).toBeLessThan(10.8);
   });
 
-  it('returns 0 when no elevation profile loaded', async () => {
-    state.elevationProfile = null;
-    const result = await findMileFromCoords(43.0, -120.0);
-    expect(result.mile).toBe(0);
-    expect(result.distanceFromTrail).toBe(0);
-  });
-
-  it('returns 0 when elevation profile is empty', async () => {
-    state.elevationProfile = [];
-    const result = await findMileFromCoords(43.0, -120.0);
+  it('returns 0 when no waypoints loaded', () => {
+    state.allWaypoints = [];
+    const result = findMileFromCoords(43.0, -120.0);
     expect(result.mile).toBe(0);
     expect(result.distanceFromTrail).toBe(0);
   });
