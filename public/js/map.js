@@ -613,27 +613,24 @@ export const initMap = () => {
     unit: 'imperial'
   }), 'bottom-left');
 
-  // Add custom zoom level display in bottom-left (above elevation chart)
-  // Wait for map load to ensure control containers exist
-  const zoomDisplay = document.createElement('div');
-  zoomDisplay.className = 'zoom-level-display';
-  zoomDisplay.textContent = `z${Math.round(map.getZoom())}`;
-
-  const appendZoomDisplay = () => {
-    const bottomLeftCtrl = document.querySelector('.maplibregl-ctrl-bottom-left');
-    if (bottomLeftCtrl) {
-      bottomLeftCtrl.appendChild(zoomDisplay);
+  // Add custom zoom level display as a proper MapLibre control
+  const zoomControl = {
+    onAdd(mapInstance) {
+      this._map = mapInstance;
+      this._container = document.createElement('div');
+      this._container.className = 'maplibregl-ctrl zoom-level-display';
+      this._container.textContent = `z${Math.round(mapInstance.getZoom())}`;
+      mapInstance.on('zoom', () => {
+        this._container.textContent = `z${Math.round(mapInstance.getZoom())}`;
+      });
+      return this._container;
+    },
+    onRemove() {
+      this._container.parentNode.removeChild(this._container);
+      this._map = undefined;
     }
   };
-
-  // Try immediately, and also on load as a fallback
-  appendZoomDisplay();
-  map.on('load', appendZoomDisplay);
-
-  // Update zoom display on zoom change
-  map.on('zoom', () => {
-    zoomDisplay.textContent = `z${Math.round(map.getZoom())}`;
-  });
+  map.addControl(zoomControl, 'bottom-left');
 
   // Register GPS position update callback for map marker
   setPositionUpdateCallback(updateUserLocationMarker);
