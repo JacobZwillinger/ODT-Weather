@@ -136,16 +136,19 @@ export const showWaypointDetail = (latOrName, lon) => {
     if (!modal || !title || !detail) return null;
 
     title.textContent = waypoint.name;
-    // Sanitize landmark text to prevent XSS
-    const milePara = document.createElement('p');
-    milePara.innerHTML = `<strong>Mile:</strong> ${waypoint.mile.toFixed(1)}`;
-    const descPara = document.createElement('p');
-    descPara.innerHTML = '<strong>Description:</strong> ';
-    descPara.appendChild(document.createTextNode(waypoint.landmark || 'No description'));
 
     detail.innerHTML = '';
+
+    const milePara = document.createElement('p');
+    milePara.innerHTML = `<strong>Mile:</strong> ${waypoint.mile.toFixed(1)}`;
     detail.appendChild(milePara);
-    detail.appendChild(descPara);
+
+    if (waypoint.landmark) {
+      const descPara = document.createElement('p');
+      descPara.innerHTML = '<strong>Description:</strong> ';
+      descPara.appendChild(document.createTextNode(waypoint.landmark));
+      detail.appendChild(descPara);
+    }
 
     modal.classList.add('visible');
     focusModalClose(modal); // [UX] Changed: Focus close button on modal open (WCAG 2.4.3)
@@ -171,14 +174,20 @@ export const showWaterDetail = (name) => {
 
   if (!modal || !title || !detail) return null;
 
-  title.textContent = source.landmark || source.name;
+  title.textContent = source.name;
 
-  // Build detail content
   detail.innerHTML = '';
 
   const milePara = document.createElement('p');
   milePara.innerHTML = `<strong>Mile:</strong> ${source.mile.toFixed(1)}`;
   detail.appendChild(milePara);
+
+  if (source.landmark) {
+    const descPara = document.createElement('p');
+    descPara.innerHTML = '<strong>Description:</strong> ';
+    descPara.appendChild(document.createTextNode(source.landmark));
+    detail.appendChild(descPara);
+  }
 
   if (!source.onTrail && source.offTrailDist) {
     const offTrailPara = document.createElement('p');
@@ -187,10 +196,12 @@ export const showWaterDetail = (name) => {
     detail.appendChild(offTrailPara);
   }
 
-  const detailsPara = document.createElement('p');
-  detailsPara.innerHTML = `<strong>Details:</strong> `;
-  detailsPara.appendChild(document.createTextNode(source.details || 'No details'));
-  detail.appendChild(detailsPara);
+  if (source.details) {
+    const detailsPara = document.createElement('p');
+    detailsPara.innerHTML = `<strong>Details:</strong> `;
+    detailsPara.appendChild(document.createTextNode(source.details));
+    detail.appendChild(detailsPara);
+  }
 
   if (source.distToNext && source.distToNext !== '-' && source.distToNext > 0) {
     const nextPara = document.createElement('p');

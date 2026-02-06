@@ -71,13 +71,14 @@ describe('showWaypointDetail', () => {
     expect(result.name).toBe('WP001');
   });
 
-  // [TEST] Added: verifies "No description" shown when landmark is empty
-  it('shows "No description" when landmark is empty', () => {
+  // [TEST] Added: verifies description omitted when landmark is empty
+  it('omits description when landmark is empty', () => {
     const result = showWaypointDetail('WP002');
     expect(result).not.toBeNull();
 
     const detail = document.getElementById('waypointDetail');
-    expect(detail.textContent).toContain('No description');
+    expect(detail.textContent).not.toContain('Description');
+    expect(detail.textContent).toContain('Mile: 25.0');
   });
 
   // [TEST] Added: verifies returns null when allWaypoints is empty
@@ -123,7 +124,7 @@ describe('showWaterDetail', () => {
     expect(modal.classList.contains('visible')).toBe(true);
 
     const title = document.getElementById('waypointModalTitle');
-    expect(title.textContent).toBe('Spring Creek');
+    expect(title.textContent).toBe('CV001');
 
     const detail = document.getElementById('waypointDetail');
     expect(detail.textContent).toContain('5.2');
