@@ -611,7 +611,10 @@ export const initMap = () => {
   const zoomDisplay = document.createElement('div');
   zoomDisplay.className = 'zoom-level-display';
   zoomDisplay.textContent = `z${Math.round(map.getZoom())}`;
-  document.querySelector('.maplibregl-ctrl-bottom-left').appendChild(zoomDisplay);
+  const bottomLeftCtrl = document.querySelector('.maplibregl-ctrl-bottom-left');
+  if (bottomLeftCtrl) { // [BUGS] Fixed: null check before appendChild - element may not exist yet
+    bottomLeftCtrl.appendChild(zoomDisplay);
+  }
 
   // Update zoom display on zoom change
   map.on('zoom', () => {

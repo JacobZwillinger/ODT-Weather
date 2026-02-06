@@ -34,11 +34,27 @@ The elevation profile should ONLY be used for:
 - Getting elevation data at a given mile marker
 
 ## Important Files
+<!-- [DOCS] Updated: added missing files and server/API details -->
 - `public/index.html` - Main application
 - `build-water-sources.py` - Data processing pipeline
 - `public/waypoints.json` - All 852 waypoints for navigation
 - `public/water-sources.json` - 325 water sources
 - `public/towns.json` - 17 towns/services
+- `server.js` - Local Express dev server (serves static files + forecast proxy)
+- `api/forecast.js` - Vercel serverless function (returns current + 7-day daily forecasts)
+- `api/usage.js` - Vercel serverless function (API usage stats)
+- `public/*.pmtiles` - Vector tile files (basemap, overlay, route, contours)
+
+## Local vs Production Differences
+The local `server.js` forecast endpoint returns **only current conditions** (no daily array).
+The Vercel `api/forecast.js` returns **current conditions + 7-day daily forecasts + API usage**.
+The frontend weather table requires the daily forecast data, so it will show `--` locally.
+
+## Testing
+- **Unit tests:** `npm test` (Vitest, happy-dom)
+- **E2E tests:** `npm run test:e2e` (Playwright, Chromium)
+- **All tests:** `npm run test:all`
+- **Coverage:** `npm run test:coverage`
 
 ## Development Guidelines
 - Keep design clean and minimal

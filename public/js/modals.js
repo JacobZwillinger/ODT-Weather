@@ -1,6 +1,12 @@
 import { SCROLL_DELAY_MS } from './config.js';
 import { state, getWaypointShortName } from './utils.js';
 
+// [BUGS] Fixed: escape HTML to prevent XSS from data injected via innerHTML
+const escapeHtml = (str) => {
+  if (str == null) return '';
+  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+};
+
 // Setup a modal with close button and backdrop click handlers
 const setupModal = (modalId, closeButtonId) => {
   const modal = document.getElementById(modalId);
@@ -152,9 +158,9 @@ export const showSourcesList = (type) => {
               ${isPast ? 'Past' : `${(source.mile - currentMile).toFixed(1)} mi ahead`}
             </span>
           </div>
-          <div class="source-name">${getWaypointShortName(source)}</div>
-          <div class="source-details">${source.details}</div>
-          ${source.distToNext !== '-' ? `<div class="source-details" style="margin-top: 4px;">Next water: ${source.distToNext} mi</div>` : ''}
+          <div class="source-name">${escapeHtml(getWaypointShortName(source))}</div>
+          <div class="source-details">${escapeHtml(source.details)}</div>
+          ${source.distToNext !== '-' ? `<div class="source-details" style="margin-top: 4px;">Next water: ${escapeHtml(source.distToNext)} mi</div>` : ''}
         </div>
       `;
     });
@@ -173,9 +179,9 @@ export const showSourcesList = (type) => {
               ${isPast ? 'Past' : `${(town.mile - currentMile).toFixed(1)} mi ahead`}
             </span>
           </div>
-          <div class="source-name">${town.name}</div>
-          <div class="source-details">Services: ${town.services}</div>
-          ${town.offTrail ? `<div class="source-details">Location: ${town.offTrail}</div>` : ''}
+          <div class="source-name">${escapeHtml(town.name)}</div>
+          <div class="source-details">Services: ${escapeHtml(town.services)}</div>
+          ${town.offTrail ? `<div class="source-details">Location: ${escapeHtml(town.offTrail)}</div>` : ''}
         </div>
       `;
     });

@@ -81,9 +81,13 @@ export const loadForecasts = async () => {
   const lastForecast = forecasts.find(f => f && f._usage && f._usage.calls !== null);
   if (lastForecast) {
     const { calls, limit } = lastForecast._usage;
-    const usageText = limit
-      ? `API: ${calls.toLocaleString()} / ${limit.toLocaleString()}`
-      : `API calls: ${calls.toLocaleString()}`;
-    document.getElementById('apiUsage').textContent = usageText;
+    // [BUGS] Fixed: guard against null calls even though outer check exists, and null apiUsage element
+    const usageEl = document.getElementById('apiUsage');
+    if (usageEl && calls !== null) {
+      const usageText = limit
+        ? `API: ${calls.toLocaleString()} / ${limit.toLocaleString()}`
+        : `API calls: ${calls.toLocaleString()}`;
+      usageEl.textContent = usageText;
+    }
   }
 };
