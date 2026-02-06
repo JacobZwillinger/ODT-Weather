@@ -92,6 +92,16 @@ Runs Planetiler to generate `dist/basemap.pmtiles` with:
 - Place labels
 - Minimal buildings/POIs
 
+### 6. Build Contour Tiles (Optional)
+
+<!-- [DOCS] Updated: added missing contour build step -->
+
+```bash
+./scripts/build-contours.sh
+```
+
+Generates `dist/contours.pmtiles` with elevation contour lines for the corridor.
+
 ## Configuration
 
 ### Basemap Detail Level
@@ -119,6 +129,7 @@ const bufferDistance = 5; // kilometers (5km = ~3 miles each side)
 ### Production
 - `dist/basemap.pmtiles` - Basemap for deployment
 - `dist/overlay.pmtiles` - Overlay for deployment
+- `dist/contours.pmtiles` - Contour lines for deployment
 
 ## File Sizes
 
