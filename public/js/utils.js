@@ -69,17 +69,46 @@ const degreesToMiles = (latDiff, lonDiff, lat) => {
 // Threshold for considering someone "off trail" (in miles)
 export const OFF_TRAIL_THRESHOLD = 0.5;
 
+// Convert lat/lon to local XY in miles (approximate, at given reference latitude)
+const toLocalMiles = (lat, lon, refLat) => {
+  const y = lat * 69; // 1° lat ≈ 69 miles
+  const x = lon * 69 * Math.cos(refLat * Math.PI / 180); // longitude correction
+  return { x, y };
+};
+
+// Find the shortest distance from point P to segment AB, all in local mile coordinates.
+// Returns the perpendicular distance (or distance to nearest endpoint if projection
+// falls outside the segment).
+const pointToSegmentDistMiles = (px, py, ax, ay, bx, by) => {
+  const dx = bx - ax;
+  const dy = by - ay;
+  const lenSq = dx * dx + dy * dy;
+
+  if (lenSq === 0) return Math.hypot(px - ax, py - ay);
+
+  // Project P onto line AB, clamp t to [0,1] to stay on segment
+  const t = Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / lenSq));
+  const closestX = ax + t * dx;
+  const closestY = ay + t * dy;
+  return Math.hypot(px - closestX, py - closestY);
+};
+
 // Find mile marker from lat/lon coordinates
-// Uses WAYPOINTS for mile markers (authoritative) and ELEVATION PROFILE for
-// distance-from-trail (it has dense points along the actual trail line).
+// Uses WAYPOINTS for mile markers, and the GPX TRACK (elevation profile
+// coordinates) for distance-from-trail via perpendicular projection onto
+// consecutive track segments.
+//
+// Map click handlers for on-trail features (route-line, section-circles,
+// waypoint-icons) pass distanceFromTrail: 0 directly, since clicking on a
+// trail feature means you are on the trail by definition.
+// This function's distanceFromTrail is primarily used for GPS positioning.
 // Returns { mile, distanceFromTrail } where distanceFromTrail is in miles
 export const findMileFromCoords = (lat, lon) => {
-  // Use waypoints for mile marker lookup (they have accurate mile values)
   if (state.allWaypoints.length === 0) {
     return { mile: 0, distanceFromTrail: 0 };
   }
 
-  // Find the closest waypoint for the mile marker
+  // Find the closest waypoint for the mile marker (authoritative for mile values)
   let closestWp = state.allWaypoints[0];
   let minWpDist = Math.hypot(lon - closestWp.lon, lat - closestWp.lat);
 
@@ -91,31 +120,31 @@ export const findMileFromCoords = (lat, lon) => {
     }
   }
 
-  // For off-trail distance, use elevation profile (dense points along trail line)
-  // This is more accurate than waypoints which are sparse
-  let distanceFromTrail = 0;
-  if (state.elevationProfile && state.elevationProfile.length > 0) {
-    let closestProfile = state.elevationProfile[0];
-    let minProfileDist = Math.hypot(lon - closestProfile.lon, lat - closestProfile.lat);
-    for (const point of state.elevationProfile) {
-      const dist = Math.hypot(lon - point.lon, lat - point.lat);
-      if (dist < minProfileDist) {
-        minProfileDist = dist;
-        closestProfile = point;
-      }
+  // Calculate distance from trail by projecting the point onto the track.
+  // Use the elevation profile (dense GPX track coords, ~0.1 mi spacing) if available,
+  // otherwise fall back to waypoint segments (~0.9 mi spacing).
+  const track = (state.elevationProfile && state.elevationProfile.length >= 2)
+    ? state.elevationProfile
+    : state.allWaypoints;
+
+  const p = toLocalMiles(lat, lon, lat);
+  let minDist = Infinity;
+
+  if (track.length >= 2) {
+    for (let i = 0; i < track.length - 1; i++) {
+      const a = toLocalMiles(track[i].lat, track[i].lon, lat);
+      const b = toLocalMiles(track[i + 1].lat, track[i + 1].lon, lat);
+      const dist = pointToSegmentDistMiles(p.x, p.y, a.x, a.y, b.x, b.y);
+      if (dist < minDist) minDist = dist;
     }
-    // Convert degrees to miles using the closest profile point
-    distanceFromTrail = degreesToMiles(lat - closestProfile.lat, lon - closestProfile.lon, lat);
   } else {
-    // Fallback to waypoint distance if no elevation profile
-    distanceFromTrail = degreesToMiles(lat - closestWp.lat, lon - closestWp.lon, lat);
+    // Single point — distance to it
+    minDist = degreesToMiles(lat - track[0].lat, lon - track[0].lon, lat);
   }
 
-  // Use the closest waypoint's mile - no interpolation needed
-  // The waypoints are dense enough (~0.9 mi apart) for good accuracy
   return {
     mile: closestWp.mile,
-    distanceFromTrail: distanceFromTrail
+    distanceFromTrail: minDist
   };
 };
 

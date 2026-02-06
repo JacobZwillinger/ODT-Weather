@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Oregon Desert Trail Weather</title>
     <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.1.2/dist/maplibre-gl.css" />
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.1.2/dist/maplibre-gl.css" integrity="sha384-m6tadjb5ohv1Fw3GJynIWn5c1scKfW7kxSXuDrhlq1gdXPn7I7UL0sSKDfCUErOb" crossorigin="anonymous" />
   </head>
   <body>
     <div class="header">
@@ -73,7 +73,7 @@
 
         <div class="map-elevation-chart">
           <h4>Next 20 Miles Elevation</h4>
-          <canvas id="mapElevationChart"></canvas>
+          <canvas id="mapElevationChart" role="img" aria-label="Elevation profile chart showing the next 20 miles of trail elevation"></canvas>
         </div>
       </div>
 
@@ -143,8 +143,8 @@
       </div>
     </div>
 
-    <script src="https://unpkg.com/maplibre-gl@4.1.2/dist/maplibre-gl.js"></script>
-    <script src="https://unpkg.com/pmtiles@3.0.6/dist/pmtiles.js"></script>
+    <script src="https://unpkg.com/maplibre-gl@4.1.2/dist/maplibre-gl.js" integrity="sha384-q3AR0wM1VzQVRuZgwc2pyYPArgjMNrAXLctZcYa7rBd1y1O1UanRgDrlJN913Gt5" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/pmtiles@3.0.6/dist/pmtiles.js" integrity="sha384-4sbA4B4Oqxkzs6apu8HaZcGrL3BySmt0tO/LQf6al3hkgq8ijZFxkTkvxxZZ/3PU" crossorigin="anonymous"></script>
     <script type="module" src="js/app.js"></script>
   </body>
 </html>

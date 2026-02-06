@@ -332,7 +332,7 @@ export const initMap = () => {
         }
       });
 
-      // Town points just update mile info (could add town detail modal later)
+      // Town points are known trail features — pass distanceFromTrail: 0
       map.on('click', 'town-points-unclustered', async (e) => {
         if (!e.features || e.features.length === 0) return;
         if (!shouldAllowMapClicks()) return; // GPS mode active, ignore clicks
@@ -341,7 +341,7 @@ export const initMap = () => {
         const coords = e.features[0].geometry.coordinates;
         const result = await findMileFromCoords(coords[1], coords[0]);
         if (updateId === pendingMileUpdate) {
-          showMapInfo(result.mile, result.distanceFromTrail);
+          showMapInfo(result.mile, 0);
         }
       });
 
@@ -546,6 +546,7 @@ export const initMap = () => {
     // Click handlers for overlay layers (inside map.on('load') to ensure layers exist)
     // Use pendingMileUpdate to prevent race conditions from rapid clicks
     // These only update mile info when GPS mode is off (except waypoint modal still opens)
+    // Section circles are ON the trail by definition — always pass distanceFromTrail: 0
     map.on('click', 'section-circles', async (e) => {
       if (!e.features || e.features.length === 0) return;
       if (!shouldAllowMapClicks()) return; // GPS mode active, ignore clicks
@@ -554,7 +555,7 @@ export const initMap = () => {
       const coords = e.features[0].geometry.coordinates;
       const result = await findMileFromCoords(coords[1], coords[0]);
       if (updateId === pendingMileUpdate) {
-        showMapInfo(result.mile, result.distanceFromTrail);
+        showMapInfo(result.mile, 0);
       }
     });
 
@@ -575,6 +576,9 @@ export const initMap = () => {
       }
     });
 
+    // Route-line clicks are ON the trail by definition — always pass distanceFromTrail: 0
+    // The elevation profile used for off-trail calculation may not perfectly align with the
+    // rendered PMTiles route, causing false "off trail" readings when clicking directly on it.
     map.on('click', 'route-line', async (e) => {
       // Check if a waypoint icon was clicked at this location - if so, skip route-line handling
       const waypointFeatures = map.queryRenderedFeatures(e.point, { layers: ['waypoint-icons'] });
@@ -587,7 +591,7 @@ export const initMap = () => {
       const coords = e.lngLat;
       const result = await findMileFromCoords(coords.lat, coords.lng);
       if (updateId === pendingMileUpdate) {
-        showMapInfo(result.mile, result.distanceFromTrail);
+        showMapInfo(result.mile, 0);
       }
     });
 
@@ -603,20 +607,28 @@ export const initMap = () => {
   // Add navigation controls
   map.addControl(new maplibregl.NavigationControl(), 'top-right');
 
-  // Add scale control - position it top-left to avoid elevation chart
+  // Add scale control - position it bottom-left above elevation chart (avoid overlap with info panel in top-left)
   map.addControl(new maplibregl.ScaleControl({
     maxWidth: 150,
     unit: 'imperial'
-  }), 'top-left');
+  }), 'bottom-left');
 
   // Add custom zoom level display in bottom-left (above elevation chart)
+  // Wait for map load to ensure control containers exist
   const zoomDisplay = document.createElement('div');
   zoomDisplay.className = 'zoom-level-display';
   zoomDisplay.textContent = `z${Math.round(map.getZoom())}`;
-  const bottomLeftCtrl = document.querySelector('.maplibregl-ctrl-bottom-left');
-  if (bottomLeftCtrl) { // [BUGS] Fixed: null check before appendChild - element may not exist yet
-    bottomLeftCtrl.appendChild(zoomDisplay);
-  }
+
+  const appendZoomDisplay = () => {
+    const bottomLeftCtrl = document.querySelector('.maplibregl-ctrl-bottom-left');
+    if (bottomLeftCtrl) {
+      bottomLeftCtrl.appendChild(zoomDisplay);
+    }
+  };
+
+  // Try immediately, and also on load as a fallback
+  appendZoomDisplay();
+  map.on('load', appendZoomDisplay);
 
   // Update zoom display on zoom change
   map.on('zoom', () => {
