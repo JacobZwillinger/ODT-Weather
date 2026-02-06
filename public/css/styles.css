@@ -66,7 +66,7 @@ h1 {
 
 .api-usage {
   font-size: 0.75rem;
-  color: #999;
+  color: #737373; /* Fixed: was #999, now meets WCAG AA contrast on white */
   text-align: right;
 }
 
@@ -214,130 +214,6 @@ th {
   font-style: italic;
 }
 
-/* Water table styles */
-.water-source {
-  font-weight: 500;
-}
-
-.water-details {
-  font-size: 0.85rem;
-  color: #666;
-  margin-top: 2px;
-}
-
-.dist-warning {
-  color: #dc2626;
-  font-weight: 600;
-}
-
-.off-trail-badge {
-  display: inline-block;
-  background: #fef3c7;
-  color: #92400e;
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-size: 0.75rem;
-  font-weight: 500;
-}
-
-/* Progress tab styles */
-.progress-container {
-  max-width: 500px;
-}
-
-.progress-panel {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 12px;
-  background: #fafafa;
-}
-
-.progress-panel-label {
-  font-size: 0.75rem;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 4px;
-}
-
-.progress-panel-value {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #1b1b1b;
-}
-
-.progress-panel-detail {
-  font-size: 0.9rem;
-  color: #666;
-  margin-top: 4px;
-}
-
-.progress-slider-container {
-  margin-bottom: 20px;
-}
-
-.progress-slider-label {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  font-size: 0.85rem;
-  color: #666;
-}
-
-.progress-slider {
-  width: 100%;
-  height: 8px;
-  -webkit-appearance: none;
-  appearance: none;
-  background: #e5e5e5;
-  border-radius: 4px;
-  outline: none;
-}
-
-.progress-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  background: #1b1b1b;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.progress-slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  background: #1b1b1b;
-  border-radius: 50%;
-  cursor: pointer;
-  border: none;
-}
-
-.progress-current {
-  text-align: center;
-  font-size: 1.1rem;
-  font-weight: 500;
-  margin-top: 8px;
-}
-
-.progress-summary {
-  text-align: center;
-  padding: 12px;
-  background: #f5f5f5;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  color: #666;
-}
-
-.progress-warning {
-  color: #dc2626;
-}
-
-.progress-complete {
-  color: #16a34a;
-}
-
 .error-banner {
   background: #fef2f2;
   border: 1px solid #fecaca;
@@ -345,33 +221,6 @@ th {
   padding: 12px;
   border-radius: 6px;
   margin-bottom: 16px;
-}
-
-.debug-toggle {
-  margin-top: 20px;
-  font-size: 0.85rem;
-}
-
-.debug-toggle button {
-  background: none;
-  border: 1px solid #ccc;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  color: #666;
-}
-
-.debug-table {
-  margin-top: 12px;
-  font-size: 0.8rem;
-}
-
-.debug-table table {
-  width: 100%;
-}
-
-.debug-table th, .debug-table td {
-  padding: 4px 8px;
 }
 
 /* Map tab styles */
@@ -415,7 +264,7 @@ th {
 
 .map-info-current-label {
   font-size: 0.6rem;
-  color: #999;
+  color: #737373; /* Fixed: was #999, now meets WCAG AA contrast on white */
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-weight: 600;
@@ -446,7 +295,7 @@ th {
 
 .map-info-waypoint-label {
   font-size: 0.6rem;
-  color: #999;
+  color: #737373; /* Fixed: was #999, now meets WCAG AA contrast on white */
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-weight: 600;
@@ -871,7 +720,7 @@ button {
 
 .gps-status {
   font-size: 0.6rem;
-  color: #999;
+  color: #737373; /* Fixed: was #999, now meets WCAG AA contrast on white */
   text-transform: uppercase;
   letter-spacing: 0.3px;
   font-weight: 600;
@@ -986,10 +835,10 @@ button {
   box-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }
 
-/* Scale control positioning - ensure it's above elevation chart */
-.maplibregl-ctrl-top-left .maplibregl-ctrl-scale {
+/* Scale control positioning in bottom-left */
+.maplibregl-ctrl-bottom-left .maplibregl-ctrl-scale {
   margin-left: 10px;
-  margin-top: 10px;
+  margin-bottom: 4px;
 }
 
 @media (min-width: 768px) {

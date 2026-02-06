@@ -48,6 +48,21 @@ app.get("/api/forecast", async (req, res) => {
 
     const data = await response.json();
     const currently = data.currently || {};
+    const dailyData = data.daily?.data || [];
+
+    // Extract API usage from response headers
+    const apiCalls = response.headers.get("x-forecast-api-calls");
+    const rateLimit = response.headers.get("ratelimit-limit");
+    const rateRemaining = response.headers.get("ratelimit-remaining");
+
+    // Format daily forecast for 7 days (matches api/forecast.js response shape)
+    const daily = dailyData.slice(0, 7).map((day) => ({
+      time: day.time,
+      high: day.temperatureHigh,
+      low: day.temperatureLow,
+      icon: day.icon || "",
+      summary: day.summary || ""
+    }));
 
     return res.json({
       time: currently.time,
@@ -57,7 +72,13 @@ app.get("/api/forecast", async (req, res) => {
       apparentTemperature: currently.apparentTemperature,
       windSpeed: currently.windSpeed,
       windGust: currently.windGust,
-      humidity: currently.humidity
+      humidity: currently.humidity,
+      daily,
+      _usage: {
+        calls: apiCalls ? parseInt(apiCalls, 10) : null,
+        limit: rateLimit ? parseInt(rateLimit, 10) : null,
+        remaining: rateRemaining ? parseInt(rateRemaining, 10) : null
+      }
     });
   } catch (error) {
     console.error(error);

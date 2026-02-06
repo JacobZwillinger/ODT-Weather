@@ -425,3 +425,94 @@ describe('findNearestWaypoint - edge cases', () => {
     expect(result.waypoint.name).toBe('A');
   });
 });
+
+// Tests for on-trail detection: clicking on trail features should NOT show off-trail
+// These verify that findMileFromCoords returns low distanceFromTrail for points on/near waypoints
+// and high distanceFromTrail for points far from the trail.
+describe('findMileFromCoords - on-trail vs off-trail detection', () => {
+  beforeEach(() => {
+    // Dense waypoints along a trail (approximately straight line going north)
+    // At ~43°N: 1° lat ≈ 69 mi, 1° lon ≈ 50 mi
+    state.allWaypoints = [
+      { name: 'S01', lat: 43.000, lon: -120.000, mile: 0 },
+      { name: 'S02', lat: 43.013, lon: -120.000, mile: 0.9 },
+      { name: 'S03', lat: 43.026, lon: -120.000, mile: 1.8 },
+      { name: 'S04', lat: 43.039, lon: -120.000, mile: 2.7 },
+      { name: 'S05', lat: 43.052, lon: -120.000, mile: 3.6 },
+      { name: 'S06', lat: 43.065, lon: -120.000, mile: 4.5 },
+      { name: 'S07', lat: 43.078, lon: -120.000, mile: 5.4 },
+      { name: 'S08', lat: 43.091, lon: -120.000, mile: 6.3 },
+      { name: 'S09', lat: 43.104, lon: -120.000, mile: 7.2 },
+      { name: 'S10', lat: 43.117, lon: -120.000, mile: 8.1 },
+    ];
+    // Dense elevation profile along the same trail
+    state.elevationProfile = state.allWaypoints.map((wp, i) => ({
+      lat: wp.lat, lon: wp.lon, distance: wp.mile, elevation: 4000 + i * 50
+    }));
+  });
+
+  afterEach(() => {
+    state.elevationProfile = null;
+  });
+
+  // ON-TRAIL: clicking directly on waypoint positions should return distanceFromTrail ≈ 0
+  it('point exactly on first waypoint is on-trail', () => {
+    const result = findMileFromCoords(43.000, -120.000);
+    expect(result.distanceFromTrail).toBe(0);
+    expect(result.mile).toBe(0);
+  });
+
+  it('point exactly on middle waypoint is on-trail', () => {
+    const result = findMileFromCoords(43.052, -120.000);
+    expect(result.distanceFromTrail).toBe(0);
+    expect(result.mile).toBe(3.6);
+  });
+
+  it('point exactly on last waypoint is on-trail', () => {
+    const result = findMileFromCoords(43.117, -120.000);
+    expect(result.distanceFromTrail).toBe(0);
+    expect(result.mile).toBe(8.1);
+  });
+
+  it('point between two waypoints but on the trail line has low distanceFromTrail', () => {
+    // Point between S01 and S02, right on the trail (same longitude)
+    const result = findMileFromCoords(43.006, -120.000);
+    expect(result.distanceFromTrail).toBeLessThan(OFF_TRAIL_THRESHOLD);
+  });
+
+  it('point slightly off trail (within threshold) is still on-trail', () => {
+    // ~0.3 miles east of trail at lat 43: 0.006° lon ≈ 0.3 miles
+    const result = findMileFromCoords(43.052, -119.994);
+    expect(result.distanceFromTrail).toBeLessThan(OFF_TRAIL_THRESHOLD);
+  });
+
+  // OFF-TRAIL: points far from the trail should have distanceFromTrail > threshold
+  it('point 1 mile east of trail is off-trail', () => {
+    // At 43°N: 0.02° lon ≈ 1 mile
+    const result = findMileFromCoords(43.052, -119.98);
+    expect(result.distanceFromTrail).toBeGreaterThan(OFF_TRAIL_THRESHOLD);
+  });
+
+  it('point 2 miles east of trail is off-trail', () => {
+    // At 43°N: 0.04° lon ≈ 2 miles
+    const result = findMileFromCoords(43.052, -119.96);
+    expect(result.distanceFromTrail).toBeGreaterThan(OFF_TRAIL_THRESHOLD);
+  });
+
+  it('point 1 mile west of trail is off-trail', () => {
+    const result = findMileFromCoords(43.052, -120.02);
+    expect(result.distanceFromTrail).toBeGreaterThan(OFF_TRAIL_THRESHOLD);
+  });
+
+  it('point far north of trail end is off-trail', () => {
+    // 0.05° lat ≈ 3.5 miles north of the last waypoint
+    const result = findMileFromCoords(43.167, -120.000);
+    expect(result.distanceFromTrail).toBeGreaterThan(OFF_TRAIL_THRESHOLD);
+  });
+
+  it('point far south of trail start is off-trail', () => {
+    // 0.05° lat ≈ 3.5 miles south of the first waypoint
+    const result = findMileFromCoords(42.950, -120.000);
+    expect(result.distanceFromTrail).toBeGreaterThan(OFF_TRAIL_THRESHOLD);
+  });
+});

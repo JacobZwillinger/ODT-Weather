@@ -10,18 +10,54 @@ const escapeHtml = (str) => {
 // [UX] Changed: Track the element that triggered the modal so focus can return on close (WCAG 2.4.3)
 let lastFocusedElement = null;
 
-// [UX] Changed: Close modal helper that restores focus to trigger element
+// [UX] Changed: Close modal helper that restores focus to trigger element and releases focus trap
 const closeModal = (modal) => {
   modal.classList.remove('visible');
+  releaseFocusTrap(modal);
   if (lastFocusedElement) {
     lastFocusedElement.focus();
     lastFocusedElement = null;
   }
 };
 
+// Trap focus inside a modal so Tab/Shift+Tab cycle through focusable elements (WCAG 2.4.3)
+const trapFocus = (modal) => {
+  const focusableSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+  modal._trapHandler = (e) => {
+    if (e.key !== 'Tab') return;
+
+    const focusable = [...modal.querySelectorAll(focusableSelector)].filter(
+      el => !el.disabled && el.offsetParent !== null
+    );
+    if (focusable.length === 0) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  };
+
+  modal.addEventListener('keydown', modal._trapHandler);
+};
+
+const releaseFocusTrap = (modal) => {
+  if (modal._trapHandler) {
+    modal.removeEventListener('keydown', modal._trapHandler);
+    modal._trapHandler = null;
+  }
+};
+
 // [UX] Changed: Focus the close button when a modal opens for keyboard accessibility (WCAG 2.4.3)
 const focusModalClose = (modal) => {
   lastFocusedElement = document.activeElement;
+  trapFocus(modal);
   const closeBtn = modal.querySelector('.sources-modal-close');
   if (closeBtn) {
     setTimeout(() => closeBtn.focus(), 50);
