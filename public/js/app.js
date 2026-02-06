@@ -50,13 +50,18 @@ const init = async () => {
   initGpsButton();
 
   // Setup tab switching
+  // [UX] Changed: Update aria-selected on tab switch for screen readers (WCAG 4.1.2)
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const tab = btn.dataset.tab;
 
       // Update button states
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
       btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
 
       // Update content visibility
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));

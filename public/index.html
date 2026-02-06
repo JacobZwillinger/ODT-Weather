@@ -39,7 +39,8 @@
                 <line x1="19" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="2"/>
               </svg>
             </button>
-            <span class="gps-status" id="gpsStatus"></span>
+            <!-- [UX] Changed: Added aria-live so GPS status changes are announced (WCAG 4.1.3) -->
+            <span class="gps-status" id="gpsStatus" aria-live="polite"></span>
           </div>
           <div class="map-info-current-section">
             <div class="map-info-current-label">Current Mile</div>
