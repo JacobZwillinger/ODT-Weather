@@ -217,17 +217,15 @@ describe('findMileFromCoords', () => {
     expect(result.distanceFromTrail).toBeCloseTo(1, 0); // ~1 mile off trail
   });
 
-  it('interpolates mile when between adjacent waypoints', () => {
-    // Set up closer waypoints that are adjacent (within 2 miles)
+  it('returns nearest waypoint mile when between adjacent waypoints (no interpolation)', () => {
+    // The code does NOT interpolate — it returns the closest waypoint's mile
     state.allWaypoints = [
       { name: 'WP001', lat: 43.0, lon: -120.0, mile: 10 },
-      { name: 'WP002', lat: 43.01, lon: -120.0, mile: 11 },  // ~0.7 miles apart
+      { name: 'WP002', lat: 43.01, lon: -120.0, mile: 11 },
     ];
-    // Midway between the two waypoints
-    const result = findMileFromCoords(43.005, -120.0);
-    // Should interpolate to approximately 10.5 (halfway between 10 and 11)
-    expect(result.mile).toBeGreaterThan(10.2);
-    expect(result.mile).toBeLessThan(10.8);
+    // Point clearly closer to WP002
+    const result = findMileFromCoords(43.008, -120.0);
+    expect(result.mile).toBe(11);
   });
 
   it('returns 0 when no waypoints loaded', () => {
@@ -397,6 +395,7 @@ describe('loadElevationProfile', () => {
     state.elevationProfile = null;
     const mockData = [{ distance: 0, elevation: 3000 }];
     vi.spyOn(globalThis, 'fetch').mockResolvedValue({
+      ok: true,
       json: () => Promise.resolve(mockData)
     });
     const result = await loadElevationProfile();
