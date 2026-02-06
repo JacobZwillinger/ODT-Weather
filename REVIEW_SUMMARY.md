@@ -2,7 +2,7 @@
 
 **Date:** 2026-02-06
 **Reviewed by:** 5 specialized agents (BUGS, TEST, DOCS, UX, ARCH)
-**Test status:** ✅ 107 unit tests passing (0 failures)
+**Test status:** ✅ 117 unit tests passing (0 failures)
 
 ---
 
@@ -27,19 +27,19 @@ The ODT Weather app is a well-structured vanilla JS application with clean separ
 | 8 | DOCS | Medium | Missing documentation for test commands, API differences, and PMTiles files | `CLAUDE.md`, `README.md` |
 
 ### Unfixed (Require Human Decision)
-| # | Agent | Severity | Issue | Recommendation |
-|---|-------|----------|-------|----------------|
-| 1 | ARCH | High | `map.js` is a 736-line god file with 7 concerns | See `ARCHITECTURE_PROPOSAL.md` for decomposition plan |
-| 2 | ARCH | Medium | Circular import between `gps.js` ↔ `map.js` | Extract `showMapInfo` into `info-panel.js` |
-| 3 | ARCH | Medium | CDN scripts lack SRI hashes and fallbacks | Add `integrity` attributes to `<script>` tags |
-| 4 | ARCH | Low | Turf.js in `dependencies` but only used in build scripts | Move to `devDependencies` |
-| 5 | ARCH | Low | ~130 lines of dead CSS (progress, debug, old water table styles) | Remove unused styles |
-| 6 | UX | Medium | Color contrast for labels (`#999` on white) fails WCAG AA | Change to `#737373` or darker |
-| 7 | UX | Medium | No focus trapping inside modals | Implement `trapFocus()` utility |
-| 8 | UX | Medium | Canvas elevation chart has no screen reader alt text | Add dynamic `aria-label` |
-| 9 | UX | Low | Weather icon SVGs lack `aria-hidden` + alt text | Add to `renderWeatherTable` template |
-| 10 | BUGS | Low | `loadIcon` in `map.js` has no `onerror` handler — promise hangs forever on bad SVG | Add `img.onerror = reject` |
-| 11 | BUGS | Low | Local dev server returns different response shape than Vercel production | Align `server.js` with `api/forecast.js` |
+| # | Agent | Severity | Issue | Recommendation | Status |
+|---|-------|----------|-------|----------------|--------|
+| 1 | ARCH | High | `map.js` is a 746-line god file with 7 concerns | See `ARCHITECTURE_PROPOSAL.md` for decomposition plan | Open |
+| 2 | ARCH | Medium | Circular import between `gps.js` ↔ `map.js` | Extract `showMapInfo` into `info-panel.js` | Open |
+| 3 | ARCH | Medium | CDN scripts lack SRI hashes and fallbacks | Add `integrity` attributes to `<script>` tags | **Fixed** |
+| 4 | ARCH | Low | Turf.js in `dependencies` but only used in build scripts | Move to `devDependencies` | **Fixed** |
+| 5 | ARCH | Low | ~130 lines of dead CSS (progress, debug, old water table styles) | Remove unused styles | **Fixed** |
+| 6 | UX | Medium | Color contrast for labels (`#999` on white) fails WCAG AA | Change to `#737373` or darker | **Fixed** |
+| 7 | UX | Medium | No focus trapping inside modals | Implement `trapFocus()` utility | **Fixed** |
+| 8 | UX | Medium | Canvas elevation chart has no screen reader alt text | Add dynamic `aria-label` | **Fixed** (static `aria-label` added) |
+| 9 | UX | Low | Weather icon SVGs lack `aria-hidden` + alt text | Add to `renderWeatherTable` template | Open |
+| 10 | BUGS | Low | `loadIcon` in `map.js` has no `onerror` handler — promise hangs forever on bad SVG | Add `img.onerror = reject` | Open |
+| 11 | BUGS | Low | Local dev server returns different response shape than Vercel production | Align `server.js` with `api/forecast.js` | **Fixed** |
 
 ---
 
@@ -71,17 +71,17 @@ The ODT Weather app is a well-structured vanilla JS application with clean separ
 
 ## Recommended Follow-up Work
 
-### Immediate (< 1 day)
-1. Move `@turf/*` packages from `dependencies` to `devDependencies`
-2. Add SRI integrity hashes to CDN `<script>` and `<link>` tags
-3. Align `server.js` forecast response with `api/forecast.js` (add `daily` array)
-4. Remove ~130 lines of dead CSS (progress, debug, old water table styles)
+### Immediate — ✅ All Complete
+1. ~~Move `@turf/*` packages from `dependencies` to `devDependencies`~~ ✅
+2. ~~Add SRI integrity hashes to CDN `<script>` and `<link>` tags~~ ✅
+3. ~~Align `server.js` forecast response with `api/forecast.js` (add `daily` array)~~ ✅
+4. ~~Remove ~130 lines of dead CSS (progress, debug, old water table styles)~~ ✅
 
-### Short-term (1-3 days)
-5. Fix color contrast on small labels (`#999` → `#737373`)
-6. Add focus trapping in modals
-7. Add `aria-label` to elevation chart canvas
-8. Break circular import: extract `showMapInfo` into `info-panel.js`
+### Short-term — Mostly Complete
+5. ~~Fix color contrast on small labels (`#999` → `#737373`)~~ ✅
+6. ~~Add focus trapping in modals~~ ✅
+7. ~~Add `aria-label` to elevation chart canvas~~ ✅
+8. Break circular import: extract `showMapInfo` into `info-panel.js` — **Open**
 
 ### Medium-term (requires ARCHITECTURE_PROPOSAL.md review)
 9. Decompose `map.js` into 5 sub-modules (~200 lines each)
@@ -92,15 +92,15 @@ The ODT Weather app is a well-structured vanilla JS application with clean separ
 
 ## Test Coverage Summary
 
-| File | Before Review | After Review |
-|------|--------------|--------------|
-| `utils.js` | 31 tests | 50 tests (+19) |
-| `config.js` | 12 tests | 12 tests |
-| `weather.js` | 0 tests | 9 tests (+9) |
-| `modals.js` | 0 tests | 17 tests (+17) |
-| `gps.js` | 0 tests | 12 tests (+12) |
-| `api/forecast.js` | 0 tests | 7 tests (+7) |
-| **Total** | **43 tests** | **107 tests (+64)** |
+| File | Before Review | After Review | Post-Review |
+|------|--------------|--------------|-------------|
+| `utils.js` | 31 tests | 50 tests (+19) | 60 tests (+10 on-trail/off-trail) |
+| `config.js` | 12 tests | 12 tests | 12 tests |
+| `weather.js` | 0 tests | 9 tests (+9) | 9 tests |
+| `modals.js` | 0 tests | 17 tests (+17) | 17 tests |
+| `gps.js` | 0 tests | 12 tests (+12) | 12 tests |
+| `api/forecast.js` | 0 tests | 7 tests (+7) | 7 tests |
+| **Total** | **43 tests** | **107 tests (+64)** | **117 tests (+10)** |
 
 ---
 

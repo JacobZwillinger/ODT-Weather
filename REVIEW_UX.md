@@ -174,9 +174,9 @@
 | No live regions for dynamic content | 4.1.3 Status Messages | Medium | Fixed |
 | No visible focus indicators | 2.4.7 Focus Visible | High | Fixed |
 | No reduced motion support | 2.3.3 Animation from Interactions | Medium | Fixed |
-| Label contrast (#999 on white) | 1.4.3 Contrast (Minimum) | Medium | Proposed |
-| No focus trapping in modals | 2.4.3 Focus Order | Medium | Proposed |
-| Canvas chart has no alt text | 1.1.1 Non-text Content | Medium | Proposed |
+| Label contrast (#999 on white) | 1.4.3 Contrast (Minimum) | Medium | Fixed (changed to #737373) |
+| No focus trapping in modals | 2.4.3 Focus Order | Medium | Fixed (trapFocus/releaseFocusTrap in modals.js) |
+| Canvas chart has no alt text | 1.1.1 Non-text Content | Medium | Fixed (static aria-label on canvas) |
 | Weather icons have no alt text | 1.1.1 Non-text Content | Low | Proposed |
 | No arrow key tab navigation | 2.1.1 Keyboard | Low | Proposed |
 | No skip navigation link | 2.4.1 Bypass Blocks | Low | Proposed |

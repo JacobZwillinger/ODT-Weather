@@ -32,6 +32,7 @@ When looking up mile from coordinates:
 The elevation profile should ONLY be used for:
 - Rendering the elevation chart visualization
 - Getting elevation data at a given mile marker
+- Dense trail geometry for distance-from-trail calculations (perpendicular projection onto track segments)
 
 ## Important Files
 <!-- [DOCS] Updated: added missing files and server/API details -->
@@ -46,9 +47,9 @@ The elevation profile should ONLY be used for:
 - `public/*.pmtiles` - Vector tile files (basemap, overlay, route, contours)
 
 ## Local vs Production Differences
-The local `server.js` forecast endpoint returns **only current conditions** (no daily array).
-The Vercel `api/forecast.js` returns **current conditions + 7-day daily forecasts + API usage**.
-The frontend weather table requires the daily forecast data, so it will show `--` locally.
+Both the local `server.js` and Vercel `api/forecast.js` now return the same response shape:
+**current conditions + 7-day daily forecasts + API usage (`_usage`)**.
+The weather table works identically in both environments.
 
 ## Testing
 - **Unit tests:** `npm test` (Vitest, happy-dom)
