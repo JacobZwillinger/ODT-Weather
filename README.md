@@ -52,10 +52,47 @@ being blocked by a proxy or a restrictive registry. Try the following:
    npm install
    ```
 
+## Testing
+
+<!-- [DOCS] Updated: added missing testing instructions -->
+
+Run unit tests:
+
+```bash
+npm test
+```
+
+Run end-to-end tests (requires Playwright browsers installed):
+
+```bash
+npx playwright install chromium
+npm run test:e2e
+```
+
+Run all tests:
+
+```bash
+npm run test:all
+```
+
 ## API
 
-The frontend calls `/api/forecast?lat=<lat>&lon=<lon>`. The backend proxies the request to PirateWeather and returns a trimmed response for faster payloads.
+The frontend calls `/api/forecast?lat=<lat>&lon=<lon>`. The backend proxies the request to PirateWeather and returns a trimmed response with current conditions and 7-day daily forecasts.
 
-## Placeholder trail points
+There is also an `/api/usage` endpoint that returns current PirateWeather API call counts.
 
-The current UI uses five placeholder points. Swap these with real GPX locations once available.
+**Note:** The local Express server (`server.js`) returns only current conditions. The Vercel serverless function (`api/forecast.js`) returns both current conditions and 7-day daily forecasts. The frontend weather table relies on the daily forecast data, so the weather table will show `--` when running locally.
+
+## Data Pipeline
+
+<!-- [DOCS] Updated: added data pipeline docs -->
+
+Water sources and town data are generated from GPX + CSV files:
+
+```bash
+python3 build-water-sources.py
+```
+
+This outputs `public/water-sources.json` and `public/towns.json`.
+
+Offline map tiles are built separately. See `OFFLINE_MAP_BUILD.md` for details.

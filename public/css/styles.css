@@ -913,10 +913,17 @@ button {
   }
 }
 
+/* Map controls - ensure they're above elevation chart (z-index: 5) */
+.maplibregl-ctrl-top-left,
+.maplibregl-ctrl-top-right,
+.maplibregl-ctrl-bottom-left,
+.maplibregl-ctrl-bottom-right {
+  z-index: 10;
+}
+
 /* Bottom-left controls - position above elevation chart */
 .maplibregl-ctrl-bottom-left {
   bottom: 200px; /* Above elevation chart */
-  z-index: 10;
 }
 
 /* Zoom level display */

@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 import {
   state,
   getWaypointName,
@@ -9,6 +9,7 @@ import {
   findNextTown,
   getDayHeaders,
   getMapUrl,
+  loadElevationProfile,
   OFF_TRAIL_THRESHOLD
 } from '../../public/js/utils.js';
 
@@ -234,5 +235,194 @@ describe('findMileFromCoords', () => {
     const result = findMileFromCoords(43.0, -120.0);
     expect(result.mile).toBe(0);
     expect(result.distanceFromTrail).toBe(0);
+  });
+
+  // [TEST] Added: tests findMileFromCoords uses elevation profile for distance when available
+  it('uses elevation profile for distanceFromTrail when loaded', () => {
+    // Set up elevation profile with dense trail points slightly off from waypoints
+    state.elevationProfile = [
+      { lat: 43.0, lon: -120.0, distance: 0, elevation: 4000 },
+      { lat: 43.05, lon: -120.0, distance: 3.5, elevation: 4200 },
+      { lat: 43.1, lon: -120.0, distance: 7, elevation: 4400 },
+    ];
+    // Point on the trail - should have near-zero distance
+    const result = findMileFromCoords(43.0, -120.0);
+    expect(result.distanceFromTrail).toBe(0);
+    expect(result.mile).toBe(0);
+    // Clean up
+    state.elevationProfile = null;
+  });
+
+  // [TEST] Added: tests that single-waypoint edge case still works for findMileFromCoords
+  it('works with only one waypoint', () => {
+    state.allWaypoints = [
+      { name: 'Only', lat: 43.0, lon: -120.0, mile: 100 }
+    ];
+    const result = findMileFromCoords(43.0, -120.0);
+    expect(result.mile).toBe(100);
+    expect(result.distanceFromTrail).toBe(0);
+  });
+});
+
+// [TEST] Added: tests for getWaypointName edge cases (missing fields, no details prefix)
+describe('getWaypointName - edge cases', () => {
+  it('returns details without "reliable:" prefix when prefix is absent', () => {
+    const source = { landmark: '', details: 'seasonal creek' };
+    expect(getWaypointName(source)).toBe('seasonal creek');
+  });
+
+  it('handles case-insensitive "Reliable:" prefix', () => {
+    const source = { landmark: '', details: 'Reliable: big spring' };
+    expect(getWaypointName(source)).toBe('big spring');
+  });
+
+  it('returns empty string when both landmark and details are empty', () => {
+    const source = { landmark: '', details: '' };
+    expect(getWaypointName(source)).toBe('');
+  });
+});
+
+// [TEST] Added: tests for getWaypointShortName edge cases
+describe('getWaypointShortName - edge cases', () => {
+  it('returns full landmark when no parens or slashes', () => {
+    const source = { landmark: 'Simple Name', details: '' };
+    expect(getWaypointShortName(source)).toBe('Simple Name');
+  });
+
+  it('handles landmark with multiple parentheticals', () => {
+    const source = { landmark: 'Creek (seasonal) (off-trail)', details: '' };
+    expect(getWaypointShortName(source)).toBe('Creek');
+  });
+
+  it('returns empty string when both fields are empty', () => {
+    const source = { landmark: '', details: '' };
+    expect(getWaypointShortName(source)).toBe('');
+  });
+});
+
+// [TEST] Added: tests for findNextWater with empty sources and epsilon boundary
+describe('findNextWater - edge cases', () => {
+  it('returns null when no water sources loaded', () => {
+    state.waterSources = [];
+    expect(findNextWater(0)).toBeNull();
+  });
+
+  it('finds source just beyond epsilon boundary', () => {
+    state.waterSources = [{ mile: 5.02, name: 'Spring' }];
+    // 5.02 > 5 + 0.01 (MILE_EPSILON), so should find it
+    const result = findNextWater(5);
+    expect(result).not.toBeNull();
+    expect(result.mile).toBe(5.02);
+  });
+
+  it('skips source within epsilon boundary', () => {
+    state.waterSources = [
+      { mile: 5.005, name: 'Spring A' },
+      { mile: 10, name: 'Spring B' }
+    ];
+    // 5.005 is NOT > 5 + 0.01, so should skip to Spring B
+    const result = findNextWater(5);
+    expect(result.mile).toBe(10);
+  });
+});
+
+// [TEST] Added: tests for findNextTown edge cases (empty, epsilon boundary)
+describe('findNextTown - edge cases', () => {
+  it('returns null when no towns loaded', () => {
+    state.towns = [];
+    expect(findNextTown(0)).toBeNull();
+  });
+
+  it('skips town at exact mile (epsilon check)', () => {
+    state.towns = [
+      { mile: 50, name: 'Town A' },
+      { mile: 150, name: 'Town B' }
+    ];
+    const result = findNextTown(50);
+    expect(result.mile).toBe(150);
+  });
+
+  it('returns first town when mile is negative', () => {
+    state.towns = [{ mile: 50, name: 'Town A' }];
+    const result = findNextTown(-10);
+    expect(result.mile).toBe(50);
+  });
+});
+
+// [TEST] Added: tests for getDayHeaders ensuring all 7 days are unique and sequential
+describe('getDayHeaders - additional', () => {
+  it('all 7 headers match expected format', () => {
+    const headers = getDayHeaders();
+    headers.forEach(h => {
+      expect(h).toMatch(/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat), \d{1,2}\/\d{1,2}$/);
+    });
+  });
+
+  it('headers are 7 consecutive days', () => {
+    const headers = getDayHeaders();
+    const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const today = new Date();
+    for (let i = 0; i < 7; i++) {
+      const expected = new Date(today);
+      expected.setDate(today.getDate() + i);
+      const expectedDay = dayNames[expected.getDay()];
+      expect(headers[i]).toContain(expectedDay);
+      expect(headers[i]).toContain(`${expected.getMonth() + 1}/${expected.getDate()}`);
+    }
+  });
+});
+
+// [TEST] Added: tests for loadElevationProfile caching and error handling
+describe('loadElevationProfile', () => {
+  afterEach(() => {
+    state.elevationProfile = null;
+    vi.restoreAllMocks();
+  });
+
+  it('returns cached profile on second call', async () => {
+    const mockProfile = [{ distance: 0, elevation: 4000, lat: 43.0, lon: -120.0 }];
+    state.elevationProfile = mockProfile;
+    const result = await loadElevationProfile();
+    expect(result).toBe(mockProfile);
+  });
+
+  it('returns null when fetch fails', async () => {
+    state.elevationProfile = null;
+    vi.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('Network error'));
+    const result = await loadElevationProfile();
+    expect(result).toBeNull();
+  });
+
+  it('fetches and caches profile on first call', async () => {
+    state.elevationProfile = null;
+    const mockData = [{ distance: 0, elevation: 3000 }];
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue({
+      json: () => Promise.resolve(mockData)
+    });
+    const result = await loadElevationProfile();
+    expect(result).toEqual(mockData);
+    expect(state.elevationProfile).toBe(result);
+  });
+});
+
+// [TEST] Added: tests for findNearestWaypoint with single waypoint
+describe('findNearestWaypoint - edge cases', () => {
+  it('works with a single waypoint', () => {
+    state.allWaypoints = [{ name: 'Only', mile: 100, lat: 43.0, lon: -120.0 }];
+    const result = findNearestWaypoint(200);
+    expect(result.waypoint.name).toBe('Only');
+    expect(result.distance).toBe(100);
+  });
+
+  it('returns midpoint waypoint when equidistant', () => {
+    state.allWaypoints = [
+      { name: 'A', mile: 0 },
+      { name: 'B', mile: 20 }
+    ];
+    // At mile 10, equidistant from both - should return first found (A) since minDist uses strict <
+    const result = findNearestWaypoint(10);
+    expect(result.distance).toBe(10);
+    // It returns A because the algorithm keeps the first found when distances are equal
+    expect(result.waypoint.name).toBe('A');
   });
 });

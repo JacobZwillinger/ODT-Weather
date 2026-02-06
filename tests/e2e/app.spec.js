@@ -232,6 +232,16 @@ test.describe('ODT Weather App', () => {
       // Check that scale control is in top-left container
       const topLeftContainer = page.locator('.maplibregl-ctrl-top-left');
       await expect(topLeftContainer.locator('.maplibregl-ctrl-scale')).toBeVisible();
+
+      // Verify the scale control has higher z-index than elevation chart
+      const scaleZIndex = await page.evaluate(() => {
+        const topLeft = document.querySelector('.maplibregl-ctrl-top-left');
+        const elevChart = document.querySelector('.map-elevation-chart');
+        const topLeftZ = parseInt(getComputedStyle(topLeft).zIndex) || 0;
+        const elevChartZ = parseInt(getComputedStyle(elevChart).zIndex) || 0;
+        return { topLeftZ, elevChartZ };
+      });
+      expect(scaleZIndex.topLeftZ).toBeGreaterThan(scaleZIndex.elevChartZ);
     });
 
     test('zoom level display is visible in bottom-left', async ({ page }) => {

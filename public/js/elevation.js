@@ -136,7 +136,7 @@ export const renderElevationChart = async (startMile, canvasId) => {
   ctx.font = isMobile ? '10px system-ui' : '11px system-ui';
   ctx.textAlign = 'center';
   if (!isMobile) {
-    ctx.fillText('Distance (miles)', padding.left + chartWidth / 2, canvas.height - 8);
+    ctx.fillText('Distance (miles)', padding.left + chartWidth / 2, displayHeight - 8); // [BUGS] Fixed: was canvas.height which includes DPR scaling, should use displayHeight
   }
 
   ctx.save();

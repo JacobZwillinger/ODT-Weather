@@ -4,10 +4,12 @@ This document explains how to build the offline basemap for the ODT Weather app.
 
 ## Overview
 
-The offline map system consists of two PMTiles files:
+<!-- [DOCS] Updated: added missing contours.pmtiles to overview -->
+The offline map system consists of three PMTiles files:
 
 1. **basemap.pmtiles** - OpenStreetMap basemap for the 5km corridor around the trail (~10-30 MB)
 2. **overlay.pmtiles** - Trail route, waypoints, and section markers (~300 KB)
+3. **contours.pmtiles** - Elevation contour lines for the corridor
 
 ## Prerequisites
 

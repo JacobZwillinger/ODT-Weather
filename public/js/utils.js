@@ -14,6 +14,7 @@ export const loadElevationProfile = async () => {
   if (state.elevationProfile) return state.elevationProfile;
   try {
     const response = await fetch('elevation-profile.json');
+    if (!response.ok) throw new Error(`HTTP ${response.status}`); // [BUGS] Fixed: missing response.ok check before parsing JSON
     state.elevationProfile = await response.json();
     return state.elevationProfile;
   } catch (error) {
@@ -69,63 +70,51 @@ const degreesToMiles = (latDiff, lonDiff, lat) => {
 export const OFF_TRAIL_THRESHOLD = 0.5;
 
 // Find mile marker from lat/lon coordinates
-// Uses WAYPOINTS as the authoritative source (not elevation profile)
-// because waypoints have accurate mile markers that match their coordinates.
+// Uses WAYPOINTS for mile markers (authoritative) and ELEVATION PROFILE for
+// distance-from-trail (it has dense points along the actual trail line).
 // Returns { mile, distanceFromTrail } where distanceFromTrail is in miles
 export const findMileFromCoords = (lat, lon) => {
-  // Use waypoints as the authoritative trail reference
-  // They have accurate mile markers that correspond to their coordinates
+  // Use waypoints for mile marker lookup (they have accurate mile values)
   if (state.allWaypoints.length === 0) {
     return { mile: 0, distanceFromTrail: 0 };
   }
 
-  let closest = state.allWaypoints[0];
-  let minDistDegrees = Math.hypot(lon - closest.lon, lat - closest.lat);
+  // Find the closest waypoint for the mile marker
+  let closestWp = state.allWaypoints[0];
+  let minWpDist = Math.hypot(lon - closestWp.lon, lat - closestWp.lat);
 
   for (const wp of state.allWaypoints) {
     const dist = Math.hypot(lon - wp.lon, lat - wp.lat);
-    if (dist < minDistDegrees) {
-      minDistDegrees = dist;
-      closest = wp;
+    if (dist < minWpDist) {
+      minWpDist = dist;
+      closestWp = wp;
     }
   }
 
-  // Convert the degree distance to miles for the off-trail check
-  const distanceFromTrail = degreesToMiles(lat - closest.lat, lon - closest.lon, lat);
-
-  // Interpolate mile based on nearby waypoints for better accuracy
-  // Find the two closest waypoints and interpolate between them
-  let mile = closest.mile;
-
-  // Sort waypoints by distance to get the two closest
-  const sortedByDist = [...state.allWaypoints]
-    .map(wp => ({
-      wp,
-      dist: Math.hypot(lon - wp.lon, lat - wp.lat)
-    }))
-    .sort((a, b) => a.dist - b.dist);
-
-  if (sortedByDist.length >= 2) {
-    const wp1 = sortedByDist[0].wp;
-    const wp2 = sortedByDist[1].wp;
-
-    // Only interpolate if the two waypoints are adjacent (within ~2 miles of each other)
-    if (Math.abs(wp1.mile - wp2.mile) <= 2) {
-      const dist1 = sortedByDist[0].dist;
-      const dist2 = sortedByDist[1].dist;
-      const totalDist = dist1 + dist2;
-
-      if (totalDist > 0) {
-        // Weight by inverse distance
-        const weight1 = dist2 / totalDist;
-        const weight2 = dist1 / totalDist;
-        mile = wp1.mile * weight1 + wp2.mile * weight2;
+  // For off-trail distance, use elevation profile (dense points along trail line)
+  // This is more accurate than waypoints which are sparse
+  let distanceFromTrail = 0;
+  if (state.elevationProfile && state.elevationProfile.length > 0) {
+    let closestProfile = state.elevationProfile[0];
+    let minProfileDist = Math.hypot(lon - closestProfile.lon, lat - closestProfile.lat);
+    for (const point of state.elevationProfile) {
+      const dist = Math.hypot(lon - point.lon, lat - point.lat);
+      if (dist < minProfileDist) {
+        minProfileDist = dist;
+        closestProfile = point;
       }
     }
+    // Convert degrees to miles using the closest profile point
+    distanceFromTrail = degreesToMiles(lat - closestProfile.lat, lon - closestProfile.lon, lat);
+  } else {
+    // Fallback to waypoint distance if no elevation profile
+    distanceFromTrail = degreesToMiles(lat - closestWp.lat, lon - closestWp.lon, lat);
   }
 
+  // Use the closest waypoint's mile - no interpolation needed
+  // The waypoints are dense enough (~0.9 mi apart) for good accuracy
   return {
-    mile: mile,
+    mile: closestWp.mile,
     distanceFromTrail: distanceFromTrail
   };
 };

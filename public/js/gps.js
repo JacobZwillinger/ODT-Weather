@@ -6,8 +6,7 @@ import { showMapInfo } from './map.js';
 let watchId = null;
 let isGpsActive = false;
 let lastPosition = null;
-let locationMarker = null;
-let accuracyCircle = null;
+// [BUGS] Fixed: removed unused locationMarker and accuracyCircle variables (map.js manages its own)
 let onPositionUpdate = null;
 
 // GPS options optimized for hiking
