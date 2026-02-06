@@ -7,6 +7,27 @@ const escapeHtml = (str) => {
   return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 };
 
+// [UX] Changed: Track the element that triggered the modal so focus can return on close (WCAG 2.4.3)
+let lastFocusedElement = null;
+
+// [UX] Changed: Close modal helper that restores focus to trigger element
+const closeModal = (modal) => {
+  modal.classList.remove('visible');
+  if (lastFocusedElement) {
+    lastFocusedElement.focus();
+    lastFocusedElement = null;
+  }
+};
+
+// [UX] Changed: Focus the close button when a modal opens for keyboard accessibility (WCAG 2.4.3)
+const focusModalClose = (modal) => {
+  lastFocusedElement = document.activeElement;
+  const closeBtn = modal.querySelector('.sources-modal-close');
+  if (closeBtn) {
+    setTimeout(() => closeBtn.focus(), 50);
+  }
+};
+
 // Setup a modal with close button and backdrop click handlers
 const setupModal = (modalId, closeButtonId) => {
   const modal = document.getElementById(modalId);
@@ -15,13 +36,20 @@ const setupModal = (modalId, closeButtonId) => {
   const closeBtn = document.getElementById(closeButtonId);
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
-      modal.classList.remove('visible');
+      closeModal(modal);
     });
   }
 
   modal.addEventListener('click', (e) => {
     if (e.target === modal) {
-      modal.classList.remove('visible');
+      closeModal(modal);
+    }
+  });
+
+  // [UX] Changed: Added Escape key handler for all modals (WCAG 2.1.1)
+  modal.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeModal(modal);
     }
   });
 };
@@ -84,6 +112,7 @@ export const showWaypointDetail = (latOrName, lon) => {
     detail.appendChild(descPara);
 
     modal.classList.add('visible');
+    focusModalClose(modal); // [UX] Changed: Focus close button on modal open (WCAG 2.4.3)
     return waypoint;
   }
   return null;
@@ -134,6 +163,7 @@ export const showWaterDetail = (name) => {
   }
 
   modal.classList.add('visible');
+  focusModalClose(modal); // [UX] Changed: Focus close button on modal open (WCAG 2.4.3)
   return source;
 };
 
@@ -189,6 +219,7 @@ export const showSourcesList = (type) => {
   }
 
   modal.classList.add('visible');
+  focusModalClose(modal); // [UX] Changed: Focus close button on modal open (WCAG 2.4.3)
 
   // Scroll to highlighted item
   setTimeout(() => {
@@ -211,6 +242,7 @@ export const initModals = () => {
   if (infoBtn && infoModal) {
     infoBtn.addEventListener('click', () => {
       infoModal.classList.add('visible');
+      focusModalClose(infoModal); // [UX] Changed: Focus close button on modal open (WCAG 2.4.3)
     });
   }
 
@@ -220,12 +252,26 @@ export const initModals = () => {
     waterCard.addEventListener('click', () => {
       showSourcesList('water');
     });
+    // [UX] Changed: Added keyboard activation for water card (WCAG 2.1.1)
+    waterCard.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        showSourcesList('water');
+      }
+    });
   }
 
   const townCard = document.getElementById('nextTownCard');
   if (townCard) {
     townCard.addEventListener('click', () => {
       showSourcesList('town');
+    });
+    // [UX] Changed: Added keyboard activation for town card (WCAG 2.1.1)
+    townCard.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        showSourcesList('town');
+      }
     });
   }
 };

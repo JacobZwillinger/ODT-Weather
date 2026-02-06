@@ -28,10 +28,12 @@ export const showMapInfo = (mile, distanceFromTrail = 0) => {
     mileEl.textContent = `${distanceFromTrail.toFixed(1)} mi`;
     mileEl.classList.add('off-trail');
     labelEl.textContent = 'Off Trail';
+    labelEl.classList.add('off-trail-label'); // [UX] Changed: Apply off-trail-label CSS class for red label color
   } else {
     mileEl.textContent = mile.toFixed(1);
     mileEl.classList.remove('off-trail');
     labelEl.textContent = 'Current Mile';
+    labelEl.classList.remove('off-trail-label'); // [UX] Changed: Remove off-trail-label when back on trail
   }
 
   const nearest = findNearestWaypoint(mile);

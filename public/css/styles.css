@@ -774,6 +774,31 @@ th {
   }
 }
 
+/* [UX] Changed: Added visible focus styles for keyboard navigation (WCAG 2.4.7) */
+*:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* [UX] Changed: Focus style for card elements acting as buttons */
+.map-info-card:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* [UX] Changed: Hover state for cards to match click affordance */
+.map-info-card:hover {
+  opacity: 0.8;
+}
+
+/* [UX] Changed: Focus style for modal close buttons */
+.sources-modal-close:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  background: #e5e5e5;
+}
+
 /* Touch improvements */
 * {
   -webkit-tap-highlight-color: transparent;
@@ -892,6 +917,29 @@ button {
 }
 
 /* GPS accuracy circle styling is handled via MapLibre paint properties */
+
+/* [UX] Changed: Respect reduced motion preference (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  .user-location-marker.pulsing {
+    animation: none;
+  }
+
+  .tab-content {
+    transition: none;
+  }
+
+  .map-info-card {
+    transition: none;
+  }
+
+  .gps-toggle-btn {
+    transition: none;
+  }
+
+  .info-btn {
+    transition: none;
+  }
+}
 
 @media (min-width: 768px) {
   .gps-toggle-section {
