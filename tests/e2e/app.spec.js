@@ -221,27 +221,37 @@ test.describe('ODT Weather App', () => {
   });
 
   test.describe('Map Controls', () => {
-    test('scale control is visible and not obscured', async ({ page }) => {
+    test('scale control is visible in bottom-left and not obscured by elevation chart', async ({ page }) => {
       // Wait for map to initialize
       await page.waitForTimeout(2000);
 
-      // Scale control should be in top-left and visible
+      // Scale control should exist and be visible
       const scaleControl = page.locator('.maplibregl-ctrl-scale');
       await expect(scaleControl).toBeVisible();
 
-      // Check that scale control is in top-left container
-      const topLeftContainer = page.locator('.maplibregl-ctrl-top-left');
-      await expect(topLeftContainer.locator('.maplibregl-ctrl-scale')).toBeVisible();
+      // Check that scale control is in bottom-left container
+      const bottomLeftContainer = page.locator('.maplibregl-ctrl-bottom-left');
+      await expect(bottomLeftContainer.locator('.maplibregl-ctrl-scale')).toBeVisible();
 
-      // Verify the scale control has higher z-index than elevation chart
-      const scaleZIndex = await page.evaluate(() => {
-        const topLeft = document.querySelector('.maplibregl-ctrl-top-left');
+      // Verify the bottom-left controls are positioned above the elevation chart
+      const positions = await page.evaluate(() => {
+        const bottomLeft = document.querySelector('.maplibregl-ctrl-bottom-left');
         const elevChart = document.querySelector('.map-elevation-chart');
-        const topLeftZ = parseInt(getComputedStyle(topLeft).zIndex) || 0;
-        const elevChartZ = parseInt(getComputedStyle(elevChart).zIndex) || 0;
-        return { topLeftZ, elevChartZ };
+        const blRect = bottomLeft.getBoundingClientRect();
+        const elRect = elevChart.getBoundingClientRect();
+        const blZ = parseInt(getComputedStyle(bottomLeft).zIndex) || 0;
+        const elZ = parseInt(getComputedStyle(elevChart).zIndex) || 0;
+        return {
+          controlBottom: blRect.bottom,
+          chartTop: elRect.top,
+          controlZIndex: blZ,
+          chartZIndex: elZ
+        };
       });
-      expect(scaleZIndex.topLeftZ).toBeGreaterThan(scaleZIndex.elevChartZ);
+      // Controls should either be above the chart or have higher z-index
+      expect(
+        positions.controlBottom <= positions.chartTop + 10 || positions.controlZIndex > positions.chartZIndex
+      ).toBe(true);
     });
 
     test('zoom level display is visible in bottom-left', async ({ page }) => {
@@ -256,7 +266,7 @@ test.describe('ODT Weather App', () => {
       const bottomLeftContainer = page.locator('.maplibregl-ctrl-bottom-left');
       await expect(bottomLeftContainer.locator('.zoom-level-display')).toBeVisible();
 
-      // Should show a zoom level
+      // Should show a zoom level in zN format
       const zoomText = await zoomDisplay.textContent();
       expect(zoomText).toMatch(/^z\d+$/);
     });
@@ -273,8 +283,47 @@ test.describe('ODT Weather App', () => {
       await page.waitForTimeout(500);
 
       const newZoom = await zoomDisplay.textContent();
-      // Zoom level should have increased (or at least changed)
+      // Zoom level should match format and should have increased
       expect(newZoom).toMatch(/^z\d+$/);
+      const initialNum = parseInt(initialZoom.replace('z', ''));
+      const newNum = parseInt(newZoom.replace('z', ''));
+      expect(newNum).toBeGreaterThanOrEqual(initialNum);
+    });
+
+    test('both scale and zoom controls are not hidden behind other elements', async ({ page }) => {
+      // Wait for map to initialize
+      await page.waitForTimeout(2000);
+
+      // Verify controls are actually visible by checking their bounding rects are within viewport
+      const visibility = await page.evaluate(() => {
+        const scale = document.querySelector('.maplibregl-ctrl-scale');
+        const zoom = document.querySelector('.zoom-level-display');
+
+        const scaleRect = scale ? scale.getBoundingClientRect() : null;
+        const zoomRect = zoom ? zoom.getBoundingClientRect() : null;
+
+        return {
+          scaleExists: !!scale,
+          zoomExists: !!zoom,
+          scaleInViewport: scaleRect ? (
+            scaleRect.top >= 0 &&
+            scaleRect.bottom <= window.innerHeight &&
+            scaleRect.width > 0 &&
+            scaleRect.height > 0
+          ) : false,
+          zoomInViewport: zoomRect ? (
+            zoomRect.top >= 0 &&
+            zoomRect.bottom <= window.innerHeight &&
+            zoomRect.width > 0 &&
+            zoomRect.height > 0
+          ) : false
+        };
+      });
+
+      expect(visibility.scaleExists).toBe(true);
+      expect(visibility.zoomExists).toBe(true);
+      expect(visibility.scaleInViewport).toBe(true);
+      expect(visibility.zoomInViewport).toBe(true);
     });
   });
 

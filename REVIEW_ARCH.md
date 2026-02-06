@@ -138,27 +138,15 @@ As diagrammed above, `gps.js` imports from `map.js` and vice versa. This works t
 
 ### RISK-4: Duplicated API Logic Between `server.js` and `api/forecast.js`
 
-**Severity: Low** | **Impact: Drift, Maintenance**
+**Severity: Low** | **Impact: Drift, Maintenance** | **Status: ✅ RESOLVED**
 
-The Express route in `server.js` (local dev) and the Vercel serverless function in `api/forecast.js` implement the same forecast proxy but with **different response shapes**:
-
-| Field | `server.js` | `api/forecast.js` |
-|-------|------------|-------------------|
-| `daily` | Not included | Included (7-day) |
-| `_usage` | Not included | Included |
-
-This means local development and production return different data. The frontend (`weather.js`) calls `/api/forecast` which in production hits `api/forecast.js` (correct) but in local dev hits the Express route (incomplete). This is a latent bug — the weather table would show `--` for all days in local dev.
+`server.js` was updated to match `api/forecast.js` — both now return `daily` (7-day) and `_usage`. Local and production responses are now identical in shape.
 
 ### RISK-5: CDN Dependencies Without Integrity Hashes or Fallbacks
 
-**Severity: Medium** | **Impact: Security, Reliability**
+**Severity: Medium** | **Impact: Security, Reliability** | **Status: ✅ PARTIALLY RESOLVED**
 
-`index.html` loads MapLibre GL and PMTiles from `unpkg.com` without:
-- Subresource Integrity (SRI) `integrity` attributes
-- Any fallback if the CDN is unavailable
-- Version pinning beyond the URL (CDN could serve different content)
-
-For a hiking app used in remote areas (possibly with spotty connections), this is a reliability concern.
+SRI `integrity` hashes have been added to all three CDN resources (maplibre-gl.css, maplibre-gl.js, pmtiles.js). CDN fallback mechanism is still not implemented.
 
 ### RISK-6: XSS Surface in `modals.js` `showSourcesList`
 
@@ -181,17 +169,15 @@ If MapLibre fails to load (CDN down, browser incompatibility), `initMap` will th
 
 ### RISK-8: Turf.js Dependencies Unused in Frontend
 
-**Severity: Low** | **Impact: Bundle/Deploy Size**
+**Severity: Low** | **Impact: Bundle/Deploy Size** | **Status: ✅ RESOLVED**
 
-`package.json` lists `@turf/bbox`, `@turf/buffer`, and `@turf/line-to-polygon` as production dependencies, but these appear to be used only in build/data scripts, not in the frontend or server runtime. They inflate `node_modules` and deployment size for no runtime benefit. They should be moved to `devDependencies`.
+`@turf/bbox`, `@turf/buffer`, and `@turf/line-to-polygon` moved to `devDependencies`.
 
-### RISK-9: Single CSS File (952 lines) with Dead Styles
+### RISK-9: Single CSS File with Dead Styles
 
-**Severity: Low** | **Impact: Maintainability**
+**Severity: Low** | **Impact: Maintainability** | **Status: ✅ RESOLVED**
 
-`styles.css` contains styles for features that no longer appear in the HTML:
-- `.progress-container`, `.progress-panel`, `.progress-slider` (lines 244-335) — no progress tab exists
-- `.debug-toggle`, `.debug-table` (lines 350-376) — no debug UI exists
+~130 lines of dead CSS removed (progress, debug, old water table styles).
 - `.water-source`, `.water-details`, `.dist-warning`, `.off-trail-badge` (lines 218-241) — appear to be from a removed water table view
 
 These ~130 lines of dead CSS add maintenance confusion.
@@ -224,13 +210,13 @@ The most pressing scaling bottleneck is `map.js`. Adding features like route pro
 
 ## 5. Recommended Actions (Prioritized)
 
-### Immediate (Low Risk, High Value)
+### Immediate (Low Risk, High Value) — ✅ All Complete
 
-1. **Move Turf.js to devDependencies** — These are build-time only. Simple `package.json` edit.
-2. **Add SRI hashes to CDN script/link tags** — One-time addition to `index.html`.
-3. **Fix local dev API parity** — Update `server.js` forecast route to match `api/forecast.js` response shape (include `daily` and `_usage`).
-4. **Sanitize `showSourcesList`** — Use `escapeHtml` or `createTextNode` for data fields in the list rendering.
-5. **Remove dead CSS** — Delete unused progress, debug, and old water table styles.
+1. ~~**Move Turf.js to devDependencies**~~ ✅
+2. ~~**Add SRI hashes to CDN script/link tags**~~ ✅
+3. ~~**Fix local dev API parity**~~ ✅
+4. ~~**Sanitize `showSourcesList`**~~ ✅ (escapeHtml applied)
+5. ~~**Remove dead CSS**~~ ✅
 
 ### Short-term (Moderate Risk, High Value)
 
