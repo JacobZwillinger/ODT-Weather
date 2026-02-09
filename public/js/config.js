@@ -53,3 +53,35 @@ export const MILE_EPSILON = 0.01;
 export const WATER_WARNING_MILES = 20;
 export const SCROLL_DELAY_MS = 100;
 export const MAP_INIT_DELAY_MS = 100;
+
+// Category layer configuration
+export const CATEGORY_CONFIG = {
+  water: {
+    color: '#3b82f6',
+    icon: 'water-icon',
+    minZoom: 8,
+    clusterMaxZoom: 14,
+    clusterRadius: 35
+  },
+  towns: {
+    color: '#059669',
+    icon: 'town-icon',
+    minZoom: 7,
+    clusterMaxZoom: 12,
+    clusterRadius: 40
+  },
+  navigation: {
+    color: '#8b5cf6',
+    icon: 'nav-icon',
+    minZoom: 10,
+    clusterMaxZoom: 14,
+    clusterRadius: 30
+  },
+  toilets: {
+    color: '#f59e0b',
+    icon: 'toilet-icon',
+    minZoom: 8,
+    clusterMaxZoom: 14,
+    clusterRadius: 35
+  }
+};

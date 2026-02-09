@@ -1,7 +1,7 @@
-import { sectionPoints, WATER_WARNING_MILES, MAP_INIT_DELAY_MS } from './config.js';
-import { state, loadElevationProfile, findNearestWaypoint, findMileFromCoords, findNextWater, findNextTown, getWaypointShortName, OFF_TRAIL_THRESHOLD } from './utils.js';
+import { sectionPoints, WATER_WARNING_MILES, MAP_INIT_DELAY_MS, CATEGORY_CONFIG } from './config.js';
+import { state, loadElevationProfile, findNearestWaypoint, findMileFromCoords, findNextWater, findNextTown, getWaypointShortName, OFF_TRAIL_THRESHOLD, saveToggleState } from './utils.js';
 import { renderElevationChart } from './elevation.js';
-import { showWaypointDetail, showWaterDetail } from './modals.js';
+import { showWaypointDetail, showWaterDetail, showTownDetail } from './modals.js';
 import { setPositionUpdateCallback, shouldAllowMapClicks } from './gps.js';
 
 let map = null;
@@ -142,79 +142,61 @@ export const initMap = () => {
           <path d="M8 16h8v-3h-2v-2h-1V9h-2v2H10v2H8v3zm3-7h2v1h-2V9z" fill="#fff"/>
         </svg>
       `),
-      loadIcon('waypoint-icon', 20, 20, `
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="10" cy="10" r="9" fill="#8b5cf6" stroke="#fff" stroke-width="2"/>
+      loadIcon('nav-icon', 24, 24, `
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="11" fill="#8b5cf6" stroke="#fff" stroke-width="2"/>
+          <path d="M12 6 L16 16 L12 14 L8 16 Z" fill="#fff"/>
+        </svg>
+      `),
+      loadIcon('toilet-icon', 24, 24, `
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="11" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
+          <rect x="9" y="10" width="6" height="7" rx="1" fill="#fff"/>
+          <circle cx="12" cy="7.5" r="1.5" fill="#fff"/>
         </svg>
       `)
     ]);
 
-    // Create GeoJSON sources for water and towns with clustering
-    const waterGeoJSON = {
-      type: 'FeatureCollection',
-      features: state.waterSources.map(source => ({
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [source.lon, source.lat]
-        },
-        properties: {
-          type: 'water',
-          mile: source.mile,
-          name: source.name, // Use original name (e.g. CV001) for lookup
-          displayName: getWaypointShortName(source),
-          details: source.details
-        }
-      }))
-    };
+    // Create category layers dynamically
+    const createCategoryLayers = (category, data, config) => {
+      if (!data || data.length === 0) return;
 
-    const townGeoJSON = {
-      type: 'FeatureCollection',
-      features: state.towns.map(town => ({
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [town.lon, town.lat]
-        },
-        properties: {
-          type: 'town',
-          mile: town.mile,
-          name: town.name,
-          services: town.services
-        }
-      }))
-    };
+      const geojson = {
+        type: 'FeatureCollection',
+        features: data.map(item => ({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [item.lon, item.lat]
+          },
+          properties: {
+            type: category,
+            mile: item.mile,
+            name: item.name,
+            landmark: item.landmark || '',
+            subcategory: item.subcategory || ''
+          }
+        }))
+      };
 
-    // Populate coordinates from elevation profile
-    const populateCoords = async () => {
-      const profile = await loadElevationProfile();
-      if (!profile) return;
+      const visible = state.visibleCategories[category] ? 'visible' : 'none';
 
-      // Add clustered sources
-      map.addSource('water-points', {
+      map.addSource(`${category}-points`, {
         type: 'geojson',
-        data: waterGeoJSON,
+        data: geojson,
         cluster: true,
-        clusterMaxZoom: 14,
-        clusterRadius: 35
+        clusterMaxZoom: config.clusterMaxZoom,
+        clusterRadius: config.clusterRadius
       });
 
-      map.addSource('town-points', {
-        type: 'geojson',
-        data: townGeoJSON,
-        cluster: true,
-        clusterMaxZoom: 12,
-        clusterRadius: 40
-      });
-
-      // Add cluster layers
       map.addLayer({
-        id: 'water-clusters',
+        id: `${category}-clusters`,
         type: 'circle',
-        source: 'water-points',
+        source: `${category}-points`,
         filter: ['has', 'point_count'],
+        layout: { visibility: visible },
         paint: {
-          'circle-color': '#3b82f6',
+          'circle-color': config.color,
           'circle-radius': ['step', ['get', 'point_count'], 15, 5, 20, 10, 25],
           'circle-stroke-width': 2,
           'circle-stroke-color': '#fff'
@@ -222,78 +204,40 @@ export const initMap = () => {
       });
 
       map.addLayer({
-        id: 'water-cluster-count',
+        id: `${category}-cluster-count`,
         type: 'symbol',
-        source: 'water-points',
+        source: `${category}-points`,
         filter: ['has', 'point_count'],
         layout: {
           'text-field': '{point_count_abbreviated}',
           'text-font': ['Noto Sans Regular'],
-          'text-size': 12
+          'text-size': 12,
+          visibility: visible
         },
         paint: { 'text-color': '#fff' }
       });
 
       map.addLayer({
-        id: 'town-clusters',
-        type: 'circle',
-        source: 'town-points',
-        filter: ['has', 'point_count'],
-        paint: {
-          'circle-color': '#059669',
-          'circle-radius': ['step', ['get', 'point_count'], 18, 3, 22, 5, 26],
-          'circle-stroke-width': 2,
-          'circle-stroke-color': '#fff'
-        }
-      });
-
-      map.addLayer({
-        id: 'town-cluster-count',
+        id: `${category}-points-unclustered`,
         type: 'symbol',
-        source: 'town-points',
-        filter: ['has', 'point_count'],
-        layout: {
-          'text-field': '{point_count_abbreviated}',
-          'text-font': ['Noto Sans Regular'],
-          'text-size': 12
-        },
-        paint: { 'text-color': '#fff' }
-      });
-
-      // Add unclustered point layers
-      map.addLayer({
-        id: 'water-points-unclustered',
-        type: 'symbol',
-        source: 'water-points',
+        source: `${category}-points`,
         filter: ['!', ['has', 'point_count']],
         layout: {
-          'icon-image': 'water-icon',
+          'icon-image': config.icon,
           'icon-size': 1,
-          'icon-allow-overlap': false
+          'icon-allow-overlap': false,
+          visibility: visible
         },
-        minzoom: 8
+        minzoom: config.minZoom
       });
 
-      map.addLayer({
-        id: 'town-points-unclustered',
-        type: 'symbol',
-        source: 'town-points',
-        filter: ['!', ['has', 'point_count']],
-        layout: {
-          'icon-image': 'town-icon',
-          'icon-size': 1,
-          'icon-allow-overlap': false
-        },
-        minzoom: 7
-      });
-
-      // Cluster click handlers
-      map.on('click', 'water-clusters', (e) => {
-        const features = map.queryRenderedFeatures(e.point, { layers: ['water-clusters'] });
+      // Cluster click → zoom in
+      map.on('click', `${category}-clusters`, (e) => {
+        const features = map.queryRenderedFeatures(e.point, { layers: [`${category}-clusters`] });
         if (!features || features.length === 0) return;
         const clusterId = features[0].properties?.cluster_id;
         if (clusterId === undefined) return;
-        const source = map.getSource('water-points');
+        const source = map.getSource(`${category}-points`);
         if (!source) return;
         source.getClusterExpansionZoom(clusterId, (err, zoom) => {
           if (err) return;
@@ -301,59 +245,45 @@ export const initMap = () => {
         });
       });
 
-      map.on('click', 'town-clusters', (e) => {
-        const features = map.queryRenderedFeatures(e.point, { layers: ['town-clusters'] });
-        if (!features || features.length === 0) return;
-        const clusterId = features[0].properties?.cluster_id;
-        if (clusterId === undefined) return;
-        const source = map.getSource('town-points');
-        if (!source) return;
-        source.getClusterExpansionZoom(clusterId, (err, zoom) => {
-          if (err) return;
-          map.easeTo({ center: features[0].geometry.coordinates, zoom: zoom });
-        });
-      });
-
-      // Unclustered point click handlers
-      // Water points show detail modal
-      map.on('click', 'water-points-unclustered', (e) => {
+      // Unclustered point clicks → show detail modal
+      map.on('click', `${category}-points-unclustered`, (e) => {
         if (!e.features || e.features.length === 0) return;
         e.preventDefault();
         ++pendingMileUpdate;
 
-        // Get water source name and show detail modal
-        const sourceName = e.features[0].properties?.name;
-        const source = showWaterDetail(sourceName);
+        const itemName = e.features[0].properties?.name;
 
-        // Update mile info if GPS mode is off
-        if (!shouldAllowMapClicks()) return;
-        if (source && source.mile >= 0) {
-          showMapInfo(source.mile);
-        }
-      });
-
-      // Town points are known trail features — pass distanceFromTrail: 0
-      map.on('click', 'town-points-unclustered', async (e) => {
-        if (!e.features || e.features.length === 0) return;
-        if (!shouldAllowMapClicks()) return; // GPS mode active, ignore clicks
-        e.preventDefault();
-        const updateId = ++pendingMileUpdate;
-        const coords = e.features[0].geometry.coordinates;
-        const result = await findMileFromCoords(coords[1], coords[0]);
-        if (updateId === pendingMileUpdate) {
-          showMapInfo(result.mile, 0);
+        if (category === 'water') {
+          const source = showWaterDetail(itemName);
+          if (!shouldAllowMapClicks()) return;
+          if (source && source.mile >= 0) showMapInfo(source.mile);
+        } else if (category === 'towns') {
+          const town = showTownDetail(itemName);
+          if (!shouldAllowMapClicks()) return;
+          if (town && town.mile >= 0) showMapInfo(town.mile, 0);
+        } else {
+          const waypoint = showWaypointDetail(itemName);
+          if (!shouldAllowMapClicks()) return;
+          if (waypoint && waypoint.mile >= 0) showMapInfo(waypoint.mile);
         }
       });
 
       // Cursor changes
-      map.on('mouseenter', 'water-clusters', () => map.getCanvas().style.cursor = 'pointer');
-      map.on('mouseleave', 'water-clusters', () => map.getCanvas().style.cursor = '');
-      map.on('mouseenter', 'town-clusters', () => map.getCanvas().style.cursor = 'pointer');
-      map.on('mouseleave', 'town-clusters', () => map.getCanvas().style.cursor = '');
-      map.on('mouseenter', 'water-points-unclustered', () => map.getCanvas().style.cursor = 'pointer');
-      map.on('mouseleave', 'water-points-unclustered', () => map.getCanvas().style.cursor = '');
-      map.on('mouseenter', 'town-points-unclustered', () => map.getCanvas().style.cursor = 'pointer');
-      map.on('mouseleave', 'town-points-unclustered', () => map.getCanvas().style.cursor = '');
+      map.on('mouseenter', `${category}-clusters`, () => map.getCanvas().style.cursor = 'pointer');
+      map.on('mouseleave', `${category}-clusters`, () => map.getCanvas().style.cursor = '');
+      map.on('mouseenter', `${category}-points-unclustered`, () => map.getCanvas().style.cursor = 'pointer');
+      map.on('mouseleave', `${category}-points-unclustered`, () => map.getCanvas().style.cursor = '');
+    };
+
+    // Populate coordinates from elevation profile and create category layers
+    const populateCoords = async () => {
+      const profile = await loadElevationProfile();
+      if (!profile) return;
+
+      // Create layers for all categories
+      for (const [category, config] of Object.entries(CATEGORY_CONFIG)) {
+        createCategoryLayers(category, state.categories[category], config);
+      }
     };
 
     populateCoords();
@@ -529,20 +459,6 @@ export const initMap = () => {
       minzoom: 9
     });
 
-    map.addLayer({
-      id: 'waypoint-icons',
-      type: 'symbol',
-      source: 'overlay',
-      'source-layer': 'waypoints',
-      layout: {
-        'icon-image': 'waypoint-icon',
-        'icon-size': ['interpolate', ['linear'], ['zoom'], 8, 0.5, 13, 0.8],
-        'icon-allow-overlap': ['step', ['zoom'], false, 12, true],
-        'icon-ignore-placement': ['step', ['zoom'], false, 12, true]
-      },
-      minzoom: 8
-    });
-
     // Click handlers for overlay layers (inside map.on('load') to ensure layers exist)
     // Use pendingMileUpdate to prevent race conditions from rapid clicks
     // These only update mile info when GPS mode is off (except waypoint modal still opens)
@@ -559,32 +475,14 @@ export const initMap = () => {
       }
     });
 
-    map.on('click', 'waypoint-icons', async (e) => {
-      if (!e.features || e.features.length === 0) return;
-      e.preventDefault();
-      ++pendingMileUpdate; // Increment to cancel any pending route-line updates
-
-      // Get waypoint name from PMTiles feature and look up by name
-      const waypointName = e.features[0].properties?.name;
-      // Always show waypoint detail modal, even in GPS mode
-      const waypoint = showWaypointDetail(waypointName);
-
-      // Only update info panel if GPS mode is off
-      if (!shouldAllowMapClicks()) return;
-      if (waypoint && waypoint.mile >= 0) {
-        showMapInfo(waypoint.mile);
-      }
-    });
-
     // Route-line clicks are ON the trail by definition — always pass distanceFromTrail: 0
-    // The elevation profile used for off-trail calculation may not perfectly align with the
-    // rendered PMTiles route, causing false "off trail" readings when clicking directly on it.
     map.on('click', 'route-line', async (e) => {
-      // Check if a waypoint icon was clicked at this location - if so, skip route-line handling
-      const waypointFeatures = map.queryRenderedFeatures(e.point, { layers: ['waypoint-icons'] });
-      if (waypointFeatures.length > 0) {
-        return; // Let waypoint-icons handler deal with it
-      }
+      // Check if a category point was clicked at this location - if so, skip route-line handling
+      const categoryLayers = Object.keys(CATEGORY_CONFIG)
+        .map(cat => `${cat}-points-unclustered`)
+        .filter(id => map.getLayer(id));
+      const pointFeatures = map.queryRenderedFeatures(e.point, { layers: categoryLayers });
+      if (pointFeatures.length > 0) return;
       if (!shouldAllowMapClicks()) return; // GPS mode active, ignore clicks
       e.preventDefault();
       const updateId = ++pendingMileUpdate;
@@ -598,10 +496,11 @@ export const initMap = () => {
     // Cursor changes for overlay layers
     map.on('mouseenter', 'section-circles', () => map.getCanvas().style.cursor = 'pointer');
     map.on('mouseleave', 'section-circles', () => map.getCanvas().style.cursor = '');
-    map.on('mouseenter', 'waypoint-icons', () => map.getCanvas().style.cursor = 'pointer');
-    map.on('mouseleave', 'waypoint-icons', () => map.getCanvas().style.cursor = '');
     map.on('mouseenter', 'route-line', () => map.getCanvas().style.cursor = 'pointer');
     map.on('mouseleave', 'route-line', () => map.getCanvas().style.cursor = '');
+
+    // Initialize category toggle buttons
+    initCategoryToggles();
   });
 
   // Add navigation controls
@@ -738,6 +637,50 @@ const createCircleGeoJSON = (lat, lon, radiusMeters) => {
       coordinates: [coords]
     }
   };
+};
+
+// Toggle map layer visibility for a category
+const toggleCategoryLayer = (category, visible) => {
+  if (!map) return;
+  const visibility = visible ? 'visible' : 'none';
+  const layerIds = [
+    `${category}-clusters`,
+    `${category}-cluster-count`,
+    `${category}-points-unclustered`
+  ];
+  for (const id of layerIds) {
+    if (map.getLayer(id)) {
+      map.setLayoutProperty(id, 'visibility', visibility);
+    }
+  }
+};
+
+// Initialize category toggle buttons
+const initCategoryToggles = () => {
+  const toggleButtons = document.querySelectorAll('.category-toggle-btn');
+
+  // Sync button UI with saved state
+  toggleButtons.forEach(btn => {
+    const category = btn.dataset.category;
+    if (state.visibleCategories[category]) {
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+    } else {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-pressed', 'false');
+    }
+  });
+
+  toggleButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const category = btn.dataset.category;
+      state.visibleCategories[category] = !state.visibleCategories[category];
+      btn.classList.toggle('active');
+      btn.setAttribute('aria-pressed', String(state.visibleCategories[category]));
+      toggleCategoryLayer(category, state.visibleCategories[category]);
+      saveToggleState();
+    });
+  });
 };
 
 // Schedule map initialization

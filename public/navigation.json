@@ -1,0 +1,4314 @@
+[
+  {
+    "mile": 0,
+    "lat": 42.541548,
+    "lon": -120.052853,
+    "name": "WB160",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.54768,
+    "lon": -118.570153,
+    "name": "EB031",
+    "landmark": "junction Total distance of alternate route is 4 miles versus 3 on orginal route\t\n\t\n\t",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 0,
+    "lat": 42.55245,
+    "lon": -118.554301,
+    "name": "ALTAV01",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 0,
+    "lat": 42.168579,
+    "lon": -118.736376,
+    "name": "C02",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.166329,
+    "lon": -118.736671,
+    "name": "C03",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.163038,
+    "lon": -118.734511,
+    "name": "C04",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.161953,
+    "lon": -118.735247,
+    "name": "C05",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.158792,
+    "lon": -118.734618,
+    "name": "C06",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.157565,
+    "lon": -118.738877,
+    "name": "C07",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.153683,
+    "lon": -118.739797,
+    "name": "C08",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.150174,
+    "lon": -118.742048,
+    "name": "C09",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.149486,
+    "lon": -118.742712,
+    "name": "C10",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.145393,
+    "lon": -118.739007,
+    "name": "C11",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.142883,
+    "lon": -118.737751,
+    "name": "C12",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.141451,
+    "lon": -118.736997,
+    "name": "C13",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.137915,
+    "lon": -118.73753,
+    "name": "C14",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.136996,
+    "lon": -118.738174,
+    "name": "C15",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.131655,
+    "lon": -118.734622,
+    "name": "C16",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.128715,
+    "lon": -118.73154,
+    "name": "C17",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.123197,
+    "lon": -118.728177,
+    "name": "C19",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.121369,
+    "lon": -118.725737,
+    "name": "C20",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.120029,
+    "lon": -118.720061,
+    "name": "C21",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.119482,
+    "lon": -118.713362,
+    "name": "C22",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.116287,
+    "lon": -118.712373,
+    "name": "C23",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.10692,
+    "lon": -118.699844,
+    "name": "C27",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.104031,
+    "lon": -118.697191,
+    "name": "C29",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.079978,
+    "lon": -118.68707,
+    "name": "C32",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.078379,
+    "lon": -118.688896,
+    "name": "C33",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.075242,
+    "lon": -118.691413,
+    "name": "C34",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.063225,
+    "lon": -118.691131,
+    "name": "C39",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.060679,
+    "lon": -118.690735,
+    "name": "C40",
+    "landmark": "Cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.091423,
+    "lon": -117.864669,
+    "name": "ALTMC04a",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.091417,
+    "lon": -117.861008,
+    "name": "ALTMC04b",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.093626,
+    "lon": -117.859421,
+    "name": "ALTMC04c",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.146441,
+    "lon": -117.333066,
+    "name": "ALTFC01",
+    "landmark": "left at junction Total distance of alternate route is 26.6 miles versus 36.3 on orginal route",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 0,
+    "lat": 42.163254,
+    "lon": -117.345084,
+    "name": "ALTFC02",
+    "landmark": "right at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 0,
+    "lat": 42.182998,
+    "lon": -117.29211,
+    "name": "ALTFC04",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 0,
+    "lat": 42.217502,
+    "lon": -117.268813,
+    "name": "ALTFC06",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.234446,
+    "lon": -117.265175,
+    "name": "ALTFC07",
+    "landmark": "cross fence line and turn right into canyon to meet route .4 or continue straight to ALTF09",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 0,
+    "lat": 42.25359630582221,
+    "lon": -117.2634376323547,
+    "name": "ALTF09",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.2887672286614,
+    "lon": -117.2657873315865,
+    "name": "ALTF11",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.31967002663833,
+    "lon": -117.273245536428,
+    "name": "ALTF12",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.33962052349442,
+    "lon": -117.2721038991129,
+    "name": "ALTF13",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.34558006186244,
+    "lon": -117.2832866329667,
+    "name": "ALTF14",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 0,
+    "lat": 42.36713196909614,
+    "lon": -117.2611269185626,
+    "name": "ALTF15",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.39334202963846,
+    "lon": -117.2506422119479,
+    "name": "ALTF16",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.42440736487004,
+    "lon": -117.2470770197432,
+    "name": "ALTF17",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.44157946340074,
+    "lon": -117.2506613412296,
+    "name": "ALTF18",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 0,
+    "lat": 42.45163155019888,
+    "lon": -117.2351913231844,
+    "name": "ALTF19",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.652482,
+    "lon": -117.24525,
+    "name": "ALTIC02",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.749767,
+    "lon": -117.336372,
+    "name": "ALTSC02",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 42.745551,
+    "lon": -117.349104,
+    "name": "ALTSC03",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 43.168915,
+    "lon": -117.578195,
+    "name": "ALTGB01",
+    "landmark": "Total distance of alternate route is 16.5 miles versus 6.5 on orginal route",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 43.183038,
+    "lon": -117.609099,
+    "name": "ALTGB02",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 43.188698,
+    "lon": -117.492551,
+    "name": "ALTGB09",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 0,
+    "lat": 43.32204,
+    "lon": -117.321548,
+    "name": "OC172",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 1.8,
+    "lat": 44.029005,
+    "lon": -121.033634,
+    "name": "CV003",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 3.7,
+    "lat": 44.01558084364918,
+    "lon": -121.0535918125921,
+    "name": "CV004",
+    "landmark": "(new trail constructed in 2017, look for cairns)",
+    "subcategory": "other"
+  },
+  {
+    "mile": 4.1,
+    "lat": 44.013428,
+    "lon": -121.057469,
+    "name": "CV005",
+    "landmark": "join Flat Iron Rock Trail",
+    "subcategory": "other"
+  },
+  {
+    "mile": 5.0,
+    "lat": 44.003371,
+    "lon": -121.051153,
+    "name": "CV006",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 6.1,
+    "lat": 43.989529,
+    "lon": -121.045868,
+    "name": "CV007",
+    "landmark": "Flat Iron Rock",
+    "subcategory": "other"
+  },
+  {
+    "mile": 7.6,
+    "lat": 43.970747,
+    "lon": -121.039811,
+    "name": "CV008",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 9.7,
+    "lat": 43.954312,
+    "lon": -121.066905,
+    "name": "CV010",
+    "landmark": "cross dirt road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 10.2,
+    "lat": 43.947417,
+    "lon": -121.068448,
+    "name": "CV011",
+    "landmark": "merge with 2 track road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 10.5,
+    "lat": 43.947311,
+    "lon": -121.074652,
+    "name": "CV012",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 11.8,
+    "lat": 43.937272,
+    "lon": -121.088324,
+    "name": "CV014",
+    "landmark": "continue through barbed wire fence gate",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 14.7,
+    "lat": 43.906942,
+    "lon": -121.057018,
+    "name": "CV016",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 15.0,
+    "lat": 43.902154,
+    "lon": -121.057207,
+    "name": "CV017",
+    "landmark": "gain ridge",
+    "subcategory": "other"
+  },
+  {
+    "mile": 15.4,
+    "lat": 43.896752,
+    "lon": -121.05481,
+    "name": "CV018",
+    "landmark": "regain 2-track road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 16.1,
+    "lat": 43.888975,
+    "lon": -121.046986,
+    "name": "CV019",
+    "landmark": "continue through 4 way junction to OHV Trail 30",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 17.1,
+    "lat": 43.874568,
+    "lon": -121.046631,
+    "name": "CV020",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 17.9,
+    "lat": 43.874785,
+    "lon": -121.031272,
+    "name": "CV021",
+    "landmark": "right at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 18.2,
+    "lat": 43.871077,
+    "lon": -121.030949,
+    "name": "CV022",
+    "landmark": "join OHV Trail 32",
+    "subcategory": "other"
+  },
+  {
+    "mile": 19.5,
+    "lat": 43.870802,
+    "lon": -121.004823,
+    "name": "CV023",
+    "landmark": "right on OHV Trail 36",
+    "subcategory": "other"
+  },
+  {
+    "mile": 20.6,
+    "lat": 43.856577,
+    "lon": -121.011249,
+    "name": "CV024",
+    "landmark": "veer left onto OHV Trail 30",
+    "subcategory": "other"
+  },
+  {
+    "mile": 21.6,
+    "lat": 43.846696,
+    "lon": -120.999104,
+    "name": "CV025",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 22.0,
+    "lat": 43.844073,
+    "lon": -120.993085,
+    "name": "CV026",
+    "landmark": "crossed paved Spencer Wells Road & start x-country",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 22.3,
+    "lat": 43.841603,
+    "lon": -120.989068,
+    "name": "CV027",
+    "landmark": "join road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 22.7,
+    "lat": 43.841397,
+    "lon": -120.98142,
+    "name": "CV028",
+    "landmark": "right on road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 22.9,
+    "lat": 43.839002,
+    "lon": -120.979293,
+    "name": "CV029",
+    "landmark": "cross road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 23.5,
+    "lat": 43.83153,
+    "lon": -120.97339,
+    "name": "CV030",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 23.6,
+    "lat": 43.830434,
+    "lon": -120.972715,
+    "name": "CV031",
+    "landmark": "cross fence at USFS boundry",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 25.1,
+    "lat": 43.81046,
+    "lon": -120.961538,
+    "name": "CV032",
+    "landmark": "junction with FS 2017-430 road",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 25.2,
+    "lat": 43.81017,
+    "lon": -120.960336,
+    "name": "CV033",
+    "landmark": "merge with FS 2017-400",
+    "subcategory": "other"
+  },
+  {
+    "mile": 26.5,
+    "lat": 43.800223,
+    "lon": -120.945557,
+    "name": "CV034",
+    "landmark": "right on FS 2017 road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 31.1,
+    "lat": 43.76167,
+    "lon": -120.909162,
+    "name": "CV037",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 31.7,
+    "lat": 43.761338,
+    "lon": -120.897222,
+    "name": "CV038",
+    "landmark": "right at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 31.8,
+    "lat": 43.756524,
+    "lon": -120.895881,
+    "name": "CV040",
+    "landmark": "cross road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 32.0,
+    "lat": 43.754572,
+    "lon": -120.893286,
+    "name": "CV041",
+    "landmark": "follow FS 2300-310 road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 32.3,
+    "lat": 43.751405,
+    "lon": -120.888031,
+    "name": "CV042",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 32.5,
+    "lat": 43.750221,
+    "lon": -120.885248,
+    "name": "CV043",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 33.2,
+    "lat": 43.74378,
+    "lon": -120.874526,
+    "name": "CV044",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 33.5,
+    "lat": 43.741283,
+    "lon": -120.86997,
+    "name": "CV045",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 33.6,
+    "lat": 43.740299,
+    "lon": -120.869818,
+    "name": "CV046",
+    "landmark": "right at fork",
+    "subcategory": "other"
+  },
+  {
+    "mile": 33.8,
+    "lat": 43.737766,
+    "lon": -120.869672,
+    "name": "CV047",
+    "landmark": "right onto FS 2300-323",
+    "subcategory": "other"
+  },
+  {
+    "mile": 35.0,
+    "lat": 43.722345,
+    "lon": -120.863974,
+    "name": "CV048",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 35.2,
+    "lat": 43.721101,
+    "lon": -120.859599,
+    "name": "CV049",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 36.0,
+    "lat": 43.713432,
+    "lon": -120.850103,
+    "name": "CV051",
+    "landmark": "join FS 23 road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 37.0,
+    "lat": 43.700552,
+    "lon": -120.840985,
+    "name": "CV053",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 37.3,
+    "lat": 43.696093,
+    "lon": -120.839333,
+    "name": "CV054",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 37.7,
+    "lat": 43.690957,
+    "lon": -120.839754,
+    "name": "CV055",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 39.5,
+    "lat": 43.680691,
+    "lon": -120.821225,
+    "name": "CV058",
+    "landmark": "cross road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 40.1,
+    "lat": 43.671742,
+    "lon": -120.823732,
+    "name": "CV060",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 41.1,
+    "lat": 43.661103,
+    "lon": -120.819864,
+    "name": "CV061",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 41.4,
+    "lat": 43.657939,
+    "lon": -120.81519,
+    "name": "CV062",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 42.8,
+    "lat": 43.639794,
+    "lon": -120.81224,
+    "name": "CV064",
+    "landmark": "cross gate",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 44.1,
+    "lat": 43.630597,
+    "lon": -120.80024,
+    "name": "CV067",
+    "landmark": "right on road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 44.6,
+    "lat": 43.625322,
+    "lon": -120.804504,
+    "name": "CV068",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 45.4,
+    "lat": 43.614274,
+    "lon": -120.801232,
+    "name": "CV070",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 46.6,
+    "lat": 43.598984,
+    "lon": -120.794065,
+    "name": "CV071",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 46.9,
+    "lat": 43.594781,
+    "lon": -120.79305,
+    "name": "CV072",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 47.5,
+    "lat": 43.587191,
+    "lon": -120.786654,
+    "name": "CV073",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 48.1,
+    "lat": 43.578543,
+    "lon": -120.78952,
+    "name": "CV074",
+    "landmark": "cross road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 48.7,
+    "lat": 43.570645,
+    "lon": -120.788157,
+    "name": "CV075",
+    "landmark": "left at fork",
+    "subcategory": "other"
+  },
+  {
+    "mile": 49.7,
+    "lat": 43.560355,
+    "lon": -120.780251,
+    "name": "CV078",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 49.9,
+    "lat": 43.557295,
+    "lon": -120.779504,
+    "name": "CV079",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 50.7,
+    "lat": 43.549755,
+    "lon": -120.791955,
+    "name": "CV080",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 50.9,
+    "lat": 43.54833,
+    "lon": -120.788709,
+    "name": "CV081",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 52.4,
+    "lat": 43.528944,
+    "lon": -120.779283,
+    "name": "CV082",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 52.8,
+    "lat": 43.524155,
+    "lon": -120.781617,
+    "name": "CV083",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 53.0,
+    "lat": 43.521452,
+    "lon": -120.780391,
+    "name": "CV084",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 53.7,
+    "lat": 43.514665,
+    "lon": -120.77187,
+    "name": "CV087",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 55.1,
+    "lat": 43.504481,
+    "lon": -120.749864,
+    "name": "CV088",
+    "landmark": "join road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 57.0,
+    "lat": 43.511591,
+    "lon": -120.717182,
+    "name": "CV089",
+    "landmark": "cross gate",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 57.4,
+    "lat": 43.507978,
+    "lon": -120.709965,
+    "name": "CV090",
+    "landmark": "cross gate",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 58.9,
+    "lat": 43.484554,
+    "lon": -120.685256,
+    "name": "CV091A",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 59.2,
+    "lat": 43.49108,
+    "lon": -120.68529,
+    "name": "CV091",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 59.4,
+    "lat": 43.477247,
+    "lon": -120.685342,
+    "name": "ALTCV01",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 59.5,
+    "lat": 43.477251,
+    "lon": -120.682597,
+    "name": "ALTCV02",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 59.9,
+    "lat": 43.484621,
+    "lon": -120.679733,
+    "name": "CV092",
+    "landmark": "join road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 60.2,
+    "lat": 43.481105,
+    "lon": -120.67877,
+    "name": "CV093",
+    "landmark": "start x-country, follow fence line",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 60.6,
+    "lat": 43.461684,
+    "lon": -120.678205,
+    "name": "ALTCV03",
+    "landmark": "join road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 61.1,
+    "lat": 43.481191,
+    "lon": -120.660208,
+    "name": "CV094",
+    "landmark": "cross Millican Road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 61.5,
+    "lat": 43.462799,
+    "lon": -120.663502,
+    "name": "ALTCV03A",
+    "landmark": "cross lava flow",
+    "subcategory": "other"
+  },
+  {
+    "mile": 61.8,
+    "lat": 43.462367,
+    "lon": -120.657008,
+    "name": "ALTCV04",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 63.1,
+    "lat": 43.481356,
+    "lon": -120.619623,
+    "name": "CV095",
+    "landmark": "cross road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 64.1,
+    "lat": 43.436866,
+    "lon": -120.684981,
+    "name": "ALTCV05",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 65.1,
+    "lat": 43.481562,
+    "lon": -120.579509,
+    "name": "CV096",
+    "landmark": "cross road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 65.5,
+    "lat": 43.425202,
+    "lon": -120.702585,
+    "name": "ALTCV06",
+    "landmark": "join maintained road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 67.3,
+    "lat": 43.42173621433268,
+    "lon": -120.7342602199645,
+    "name": "ALTCV07",
+    "landmark": "junction to primitive road",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 67.9,
+    "lat": 43.479768,
+    "lon": -120.524457,
+    "name": "CV098",
+    "landmark": "join Frederick Butte Road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 68.2,
+    "lat": 43.482356,
+    "lon": -120.519382,
+    "name": "CV102",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 70.1,
+    "lat": 43.456994,
+    "lon": -120.519064,
+    "name": "CV103",
+    "landmark": "left at 4-way junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 70.5,
+    "lat": 43.454563,
+    "lon": -120.511943,
+    "name": "CV104",
+    "landmark": "cross gate",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 72.7,
+    "lat": 43.374291,
+    "lon": -120.690185,
+    "name": "ALTCV12",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 73.0,
+    "lat": 43.444915,
+    "lon": -120.469274,
+    "name": "CV106",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 74.2,
+    "lat": 43.448371,
+    "lon": -120.446989,
+    "name": "CV107",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 74.4,
+    "lat": 43.448549,
+    "lon": -120.442796,
+    "name": "CV108",
+    "landmark": "right at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 75.2,
+    "lat": 43.340425,
+    "lon": -120.682442,
+    "name": "ALTCV13",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 76.1,
+    "lat": 43.332579,
+    "lon": -120.671154,
+    "name": "ALTCV14",
+    "landmark": "parking area for Crack in the Ground",
+    "subcategory": "other"
+  },
+  {
+    "mile": 77.5,
+    "lat": 43.313963,
+    "lon": -120.659235,
+    "name": "ALTCV15",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 78.0,
+    "lat": 43.311707,
+    "lon": -120.667933,
+    "name": "ALTCV16",
+    "landmark": "join road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 78.9,
+    "lat": 43.301193,
+    "lon": -120.659413,
+    "name": "ALTCV17",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 79.1,
+    "lat": 43.399351,
+    "lon": -120.39228,
+    "name": "CV110",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 80.3,
+    "lat": 43.281438,
+    "lon": -120.660597,
+    "name": "ALTCV18",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 80.9,
+    "lat": 43.379342,
+    "lon": -120.374472,
+    "name": "CV111",
+    "landmark": "join road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 81.3,
+    "lat": 43.281372,
+    "lon": -120.680355,
+    "name": "ALTCV19",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 81.8,
+    "lat": 43.375259,
+    "lon": -120.358768,
+    "name": "CV112",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 82.8,
+    "lat": 43.37663,
+    "lon": -120.339365,
+    "name": "CV113",
+    "landmark": "join road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 83.3,
+    "lat": 43.252219,
+    "lon": -120.680576,
+    "name": "ALTCV20",
+    "landmark": "outskirts of Christmas Valley",
+    "subcategory": "other"
+  },
+  {
+    "mile": 83.5,
+    "lat": 43.369441,
+    "lon": -120.33047,
+    "name": "CV114",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 84.0,
+    "lat": 43.363551,
+    "lon": -120.329198,
+    "name": "CV115",
+    "landmark": "parking area",
+    "subcategory": "other"
+  },
+  {
+    "mile": 84.1,
+    "lat": 43.362968,
+    "lon": -120.327442,
+    "name": "CV116",
+    "landmark": "cross road, start x-country",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 85.5,
+    "lat": 43.345957,
+    "lon": -120.312968,
+    "name": "CV118",
+    "landmark": "join road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 86.2,
+    "lat": 43.338906,
+    "lon": -120.309908,
+    "name": "CV119",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 86.6,
+    "lat": 43.204874,
+    "lon": -120.680929,
+    "name": "ALTCV21",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 86.7,
+    "lat": 43.332646,
+    "lon": -120.303595,
+    "name": "CV120",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 87.4,
+    "lat": 43.193647,
+    "lon": -120.681003,
+    "name": "ALTCV22",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 87.7,
+    "lat": 43.320727,
+    "lon": -120.292527,
+    "name": "CV121",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 88.4,
+    "lat": 43.179558,
+    "lon": -120.681067,
+    "name": "ALTCV23",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 88.4,
+    "lat": 43.319115,
+    "lon": -120.281815,
+    "name": "CV122",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 89.0,
+    "lat": 43.179512,
+    "lon": -120.670039,
+    "name": "ALTCV24",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 89.0,
+    "lat": 43.312121,
+    "lon": -120.28072,
+    "name": "CV123",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 89.7,
+    "lat": 43.304429,
+    "lon": -120.271519,
+    "name": "CV124",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 91.1,
+    "lat": 43.151625,
+    "lon": -120.664407,
+    "name": "ALTCV25",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 91.5,
+    "lat": 43.281561,
+    "lon": -120.253873,
+    "name": "CV125",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 93.2,
+    "lat": 43.259156,
+    "lon": -120.244151,
+    "name": "CV126",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 94.7,
+    "lat": 43.239959,
+    "lon": -120.23555,
+    "name": "CV127",
+    "landmark": "cross road  ",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 95.4,
+    "lat": 43.230191,
+    "lon": -120.234631,
+    "name": "CV128",
+    "landmark": "pass juniper tree",
+    "subcategory": "other"
+  },
+  {
+    "mile": 96.8,
+    "lat": 43.216393,
+    "lon": -120.251221,
+    "name": "CV129",
+    "landmark": "join road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 97.3,
+    "lat": 43.210139,
+    "lon": -120.247435,
+    "name": "CV130",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 97.7,
+    "lat": 43.204876,
+    "lon": -120.246597,
+    "name": "CV131",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 98.4,
+    "lat": 43.201248,
+    "lon": -120.259166,
+    "name": "CV132",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 100.1,
+    "lat": 43.19696,
+    "lon": -120.277949,
+    "name": "WB002",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 102.0,
+    "lat": 43.176797,
+    "lon": -120.281568,
+    "name": "WB005",
+    "landmark": "right on road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 102.2,
+    "lat": 43.179047,
+    "lon": -120.284802,
+    "name": "WB006",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 102.7,
+    "lat": 43.180852,
+    "lon": -120.293368,
+    "name": "WB007",
+    "landmark": "cross under power line",
+    "subcategory": "other"
+  },
+  {
+    "mile": 103.3,
+    "lat": 43.17672,
+    "lon": -120.301073,
+    "name": "WB009",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 106.5,
+    "lat": 43.136248,
+    "lon": -120.324336,
+    "name": "WB013",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 107.7,
+    "lat": 43.125196,
+    "lon": -120.340901,
+    "name": "WB014",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 109.1,
+    "lat": 43.112151,
+    "lon": -120.360369,
+    "name": "WB015",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 109.8,
+    "lat": 43.104283,
+    "lon": -120.367228,
+    "name": "WB016",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 110.5,
+    "lat": 43.094774,
+    "lon": -120.372722,
+    "name": "WB017",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 111.1,
+    "lat": 43.086493,
+    "lon": -120.371708,
+    "name": "WB018",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 112.2,
+    "lat": 43.071412,
+    "lon": -120.370599,
+    "name": "WB019",
+    "landmark": "notch in ridge",
+    "subcategory": "other"
+  },
+  {
+    "mile": 113.4,
+    "lat": 43.065449,
+    "lon": -120.391742,
+    "name": "WB021",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 114.5,
+    "lat": 43.052891,
+    "lon": -120.402765,
+    "name": "WB022",
+    "landmark": "cross 2-track road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 114.7,
+    "lat": 43.051328,
+    "lon": -120.405102,
+    "name": "WB023",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 116.5,
+    "lat": 43.043416,
+    "lon": -120.430795,
+    "name": "WB026",
+    "landmark": "cairn",
+    "subcategory": "other"
+  },
+  {
+    "mile": 117.0,
+    "lat": 43.036561,
+    "lon": -120.431862,
+    "name": "WB027",
+    "landmark": "fence",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 118.4,
+    "lat": 43.044737,
+    "lon": -120.455968,
+    "name": "WB028",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 119.0,
+    "lat": 43.041115,
+    "lon": -120.466178,
+    "name": "WB029",
+    "landmark": "cross 2-track road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 119.2,
+    "lat": 43.041545,
+    "lon": -120.469485,
+    "name": "WB030",
+    "landmark": "join road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 120.6,
+    "lat": 43.053237,
+    "lon": -120.491318,
+    "name": "WB032",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 123.2,
+    "lat": 43.076585,
+    "lon": -120.527451,
+    "name": "WB035",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 124.3,
+    "lat": 43.081417,
+    "lon": -120.548011,
+    "name": "WB036",
+    "landmark": "join 2-track",
+    "subcategory": "other"
+  },
+  {
+    "mile": 127.1,
+    "lat": 43.053245,
+    "lon": -120.564017,
+    "name": "WB038",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 127.8,
+    "lat": 43.045953,
+    "lon": -120.556431,
+    "name": "WB039",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 128.7,
+    "lat": 43.034444,
+    "lon": -120.55044,
+    "name": "WB040",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 129.7,
+    "lat": 43.021089,
+    "lon": -120.549363,
+    "name": "WB041",
+    "landmark": "right at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 129.9,
+    "lat": 43.018264,
+    "lon": -120.552074,
+    "name": "WB042",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 130.5,
+    "lat": 43.01527,
+    "lon": -120.563411,
+    "name": "WB043",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 131.3,
+    "lat": 43.004116,
+    "lon": -120.563263,
+    "name": "WB044",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 132.2,
+    "lat": 42.99099,
+    "lon": -120.566357,
+    "name": "WB045",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 133.5,
+    "lat": 42.973336,
+    "lon": -120.570645,
+    "name": "WB047",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 134.1,
+    "lat": 42.965429,
+    "lon": -120.565706,
+    "name": "WB048",
+    "landmark": "Diablo Peak",
+    "subcategory": "other"
+  },
+  {
+    "mile": 134.7,
+    "lat": 42.957179,
+    "lon": -120.564522,
+    "name": "WB049",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 135.4,
+    "lat": 42.948749,
+    "lon": -120.557064,
+    "name": "WB050",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 136.1,
+    "lat": 42.939377,
+    "lon": -120.551635,
+    "name": "WB051",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 136.6,
+    "lat": 42.934659,
+    "lon": -120.545961,
+    "name": "WB052",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 137.2,
+    "lat": 42.92813,
+    "lon": -120.538123,
+    "name": "WB053",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 138.3,
+    "lat": 42.916207,
+    "lon": -120.525537,
+    "name": "WB054",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 138.8,
+    "lat": 42.912119,
+    "lon": -120.518059,
+    "name": "WB055",
+    "landmark": "start downhill",
+    "subcategory": "other"
+  },
+  {
+    "mile": 139.4,
+    "lat": 42.90516,
+    "lon": -120.513272,
+    "name": "WB056",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 140.1,
+    "lat": 42.896417,
+    "lon": -120.508993,
+    "name": "WB057",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 141.6,
+    "lat": 42.877233,
+    "lon": -120.498802,
+    "name": "WB059",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 142.2,
+    "lat": 42.869234,
+    "lon": -120.495016,
+    "name": "WB060",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 143.1,
+    "lat": 42.860825,
+    "lon": -120.486376,
+    "name": "WB062",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 144.2,
+    "lat": 42.847607,
+    "lon": -120.474482,
+    "name": "WB064",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 144.7,
+    "lat": 42.840809,
+    "lon": -120.470385,
+    "name": "WB065",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 145.5,
+    "lat": 42.830181,
+    "lon": -120.467284,
+    "name": "WB066",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 147.2,
+    "lat": 42.80941,
+    "lon": -120.461236,
+    "name": "WB068",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 148.5,
+    "lat": 42.800831,
+    "lon": -120.443362,
+    "name": "WB069",
+    "landmark": "right at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 149.9,
+    "lat": 42.788594,
+    "lon": -120.429367,
+    "name": "WB071",
+    "landmark": "right on road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 151.4,
+    "lat": 42.768179,
+    "lon": -120.433436,
+    "name": "WB072",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 153.2,
+    "lat": 42.747103,
+    "lon": -120.439829,
+    "name": "WB073",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 153.8,
+    "lat": 42.738891,
+    "lon": -120.445258,
+    "name": "WB074",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 155.7,
+    "lat": 42.725693,
+    "lon": -120.476878,
+    "name": "WB075",
+    "landmark": "right on road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 156.8,
+    "lat": 42.724042,
+    "lon": -120.497309,
+    "name": "WB076",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 159.8,
+    "lat": 42.704224,
+    "lon": -120.548713,
+    "name": "WB077",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 162.0,
+    "lat": 42.686227,
+    "lon": -120.570582,
+    "name": "WB079",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 163.2,
+    "lat": 42.675343,
+    "lon": -120.586719,
+    "name": "WB080",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 164.8,
+    "lat": 42.658538,
+    "lon": -120.601376,
+    "name": "WB081",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 168.4,
+    "lat": 42.61767,
+    "lon": -120.604591,
+    "name": "WB084",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 171.5,
+    "lat": 42.596631,
+    "lon": -120.580985,
+    "name": "WB086",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 177.1,
+    "lat": 42.557515,
+    "lon": -120.550327,
+    "name": "WB089",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 178.1,
+    "lat": 42.546807,
+    "lon": -120.548404,
+    "name": "WB090",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 180.1,
+    "lat": 42.53279,
+    "lon": -120.541702,
+    "name": "WB092",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 182.1,
+    "lat": 42.511064,
+    "lon": -120.520313,
+    "name": "WB094",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 193.5,
+    "lat": 42.454287,
+    "lon": -120.435522,
+    "name": "WB100",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 194.4,
+    "lat": 42.449116,
+    "lon": -120.421141,
+    "name": "WB101",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 197.7,
+    "lat": 42.415309,
+    "lon": -120.410692,
+    "name": "WB103",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 201.4,
+    "lat": 42.38734,
+    "lon": -120.378911,
+    "name": "WB104",
+    "landmark": "Cox Trail Head - right on road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 202.5,
+    "lat": 42.374452,
+    "lon": -120.374151,
+    "name": "WB105",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 209.2,
+    "lat": 42.32367,
+    "lon": -120.326825,
+    "name": "WB110",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 210.8,
+    "lat": 42.330699,
+    "lon": -120.29767,
+    "name": "WB112",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 219.3,
+    "lat": 42.316622,
+    "lon": -120.166174,
+    "name": "WB120",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 220.5,
+    "lat": 42.327392,
+    "lon": -120.165673,
+    "name": "WB121",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 223.4,
+    "lat": 42.357923,
+    "lon": -120.16075,
+    "name": "WB123",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 225.3,
+    "lat": 42.373405,
+    "lon": -120.145005,
+    "name": "WB124",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 225.7,
+    "lat": 42.378289,
+    "lon": -120.145408,
+    "name": "WB126",
+    "landmark": "cross road/Swale Trailhead",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 226.8,
+    "lat": 42.389714,
+    "lon": -120.152125,
+    "name": "WB127",
+    "landmark": "cross dirt road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 227.3,
+    "lat": 42.394884,
+    "lon": -120.156824,
+    "name": "WB128",
+    "landmark": "cross dirt road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 229.2,
+    "lat": 42.414038,
+    "lon": -120.154735,
+    "name": "WB130",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 230.5,
+    "lat": 42.421856,
+    "lon": -120.162429,
+    "name": "WB133",
+    "landmark": "junction onto 2-track road",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 230.9,
+    "lat": 42.423042,
+    "lon": -120.169276,
+    "name": "WB134",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 232.6,
+    "lat": 42.416637,
+    "lon": -120.190906,
+    "name": "WB136",
+    "landmark": "short x-country to road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 232.9,
+    "lat": 42.417924,
+    "lon": -120.196064,
+    "name": "WB137",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 233.8,
+    "lat": 42.425231,
+    "lon": -120.208362,
+    "name": "WB139",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 234.7,
+    "lat": 42.437307,
+    "lon": -120.214556,
+    "name": "WB140",
+    "landmark": "cross fence",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 235.7,
+    "lat": 42.448458,
+    "lon": -120.2241,
+    "name": "WB141",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 236.4,
+    "lat": 42.455936,
+    "lon": -120.218359,
+    "name": "WB142",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 237.9,
+    "lat": 42.476352,
+    "lon": -120.227124,
+    "name": "WB143",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 239.6,
+    "lat": 42.50018,
+    "lon": -120.228456,
+    "name": "WB144",
+    "landmark": "viewpoint/ make sharp right",
+    "subcategory": "other"
+  },
+  {
+    "mile": 241.8,
+    "lat": 42.506502,
+    "lon": -120.201619,
+    "name": "WB146",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 244.1,
+    "lat": 42.507002,
+    "lon": -120.161189,
+    "name": "WB150",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 246.1,
+    "lat": 42.523914,
+    "lon": -120.143036,
+    "name": "WB153",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 247.1,
+    "lat": 42.526073,
+    "lon": -120.124953,
+    "name": "WB154",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 247.7,
+    "lat": 42.529579,
+    "lon": -120.115201,
+    "name": "WB155",
+    "landmark": "rejoin road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 249.9,
+    "lat": 42.5345,
+    "lon": -120.076661,
+    "name": "WB157",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 250.3,
+    "lat": 42.530641,
+    "lon": -120.072524,
+    "name": "WB158",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 251.1,
+    "lat": 42.534095,
+    "lon": -120.058429,
+    "name": "WB159",
+    "landmark": "right  on 2-track",
+    "subcategory": "other"
+  },
+  {
+    "mile": 251.8,
+    "lat": 42.534369,
+    "lon": -120.045921,
+    "name": "WB161",
+    "landmark": "right on 2-track",
+    "subcategory": "other"
+  },
+  {
+    "mile": 257.8,
+    "lat": 42.516071,
+    "lon": -119.970135,
+    "name": "WB168",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 259.7,
+    "lat": 42.502441,
+    "lon": -119.939154,
+    "name": "WB168a",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 261.0,
+    "lat": 42.48593,
+    "lon": -119.93019,
+    "name": "WB169",
+    "landmark": "right on paved road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 262.9,
+    "lat": 42.465125,
+    "lon": -119.908231,
+    "name": "WB170",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 271.4,
+    "lat": 42.441583,
+    "lon": -119.822512,
+    "name": "WB174",
+    "landmark": "south on 2-track road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 275.6,
+    "lat": 42.384477,
+    "lon": -119.838587,
+    "name": "WB177",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 277.7,
+    "lat": 42.355643,
+    "lon": -119.837527,
+    "name": "WB178",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 278.5,
+    "lat": 42.347383,
+    "lon": -119.828041,
+    "name": "WB179",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 281.3,
+    "lat": 42.327361,
+    "lon": -119.791076,
+    "name": "WB181a",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 281.6,
+    "lat": 42.324812,
+    "lon": -119.794815,
+    "name": "WB181b",
+    "landmark": "meet road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 282.4,
+    "lat": 42.313686,
+    "lon": -119.788758,
+    "name": "WB181c",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 283.5,
+    "lat": 42.302419,
+    "lon": -119.777319,
+    "name": "WB182",
+    "landmark": "junction/15 miles to Adel via dirt road to the south (10 on dirt road, 5 miles west on Hwy 140)",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 286.7,
+    "lat": 42.281682,
+    "lon": -119.736325,
+    "name": "WB185",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 287.3,
+    "lat": 42.289231,
+    "lon": -119.742998,
+    "name": "WB186",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 294.3,
+    "lat": 42.370345,
+    "lon": -119.756871,
+    "name": "WB190",
+    "landmark": "old homestead",
+    "subcategory": "other"
+  },
+  {
+    "mile": 299.0,
+    "lat": 42.414308,
+    "lon": -119.718476,
+    "name": "WB193",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 299.6,
+    "lat": 42.422066,
+    "lon": -119.714897,
+    "name": "WB194",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 300.5,
+    "lat": 42.429696,
+    "lon": -119.723094,
+    "name": "WB196",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 305.4,
+    "lat": 42.48804,
+    "lon": -119.708279,
+    "name": "WB200",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 308.0,
+    "lat": 42.510005,
+    "lon": -119.67916,
+    "name": "WB203",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 308.9,
+    "lat": 42.519853,
+    "lon": -119.66994,
+    "name": "WB204",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 309.6,
+    "lat": 42.528093,
+    "lon": -119.663506,
+    "name": "WB205",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 310.5,
+    "lat": 42.540547,
+    "lon": -119.665222,
+    "name": "WB206",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 311.8,
+    "lat": 42.553039,
+    "lon": -119.662912,
+    "name": "WB209",
+    "landmark": "right at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 315.3,
+    "lat": 42.59816,
+    "lon": -119.63962,
+    "name": "WB211",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 319.1,
+    "lat": 42.627052,
+    "lon": -119.580132,
+    "name": "WB213",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 320.7,
+    "lat": 42.647359,
+    "lon": -119.566256,
+    "name": "WB214",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 321.3,
+    "lat": 42.655269,
+    "lon": -119.563451,
+    "name": "WB215",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 328.0,
+    "lat": 42.71574,
+    "lon": -119.494119,
+    "name": "WB220",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 329.5,
+    "lat": 42.73463,
+    "lon": -119.483714,
+    "name": "WB221",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 330.6,
+    "lat": 42.748719,
+    "lon": -119.478525,
+    "name": "WB222",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 332.4,
+    "lat": 42.773191,
+    "lon": -119.488833,
+    "name": "WB222a",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 333.4,
+    "lat": 42.787897,
+    "lon": -119.487861,
+    "name": "WB223",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 333.7,
+    "lat": 42.789779,
+    "lon": -119.483065,
+    "name": "WB224",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 334.0,
+    "lat": 42.822926,
+    "lon": -119.445186,
+    "name": "WB225",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 334.0,
+    "lat": 42.789779,
+    "lon": -119.483065,
+    "name": "WB224",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 337.1,
+    "lat": 42.822926,
+    "lon": -119.445186,
+    "name": "WB225",
+    "landmark": "right onto Buckhorn Canyon Road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 337.6,
+    "lat": 42.827759,
+    "lon": -119.436305,
+    "name": "ALTOC03",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 340.1,
+    "lat": 42.844215,
+    "lon": -119.393344,
+    "name": "WB226",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 341.0,
+    "lat": 42.841184,
+    "lon": -119.377083,
+    "name": "WB227",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 341.8,
+    "lat": 42.848115,
+    "lon": -119.374095,
+    "name": "WB229",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 343.3,
+    "lat": 42.857814,
+    "lon": -119.35099,
+    "name": "WB231",
+    "landmark": "join Sand Valley Augustine Road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 346.4,
+    "lat": 42.837684,
+    "lon": -119.298404,
+    "name": "WB232",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 350.2,
+    "lat": 42.814165,
+    "lon": -119.249457,
+    "name": "WB234",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 351.1,
+    "lat": 42.811034,
+    "lon": -119.233432,
+    "name": "WB234a",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 354.7,
+    "lat": 42.817469,
+    "lon": -119.167036,
+    "name": "WB236a",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 356.0,
+    "lat": 42.812904,
+    "lon": -119.143014,
+    "name": "WB237",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 357.6,
+    "lat": 42.815088,
+    "lon": -119.110742,
+    "name": "WB238",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 358.2,
+    "lat": 42.821382,
+    "lon": -119.103487,
+    "name": "WB239",
+    "landmark": "rejoin 2-track road & powerlines",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 361.9,
+    "lat": 42.855149,
+    "lon": -119.092199,
+    "name": "WB242",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 363.1,
+    "lat": 42.846675,
+    "lon": -119.072958,
+    "name": "WB243",
+    "landmark": "join Jack Mountain Road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 363.3,
+    "lat": 42.845604,
+    "lon": -119.06848,
+    "name": "WB244",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 365.6,
+    "lat": 42.852774,
+    "lon": -119.02928,
+    "name": "WB246",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 367.0,
+    "lat": 42.850384,
+    "lon": -119.005773,
+    "name": "WB247",
+    "landmark": "NE on 2-track road  ",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 373.1,
+    "lat": 42.829432,
+    "lon": -118.934105,
+    "name": "WB251",
+    "landmark": "join road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 374.3,
+    "lat": 42.823906,
+    "lon": -118.912014,
+    "name": "EB001",
+    "landmark": "Steens Loop Road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 375.6,
+    "lat": 42.823865,
+    "lon": -118.885834,
+    "name": "EB002",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 375.8,
+    "lat": 42.8238,
+    "lon": -118.881301,
+    "name": "EB003",
+    "landmark": "junciton",
+    "subcategory": "other"
+  },
+  {
+    "mile": 377.3,
+    "lat": 42.805608,
+    "lon": -118.871102,
+    "name": "EB006",
+    "landmark": "junction ",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 378.4,
+    "lat": 42.791366,
+    "lon": -118.874082,
+    "name": "EB007",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 381.8,
+    "lat": 42.753703,
+    "lon": -118.8486,
+    "name": "EB008",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 384.4,
+    "lat": 42.733664,
+    "lon": -118.81481,
+    "name": "EB011",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 385.2,
+    "lat": 42.728384,
+    "lon": -118.800524,
+    "name": "EB012",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 386.5,
+    "lat": 42.713525,
+    "lon": -118.786483,
+    "name": "EB013",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 390.3,
+    "lat": 42.681684,
+    "lon": -118.751039,
+    "name": "EB015",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 391.1,
+    "lat": 42.6723,
+    "lon": -118.74104,
+    "name": "EB016",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 392.9,
+    "lat": 42.656372,
+    "lon": -118.722913,
+    "name": "EB019",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 400.3,
+    "lat": 42.65782,
+    "lon": -118.606683,
+    "name": "EB022",
+    "landmark": "climb up ridge",
+    "subcategory": "other"
+  },
+  {
+    "mile": 403.1,
+    "lat": 42.667108,
+    "lon": -118.570027,
+    "name": "EB023a",
+    "landmark": "right at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 405.2,
+    "lat": 42.640531,
+    "lon": -118.582904,
+    "name": "EB024",
+    "landmark": "join trail",
+    "subcategory": "other"
+  },
+  {
+    "mile": 409.7,
+    "lat": 42.58822,
+    "lon": -118.594379,
+    "name": "EB027",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 410.8,
+    "lat": 42.577714,
+    "lon": -118.584254,
+    "name": "EB029",
+    "landmark": "join trail",
+    "subcategory": "other"
+  },
+  {
+    "mile": 413.5,
+    "lat": 42.54768,
+    "lon": -118.570153,
+    "name": "EB031",
+    "landmark": "junction/start x-country",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 418.9,
+    "lat": 42.48755,
+    "lon": -118.54249,
+    "name": "EB034",
+    "landmark": "join 2-track road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 421.0,
+    "lat": 42.459563,
+    "lon": -118.532851,
+    "name": "EB035",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 422.2,
+    "lat": 42.446356,
+    "lon": -118.54839,
+    "name": "EB036",
+    "landmark": "cross 2-track road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 424.7,
+    "lat": 42.411611,
+    "lon": -118.556711,
+    "name": "EB037",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 428.1,
+    "lat": 42.377322,
+    "lon": -118.58635,
+    "name": "EB039",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 429.7,
+    "lat": 42.354267,
+    "lon": -118.592264,
+    "name": "EB039a",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 431.1,
+    "lat": 42.334467,
+    "lon": -118.595759,
+    "name": "EB039b",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 431.5,
+    "lat": 42.33244,
+    "lon": -118.60326,
+    "name": "EB040",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 434.2,
+    "lat": 42.302273,
+    "lon": -118.624745,
+    "name": "EB041a",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 434.5,
+    "lat": 42.297674,
+    "lon": -118.625339,
+    "name": "EB042",
+    "landmark": "right at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 436.6,
+    "lat": 42.289494,
+    "lon": -118.665606,
+    "name": "EB043",
+    "landmark": "left onto highway",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 441.4,
+    "lat": 42.22682,
+    "lon": -118.647149,
+    "name": "EB045",
+    "landmark": "turn right onto dirt road from highway",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 445.3,
+    "lat": 42.205645,
+    "lon": -118.708921,
+    "name": "EB048",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 446.2,
+    "lat": 42.193114,
+    "lon": -118.732737,
+    "name": "EB050",
+    "landmark": "fence coner",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 449.2,
+    "lat": 42.174654,
+    "lon": -118.732245,
+    "name": "EB054",
+    "landmark": "start x-country, follow cairns",
+    "subcategory": "other"
+  },
+  {
+    "mile": 457.1,
+    "lat": 42.09637,
+    "lon": -118.691749,
+    "name": "EB081",
+    "landmark": "rejoin 2-track road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 460.6,
+    "lat": 42.054809,
+    "lon": -118.694468,
+    "name": "EB089",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 461.9,
+    "lat": 42.039602,
+    "lon": -118.69174,
+    "name": "EB092",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 462.4,
+    "lat": 42.039877,
+    "lon": -118.682215,
+    "name": "EB093",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 463.4,
+    "lat": 42.02644517572561,
+    "lon": -118.6765415116488,
+    "name": "EB094",
+    "landmark": "join road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 469.4,
+    "lat": 42.003822,
+    "lon": -118.587605,
+    "name": "EB105",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 472.3,
+    "lat": 42.022975,
+    "lon": -118.538377,
+    "name": "EB106",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 474.4,
+    "lat": 42.043387,
+    "lon": -118.509722,
+    "name": "EB107",
+    "landmark": "junction  ",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 475.2,
+    "lat": 42.051774,
+    "lon": -118.500164,
+    "name": "EB108",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 475.5,
+    "lat": 42.053791,
+    "lon": -118.495686,
+    "name": "EB109",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 476.0,
+    "lat": 42.061054,
+    "lon": -118.494865,
+    "name": "EB110",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 476.4,
+    "lat": 42.066555,
+    "lon": -118.493826,
+    "name": "EB111",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 477.4,
+    "lat": 42.064046,
+    "lon": -118.474833,
+    "name": "EB113",
+    "landmark": "rejoin 2-track road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 479.2,
+    "lat": 42.061271,
+    "lon": -118.442073,
+    "name": "EB114",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 484.7,
+    "lat": 42.036897,
+    "lon": -118.367089,
+    "name": "EB118",
+    "landmark": "regain 2-track road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 485.1,
+    "lat": 42.039495,
+    "lon": -118.360881,
+    "name": "EB119",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 487.3,
+    "lat": 42.052162,
+    "lon": -118.328011,
+    "name": "EB121",
+    "landmark": "follow fence",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 487.5,
+    "lat": 42.049393,
+    "lon": -118.327368,
+    "name": "EB122",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 488.8,
+    "lat": 42.03924,
+    "lon": -118.309268,
+    "name": "EB124",
+    "landmark": "right at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 489.7,
+    "lat": 42.028613,
+    "lon": -118.313695,
+    "name": "EB126",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 490.7,
+    "lat": 42.019829,
+    "lon": -118.306245,
+    "name": "EB127",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 491.2,
+    "lat": 42.020206,
+    "lon": -118.297361,
+    "name": "EB129",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 492.7,
+    "lat": 42.020831,
+    "lon": -118.274561,
+    "name": "EB131",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 494.2,
+    "lat": 42.022147,
+    "lon": -118.251186,
+    "name": "EB132",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 495.1,
+    "lat": 42.027486,
+    "lon": -118.23603,
+    "name": "EB133",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 495.6,
+    "lat": 42.033747,
+    "lon": -118.236103,
+    "name": "EB134",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 496.0,
+    "lat": 42.039003,
+    "lon": -118.239935,
+    "name": "EB135",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 497.5,
+    "lat": 42.057006,
+    "lon": -118.253427,
+    "name": "EB136",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 498.0,
+    "lat": 42.061896,
+    "lon": -118.245318,
+    "name": "EB137",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 500.2,
+    "lat": 42.073707,
+    "lon": -118.212699,
+    "name": "EB138",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 501.8,
+    "lat": 42.081916,
+    "lon": -118.184838,
+    "name": "EB138a",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 503.7,
+    "lat": 42.079371,
+    "lon": -118.153127,
+    "name": "EB149",
+    "landmark": "join road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 504.7,
+    "lat": 42.085545,
+    "lon": -118.146884,
+    "name": "EB149a",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 505.8,
+    "lat": 42.096965,
+    "lon": -118.133115,
+    "name": "EB151",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 508.2,
+    "lat": 42.117447,
+    "lon": -118.103847,
+    "name": "EB152",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 508.8,
+    "lat": 42.122049,
+    "lon": -118.104104,
+    "name": "EB154",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 510.4,
+    "lat": 42.124355,
+    "lon": -118.080035,
+    "name": "EB155",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 510.7,
+    "lat": 42.126307,
+    "lon": -118.07586,
+    "name": "EB156",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 513.5,
+    "lat": 42.12326,
+    "lon": -118.035052,
+    "name": "EB159",
+    "landmark": "right at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 516.7,
+    "lat": 42.115665,
+    "lon": -117.987207,
+    "name": "EB161",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 516.8,
+    "lat": 42.116185,
+    "lon": -117.984206,
+    "name": "EB162",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 516.9,
+    "lat": 42.116185,
+    "lon": -117.984206,
+    "name": "EB162",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 518.8,
+    "lat": 42.118844,
+    "lon": -117.945469,
+    "name": "ALTMC01",
+    "landmark": "right at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 524.8,
+    "lat": 42.208792,
+    "lon": -117.978546,
+    "name": "EB172",
+    "landmark": "fence/join 2-track road",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 525.6,
+    "lat": 42.21244,
+    "lon": -117.966556,
+    "name": "EB174",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 526.8,
+    "lat": 42.206339,
+    "lon": -117.946843,
+    "name": "EB176",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 529.4,
+    "lat": 42.042292,
+    "lon": -117.8103,
+    "name": "ALTMC07",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 530.4,
+    "lat": 42.191466,
+    "lon": -117.881535,
+    "name": "EB179",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 530.7,
+    "lat": 42.189338,
+    "lon": -117.875478,
+    "name": "EB180",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 532.6,
+    "lat": 41.99841,
+    "lon": -117.803848,
+    "name": "ALTMC08",
+    "landmark": "left onto paved road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 534.7,
+    "lat": 42.157815,
+    "lon": -117.810948,
+    "name": "EB181a",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 534.7,
+    "lat": 41.998294,
+    "lon": -117.763143,
+    "name": "ALTMC09",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 536.1,
+    "lat": 42.14594,
+    "lon": -117.789681,
+    "name": "EB182",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 539.5,
+    "lat": 42.12372,
+    "lon": -117.734166,
+    "name": "OC001",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 541.4,
+    "lat": 42.141507,
+    "lon": -117.711058,
+    "name": "OC002",
+    "landmark": "gate",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 542.8,
+    "lat": 42.14874,
+    "lon": -117.700715,
+    "name": "OC003",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 543.2,
+    "lat": 42.148829,
+    "lon": -117.697575,
+    "name": "OC004",
+    "landmark": "reach high point",
+    "subcategory": "other"
+  },
+  {
+    "mile": 543.7,
+    "lat": 42.144071,
+    "lon": -117.69331,
+    "name": "OC005",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 545.0,
+    "lat": 42.150008,
+    "lon": -117.671432,
+    "name": "OC006",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 548.0,
+    "lat": 42.115566,
+    "lon": -117.58072,
+    "name": "OC023",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 548.0,
+    "lat": 42.185444,
+    "lon": -117.683969,
+    "name": "OC009",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 548.3,
+    "lat": 42.188856,
+    "lon": -117.68153,
+    "name": "OC010",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 548.7,
+    "lat": 42.190584,
+    "lon": -117.674892,
+    "name": "OC011",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 551.4,
+    "lat": 42.189416,
+    "lon": -117.636498,
+    "name": "OC014",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 552.4,
+    "lat": 42.178735,
+    "lon": -117.641896,
+    "name": "OC016",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 552.8,
+    "lat": 42.173576,
+    "lon": -117.639833,
+    "name": "OC017",
+    "landmark": "join 2-track road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 554.1,
+    "lat": 42.165861,
+    "lon": -117.618954,
+    "name": "OC018",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 554.9,
+    "lat": 42.153543,
+    "lon": -117.61302,
+    "name": "OC020",
+    "landmark": "gate",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 556.8,
+    "lat": 42.128101,
+    "lon": -117.602222,
+    "name": "OC021",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 557.4,
+    "lat": 42.129989,
+    "lon": -117.59166,
+    "name": "OC022",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 558.6,
+    "lat": 42.115566,
+    "lon": -117.58072,
+    "name": "OC023",
+    "landmark": "follow fence line",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 558.9,
+    "lat": 42.115629,
+    "lon": -117.574092,
+    "name": "OC024",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 559.2,
+    "lat": 42.111732,
+    "lon": -117.572324,
+    "name": "OC025",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 560.1,
+    "lat": 42.110473,
+    "lon": -117.554848,
+    "name": "OC026",
+    "landmark": "fence/start x-country",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 561.5,
+    "lat": 42.111855,
+    "lon": -117.529166,
+    "name": "OC028",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 564.8,
+    "lat": 42.09155,
+    "lon": -117.478442,
+    "name": "OC032",
+    "landmark": "join 2-track road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 566.2,
+    "lat": 42.104825,
+    "lon": -117.46111,
+    "name": "OC033",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 567.7,
+    "lat": 42.106709,
+    "lon": -117.431669,
+    "name": "OC033a",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 568.4,
+    "lat": 42.108686,
+    "lon": -117.419059,
+    "name": "OC034",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 570.0,
+    "lat": 42.11724,
+    "lon": -117.394226,
+    "name": "OC037",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 570.2,
+    "lat": 42.118483,
+    "lon": -117.391243,
+    "name": "OC038",
+    "landmark": "join trail",
+    "subcategory": "other"
+  },
+  {
+    "mile": 571.2,
+    "lat": 42.120262,
+    "lon": -117.374249,
+    "name": "OC039",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 573.8,
+    "lat": 42.14416,
+    "lon": -117.349881,
+    "name": "OC041",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 574.2,
+    "lat": 42.147133,
+    "lon": -117.344381,
+    "name": "OC042",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 611.7,
+    "lat": 42.449517,
+    "lon": -117.210691,
+    "name": "OC072",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 612.2,
+    "lat": 42.454732,
+    "lon": -117.211196,
+    "name": "OC073",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 613.8,
+    "lat": 42.468567,
+    "lon": -117.1875,
+    "name": "OC074",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 614.4,
+    "lat": 42.474468,
+    "lon": -117.179299,
+    "name": "OC075",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 616.0,
+    "lat": 42.495076,
+    "lon": -117.171485,
+    "name": "OC076",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 617.4,
+    "lat": 42.513891,
+    "lon": -117.167644,
+    "name": "OC076a",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 618.5,
+    "lat": 42.526047,
+    "lon": -117.17483,
+    "name": "OC076b",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 619.2,
+    "lat": 42.529938,
+    "lon": -117.166401,
+    "name": "OC076c",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 621.7,
+    "lat": 42.552343,
+    "lon": -117.171513,
+    "name": "OC078",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 622.7,
+    "lat": 42.563702,
+    "lon": -117.176796,
+    "name": "OC079",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 624.7,
+    "lat": 42.590441,
+    "lon": -117.180257,
+    "name": "OC081",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 629.1,
+    "lat": 42.635985,
+    "lon": -117.229853,
+    "name": "OC083",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 634.2,
+    "lat": 42.688692,
+    "lon": -117.262349,
+    "name": "OC086",
+    "landmark": "join road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 635.5,
+    "lat": 42.703881,
+    "lon": -117.275911,
+    "name": "OC087",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 636.2,
+    "lat": 42.71156,
+    "lon": -117.284394,
+    "name": "OC088",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 637.7,
+    "lat": 42.720596,
+    "lon": -117.309904,
+    "name": "OC089",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 638.7,
+    "lat": 42.733649,
+    "lon": -117.316145,
+    "name": "OC090",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 639.5,
+    "lat": 42.744367,
+    "lon": -117.319324,
+    "name": "OC091",
+    "landmark": "cross 2-track road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 640.8,
+    "lat": 42.761248,
+    "lon": -117.32102,
+    "name": "OC093",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 644.3,
+    "lat": 42.762252,
+    "lon": -117.383873,
+    "name": "OC097",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 645.6,
+    "lat": 42.768139,
+    "lon": -117.406597,
+    "name": "OC098",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 648.8,
+    "lat": 42.783308,
+    "lon": -117.466278,
+    "name": "OC100",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 650.3,
+    "lat": 42.782624,
+    "lon": -117.494615,
+    "name": "OC101",
+    "landmark": "join trail",
+    "subcategory": "other"
+  },
+  {
+    "mile": 653.2,
+    "lat": 42.790403,
+    "lon": -117.546638,
+    "name": "OC103",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 656.5,
+    "lat": 42.801264,
+    "lon": -117.595259,
+    "name": "OC103a",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 656.8,
+    "lat": 42.805167,
+    "lon": -117.596265,
+    "name": "OC103b",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 657.4,
+    "lat": 42.813189,
+    "lon": -117.59877,
+    "name": "OC104",
+    "landmark": "gate",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 658.8,
+    "lat": 42.834184,
+    "lon": -117.599209,
+    "name": "OC107",
+    "landmark": "left at junction/fence",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 659.8,
+    "lat": 42.833332,
+    "lon": -117.617922,
+    "name": "OC108",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 662.7,
+    "lat": 42.852965,
+    "lon": -117.593803,
+    "name": "OC111",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 665.1,
+    "lat": 42.884431,
+    "lon": -117.582647,
+    "name": "OC113",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 665.4,
+    "lat": 42.888966,
+    "lon": -117.586874,
+    "name": "OC115",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 667.0,
+    "lat": 42.907402,
+    "lon": -117.605217,
+    "name": "OC115b",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 668.1,
+    "lat": 42.910525,
+    "lon": -117.626224,
+    "name": "OC115c",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 670.3,
+    "lat": 42.916764,
+    "lon": -117.669436,
+    "name": "OC116",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 671.0,
+    "lat": 42.926754,
+    "lon": -117.674585,
+    "name": "OC117",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 672.7,
+    "lat": 42.937065,
+    "lon": -117.703472,
+    "name": "OC119",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 674.4,
+    "lat": 42.951492,
+    "lon": -117.713639,
+    "name": "OC120",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 675.2,
+    "lat": 42.961535,
+    "lon": -117.719679,
+    "name": "OC121",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 676.6,
+    "lat": 42.974146,
+    "lon": -117.703071,
+    "name": "OC122",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 677.7,
+    "lat": 42.988501,
+    "lon": -117.696609,
+    "name": "OC123",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 681.6,
+    "lat": 43.039955,
+    "lon": -117.688854,
+    "name": "OC126",
+    "landmark": "fence",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 682.4,
+    "lat": 43.05079,
+    "lon": -117.686638,
+    "name": "OC127",
+    "landmark": "join 2-track road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 683.8,
+    "lat": 43.068068,
+    "lon": -117.679284,
+    "name": "OC131",
+    "landmark": "gate",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 684.7,
+    "lat": 43.078701,
+    "lon": -117.680323,
+    "name": "OC132",
+    "landmark": "left at fork",
+    "subcategory": "other"
+  },
+  {
+    "mile": 686.3,
+    "lat": 43.09856,
+    "lon": -117.689698,
+    "name": "OC134",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 688.0,
+    "lat": 43.112977,
+    "lon": -117.709473,
+    "name": "OC135",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 688.5,
+    "lat": 43.113436,
+    "lon": -117.702092,
+    "name": "OC137",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 689.0,
+    "lat": 43.113768,
+    "lon": -117.694442,
+    "name": "OC138",
+    "landmark": "cross fence",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 691.1,
+    "lat": 43.133347,
+    "lon": -117.671681,
+    "name": "OC140",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 696.1,
+    "lat": 43.161717,
+    "lon": -117.597374,
+    "name": "OC142",
+    "landmark": "junction  ",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 698.8,
+    "lat": 43.173353,
+    "lon": -117.547431,
+    "name": "OC144",
+    "landmark": "fence",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 702.5,
+    "lat": 43.174467,
+    "lon": -117.477013,
+    "name": "OC146",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 703.0,
+    "lat": 43.177216,
+    "lon": -117.467584,
+    "name": "OC147",
+    "landmark": "junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 705.3,
+    "lat": 43.206514,
+    "lon": -117.468119,
+    "name": "OC149",
+    "landmark": "right at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 708.1,
+    "lat": 43.207881,
+    "lon": -117.42359,
+    "name": "OC151",
+    "landmark": "left at junction",
+    "subcategory": "junction"
+  },
+  {
+    "mile": 710.9,
+    "lat": 43.22384,
+    "lon": -117.377665,
+    "name": "OC153",
+    "landmark": "cross 2-track road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 711.6,
+    "lat": 43.229305,
+    "lon": -117.366596,
+    "name": "OC154",
+    "landmark": "fence",
+    "subcategory": "gate"
+  },
+  {
+    "mile": 712.3,
+    "lat": 43.229715,
+    "lon": -117.356104,
+    "name": "OC155",
+    "landmark": "join trail  ",
+    "subcategory": "other"
+  },
+  {
+    "mile": 713.8,
+    "lat": 43.24482,
+    "lon": -117.343946,
+    "name": "OC157",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 714.2,
+    "lat": 43.249829,
+    "lon": -117.344224,
+    "name": "OC158",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 715.9,
+    "lat": 43.272719,
+    "lon": -117.343464,
+    "name": "OC159",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 716.2,
+    "lat": 43.277382,
+    "lon": -117.345693,
+    "name": "OC160",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 717.6,
+    "lat": 43.294164,
+    "lon": -117.354426,
+    "name": "OC161",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 725.7,
+    "lat": 43.308543,
+    "lon": -117.268822,
+    "name": "OC175",
+    "landmark": "follow west fork of gulch",
+    "subcategory": "other"
+  },
+  {
+    "mile": 726.5,
+    "lat": 43.318144,
+    "lon": -117.2729,
+    "name": "OC176",
+    "landmark": "gain ridgeline",
+    "subcategory": "other"
+  },
+  {
+    "mile": 728.4,
+    "lat": 43.338791,
+    "lon": -117.27593,
+    "name": "OC178",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 729.7,
+    "lat": 43.355478,
+    "lon": -117.274996,
+    "name": "OC179",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 730.8,
+    "lat": 43.367189,
+    "lon": -117.286367,
+    "name": "OC180",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 732.2,
+    "lat": 43.381695,
+    "lon": -117.276078,
+    "name": "OC182",
+    "landmark": "join 2-track road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 734.2,
+    "lat": 43.403374,
+    "lon": -117.266948,
+    "name": "OC185",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 734.8,
+    "lat": 43.410669,
+    "lon": -117.262549,
+    "name": "OC186",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 736.4,
+    "lat": 43.431355,
+    "lon": -117.271694,
+    "name": "OC187",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 737.0,
+    "lat": 43.438835,
+    "lon": -117.271812,
+    "name": "OC188",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 737.3,
+    "lat": 43.439496,
+    "lon": -117.278253,
+    "name": "OC189",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 740.1,
+    "lat": 43.472302,
+    "lon": -117.255277,
+    "name": "OC190",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 740.6,
+    "lat": 43.478559,
+    "lon": -117.257196,
+    "name": "OC191",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 743.2,
+    "lat": 43.508809,
+    "lon": -117.255374,
+    "name": "OC193",
+    "landmark": "join 2-track road",
+    "subcategory": "road-crossing"
+  },
+  {
+    "mile": 743.6,
+    "lat": 43.513396,
+    "lon": -117.25131,
+    "name": "OC194",
+    "landmark": "start x-country",
+    "subcategory": "other"
+  },
+  {
+    "mile": 744.6,
+    "lat": 43.526856,
+    "lon": -117.248933,
+    "name": "OC196",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 747.2,
+    "lat": 43.562667,
+    "lon": -117.243616,
+    "name": "OC197",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 748.3,
+    "lat": 43.576345,
+    "lon": -117.243774,
+    "name": "OC198",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 749.3,
+    "lat": 43.587766,
+    "lon": -117.249842,
+    "name": "OC199",
+    "landmark": "",
+    "subcategory": "other"
+  },
+  {
+    "mile": 749.5,
+    "lat": 43.589496,
+    "lon": -117.24718,
+    "name": "OC200",
+    "landmark": "",
+    "subcategory": "other"
+  }
+]

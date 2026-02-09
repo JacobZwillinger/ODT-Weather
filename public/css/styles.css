@@ -598,7 +598,7 @@ th {
 
 .map-elevation-chart {
   position: absolute;
-  bottom: 0;
+  bottom: 64px;
   left: 0;
   right: 0;
   padding: 0;
@@ -618,8 +618,120 @@ th {
 }
 
 @media (min-width: 768px) {
+  .map-elevation-chart {
+    bottom: 72px;
+  }
   .map-elevation-chart canvas {
     max-height: 220px;
+  }
+}
+
+/* Category Toggle Bar */
+.category-toggle-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 6px 8px;
+  z-index: 6;
+  display: flex;
+  justify-content: space-around;
+  gap: 4px;
+}
+
+.category-toggle-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 6px 4px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 48px;
+  color: #999;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.category-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+.category-toggle-btn.active {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.category-toggle-btn[data-category="water"].active {
+  color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.category-toggle-btn[data-category="towns"].active {
+  color: #059669;
+  border-color: #059669;
+}
+
+.category-toggle-btn[data-category="navigation"].active {
+  color: #8b5cf6;
+  border-color: #8b5cf6;
+}
+
+.category-toggle-btn[data-category="toilets"].active {
+  color: #f59e0b;
+  border-color: #f59e0b;
+}
+
+.category-toggle-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.category-toggle-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.category-toggle-btn:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+@media (hover: hover) {
+  .category-toggle-btn:hover {
+    background: rgba(0, 0, 0, 0.06);
+  }
+}
+
+@media (min-width: 768px) {
+  .category-toggle-bar {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  .category-toggle-btn {
+    padding: 8px 6px;
+    min-height: 52px;
+  }
+
+  .category-toggle-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .category-toggle-label {
+    font-size: 0.65rem;
   }
 }
 
@@ -788,6 +900,10 @@ button {
   .info-btn {
     transition: none;
   }
+
+  .category-toggle-btn {
+    transition: none;
+  }
 }
 
 @media (min-width: 768px) {
@@ -819,10 +935,10 @@ button {
   z-index: 10 !important;
 }
 
-/* Bottom-left controls - position above elevation chart.
+/* Bottom-left controls - position above elevation chart + toggle bar.
    !important overrides MapLibre's inline style (bottom:0). */
 .maplibregl-ctrl-bottom-left {
-  bottom: 200px !important;
+  bottom: 260px !important;
 }
 
 /* Zoom level display */
@@ -845,6 +961,6 @@ button {
 
 @media (min-width: 768px) {
   .maplibregl-ctrl-bottom-left {
-    bottom: 240px !important; /* Taller elevation chart on desktop */
+    bottom: 310px !important; /* Taller elevation chart + toggle bar on desktop */
   }
 }

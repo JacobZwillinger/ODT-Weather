@@ -75,6 +75,35 @@
           <h4>Next 20 Miles Elevation</h4>
           <canvas id="mapElevationChart" role="img" aria-label="Elevation profile chart showing the next 20 miles of trail elevation"></canvas>
         </div>
+
+        <!-- Category Toggle Bar -->
+        <div class="category-toggle-bar" id="categoryToggleBar" role="toolbar" aria-label="Map layer toggles">
+          <button class="category-toggle-btn active" data-category="water" aria-label="Toggle water sources" aria-pressed="true">
+            <svg class="category-toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3c-2 3-5 6.5-5 10a5 5 0 0 0 10 0c0-3.5-3-7-5-10z" fill="currentColor"/>
+            </svg>
+            <span class="category-toggle-label">Water</span>
+          </button>
+          <button class="category-toggle-btn active" data-category="towns" aria-label="Toggle towns" aria-pressed="true">
+            <svg class="category-toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="currentColor"/>
+            </svg>
+            <span class="category-toggle-label">Towns</span>
+          </button>
+          <button class="category-toggle-btn" data-category="navigation" aria-label="Toggle navigation waypoints" aria-pressed="false">
+            <svg class="category-toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2 L20 20 L12 16 L4 20 Z" fill="currentColor"/>
+            </svg>
+            <span class="category-toggle-label">Nav</span>
+          </button>
+          <button class="category-toggle-btn active" data-category="toilets" aria-label="Toggle toilets" aria-pressed="true">
+            <svg class="category-toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="9" y="10" width="6" height="9" rx="1" fill="currentColor"/>
+              <circle cx="12" cy="6" r="2.5" fill="currentColor"/>
+            </svg>
+            <span class="category-toggle-label">Toilets</span>
+          </button>
+        </div>
       </div>
 
       <div id="weatherTab" class="tab-content" role="tabpanel" aria-labelledby="tab-weather">

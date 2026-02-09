@@ -1,5 +1,5 @@
 // Main application entry point
-import { state } from './utils.js';
+import { state, loadToggleState } from './utils.js';
 import { loadForecasts } from './weather.js';
 import { initModals } from './modals.js';
 import { showMapInfo, scheduleMapInit } from './map.js';
@@ -23,19 +23,25 @@ const safeFetch = async (url, defaultValue = []) => {
 // Load data and initialize app
 const init = async () => {
   try {
+    // Load saved toggle preferences
+    loadToggleState();
+
     // Load all data in parallel with error handling
-    const [waypoints, water, townData] = await Promise.all([
+    const [waypoints, water, townData, navigation, toilets] = await Promise.all([
       safeFetch('waypoints.json', []),
-      safeFetch('water-sources.json', []),
-      safeFetch('towns.json', [])
+      safeFetch('water.json', []),
+      safeFetch('towns.json', []),
+      safeFetch('navigation.json', []),
+      safeFetch('toilets.json', [])
     ]);
 
     // Update shared state
     state.allWaypoints = waypoints;
     state.waterSources = water;
     state.towns = townData;
+    state.categories = { water, towns: townData, navigation, toilets };
 
-    console.log('Loaded', state.allWaypoints.length, 'waypoints,', state.waterSources.length, 'water sources, and', state.towns.length, 'towns');
+    console.log('Loaded', state.allWaypoints.length, 'waypoints,', water.length, 'water,', townData.length, 'towns,', navigation.length, 'nav,', toilets.length, 'toilets');
 
     // Initialize info panel with mile 0
     showMapInfo(0);

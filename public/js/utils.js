@@ -6,7 +6,37 @@ export const state = {
   towns: [],
   allWaypoints: [],
   elevationProfile: null,
-  currentMile: 0
+  currentMile: 0,
+  categories: {
+    water: [],
+    towns: [],
+    navigation: [],
+    toilets: []
+  },
+  visibleCategories: {
+    water: true,
+    towns: true,
+    navigation: false,
+    toilets: true
+  }
+};
+
+// Load saved toggle state from localStorage
+export const loadToggleState = () => {
+  const saved = localStorage.getItem('categoryToggles');
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved);
+      Object.assign(state.visibleCategories, parsed);
+    } catch (e) {
+      // ignore invalid stored state
+    }
+  }
+};
+
+// Save toggle state to localStorage
+export const saveToggleState = () => {
+  localStorage.setItem('categoryToggles', JSON.stringify(state.visibleCategories));
 };
 
 // Load elevation profile (cached)
