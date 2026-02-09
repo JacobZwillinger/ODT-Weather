@@ -5,7 +5,8 @@ import {
   MILE_EPSILON,
   WATER_WARNING_MILES,
   SCROLL_DELAY_MS,
-  MAP_INIT_DELAY_MS
+  MAP_INIT_DELAY_MS,
+  CATEGORY_CONFIG
 } from '../../public/js/config.js';
 
 describe('sectionPoints', () => {
@@ -75,6 +76,40 @@ describe('weatherIcons', () => {
     Object.values(weatherIcons).forEach(svg => {
       expect(svg).toContain('<svg');
       expect(svg).toContain('</svg>');
+    });
+  });
+});
+
+describe('CATEGORY_CONFIG', () => {
+  const expectedCategories = ['water', 'towns', 'navigation', 'toilets'];
+
+  it('has all four categories', () => {
+    expectedCategories.forEach(cat => {
+      expect(CATEGORY_CONFIG).toHaveProperty(cat);
+    });
+  });
+
+  it('each category has required properties', () => {
+    expectedCategories.forEach(cat => {
+      const config = CATEGORY_CONFIG[cat];
+      expect(config).toHaveProperty('color');
+      expect(config).toHaveProperty('icon');
+      expect(config).toHaveProperty('minZoom');
+      expect(config).toHaveProperty('clusterMaxZoom');
+      expect(config).toHaveProperty('clusterRadius');
+    });
+  });
+
+  it('colors are valid hex strings', () => {
+    Object.values(CATEGORY_CONFIG).forEach(config => {
+      expect(config.color).toMatch(/^#[0-9a-f]{6}$/i);
+    });
+  });
+
+  it('minZoom values are reasonable', () => {
+    Object.values(CATEGORY_CONFIG).forEach(config => {
+      expect(config.minZoom).toBeGreaterThanOrEqual(5);
+      expect(config.minZoom).toBeLessThanOrEqual(15);
     });
   });
 });

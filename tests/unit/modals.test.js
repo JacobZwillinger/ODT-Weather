@@ -9,6 +9,12 @@ vi.mock('../../public/js/config.js', () => ({
   MILE_EPSILON: 0.01,
   WATER_WARNING_MILES: 20,
   MAP_INIT_DELAY_MS: 100,
+  CATEGORY_CONFIG: {
+    water: { color: '#3b82f6', icon: 'water-icon', minZoom: 8, clusterMaxZoom: 14, clusterRadius: 35 },
+    towns: { color: '#059669', icon: 'town-icon', minZoom: 7, clusterMaxZoom: 12, clusterRadius: 40 },
+    navigation: { color: '#8b5cf6', icon: 'nav-icon', minZoom: 10, clusterMaxZoom: 14, clusterRadius: 30 },
+    toilets: { color: '#f59e0b', icon: 'toilet-icon', minZoom: 8, clusterMaxZoom: 14, clusterRadius: 35 }
+  }
 }));
 
 import { state } from '../../public/js/utils.js';
@@ -27,7 +33,7 @@ const setupDOM = () => {
 
 setupDOM();
 
-const { showWaypointDetail, showWaterDetail, showSourcesList, initModals } = await import('../../public/js/modals.js');
+const { showWaypointDetail, showWaterDetail, showTownDetail, showSourcesList, initModals } = await import('../../public/js/modals.js');
 
 describe('showWaypointDetail', () => {
   beforeEach(() => {
@@ -159,6 +165,55 @@ describe('showWaterDetail', () => {
   // [TEST] Added: verifies returns null when name is null/undefined
   it('returns null when name is null', () => {
     const result = showWaterDetail(null);
+    expect(result).toBeNull();
+  });
+});
+
+describe('showTownDetail', () => {
+  beforeEach(() => {
+    setupDOM();
+    state.towns = [
+      { name: 'Paisley', mile: 160.5, landmark: 'walk through town of Paisley', services: 'full', offTrail: '6.2 miles W' },
+      { name: 'Fields', mile: 438.0, landmark: 'Fields station', services: 'limited', offTrail: null },
+    ];
+    state.allWaypoints = [
+      { name: 'WP001', mile: 10.5, lat: 43.0, lon: -120.0, landmark: 'Test Creek' },
+    ];
+  });
+
+  it('opens modal with town data including services', () => {
+    const result = showTownDetail('Paisley');
+    expect(result).not.toBeNull();
+    expect(result.name).toBe('Paisley');
+
+    const modal = document.getElementById('waypointModal');
+    expect(modal.classList.contains('visible')).toBe(true);
+
+    const detail = document.getElementById('waypointDetail');
+    expect(detail.textContent).toContain('160.5');
+    expect(detail.textContent).toContain('full');
+    expect(detail.textContent).toContain('6.2 miles W');
+  });
+
+  it('shows town without offTrail info when null', () => {
+    const result = showTownDetail('Fields');
+    expect(result).not.toBeNull();
+
+    const detail = document.getElementById('waypointDetail');
+    expect(detail.textContent).toContain('limited');
+    expect(detail.textContent).not.toContain('Location:');
+  });
+
+  it('falls back to waypoint detail when town not found', () => {
+    const result = showTownDetail('WP001');
+    // Should fall back to showWaypointDetail
+    expect(result).not.toBeNull();
+    expect(result.name).toBe('WP001');
+  });
+
+  it('returns null when neither town nor waypoint found', () => {
+    state.allWaypoints = [];
+    const result = showTownDetail('NONEXISTENT');
     expect(result).toBeNull();
   });
 });

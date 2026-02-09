@@ -214,6 +214,57 @@ export const showWaterDetail = (name) => {
   return source;
 };
 
+// Find town by waypoint name
+const findTown = (name) => {
+  if (!name) return null;
+  return state.towns.find(t => t.name === name);
+};
+
+// Show town detail modal
+export const showTownDetail = (name) => {
+  const town = findTown(name);
+  if (!town) {
+    // Fall back to generic waypoint detail
+    return showWaypointDetail(name);
+  }
+
+  const modal = document.getElementById('waypointModal');
+  const title = document.getElementById('waypointModalTitle');
+  const detail = document.getElementById('waypointDetail');
+
+  if (!modal || !title || !detail) return null;
+
+  title.textContent = town.name;
+  detail.innerHTML = '';
+
+  const milePara = document.createElement('p');
+  milePara.innerHTML = `<strong>Mile:</strong> ${town.mile.toFixed(1)}`;
+  detail.appendChild(milePara);
+
+  if (town.landmark) {
+    const descPara = document.createElement('p');
+    descPara.innerHTML = '<strong>Description:</strong> ';
+    descPara.appendChild(document.createTextNode(town.landmark));
+    detail.appendChild(descPara);
+  }
+
+  const servicesPara = document.createElement('p');
+  servicesPara.innerHTML = '<strong>Services:</strong> ';
+  servicesPara.appendChild(document.createTextNode(town.services || 'unknown'));
+  detail.appendChild(servicesPara);
+
+  if (town.offTrail) {
+    const offTrailPara = document.createElement('p');
+    offTrailPara.innerHTML = '<strong>Location:</strong> ';
+    offTrailPara.appendChild(document.createTextNode(town.offTrail));
+    detail.appendChild(offTrailPara);
+  }
+
+  modal.classList.add('visible');
+  focusModalClose(modal);
+  return town;
+};
+
 // Show sources list modal (water or towns)
 export const showSourcesList = (type) => {
   const modal = document.getElementById('sourcesModal');

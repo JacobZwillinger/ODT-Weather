@@ -394,12 +394,6 @@ test.describe('ODT Weather App', () => {
 
   test.describe('Waypoint Modal via Map Click', () => {
     test('map tiles load correctly', async ({ page }) => {
-      // Collect console messages
-      const logs = [];
-      page.on('console', msg => logs.push(`${msg.type()}: ${msg.text()}`));
-      page.on('pageerror', err => logs.push(`ERROR: ${err.message}`));
-
-      // Track network requests for pmtiles
       const pmtilesRequests = [];
       page.on('response', res => {
         if (res.url().includes('pmtiles')) {
@@ -407,29 +401,19 @@ test.describe('ODT Weather App', () => {
         }
       });
 
-      // Wait for map to initialize
       await page.waitForTimeout(5000);
 
-      // Log what we found
-      console.log('PMTiles requests:', pmtilesRequests);
-      console.log('Console logs:', logs.filter(l => l.includes('error') || l.includes('Error')));
-
-      // Check that canvas exists
       const hasCanvas = await page.evaluate(() => {
-        const canvas = document.querySelector('#mapContainer canvas');
-        return canvas !== null;
+        return document.querySelector('#mapContainer canvas') !== null;
       });
       expect(hasCanvas).toBe(true);
-
-      // Check that pmtiles were requested
       expect(pmtilesRequests.length).toBeGreaterThan(0);
     });
 
-    test('clicking on waypoint icon opens waypoint modal', async ({ page }) => {
-      // Wait for map to fully initialize
+    test('clicking on category point opens waypoint modal', async ({ page }) => {
       await page.waitForTimeout(3000);
 
-      // Fly to exact waypoint location (CV001 - trailhead) at zoom 14 (max for overlay pmtiles)
+      // Query for any category layer features (water, navigation, etc.)
       const waypointResult = await page.evaluate(() => {
         return new Promise((resolve) => {
           const map = window._odtMap;
@@ -438,164 +422,7 @@ test.describe('ODT Weather App', () => {
             return;
           }
 
-          // Use section 2 area (mile 36) to avoid edge cases at mile 0
-          // Section 2: Sand Spring to South Reservoir
-          const waypointLon = -120.847;
-          const waypointLat = 43.708;
-
-          // Zoom to level 13 (max zoom for overlay PMTiles, also minzoom for waypoint-icons)
-          map.flyTo({
-            center: [waypointLon, waypointLat],
-            zoom: 13,
-            duration: 0
-          });
-
-          map.once('idle', () => {
-            // Wait for tiles to fully render
-            setTimeout(() => {
-              // Debug: Check all sources and their loaded state
-              const sources = Object.keys(map.getStyle().sources);
-              const layers = map.getStyle().layers.map(l => ({
-                id: l.id,
-                source: l.source,
-                sourceLayer: l['source-layer'],
-                minzoom: l.minzoom
-              }));
-
-              // Check if waypoint-icon image is loaded
-              const hasWaypointIcon = map.hasImage('waypoint-icon');
-              console.log('Has waypoint-icon image:', hasWaypointIcon);
-
-              // Query for waypoint features across the whole viewport
-              const waypointFeatures = map.queryRenderedFeatures({ layers: ['waypoint-icons'] });
-
-              // Also try querying without layer filter to see all features from overlay source
-              const overlayFeatures = map.querySourceFeatures('overlay', { sourceLayer: 'waypoints' });
-              console.log('Overlay waypoints source features:', overlayFeatures.length);
-
-              // Check layer visibility and get layer details
-              const waypointLayer = map.getLayer('waypoint-icons');
-              const waypointLayerDetails = waypointLayer ? {
-                id: waypointLayer.id,
-                type: waypointLayer.type,
-                visibility: map.getLayoutProperty('waypoint-icons', 'visibility'),
-                iconImage: map.getLayoutProperty('waypoint-icons', 'icon-image')
-              } : null;
-              console.log('Waypoint layer details:', waypointLayerDetails);
-
-              // Get first waypoint from source
-              const firstWaypoint = overlayFeatures.length > 0 ? {
-                coords: overlayFeatures[0].geometry.coordinates,
-                props: overlayFeatures[0].properties
-              } : null;
-              console.log('First waypoint from source:', firstWaypoint);
-
-              // Also query for ALL features to see what's rendering
-              const allFeatures = map.queryRenderedFeatures();
-              const featuresByLayer = {};
-              allFeatures.forEach(f => {
-                const layerId = f.layer?.id || 'unknown';
-                featuresByLayer[layerId] = (featuresByLayer[layerId] || 0) + 1;
-              });
-
-              if (waypointFeatures.length > 0) {
-                // Get screen coordinates of first waypoint
-                const feature = waypointFeatures[0];
-                const coords = feature.geometry.coordinates;
-                const point = map.project(coords);
-                resolve({
-                  success: true,
-                  waypointCount: waypointFeatures.length,
-                  clickX: point.x,
-                  clickY: point.y,
-                  waypointName: feature.properties?.name || 'unknown',
-                  zoom: map.getZoom()
-                });
-              } else {
-                // Check layer visibility and get layer details
-                const waypointLayer = map.getLayer('waypoint-icons');
-                const waypointLayerDetails = waypointLayer ? {
-                  id: waypointLayer.id,
-                  type: waypointLayer.type,
-                  visibility: map.getLayoutProperty('waypoint-icons', 'visibility'),
-                  iconImage: map.getLayoutProperty('waypoint-icons', 'icon-image')
-                } : 'layer not found';
-
-                // Get first waypoint from source
-                const firstWaypoint = overlayFeatures.length > 0 ? {
-                  coords: overlayFeatures[0].geometry.coordinates,
-                  props: overlayFeatures[0].properties
-                } : null;
-
-                resolve({
-                  success: false,
-                  waypointCount: 0,
-                  zoom: map.getZoom(),
-                  center: map.getCenter(),
-                  sources,
-                  layerCount: layers.length,
-                  totalFeatures: allFeatures.length,
-                  featuresByLayer,
-                  hasWaypointIcon,
-                  sourceWaypointCount: overlayFeatures.length,
-                  waypointLayerDetails,
-                  firstWaypoint
-                });
-              }
-            }, 2000); // Give more time for tiles to load
-          });
-
-          // Fallback timeout
-          setTimeout(() => resolve({ error: 'timeout' }), 8000);
-        });
-      });
-
-      console.log('Waypoint query result:', JSON.stringify(waypointResult, null, 2));
-      await page.screenshot({ path: 'test-results/map-at-waypoint-zoom.png' });
-
-      // If no waypoint icons found, the overlay might not be loading correctly
-      if (!waypointResult.success) {
-        console.log('DEBUG: No waypoint icons found. Features by layer:', waypointResult.featuresByLayer);
-      }
-
-      // Click on the waypoint if found, otherwise click center
-      const canvas = page.locator('#mapContainer canvas.maplibregl-canvas');
-      const box = await canvas.boundingBox();
-
-      let clickX, clickY;
-      if (waypointResult.success && waypointResult.clickX !== undefined) {
-        clickX = waypointResult.clickX;
-        clickY = waypointResult.clickY;
-        console.log(`Clicking on waypoint at (${clickX}, ${clickY})`);
-      } else {
-        clickX = box.width / 2;
-        clickY = box.height / 2;
-        console.log(`Clicking center at (${clickX}, ${clickY})`);
-      }
-
-      await canvas.click({ position: { x: clickX, y: clickY } });
-      await page.waitForTimeout(500);
-      await page.screenshot({ path: 'test-results/map-after-click.png' });
-
-      // Check if waypoint modal opened
-      const modal = page.locator('#waypointModal');
-      await expect(modal).toHaveClass(/visible/, { timeout: 5000 });
-    });
-
-    test('waypoint click shows consistent mile in modal and info panel', async ({ page }) => {
-      // Wait for map to fully initialize
-      await page.waitForTimeout(3000);
-
-      // Navigate to a waypoint and click it
-      const result = await page.evaluate(() => {
-        return new Promise((resolve) => {
-          const map = window._odtMap;
-          if (!map) {
-            resolve({ error: 'no map' });
-            return;
-          }
-
-          // Fly to section 2 area
+          // Fly to section 2 area at high zoom to see unclustered points
           map.flyTo({
             center: [-120.847, 43.708],
             zoom: 13,
@@ -604,9 +431,99 @@ test.describe('ODT Weather App', () => {
 
           map.once('idle', () => {
             setTimeout(() => {
-              const waypointFeatures = map.queryRenderedFeatures({ layers: ['waypoint-icons'] });
-              if (waypointFeatures.length > 0) {
-                const feature = waypointFeatures[0];
+              // Try all category layers
+              const categoryLayers = ['water-points-unclustered', 'navigation-points-unclustered',
+                                       'towns-points-unclustered', 'toilets-points-unclustered'];
+              const existingLayers = categoryLayers.filter(id => map.getLayer(id));
+
+              let features = [];
+              if (existingLayers.length > 0) {
+                features = map.queryRenderedFeatures({ layers: existingLayers });
+              }
+
+              if (features.length > 0) {
+                const feature = features[0];
+                const coords = feature.geometry.coordinates;
+                const point = map.project(coords);
+                resolve({
+                  success: true,
+                  waypointCount: features.length,
+                  clickX: point.x,
+                  clickY: point.y,
+                  waypointName: feature.properties?.name || 'unknown',
+                  category: feature.properties?.type || 'unknown',
+                  zoom: map.getZoom()
+                });
+              } else {
+                const allFeatures = map.queryRenderedFeatures();
+                const featuresByLayer = {};
+                allFeatures.forEach(f => {
+                  const layerId = f.layer?.id || 'unknown';
+                  featuresByLayer[layerId] = (featuresByLayer[layerId] || 0) + 1;
+                });
+                resolve({
+                  success: false,
+                  existingLayers,
+                  featuresByLayer,
+                  zoom: map.getZoom()
+                });
+              }
+            }, 2000);
+          });
+
+          setTimeout(() => resolve({ error: 'timeout' }), 8000);
+        });
+      });
+
+      console.log('Category point query result:', JSON.stringify(waypointResult, null, 2));
+
+      const canvas = page.locator('#mapContainer canvas.maplibregl-canvas');
+      const box = await canvas.boundingBox();
+
+      let clickX, clickY;
+      if (waypointResult.success) {
+        clickX = waypointResult.clickX;
+        clickY = waypointResult.clickY;
+      } else {
+        clickX = box.width / 2;
+        clickY = box.height / 2;
+      }
+
+      await canvas.click({ position: { x: clickX, y: clickY } });
+      await page.waitForTimeout(500);
+
+      const modal = page.locator('#waypointModal');
+      await expect(modal).toHaveClass(/visible/, { timeout: 5000 });
+    });
+
+    test('waypoint click shows consistent mile in modal and info panel', async ({ page }) => {
+      await page.waitForTimeout(3000);
+
+      const result = await page.evaluate(() => {
+        return new Promise((resolve) => {
+          const map = window._odtMap;
+          if (!map) {
+            resolve({ error: 'no map' });
+            return;
+          }
+
+          map.flyTo({
+            center: [-120.847, 43.708],
+            zoom: 13,
+            duration: 0
+          });
+
+          map.once('idle', () => {
+            setTimeout(() => {
+              const categoryLayers = ['water-points-unclustered', 'navigation-points-unclustered',
+                                       'towns-points-unclustered', 'toilets-points-unclustered'];
+              const existingLayers = categoryLayers.filter(id => map.getLayer(id));
+              const features = existingLayers.length > 0
+                ? map.queryRenderedFeatures({ layers: existingLayers })
+                : [];
+
+              if (features.length > 0) {
+                const feature = features[0];
                 const point = map.project(feature.geometry.coordinates);
                 resolve({
                   success: true,
@@ -625,28 +542,170 @@ test.describe('ODT Weather App', () => {
       });
 
       if (!result.success) {
-        console.log('Skipping consistency test - no waypoints found');
+        console.log('Skipping consistency test - no category points found');
         return;
       }
 
-      // Click on the waypoint
       const canvas = page.locator('#mapContainer canvas.maplibregl-canvas');
       await canvas.click({ position: { x: result.clickX, y: result.clickY } });
       await page.waitForTimeout(500);
 
-      // Get the mile from modal
       const modalMileText = await page.locator('#waypointDetail p').first().textContent();
       const modalMile = parseFloat(modalMileText.replace('Mile:', '').trim());
 
-      // Get the mile from info panel
       const infoPanelMile = parseFloat(await page.locator('#mapCurrentMile').textContent());
 
-      // Close modal
       await page.click('#closeWaypointModal');
 
-      // They should match
       console.log(`Modal mile: ${modalMile}, Info panel mile: ${infoPanelMile}`);
       expect(Math.abs(modalMile - infoPanelMile)).toBeLessThan(0.1);
+    });
+  });
+
+  test.describe('Category Toggle Bar', () => {
+    test('toggle bar is visible with all 4 category buttons', async ({ page }) => {
+      const toggleBar = page.locator('.category-toggle-bar');
+      await expect(toggleBar).toBeVisible();
+
+      const buttons = page.locator('.category-toggle-btn');
+      await expect(buttons).toHaveCount(4);
+
+      await expect(page.locator('[data-category="water"]')).toBeVisible();
+      await expect(page.locator('[data-category="towns"]')).toBeVisible();
+      await expect(page.locator('[data-category="navigation"]')).toBeVisible();
+      await expect(page.locator('[data-category="toilets"]')).toBeVisible();
+    });
+
+    test('default toggle state: water, towns, toilets on; navigation off', async ({ page }) => {
+      await page.evaluate(() => localStorage.removeItem('categoryToggles'));
+      await page.reload();
+      await page.waitForSelector('#mapContainer');
+
+      await expect(page.locator('[data-category="water"]')).toHaveClass(/active/);
+      await expect(page.locator('[data-category="towns"]')).toHaveClass(/active/);
+      await expect(page.locator('[data-category="toilets"]')).toHaveClass(/active/);
+      await expect(page.locator('[data-category="navigation"]')).not.toHaveClass(/active/);
+
+      await expect(page.locator('[data-category="water"]')).toHaveAttribute('aria-pressed', 'true');
+      await expect(page.locator('[data-category="navigation"]')).toHaveAttribute('aria-pressed', 'false');
+    });
+
+    test('clicking toggle button toggles active state and aria-pressed', async ({ page }) => {
+      const waterBtn = page.locator('[data-category="water"]');
+
+      await expect(waterBtn).toHaveClass(/active/);
+      await expect(waterBtn).toHaveAttribute('aria-pressed', 'true');
+
+      await waterBtn.click();
+      await expect(waterBtn).not.toHaveClass(/active/);
+      await expect(waterBtn).toHaveAttribute('aria-pressed', 'false');
+
+      await waterBtn.click();
+      await expect(waterBtn).toHaveClass(/active/);
+      await expect(waterBtn).toHaveAttribute('aria-pressed', 'true');
+    });
+
+    test('toggling off a category hides its map layers', async ({ page }) => {
+      await page.waitForTimeout(3000);
+
+      await page.click('[data-category="water"]');
+
+      const visibility = await page.evaluate(() => {
+        const map = window._odtMap;
+        if (!map) return null;
+        return {
+          unclustered: map.getLayoutProperty('water-points-unclustered', 'visibility'),
+          clusters: map.getLayoutProperty('water-clusters', 'visibility'),
+          clusterCount: map.getLayoutProperty('water-cluster-count', 'visibility')
+        };
+      });
+
+      expect(visibility).not.toBeNull();
+      expect(visibility.unclustered).toBe('none');
+      expect(visibility.clusters).toBe('none');
+      expect(visibility.clusterCount).toBe('none');
+    });
+
+    test('toggling on a category shows its map layers', async ({ page }) => {
+      await page.waitForTimeout(3000);
+
+      await page.click('[data-category="navigation"]');
+
+      const visibility = await page.evaluate(() => {
+        const map = window._odtMap;
+        if (!map) return null;
+        const layer = map.getLayer('navigation-points-unclustered');
+        if (!layer) return null;
+        return {
+          unclustered: map.getLayoutProperty('navigation-points-unclustered', 'visibility'),
+          clusters: map.getLayoutProperty('navigation-clusters', 'visibility')
+        };
+      });
+
+      expect(visibility).not.toBeNull();
+      expect(visibility.unclustered).toBe('visible');
+      expect(visibility.clusters).toBe('visible');
+    });
+
+    test('all categories toggled off shows empty map (no category points)', async ({ page }) => {
+      await page.waitForTimeout(3000);
+
+      await page.click('[data-category="water"]');
+      await page.click('[data-category="towns"]');
+      await page.click('[data-category="toilets"]');
+
+      const buttons = page.locator('.category-toggle-btn');
+      for (let i = 0; i < 4; i++) {
+        await expect(buttons.nth(i)).not.toHaveClass(/active/);
+      }
+
+      const allHidden = await page.evaluate(() => {
+        const map = window._odtMap;
+        if (!map) return false;
+        const categories = ['water', 'towns', 'navigation', 'toilets'];
+        return categories.every(cat => {
+          const layer = map.getLayer(`${cat}-points-unclustered`);
+          if (!layer) return true;
+          return map.getLayoutProperty(`${cat}-points-unclustered`, 'visibility') === 'none';
+        });
+      });
+      expect(allHidden).toBe(true);
+    });
+
+    test('all categories toggled on shows all category points', async ({ page }) => {
+      await page.waitForTimeout(3000);
+
+      await page.click('[data-category="navigation"]');
+
+      const buttons = page.locator('.category-toggle-btn');
+      for (let i = 0; i < 4; i++) {
+        await expect(buttons.nth(i)).toHaveClass(/active/);
+      }
+
+      const allVisible = await page.evaluate(() => {
+        const map = window._odtMap;
+        if (!map) return false;
+        const categories = ['water', 'towns', 'navigation', 'toilets'];
+        return categories.every(cat => {
+          const layer = map.getLayer(`${cat}-points-unclustered`);
+          if (!layer) return true;
+          return map.getLayoutProperty(`${cat}-points-unclustered`, 'visibility') === 'visible';
+        });
+      });
+      expect(allVisible).toBe(true);
+    });
+
+    test('toggle state persists across page reload', async ({ page }) => {
+      await page.click('[data-category="water"]');
+      await expect(page.locator('[data-category="water"]')).not.toHaveClass(/active/);
+
+      await page.reload();
+      await page.waitForSelector('#mapContainer');
+
+      await expect(page.locator('[data-category="water"]')).not.toHaveClass(/active/);
+      await expect(page.locator('[data-category="water"]')).toHaveAttribute('aria-pressed', 'false');
+
+      await page.evaluate(() => localStorage.removeItem('categoryToggles'));
     });
   });
 });

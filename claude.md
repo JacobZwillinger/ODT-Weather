@@ -15,7 +15,7 @@ Oregon Desert Trail weather snapshot application with interactive map and weathe
 
 ## Key Technical Details
 - **GPS Coordinates**: GPX files are the authoritative source. Never interpolate from mileage.
-- **Data Pipeline**: `build-water-sources.py` generates JSON files from GPX + CSV
+- **Data Pipeline**: `build-data.py` generates category JSON files from GPX + categorized CSV
 - **Map**: Uses PMTiles for vector tiles, MapLibre GL for rendering
 - **Layout**: Fullscreen map with compact overlays for info and elevation
 
@@ -34,13 +34,27 @@ The elevation profile should ONLY be used for:
 - Getting elevation data at a given mile marker
 - Dense trail geometry for distance-from-trail calculations (perpendicular projection onto track segments)
 
+## Waypoint Categories
+Every waypoint belongs to exactly one category, each toggleable on the map:
+- **water** (subcategory: reliable/seasonal/unreliable) — `public/water.json`
+- **towns** (subcategory: full/limited/none) — `public/towns.json`
+- **navigation** (subcategory: junction/gate/road-crossing/other) — `public/navigation.json`
+- **toilets** — `public/toilets.json`
+
+Source of truth: `Water Sources Sanitized.csv` with `category` and `subcategory` columns.
+`build-data.py` splits the CSV into per-category JSON files.
+`waypoints.json` remains the mile-marker backbone (all 852 waypoints for calculations).
+
 ## Important Files
-<!-- [DOCS] Updated: added missing files and server/API details -->
 - `public/index.html` - Main application
-- `build-water-sources.py` - Data processing pipeline
-- `public/waypoints.json` - All 852 waypoints for navigation
-- `public/water-sources.json` - 325 water sources
-- `public/towns.json` - 17 towns/services
+- `build-data.py` - Data processing pipeline (CSV → category JSONs)
+- `categorize-csv.py` - One-time script to auto-populate category columns
+- `validate-categories.py` - CSV integrity validation
+- `public/waypoints.json` - All 852 waypoints for navigation calculations
+- `public/water.json` - Water sources (~296)
+- `public/towns.json` - Towns/services (~17)
+- `public/navigation.json` - Navigation waypoints (~539)
+- `public/toilets.json` - Toilets (manually tagged)
 - `server.js` - Local Express dev server (serves static files + forecast proxy)
 - `api/forecast.js` - Vercel serverless function (returns current + 7-day daily forecasts)
 - `api/usage.js` - Vercel serverless function (API usage stats)
