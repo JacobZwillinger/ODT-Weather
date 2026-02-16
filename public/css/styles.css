@@ -31,7 +31,7 @@ body {
 }
 
 .btn-group-top-right { top: 12px; }
-.btn-group-bottom-right { bottom: 72px; }
+.btn-group-bottom-right { bottom: 80px; }
 
 .btn-group-top-right button,
 .btn-group-bottom-right button {
@@ -83,7 +83,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 56px;
+  height: 64px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -165,7 +165,7 @@ body {
 /* ========== Settings Popover ========== */
 .settings-popover {
   position: fixed;
-  right: 64px;
+  right: 72px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -677,7 +677,7 @@ th {
 }
 
 .maplibregl-ctrl-bottom-left {
-  bottom: 64px !important;
+  bottom: 72px !important;
 }
 
 /* Zoom level display */
