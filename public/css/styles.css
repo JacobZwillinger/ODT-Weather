@@ -97,12 +97,12 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* Each info-item is a vertical stack within the row */
+/* Each info-item is a horizontal row: icon label value */
 .info-item {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 1px;
+  gap: 4px;
   padding: 4px 6px;
   min-width: 0;
 }
