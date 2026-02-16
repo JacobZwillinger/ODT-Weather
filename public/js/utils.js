@@ -14,7 +14,8 @@ export const state = {
     toilets: []
   },
   visibleCategories: {
-    water: true,
+    'water-reliable': true,
+    'water-other': true,
     towns: true,
     navigation: false,
     toilets: true
