@@ -184,6 +184,16 @@ export const findNextWater = (mile) => {
   return state.waterSources.find(s => s.mile > mile + MILE_EPSILON) || null;
 };
 
+// Find next reliable water source after given mile
+export const findNextReliableWater = (mile) => {
+  return state.waterSources.find(s => s.mile > mile + MILE_EPSILON && s.subcategory === 'reliable') || null;
+};
+
+// Find next non-reliable water source after given mile
+export const findNextOtherWater = (mile) => {
+  return state.waterSources.find(s => s.mile > mile + MILE_EPSILON && s.subcategory !== 'reliable') || null;
+};
+
 // Find next town after given mile
 export const findNextTown = (mile) => {
   return state.towns.find(t => t.mile > mile + MILE_EPSILON) || null;
