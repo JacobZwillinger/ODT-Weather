@@ -9,77 +9,42 @@ test.describe('ODT Weather App', () => {
 
   test.describe('Page Load', () => {
     test('has correct title', async ({ page }) => {
-      await expect(page).toHaveTitle('Oregon Desert Trail Weather');
+      await expect(page).toHaveTitle('Oregon Desert Trail');
     });
 
-    test('displays header with app name', async ({ page }) => {
-      const header = page.locator('h1');
-      await expect(header).toContainText('Oregon Desert Trail Weather');
+    test('displays map container fullscreen', async ({ page }) => {
+      const mapContainer = page.locator('#mapContainer');
+      await expect(mapContainer).toBeVisible();
+
+      const box = await mapContainer.boundingBox();
+      expect(box.width).toBeGreaterThan(0);
+      expect(box.height).toBeGreaterThan(0);
     });
 
-    test('shows map tab as active by default', async ({ page }) => {
-      const mapTab = page.locator('.tab-btn[data-tab="map"]');
-      await expect(mapTab).toHaveClass(/active/);
-    });
+    test('displays bottom info bar with mile 0', async ({ page }) => {
+      const bottomBar = page.locator('.bottom-info-bar');
+      await expect(bottomBar).toBeVisible();
 
-    test('displays info panel with mile 0', async ({ page }) => {
       const mileDisplay = page.locator('#mapCurrentMile');
       await expect(mileDisplay).toContainText('0.0');
     });
-  });
 
-  test.describe('Tab Navigation', () => {
-    test('switches to weather tab', async ({ page }) => {
-      await page.click('.tab-btn[data-tab="weather"]');
+    test('displays top-right button group', async ({ page }) => {
+      const btnGroup = page.locator('.btn-group-top-right');
+      await expect(btnGroup).toBeVisible();
 
-      const weatherTab = page.locator('.tab-btn[data-tab="weather"]');
-      await expect(weatherTab).toHaveClass(/active/);
-
-      const weatherContent = page.locator('#weatherTab');
-      await expect(weatherContent).toHaveClass(/active/);
+      await expect(page.locator('#btnElevation')).toBeVisible();
+      await expect(page.locator('#btnWeather')).toBeVisible();
+      await expect(page.locator('#btnGpsCenter')).toBeVisible();
     });
 
-    test('switches back to map tab', async ({ page }) => {
-      await page.click('.tab-btn[data-tab="weather"]');
-      await page.click('.tab-btn[data-tab="map"]');
+    test('displays bottom-right button group', async ({ page }) => {
+      const btnGroup = page.locator('.btn-group-bottom-right');
+      await expect(btnGroup).toBeVisible();
 
-      const mapTab = page.locator('.tab-btn[data-tab="map"]');
-      await expect(mapTab).toHaveClass(/active/);
-    });
-  });
-
-  test.describe('Info Modal', () => {
-    test('opens when info button clicked', async ({ page }) => {
-      await page.click('#infoBtn');
-
-      const modal = page.locator('#infoModal');
-      await expect(modal).toHaveClass(/visible/);
-    });
-
-    test('closes when close button clicked', async ({ page }) => {
-      await page.click('#infoBtn');
-      await page.click('#closeInfoModal');
-
-      const modal = page.locator('#infoModal');
-      await expect(modal).not.toHaveClass(/visible/);
-    });
-
-    test('closes when clicking backdrop', async ({ page }) => {
-      await page.click('#infoBtn');
-      // Click on the modal backdrop (not the content)
-      await page.click('#infoModal', { position: { x: 10, y: 10 } });
-
-      const modal = page.locator('#infoModal');
-      await expect(modal).not.toHaveClass(/visible/);
-    });
-
-    test('displays app information', async ({ page }) => {
-      await page.click('#infoBtn');
-
-      const content = page.locator('#infoModal .sources-modal-content');
-      await expect(content).toContainText('Oregon Desert Trail Weather');
-      await expect(content).toContainText('PirateWeather');
-      await expect(content).toContainText('852 waypoints');
+      await expect(page.locator('#btnWaypointList')).toBeVisible();
+      await expect(page.locator('#btnSettings')).toBeVisible();
+      await expect(page.locator('#btnGpsToggle')).toBeVisible();
     });
   });
 
@@ -137,39 +102,84 @@ test.describe('ODT Weather App', () => {
     });
   });
 
-  test.describe('Weather Table', () => {
-    test('loads weather forecasts', async ({ page }) => {
-      await page.click('.tab-btn[data-tab="weather"]');
+  test.describe('Weather Overlay', () => {
+    test('opens when weather button clicked', async ({ page }) => {
+      await page.click('#btnWeather');
 
-      // Wait for table to render (replace loading message)
-      await page.waitForSelector('#container table', { timeout: 15000 });
+      const overlay = page.locator('#weatherOverlay');
+      await expect(overlay).toHaveClass(/show/);
+    });
 
-      const table = page.locator('#container table');
+    test('loads weather forecasts in overlay', async ({ page }) => {
+      await page.click('#btnWeather');
+
+      // Wait for table to render inside the overlay
+      await page.waitForSelector('#weatherOverlay table', { timeout: 15000 });
+
+      const table = page.locator('#weatherOverlay table');
       await expect(table).toBeVisible();
     });
 
     test('displays 25 section rows', async ({ page }) => {
-      await page.click('.tab-btn[data-tab="weather"]');
-      await page.waitForSelector('#container table', { timeout: 15000 });
+      await page.click('#btnWeather');
+      await page.waitForSelector('#weatherOverlay table', { timeout: 15000 });
 
-      const rows = page.locator('#container tbody tr');
+      const rows = page.locator('#weatherOverlay tbody tr');
       await expect(rows).toHaveCount(25);
     });
 
     test('shows section names with mile markers', async ({ page }) => {
-      await page.click('.tab-btn[data-tab="weather"]');
-      await page.waitForSelector('#container table', { timeout: 15000 });
+      await page.click('#btnWeather');
+      await page.waitForSelector('#weatherOverlay table', { timeout: 15000 });
 
-      const firstRow = page.locator('#container tbody tr').first();
+      const firstRow = page.locator('#weatherOverlay tbody tr').first();
       await expect(firstRow).toContainText('Badlands');
       await expect(firstRow).toContainText('0'); // Mile 0
     });
+
+    test('closes when close button clicked', async ({ page }) => {
+      await page.click('#btnWeather');
+      await expect(page.locator('#weatherOverlay')).toHaveClass(/show/);
+
+      await page.click('#weatherOverlay .overlay-close');
+      await expect(page.locator('#weatherOverlay')).not.toHaveClass(/show/);
+    });
   });
 
-  test.describe('Map Info Panel', () => {
+  test.describe('Elevation Overlay', () => {
+    test('opens when elevation button clicked', async ({ page }) => {
+      await page.click('#btnElevation');
+
+      const overlay = page.locator('#elevationOverlay');
+      await expect(overlay).toHaveClass(/show/);
+    });
+
+    test('renders elevation chart canvas in overlay', async ({ page }) => {
+      await page.click('#btnElevation');
+
+      const canvas = page.locator('#elevationOverlay canvas');
+      await expect(canvas).toBeVisible();
+    });
+
+    test('closes when close button clicked', async ({ page }) => {
+      await page.click('#btnElevation');
+      await expect(page.locator('#elevationOverlay')).toHaveClass(/show/);
+
+      await page.click('#elevationOverlay .overlay-close');
+      await expect(page.locator('#elevationOverlay')).not.toHaveClass(/show/);
+    });
+  });
+
+  test.describe('Bottom Info Bar', () => {
     test('displays current mile', async ({ page }) => {
       const mileDisplay = page.locator('#mapCurrentMile');
       await expect(mileDisplay).toBeVisible();
+    });
+
+    test('displays mile label', async ({ page }) => {
+      const mileLabel = page.locator('#mileLabel');
+      await expect(mileLabel).toBeVisible();
+      await expect(mileLabel).toContainText('Mile');
     });
 
     test('displays nearest waypoint', async ({ page }) => {
@@ -178,17 +188,19 @@ test.describe('ODT Weather App', () => {
     });
 
     test('displays next water distance', async ({ page }) => {
-      const water = page.locator('#mapNextWater span');
+      const water = page.locator('#nextWaterCard span');
       await expect(water).toBeVisible();
     });
 
     test('displays next town distance', async ({ page }) => {
-      const town = page.locator('#mapNextTown span');
+      const town = page.locator('#nextTownCard span');
       await expect(town).toBeVisible();
     });
+  });
 
+  test.describe('GPS Controls', () => {
     test('displays GPS toggle button', async ({ page }) => {
-      const gpsBtn = page.locator('#gpsToggleBtn');
+      const gpsBtn = page.locator('#btnGpsToggle');
       await expect(gpsBtn).toBeVisible();
       await expect(gpsBtn).toHaveAttribute('aria-pressed', 'false');
     });
@@ -198,7 +210,7 @@ test.describe('ODT Weather App', () => {
       await context.grantPermissions(['geolocation']);
       await context.setGeolocation({ latitude: 43.708, longitude: -120.847 });
 
-      const gpsBtn = page.locator('#gpsToggleBtn');
+      const gpsBtn = page.locator('#btnGpsToggle');
       await expect(gpsBtn).toBeVisible();
 
       // Toggle on
@@ -211,17 +223,15 @@ test.describe('ODT Weather App', () => {
       await expect(gpsBtn).not.toHaveClass(/active/, { timeout: 2000 });
       await expect(gpsBtn).toHaveAttribute('aria-pressed', 'false');
     });
-  });
 
-  test.describe('Elevation Chart', () => {
-    test('renders elevation chart canvas', async ({ page }) => {
-      const canvas = page.locator('#mapElevationChart');
-      await expect(canvas).toBeVisible();
+    test('GPS center button is visible', async ({ page }) => {
+      const gpsCenterBtn = page.locator('#btnGpsCenter');
+      await expect(gpsCenterBtn).toBeVisible();
     });
   });
 
   test.describe('Map Controls', () => {
-    test('scale control is visible in bottom-left and not obscured by elevation chart', async ({ page }) => {
+    test('scale control is visible in bottom-left', async ({ page }) => {
       // Wait for map to initialize
       await page.waitForTimeout(2000);
 
@@ -232,26 +242,6 @@ test.describe('ODT Weather App', () => {
       // Check that scale control is in bottom-left container
       const bottomLeftContainer = page.locator('.maplibregl-ctrl-bottom-left');
       await expect(bottomLeftContainer.locator('.maplibregl-ctrl-scale')).toBeVisible();
-
-      // Verify the bottom-left controls are positioned above the elevation chart
-      const positions = await page.evaluate(() => {
-        const bottomLeft = document.querySelector('.maplibregl-ctrl-bottom-left');
-        const elevChart = document.querySelector('.map-elevation-chart');
-        const blRect = bottomLeft.getBoundingClientRect();
-        const elRect = elevChart.getBoundingClientRect();
-        const blZ = parseInt(getComputedStyle(bottomLeft).zIndex) || 0;
-        const elZ = parseInt(getComputedStyle(elevChart).zIndex) || 0;
-        return {
-          controlBottom: blRect.bottom,
-          chartTop: elRect.top,
-          controlZIndex: blZ,
-          chartZIndex: elZ
-        };
-      });
-      // Controls should either be above the chart or have higher z-index
-      expect(
-        positions.controlBottom <= positions.chartTop + 10 || positions.controlZIndex > positions.chartZIndex
-      ).toBe(true);
     });
 
     test('zoom level display is visible in bottom-left', async ({ page }) => {
@@ -328,19 +318,19 @@ test.describe('ODT Weather App', () => {
   });
 
   test.describe('Off-Trail Display', () => {
-    test('shows "Current Mile" label when on trail', async ({ page, context }) => {
+    test('shows "Mile" label when on trail', async ({ page, context }) => {
       // Grant geolocation permissions
       await context.grantPermissions(['geolocation']);
       // Set location exactly on the trail (near section 1)
       await context.setGeolocation({ latitude: 43.708, longitude: -120.847 });
 
       // Toggle GPS on
-      await page.click('#gpsToggleBtn');
+      await page.click('#btnGpsToggle');
       await page.waitForTimeout(2000);
 
-      // Check that "Current Mile" label is shown (not "Off Trail")
-      const label = page.locator('.map-info-current-label');
-      await expect(label).toContainText('Current Mile');
+      // Check that "Mile" label is shown (not "Off Trail")
+      const label = page.locator('#mileLabel');
+      await expect(label).toContainText('Mile');
 
       // Check that mile display does not have off-trail class
       const mileDisplay = page.locator('#mapCurrentMile');
@@ -355,11 +345,11 @@ test.describe('ODT Weather App', () => {
       await context.setGeolocation({ latitude: 43.708, longitude: -120.80 });
 
       // Toggle GPS on
-      await page.click('#gpsToggleBtn');
+      await page.click('#btnGpsToggle');
       await page.waitForTimeout(2000);
 
       // Check that "Off Trail" label is shown
-      const label = page.locator('.map-info-current-label');
+      const label = page.locator('#mileLabel');
       await expect(label).toContainText('Off Trail');
 
       // Check that mile display has off-trail class
@@ -371,7 +361,7 @@ test.describe('ODT Weather App', () => {
       expect(mileText).toMatch(/[\d.]+\s*mi/);
     });
 
-    test('shows "Current Mile" when off trail but within threshold', async ({ page, context }) => {
+    test('shows "Mile" when off trail but within threshold', async ({ page, context }) => {
       // Grant geolocation permissions
       await context.grantPermissions(['geolocation']);
       // Set location about 0.3 miles off trail (within 0.5 mile threshold)
@@ -379,12 +369,12 @@ test.describe('ODT Weather App', () => {
       await context.setGeolocation({ latitude: 43.708, longitude: -120.841 });
 
       // Toggle GPS on
-      await page.click('#gpsToggleBtn');
+      await page.click('#btnGpsToggle');
       await page.waitForTimeout(2000);
 
-      // Should still show "Current Mile" since we're within threshold
-      const label = page.locator('.map-info-current-label');
-      await expect(label).toContainText('Current Mile');
+      // Should still show "Mile" since we're within threshold
+      const label = page.locator('#mileLabel');
+      await expect(label).toContainText('Mile');
 
       // Check that mile display does not have off-trail class
       const mileDisplay = page.locator('#mapCurrentMile');
@@ -562,18 +552,20 @@ test.describe('ODT Weather App', () => {
     });
   });
 
-  test.describe('Category Toggle Bar', () => {
-    test('toggle bar is visible with all 4 category buttons', async ({ page }) => {
-      const toggleBar = page.locator('.category-toggle-bar');
-      await expect(toggleBar).toBeVisible();
+  test.describe('Category Toggles in Settings', () => {
+    test('settings button opens popover with all 4 category buttons', async ({ page }) => {
+      await page.click('#btnSettings');
 
-      const buttons = page.locator('.category-toggle-btn');
+      const popover = page.locator('#settingsPopover');
+      await expect(popover).toHaveClass(/show/);
+
+      const buttons = page.locator('#settingsPopover .category-toggle-btn');
       await expect(buttons).toHaveCount(4);
 
-      await expect(page.locator('[data-category="water"]')).toBeVisible();
-      await expect(page.locator('[data-category="towns"]')).toBeVisible();
-      await expect(page.locator('[data-category="navigation"]')).toBeVisible();
-      await expect(page.locator('[data-category="toilets"]')).toBeVisible();
+      await expect(page.locator('#settingsPopover [data-category="water"]')).toBeVisible();
+      await expect(page.locator('#settingsPopover [data-category="towns"]')).toBeVisible();
+      await expect(page.locator('#settingsPopover [data-category="navigation"]')).toBeVisible();
+      await expect(page.locator('#settingsPopover [data-category="toilets"]')).toBeVisible();
     });
 
     test('default toggle state: water, towns, toilets on; navigation off', async ({ page }) => {
@@ -581,17 +573,21 @@ test.describe('ODT Weather App', () => {
       await page.reload();
       await page.waitForSelector('#mapContainer');
 
-      await expect(page.locator('[data-category="water"]')).toHaveClass(/active/);
-      await expect(page.locator('[data-category="towns"]')).toHaveClass(/active/);
-      await expect(page.locator('[data-category="toilets"]')).toHaveClass(/active/);
-      await expect(page.locator('[data-category="navigation"]')).not.toHaveClass(/active/);
+      await page.click('#btnSettings');
 
-      await expect(page.locator('[data-category="water"]')).toHaveAttribute('aria-pressed', 'true');
-      await expect(page.locator('[data-category="navigation"]')).toHaveAttribute('aria-pressed', 'false');
+      await expect(page.locator('#settingsPopover [data-category="water"]')).toHaveClass(/active/);
+      await expect(page.locator('#settingsPopover [data-category="towns"]')).toHaveClass(/active/);
+      await expect(page.locator('#settingsPopover [data-category="toilets"]')).toHaveClass(/active/);
+      await expect(page.locator('#settingsPopover [data-category="navigation"]')).not.toHaveClass(/active/);
+
+      await expect(page.locator('#settingsPopover [data-category="water"]')).toHaveAttribute('aria-pressed', 'true');
+      await expect(page.locator('#settingsPopover [data-category="navigation"]')).toHaveAttribute('aria-pressed', 'false');
     });
 
     test('clicking toggle button toggles active state and aria-pressed', async ({ page }) => {
-      const waterBtn = page.locator('[data-category="water"]');
+      await page.click('#btnSettings');
+
+      const waterBtn = page.locator('#settingsPopover [data-category="water"]');
 
       await expect(waterBtn).toHaveClass(/active/);
       await expect(waterBtn).toHaveAttribute('aria-pressed', 'true');
@@ -608,7 +604,8 @@ test.describe('ODT Weather App', () => {
     test('toggling off a category hides its map layers', async ({ page }) => {
       await page.waitForTimeout(3000);
 
-      await page.click('[data-category="water"]');
+      await page.click('#btnSettings');
+      await page.click('#settingsPopover [data-category="water"]');
 
       const visibility = await page.evaluate(() => {
         const map = window._odtMap;
@@ -629,7 +626,8 @@ test.describe('ODT Weather App', () => {
     test('toggling on a category shows its map layers', async ({ page }) => {
       await page.waitForTimeout(3000);
 
-      await page.click('[data-category="navigation"]');
+      await page.click('#btnSettings');
+      await page.click('#settingsPopover [data-category="navigation"]');
 
       const visibility = await page.evaluate(() => {
         const map = window._odtMap;
@@ -650,11 +648,12 @@ test.describe('ODT Weather App', () => {
     test('all categories toggled off shows empty map (no category points)', async ({ page }) => {
       await page.waitForTimeout(3000);
 
-      await page.click('[data-category="water"]');
-      await page.click('[data-category="towns"]');
-      await page.click('[data-category="toilets"]');
+      await page.click('#btnSettings');
+      await page.click('#settingsPopover [data-category="water"]');
+      await page.click('#settingsPopover [data-category="towns"]');
+      await page.click('#settingsPopover [data-category="toilets"]');
 
-      const buttons = page.locator('.category-toggle-btn');
+      const buttons = page.locator('#settingsPopover .category-toggle-btn');
       for (let i = 0; i < 4; i++) {
         await expect(buttons.nth(i)).not.toHaveClass(/active/);
       }
@@ -675,9 +674,10 @@ test.describe('ODT Weather App', () => {
     test('all categories toggled on shows all category points', async ({ page }) => {
       await page.waitForTimeout(3000);
 
-      await page.click('[data-category="navigation"]');
+      await page.click('#btnSettings');
+      await page.click('#settingsPopover [data-category="navigation"]');
 
-      const buttons = page.locator('.category-toggle-btn');
+      const buttons = page.locator('#settingsPopover .category-toggle-btn');
       for (let i = 0; i < 4; i++) {
         await expect(buttons.nth(i)).toHaveClass(/active/);
       }
@@ -696,16 +696,74 @@ test.describe('ODT Weather App', () => {
     });
 
     test('toggle state persists across page reload', async ({ page }) => {
-      await page.click('[data-category="water"]');
-      await expect(page.locator('[data-category="water"]')).not.toHaveClass(/active/);
+      await page.click('#btnSettings');
+      await page.click('#settingsPopover [data-category="water"]');
+      await expect(page.locator('#settingsPopover [data-category="water"]')).not.toHaveClass(/active/);
 
       await page.reload();
       await page.waitForSelector('#mapContainer');
 
-      await expect(page.locator('[data-category="water"]')).not.toHaveClass(/active/);
-      await expect(page.locator('[data-category="water"]')).toHaveAttribute('aria-pressed', 'false');
+      await page.click('#btnSettings');
+      await expect(page.locator('#settingsPopover [data-category="water"]')).not.toHaveClass(/active/);
+      await expect(page.locator('#settingsPopover [data-category="water"]')).toHaveAttribute('aria-pressed', 'false');
 
       await page.evaluate(() => localStorage.removeItem('categoryToggles'));
+    });
+  });
+
+  test.describe('Waypoint List Overlay', () => {
+    test('opens when waypoint list button clicked', async ({ page }) => {
+      await page.click('#btnWaypointList');
+
+      const overlay = page.locator('#waypointListOverlay');
+      await expect(overlay).toHaveClass(/show/);
+    });
+
+    test('displays filter buttons for all categories', async ({ page }) => {
+      await page.click('#btnWaypointList');
+
+      const filterButtons = page.locator('#waypointListOverlay .filter-btn');
+      await expect(filterButtons).toHaveCount(5); // All + 4 categories
+
+      await expect(page.locator('#waypointListOverlay .filter-btn[data-filter="all"]')).toBeVisible();
+      await expect(page.locator('#waypointListOverlay .filter-btn[data-filter="water"]')).toBeVisible();
+      await expect(page.locator('#waypointListOverlay .filter-btn[data-filter="towns"]')).toBeVisible();
+      await expect(page.locator('#waypointListOverlay .filter-btn[data-filter="navigation"]')).toBeVisible();
+      await expect(page.locator('#waypointListOverlay .filter-btn[data-filter="toilets"]')).toBeVisible();
+    });
+
+    test('displays waypoint list items', async ({ page }) => {
+      await page.click('#btnWaypointList');
+
+      // Wait for list to populate
+      await page.waitForTimeout(1000);
+
+      const listItems = page.locator('#waypointListOverlay .waypoint-item');
+      const count = await listItems.count();
+      expect(count).toBeGreaterThan(10); // Should have many waypoints
+    });
+
+    test('filter buttons change active state when clicked', async ({ page }) => {
+      await page.click('#btnWaypointList');
+
+      const allBtn = page.locator('#waypointListOverlay .filter-btn[data-filter="all"]');
+      const waterBtn = page.locator('#waypointListOverlay .filter-btn[data-filter="water"]');
+
+      // All should be active by default
+      await expect(allBtn).toHaveClass(/active/);
+
+      // Click water filter
+      await waterBtn.click();
+      await expect(waterBtn).toHaveClass(/active/);
+      await expect(allBtn).not.toHaveClass(/active/);
+    });
+
+    test('closes when close button clicked', async ({ page }) => {
+      await page.click('#btnWaypointList');
+      await expect(page.locator('#waypointListOverlay')).toHaveClass(/show/);
+
+      await page.click('#waypointListOverlay .overlay-close');
+      await expect(page.locator('#waypointListOverlay')).not.toHaveClass(/show/);
     });
   });
 });
