@@ -23,21 +23,21 @@ body {
 .btn-group-top-right,
 .btn-group-bottom-right {
   position: fixed;
-  right: 12px;
+  right: 24px;
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: 20px;
   z-index: 20;
 }
 
 .btn-group-top-right { top: 12px; }
-.btn-group-bottom-right { bottom: 120px; }
+.btn-group-bottom-right { bottom: 68px; }
 
 .btn-group-top-right button,
 .btn-group-bottom-right button {
-  width: 72px;
-  height: 72px;
-  border-radius: 36px;
+  width: 96px;
+  height: 96px;
+  border-radius: 48px;
   border: none;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -60,8 +60,8 @@ body {
 
 .btn-group-top-right button svg,
 .btn-group-bottom-right button svg {
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
 }
 
 /* GPS toggle active state */
@@ -83,55 +83,56 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
+  height: 52px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-top: 1px solid rgba(0,0,0,0.1);
   z-index: 20;
   display: flex;
-  flex-direction: column;
-  gap: 0;
-  padding: 6px 8px;
-  padding-bottom: max(6px, env(safe-area-inset-bottom));
-}
-
-/* Each info-item is a horizontal row: icon label value */
-.info-item {
-  display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 6px;
-  padding: 3px 8px;
+  justify-content: space-around;
+  padding: 0 4px;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Each info-item is a vertical stack within the row */
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: 4px 6px;
   min-width: 0;
 }
 
 .info-item[role="button"] {
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 8px;
 }
 
 .info-item[role="button"]:active {
   background: rgba(0,0,0,0.05);
-  transform: scale(0.98);
+  transform: scale(0.95);
 }
 
 .info-icon {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
 }
 
 .info-label {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.3px;
   color: #737373;
   font-weight: 600;
-  min-width: 52px;
 }
 
 .info-value {
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #1b1b1b;
   line-height: 1;
@@ -139,26 +140,19 @@ body {
 }
 
 .info-value-mile {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
 }
 
 .info-value-nearest {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  max-width: 200px;
+  max-width: 80px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .info-value.warning {
   color: #dc2626;
-}
-
-/* Mile row gets special emphasis */
-.info-item-mile {
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  padding-bottom: 5px;
-  margin-bottom: 1px;
 }
 
 /* Off-trail state */
@@ -173,7 +167,7 @@ body {
 /* ========== Settings Popover ========== */
 .settings-popover {
   position: fixed;
-  right: 92px;
+  right: 128px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -690,7 +684,7 @@ th {
 }
 
 .maplibregl-ctrl-bottom-left {
-  bottom: 110px !important;
+  bottom: 60px !important;
 }
 
 /* Zoom level display */
