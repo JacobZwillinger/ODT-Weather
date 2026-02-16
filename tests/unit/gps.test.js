@@ -23,7 +23,7 @@ vi.mock('../../public/js/config.js', () => ({
 
 // Set up DOM
 document.body.innerHTML = `
-  <button id="gpsToggleBtn" aria-pressed="false"></button>
+  <button id="btnGpsToggle" aria-pressed="false"></button>
   <span id="gpsStatus"></span>
 `;
 
@@ -52,7 +52,7 @@ describe('GPS module', () => {
   beforeEach(() => {
     // Reset DOM
     document.body.innerHTML = `
-      <button id="gpsToggleBtn" aria-pressed="false"></button>
+      <button id="btnGpsToggle" aria-pressed="false"></button>
       <span id="gpsStatus"></span>
     `;
     // Reset geolocation mocks
@@ -127,7 +127,7 @@ describe('GPS module', () => {
   it('updates button aria-pressed attribute on toggle', () => {
     mockGeolocation.watchPosition.mockReturnValue(42);
     startGps();
-    const btn = document.getElementById('gpsToggleBtn');
+    const btn = document.getElementById('btnGpsToggle');
     expect(btn.getAttribute('aria-pressed')).toBe('true');
     expect(btn.classList.contains('active')).toBe(true);
 
@@ -168,7 +168,7 @@ describe('GPS module', () => {
   it('initGpsButton attaches click listener', () => {
     mockGeolocation.watchPosition.mockReturnValue(42);
     initGpsButton();
-    const btn = document.getElementById('gpsToggleBtn');
+    const btn = document.getElementById('btnGpsToggle');
     btn.click();
     expect(isGpsEnabled()).toBe(true);
     // Clean up

@@ -1,5 +1,5 @@
 import { sectionPoints, WATER_WARNING_MILES, MAP_INIT_DELAY_MS, CATEGORY_CONFIG } from './config.js';
-import { state, loadElevationProfile, findNearestWaypoint, findMileFromCoords, findNextWater, findNextTown, getWaypointShortName, OFF_TRAIL_THRESHOLD, saveToggleState } from './utils.js';
+import { state, loadElevationProfile, findNearestWaypoint, findMileFromCoords, findNextWater, findNextTown, getWaypointShortName, OFF_TRAIL_THRESHOLD } from './utils.js';
 import { renderElevationChart } from './elevation.js';
 import { showWaypointDetail, showWaterDetail, showTownDetail } from './modals.js';
 import { setPositionUpdateCallback, shouldAllowMapClicks } from './gps.js';
@@ -22,18 +22,16 @@ export const showMapInfo = (mile, distanceFromTrail = 0) => {
   isOffTrail = distanceFromTrail > OFF_TRAIL_THRESHOLD;
 
   const mileEl = document.getElementById('mapCurrentMile');
-  const labelEl = document.querySelector('.map-info-current-label');
+  const labelEl = document.getElementById('mileLabel');
 
   if (isOffTrail) {
     mileEl.textContent = `${distanceFromTrail.toFixed(1)} mi`;
     mileEl.classList.add('off-trail');
-    labelEl.textContent = 'Off Trail';
-    labelEl.classList.add('off-trail-label'); // [UX] Changed: Apply off-trail-label CSS class for red label color
+    if (labelEl) { labelEl.textContent = 'Off Trail'; labelEl.classList.add('off-trail-label'); }
   } else {
     mileEl.textContent = mile.toFixed(1);
     mileEl.classList.remove('off-trail');
-    labelEl.textContent = 'Current Mile';
-    labelEl.classList.remove('off-trail-label'); // [UX] Changed: Remove off-trail-label when back on trail
+    if (labelEl) { labelEl.textContent = 'Mile'; labelEl.classList.remove('off-trail-label'); }
   }
 
   const nearest = findNearestWaypoint(mile);
@@ -499,12 +497,11 @@ export const initMap = () => {
     map.on('mouseenter', 'route-line', () => map.getCanvas().style.cursor = 'pointer');
     map.on('mouseleave', 'route-line', () => map.getCanvas().style.cursor = '');
 
-    // Initialize category toggle buttons
-    initCategoryToggles();
+    // Category toggles are now managed by app.js settings popover
   });
 
   // Add navigation controls
-  map.addControl(new maplibregl.NavigationControl(), 'top-right');
+  map.addControl(new maplibregl.NavigationControl(), 'top-left');
 
   // Add scale control - position it bottom-left above elevation chart (avoid overlap with info panel in top-left)
   map.addControl(new maplibregl.ScaleControl({
@@ -640,7 +637,7 @@ const createCircleGeoJSON = (lat, lon, radiusMeters) => {
 };
 
 // Toggle map layer visibility for a category
-const toggleCategoryLayer = (category, visible) => {
+export const toggleCategoryLayer = (category, visible) => {
   if (!map) return;
   const visibility = visible ? 'visible' : 'none';
   const layerIds = [
@@ -655,33 +652,6 @@ const toggleCategoryLayer = (category, visible) => {
   }
 };
 
-// Initialize category toggle buttons
-const initCategoryToggles = () => {
-  const toggleButtons = document.querySelectorAll('.category-toggle-btn');
-
-  // Sync button UI with saved state
-  toggleButtons.forEach(btn => {
-    const category = btn.dataset.category;
-    if (state.visibleCategories[category]) {
-      btn.classList.add('active');
-      btn.setAttribute('aria-pressed', 'true');
-    } else {
-      btn.classList.remove('active');
-      btn.setAttribute('aria-pressed', 'false');
-    }
-  });
-
-  toggleButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const category = btn.dataset.category;
-      state.visibleCategories[category] = !state.visibleCategories[category];
-      btn.classList.toggle('active');
-      btn.setAttribute('aria-pressed', String(state.visibleCategories[category]));
-      toggleCategoryLayer(category, state.visibleCategories[category]);
-      saveToggleState();
-    });
-  });
-};
 
 // Schedule map initialization
 export const scheduleMapInit = () => {
