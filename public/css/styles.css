@@ -1,130 +1,417 @@
-/* ODT Weather - Main Styles */
+/* ODT Weather - Mobile-First Styles */
 
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   margin: 0;
-  padding: 16px;
+  padding: 0;
   background: #fff;
   color: #1b1b1b;
   font-size: 14px;
   height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* Fullscreen map */
+#mapContainer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+/* ========== Button Groups ========== */
+.btn-group-top-right,
+.btn-group-bottom-right {
+  position: fixed;
+  right: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 20;
+}
+
+.btn-group-top-right { top: 12px; }
+.btn-group-bottom-right { bottom: 72px; }
+
+.btn-group-top-right button,
+.btn-group-bottom-right button {
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
+  border: none;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #333;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.btn-group-top-right button:active,
+.btn-group-bottom-right button:active {
+  transform: scale(0.92);
+}
+
+.btn-group-top-right button svg,
+.btn-group-bottom-right button svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* GPS toggle active state */
+#btnGpsToggle.active {
+  background: #22c55e;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.4);
+}
+
+/* Settings button active state */
+#btnSettings.active {
+  background: #1b1b1b;
+  color: #fff;
+}
+
+/* ========== Bottom Info Bar ========== */
+.bottom-info-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(0,0,0,0.1);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 4px;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 6px;
+  min-width: 0;
+}
+
+.info-item[role="button"] {
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.info-item[role="button"]:active {
+  background: rgba(0,0,0,0.05);
+  transform: scale(0.95);
+}
+
+.info-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.info-label {
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #737373;
+  font-weight: 600;
+}
+
+.info-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1b1b1b;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.info-value-mile {
+  font-size: 1.4rem;
+}
+
+.info-value-nearest {
+  font-size: 0.75rem;
+  font-weight: 600;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.info-value.warning {
+  color: #dc2626;
+}
+
+/* Off-trail state */
+.info-value-mile.off-trail {
+  color: #dc2626;
+}
+
+.info-label.off-trail-label {
+  color: #dc2626;
+}
+
+/* ========== Settings Popover ========== */
+.settings-popover {
+  position: fixed;
+  right: 64px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.settings-popover[hidden] { display: none; }
+
+/* Category toggle buttons (used in settings popover) */
+.category-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 40px;
+  color: #999;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+  font-size: 0.85rem;
+}
+
+.category-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+.category-toggle-btn.active {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.category-toggle-btn[data-category="water"].active {
+  color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.category-toggle-btn[data-category="towns"].active {
+  color: #059669;
+  border-color: #059669;
+}
+
+.category-toggle-btn[data-category="navigation"].active {
+  color: #8b5cf6;
+  border-color: #8b5cf6;
+}
+
+.category-toggle-btn[data-category="toilets"].active {
+  color: #f59e0b;
+  border-color: #f59e0b;
+}
+
+.category-toggle-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.category-toggle-label {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.category-toggle-btn:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* ========== Full-screen Overlays ========== */
+.fullscreen-overlay {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  z-index: 100;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
-h1 {
-  font-size: 1.5rem;
-  margin: 0;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+.fullscreen-overlay[hidden] { display: none; }
 
-/* Header */
-.header {
+.overlay-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.header-left {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.info-btn {
-  background: transparent;
-  border: 1.5px solid #ccc;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 0.9rem;
-  color: #666;
-  font-weight: 600;
-  transition: all 0.2s ease;
-  padding: 0;
+  padding: 12px 16px;
+  padding-top: max(12px, env(safe-area-inset-top));
+  border-bottom: 1px solid #e5e5e5;
   flex-shrink: 0;
+  background: #fff;
 }
 
-.info-btn:hover {
-  border-color: #1b1b1b;
-  color: #1b1b1b;
-  background: #f5f5f5;
+.overlay-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
-.api-usage {
-  font-size: 0.75rem;
-  color: #737373; /* Fixed: was #999, now meets WCAG AA contrast on white */
-  text-align: right;
-}
-
-/* Tabs */
-.tabs {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.tab-btn {
-  padding: 8px 16px;
+.overlay-close {
+  background: none;
   border: 1px solid #ccc;
-  background: #f5f5f5;
   border-radius: 4px;
+  padding: 8px 16px;
   cursor: pointer;
   font-size: 0.9rem;
-  font-weight: 500;
   color: #666;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
-.tab-btn:hover {
+.overlay-close:active {
   background: #e5e5e5;
 }
 
-.tab-btn.active {
+.overlay-body {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Elevation overlay canvas */
+#elevationOverlay .overlay-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+#elevationOverlay canvas {
+  width: 100%;
+  max-height: 60vh;
+}
+
+/* ========== Waypoint List Filter Bar ========== */
+.overlay-filter-bar {
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px;
+  overflow-x: auto;
+  flex-shrink: 0;
+  border-bottom: 1px solid #e5e5e5;
+  -webkit-overflow-scrolling: touch;
+}
+
+.filter-btn {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  background: #f5f5f5;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  font-family: inherit;
+}
+
+.filter-btn.active {
   background: #1b1b1b;
   color: #fff;
   border-color: #1b1b1b;
 }
 
-/* Main content area */
-.main-content {
-  position: relative;
-  flex: 1;
-  min-height: 0;
-  overflow: hidden;
+.filter-btn:active {
+  transform: scale(0.95);
 }
 
-.tab-content {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.2s ease, visibility 0s linear 0.2s;
-  overflow-y: auto;
-  overflow-x: hidden;
+/* ========== Waypoint List Items ========== */
+.waypoint-list-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e5e5;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.waypoint-list-item:active {
+  background: #f5f5f5;
+}
+
+.waypoint-list-header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
 }
 
-.tab-content.active {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.2s ease, visibility 0s linear 0s;
+.waypoint-list-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #1b1b1b;
 }
 
-/* Tables */
+.waypoint-list-mile {
+  font-size: 0.85rem;
+  color: #737373;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.waypoint-list-desc {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 4px;
+  line-height: 1.3;
+}
+
+.waypoint-list-empty {
+  padding: 40px 16px;
+  text-align: center;
+  color: #999;
+  font-style: italic;
+}
+
+/* ========== View on Map Button ========== */
+.view-on-map-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 12px;
+  background: #1b1b1b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  font-family: inherit;
+}
+
+.view-on-map-btn:active {
+  background: #333;
+}
+
+.view-on-map-btn[hidden] { display: none; }
+
+/* ========== Tables ========== */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -163,19 +450,9 @@ th {
 .section-13, .section-14, .section-15, .section-16, .section-17, .section-18, .section-19, .section-20 { background: #f59e0b; }
 .section-21, .section-22, .section-23, .section-24, .section-25 { background: #ef4444; }
 
-.location-name {
-  font-weight: 500;
-}
-
-.location-name a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.location-name a:hover {
-  color: #0066cc;
-  text-decoration: underline;
-}
+.location-name { font-weight: 500; }
+.location-name a { color: inherit; text-decoration: none; }
+.location-name a:hover { color: #0066cc; text-decoration: underline; }
 
 .elevation {
   font-size: 0.8rem;
@@ -183,9 +460,7 @@ th {
   margin-top: 2px;
 }
 
-.mile {
-  text-align: center;
-}
+.mile { text-align: center; }
 
 /* Forecast cells */
 .forecast-cell {
@@ -223,176 +498,7 @@ th {
   margin-bottom: 16px;
 }
 
-/* Map tab styles */
-#mapTab {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-#mapContainer {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.map-info-panel {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 12px;
-  padding: 12px 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-  z-index: 10;
-  pointer-events: auto;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.map-info-current-section {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  border-right: 1px solid rgba(0,0,0,0.1);
-  padding-right: 16px;
-}
-
-.map-info-current-label {
-  font-size: 0.6rem;
-  color: #737373; /* Fixed: was #999, now meets WCAG AA contrast on white */
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-weight: 600;
-}
-
-.map-info-current-mile {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #1b1b1b;
-  line-height: 1;
-}
-
-.map-info-current-mile.off-trail {
-  color: #dc2626;
-}
-
-.map-info-current-label.off-trail-label {
-  color: #dc2626;
-}
-
-.map-info-waypoint-section {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  border-right: 1px solid rgba(0,0,0,0.1);
-  padding-right: 16px;
-}
-
-.map-info-waypoint-label {
-  font-size: 0.6rem;
-  color: #737373; /* Fixed: was #999, now meets WCAG AA contrast on white */
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-weight: 600;
-}
-
-.map-info-waypoint-value {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #1b1b1b;
-  white-space: nowrap;
-  line-height: 1.2;
-}
-
-.map-info-cards {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-
-.map-info-card {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.map-info-card:active {
-  transform: scale(0.95);
-}
-
-.map-info-icon {
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-}
-
-.map-info-value {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1b1b1b;
-  line-height: 1;
-}
-
-.map-info-value.warning {
-  color: #dc2626;
-}
-
-@media (min-width: 768px) {
-  .map-info-panel {
-    padding: 14px 20px;
-    gap: 20px;
-  }
-
-  .map-info-current-section {
-    padding-right: 20px;
-  }
-
-  .map-info-current-label {
-    font-size: 0.65rem;
-  }
-
-  .map-info-current-mile {
-    font-size: 2.2rem;
-  }
-
-  .map-info-waypoint-section {
-    padding-right: 20px;
-  }
-
-  .map-info-waypoint-label {
-    font-size: 0.65rem;
-  }
-
-  .map-info-waypoint-value {
-    font-size: 1rem;
-  }
-
-  .map-info-cards {
-    gap: 20px;
-  }
-
-  .map-info-card {
-    gap: 10px;
-  }
-
-  .map-info-icon {
-    width: 28px;
-    height: 28px;
-  }
-
-  .map-info-value {
-    font-size: 1.8rem;
-  }
-}
-
-/* Modal styles */
+/* ========== Modal Styles ========== */
 .sources-modal {
   display: none;
   position: fixed;
@@ -407,9 +513,7 @@ th {
   -webkit-overflow-scrolling: touch;
 }
 
-.sources-modal.visible {
-  display: block;
-}
+.sources-modal.visible { display: block; }
 
 .sources-modal-content {
   max-width: 800px;
@@ -422,10 +526,7 @@ th {
 }
 
 @media (max-width: 640px) {
-  .sources-modal {
-    padding: 0;
-  }
-
+  .sources-modal { padding: 0; }
   .sources-modal-content {
     margin: 0;
     border-radius: 0;
@@ -435,9 +536,7 @@ th {
 }
 
 @media (min-width: 641px) {
-  .sources-modal-content {
-    padding: 20px;
-  }
+  .sources-modal-content { padding: 20px; }
 }
 
 .sources-modal-header {
@@ -459,12 +558,6 @@ th {
   font-weight: 600;
 }
 
-@media (min-width: 768px) {
-  .sources-modal-header h3 {
-    font-size: 1.3rem;
-  }
-}
-
 .sources-modal-close {
   background: none;
   border: 1px solid #ccc;
@@ -476,14 +569,10 @@ th {
   -webkit-tap-highlight-color: transparent;
 }
 
-.sources-modal-close:active {
-  background: #e5e5e5;
-}
+.sources-modal-close:active { background: #e5e5e5; }
 
 @media (hover: hover) {
-  .sources-modal-close:hover {
-    background: #e5e5e5;
-  }
+  .sources-modal-close:hover { background: #e5e5e5; }
 }
 
 /* Compact waypoint modal */
@@ -514,17 +603,9 @@ th {
   color: #333;
 }
 
-.waypoint-detail p {
-  margin: 0 0 8px 0;
-}
-
-.waypoint-detail p:last-child {
-  margin-bottom: 0;
-}
-
-.waypoint-detail strong {
-  color: #1b1b1b;
-}
+.waypoint-detail p { margin: 0 0 8px 0; }
+.waypoint-detail p:last-child { margin-bottom: 0; }
+.waypoint-detail strong { color: #1b1b1b; }
 
 .sources-list {
   max-height: calc(100vh - 120px);
@@ -533,9 +614,7 @@ th {
 }
 
 @media (max-width: 640px) {
-  .sources-list {
-    max-height: calc(100vh - 100px);
-  }
+  .sources-list { max-height: calc(100vh - 100px); }
 }
 
 .source-item {
@@ -578,13 +657,7 @@ th {
   line-height: 1.4;
 }
 
-@media (min-width: 768px) {
-  .source-item {
-    padding: 12px;
-  }
-}
-
-/* Map controls */
+/* ========== Map Controls ========== */
 .maplibregl-ctrl-scale {
   background: rgba(255, 255, 255, 0.95) !important;
   border: 2px solid #1b1b1b !important;
@@ -596,338 +669,6 @@ th {
   box-shadow: 0 2px 6px rgba(0,0,0,0.2) !important;
 }
 
-.map-elevation-chart {
-  position: absolute;
-  bottom: 64px;
-  left: 0;
-  right: 0;
-  padding: 0;
-  background: transparent;
-  z-index: 5;
-  pointer-events: none;
-}
-
-.map-elevation-chart h4 {
-  display: none;
-}
-
-.map-elevation-chart canvas {
-  display: block;
-  max-height: 180px;
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-  .map-elevation-chart {
-    bottom: 72px;
-  }
-  .map-elevation-chart canvas {
-    max-height: 220px;
-  }
-}
-
-/* Category Toggle Bar */
-.category-toggle-bar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 6px 8px;
-  z-index: 6;
-  display: flex;
-  justify-content: space-around;
-  gap: 4px;
-}
-
-.category-toggle-btn {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  padding: 6px 4px;
-  border: 2px solid transparent;
-  border-radius: 8px;
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  min-height: 48px;
-  color: #999;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.category-toggle-btn:active {
-  transform: scale(0.95);
-}
-
-.category-toggle-btn.active {
-  background: rgba(0, 0, 0, 0.04);
-}
-
-.category-toggle-btn[data-category="water"].active {
-  color: #3b82f6;
-  border-color: #3b82f6;
-}
-
-.category-toggle-btn[data-category="towns"].active {
-  color: #059669;
-  border-color: #059669;
-}
-
-.category-toggle-btn[data-category="navigation"].active {
-  color: #8b5cf6;
-  border-color: #8b5cf6;
-}
-
-.category-toggle-btn[data-category="toilets"].active {
-  color: #f59e0b;
-  border-color: #f59e0b;
-}
-
-.category-toggle-icon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-}
-
-.category-toggle-label {
-  font-size: 0.6rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  white-space: nowrap;
-}
-
-.category-toggle-btn:focus-visible {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
-}
-
-@media (hover: hover) {
-  .category-toggle-btn:hover {
-    background: rgba(0, 0, 0, 0.06);
-  }
-}
-
-@media (min-width: 768px) {
-  .category-toggle-bar {
-    padding: 8px 12px;
-    gap: 8px;
-  }
-
-  .category-toggle-btn {
-    padding: 8px 6px;
-    min-height: 52px;
-  }
-
-  .category-toggle-icon {
-    width: 22px;
-    height: 22px;
-  }
-
-  .category-toggle-label {
-    font-size: 0.65rem;
-  }
-}
-
-/* [UX] Changed: Added visible focus styles for keyboard navigation (WCAG 2.4.7) */
-*:focus-visible {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
-}
-
-/* [UX] Changed: Focus style for card elements acting as buttons */
-.map-info-card:focus-visible {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-/* [UX] Changed: Hover state for cards to match click affordance */
-.map-info-card:hover {
-  opacity: 0.8;
-}
-
-/* [UX] Changed: Focus style for modal close buttons */
-.sources-modal-close:focus-visible {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
-  background: #e5e5e5;
-}
-
-/* Touch improvements */
-* {
-  -webkit-tap-highlight-color: transparent;
-}
-
-button {
-  touch-action: manipulation;
-}
-
-.maplibregl-popup-content {
-  padding: 8px 12px;
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 13px;
-}
-
-.maplibregl-popup-content strong {
-  display: block;
-  margin-bottom: 2px;
-}
-
-.maplibregl-popup-content .mile-marker {
-  color: #666;
-  font-size: 12px;
-}
-
-/* GPS Toggle Button */
-.gps-toggle-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  padding-right: 12px;
-  border-right: 1px solid rgba(0,0,0,0.1);
-}
-
-.gps-toggle-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid #ccc;
-  background: #fff;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  padding: 0;
-  color: #666;
-}
-
-.gps-toggle-btn:hover {
-  border-color: #1b1b1b;
-  color: #1b1b1b;
-}
-
-.gps-toggle-btn.active {
-  background: #22c55e;
-  border-color: #16a34a;
-  color: #fff;
-}
-
-.gps-toggle-btn.active:hover {
-  background: #16a34a;
-}
-
-.gps-icon {
-  width: 22px;
-  height: 22px;
-}
-
-.gps-status {
-  font-size: 0.6rem;
-  color: #737373; /* Fixed: was #999, now meets WCAG AA contrast on white */
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  font-weight: 600;
-  min-height: 12px;
-}
-
-.gps-status.acquiring {
-  color: #f59e0b;
-}
-
-.gps-status.active {
-  color: #22c55e;
-}
-
-.gps-status.error {
-  color: #dc2626;
-}
-
-/* User location marker */
-.user-location-marker {
-  width: 20px;
-  height: 20px;
-  background: #3b82f6;
-  border: 3px solid #fff;
-  border-radius: 50%;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-
-.user-location-marker.pulsing {
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5);
-  }
-  70% {
-    box-shadow: 0 0 0 15px rgba(59, 130, 246, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
-  }
-}
-
-/* GPS accuracy circle styling is handled via MapLibre paint properties */
-
-/* [UX] Changed: Respect reduced motion preference (WCAG 2.3.3) */
-@media (prefers-reduced-motion: reduce) {
-  .user-location-marker.pulsing {
-    animation: none;
-  }
-
-  .tab-content {
-    transition: none;
-  }
-
-  .map-info-card {
-    transition: none;
-  }
-
-  .gps-toggle-btn {
-    transition: none;
-  }
-
-  .info-btn {
-    transition: none;
-  }
-
-  .category-toggle-btn {
-    transition: none;
-  }
-}
-
-@media (min-width: 768px) {
-  .gps-toggle-section {
-    padding-right: 16px;
-  }
-
-  .gps-toggle-btn {
-    width: 44px;
-    height: 44px;
-  }
-
-  .gps-icon {
-    width: 24px;
-    height: 24px;
-  }
-
-  .gps-status {
-    font-size: 0.65rem;
-  }
-}
-
-/* Map controls - ensure they're above elevation chart (z-index: 5).
-   !important overrides MapLibre's inline z-index. */
 .maplibregl-ctrl-top-left,
 .maplibregl-ctrl-top-right,
 .maplibregl-ctrl-bottom-left,
@@ -935,10 +676,8 @@ button {
   z-index: 10 !important;
 }
 
-/* Bottom-left controls - position above elevation chart + toggle bar.
-   !important overrides MapLibre's inline style (bottom:0). */
 .maplibregl-ctrl-bottom-left {
-  bottom: 260px !important;
+  bottom: 64px !important;
 }
 
 /* Zoom level display */
@@ -953,14 +692,114 @@ button {
   box-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }
 
-/* Scale control positioning in bottom-left */
 .maplibregl-ctrl-bottom-left .maplibregl-ctrl-scale {
   margin-left: 10px;
   margin-bottom: 4px;
 }
 
-@media (min-width: 768px) {
-  .maplibregl-ctrl-bottom-left {
-    bottom: 310px !important; /* Taller elevation chart + toggle bar on desktop */
+/* ========== GPS Status ========== */
+.gps-status {
+  font-size: 0.5rem;
+  color: #737373;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-weight: 600;
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.gps-status.acquiring { color: #f59e0b; }
+.gps-status.active { color: #22c55e; }
+.gps-status.error { color: #dc2626; }
+
+/* ========== User Location Marker ========== */
+.user-location-marker {
+  width: 20px;
+  height: 20px;
+  background: #3b82f6;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.user-location-marker.pulsing {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5); }
+  70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+/* ========== Accessibility ========== */
+*:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.sources-modal-close:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  background: #e5e5e5;
+}
+
+/* ========== Touch Improvements ========== */
+* { -webkit-tap-highlight-color: transparent; }
+button { touch-action: manipulation; }
+
+.maplibregl-popup-content {
+  padding: 8px 12px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 13px;
+}
+
+.maplibregl-popup-content strong { display: block; margin-bottom: 2px; }
+.maplibregl-popup-content .mile-marker { color: #666; font-size: 12px; }
+
+/* ========== Reduced Motion ========== */
+@media (prefers-reduced-motion: reduce) {
+  .user-location-marker.pulsing { animation: none; }
+  .category-toggle-btn { transition: none; }
+  .btn-group-top-right button,
+  .btn-group-bottom-right button { transition: none; }
+}
+
+/* ========== Hover States (non-touch) ========== */
+@media (hover: hover) {
+  .btn-group-top-right button:hover,
+  .btn-group-bottom-right button:hover {
+    background: rgba(240, 240, 240, 0.95);
+  }
+
+  #btnGpsToggle.active:hover {
+    background: #16a34a;
+  }
+
+  .category-toggle-btn:hover {
+    background: rgba(0, 0, 0, 0.06);
+  }
+
+  .waypoint-list-item:hover {
+    background: #f9f9f9;
+  }
+
+  .filter-btn:hover {
+    background: #e5e5e5;
+  }
+
+  .filter-btn.active:hover {
+    background: #333;
+  }
+
+  .overlay-close:hover {
+    background: #e5e5e5;
+  }
+
+  .view-on-map-btn:hover {
+    background: #333;
   }
 }

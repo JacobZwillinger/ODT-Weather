@@ -149,7 +149,7 @@ export const toggleGps = () => {
 
 // Update GPS button visual state
 const updateGpsButtonState = (active) => {
-  const btn = document.getElementById('gpsToggleBtn');
+  const btn = document.getElementById('btnGpsToggle');
   if (btn) {
     btn.classList.toggle('active', active);
     btn.setAttribute('aria-pressed', String(active));
@@ -172,7 +172,7 @@ export const shouldAllowMapClicks = () => !isGpsActive;
 
 // Initialize GPS button
 export const initGpsButton = () => {
-  const btn = document.getElementById('gpsToggleBtn');
+  const btn = document.getElementById('btnGpsToggle');
   if (btn) {
     btn.addEventListener('click', toggleGps);
   }

@@ -1,9 +1,10 @@
 // Main application entry point
-import { state, loadToggleState } from './utils.js';
+import { state, loadToggleState, saveToggleState } from './utils.js';
 import { loadForecasts } from './weather.js';
-import { initModals } from './modals.js';
-import { showMapInfo, scheduleMapInit } from './map.js';
-import { initGpsButton } from './gps.js';
+import { initModals, showWaypointDetail, showWaterDetail, showTownDetail } from './modals.js';
+import { showMapInfo, scheduleMapInit, toggleCategoryLayer } from './map.js';
+import { initGpsButton, getLastPosition } from './gps.js';
+import { renderElevationChart } from './elevation.js';
 
 // Safe fetch with error handling
 const safeFetch = async (url, defaultValue = []) => {
@@ -20,7 +21,226 @@ const safeFetch = async (url, defaultValue = []) => {
   }
 };
 
-// Load data and initialize app
+// Escape HTML to prevent XSS
+const escapeHtml = (str) => {
+  if (str == null) return '';
+  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+};
+
+// ========== Overlay Management ==========
+
+const openOverlay = (id) => {
+  document.getElementById(id).hidden = false;
+};
+
+const closeAllOverlays = () => {
+  document.querySelectorAll('.fullscreen-overlay').forEach(o => { o.hidden = true; });
+};
+
+// ========== Waypoint List ==========
+
+const renderWaypointList = (filter) => {
+  const container = document.getElementById('waypointListContent');
+  let items = [];
+
+  switch (filter) {
+    case 'all-water':
+      items = state.waterSources.map(s => ({ ...s, type: 'water' }));
+      break;
+    case 'reliable-water':
+      items = state.waterSources
+        .filter(s => s.subcategory === 'reliable')
+        .map(s => ({ ...s, type: 'water' }));
+      break;
+    case 'towns':
+      items = state.towns.map(t => ({ ...t, type: 'towns' }));
+      break;
+    case 'navigation':
+      items = (state.categories.navigation || []).map(n => ({ ...n, type: 'navigation' }));
+      break;
+    case 'toilets':
+      items = (state.categories.toilets || []).map(t => ({ ...t, type: 'toilets' }));
+      break;
+  }
+
+  // Sort by mile
+  items.sort((a, b) => a.mile - b.mile);
+
+  if (items.length === 0) {
+    container.innerHTML = '<div class="waypoint-list-empty">No waypoints found</div>';
+    return;
+  }
+
+  container.innerHTML = items.map(item => `
+    <div class="waypoint-list-item" data-name="${escapeHtml(item.name)}" data-type="${item.type}" data-lat="${item.lat}" data-lon="${item.lon}">
+      <div class="waypoint-list-header">
+        <span class="waypoint-list-name">${escapeHtml(item.name)}</span>
+        <span class="waypoint-list-mile">Mi ${item.mile.toFixed(1)}</span>
+      </div>
+      ${item.landmark ? `<div class="waypoint-list-desc">${escapeHtml(item.landmark)}</div>` : ''}
+    </div>
+  `).join('');
+
+  // Click handler: open detail modal with "View on Map"
+  container.querySelectorAll('.waypoint-list-item').forEach(el => {
+    el.addEventListener('click', () => {
+      const name = el.dataset.name;
+      const type = el.dataset.type;
+
+      if (type === 'water') showWaterDetail(name);
+      else if (type === 'towns') showTownDetail(name);
+      else showWaypointDetail(name);
+
+      // Show "View on Map" button with coordinates
+      const viewBtn = document.getElementById('viewOnMapBtn');
+      viewBtn.hidden = false;
+      viewBtn.dataset.lat = el.dataset.lat;
+      viewBtn.dataset.lon = el.dataset.lon;
+      viewBtn.dataset.name = name;
+    });
+  });
+};
+
+// ========== Settings Popover ==========
+
+const initSettingsPopover = () => {
+  const settingsBtn = document.getElementById('btnSettings');
+  const popover = document.getElementById('settingsPopover');
+
+  settingsBtn.addEventListener('click', () => {
+    const isOpen = !popover.hidden;
+    popover.hidden = !popover.hidden;
+    settingsBtn.classList.toggle('active', !isOpen);
+  });
+
+  // Sync button UI with saved state
+  const toggleButtons = popover.querySelectorAll('.category-toggle-btn');
+  toggleButtons.forEach(btn => {
+    const category = btn.dataset.category;
+    if (state.visibleCategories[category]) {
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+    } else {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-pressed', 'false');
+    }
+  });
+
+  // Category toggle handlers
+  toggleButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const category = btn.dataset.category;
+      state.visibleCategories[category] = !state.visibleCategories[category];
+      btn.classList.toggle('active');
+      btn.setAttribute('aria-pressed', String(state.visibleCategories[category]));
+      toggleCategoryLayer(category, state.visibleCategories[category]);
+      saveToggleState();
+    });
+  });
+
+  // Close popover when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!popover.hidden && !popover.contains(e.target) && e.target !== settingsBtn) {
+      popover.hidden = true;
+      settingsBtn.classList.remove('active');
+    }
+  });
+};
+
+// Position the settings popover near the settings button
+const positionSettingsPopover = () => {
+  const settingsBtn = document.getElementById('btnSettings');
+  const popover = document.getElementById('settingsPopover');
+  const rect = settingsBtn.getBoundingClientRect();
+  popover.style.bottom = (window.innerHeight - rect.bottom + rect.height / 2 - 40) + 'px';
+};
+
+// ========== Initialize UI ==========
+
+const initUI = () => {
+  // Top-right: Elevation button
+  document.getElementById('btnElevation').addEventListener('click', () => {
+    openOverlay('elevationOverlay');
+    // Re-render chart at full size after overlay is visible
+    requestAnimationFrame(() => {
+      renderElevationChart(state.currentMile, 'mapElevationChart');
+    });
+  });
+
+  // Top-right: Weather button
+  document.getElementById('btnWeather').addEventListener('click', () => {
+    openOverlay('weatherOverlay');
+  });
+
+  // Top-right: GPS Center button
+  document.getElementById('btnGpsCenter').addEventListener('click', () => {
+    const pos = getLastPosition();
+    if (pos && window._odtMap) {
+      window._odtMap.flyTo({ center: [pos.longitude, pos.latitude], zoom: 14, duration: 1000 });
+    }
+  });
+
+  // Bottom-right: Waypoint list button
+  document.getElementById('btnWaypointList').addEventListener('click', () => {
+    openOverlay('waypointListOverlay');
+    renderWaypointList('all-water');
+    // Ensure first filter is active
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('.filter-btn[data-filter="all-water"]').classList.add('active');
+  });
+
+  // Bottom-right: Settings popover
+  initSettingsPopover();
+
+  // Close buttons for all overlays
+  document.querySelectorAll('.overlay-close').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.closest('.fullscreen-overlay').hidden = true;
+    });
+  });
+
+  // Filter bar handlers
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderWaypointList(btn.dataset.filter);
+    });
+  });
+
+  // View on Map button
+  const viewOnMapBtn = document.getElementById('viewOnMapBtn');
+  viewOnMapBtn.addEventListener('click', () => {
+    const lat = parseFloat(viewOnMapBtn.dataset.lat);
+    const lon = parseFloat(viewOnMapBtn.dataset.lon);
+
+    if (!isNaN(lat) && !isNaN(lon) && window._odtMap) {
+      // Close all overlays and modals
+      closeAllOverlays();
+      document.getElementById('waypointModal').classList.remove('visible');
+
+      // Fly to location
+      window._odtMap.flyTo({ center: [lon, lat], zoom: 14, duration: 1000 });
+    }
+  });
+
+  // Escape key closes overlays
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.fullscreen-overlay:not([hidden])').forEach(o => {
+        o.hidden = true;
+      });
+      const popover = document.getElementById('settingsPopover');
+      if (!popover.hidden) {
+        popover.hidden = true;
+        document.getElementById('btnSettings').classList.remove('active');
+      }
+    }
+  });
+};
+
+// ========== App Init ==========
+
 const init = async () => {
   try {
     // Load saved toggle preferences
@@ -43,7 +263,7 @@ const init = async () => {
 
     console.log('Loaded', state.allWaypoints.length, 'waypoints,', water.length, 'water,', townData.length, 'towns,', navigation.length, 'nav,', toilets.length, 'toilets');
 
-    // Initialize info panel with mile 0
+    // Initialize info bar with mile 0
     showMapInfo(0);
   } catch (err) {
     console.error('Failed to initialize app:', err);
@@ -55,25 +275,8 @@ const init = async () => {
   // Initialize GPS button
   initGpsButton();
 
-  // Setup tab switching
-  // [UX] Changed: Update aria-selected on tab switch for screen readers (WCAG 4.1.2)
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const tab = btn.dataset.tab;
-
-      // Update button states
-      document.querySelectorAll('.tab-btn').forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-
-      // Update content visibility
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      document.getElementById(tab + 'Tab').classList.add('active');
-    });
-  });
+  // Initialize UI (overlays, buttons, settings)
+  initUI();
 
   // Load weather forecasts
   loadForecasts();

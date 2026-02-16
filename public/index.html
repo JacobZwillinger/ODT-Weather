@@ -2,120 +2,162 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Oregon Desert Trail Weather</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Oregon Desert Trail</title>
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.1.2/dist/maplibre-gl.css" integrity="sha384-m6tadjb5ohv1Fw3GJynIWn5c1scKfW7kxSXuDrhlq1gdXPn7I7UL0sSKDfCUErOb" crossorigin="anonymous" />
   </head>
   <body>
-    <div class="header">
-      <div class="header-left">
-        <h1>Oregon Desert Trail Weather</h1>
-        <button class="info-btn" id="infoBtn" aria-label="About">i</button>
-      </div>
-      <div class="api-usage" id="apiUsage"></div>
+    <!-- Fullscreen map -->
+    <div id="mapContainer"></div>
+
+    <!-- Top-right button group -->
+    <div class="btn-group-top-right">
+      <button id="btnElevation" aria-label="Elevation profile">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M2 20L8 10l4 5 4-8 6 13H2z" stroke="currentColor" stroke-width="2" fill="none"/>
+        </svg>
+      </button>
+      <button id="btnWeather" aria-label="Weather forecasts">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+          <line x1="12" y1="1" x2="12" y2="2" stroke="currentColor" stroke-width="2"/>
+          <line x1="12" y1="12" x2="12" y2="13" stroke="currentColor" stroke-width="2"/>
+          <line x1="6" y1="7" x2="7" y2="7" stroke="currentColor" stroke-width="2"/>
+          <line x1="17" y1="7" x2="18" y2="7" stroke="currentColor" stroke-width="2"/>
+          <path d="M4 17c0-2 2-3 4-3 1 0 2 .5 2.5 1 .5-.5 1.5-1 2.5-1 2 0 4 1 4 3H4z" fill="currentColor" opacity="0.6"/>
+        </svg>
+      </button>
+      <button id="btnGpsCenter" aria-label="Center on GPS location">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="3" fill="currentColor"/>
+          <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+          <line x1="12" y1="2" x2="12" y2="5" stroke="currentColor" stroke-width="2"/>
+          <line x1="12" y1="19" x2="12" y2="22" stroke="currentColor" stroke-width="2"/>
+          <line x1="2" y1="12" x2="5" y2="12" stroke="currentColor" stroke-width="2"/>
+          <line x1="19" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </button>
     </div>
 
-    <!-- [UX] Changed: Added role="tablist" and ARIA tab attributes for screen reader support (WCAG 4.1.2) -->
-    <div class="tabs" role="tablist" aria-label="Main navigation">
-      <button class="tab-btn active" data-tab="map" role="tab" aria-selected="true" aria-controls="mapTab" id="tab-map">Map</button>
-      <button class="tab-btn" data-tab="weather" role="tab" aria-selected="false" aria-controls="weatherTab" id="tab-weather">Weather</button>
+    <!-- Bottom info bar -->
+    <div class="bottom-info-bar" id="bottomInfoBar">
+      <div class="info-item" id="nextWaterCard" role="button" tabindex="0" aria-label="Next water source, click for water sources list">
+        <svg class="info-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 3c-2 3-5 6-5 9a5 5 0 0 0 10 0c0-3-3-6-5-9z" fill="#3b82f6"/>
+        </svg>
+        <div class="info-value" id="mapNextWater"><span>--</span></div>
+      </div>
+      <div class="info-item info-item-mile">
+        <span class="info-label" id="mileLabel">Mile</span>
+        <span class="info-value info-value-mile" id="mapCurrentMile">0.0</span>
+      </div>
+      <div class="info-item info-item-waypoint">
+        <span class="info-label">Nearest</span>
+        <span class="info-value info-value-nearest" id="mapNearestWaypoint">Start</span>
+      </div>
+      <div class="info-item" id="nextTownCard" role="button" tabindex="0" aria-label="Next town, click for towns list">
+        <svg class="info-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="#059669"/>
+        </svg>
+        <div class="info-value" id="mapNextTown"><span>--</span></div>
+      </div>
     </div>
 
-    <div class="main-content">
-      <!-- [UX] Changed: Added role="tabpanel" and aria-labelledby for tab/panel relationship (WCAG 4.1.2) -->
-      <div id="mapTab" class="tab-content active" role="tabpanel" aria-labelledby="tab-map">
-        <div id="mapContainer"></div>
-        <div id="mapInfoPanel" class="map-info-panel">
-          <div class="gps-toggle-section">
-            <button class="gps-toggle-btn" id="gpsToggleBtn" aria-label="Toggle GPS" aria-pressed="false">
-              <!-- [UX] Changed: Added aria-hidden to decorative SVG (WCAG 1.1.1) -->
-              <svg class="gps-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <circle cx="12" cy="12" r="3" fill="currentColor"/>
-                <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
-                <line x1="12" y1="2" x2="12" y2="5" stroke="currentColor" stroke-width="2"/>
-                <line x1="12" y1="19" x2="12" y2="22" stroke="currentColor" stroke-width="2"/>
-                <line x1="2" y1="12" x2="5" y2="12" stroke="currentColor" stroke-width="2"/>
-                <line x1="19" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="2"/>
-              </svg>
-            </button>
-            <!-- [UX] Changed: Added aria-live so GPS status changes are announced (WCAG 4.1.3) -->
-            <span class="gps-status" id="gpsStatus" aria-live="polite"></span>
-          </div>
-          <div class="map-info-current-section">
-            <div class="map-info-current-label">Current Mile</div>
-            <div class="map-info-current-mile" id="mapCurrentMile">0.0</div>
-          </div>
-          <div class="map-info-waypoint-section">
-            <div class="map-info-waypoint-label">Nearest Waypoint</div>
-            <div class="map-info-waypoint-value" id="mapNearestWaypoint">Start</div>
-          </div>
-          <div class="map-info-cards">
-            <!-- [UX] Changed: Added role="button", tabindex, aria-label to make cards keyboard-accessible (WCAG 2.1.1) -->
-            <div class="map-info-card" id="nextWaterCard" role="button" tabindex="0" aria-label="Next water source, click for water sources list">
-              <svg class="map-info-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M12 3c-2 3-5 6-5 9a5 5 0 0 0 10 0c0-3-3-6-5-9z" fill="#3b82f6"/>
-              </svg>
-              <div class="map-info-value" id="mapNextWater">
-                <span>--</span>
-              </div>
-            </div>
-            <div class="map-info-card" id="nextTownCard" role="button" tabindex="0" aria-label="Next town, click for towns list">
-              <svg class="map-info-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="#059669"/>
-              </svg>
-              <div class="map-info-value" id="mapNextTown">
-                <span>--</span>
-              </div>
-            </div>
-          </div>
-        </div>
+    <!-- Bottom-right button group -->
+    <div class="btn-group-bottom-right">
+      <button id="btnWaypointList" aria-label="Waypoint list">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="2"/>
+          <line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2"/>
+          <line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </button>
+      <button id="btnSettings" aria-label="Map layer settings">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </button>
+      <button id="btnGpsToggle" aria-label="Toggle GPS tracking" aria-pressed="false">
+        <svg class="gps-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <polygon points="12,2 19,21 12,17 5,21" fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
 
-        <div class="map-elevation-chart">
-          <h4>Next 20 Miles Elevation</h4>
-          <canvas id="mapElevationChart" role="img" aria-label="Elevation profile chart showing the next 20 miles of trail elevation"></canvas>
-        </div>
+    <!-- Settings popover -->
+    <div class="settings-popover" id="settingsPopover" hidden>
+      <button class="category-toggle-btn active" data-category="water" aria-label="Toggle water sources" aria-pressed="true">
+        <svg class="category-toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 3c-2 3-5 6.5-5 10a5 5 0 0 0 10 0c0-3.5-3-7-5-10z" fill="currentColor"/>
+        </svg>
+        <span class="category-toggle-label">Water</span>
+      </button>
+      <button class="category-toggle-btn active" data-category="towns" aria-label="Toggle towns" aria-pressed="true">
+        <svg class="category-toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="currentColor"/>
+        </svg>
+        <span class="category-toggle-label">Towns</span>
+      </button>
+      <button class="category-toggle-btn" data-category="navigation" aria-label="Toggle navigation waypoints" aria-pressed="false">
+        <svg class="category-toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 2 L20 20 L12 16 L4 20 Z" fill="currentColor"/>
+        </svg>
+        <span class="category-toggle-label">Nav</span>
+      </button>
+      <button class="category-toggle-btn active" data-category="toilets" aria-label="Toggle toilets" aria-pressed="true">
+        <svg class="category-toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="9" y="10" width="6" height="9" rx="1" fill="currentColor"/>
+          <circle cx="12" cy="6" r="2.5" fill="currentColor"/>
+        </svg>
+        <span class="category-toggle-label">Toilets</span>
+      </button>
+    </div>
 
-        <!-- Category Toggle Bar -->
-        <div class="category-toggle-bar" id="categoryToggleBar" role="toolbar" aria-label="Map layer toggles">
-          <button class="category-toggle-btn active" data-category="water" aria-label="Toggle water sources" aria-pressed="true">
-            <svg class="category-toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 3c-2 3-5 6.5-5 10a5 5 0 0 0 10 0c0-3.5-3-7-5-10z" fill="currentColor"/>
-            </svg>
-            <span class="category-toggle-label">Water</span>
-          </button>
-          <button class="category-toggle-btn active" data-category="towns" aria-label="Toggle towns" aria-pressed="true">
-            <svg class="category-toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="currentColor"/>
-            </svg>
-            <span class="category-toggle-label">Towns</span>
-          </button>
-          <button class="category-toggle-btn" data-category="navigation" aria-label="Toggle navigation waypoints" aria-pressed="false">
-            <svg class="category-toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 2 L20 20 L12 16 L4 20 Z" fill="currentColor"/>
-            </svg>
-            <span class="category-toggle-label">Nav</span>
-          </button>
-          <button class="category-toggle-btn active" data-category="toilets" aria-label="Toggle toilets" aria-pressed="true">
-            <svg class="category-toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect x="9" y="10" width="6" height="9" rx="1" fill="currentColor"/>
-              <circle cx="12" cy="6" r="2.5" fill="currentColor"/>
-            </svg>
-            <span class="category-toggle-label">Toilets</span>
-          </button>
-        </div>
+    <!-- Full-screen overlay: Elevation Profile -->
+    <div class="fullscreen-overlay" id="elevationOverlay" hidden>
+      <div class="overlay-header">
+        <h3>Elevation Profile</h3>
+        <button class="overlay-close" aria-label="Close">Close</button>
       </div>
+      <div class="overlay-body">
+        <canvas id="mapElevationChart" role="img" aria-label="Elevation profile chart showing trail elevation"></canvas>
+      </div>
+    </div>
 
-      <div id="weatherTab" class="tab-content" role="tabpanel" aria-labelledby="tab-weather">
-        <!-- [UX] Changed: Added aria-live for dynamic content updates, role="status" for loading (WCAG 4.1.3) -->
+    <!-- Full-screen overlay: Weather -->
+    <div class="fullscreen-overlay" id="weatherOverlay" hidden>
+      <div class="overlay-header">
+        <h3>Weather Forecasts</h3>
+        <button class="overlay-close" aria-label="Close">Close</button>
+      </div>
+      <div class="overlay-body">
         <div id="container" aria-live="polite">
           <div class="loading" role="status">Loading forecasts...</div>
         </div>
       </div>
     </div>
 
+    <!-- Full-screen overlay: Waypoint List -->
+    <div class="fullscreen-overlay" id="waypointListOverlay" hidden>
+      <div class="overlay-header">
+        <h3>Waypoints</h3>
+        <button class="overlay-close" aria-label="Close">Close</button>
+      </div>
+      <div class="overlay-filter-bar" id="waypointFilterBar">
+        <button class="filter-btn active" data-filter="all-water">All Water</button>
+        <button class="filter-btn" data-filter="reliable-water">Reliable</button>
+        <button class="filter-btn" data-filter="towns">Towns</button>
+        <button class="filter-btn" data-filter="navigation">Nav</button>
+        <button class="filter-btn" data-filter="toilets">Toilets</button>
+      </div>
+      <div class="overlay-body">
+        <div id="waypointListContent" class="waypoint-list"></div>
+      </div>
+    </div>
+
     <!-- Info Modal -->
-    <!-- [UX] Changed: Added role="dialog", aria-modal, aria-labelledby for screen readers (WCAG 4.1.2) -->
     <div id="infoModal" class="sources-modal" role="dialog" aria-modal="true" aria-labelledby="infoModalTitle">
       <div class="sources-modal-content">
         <div class="sources-modal-header">
@@ -149,7 +191,6 @@
     </div>
 
     <!-- Water/Town Sources Modal -->
-    <!-- [UX] Changed: Added role="dialog", aria-modal, aria-labelledby for screen readers (WCAG 4.1.2) -->
     <div id="sourcesModal" class="sources-modal" role="dialog" aria-modal="true" aria-labelledby="sourcesModalTitle">
       <div class="sources-modal-content">
         <div class="sources-modal-header">
@@ -161,7 +202,6 @@
     </div>
 
     <!-- Waypoint Detail Modal -->
-    <!-- [UX] Changed: Added role="dialog", aria-modal, aria-labelledby for screen readers (WCAG 4.1.2) -->
     <div id="waypointModal" class="sources-modal waypoint-modal" role="dialog" aria-modal="true" aria-labelledby="waypointModalTitle">
       <div class="sources-modal-content">
         <div class="sources-modal-header">
@@ -169,6 +209,7 @@
           <button class="sources-modal-close" id="closeWaypointModal" aria-label="Close dialog">Close</button>
         </div>
         <div id="waypointDetail" class="waypoint-detail"></div>
+        <button id="viewOnMapBtn" class="view-on-map-btn" hidden>View on Map</button>
       </div>
     </div>
 
