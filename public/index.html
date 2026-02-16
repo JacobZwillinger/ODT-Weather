@@ -42,11 +42,19 @@
 
     <!-- Bottom info bar -->
     <div class="bottom-info-bar" id="bottomInfoBar">
-      <div class="info-item" id="nextWaterCard" role="button" tabindex="0" aria-label="Next water source, click for water sources list">
+      <div class="info-item" id="nextReliableWaterCard" role="button" tabindex="0" aria-label="Next reliable water source">
         <svg class="info-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M12 3c-2 3-5 6-5 9a5 5 0 0 0 10 0c0-3-3-6-5-9z" fill="#3b82f6"/>
         </svg>
-        <div class="info-value" id="mapNextWater"><span>--</span></div>
+        <span class="info-label">Reliable</span>
+        <div class="info-value" id="mapNextReliableWater"><span>--</span></div>
+      </div>
+      <div class="info-item" id="nextOtherWaterCard" role="button" tabindex="0" aria-label="Next other water source">
+        <svg class="info-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 3c-2 3-5 6-5 9a5 5 0 0 0 10 0c0-3-3-6-5-9z" fill="#94a3b8"/>
+        </svg>
+        <span class="info-label">Other</span>
+        <div class="info-value" id="mapNextOtherWater"><span>--</span></div>
       </div>
       <div class="info-item info-item-mile">
         <span class="info-label" id="mileLabel">Mile</span>
@@ -60,6 +68,7 @@
         <svg class="info-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="#059669"/>
         </svg>
+        <span class="info-label">Town</span>
         <div class="info-value" id="mapNextTown"><span>--</span></div>
       </div>
     </div>
@@ -88,11 +97,17 @@
 
     <!-- Settings popover -->
     <div class="settings-popover" id="settingsPopover" hidden>
-      <button class="category-toggle-btn active" data-category="water" aria-label="Toggle water sources" aria-pressed="true">
+      <button class="category-toggle-btn active" data-category="water-reliable" aria-label="Toggle reliable water sources" aria-pressed="true">
         <svg class="category-toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M12 3c-2 3-5 6.5-5 10a5 5 0 0 0 10 0c0-3.5-3-7-5-10z" fill="currentColor"/>
         </svg>
-        <span class="category-toggle-label">Water</span>
+        <span class="category-toggle-label">Reliable Water</span>
+      </button>
+      <button class="category-toggle-btn active" data-category="water-other" aria-label="Toggle other water sources" aria-pressed="true">
+        <svg class="category-toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 3c-2 3-5 6.5-5 10a5 5 0 0 0 10 0c0-3.5-3-7-5-10z" fill="currentColor"/>
+        </svg>
+        <span class="category-toggle-label">Other Water</span>
       </button>
       <button class="category-toggle-btn active" data-category="towns" aria-label="Toggle towns" aria-pressed="true">
         <svg class="category-toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">

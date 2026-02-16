@@ -1,5 +1,5 @@
 import { sectionPoints, WATER_WARNING_MILES, MAP_INIT_DELAY_MS, CATEGORY_CONFIG } from './config.js';
-import { state, loadElevationProfile, findNearestWaypoint, findMileFromCoords, findNextWater, findNextTown, getWaypointShortName, OFF_TRAIL_THRESHOLD } from './utils.js';
+import { state, loadElevationProfile, findNearestWaypoint, findMileFromCoords, findNextWater, findNextReliableWater, findNextOtherWater, findNextTown, getWaypointShortName, OFF_TRAIL_THRESHOLD } from './utils.js';
 import { renderElevationChart } from './elevation.js';
 import { showWaypointDetail, showWaterDetail, showTownDetail } from './modals.js';
 import { setPositionUpdateCallback, shouldAllowMapClicks } from './gps.js';
@@ -47,15 +47,31 @@ export const showMapInfo = (mile, distanceFromTrail = 0) => {
     }
   }
 
-  const nextWater = findNextWater(mile);
-  if (nextWater) {
-    const dist = nextWater.mile - mile;
-    const isWarning = dist >= WATER_WARNING_MILES;
-    document.getElementById('mapNextWater').querySelector('span').textContent = `${dist.toFixed(1)}`;
-    document.getElementById('mapNextWater').className = isWarning ? 'map-info-value warning' : 'map-info-value';
-  } else {
-    document.getElementById('mapNextWater').querySelector('span').textContent = '--';
-    document.getElementById('mapNextWater').className = 'map-info-value';
+  // Reliable water
+  const nextReliable = findNextReliableWater(mile);
+  const reliableEl = document.getElementById('mapNextReliableWater');
+  if (reliableEl) {
+    if (nextReliable) {
+      const dist = nextReliable.mile - mile;
+      const isWarning = dist >= WATER_WARNING_MILES;
+      reliableEl.querySelector('span').textContent = `${dist.toFixed(1)}`;
+      reliableEl.className = isWarning ? 'info-value warning' : 'info-value';
+    } else {
+      reliableEl.querySelector('span').textContent = '--';
+      reliableEl.className = 'info-value';
+    }
+  }
+
+  // Other water
+  const nextOther = findNextOtherWater(mile);
+  const otherEl = document.getElementById('mapNextOtherWater');
+  if (otherEl) {
+    if (nextOther) {
+      const dist = nextOther.mile - mile;
+      otherEl.querySelector('span').textContent = `${dist.toFixed(1)}`;
+    } else {
+      otherEl.querySelector('span').textContent = '--';
+    }
   }
 
   const nextTown = findNextTown(mile);
@@ -128,9 +144,15 @@ export const initMap = () => {
 
     // Load all custom marker icons before adding layers that use them
     await Promise.all([
-      loadIcon('water-icon', 24, 24, `
+      loadIcon('water-reliable-icon', 24, 24, `
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="11" fill="#3b82f6" stroke="#fff" stroke-width="2"/>
+          <path d="M12 7c-1.5 2-3 3.5-3 5.5a3 3 0 0 0 6 0c0-2-1.5-3.5-3-5.5z" fill="#fff"/>
+        </svg>
+      `),
+      loadIcon('water-other-icon', 24, 24, `
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="11" fill="#94a3b8" stroke="#fff" stroke-width="2"/>
           <path d="M12 7c-1.5 2-3 3.5-3 5.5a3 3 0 0 0 6 0c0-2-1.5-3.5-3-5.5z" fill="#fff"/>
         </svg>
       `),
@@ -251,7 +273,7 @@ export const initMap = () => {
 
         const itemName = e.features[0].properties?.name;
 
-        if (category === 'water') {
+        if (category === 'water-reliable' || category === 'water-other') {
           const source = showWaterDetail(itemName);
           if (!shouldAllowMapClicks()) return;
           if (source && source.mile >= 0) showMapInfo(source.mile);

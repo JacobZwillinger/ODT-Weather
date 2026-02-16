@@ -206,9 +206,14 @@ body {
   background: rgba(0, 0, 0, 0.04);
 }
 
-.category-toggle-btn[data-category="water"].active {
+.category-toggle-btn[data-category="water-reliable"].active {
   color: #3b82f6;
   border-color: #3b82f6;
+}
+
+.category-toggle-btn[data-category="water-other"].active {
+  color: #94a3b8;
+  border-color: #94a3b8;
 }
 
 .category-toggle-btn[data-category="towns"].active {

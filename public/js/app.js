@@ -259,7 +259,13 @@ const init = async () => {
     state.allWaypoints = waypoints;
     state.waterSources = water;
     state.towns = townData;
-    state.categories = { water, towns: townData, navigation, toilets };
+    state.categories = {
+      'water-reliable': water.filter(s => s.subcategory === 'reliable'),
+      'water-other': water.filter(s => s.subcategory !== 'reliable'),
+      towns: townData,
+      navigation,
+      toilets
+    };
 
     console.log('Loaded', state.allWaypoints.length, 'waypoints,', water.length, 'water,', townData.length, 'towns,', navigation.length, 'nav,', toilets.length, 'toilets');
 

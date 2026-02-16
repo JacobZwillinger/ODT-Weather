@@ -81,9 +81,9 @@ describe('weatherIcons', () => {
 });
 
 describe('CATEGORY_CONFIG', () => {
-  const expectedCategories = ['water', 'towns', 'navigation', 'toilets'];
+  const expectedCategories = ['water-reliable', 'water-other', 'towns', 'navigation', 'toilets'];
 
-  it('has all four categories', () => {
+  it('has all five categories', () => {
     expectedCategories.forEach(cat => {
       expect(CATEGORY_CONFIG).toHaveProperty(cat);
     });
