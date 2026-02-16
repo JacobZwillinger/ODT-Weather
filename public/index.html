@@ -42,34 +42,32 @@
 
     <!-- Bottom info bar -->
     <div class="bottom-info-bar" id="bottomInfoBar">
+      <div class="info-item info-item-mile">
+        <span class="info-label" id="mileLabel">Mile</span>
+        <span class="info-value info-value-mile" id="mapCurrentMile">0.0</span>
+        <span class="info-label">Nearest</span>
+        <span class="info-value info-value-nearest" id="mapNearestWaypoint">Start</span>
+      </div>
       <div class="info-item" id="nextReliableWaterCard" role="button" tabindex="0" aria-label="Next reliable water source">
         <svg class="info-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M12 3c-2 3-5 6-5 9a5 5 0 0 0 10 0c0-3-3-6-5-9z" fill="#3b82f6"/>
         </svg>
-        <span class="info-label">Reliable</span>
-        <div class="info-value" id="mapNextReliableWater"><span>--</span></div>
+        <span class="info-label">Reliable water</span>
+        <div class="info-value" id="mapNextReliableWater"><span>--</span> mi</div>
       </div>
       <div class="info-item" id="nextOtherWaterCard" role="button" tabindex="0" aria-label="Next other water source">
         <svg class="info-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M12 3c-2 3-5 6-5 9a5 5 0 0 0 10 0c0-3-3-6-5-9z" fill="#94a3b8"/>
         </svg>
-        <span class="info-label">Other</span>
-        <div class="info-value" id="mapNextOtherWater"><span>--</span></div>
-      </div>
-      <div class="info-item info-item-mile">
-        <span class="info-label" id="mileLabel">Mile</span>
-        <span class="info-value info-value-mile" id="mapCurrentMile">0.0</span>
-      </div>
-      <div class="info-item info-item-waypoint">
-        <span class="info-label">Nearest</span>
-        <span class="info-value info-value-nearest" id="mapNearestWaypoint">Start</span>
+        <span class="info-label">Other water</span>
+        <div class="info-value" id="mapNextOtherWater"><span>--</span> mi</div>
       </div>
       <div class="info-item" id="nextTownCard" role="button" tabindex="0" aria-label="Next town, click for towns list">
         <svg class="info-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="#059669"/>
         </svg>
         <span class="info-label">Town</span>
-        <div class="info-value" id="mapNextTown"><span>--</span></div>
+        <div class="info-value" id="mapNextTown"><span>--</span> mi</div>
       </div>
     </div>
 
