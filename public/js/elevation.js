@@ -28,7 +28,7 @@ export const renderElevationChart = async (startMile, canvasId) => {
   }
 
   const dpr = window.devicePixelRatio || 1;
-  const displayWidth = canvas.offsetWidth;
+  const displayWidth = canvas.offsetWidth || canvas.parentElement?.offsetWidth || (window.innerWidth - 32);
   const displayHeight = window.innerWidth < 768 ? 180 : 220;
 
   canvas.width = displayWidth * dpr;

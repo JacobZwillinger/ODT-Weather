@@ -56,9 +56,16 @@ export const MAP_INIT_DELAY_MS = 100;
 
 // Category layer configuration
 export const CATEGORY_CONFIG = {
-  water: {
+  'water-reliable': {
     color: '#3b82f6',
-    icon: 'water-icon',
+    icon: 'water-reliable-icon',
+    minZoom: 8,
+    clusterMaxZoom: 14,
+    clusterRadius: 35
+  },
+  'water-other': {
+    color: '#94a3b8',
+    icon: 'water-other-icon',
     minZoom: 8,
     clusterMaxZoom: 14,
     clusterRadius: 35
