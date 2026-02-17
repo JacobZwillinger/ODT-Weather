@@ -154,32 +154,32 @@ export const initMap = () => {
 
     // Load all custom marker icons before adding layers that use them
     await Promise.all([
-      loadIcon('water-reliable-icon', 24, 24, `
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      loadIcon('water-reliable-icon', 48, 48, `
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="11" fill="#3b82f6" stroke="#fff" stroke-width="2"/>
           <path d="M12 7c-1.5 2-3 3.5-3 5.5a3 3 0 0 0 6 0c0-2-1.5-3.5-3-5.5z" fill="#fff"/>
         </svg>
       `),
-      loadIcon('water-other-icon', 24, 24, `
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      loadIcon('water-other-icon', 48, 48, `
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="11" fill="#94a3b8" stroke="#fff" stroke-width="2"/>
           <path d="M12 7c-1.5 2-3 3.5-3 5.5a3 3 0 0 0 6 0c0-2-1.5-3.5-3-5.5z" fill="#fff"/>
         </svg>
       `),
-      loadIcon('town-icon', 24, 24, `
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      loadIcon('town-icon', 48, 48, `
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="11" fill="#059669" stroke="#fff" stroke-width="2"/>
           <path d="M8 16h8v-3h-2v-2h-1V9h-2v2H10v2H8v3zm3-7h2v1h-2V9z" fill="#fff"/>
         </svg>
       `),
-      loadIcon('nav-icon', 24, 24, `
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      loadIcon('nav-icon', 48, 48, `
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="11" fill="#8b5cf6" stroke="#fff" stroke-width="2"/>
           <path d="M12 6 L16 16 L12 14 L8 16 Z" fill="#fff"/>
         </svg>
       `),
-      loadIcon('toilet-icon', 24, 24, `
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      loadIcon('toilet-icon', 48, 48, `
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="11" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
           <rect x="9" y="10" width="6" height="7" rx="1" fill="#fff"/>
           <circle cx="12" cy="7.5" r="1.5" fill="#fff"/>
