@@ -106,6 +106,15 @@ const fetchForecast = async (lat, lon) => {
     const data = await response.json();
     return adaptPirateWeatherResponse(data, response);
   } else {
+    // Use user-supplied key from localStorage if available (bypasses proxy)
+    const userKey = localStorage.getItem('pirateweatherApiKey');
+    if (userKey) {
+      const url = `https://api.pirateweather.net/forecast/${userKey}/${lat},${lon}?exclude=minutely,hourly,alerts&units=us`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Bad response');
+      const data = await response.json();
+      return adaptPirateWeatherResponse(data, response);
+    }
     const response = await fetch(`/api/forecast?lat=${lat}&lon=${lon}`);
     if (!response.ok) throw new Error('Bad response');
     return await response.json();

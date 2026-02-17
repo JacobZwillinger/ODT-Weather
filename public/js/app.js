@@ -156,6 +156,68 @@ const positionSettingsPopover = () => {
   popover.style.bottom = (window.innerHeight - rect.bottom) + 'px';
 };
 
+// ========== Kebab Menu ==========
+
+const initKebabMenu = () => {
+  const btn = document.getElementById('btnKebab');
+  const popover = document.getElementById('kebabPopover');
+  const apiKeyInput = document.getElementById('apiKeyInput');
+  const apiKeyHint = document.getElementById('apiKeyHint');
+  const saveBtn = document.getElementById('btnSaveApiKey');
+  const testModeBtn = document.getElementById('btnTestMode');
+
+  // Load saved API key into input
+  const savedKey = localStorage.getItem('pirateweatherApiKey') || '';
+  if (savedKey) {
+    apiKeyInput.value = savedKey;
+    apiKeyHint.textContent = 'Custom key active';
+  }
+
+  // Load test mode state
+  const testModeActive = localStorage.getItem('testMode') === 'true';
+  testModeBtn.setAttribute('aria-pressed', String(testModeActive));
+  testModeBtn.classList.toggle('active', testModeActive);
+
+  // Open/close toggle
+  btn.addEventListener('click', () => {
+    const isOpen = !popover.hidden;
+    popover.hidden = isOpen;
+    btn.classList.toggle('active', !isOpen);
+  });
+
+  // Save API key
+  saveBtn.addEventListener('click', () => {
+    const key = apiKeyInput.value.trim();
+    if (key) {
+      localStorage.setItem('pirateweatherApiKey', key);
+      apiKeyHint.textContent = 'Saved!';
+    } else {
+      localStorage.removeItem('pirateweatherApiKey');
+      apiKeyHint.textContent = 'Cleared — using default key';
+    }
+    setTimeout(() => {
+      apiKeyHint.textContent = key ? 'Custom key active' : '';
+    }, 2000);
+  });
+
+  // Test mode toggle
+  testModeBtn.addEventListener('click', () => {
+    const isActive = testModeBtn.getAttribute('aria-pressed') === 'true';
+    const next = !isActive;
+    testModeBtn.setAttribute('aria-pressed', String(next));
+    testModeBtn.classList.toggle('active', next);
+    localStorage.setItem('testMode', String(next));
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!popover.hidden && !popover.contains(e.target) && !btn.contains(e.target)) {
+      popover.hidden = true;
+      btn.classList.remove('active');
+    }
+  });
+};
+
 // ========== Initialize UI ==========
 
 const initUI = () => {
@@ -189,6 +251,9 @@ const initUI = () => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     document.querySelector('.filter-btn[data-filter="all-water"]').classList.add('active');
   });
+
+  // Top-left: Kebab menu
+  initKebabMenu();
 
   // Bottom-right: Settings popover
   initSettingsPopover();
@@ -231,10 +296,15 @@ const initUI = () => {
       document.querySelectorAll('.fullscreen-overlay:not([hidden])').forEach(o => {
         o.hidden = true;
       });
-      const popover = document.getElementById('settingsPopover');
-      if (!popover.hidden) {
-        popover.hidden = true;
+      const settingsPopover = document.getElementById('settingsPopover');
+      if (!settingsPopover.hidden) {
+        settingsPopover.hidden = true;
         document.getElementById('btnSettings').classList.remove('active');
+      }
+      const kebabPopover = document.getElementById('kebabPopover');
+      if (!kebabPopover.hidden) {
+        kebabPopover.hidden = true;
+        document.getElementById('btnKebab').classList.remove('active');
       }
     }
   });

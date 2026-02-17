@@ -580,8 +580,7 @@ export const initMap = () => {
     // Category toggles are now managed by app.js settings popover
   });
 
-  // Add navigation controls
-  map.addControl(new maplibregl.NavigationControl(), 'top-left');
+  // NavigationControl (+/-) removed — zoom handled by pinch/scroll
 
   // Add scale control - position it bottom-left above elevation chart (avoid overlap with info panel in top-left)
   map.addControl(new maplibregl.ScaleControl({
