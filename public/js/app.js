@@ -109,8 +109,9 @@ const initSettingsPopover = () => {
 
   settingsBtn.addEventListener('click', () => {
     const isOpen = !popover.hidden;
-    popover.hidden = !popover.hidden;
+    popover.hidden = isOpen;
     settingsBtn.classList.toggle('active', !isOpen);
+    if (!isOpen) positionSettingsPopover();
   });
 
   // Sync button UI with saved state
@@ -140,7 +141,7 @@ const initSettingsPopover = () => {
 
   // Close popover when clicking outside
   document.addEventListener('click', (e) => {
-    if (!popover.hidden && !popover.contains(e.target) && e.target !== settingsBtn) {
+    if (!popover.hidden && !popover.contains(e.target) && !settingsBtn.contains(e.target)) {
       popover.hidden = true;
       settingsBtn.classList.remove('active');
     }
@@ -152,7 +153,7 @@ const positionSettingsPopover = () => {
   const settingsBtn = document.getElementById('btnSettings');
   const popover = document.getElementById('settingsPopover');
   const rect = settingsBtn.getBoundingClientRect();
-  popover.style.bottom = (window.innerHeight - rect.bottom + rect.height / 2 - 40) + 'px';
+  popover.style.bottom = (window.innerHeight - rect.bottom) + 'px';
 };
 
 // ========== Initialize UI ==========
