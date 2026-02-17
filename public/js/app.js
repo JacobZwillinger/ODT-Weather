@@ -2,7 +2,8 @@
 import { state, loadToggleState, saveToggleState } from './utils.js';
 import { loadForecasts } from './weather.js';
 import { initModals, showWaypointDetail, showWaterDetail, showTownDetail } from './modals.js';
-import { showMapInfo, scheduleMapInit, toggleCategoryLayer } from './map.js';
+import { showMapInfo, scheduleMapInit, toggleCategoryLayer, swapCategoryData, onMapReady } from './map.js';
+import { TEST_DATA } from './test-data.js';
 import { initGpsButton, getLastPosition } from './gps.js';
 import { renderElevationChart } from './elevation.js';
 
@@ -156,6 +157,37 @@ const positionSettingsPopover = () => {
   popover.style.bottom = (window.innerHeight - rect.bottom) + 'px';
 };
 
+// ========== Test Mode Adapter ==========
+
+// Snapshot of real ODT data — stashed after init so test mode can restore it
+let realData = null;
+
+// Build the DC test dataset in the same shape that state expects
+const buildTestDataset = () => ({
+  allWaypoints: TEST_DATA.waypoints,
+  waterSources: TEST_DATA.water,
+  towns: TEST_DATA.towns,
+  categories: {
+    'water-reliable': TEST_DATA.water.filter(s => s.subcategory === 'reliable'),
+    'water-other':    TEST_DATA.water.filter(s => s.subcategory !== 'reliable'),
+    towns:            TEST_DATA.towns,
+    navigation:       [],
+    toilets:          [],
+  },
+});
+
+// Adapter: atomically swap state + live map GeoJSON sources
+const applyDataset = (dataset) => {
+  state.allWaypoints = dataset.allWaypoints;
+  state.waterSources = dataset.waterSources;
+  state.towns        = dataset.towns;
+  state.categories   = dataset.categories;
+  for (const [cat, data] of Object.entries(dataset.categories)) {
+    swapCategoryData(cat, data);
+  }
+  showMapInfo(0);
+};
+
 // ========== Kebab Menu ==========
 
 const initKebabMenu = () => {
@@ -200,13 +232,21 @@ const initKebabMenu = () => {
     }, 2000);
   });
 
-  // Test mode toggle
+  // Test mode toggle — swaps state + map sources between Oregon and DC fixtures
   testModeBtn.addEventListener('click', () => {
     const isActive = testModeBtn.getAttribute('aria-pressed') === 'true';
     const next = !isActive;
     testModeBtn.setAttribute('aria-pressed', String(next));
     testModeBtn.classList.toggle('active', next);
     localStorage.setItem('testMode', String(next));
+
+    if (next) {
+      applyDataset(buildTestDataset());
+      window._odtMap?.flyTo({ center: [-77.0148, 38.8728], zoom: 16, duration: 1200 });
+    } else {
+      if (realData) applyDataset(realData);
+      window._odtMap?.flyTo({ center: [-120.5, 43.5], zoom: 8, duration: 1200 });
+    }
   });
 
   // Close when clicking outside
@@ -339,6 +379,19 @@ const init = async () => {
     };
 
     console.log('Loaded', state.allWaypoints.length, 'waypoints,', water.length, 'water,', townData.length, 'towns,', navigation.length, 'nav,', toilets.length, 'toilets');
+
+    // Stash real data so test mode can restore it
+    realData = {
+      allWaypoints: state.allWaypoints,
+      waterSources: state.waterSources,
+      towns: state.towns,
+      categories: { ...state.categories }
+    };
+
+    // If test mode was left on from a previous session, swap data once map sources exist
+    if (localStorage.getItem('testMode') === 'true') {
+      onMapReady(() => applyDataset(buildTestDataset()));
+    }
 
     // Initialize info bar with mile 0
     showMapInfo(0);
