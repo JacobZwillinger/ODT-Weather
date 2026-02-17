@@ -445,33 +445,35 @@ export const initMap = () => {
       }
     });
 
-    // Index contours (every 100 ft = 30.48m) — thicker, visible at lower zoom
+    // Index contours (every 100 ft) — thicker, visible at lower zoom
+    // Convert meters to feet and round to avoid floating-point modulo issues
+    const indexFilter = ['==', ['%', ['round', ['*', ['get', 'ELEVATION'], 3.28084]], 100], 0];
     map.addLayer({
       id: 'contour-lines-index',
       type: 'line',
       source: 'contours',
       'source-layer': 'contours',
       minzoom: 9,
-      filter: ['==', ['%', ['get', 'ELEVATION'], 30.48], 0],
+      filter: indexFilter,
       paint: {
         'line-color': '#b0926a',
-        'line-width': ['interpolate', ['linear'], ['zoom'], 9, 0.5, 12, 1],
+        'line-width': ['interpolate', ['linear'], ['zoom'], 9, 0.8, 14, 1.5],
         'line-opacity': 0.7
       }
     });
 
-    // Elevation labels on index contours at high zoom
+    // Elevation labels on index contours
     map.addLayer({
       id: 'contour-labels',
       type: 'symbol',
       source: 'contours',
       'source-layer': 'contours',
-      minzoom: 13,
-      filter: ['==', ['%', ['get', 'ELEVATION'], 30.48], 0],
+      minzoom: 11,
+      filter: indexFilter,
       layout: {
         'symbol-placement': 'line',
         'text-field': ['concat', ['to-string', ['round', ['*', ['get', 'ELEVATION'], 3.28084]]], '′'],
-        'text-size': 9,
+        'text-size': ['interpolate', ['linear'], ['zoom'], 11, 8, 14, 11],
         'text-font': ['Noto Sans Regular'],
         'text-max-angle': 25
       },
