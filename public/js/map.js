@@ -110,6 +110,12 @@ export const initMap = () => {
       version: 8,
       glyphs: 'fonts/{fontstack}/{range}.pbf',
       sources: {
+        'osm-raster': {
+          type: 'raster',
+          tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
+          tileSize: 256,
+          attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        },
         'basemap': {
           type: 'vector',
           url: 'pmtiles://basemap.pmtiles'
@@ -316,7 +322,9 @@ export const initMap = () => {
     populateCoords();
 
     // Add basemap layers
-    map.addLayer({ id: 'background', type: 'background', paint: { 'background-color': '#f8f4f0' } });
+    // OSM raster is the universal fallback — shows through wherever PMTiles has no data (e.g. DC in test mode)
+    map.addLayer({ id: 'osm-raster', type: 'raster', source: 'osm-raster', paint: { 'raster-opacity': 1 } });
+    map.addLayer({ id: 'background', type: 'background', paint: { 'background-color': '#f8f4f0', 'background-opacity': 0.92 } });
 
     map.addLayer({
       id: 'water',
