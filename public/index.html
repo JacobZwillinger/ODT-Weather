@@ -11,6 +11,36 @@
     <!-- Fullscreen map -->
     <div id="mapContainer"></div>
 
+    <!-- Top-left kebab menu -->
+    <div class="btn-group-top-left">
+      <button id="btnKebab" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="5" r="2" fill="currentColor"/>
+          <circle cx="12" cy="12" r="2" fill="currentColor"/>
+          <circle cx="12" cy="19" r="2" fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Kebab popover -->
+    <div class="kebab-popover" id="kebabPopover" hidden>
+      <div class="kebab-section">
+        <label class="kebab-label" for="apiKeyInput">PirateWeather API Key</label>
+        <div class="kebab-api-row">
+          <input type="password" id="apiKeyInput" class="kebab-api-input" placeholder="Leave blank to use default" autocomplete="off" spellcheck="false"/>
+          <button id="btnSaveApiKey" class="kebab-save-btn">Save</button>
+        </div>
+        <p class="kebab-hint" id="apiKeyHint"></p>
+      </div>
+      <div class="kebab-divider"></div>
+      <div class="kebab-section">
+        <button id="btnTestMode" class="kebab-toggle-btn" aria-pressed="false">
+          <span class="kebab-toggle-indicator"></span>
+          <span>Test Mode</span>
+        </button>
+      </div>
+    </div>
+
     <!-- Top-right button group -->
     <div class="btn-group-top-right">
       <button id="btnElevation" aria-label="Elevation profile">

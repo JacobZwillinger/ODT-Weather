@@ -20,6 +20,13 @@ body {
 }
 
 /* ========== Button Groups ========== */
+.btn-group-top-left {
+  position: fixed;
+  left: 24px;
+  top: 12px;
+  z-index: 20;
+}
+
 .btn-group-top-right,
 .btn-group-bottom-right {
   position: fixed;
@@ -33,6 +40,7 @@ body {
 .btn-group-top-right { top: 12px; }
 .btn-group-bottom-right { bottom: 68px; }
 
+.btn-group-top-left button,
 .btn-group-top-right button,
 .btn-group-bottom-right button {
   width: 96px;
@@ -53,11 +61,13 @@ body {
   touch-action: manipulation;
 }
 
+.btn-group-top-left button:active,
 .btn-group-top-right button:active,
 .btn-group-bottom-right button:active {
   transform: scale(0.92);
 }
 
+.btn-group-top-left button svg,
 .btn-group-top-right button svg,
 .btn-group-bottom-right button svg {
   width: 44px;
@@ -173,32 +183,161 @@ body {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 12px;
-  padding: 8px;
+  padding: 10px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
   z-index: 25;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .settings-popover[hidden] { display: none; }
+
+/* ========== Kebab Popover ========== */
+.kebab-popover {
+  position: fixed;
+  left: 128px;
+  top: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  z-index: 25;
+  min-width: 260px;
+}
+
+.kebab-popover[hidden] { display: none; }
+
+.kebab-section {
+  padding: 8px 4px;
+}
+
+.kebab-divider {
+  height: 1px;
+  background: rgba(0,0,0,0.08);
+  margin: 4px 0;
+}
+
+.kebab-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.kebab-api-row {
+  display: flex;
+  gap: 8px;
+}
+
+.kebab-api-input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: #fff;
+  color: #1b1b1b;
+  outline: none;
+  min-width: 0;
+}
+
+.kebab-api-input:focus {
+  border-color: #1b1b1b;
+}
+
+.kebab-save-btn {
+  padding: 10px 16px;
+  background: #1b1b1b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.kebab-save-btn:active { transform: scale(0.95); }
+
+.kebab-hint {
+  font-size: 0.75rem;
+  color: #888;
+  margin: 6px 0 0 0;
+  min-height: 1em;
+}
+
+.kebab-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 8px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #333;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.kebab-toggle-btn:active { transform: scale(0.97); }
+
+.kebab-toggle-indicator {
+  width: 40px;
+  height: 24px;
+  border-radius: 12px;
+  background: #ccc;
+  position: relative;
+  flex-shrink: 0;
+  transition: background 0.15s ease;
+}
+
+.kebab-toggle-indicator::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.kebab-toggle-btn.active .kebab-toggle-indicator {
+  background: #1b1b1b;
+}
+
+.kebab-toggle-btn.active .kebab-toggle-indicator::after {
+  transform: translateX(16px);
+}
 
 /* Category toggle buttons (used in settings popover) */
 .category-toggle-btn {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
+  gap: 14px;
+  padding: 14px 18px;
   border: 2px solid transparent;
-  border-radius: 8px;
+  border-radius: 12px;
   background: transparent;
   cursor: pointer;
   transition: all 0.15s ease;
-  min-height: 40px;
+  min-height: 80px;
   color: #999;
   -webkit-tap-highlight-color: transparent;
   white-space: nowrap;
-  font-size: 0.85rem;
+  font-size: 1rem;
 }
 
 .category-toggle-btn:active {
@@ -235,8 +374,8 @@ body {
 }
 
 .category-toggle-icon {
-  width: 20px;
-  height: 20px;
+  width: 32px;
+  height: 32px;
   flex-shrink: 0;
 }
 
@@ -772,12 +911,14 @@ button { touch-action: manipulation; }
 @media (prefers-reduced-motion: reduce) {
   .user-location-marker.pulsing { animation: none; }
   .category-toggle-btn { transition: none; }
+  .btn-group-top-left button,
   .btn-group-top-right button,
   .btn-group-bottom-right button { transition: none; }
 }
 
 /* ========== Hover States (non-touch) ========== */
 @media (hover: hover) {
+  .btn-group-top-left button:hover,
   .btn-group-top-right button:hover,
   .btn-group-bottom-right button:hover {
     background: rgba(240, 240, 240, 0.95);
