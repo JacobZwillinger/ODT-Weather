@@ -308,6 +308,9 @@ export const initMap = () => {
       for (const [category, config] of Object.entries(CATEGORY_CONFIG)) {
         createCategoryLayers(category, state.categories[category], config);
       }
+
+      // Notify app that map sources are ready (used for deferred test-mode swap)
+      if (_onMapReadyCallback) _onMapReadyCallback();
     };
 
     populateCoords();
@@ -713,6 +716,33 @@ const createCircleGeoJSON = (lat, lon, radiusMeters) => {
       coordinates: [coords]
     }
   };
+};
+
+// Callback invoked once map sources are created (after populateCoords completes).
+// Used by app.js to defer test-mode data swap until sources exist.
+let _onMapReadyCallback = null;
+export const onMapReady = (cb) => { _onMapReadyCallback = cb; };
+
+// Swap GeoJSON data for a category's map source (adapter pattern for test mode).
+// No-ops silently if the source doesn't exist.
+export const swapCategoryData = (category, data) => {
+  if (!map) return;
+  const source = map.getSource(`${category}-points`);
+  if (!source) return;
+  source.setData({
+    type: 'FeatureCollection',
+    features: (data || []).map(item => ({
+      type: 'Feature',
+      geometry: { type: 'Point', coordinates: [item.lon, item.lat] },
+      properties: {
+        type: category,
+        mile: item.mile,
+        name: item.name,
+        landmark: item.landmark || '',
+        subcategory: item.subcategory || ''
+      }
+    }))
+  });
 };
 
 // Toggle map layer visibility for a category
