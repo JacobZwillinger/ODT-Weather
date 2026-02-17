@@ -177,3 +177,29 @@ export const initGpsButton = () => {
     btn.addEventListener('click', toggleGps);
   }
 };
+
+// Android lifecycle hooks — pause/resume GPS when app goes to background/foreground
+// These are called from MainActivity.kt via evaluateJavascript()
+let wasGpsActiveBeforePause = false;
+
+window._gpsCleanup = () => {
+  wasGpsActiveBeforePause = isGpsActive;
+  if (isGpsActive) {
+    // Stop GPS silently (don't reset button state or remove marker)
+    if (watchId !== null) {
+      navigator.geolocation.clearWatch(watchId);
+      watchId = null;
+    }
+  }
+};
+
+window._gpsResume = () => {
+  if (wasGpsActiveBeforePause && !watchId) {
+    // Restart GPS watch silently
+    watchId = navigator.geolocation.watchPosition(
+      handlePositionSuccess,
+      handlePositionError,
+      GPS_OPTIONS
+    );
+  }
+};

@@ -108,7 +108,7 @@ export const initMap = () => {
     container: 'mapContainer',
     style: {
       version: 8,
-      glyphs: 'https://cdn.protomaps.com/fonts/pbf/{fontstack}/{range}.pbf',
+      glyphs: 'fonts/{fontstack}/{range}.pbf',
       sources: {
         'basemap': {
           type: 'vector',
@@ -117,6 +117,10 @@ export const initMap = () => {
         'overlay': {
           type: 'vector',
           url: 'pmtiles://overlay.pmtiles'
+        },
+        'contours': {
+          type: 'vector',
+          url: 'pmtiles://contours.pmtiles'
         }
       },
       layers: []
@@ -424,6 +428,58 @@ export const initMap = () => {
         'text-font': ['Noto Sans Regular']
       },
       paint: { 'text-color': '#666', 'text-halo-color': '#fff', 'text-halo-width': 2 }
+    });
+
+    // Add contour lines from contours PMTiles
+    // Minor contours (every 20 ft) — visible only at high zoom
+    map.addLayer({
+      id: 'contour-lines',
+      type: 'line',
+      source: 'contours',
+      'source-layer': 'contours',
+      minzoom: 12,
+      paint: {
+        'line-color': '#c8a87a',
+        'line-width': 0.5,
+        'line-opacity': 0.5
+      }
+    });
+
+    // Index contours (every 100 ft = 30.48m) — thicker, visible at lower zoom
+    map.addLayer({
+      id: 'contour-lines-index',
+      type: 'line',
+      source: 'contours',
+      'source-layer': 'contours',
+      minzoom: 9,
+      filter: ['==', ['%', ['get', 'ELEVATION'], 30.48], 0],
+      paint: {
+        'line-color': '#b0926a',
+        'line-width': ['interpolate', ['linear'], ['zoom'], 9, 0.5, 12, 1],
+        'line-opacity': 0.7
+      }
+    });
+
+    // Elevation labels on index contours at high zoom
+    map.addLayer({
+      id: 'contour-labels',
+      type: 'symbol',
+      source: 'contours',
+      'source-layer': 'contours',
+      minzoom: 13,
+      filter: ['==', ['%', ['get', 'ELEVATION'], 30.48], 0],
+      layout: {
+        'symbol-placement': 'line',
+        'text-field': ['concat', ['to-string', ['round', ['*', ['get', 'ELEVATION'], 3.28084]]], '′'],
+        'text-size': 9,
+        'text-font': ['Noto Sans Regular'],
+        'text-max-angle': 25
+      },
+      paint: {
+        'text-color': '#9a7d5a',
+        'text-halo-color': '#fff',
+        'text-halo-width': 1
+      }
     });
 
     // Add route line layer from overlay

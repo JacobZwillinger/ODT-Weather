@@ -1,5 +1,5 @@
 #!/bin/bash
-# Generate 25-foot contour lines for the trail corridor
+# Generate 20-foot contour lines for a 10-mile corridor around the trail
 # Uses SRTM elevation data and GDAL for contour generation
 
 set -e
@@ -21,7 +21,7 @@ mkdir -p "$BUILD_DIR"
 mkdir -p "$DATA_DIR"
 mkdir -p "$DIST_DIR"
 
-echo "Building 25-foot contour lines..."
+echo "Building 20-foot contour lines (10-mile corridor)..."
 echo ""
 
 # Check dependencies
@@ -94,19 +94,17 @@ echo "DEM Information:"
 gdalinfo "$DEM_FILE" | grep -E "(Size|Origin|Pixel|Upper Left|Lower Right|Band 1)"
 echo ""
 
-# Check if narrow buffer exists
-if [ ! -f "$NARROW_BUFFER_FILE" ]; then
-  echo "Creating narrow buffer (500 feet around route)..."
-  node "$PROJECT_ROOT/scripts/create-narrow-buffer.js"
-  echo ""
-fi
+# Always recreate buffer (in case distance changed)
+echo "Creating 10-mile buffer around route..."
+node "$PROJECT_ROOT/scripts/create-narrow-buffer.js"
+echo ""
 
 # Generate contour lines
-# 50 feet = 15.24 meters
-CONTOUR_INTERVAL=15.24
+# 20 feet = 6.096 meters
+CONTOUR_INTERVAL=6.096
 
 echo "Generating contour lines..."
-echo "  Interval: 50 feet (${CONTOUR_INTERVAL}m)"
+echo "  Interval: 20 feet (${CONTOUR_INTERVAL}m)"
 echo "  Output: $CONTOURS_GEOJSON"
 echo ""
 
@@ -126,8 +124,8 @@ GEOJSON_SIZE=$(du -h "$CONTOURS_GEOJSON" | cut -f1)
 echo "  GeoJSON size: $GEOJSON_SIZE"
 echo ""
 
-# Clip contours to narrow buffer (500 feet around route)
-echo "Clipping contours to narrow buffer (500ft around route)..."
+# Clip contours to buffer (10 miles around route)
+echo "Clipping contours to 10-mile buffer around route..."
 echo "  Input: $CONTOURS_GEOJSON"
 echo "  Clip: $NARROW_BUFFER_FILE"
 echo "  Output: $CONTOURS_CLIPPED_GEOJSON"
@@ -147,22 +145,22 @@ echo ""
 
 # Convert to PMTiles using tippecanoe
 echo "Converting to PMTiles..."
-echo "  Zoom levels: 12-14"
+echo "  Zoom levels: 9-14"
 echo "  Output: $CONTOURS_PMTILES"
 echo ""
 
 # Tippecanoe options:
 # -o: output file
-# -Z/-z: min/max zoom levels (12-14 for detailed view only)
+# -Z/-z: min/max zoom levels (9-14 for wide zoom range)
 # -l: layer name
 # -f: force overwrite
 # -r1: Allow dropping 50% of features at max zoom if needed
 # --drop-densest-as-needed: simplify if too dense
-# --simplification=10: More aggressive simplification
-# -B: Buffer around tiles to ensure smooth lines
+# --simplification=10: More aggressive simplification at lower zooms
+# -B: Buffer around tiles to ensure smooth lines across tile boundaries
 tippecanoe \
   -o "$CONTOURS_PMTILES" \
-  -Z12 \
+  -Z9 \
   -z14 \
   -l contours \
   -f \

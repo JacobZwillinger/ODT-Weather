@@ -58,17 +58,90 @@ export const renderWeatherTable = (forecasts) => {
   container.innerHTML = html;
 };
 
+// Check if running inside Android WebView
+const isAndroid = typeof AndroidBridge !== 'undefined';
+
+// Transform raw PirateWeather API response into the format our app expects
+// (same shape as server.js / api/forecast.js returns)
+const adaptPirateWeatherResponse = (data, response) => {
+  const currently = data.currently || {};
+  const dailyData = data.daily?.data || [];
+
+  const apiCalls = response.headers.get('x-forecast-api-calls');
+  const rateLimit = response.headers.get('ratelimit-limit');
+  const rateRemaining = response.headers.get('ratelimit-remaining');
+
+  return {
+    time: currently.time,
+    summary: currently.summary,
+    icon: currently.icon,
+    temperature: currently.temperature,
+    apparentTemperature: currently.apparentTemperature,
+    windSpeed: currently.windSpeed,
+    windGust: currently.windGust,
+    humidity: currently.humidity,
+    daily: dailyData.slice(0, 7).map(day => ({
+      time: day.time,
+      high: day.temperatureHigh,
+      low: day.temperatureLow,
+      icon: day.icon || '',
+      summary: day.summary || ''
+    })),
+    _usage: {
+      calls: apiCalls ? parseInt(apiCalls, 10) : null,
+      limit: rateLimit ? parseInt(rateLimit, 10) : null,
+      remaining: rateRemaining ? parseInt(rateRemaining, 10) : null
+    }
+  };
+};
+
+// Fetch a single forecast, handling both web (proxy) and Android (direct API) modes
+const fetchForecast = async (lat, lon) => {
+  if (isAndroid) {
+    const apiKey = AndroidBridge.getApiKey();
+    if (!apiKey) return null;
+    const url = `https://api.pirateweather.net/forecast/${apiKey}/${lat},${lon}?exclude=minutely,hourly,alerts&units=us`;
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Bad response');
+    const data = await response.json();
+    return adaptPirateWeatherResponse(data, response);
+  } else {
+    const response = await fetch(`/api/forecast?lat=${lat}&lon=${lon}`);
+    if (!response.ok) throw new Error('Bad response');
+    return await response.json();
+  }
+};
+
 export const loadForecasts = async () => {
+  // On Android, check if API key is configured
+  if (isAndroid) {
+    const apiKey = AndroidBridge.getApiKey();
+    if (!apiKey) {
+      const container = document.getElementById('container');
+      container.innerHTML = `
+        <div style="padding: 24px; text-align: center; color: #666;">
+          <p style="margin-bottom: 16px;"><strong>Weather API Key Required</strong></p>
+          <p style="margin-bottom: 16px;">Enter your <a href="https://pirateweather.net" target="_blank">PirateWeather</a> API key to see forecasts.</p>
+          <input type="text" id="apiKeyInput" placeholder="Enter API key..." style="width: 100%; max-width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; margin-bottom: 12px;" />
+          <br/>
+          <button id="saveApiKeyBtn" style="padding: 10px 24px; background: #1b1b1b; color: #fff; border: none; border-radius: 6px; font-size: 0.95rem; cursor: pointer;">Save Key</button>
+        </div>
+      `;
+      document.getElementById('saveApiKeyBtn').addEventListener('click', () => {
+        const key = document.getElementById('apiKeyInput').value.trim();
+        if (key) {
+          AndroidBridge.setApiKey(key);
+          loadForecasts(); // Retry with new key
+        }
+      });
+      return;
+    }
+  }
+
   const forecasts = await Promise.all(
     sectionPoints.map(async (point) => {
       try {
-        const response = await fetch(
-          `/api/forecast?lat=${point.lat}&lon=${point.lon}`
-        );
-        if (!response.ok) {
-          throw new Error("Bad response");
-        }
-        return await response.json();
+        return await fetchForecast(point.lat, point.lon);
       } catch (error) {
         return null;
       }
@@ -81,7 +154,6 @@ export const loadForecasts = async () => {
   const lastForecast = forecasts.find(f => f && f._usage && f._usage.calls !== null);
   if (lastForecast) {
     const { calls, limit } = lastForecast._usage;
-    // [BUGS] Fixed: guard against null calls even though outer check exists, and null apiUsage element
     const usageEl = document.getElementById('apiUsage');
     if (usageEl && calls !== null) {
       const usageText = limit
