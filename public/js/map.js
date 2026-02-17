@@ -276,12 +276,20 @@ export const initMap = () => {
       });
 
       // Unclustered point clicks → show detail modal
+      // Use a 30px bounding box instead of exact icon hit detection for mobile-friendly tap targets
       map.on('click', `${category}-points-unclustered`, (e) => {
-        if (!e.features || e.features.length === 0) return;
         e.preventDefault();
         ++pendingMileUpdate;
 
-        const itemName = e.features[0].properties?.name;
+        const R = 30;
+        const bbox = [
+          [e.point.x - R, e.point.y - R],
+          [e.point.x + R, e.point.y + R]
+        ];
+        const features = map.queryRenderedFeatures(bbox, { layers: [`${category}-points-unclustered`] });
+        if (!features || features.length === 0) return;
+
+        const itemName = features[0].properties?.name;
 
         if (category === 'water-reliable' || category === 'water-other') {
           const source = showWaterDetail(itemName);
@@ -566,11 +574,13 @@ export const initMap = () => {
 
     // Route-line clicks are ON the trail by definition — always pass distanceFromTrail: 0
     map.on('click', 'route-line', async (e) => {
-      // Check if a category point was clicked at this location - if so, skip route-line handling
+      // Check if a category point was tapped nearby — if so, let the icon handler take it
+      const R = 30;
+      const bbox = [[e.point.x - R, e.point.y - R], [e.point.x + R, e.point.y + R]];
       const categoryLayers = Object.keys(CATEGORY_CONFIG)
         .map(cat => `${cat}-points-unclustered`)
         .filter(id => map.getLayer(id));
-      const pointFeatures = map.queryRenderedFeatures(e.point, { layers: categoryLayers });
+      const pointFeatures = map.queryRenderedFeatures(bbox, { layers: categoryLayers });
       if (pointFeatures.length > 0) return;
       if (!shouldAllowMapClicks()) return; // GPS mode active, ignore clicks
       e.preventDefault();
