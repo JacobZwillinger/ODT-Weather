@@ -134,7 +134,7 @@ body {
 }
 
 .info-label {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.3px;
   color: #737373;
@@ -142,7 +142,7 @@ body {
 }
 
 .info-value {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: #1b1b1b;
   line-height: 1;
@@ -150,13 +150,13 @@ body {
 }
 
 .info-value-mile {
-  font-size: 1.8rem;
+  font-size: 2.2rem;
 }
 
 .info-value-nearest {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  max-width: 100px;
+  max-width: 110px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
