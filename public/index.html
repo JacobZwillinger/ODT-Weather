@@ -163,7 +163,10 @@
     <div class="fullscreen-overlay" id="elevationOverlay" hidden>
       <div class="overlay-header">
         <h3>Elevation Profile</h3>
-        <button class="overlay-close" aria-label="Close">Close</button>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <button id="btnElevJump" class="elev-jump-btn" aria-label="Jump to current location" title="Jump to my location">📍 My Location</button>
+          <button class="overlay-close" aria-label="Close">Close</button>
+        </div>
       </div>
       <div class="overlay-body">
         <canvas id="mapElevationChart" role="img" aria-label="Elevation profile chart showing trail elevation"></canvas>

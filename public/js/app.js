@@ -5,7 +5,7 @@ import { initModals, showWaypointDetail, showWaterDetail, showTownDetail } from 
 import { showMapInfo, scheduleMapInit, toggleCategoryLayer, swapCategoryData, onMapReady, resetMapView, saveMapView, restoreMapView } from './map.js';
 import { TEST_DATA } from './test-data.js';
 import { initGpsButton, getLastPosition } from './gps.js';
-import { renderElevationChart } from './elevation.js';
+import { renderElevationChart, jumpToCurrentMile } from './elevation.js';
 
 // Safe fetch with error handling
 const safeFetch = async (url, defaultValue = []) => {
@@ -269,6 +269,11 @@ const initUI = () => {
     requestAnimationFrame(() => {
       renderElevationChart(state.currentMile, 'mapElevationChart');
     });
+  });
+
+  // Elevation overlay: jump-to-current-location button
+  document.getElementById('btnElevJump').addEventListener('click', () => {
+    jumpToCurrentMile();
   });
 
   // Top-right: Weather button
