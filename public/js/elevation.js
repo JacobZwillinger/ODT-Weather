@@ -109,6 +109,17 @@ const draw = () => {
   const isMobile = displayWidth < 500;
   const maxMile = _profile[_profile.length - 1].distance;
 
+  // ---- All font sizes in one place ----
+  const FONT = {
+    statHeader: isMobile ? '13px system-ui' : '14px system-ui',
+    statLabel:  isMobile ? '14px system-ui' : '15px system-ui',
+    statValue:  isMobile ? 'bold 24px system-ui' : 'bold 26px system-ui',
+    yAxis:      isMobile ? 'bold 22px system-ui' : 'bold 24px system-ui',
+    xMile:      isMobile ? 22 : 24,   // px number (used in template literal)
+    you:        isMobile ? 'bold 20px system-ui' : 'bold 22px system-ui',
+    drag:       isMobile ? '16px system-ui' : '18px system-ui',
+  };
+
   _startMile = Math.max(0, Math.min(_startMile, maxMile - _windowMiles));
   const endMile = _startMile + _windowMiles;
   const segmentProfile = _profile.filter(p => p.distance >= _startMile && p.distance <= endMile);
@@ -136,9 +147,8 @@ const draw = () => {
   const colW  = halfW / 3;
 
   // Section headers
-  const headerFont = isMobile ? '12px system-ui' : '13px system-ui';
   ctx.fillStyle = '#999';
-  ctx.font = headerFont;
+  ctx.font = FONT.statHeader;
   ctx.textAlign = 'center';
   ctx.fillText('FROM GPS',  halfW / 2,                        14);
   ctx.fillText('FROM VIEW', displayWidth / 2 + halfW / 2,     14);
@@ -151,20 +161,18 @@ const draw = () => {
     ctx.stroke();
   });
 
-  const labelFont = isMobile ? '13px system-ui' : '14px system-ui';
-  const valueFont = isMobile ? 'bold 22px system-ui' : 'bold 24px system-ui';
   const labelY = 33;
-  const gainY  = 62;
-  const lossY  = 90;
+  const gainY  = 63;
+  const lossY  = 92;
 
   windows.forEach((w, i) => {
     const gcx = colW * i + colW / 2;
     const gPts = forwardFromGps(w);
     const { gain: gGain, loss: gLoss } = gPts.length > 1 ? computeGainLoss(gPts) : { gain: 0, loss: 0 };
 
-    ctx.fillStyle = '#666'; ctx.font = labelFont; ctx.textAlign = 'center';
+    ctx.fillStyle = '#666'; ctx.font = FONT.statLabel; ctx.textAlign = 'center';
     ctx.fillText(`${w} mi`, gcx, labelY);
-    ctx.font = valueFont;
+    ctx.font = FONT.statValue;
     ctx.fillStyle = '#22a060'; ctx.fillText(`+${gGain.toLocaleString()}′`, gcx, gainY);
     ctx.fillStyle = '#e11d48'; ctx.fillText(`−${gLoss.toLocaleString()}′`, gcx, lossY);
 
@@ -172,9 +180,9 @@ const draw = () => {
     const vPts = forwardFromView(w);
     const { gain: vGain, loss: vLoss } = vPts.length > 1 ? computeGainLoss(vPts) : { gain: 0, loss: 0 };
 
-    ctx.fillStyle = '#666'; ctx.font = labelFont; ctx.textAlign = 'center';
+    ctx.fillStyle = '#666'; ctx.font = FONT.statLabel; ctx.textAlign = 'center';
     ctx.fillText(`${w} mi`, vcx, labelY);
-    ctx.font = valueFont;
+    ctx.font = FONT.statValue;
     ctx.fillStyle = '#22a060'; ctx.fillText(`+${vGain.toLocaleString()}′`, vcx, gainY);
     ctx.fillStyle = '#e11d48'; ctx.fillText(`−${vLoss.toLocaleString()}′`, vcx, lossY);
   });
@@ -182,7 +190,7 @@ const draw = () => {
   // ---- Chart area ----
   const chartTop = statsBarHeight;
   // Bottom padding large enough for mile labels below the axis line
-  const mileFontSize = isMobile ? 20 : 22;
+  const mileFontSize = FONT.xMile;
   const padding = isMobile
     ? { top: 24, right: 16, bottom: mileFontSize + 14, left: 108 }
     : { top: 28, right: 20, bottom: mileFontSize + 16, left: 124 };
@@ -217,7 +225,7 @@ const draw = () => {
     ctx.strokeStyle = '#e8e8e8'; ctx.lineWidth = 1;
     ctx.beginPath(); ctx.moveTo(padding.left, y); ctx.lineTo(padding.left + chartWidth, y); ctx.stroke();
     ctx.fillStyle = '#222';
-    ctx.font = isMobile ? 'bold 20px system-ui' : 'bold 22px system-ui';
+    ctx.font = FONT.yAxis;
     ctx.textAlign = 'right';
     ctx.fillText(elev.toLocaleString() + ' ft', padding.left - 10, y + 8);
   }
@@ -337,7 +345,7 @@ const draw = () => {
     ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
 
     ctx.fillStyle = '#1d4ed8';
-    ctx.font = `bold ${isMobile ? '18px' : '20px'} system-ui`;
+    ctx.font = FONT.you;
     ctx.textAlign = x > padding.left + chartWidth - 50 ? 'right' : 'center';
     ctx.fillText('You', x, chartTop + padding.top - 8);
   }
@@ -367,7 +375,7 @@ const draw = () => {
   // Drag hint
   if (_currentMile === 0) {
     ctx.fillStyle = 'rgba(0,0,0,0.22)';
-    ctx.font = `${isMobile ? '15px' : '17px'} system-ui`;
+    ctx.font = FONT.drag;
     ctx.textAlign = 'center';
     ctx.fillText('← drag to pan →', padding.left + chartWidth / 2, chartTop + padding.top + 24);
   }
@@ -425,28 +433,30 @@ const onPointerUp = (e) => {
 let _tooltip = null;
 
 const showWaypointTooltip = (wp, canvas, cx, cy) => {
-  // Remove any existing tooltip
   if (_tooltip) { _tooltip.remove(); _tooltip = null; }
 
   const name = wp.landmark || wp.name || 'Waypoint';
   const mile = wp.mile != null ? `Mile ${wp.mile.toFixed(1)}` : '';
   const sub  = wp.subcategory ? ` · ${wp.subcategory}` : '';
+  const color = WAYPOINT_ICON_SVGS[wp.iconKey]?.color ?? '#555';
 
   const tip = document.createElement('div');
   tip.style.cssText = `
     position: absolute;
-    background: rgba(0,0,0,0.82);
+    background: rgba(0,0,0,0.88);
     color: #fff;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font: bold 15px system-ui;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border-left: 5px solid ${color};
+    font: bold 20px system-ui;
     pointer-events: none;
     z-index: 9999;
-    max-width: 260px;
+    max-width: 340px;
     line-height: 1.4;
     white-space: normal;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
   `;
-  tip.innerHTML = `<div>${name}</div><div style="font-weight:400;font-size:13px;opacity:0.8">${mile}${sub}</div>`;
+  tip.innerHTML = `<div>${name}</div><div style="font-weight:500;font-size:17px;opacity:0.75;margin-top:4px">${mile}${sub}</div>`;
 
   // Position relative to the canvas's offset parent
   const canvasRect = canvas.getBoundingClientRect();
