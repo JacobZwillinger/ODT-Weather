@@ -439,6 +439,22 @@ body {
   background: #e5e5e5;
 }
 
+.elev-jump-btn {
+  background: #1d4ed8;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.elev-jump-btn:active { background: #1e40af; }
+
 .overlay-body {
   flex: 1;
   overflow-y: auto;
