@@ -189,11 +189,12 @@ const draw = () => {
 
   // ---- Chart area ----
   const chartTop = statsBarHeight;
-  // Bottom padding large enough for mile labels below the axis line
+  // Bottom padding: mile labels (mileFontSize) + tick (6) + gap (8) + overview bar (14) + margin (8)
   const mileFontSize = FONT.xMile;
+  const overviewH = 8;
   const padding = isMobile
-    ? { top: 24, right: 16, bottom: mileFontSize + 14, left: 108 }
-    : { top: 28, right: 20, bottom: mileFontSize + 16, left: 124 };
+    ? { top: 24, right: 16, bottom: mileFontSize + 6 + 8 + overviewH + 12, left: 108 }
+    : { top: 28, right: 20, bottom: mileFontSize + 6 + 8 + overviewH + 14, left: 124 };
   const chartWidth  = displayWidth - padding.left - padding.right;
   const chartHeight = displayHeight - padding.top - padding.bottom;
 
@@ -301,25 +302,27 @@ const draw = () => {
   ctx.lineTo(padding.left + chartWidth, chartTop + padding.top + chartHeight);
   ctx.stroke();
 
-  // Mile labels — below the bottom axis line
+  // Mile labels — below the bottom axis line, above the overview bar
   {
-    const mileLabelY = chartTop + padding.top + chartHeight + mileFontSize + 4;
-    // Tick marks at every 2.5-mile grid line
+    const axisBottom = chartTop + padding.top + chartHeight;
+    // Place label text so it sits between axis and overview bar
+    const mileLabelY = axisBottom + 6 + mileFontSize;  // 6px tick + mileFontSize baseline
     for (let mile = firstXTick; mile <= endMile + 0.001; mile += xStep) {
       const x = xScale(mile);
-      // Only label on even miles or every other 2.5-mile mark to avoid crowding
-      const label = Number.isInteger(Math.round(mile * 2) / 2) ? String(Math.round(mile * 10) / 10) : null;
-      if (label === null) continue;
-      // Tick
+      // Label every 5-mile mark (i.e. integer multiples of 5)
+      const rounded = Math.round(mile * 10) / 10;
+      const isLabelMile = Math.abs(rounded % 5) < 0.01;
+      // Tick at every 2.5-mile mark
       ctx.strokeStyle = '#aaa'; ctx.lineWidth = 1;
       ctx.beginPath();
-      ctx.moveTo(x, chartTop + padding.top + chartHeight);
-      ctx.lineTo(x, chartTop + padding.top + chartHeight + 5);
+      ctx.moveTo(x, axisBottom);
+      ctx.lineTo(x, axisBottom + (isLabelMile ? 7 : 4));
       ctx.stroke();
+      if (!isLabelMile) continue;
       ctx.font = `bold ${mileFontSize}px system-ui`;
       ctx.textAlign = 'center';
       ctx.fillStyle = '#111';
-      ctx.fillText(label, x, mileLabelY);
+      ctx.fillText(String(Math.round(rounded)), x, mileLabelY);
     }
   }
 
@@ -351,7 +354,6 @@ const draw = () => {
   }
 
   // Mini overview bar
-  const overviewH = 8;
   const overviewY = chartTop + padding.top + chartHeight + padding.bottom - overviewH;
   const overviewW = chartWidth;
   const overviewX = padding.left;
