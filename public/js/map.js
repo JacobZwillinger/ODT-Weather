@@ -495,7 +495,7 @@ export const initMap = () => {
         'symbol-placement': 'line',
         'text-field': ['concat', ['to-string', ['round', ['*', ['get', 'ELEVATION'], 3.28084]]], '′'],
         'text-size': ['interpolate', ['linear'], ['zoom'], 11, 13, 14, 16],
-        'text-font': ['Noto Sans Bold'],
+        'text-font': ['Noto Sans Regular'],
         'text-max-angle': 25
       },
       paint: {

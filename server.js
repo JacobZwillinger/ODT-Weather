@@ -34,7 +34,7 @@ app.get("/api/forecast", async (req, res) => {
   const url = new URL(
     `https://api.pirateweather.net/forecast/${apiKey}/${lat},${lon}`
   );
-  url.searchParams.set("exclude", "minutely,hourly,alerts");
+  url.searchParams.set("exclude", "minutely,alerts");
   url.searchParams.set("units", "us");
 
   try {
@@ -49,6 +49,7 @@ app.get("/api/forecast", async (req, res) => {
     const data = await response.json();
     const currently = data.currently || {};
     const dailyData = data.daily?.data || [];
+    const hourlyData = data.hourly?.data || [];
 
     // Extract API usage from response headers
     const apiCalls = response.headers.get("x-forecast-api-calls");
@@ -64,6 +65,18 @@ app.get("/api/forecast", async (req, res) => {
       summary: day.summary || ""
     }));
 
+    // Format hourly forecast for 48 hours
+    const hourly = hourlyData.slice(0, 48).map((h) => ({
+      time: h.time,
+      icon: h.icon || "",
+      temp: h.temperature,
+      precipProbability: h.precipProbability || 0,
+      precipIntensity: h.precipIntensity || 0,
+      precipType: h.precipType || "none",
+      windSpeed: h.windSpeed || 0,
+      summary: h.summary || ""
+    }));
+
     return res.json({
       time: currently.time,
       summary: currently.summary,
@@ -74,6 +87,7 @@ app.get("/api/forecast", async (req, res) => {
       windGust: currently.windGust,
       humidity: currently.humidity,
       daily,
+      hourly,
       _usage: {
         calls: apiCalls ? parseInt(apiCalls, 10) : null,
         limit: rateLimit ? parseInt(rateLimit, 10) : null,
