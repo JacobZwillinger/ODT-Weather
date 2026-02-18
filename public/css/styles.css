@@ -422,12 +422,15 @@ body {
 
 .overlay-close {
   background: none;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 8px 16px;
+  border: 1.5px solid #bbb;
+  border-radius: 8px;
+  padding: 12px 24px;
   cursor: pointer;
-  font-size: 0.9rem;
-  color: #666;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #555;
+  min-width: 80px;
+  min-height: 44px;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
 }
@@ -615,7 +618,14 @@ th {
   font-size: 0.85rem;
   color: #666;
   text-align: center;
+  vertical-align: top;
+  padding: 6px 4px;
 }
+
+.day-header { background: #f0f4ff; }
+.night-header { background: #eeeef8; }
+.day-cell { background: #fafcff; }
+.night-cell { background: #f4f4fb; }
 
 .forecast-cell .icon {
   width: 28px;
@@ -625,8 +635,25 @@ th {
 }
 
 .forecast-cell .temps {
-  font-weight: 500;
-  color: #333;
+  display: block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #222;
+}
+
+.forecast-cell .precip-chance {
+  display: block;
+  font-size: 0.78rem;
+  color: #999;
+  min-height: 1em;
+}
+.forecast-cell .precip-chance.precip-mod { color: #3b82f6; }
+.forecast-cell .precip-chance.precip-heavy { color: #dc2626; font-weight: 600; }
+
+.forecast-cell .precip-amount {
+  display: block;
+  font-size: 0.75rem;
+  color: #3b82f6;
 }
 
 .loading {
@@ -952,3 +979,94 @@ button { touch-action: manipulation; }
     background: #333;
   }
 }
+
+/* ---- Hourly Drawer ---- */
+.hourly-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 199;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.hourly-drawer-backdrop.open { opacity: 1; }
+
+.hourly-drawer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60vh;
+  background: #fff;
+  border-radius: 16px 16px 0 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  transition: transform 0.25s ease;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.15);
+}
+.hourly-drawer.open { transform: translateY(0); }
+
+.hourly-drawer-handle {
+  width: 40px;
+  height: 4px;
+  background: #ccc;
+  border-radius: 2px;
+  margin: 10px auto 0;
+  flex-shrink: 0;
+}
+
+.hourly-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px 8px;
+  border-bottom: 1px solid #eee;
+  flex-shrink: 0;
+}
+
+.hourly-drawer-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #222;
+}
+
+.hourly-drawer-close {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #666;
+  cursor: pointer;
+  padding: 4px 8px;
+  min-height: 44px;
+  min-width: 44px;
+  border-radius: 8px;
+  -webkit-tap-highlight-color: transparent;
+}
+.hourly-drawer-close:active { background: #f0f0f0; }
+
+.hourly-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 4px 0;
+}
+
+.hourly-row {
+  display: grid;
+  grid-template-columns: 52px 32px 40px 44px 44px;
+  align-items: center;
+  gap: 4px;
+  padding: 7px 16px;
+  border-bottom: 1px solid #f5f5f5;
+  font-size: 0.88rem;
+}
+.hourly-row-heavy { background: #fff5f5; }
+
+.hourly-time { color: #555; font-size: 0.82rem; }
+.hourly-icon { width: 24px; height: 24px; }
+.hourly-temp { font-weight: 600; color: #222; }
+.hourly-precip { color: #3b82f6; }
+.hourly-row-heavy .hourly-precip { color: #dc2626; font-weight: 600; }
+.hourly-amount { color: #3b82f6; font-size: 0.8rem; }

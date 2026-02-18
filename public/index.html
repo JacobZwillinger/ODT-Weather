@@ -257,6 +257,17 @@
       </div>
     </div>
 
+    <!-- Hourly detail drawer -->
+    <div id="hourlyDrawer" class="hourly-drawer" hidden aria-modal="true" role="dialog" aria-labelledby="hourlyDrawerTitle">
+      <div class="hourly-drawer-handle"></div>
+      <div class="hourly-drawer-header">
+        <span id="hourlyDrawerTitle" class="hourly-drawer-title"></span>
+        <button id="hourlyDrawerClose" class="hourly-drawer-close" aria-label="Close">✕</button>
+      </div>
+      <div class="hourly-drawer-body" id="hourlyDrawerBody"></div>
+    </div>
+    <div id="hourlyDrawerBackdrop" class="hourly-drawer-backdrop" hidden></div>
+
     <script src="lib/maplibre-gl.js"></script>
     <script src="lib/pmtiles.js"></script>
     <script type="module" src="js/app.js"></script>
