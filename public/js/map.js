@@ -607,7 +607,7 @@ export const initMap = () => {
 
   // Add scale control - position it bottom-left above elevation chart (avoid overlap with info panel in top-left)
   map.addControl(new maplibregl.ScaleControl({
-    maxWidth: 150,
+    maxWidth: 300,
     unit: 'imperial'
   }), 'bottom-left');
 
