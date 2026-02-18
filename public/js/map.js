@@ -78,7 +78,7 @@ export const showMapInfo = (mile, distanceFromTrail = 0) => {
   const nextTown = findNextTown(mile);
   if (nextTown) {
     const dist = nextTown.mile - mile;
-    document.getElementById('mapNextTown').querySelector('span').textContent = `${dist.toFixed(1)}`;
+    document.getElementById('mapNextTown').querySelector('span').textContent = dist < 0.05 ? '<0.1' : dist.toFixed(1);
   } else {
     document.getElementById('mapNextTown').querySelector('span').textContent = '--';
   }
