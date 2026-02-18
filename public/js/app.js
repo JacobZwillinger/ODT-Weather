@@ -2,7 +2,7 @@
 import { state, loadToggleState, saveToggleState } from './utils.js';
 import { loadForecasts } from './weather.js';
 import { initModals, showWaypointDetail, showWaterDetail, showTownDetail } from './modals.js';
-import { showMapInfo, scheduleMapInit, toggleCategoryLayer, swapCategoryData, onMapReady } from './map.js';
+import { showMapInfo, scheduleMapInit, toggleCategoryLayer, swapCategoryData, onMapReady, resetMapView } from './map.js';
 import { TEST_DATA } from './test-data.js';
 import { initGpsButton, getLastPosition } from './gps.js';
 import { renderElevationChart } from './elevation.js';
@@ -302,6 +302,7 @@ const initUI = () => {
   document.querySelectorAll('.overlay-close').forEach(btn => {
     btn.addEventListener('click', () => {
       btn.closest('.fullscreen-overlay').hidden = true;
+      resetMapView();
     });
   });
 
@@ -333,9 +334,11 @@ const initUI = () => {
   // Escape key closes overlays
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
+      const hadOpenOverlay = document.querySelectorAll('.fullscreen-overlay:not([hidden])').length > 0;
       document.querySelectorAll('.fullscreen-overlay:not([hidden])').forEach(o => {
         o.hidden = true;
       });
+      if (hadOpenOverlay) resetMapView();
       const settingsPopover = document.getElementById('settingsPopover');
       if (!settingsPopover.hidden) {
         settingsPopover.hidden = true;

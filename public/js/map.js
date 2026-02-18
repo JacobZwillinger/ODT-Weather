@@ -8,6 +8,7 @@ let map = null;
 let mapInitialized = false;
 let userLocationMarker = null;
 let userAccuracyCircle = null;
+let initialBounds = null;
 
 // Track pending async operations to prevent race conditions
 let pendingMileUpdate = 0;
@@ -54,7 +55,7 @@ export const showMapInfo = (mile, distanceFromTrail = 0) => {
     if (nextReliable) {
       const dist = nextReliable.mile - mile;
       const isWarning = dist >= WATER_WARNING_MILES;
-      reliableEl.querySelector('span').textContent = `${dist.toFixed(1)}`;
+      reliableEl.querySelector('span').textContent = dist < 0.05 ? '<0.1' : dist.toFixed(1);
       reliableEl.className = isWarning ? 'info-value warning' : 'info-value';
     } else {
       reliableEl.querySelector('span').textContent = '--';
@@ -68,7 +69,7 @@ export const showMapInfo = (mile, distanceFromTrail = 0) => {
   if (otherEl) {
     if (nextOther) {
       const dist = nextOther.mile - mile;
-      otherEl.querySelector('span').textContent = `${dist.toFixed(1)}`;
+      otherEl.querySelector('span').textContent = dist < 0.05 ? '<0.1' : dist.toFixed(1);
     } else {
       otherEl.querySelector('span').textContent = '--';
     }
@@ -102,6 +103,7 @@ export const initMap = () => {
       [Math.max(acc[1][0], coord[0]), Math.max(acc[1][1], coord[1])]
     ];
   }, [[routeCoords[0][0], routeCoords[0][1]], [routeCoords[0][0], routeCoords[0][1]]]);
+  initialBounds = bounds;
 
   // Create map with vector basemap + overlay
   map = window._odtMap = new maplibregl.Map({
@@ -492,14 +494,14 @@ export const initMap = () => {
       layout: {
         'symbol-placement': 'line',
         'text-field': ['concat', ['to-string', ['round', ['*', ['get', 'ELEVATION'], 3.28084]]], '′'],
-        'text-size': ['interpolate', ['linear'], ['zoom'], 11, 8, 14, 11],
-        'text-font': ['Noto Sans Regular'],
+        'text-size': ['interpolate', ['linear'], ['zoom'], 11, 13, 14, 16],
+        'text-font': ['Noto Sans Bold'],
         'text-max-angle': 25
       },
       paint: {
-        'text-color': '#9a7d5a',
+        'text-color': '#7a5d3a',
         'text-halo-color': '#fff',
-        'text-halo-width': 1
+        'text-halo-width': 2
       }
     });
 
@@ -779,6 +781,12 @@ export const toggleCategoryLayer = (category, visible) => {
   }
 };
 
+
+// Reset map to the initial full-route view
+export const resetMapView = () => {
+  if (!map || !initialBounds) return;
+  map.fitBounds(initialBounds, { padding: 40, duration: 600 });
+};
 
 // Schedule map initialization
 export const scheduleMapInit = () => {
