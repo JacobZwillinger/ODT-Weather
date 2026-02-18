@@ -10,6 +10,77 @@ let _isDragging = false;
 let _dragStartX = 0;
 let _dragStartMile = 0;
 
+// ---- Waypoint icon cache ----
+// Pre-render SVG icons as HTMLImageElement so we can drawImage() on canvas
+const _iconCache = {};
+
+const WAYPOINT_ICON_SVGS = {
+  'water-reliable': {
+    color: '#3b82f6',
+    svg: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="11" fill="#3b82f6" stroke="#fff" stroke-width="2"/>
+      <path d="M12 7c-1.5 2-3 3.5-3 5.5a3 3 0 0 0 6 0c0-2-1.5-3.5-3-5.5z" fill="#fff"/>
+    </svg>`
+  },
+  'water-other': {
+    color: '#94a3b8',
+    svg: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="11" fill="#94a3b8" stroke="#fff" stroke-width="2"/>
+      <path d="M12 7c-1.5 2-3 3.5-3 5.5a3 3 0 0 0 6 0c0-2-1.5-3.5-3-5.5z" fill="#fff"/>
+    </svg>`
+  },
+  'towns': {
+    color: '#059669',
+    svg: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="11" fill="#059669" stroke="#fff" stroke-width="2"/>
+      <path d="M8 16h8v-3h-2v-2h-1V9h-2v2H10v2H8v3zm3-7h2v1h-2V9z" fill="#fff"/>
+    </svg>`
+  },
+  'navigation': {
+    color: '#8b5cf6',
+    svg: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="11" fill="#8b5cf6" stroke="#fff" stroke-width="2"/>
+      <path d="M12 6 L16 16 L12 14 L8 16 Z" fill="#fff"/>
+    </svg>`
+  },
+  'toilets': {
+    color: '#f59e0b',
+    svg: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="11" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
+      <rect x="9" y="10" width="6" height="7" rx="1" fill="#fff"/>
+      <circle cx="12" cy="8.5" r="1.5" fill="#fff"/>
+    </svg>`
+  }
+};
+
+// Returns a Promise<HTMLImageElement> for each icon key
+const getIconImage = (key) => {
+  if (_iconCache[key]) return Promise.resolve(_iconCache[key]);
+  return new Promise((resolve) => {
+    const { svg } = WAYPOINT_ICON_SVGS[key];
+    const blob = new Blob([svg], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const img = new Image(32, 32);
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      _iconCache[key] = img;
+      resolve(img);
+    };
+    img.src = url;
+  });
+};
+
+// Pre-load all icons (call once at startup)
+const preloadIcons = () => Promise.all(Object.keys(WAYPOINT_ICON_SVGS).map(getIconImage));
+
+// Determine icon key for a waypoint given category + subcategory
+const getIconKey = (category, subcategory) => {
+  if (category === 'water') {
+    return subcategory === 'reliable' ? 'water-reliable' : 'water-other';
+  }
+  return category; // 'towns', 'navigation', 'toilets'
+};
+
 // ---- Gain/loss computation ----
 const computeGainLoss = (points) => {
   let gain = 0, loss = 0;
@@ -31,8 +102,8 @@ const draw = () => {
 
   const parent = canvas.parentElement;
   const displayWidth = parent ? parent.clientWidth - 32 : window.innerWidth - 32;
-  // Reserve space at top for stats bar (48px) + chart
-  const statsBarHeight = 48;
+  // Reserve space at top for stats bar (two rows, 80px) + chart
+  const statsBarHeight = 80;
   const displayHeight = parent
     ? Math.max(parent.clientHeight - 48, 200)
     : Math.max(window.innerHeight * 0.6, 200);
@@ -54,10 +125,19 @@ const draw = () => {
   const segmentProfile = _profile.filter(p => p.distance >= _startMile && p.distance <= endMile);
   if (segmentProfile.length === 0) return;
 
-  // ---- Stats bar ----
+    // ---- Stats bar ----
+  // Two rows of 3 columns:
+  //   Row 1 (top): "from GPS" — always calculated from current GPS position
+  //   Row 2 (bottom): "from here" — calculated from the left edge of the current view
   const windows = [5, 10, 20];
-  const forwardPoints = (w) => _profile.filter(p =>
+
+  // GPS-based: always forward from _currentMile
+  const forwardFromGps = (w) => _profile.filter(p =>
     p.distance >= _currentMile && p.distance <= _currentMile + w
+  );
+  // View-based: forward from the left edge of the current chart view
+  const forwardFromView = (w) => _profile.filter(p =>
+    p.distance >= _startMile && p.distance <= _startMile + w
   );
 
   ctx.fillStyle = '#f8f8f8';
@@ -69,27 +149,50 @@ const draw = () => {
   ctx.lineTo(displayWidth, statsBarHeight);
   ctx.stroke();
 
-  const statFont = isMobile ? '11px system-ui' : '12px system-ui';
-  const statBoldFont = isMobile ? 'bold 12px system-ui' : 'bold 13px system-ui';
+  const statLabelFont = isMobile ? '10px system-ui' : '11px system-ui';
+  const statValueFont = isMobile ? 'bold 13px system-ui' : 'bold 15px system-ui';
   const colW = displayWidth / 3;
+  const rowMid1 = statsBarHeight * 0.27;  // center of top row
+  const rowMid2 = statsBarHeight * 0.72;  // center of bottom row
 
   windows.forEach((w, i) => {
-    const pts = forwardPoints(w);
-    const { gain, loss } = pts.length > 1 ? computeGainLoss(pts) : { gain: 0, loss: 0 };
     const cx = colW * i + colW / 2;
 
-    ctx.fillStyle = '#999';
-    ctx.font = statFont;
+    // Top row: GPS-based
+    const gPts = forwardFromGps(w);
+    const { gain: gGain, loss: gLoss } = gPts.length > 1 ? computeGainLoss(gPts) : { gain: 0, loss: 0 };
+
+    ctx.fillStyle = '#aaa';
+    ctx.font = statLabelFont;
     ctx.textAlign = 'center';
-    ctx.fillText(`Next ${w} mi`, cx, 14);
+    ctx.fillText(`Next ${w} mi (GPS)`, cx, rowMid1 - 7);
 
     ctx.fillStyle = '#22a060';
-    ctx.font = statBoldFont;
-    ctx.fillText(`+${gain.toLocaleString()}′`, cx - (isMobile ? 18 : 22), 34);
+    ctx.font = statValueFont;
+    ctx.textAlign = 'right';
+    ctx.fillText(`+${gGain.toLocaleString()}′`, cx - 2, rowMid1 + 7);
 
     ctx.fillStyle = '#e11d48';
-    ctx.font = statBoldFont;
-    ctx.fillText(`−${loss.toLocaleString()}′`, cx + (isMobile ? 18 : 22), 34);
+    ctx.textAlign = 'left';
+    ctx.fillText(`−${gLoss.toLocaleString()}′`, cx + 2, rowMid1 + 7);
+
+    // Bottom row: view-based (floats with pan)
+    const vPts = forwardFromView(w);
+    const { gain: vGain, loss: vLoss } = vPts.length > 1 ? computeGainLoss(vPts) : { gain: 0, loss: 0 };
+
+    ctx.fillStyle = '#aaa';
+    ctx.font = statLabelFont;
+    ctx.textAlign = 'center';
+    ctx.fillText(`Next ${w} mi (view)`, cx, rowMid2 - 7);
+
+    ctx.fillStyle = '#22a060';
+    ctx.font = statValueFont;
+    ctx.textAlign = 'right';
+    ctx.fillText(`+${vGain.toLocaleString()}′`, cx - 2, rowMid2 + 7);
+
+    ctx.fillStyle = '#e11d48';
+    ctx.textAlign = 'left';
+    ctx.fillText(`−${vLoss.toLocaleString()}′`, cx + 2, rowMid2 + 7);
   });
 
   // Dividers between stat columns
@@ -102,11 +205,19 @@ const draw = () => {
     ctx.stroke();
   });
 
+  // Horizontal divider between the two stat rows
+  ctx.strokeStyle = '#e8e8e8';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(0, statsBarHeight / 2);
+  ctx.lineTo(displayWidth, statsBarHeight / 2);
+  ctx.stroke();
+
   // ---- Chart area (below stats bar) ----
   const chartTop = statsBarHeight;
   const padding = isMobile
-    ? { top: 16, right: 20, bottom: 52, left: 68 }
-    : { top: 20, right: 32, bottom: 60, left: 88 };
+    ? { top: 24, right: 20, bottom: 58, left: 78 }
+    : { top: 28, right: 32, bottom: 66, left: 100 };
   const chartWidth = displayWidth - padding.left - padding.right;
   const chartHeight = displayHeight - padding.top - padding.bottom;
 
@@ -128,10 +239,13 @@ const draw = () => {
   ctx.fillStyle = '#fff';
   ctx.fillRect(0, chartTop, displayWidth, displayHeight);
 
-  // Grid lines + Y labels
-  const numYTicks = isMobile ? 4 : 5;
-  for (let i = 0; i <= numYTicks; i++) {
-    const elev = minElevRounded + elevRange * (i / numYTicks);
+  // Grid lines + Y labels — snapped to 100ft increments
+  // Choose a tick interval that is a multiple of 100 and gives ~4-6 ticks
+  const rawStep = elevRange / (isMobile ? 4 : 5);
+  const tickInterval = Math.ceil(rawStep / 100) * 100;  // snap up to nearest 100ft
+  const firstTick = Math.ceil(minElevRounded / tickInterval) * tickInterval;
+
+  for (let elev = firstTick; elev <= maxElevRounded; elev += tickInterval) {
     const y = yScale(elev);
 
     ctx.strokeStyle = '#ececec';
@@ -142,9 +256,9 @@ const draw = () => {
     ctx.stroke();
 
     ctx.fillStyle = '#444';
-    ctx.font = isMobile ? 'bold 13px system-ui' : 'bold 14px system-ui';
+    ctx.font = isMobile ? 'bold 14px system-ui' : 'bold 16px system-ui';
     ctx.textAlign = 'right';
-    ctx.fillText(Math.round(elev).toLocaleString() + ' ft', padding.left - 10, y + 5);
+    ctx.fillText(elev.toLocaleString() + ' ft', padding.left - 10, y + 5);
   }
 
   // X grid lines + mile labels
@@ -161,9 +275,9 @@ const draw = () => {
     ctx.stroke();
 
     ctx.fillStyle = '#444';
-    ctx.font = isMobile ? 'bold 13px system-ui' : 'bold 14px system-ui';
+    ctx.font = isMobile ? 'bold 14px system-ui' : 'bold 16px system-ui';
     ctx.textAlign = 'center';
-    ctx.fillText(Math.round(mile), x, chartTop + padding.top + chartHeight + (isMobile ? 20 : 22));
+    ctx.fillText(Math.round(mile), x, chartTop + padding.top + chartHeight + (isMobile ? 22 : 24));
   }
 
   // Elevation fill
@@ -189,6 +303,60 @@ const draw = () => {
     if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
   });
   ctx.stroke();
+
+  // ---- Waypoint icons on the elevation profile ----
+  // Gather all categorized waypoints in the current view window
+  const iconSize = isMobile ? 18 : 22;
+  const iconHalf = iconSize / 2;
+
+  // Build a flat list of { mile, category, subcategory, name } from state.categories
+  const categoriesInView = [];
+  const addCategoryPoints = (category, points) => {
+    if (!points) return;
+    points.forEach(wp => {
+      if (wp.mile >= _startMile && wp.mile <= endMile) {
+        categoriesInView.push({ mile: wp.mile, category, subcategory: wp.subcategory || '', name: wp.landmark || wp.name || '' });
+      }
+    });
+  };
+
+  addCategoryPoints('water', state.categories.water);
+  addCategoryPoints('towns', state.categories.towns);
+  addCategoryPoints('navigation', state.categories.navigation);
+  addCategoryPoints('toilets', state.categories.toilets);
+
+  // For each waypoint, find elevation from the profile and draw the icon
+  categoriesInView.forEach(wp => {
+    const iconKey = getIconKey(wp.category, wp.subcategory);
+    const img = _iconCache[iconKey];
+    if (!img) return; // icons not yet loaded
+
+    const x = xScale(wp.mile);
+    // Find nearest profile point for elevation
+    const nearestPt = segmentProfile.reduce((best, p) =>
+      Math.abs(p.distance - wp.mile) < Math.abs(best.distance - wp.mile) ? p : best
+    );
+    const yElevation = yScale(nearestPt.elevation);
+
+    // Draw a thin vertical tick from the elevation line down to bottom of chart,
+    // then draw the icon centered on the tick, sitting just above the elevation line
+    ctx.save();
+    ctx.strokeStyle = WAYPOINT_ICON_SVGS[iconKey].color;
+    ctx.globalAlpha = 0.3;
+    ctx.lineWidth = 1;
+    ctx.setLineDash([3, 3]);
+    ctx.beginPath();
+    ctx.moveTo(x, yElevation);
+    ctx.lineTo(x, chartTop + padding.top + chartHeight);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.globalAlpha = 1;
+    ctx.restore();
+
+    // Draw icon sitting on top of the elevation line
+    const iconY = yElevation - iconSize - 2;
+    ctx.drawImage(img, x - iconHalf, iconY, iconSize, iconSize);
+  });
 
   // Axes
   ctx.strokeStyle = '#bbb';
@@ -231,7 +399,7 @@ const draw = () => {
 
     // "You" label
     ctx.fillStyle = '#1d4ed8';
-    ctx.font = `bold ${isMobile ? '12px' : '13px'} system-ui`;
+    ctx.font = `bold ${isMobile ? '14px' : '15px'} system-ui`;
     ctx.textAlign = x > padding.left + chartWidth - 40 ? 'right' : 'center';
     ctx.fillText('You', x, chartTop + padding.top - 5);
   }
@@ -269,9 +437,9 @@ const draw = () => {
 
   // Axis labels
   ctx.fillStyle = '#555';
-  ctx.font = isMobile ? '12px system-ui' : '13px system-ui';
+  ctx.font = isMobile ? '13px system-ui' : '14px system-ui';
   ctx.textAlign = 'center';
-  ctx.fillText('Distance (miles)', padding.left + chartWidth / 2, chartTop + padding.top + chartHeight + (isMobile ? 36 : 38));
+  ctx.fillText('Distance (miles)', padding.left + chartWidth / 2, chartTop + padding.top + chartHeight + (isMobile ? 40 : 44));
 
   ctx.save();
   ctx.translate(isMobile ? 14 : 16, chartTop + padding.top + chartHeight / 2);
@@ -282,9 +450,9 @@ const draw = () => {
   // Drag hint (only when no GPS / at mile 0)
   if (_currentMile === 0) {
     ctx.fillStyle = 'rgba(0,0,0,0.25)';
-    ctx.font = `${isMobile ? '12px' : '13px'} system-ui`;
+    ctx.font = `${isMobile ? '13px' : '14px'} system-ui`;
     ctx.textAlign = 'center';
-    ctx.fillText('← drag to pan →', padding.left + chartWidth / 2, chartTop + padding.top + 14);
+    ctx.fillText('← drag to pan →', padding.left + chartWidth / 2, chartTop + padding.top + 16);
   }
 };
 
@@ -305,7 +473,7 @@ const onPointerMove = (e) => {
   const deltaX = clientX - _dragStartX;
   const parent = canvas.parentElement;
   const displayWidth = parent ? parent.clientWidth - 32 : window.innerWidth - 32;
-  const chartWidth = displayWidth - (displayWidth < 500 ? 68 + 20 : 88 + 32);
+  const chartWidth = displayWidth - (displayWidth < 500 ? 78 + 20 : 100 + 32);
   // pixels per mile
   const pxPerMile = chartWidth / _windowMiles;
   const deltaMile = -deltaX / pxPerMile;
@@ -326,10 +494,12 @@ export const renderElevationChart = async (startMile, canvasId) => {
   const canvas = document.getElementById(canvasId);
   if (!canvas) return;
 
-  // Load profile once
-  if (!_profile) {
-    _profile = await loadElevationProfile();
-  }
+  // Load profile and icons in parallel (both cached after first call)
+  const [profile] = await Promise.all([
+    _profile ? Promise.resolve(_profile) : loadElevationProfile(),
+    preloadIcons()
+  ]);
+  if (!_profile) _profile = profile;
   if (!_profile) {
     const ctx = canvas.getContext('2d');
     ctx.fillStyle = '#333';
