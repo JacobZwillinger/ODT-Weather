@@ -91,7 +91,7 @@ describe('renderWeatherTable', () => {
 
     const container = document.getElementById('container');
     // The first cell should contain the cloudy SVG (fallback)
-    const firstIcon = container.querySelector('.forecast-cell .icon');
+    const firstIcon = container.querySelector('.forecast-cell .fc-icon');
     expect(firstIcon.innerHTML).toContain('cloudy');
   });
 
