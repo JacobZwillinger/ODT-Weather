@@ -78,9 +78,11 @@ const summarizePeriod = (hours, period) => {
 
 // ------- Inline Hourly Expansion -------
 
-// Build the HTML for the expanded hourly sub-rows for one location's period
-const buildHourlyRows = (hours, numCols) => {
-  const hourRows = hours.map(h => {
+// Build the HTML for the expanded hourly sub-rows for one location's period.
+// The first 3 columns (section swatch, location, mile) are left empty so the
+// filmstrip starts directly under the forecast columns — no left-edge scroll.
+const buildHourlyRows = (hours, forecastColCount) => {
+  const hourCards = hours.map(h => {
     const d = new Date(h.time * 1000);
     const hr = d.getHours();
     const ampm = hr >= 12 ? 'PM' : 'AM';
@@ -95,14 +97,16 @@ const buildHourlyRows = (hours, numCols) => {
       <span class="hi-icon">${getIcon(h.icon)}</span>
       <span class="hi-temp">${temp}</span>
       <span class="hi-precip${isHeavy ? ' precip-heavy' : (chance ? ' precip-mod' : '')}">${chance}</span>
-      <span class="hi-amount">${amount}</span>
+      ${amount ? `<span class="hi-amount">${amount}</span>` : ''}
     </div>`;
   }).join('');
 
+  // 3 fixed cols (section + location + mile) + forecast cols
   return `<tr class="hourly-expansion-row">
-    <td colspan="${numCols}" class="hourly-expansion-cell">
+    <td class="hourly-expansion-spacer" colspan="3"></td>
+    <td colspan="${forecastColCount}" class="hourly-expansion-cell">
       <div class="hourly-expansion-inner">
-        <div class="hourly-inline-list">${hourRows}</div>
+        <div class="hourly-inline-list">${hourCards}</div>
       </div>
     </td>
   </tr>`;
@@ -111,7 +115,7 @@ const buildHourlyRows = (hours, numCols) => {
 // Toggle inline expansion for a clicked forecast cell
 let activeExpansion = null; // { rowEl, expansionEl }
 
-const toggleExpansion = (cell, hours, numCols, table) => {
+const toggleExpansion = (cell, hours, forecastColCount) => {
   // If clicking the already-open row, close it
   if (activeExpansion && activeExpansion.cell === cell) {
     activeExpansion.expansionEl.remove();
@@ -129,7 +133,7 @@ const toggleExpansion = (cell, hours, numCols, table) => {
 
   // Insert new expansion after the parent <tr>
   const parentRow = cell.closest('tr');
-  const expansionHtml = buildHourlyRows(hours, numCols);
+  const expansionHtml = buildHourlyRows(hours, forecastColCount);
   parentRow.insertAdjacentHTML('afterend', expansionHtml);
   const expansionEl = parentRow.nextElementSibling;
 
@@ -152,8 +156,7 @@ export const renderWeatherTable = (forecasts) => {
     : getDayHeaders();
 
   const useNewLayout = samplePeriods.length > 0;
-  // Total columns: section + location + mile + forecast cols
-  const numCols = 3 + periodLabels.length;
+  const forecastColCount = periodLabels.length;
 
   let html = `
     <table>
@@ -243,7 +246,7 @@ export const renderWeatherTable = (forecasts) => {
         const periods = sliceDayNight(forecast.hourly);
         const p = periods[periodIdx];
         if (!p) return;
-        toggleExpansion(cell, p.hours, numCols, table);
+        toggleExpansion(cell, p.hours, forecastColCount);
       });
     });
   }

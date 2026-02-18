@@ -2,7 +2,7 @@
 import { state, loadToggleState, saveToggleState } from './utils.js';
 import { loadForecasts } from './weather.js';
 import { initModals, showWaypointDetail, showWaterDetail, showTownDetail } from './modals.js';
-import { showMapInfo, scheduleMapInit, toggleCategoryLayer, swapCategoryData, onMapReady, resetMapView } from './map.js';
+import { showMapInfo, scheduleMapInit, toggleCategoryLayer, swapCategoryData, onMapReady, resetMapView, saveMapView, restoreMapView } from './map.js';
 import { TEST_DATA } from './test-data.js';
 import { initGpsButton, getLastPosition } from './gps.js';
 import { renderElevationChart } from './elevation.js';
@@ -263,6 +263,7 @@ const initKebabMenu = () => {
 const initUI = () => {
   // Top-right: Elevation button
   document.getElementById('btnElevation').addEventListener('click', () => {
+    saveMapView();
     openOverlay('elevationOverlay');
     // Re-render chart at full size after overlay is visible
     requestAnimationFrame(() => {
@@ -272,6 +273,7 @@ const initUI = () => {
 
   // Top-right: Weather button
   document.getElementById('btnWeather').addEventListener('click', () => {
+    saveMapView();
     openOverlay('weatherOverlay');
   });
 
@@ -285,6 +287,7 @@ const initUI = () => {
 
   // Bottom-right: Waypoint list button
   document.getElementById('btnWaypointList').addEventListener('click', () => {
+    saveMapView();
     openOverlay('waypointListOverlay');
     renderWaypointList('all-water');
     // Ensure first filter is active
@@ -302,7 +305,7 @@ const initUI = () => {
   document.querySelectorAll('.overlay-close').forEach(btn => {
     btn.addEventListener('click', () => {
       btn.closest('.fullscreen-overlay').hidden = true;
-      resetMapView();
+      restoreMapView();
     });
   });
 
@@ -338,7 +341,7 @@ const initUI = () => {
       document.querySelectorAll('.fullscreen-overlay:not([hidden])').forEach(o => {
         o.hidden = true;
       });
-      if (hadOpenOverlay) resetMapView();
+      if (hadOpenOverlay) restoreMapView();
       const settingsPopover = document.getElementById('settingsPopover');
       if (!settingsPopover.hidden) {
         settingsPopover.hidden = true;

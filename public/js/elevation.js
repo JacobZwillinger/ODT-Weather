@@ -9,7 +9,7 @@ export const renderElevationChart = async (startMile, canvasId) => {
 
   if (!profile) {
     ctx.fillStyle = '#333';
-    ctx.font = '14px system-ui';
+    ctx.font = '16px system-ui';
     ctx.fillText('Failed to load elevation data', 50, 50);
     return;
   }
@@ -21,15 +21,18 @@ export const renderElevationChart = async (startMile, canvasId) => {
     ctx.fillStyle = '#fafafa';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = '#666';
-    ctx.font = '14px system-ui';
+    ctx.font = '16px system-ui';
     ctx.textAlign = 'center';
     ctx.fillText('End of trail', canvas.width / 2, canvas.height / 2);
     return;
   }
 
   const dpr = window.devicePixelRatio || 1;
-  const displayWidth = canvas.offsetWidth || canvas.parentElement?.offsetWidth || (window.innerWidth - 32);
-  const displayHeight = window.innerWidth < 768 ? 180 : 220;
+
+  // Fill the entire overlay body — use the parent's dimensions
+  const parent = canvas.parentElement;
+  const displayWidth = parent ? parent.clientWidth - 32 : (window.innerWidth - 32); // subtract padding
+  const displayHeight = parent ? parent.clientHeight - 48 : Math.max(window.innerHeight * 0.7, 300);
 
   canvas.width = displayWidth * dpr;
   canvas.height = displayHeight * dpr;
@@ -37,11 +40,13 @@ export const renderElevationChart = async (startMile, canvasId) => {
   canvas.style.height = displayHeight + 'px';
   ctx.scale(dpr, dpr);
 
-  // Responsive padding for mobile
   const isMobile = displayWidth < 500;
+
+  // Generous padding so labels have room
   const padding = isMobile
-    ? { top: 30, right: 40, bottom: 50, left: 70 }
-    : { top: 35, right: 50, bottom: 55, left: 80 };
+    ? { top: 20, right: 20, bottom: 52, left: 68 }
+    : { top: 24, right: 32, bottom: 60, left: 88 };
+
   const chartWidth = displayWidth - padding.left - padding.right;
   const chartHeight = displayHeight - padding.top - padding.bottom;
 
@@ -49,8 +54,10 @@ export const renderElevationChart = async (startMile, canvasId) => {
   const minElev = Math.min(...elevations);
   const maxElev = Math.max(...elevations);
 
-  const minElevRounded = Math.floor(minElev / 100) * 100;
-  const maxElevRounded = Math.ceil(maxElev / 100) * 100;
+  // Tight y-axis: 5% headroom above/below the actual data range
+  const elevPad = Math.max((maxElev - minElev) * 0.08, 100);
+  const minElevRounded = Math.floor((minElev - elevPad) / 100) * 100;
+  const maxElevRounded = Math.ceil((maxElev + elevPad) / 100) * 100;
   const elevRangeRounded = maxElevRounded - minElevRounded;
 
   const xScale = (mile) => padding.left + ((mile - startMile) / 20) * chartWidth;
@@ -59,89 +66,89 @@ export const renderElevationChart = async (startMile, canvasId) => {
     return padding.top + chartHeight - ((elev - minElevRounded) / elevRangeRounded) * chartHeight;
   };
 
+  // Background
   ctx.fillStyle = '#fff';
   ctx.fillRect(0, 0, displayWidth, displayHeight);
 
-  ctx.strokeStyle = '#e5e5e5';
+  // --- Grid lines ---
+  const numYTicks = isMobile ? 4 : 5;
+  ctx.strokeStyle = '#e0e0e0';
   ctx.lineWidth = 1;
 
-  // Y-axis grid lines with whole numbers
-  const numYTicks = 5;
   for (let i = 0; i <= numYTicks; i++) {
-    const elev = minElevRounded + (elevRangeRounded) * (i / numYTicks);
+    const elev = minElevRounded + elevRangeRounded * (i / numYTicks);
     const y = yScale(elev);
+
     ctx.beginPath();
     ctx.moveTo(padding.left, y);
     ctx.lineTo(padding.left + chartWidth, y);
     ctx.stroke();
 
-    ctx.fillStyle = '#666';
-    ctx.font = isMobile ? '10px system-ui' : '11px system-ui';
+    ctx.fillStyle = '#444';
+    ctx.font = isMobile ? 'bold 13px system-ui' : 'bold 14px system-ui';
     ctx.textAlign = 'right';
-    const elevText = isMobile ? Math.round(elev).toLocaleString() : Math.round(elev).toLocaleString() + ' ft';
-    ctx.fillText(elevText, padding.left - 6, y + 3);
+    ctx.fillText(Math.round(elev).toLocaleString() + ' ft', padding.left - 10, y + 5);
   }
 
-  // X-axis grid lines
   for (let i = 0; i <= 5; i++) {
-    const mile = startMile + (i * 4);
+    const mile = startMile + i * 4;
     const x = xScale(mile);
-    ctx.strokeStyle = '#e5e5e5';
+
+    ctx.strokeStyle = '#e0e0e0';
+    ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(x, padding.top);
     ctx.lineTo(x, padding.top + chartHeight);
     ctx.stroke();
 
-    ctx.fillStyle = '#666';
-    ctx.font = isMobile ? '10px system-ui' : '11px system-ui';
+    ctx.fillStyle = '#444';
+    ctx.font = isMobile ? 'bold 13px system-ui' : 'bold 14px system-ui';
     ctx.textAlign = 'center';
-    ctx.fillText(Math.round(mile), x, padding.top + chartHeight + (isMobile ? 14 : 16));
+    ctx.fillText(Math.round(mile), x, padding.top + chartHeight + (isMobile ? 20 : 22));
   }
 
-  // Draw elevation profile
+  // --- Elevation fill ---
   ctx.beginPath();
-  ctx.strokeStyle = '#e11d48';
-  ctx.lineWidth = 2.5;
-
   segmentProfile.forEach((point, i) => {
     const x = xScale(point.distance);
     const y = yScale(point.elevation);
-    if (i === 0) {
-      ctx.moveTo(x, y);
-    } else {
-      ctx.lineTo(x, y);
-    }
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
   });
-
-  ctx.stroke();
-
-  // Fill area under line
   ctx.lineTo(xScale(segmentProfile[segmentProfile.length - 1].distance), padding.top + chartHeight);
   ctx.lineTo(xScale(segmentProfile[0].distance), padding.top + chartHeight);
   ctx.closePath();
-  ctx.fillStyle = 'rgba(225, 29, 72, 0.08)';
+  ctx.fillStyle = 'rgba(225, 29, 72, 0.10)';
   ctx.fill();
 
-  // Draw axes
+  // --- Elevation line ---
+  ctx.beginPath();
+  ctx.strokeStyle = '#e11d48';
+  ctx.lineWidth = 2.5;
+  segmentProfile.forEach((point, i) => {
+    const x = xScale(point.distance);
+    const y = yScale(point.elevation);
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+
+  // --- Axes ---
   ctx.strokeStyle = '#999';
-  ctx.lineWidth = 1;
+  ctx.lineWidth = 1.5;
   ctx.beginPath();
   ctx.moveTo(padding.left, padding.top);
   ctx.lineTo(padding.left, padding.top + chartHeight);
   ctx.lineTo(padding.left + chartWidth, padding.top + chartHeight);
   ctx.stroke();
 
-  // Axis labels
-  ctx.fillStyle = '#666';
-  ctx.font = isMobile ? '10px system-ui' : '11px system-ui';
+  // --- Axis labels ---
+  ctx.fillStyle = '#555';
+  ctx.font = isMobile ? '13px system-ui' : '14px system-ui';
   ctx.textAlign = 'center';
-  if (!isMobile) {
-    ctx.fillText('Distance (miles)', padding.left + chartWidth / 2, displayHeight - 8); // [BUGS] Fixed: was canvas.height which includes DPR scaling, should use displayHeight
-  }
+  ctx.fillText('Distance (miles)', padding.left + chartWidth / 2, displayHeight - 10);
 
   ctx.save();
-  ctx.translate(isMobile ? 10 : 12, padding.top + chartHeight / 2);
+  ctx.translate(isMobile ? 14 : 16, padding.top + chartHeight / 2);
   ctx.rotate(-Math.PI / 2);
-  ctx.fillText(isMobile ? 'Elev (ft)' : 'Elevation (feet)', 0, 0);
+  ctx.fillText('Elevation (ft)', 0, 0);
   ctx.restore();
 };
