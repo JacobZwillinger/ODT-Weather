@@ -783,6 +783,26 @@ export const toggleCategoryLayer = (category, visible) => {
 
 
 // Reset map to the initial full-route view
+// Save the current map center+zoom so it can be restored after an overlay closes.
+let _savedCenter = null;
+let _savedZoom = null;
+
+export const saveMapView = () => {
+  if (!map) return;
+  _savedCenter = map.getCenter();
+  _savedZoom = map.getZoom();
+};
+
+export const restoreMapView = () => {
+  if (!map) return;
+  if (_savedCenter !== null && _savedZoom !== null) {
+    map.flyTo({ center: _savedCenter, zoom: _savedZoom, duration: 400 });
+    _savedCenter = null;
+    _savedZoom = null;
+  }
+};
+
+// Kept for callers that explicitly want to reset to full-route view.
 export const resetMapView = () => {
   if (!map || !initialBounds) return;
   map.fitBounds(initialBounds, { padding: 40, duration: 600 });

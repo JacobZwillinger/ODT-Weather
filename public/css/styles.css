@@ -445,17 +445,19 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Elevation overlay canvas */
+/* Elevation overlay — canvas fills the available body space */
 #elevationOverlay .overlay-body {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 24px 16px;
+  overflow: hidden;
 }
 
 #elevationOverlay canvas {
   width: 100%;
-  max-height: 60vh;
+  height: 100%;
+  display: block;
 }
 
 /* ========== Waypoint List Filter Bar ========== */
@@ -679,41 +681,58 @@ th {
   color: #3b82f6;
 }
 
-/* Inline hourly expansion */
+/* Inline hourly expansion — horizontal filmstrip */
+.hourly-expansion-spacer {
+  background: #f0f5ff;
+  border-top: 2px solid #3b82f6;
+  border-bottom: 2px solid #3b82f6;
+  padding: 0;
+}
+
 .hourly-expansion-row td {
   padding: 0;
   border-top: 2px solid #3b82f6;
   border-bottom: 2px solid #3b82f6;
   background: #f0f5ff;
+  /* override table cell overflow so filmstrip can scroll */
+  overflow: hidden;
 }
 
 .hourly-expansion-inner {
-  padding: 4px 8px 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 6px 8px 8px;
+  scrollbar-width: thin;
 }
 
 .hourly-inline-list {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  flex-direction: row;
+  gap: 4px;
+  width: max-content; /* let it grow horizontally */
 }
 
+/* Each hour = a compact vertical card */
 .hourly-inline-row {
-  display: grid;
-  grid-template-columns: 52px 28px 44px 40px 44px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 4px;
-  padding: 5px 4px;
-  border-radius: 4px;
+  gap: 2px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  min-width: 52px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 .hourly-inline-heavy { background: #fff0f0; }
 
-.hi-time { font-size: 0.88rem; color: #555; }
-.hi-icon { width: 24px; height: 24px; display: block; }
-.hi-temp { font-size: 0.95rem; font-weight: 700; color: #111; }
-.hi-precip { font-size: 0.88rem; font-weight: 500; color: #999; }
+.hi-time { font-size: 0.8rem; color: #666; white-space: nowrap; }
+.hi-icon { width: 28px; height: 28px; display: block; }
+.hi-temp { font-size: 1rem; font-weight: 700; color: #111; }
+.hi-precip { font-size: 0.85rem; font-weight: 600; color: transparent; min-height: 1.1em; }
 .hi-precip.precip-mod { color: #3b82f6; }
-.hi-precip.precip-heavy { color: #dc2626; font-weight: 700; }
-.hi-amount { font-size: 0.82rem; color: #3b82f6; }
+.hi-precip.precip-heavy { color: #dc2626; }
+.hi-amount { font-size: 0.78rem; color: #3b82f6; }
 
 .loading {
   padding: 20px;
