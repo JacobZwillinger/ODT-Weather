@@ -102,8 +102,8 @@ const draw = () => {
 
   const parent = canvas.parentElement;
   const displayWidth = parent ? parent.clientWidth - 32 : window.innerWidth - 32;
-  // Reserve space at top for stats bar (single row, 6 cols, 68px) + chart
-  const statsBarHeight = 68;
+  // Reserve space at top for stats bar (single row, 6 cols, 88px) + chart
+  const statsBarHeight = 88;
   const displayHeight = parent
     ? Math.max(parent.clientHeight - 48, 200)
     : Math.max(window.innerHeight * 0.6, 200);
@@ -155,31 +155,32 @@ const draw = () => {
   ctx.lineTo(displayWidth / 2, statsBarHeight - 6);
   ctx.stroke();
 
-  const statLabelFont = isMobile ? '11px system-ui' : '12px system-ui';
-  const statValueFont = isMobile ? 'bold 18px system-ui' : 'bold 20px system-ui';
+  const statLabelFont = isMobile ? '12px system-ui' : '13px system-ui';
+  const statValueFont = isMobile ? 'bold 20px system-ui' : 'bold 22px system-ui';
   // Each half is split into 3 equal columns
   const halfW = displayWidth / 2;
   const colW = halfW / 3;
 
-  // Section header labels (tiny, muted, top of bar)
+  // Section header labels
   ctx.fillStyle = '#999';
   ctx.font = statLabelFont;
   ctx.textAlign = 'center';
-  ctx.fillText('FROM GPS', halfW / 2, 13);
-  ctx.fillText('FROM VIEW', displayWidth / 2 + halfW / 2, 13);
+  ctx.fillText('FROM GPS', halfW / 2, 14);
+  ctx.fillText('FROM VIEW', displayWidth / 2 + halfW / 2, 14);
 
   // Thin column dividers within each half
   [1, 2, 4, 5].forEach(i => {
     ctx.strokeStyle = '#e2e2e2';
     ctx.lineWidth = 1;
     ctx.beginPath();
-    ctx.moveTo(colW * i, 18);
+    ctx.moveTo(colW * i, 20);
     ctx.lineTo(colW * i, statsBarHeight - 4);
     ctx.stroke();
   });
 
-  const labelY = 27;   // "Next X mi" label baseline
-  const valueY = 56;   // gain/loss value baseline
+  const labelY = 30;    // "X mi" label baseline
+  const gainY = 56;     // gain value baseline
+  const lossY = 82;     // loss value baseline (separate row)
 
   windows.forEach((w, i) => {
     // GPS column (left half)
@@ -187,45 +188,42 @@ const draw = () => {
     const gPts = forwardFromGps(w);
     const { gain: gGain, loss: gLoss } = gPts.length > 1 ? computeGainLoss(gPts) : { gain: 0, loss: 0 };
 
-    ctx.fillStyle = '#888';
+    ctx.fillStyle = '#777';
     ctx.font = statLabelFont;
     ctx.textAlign = 'center';
     ctx.fillText(`${w} mi`, gcx, labelY);
 
-    // Gain and loss side by side, centered in the column
     ctx.font = statValueFont;
     ctx.fillStyle = '#22a060';
-    ctx.textAlign = 'right';
-    ctx.fillText(`+${gGain.toLocaleString()}′`, gcx - 3, valueY);
+    ctx.textAlign = 'center';
+    ctx.fillText(`+${gGain.toLocaleString()}′`, gcx, gainY);
     ctx.fillStyle = '#e11d48';
-    ctx.textAlign = 'left';
-    ctx.fillText(`−${gLoss.toLocaleString()}′`, gcx + 3, valueY);
+    ctx.fillText(`−${gLoss.toLocaleString()}′`, gcx, lossY);
 
     // View column (right half, offset by halfW)
     const vcx = halfW + colW * i + colW / 2;
     const vPts = forwardFromView(w);
     const { gain: vGain, loss: vLoss } = vPts.length > 1 ? computeGainLoss(vPts) : { gain: 0, loss: 0 };
 
-    ctx.fillStyle = '#888';
+    ctx.fillStyle = '#777';
     ctx.font = statLabelFont;
     ctx.textAlign = 'center';
     ctx.fillText(`${w} mi`, vcx, labelY);
 
     ctx.font = statValueFont;
     ctx.fillStyle = '#22a060';
-    ctx.textAlign = 'right';
-    ctx.fillText(`+${vGain.toLocaleString()}′`, vcx - 3, valueY);
+    ctx.textAlign = 'center';
+    ctx.fillText(`+${vGain.toLocaleString()}′`, vcx, gainY);
     ctx.fillStyle = '#e11d48';
-    ctx.textAlign = 'left';
-    ctx.fillText(`−${vLoss.toLocaleString()}′`, vcx + 3, valueY);
+    ctx.fillText(`−${vLoss.toLocaleString()}′`, vcx, lossY);
   });
 
   // ---- Chart area (below stats bar) ----
   const chartTop = statsBarHeight;
-  // Mile labels are now drawn INSIDE the chart (overlaid), so bottom padding is small
+  // Mile labels drawn overlaid inside the chart — minimal bottom padding
   const padding = isMobile
-    ? { top: 20, right: 16, bottom: 12, left: 80 }
-    : { top: 24, right: 20, bottom: 14, left: 96 };
+    ? { top: 20, right: 16, bottom: 12, left: 92 }
+    : { top: 24, right: 20, bottom: 14, left: 108 };
   const chartWidth = displayWidth - padding.left - padding.right;
   const chartHeight = displayHeight - padding.top - padding.bottom;
 
@@ -264,35 +262,22 @@ const draw = () => {
     ctx.stroke();
 
     ctx.fillStyle = '#333';
-    ctx.font = isMobile ? 'bold 16px system-ui' : 'bold 18px system-ui';
+    ctx.font = isMobile ? 'bold 18px system-ui' : 'bold 20px system-ui';
     ctx.textAlign = 'right';
-    ctx.fillText(elev.toLocaleString() + ' ft', padding.left - 8, y + 6);
+    ctx.fillText(elev.toLocaleString() + ' ft', padding.left - 8, y + 7);
   }
 
-  // X grid lines + mile labels — drawn INSIDE the chart at the bottom so they're always visible
+  // X grid lines only — mile labels drawn AFTER the elevation fill so they appear on top
   const numXTicks = 5;
-  const mileLabelY = chartTop + padding.top + chartHeight - 8; // inside, near bottom
-  const mileFontSize = isMobile ? 16 : 18;
   for (let i = 0; i <= numXTicks; i++) {
     const mile = _startMile + (i * _windowMiles / numXTicks);
     const x = xScale(mile);
-
     ctx.strokeStyle = '#ececec';
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(x, chartTop + padding.top);
     ctx.lineTo(x, chartTop + padding.top + chartHeight);
     ctx.stroke();
-
-    // White outline for legibility over the elevation fill
-    ctx.font = `bold ${mileFontSize}px system-ui`;
-    ctx.textAlign = i === 0 ? 'left' : (i === numXTicks ? 'right' : 'center');
-    ctx.strokeStyle = 'rgba(255,255,255,0.85)';
-    ctx.lineWidth = 4;
-    ctx.lineJoin = 'round';
-    ctx.strokeText(String(Math.round(mile)), x, mileLabelY);
-    ctx.fillStyle = '#222';
-    ctx.fillText(String(Math.round(mile)), x, mileLabelY);
   }
 
   // Elevation fill
@@ -381,6 +366,28 @@ const draw = () => {
   ctx.lineTo(padding.left, chartTop + padding.top + chartHeight);
   ctx.lineTo(padding.left + chartWidth, chartTop + padding.top + chartHeight);
   ctx.stroke();
+
+  // Mile labels — drawn AFTER fill/line so they always appear on top
+  {
+    const mileFontSize = isMobile ? 18 : 20;
+    const mileLabelY = chartTop + padding.top + chartHeight - 10;
+    ctx.save();
+    for (let i = 0; i <= numXTicks; i++) {
+      const mile = _startMile + (i * _windowMiles / numXTicks);
+      const x = xScale(mile);
+      const align = i === 0 ? 'left' : (i === numXTicks ? 'right' : 'center');
+      ctx.font = `bold ${mileFontSize}px system-ui`;
+      ctx.textAlign = align;
+      ctx.lineJoin = 'round';
+      // White knockout background for legibility
+      ctx.strokeStyle = 'rgba(255,255,255,0.9)';
+      ctx.lineWidth = 5;
+      ctx.strokeText(String(Math.round(mile)), x, mileLabelY);
+      ctx.fillStyle = '#111';
+      ctx.fillText(String(Math.round(mile)), x, mileLabelY);
+    }
+    ctx.restore();
+  }
 
   // Current position marker (if in view)
   if (_currentMile >= _startMile && _currentMile <= endMile) {
@@ -476,7 +483,7 @@ const onPointerMove = (e) => {
   const deltaX = clientX - _dragStartX;
   const parent = canvas.parentElement;
   const displayWidth = parent ? parent.clientWidth - 32 : window.innerWidth - 32;
-  const chartWidth = displayWidth - (displayWidth < 500 ? 80 + 16 : 96 + 20);
+  const chartWidth = displayWidth - (displayWidth < 500 ? 92 + 16 : 108 + 20);
   // pixels per mile
   const pxPerMile = chartWidth / _windowMiles;
   const deltaMile = -deltaX / pxPerMile;
