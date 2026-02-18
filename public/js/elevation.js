@@ -102,8 +102,8 @@ const draw = () => {
 
   const parent = canvas.parentElement;
   const displayWidth = parent ? parent.clientWidth - 32 : window.innerWidth - 32;
-  // Reserve space at top for stats bar (two rows, 80px) + chart
-  const statsBarHeight = 80;
+  // Reserve space at top for stats bar (single row, 6 cols, 68px) + chart
+  const statsBarHeight = 68;
   const displayHeight = parent
     ? Math.max(parent.clientHeight - 48, 200)
     : Math.max(window.innerHeight * 0.6, 200);
@@ -125,99 +125,107 @@ const draw = () => {
   const segmentProfile = _profile.filter(p => p.distance >= _startMile && p.distance <= endMile);
   if (segmentProfile.length === 0) return;
 
-    // ---- Stats bar ----
-  // Two rows of 3 columns:
-  //   Row 1 (top): "from GPS" — always calculated from current GPS position
-  //   Row 2 (bottom): "from here" — calculated from the left edge of the current view
+  // ---- Stats bar — single row, 6 columns ----
+  // Left half (cols 0-2): GPS-based — stable, always from current position
+  // Right half (cols 3-5): view-based — recalculates from left edge of panned view
   const windows = [5, 10, 20];
 
-  // GPS-based: always forward from _currentMile
   const forwardFromGps = (w) => _profile.filter(p =>
     p.distance >= _currentMile && p.distance <= _currentMile + w
   );
-  // View-based: forward from the left edge of the current chart view
   const forwardFromView = (w) => _profile.filter(p =>
     p.distance >= _startMile && p.distance <= _startMile + w
   );
 
-  ctx.fillStyle = '#f8f8f8';
+  // Background + bottom border
+  ctx.fillStyle = '#f5f5f5';
   ctx.fillRect(0, 0, displayWidth, statsBarHeight);
-  ctx.strokeStyle = '#e0e0e0';
+  ctx.strokeStyle = '#d8d8d8';
   ctx.lineWidth = 1;
   ctx.beginPath();
   ctx.moveTo(0, statsBarHeight);
   ctx.lineTo(displayWidth, statsBarHeight);
   ctx.stroke();
 
-  const statLabelFont = isMobile ? '10px system-ui' : '11px system-ui';
-  const statValueFont = isMobile ? 'bold 13px system-ui' : 'bold 15px system-ui';
-  const colW = displayWidth / 3;
-  const rowMid1 = statsBarHeight * 0.27;  // center of top row
-  const rowMid2 = statsBarHeight * 0.72;  // center of bottom row
+  // Thin center divider separating GPS half from view half
+  ctx.strokeStyle = '#bbb';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(displayWidth / 2, 6);
+  ctx.lineTo(displayWidth / 2, statsBarHeight - 6);
+  ctx.stroke();
 
-  windows.forEach((w, i) => {
-    const cx = colW * i + colW / 2;
+  const statLabelFont = isMobile ? '11px system-ui' : '12px system-ui';
+  const statValueFont = isMobile ? 'bold 18px system-ui' : 'bold 20px system-ui';
+  // Each half is split into 3 equal columns
+  const halfW = displayWidth / 2;
+  const colW = halfW / 3;
 
-    // Top row: GPS-based
-    const gPts = forwardFromGps(w);
-    const { gain: gGain, loss: gLoss } = gPts.length > 1 ? computeGainLoss(gPts) : { gain: 0, loss: 0 };
+  // Section header labels (tiny, muted, top of bar)
+  ctx.fillStyle = '#999';
+  ctx.font = statLabelFont;
+  ctx.textAlign = 'center';
+  ctx.fillText('FROM GPS', halfW / 2, 13);
+  ctx.fillText('FROM VIEW', displayWidth / 2 + halfW / 2, 13);
 
-    ctx.fillStyle = '#aaa';
-    ctx.font = statLabelFont;
-    ctx.textAlign = 'center';
-    ctx.fillText(`Next ${w} mi (GPS)`, cx, rowMid1 - 7);
-
-    ctx.fillStyle = '#22a060';
-    ctx.font = statValueFont;
-    ctx.textAlign = 'right';
-    ctx.fillText(`+${gGain.toLocaleString()}′`, cx - 2, rowMid1 + 7);
-
-    ctx.fillStyle = '#e11d48';
-    ctx.textAlign = 'left';
-    ctx.fillText(`−${gLoss.toLocaleString()}′`, cx + 2, rowMid1 + 7);
-
-    // Bottom row: view-based (floats with pan)
-    const vPts = forwardFromView(w);
-    const { gain: vGain, loss: vLoss } = vPts.length > 1 ? computeGainLoss(vPts) : { gain: 0, loss: 0 };
-
-    ctx.fillStyle = '#aaa';
-    ctx.font = statLabelFont;
-    ctx.textAlign = 'center';
-    ctx.fillText(`Next ${w} mi (view)`, cx, rowMid2 - 7);
-
-    ctx.fillStyle = '#22a060';
-    ctx.font = statValueFont;
-    ctx.textAlign = 'right';
-    ctx.fillText(`+${vGain.toLocaleString()}′`, cx - 2, rowMid2 + 7);
-
-    ctx.fillStyle = '#e11d48';
-    ctx.textAlign = 'left';
-    ctx.fillText(`−${vLoss.toLocaleString()}′`, cx + 2, rowMid2 + 7);
-  });
-
-  // Dividers between stat columns
-  [1, 2].forEach(i => {
-    ctx.strokeStyle = '#e0e0e0';
+  // Thin column dividers within each half
+  [1, 2, 4, 5].forEach(i => {
+    ctx.strokeStyle = '#e2e2e2';
     ctx.lineWidth = 1;
     ctx.beginPath();
-    ctx.moveTo(colW * i, 4);
+    ctx.moveTo(colW * i, 18);
     ctx.lineTo(colW * i, statsBarHeight - 4);
     ctx.stroke();
   });
 
-  // Horizontal divider between the two stat rows
-  ctx.strokeStyle = '#e8e8e8';
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  ctx.moveTo(0, statsBarHeight / 2);
-  ctx.lineTo(displayWidth, statsBarHeight / 2);
-  ctx.stroke();
+  const labelY = 27;   // "Next X mi" label baseline
+  const valueY = 56;   // gain/loss value baseline
+
+  windows.forEach((w, i) => {
+    // GPS column (left half)
+    const gcx = colW * i + colW / 2;
+    const gPts = forwardFromGps(w);
+    const { gain: gGain, loss: gLoss } = gPts.length > 1 ? computeGainLoss(gPts) : { gain: 0, loss: 0 };
+
+    ctx.fillStyle = '#888';
+    ctx.font = statLabelFont;
+    ctx.textAlign = 'center';
+    ctx.fillText(`${w} mi`, gcx, labelY);
+
+    // Gain and loss side by side, centered in the column
+    ctx.font = statValueFont;
+    ctx.fillStyle = '#22a060';
+    ctx.textAlign = 'right';
+    ctx.fillText(`+${gGain.toLocaleString()}′`, gcx - 3, valueY);
+    ctx.fillStyle = '#e11d48';
+    ctx.textAlign = 'left';
+    ctx.fillText(`−${gLoss.toLocaleString()}′`, gcx + 3, valueY);
+
+    // View column (right half, offset by halfW)
+    const vcx = halfW + colW * i + colW / 2;
+    const vPts = forwardFromView(w);
+    const { gain: vGain, loss: vLoss } = vPts.length > 1 ? computeGainLoss(vPts) : { gain: 0, loss: 0 };
+
+    ctx.fillStyle = '#888';
+    ctx.font = statLabelFont;
+    ctx.textAlign = 'center';
+    ctx.fillText(`${w} mi`, vcx, labelY);
+
+    ctx.font = statValueFont;
+    ctx.fillStyle = '#22a060';
+    ctx.textAlign = 'right';
+    ctx.fillText(`+${vGain.toLocaleString()}′`, vcx - 3, valueY);
+    ctx.fillStyle = '#e11d48';
+    ctx.textAlign = 'left';
+    ctx.fillText(`−${vLoss.toLocaleString()}′`, vcx + 3, valueY);
+  });
 
   // ---- Chart area (below stats bar) ----
   const chartTop = statsBarHeight;
+  // Mile labels are now drawn INSIDE the chart (overlaid), so bottom padding is small
   const padding = isMobile
-    ? { top: 24, right: 20, bottom: 58, left: 78 }
-    : { top: 28, right: 32, bottom: 66, left: 100 };
+    ? { top: 20, right: 16, bottom: 12, left: 80 }
+    : { top: 24, right: 20, bottom: 14, left: 96 };
   const chartWidth = displayWidth - padding.left - padding.right;
   const chartHeight = displayHeight - padding.top - padding.bottom;
 
@@ -255,14 +263,16 @@ const draw = () => {
     ctx.lineTo(padding.left + chartWidth, y);
     ctx.stroke();
 
-    ctx.fillStyle = '#444';
-    ctx.font = isMobile ? 'bold 14px system-ui' : 'bold 16px system-ui';
+    ctx.fillStyle = '#333';
+    ctx.font = isMobile ? 'bold 16px system-ui' : 'bold 18px system-ui';
     ctx.textAlign = 'right';
-    ctx.fillText(elev.toLocaleString() + ' ft', padding.left - 10, y + 5);
+    ctx.fillText(elev.toLocaleString() + ' ft', padding.left - 8, y + 6);
   }
 
-  // X grid lines + mile labels
+  // X grid lines + mile labels — drawn INSIDE the chart at the bottom so they're always visible
   const numXTicks = 5;
+  const mileLabelY = chartTop + padding.top + chartHeight - 8; // inside, near bottom
+  const mileFontSize = isMobile ? 16 : 18;
   for (let i = 0; i <= numXTicks; i++) {
     const mile = _startMile + (i * _windowMiles / numXTicks);
     const x = xScale(mile);
@@ -274,10 +284,15 @@ const draw = () => {
     ctx.lineTo(x, chartTop + padding.top + chartHeight);
     ctx.stroke();
 
-    ctx.fillStyle = '#444';
-    ctx.font = isMobile ? 'bold 14px system-ui' : 'bold 16px system-ui';
-    ctx.textAlign = 'center';
-    ctx.fillText(Math.round(mile), x, chartTop + padding.top + chartHeight + (isMobile ? 22 : 24));
+    // White outline for legibility over the elevation fill
+    ctx.font = `bold ${mileFontSize}px system-ui`;
+    ctx.textAlign = i === 0 ? 'left' : (i === numXTicks ? 'right' : 'center');
+    ctx.strokeStyle = 'rgba(255,255,255,0.85)';
+    ctx.lineWidth = 4;
+    ctx.lineJoin = 'round';
+    ctx.strokeText(String(Math.round(mile)), x, mileLabelY);
+    ctx.fillStyle = '#222';
+    ctx.fillText(String(Math.round(mile)), x, mileLabelY);
   }
 
   // Elevation fill
@@ -399,28 +414,28 @@ const draw = () => {
 
     // "You" label
     ctx.fillStyle = '#1d4ed8';
-    ctx.font = `bold ${isMobile ? '14px' : '15px'} system-ui`;
-    ctx.textAlign = x > padding.left + chartWidth - 40 ? 'right' : 'center';
-    ctx.fillText('You', x, chartTop + padding.top - 5);
+    ctx.font = `bold ${isMobile ? '16px' : '18px'} system-ui`;
+    ctx.textAlign = x > padding.left + chartWidth - 50 ? 'right' : 'center';
+    ctx.fillText('You', x, chartTop + padding.top - 6);
   }
 
-  // Mini overview bar at the very bottom
+  // Mini overview bar — sits just below the bottom axis line
   const overviewH = 8;
-  const overviewY = chartTop + padding.top + chartHeight + (isMobile ? 36 : 40);
+  const overviewY = chartTop + padding.top + chartHeight + 3;
   const overviewW = chartWidth;
   const overviewX = padding.left;
   const maxDist = _profile[_profile.length - 1].distance;
 
-  ctx.fillStyle = '#e5e5e5';
+  ctx.fillStyle = '#e0e0e0';
   ctx.beginPath();
   ctx.roundRect(overviewX, overviewY, overviewW, overviewH, 4);
   ctx.fill();
 
   // Active window highlight
-  const winStart = ((_startMile) / maxDist) * overviewW;
+  const winStart = (_startMile / maxDist) * overviewW;
   const winWidth = (_windowMiles / maxDist) * overviewW;
   ctx.fillStyle = '#e11d48';
-  ctx.globalAlpha = 0.35;
+  ctx.globalAlpha = 0.4;
   ctx.beginPath();
   ctx.roundRect(overviewX + winStart, overviewY, winWidth, overviewH, 4);
   ctx.fill();
@@ -435,24 +450,12 @@ const draw = () => {
     ctx.fill();
   }
 
-  // Axis labels
-  ctx.fillStyle = '#555';
-  ctx.font = isMobile ? '13px system-ui' : '14px system-ui';
-  ctx.textAlign = 'center';
-  ctx.fillText('Distance (miles)', padding.left + chartWidth / 2, chartTop + padding.top + chartHeight + (isMobile ? 40 : 44));
-
-  ctx.save();
-  ctx.translate(isMobile ? 14 : 16, chartTop + padding.top + chartHeight / 2);
-  ctx.rotate(-Math.PI / 2);
-  ctx.fillText('Elevation (ft)', 0, 0);
-  ctx.restore();
-
   // Drag hint (only when no GPS / at mile 0)
   if (_currentMile === 0) {
-    ctx.fillStyle = 'rgba(0,0,0,0.25)';
-    ctx.font = `${isMobile ? '13px' : '14px'} system-ui`;
+    ctx.fillStyle = 'rgba(0,0,0,0.22)';
+    ctx.font = `${isMobile ? '14px' : '16px'} system-ui`;
     ctx.textAlign = 'center';
-    ctx.fillText('← drag to pan →', padding.left + chartWidth / 2, chartTop + padding.top + 16);
+    ctx.fillText('← drag to pan →', padding.left + chartWidth / 2, chartTop + padding.top + 20);
   }
 };
 
@@ -473,7 +476,7 @@ const onPointerMove = (e) => {
   const deltaX = clientX - _dragStartX;
   const parent = canvas.parentElement;
   const displayWidth = parent ? parent.clientWidth - 32 : window.innerWidth - 32;
-  const chartWidth = displayWidth - (displayWidth < 500 ? 78 + 20 : 100 + 32);
+  const chartWidth = displayWidth - (displayWidth < 500 ? 80 + 16 : 96 + 20);
   // pixels per mile
   const pxPerMile = chartWidth / _windowMiles;
   const deltaMile = -deltaX / pxPerMile;
