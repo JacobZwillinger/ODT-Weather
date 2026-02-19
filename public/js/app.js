@@ -50,50 +50,58 @@ const resetViewportScale = () => {
   requestAnimationFrame(() => { meta.content = original; });
 };
 
-// Open the waypoints overlay to a specific filter tab — used by bottom bar cards
+// Open the waypoints overlay to a specific filter — used by bottom bar cards
+// Sets that filter as the sole active one
 export const openWaypointFilter = (filter) => {
   saveMapView();
   openOverlay('waypointListOverlay');
-  renderWaypointList(filter);
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  document.querySelector(`.filter-btn[data-filter="${filter}"]`).classList.add('active');
+  const btn = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
+  if (btn) btn.classList.add('active');
+  renderWaypointList([filter]);
 };
 
 // ========== Waypoint List ==========
 
-const renderWaypointList = (filter) => {
-  const container = document.getElementById('waypointListContent');
-  let items = [];
-
+const getItemsForFilter = (filter) => {
   switch (filter) {
-    case 'all-water':
-      items = state.waterSources.map(s => ({ ...s, type: 'water' }));
-      break;
     case 'reliable-water':
-      items = state.waterSources
+      return state.waterSources
         .filter(s => s.subcategory === 'reliable')
         .map(s => ({ ...s, type: 'water' }));
-      break;
+    case 'other-water':
+      return state.waterSources
+        .filter(s => s.subcategory !== 'reliable')
+        .map(s => ({ ...s, type: 'water' }));
     case 'towns':
-      items = state.towns.map(t => ({ ...t, type: 'towns' }));
-      break;
+      return state.towns.map(t => ({ ...t, type: 'towns' }));
     case 'navigation':
-      items = (state.categories.navigation || []).map(n => ({ ...n, type: 'navigation' }));
-      break;
+      return (state.categories.navigation || []).map(n => ({ ...n, type: 'navigation' }));
     case 'toilets':
-      items = (state.categories.toilets || []).map(t => ({ ...t, type: 'toilets' }));
-      break;
+      return (state.categories.toilets || []).map(t => ({ ...t, type: 'toilets' }));
     case 'sections':
-      items = sectionPoints.map(s => ({
-        name: s.name,
-        mile: s.mile,
-        lat: s.lat,
-        lon: s.lon,
-        type: 'sections',
-        subcategory: null,
-        landmark: null
+      return sectionPoints.map(s => ({
+        name: s.name, mile: s.mile, lat: s.lat, lon: s.lon,
+        type: 'sections', subcategory: null, landmark: null
       }));
-      break;
+    default:
+      return [];
+  }
+};
+
+const renderWaypointList = (activeFilters) => {
+  const container = document.getElementById('waypointListContent');
+
+  // Merge items from all active filters, dedupe by name
+  const seen = new Set();
+  let items = [];
+  for (const filter of activeFilters) {
+    for (const item of getItemsForFilter(filter)) {
+      if (!seen.has(item.name)) {
+        seen.add(item.name);
+        items.push(item);
+      }
+    }
   }
 
   // Sort by mile
@@ -406,12 +414,12 @@ const initUI = () => {
   });
 
   // Bottom-right: Waypoint list button
-  document.getElementById('btnWaypointList').addEventListener('click', () => openWaypointFilter('all-water'));
+  document.getElementById('btnWaypointList').addEventListener('click', () => openWaypointFilter('reliable-water'));
 
   // Bottom bar cards → open waypoints overlay with correct filter
   [
     { id: 'nextReliableWaterCard', filter: 'reliable-water' },
-    { id: 'nextOtherWaterCard',    filter: 'all-water' },
+    { id: 'nextOtherWaterCard',    filter: 'other-water' },
     { id: 'nextTownCard',          filter: 'towns' },
     { id: 'nextSectionCard',       filter: 'sections' },
   ].forEach(({ id, filter }) => {
@@ -438,12 +446,20 @@ const initUI = () => {
     });
   });
 
-  // Filter bar handlers
+  // Filter bar handlers — multi-select toggle
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderWaypointList(btn.dataset.filter);
+      const wasActive = btn.classList.contains('active');
+      btn.classList.toggle('active', !wasActive);
+      // Always keep at least one active
+      const activeFilters = [...document.querySelectorAll('.filter-btn.active')]
+        .map(b => b.dataset.filter);
+      if (activeFilters.length === 0) {
+        btn.classList.add('active');
+        renderWaypointList([btn.dataset.filter]);
+      } else {
+        renderWaypointList(activeFilters);
+      }
     });
   });
 
