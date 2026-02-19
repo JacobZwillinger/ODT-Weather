@@ -5,7 +5,8 @@ vi.mock('../../public/js/utils.js', () => ({
   loadElevationProfile: vi.fn(),
   state: {
     categories: {
-      water: [],
+      'water-reliable': [],
+      'water-other': [],
       towns: [],
       navigation: [],
       toilets: []

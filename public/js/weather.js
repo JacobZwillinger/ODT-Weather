@@ -334,13 +334,13 @@ export const loadForecasts = async () => {
         <div style="padding: 24px; text-align: center; color: #666;">
           <p style="margin-bottom: 16px;"><strong>Weather API Key Required</strong></p>
           <p style="margin-bottom: 16px;">Enter your <a href="https://pirateweather.net" target="_blank">PirateWeather</a> API key to see forecasts.</p>
-          <input type="text" id="apiKeyInput" placeholder="Enter API key..." style="width: 100%; max-width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; margin-bottom: 12px;" />
+          <input type="text" id="androidApiKeyInput" placeholder="Enter API key..." style="width: 100%; max-width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; margin-bottom: 12px;" />
           <br/>
-          <button id="saveApiKeyBtn" style="padding: 10px 24px; background: #1b1b1b; color: #fff; border: none; border-radius: 6px; font-size: 0.95rem; cursor: pointer;">Save Key</button>
+          <button id="androidSaveApiKeyBtn" style="padding: 10px 24px; background: #1b1b1b; color: #fff; border: none; border-radius: 6px; font-size: 0.95rem; cursor: pointer;">Save Key</button>
         </div>
       `;
-      document.getElementById('saveApiKeyBtn').addEventListener('click', () => {
-        const key = document.getElementById('apiKeyInput').value.trim();
+      document.getElementById('androidSaveApiKeyBtn').addEventListener('click', () => {
+        const key = document.getElementById('androidApiKeyInput').value.trim();
         if (key) {
           AndroidBridge.setApiKey(key);
           loadForecasts();

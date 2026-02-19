@@ -131,10 +131,11 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         webView.evaluateJavascript(
             "(function() { " +
-                "var overlays = document.querySelectorAll('.fullscreen-overlay:not([hidden]), .sources-modal.active');" +
+                "var overlays = document.querySelectorAll('.fullscreen-overlay:not([hidden]), .sources-modal.visible');" +
                 "if (overlays.length > 0) { " +
-                "  overlays[overlays.length - 1].setAttribute('hidden', ''); " +
-                "  overlays[overlays.length - 1].classList.remove('active'); " +
+                "  var top = overlays[overlays.length - 1]; " +
+                "  if (top.classList.contains('fullscreen-overlay')) { top.setAttribute('hidden', ''); } " +
+                "  top.classList.remove('visible'); " +
                 "  return 'closed'; " +
                 "} " +
                 "return 'none'; " +

@@ -96,6 +96,12 @@ const findWaypoint = (name, lat, lon) => {
   if (name) {
     const byName = state.allWaypoints.find(wp => wp.name === name);
     if (byName) return byName;
+    // Name lookup mode should not silently fall back to arbitrary coordinate matching.
+    if (!Number.isFinite(lat) || !Number.isFinite(lon)) return null;
+  }
+
+  if (!Number.isFinite(lat) || !Number.isFinite(lon)) {
+    return null;
   }
 
   // Fallback: find closest by coordinates

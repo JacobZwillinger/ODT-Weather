@@ -217,15 +217,14 @@ describe('findMileFromCoords', () => {
     expect(result.distanceFromTrail).toBeCloseTo(1, 0); // ~1 mile off trail
   });
 
-  it('returns nearest waypoint mile when between adjacent waypoints (no interpolation)', () => {
-    // The code does NOT interpolate — it returns the closest waypoint's mile
+  it('interpolates mile when between adjacent waypoints', () => {
     state.allWaypoints = [
       { name: 'WP001', lat: 43.0, lon: -120.0, mile: 10 },
       { name: 'WP002', lat: 43.01, lon: -120.0, mile: 11 },
     ];
-    // Point clearly closer to WP002
+    // Point is ~80% of the way from WP001 to WP002
     const result = findMileFromCoords(43.008, -120.0);
-    expect(result.mile).toBe(11);
+    expect(result.mile).toBeCloseTo(10.8, 2);
   });
 
   it('returns 0 when no waypoints loaded', () => {
