@@ -9,6 +9,10 @@ let lastPosition = null;
 // [BUGS] Fixed: removed unused locationMarker and accuracyCircle variables (map.js manages its own)
 let onPositionUpdate = null;
 
+// Compass heading state
+let onHeadingUpdate = null;
+let compassHeading = null;  // current heading in degrees (0 = north, clockwise)
+
 // GPS options optimized for hiking
 const GPS_OPTIONS = {
   enableHighAccuracy: true,  // Use GPS for best accuracy in remote areas
@@ -84,6 +88,54 @@ const handlePositionError = (error) => {
   }
 };
 
+// Handle device orientation event
+const handleDeviceOrientation = (event) => {
+  let heading = null;
+
+  if (event.webkitCompassHeading != null) {
+    // iOS: webkitCompassHeading is degrees from north, already corrected for screen orientation
+    heading = event.webkitCompassHeading;
+  } else if (event.absolute && event.alpha != null) {
+    // Android (absolute mode): alpha is degrees counter-clockwise from north
+    // Convert to clockwise bearing
+    heading = (360 - event.alpha) % 360;
+  } else if (event.alpha != null) {
+    // Non-absolute fallback — less reliable but better than nothing
+    heading = (360 - event.alpha) % 360;
+  }
+
+  if (heading !== null) {
+    compassHeading = heading;
+    if (onHeadingUpdate) {
+      onHeadingUpdate(heading);
+    }
+  }
+};
+
+// Request DeviceOrientation permission (required on iOS 13+) and start listening
+const startCompass = async () => {
+  if (!window.DeviceOrientationEvent) return;
+
+  if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+    // iOS 13+ requires explicit permission
+    try {
+      const permission = await DeviceOrientationEvent.requestPermission();
+      if (permission !== 'granted') return;
+    } catch (e) {
+      console.warn('DeviceOrientation permission denied:', e);
+      return;
+    }
+  }
+
+  window.addEventListener('deviceorientation', handleDeviceOrientation, true);
+};
+
+const stopCompass = () => {
+  window.removeEventListener('deviceorientation', handleDeviceOrientation, true);
+  compassHeading = null;
+  if (onHeadingUpdate) onHeadingUpdate(null);
+};
+
 // Start GPS tracking
 export const startGps = () => {
   if (!navigator.geolocation) {
@@ -102,6 +154,7 @@ export const startGps = () => {
 
   isGpsActive = true;
   updateGpsButtonState(true);
+  startCompass();
 
   // Update status
   const statusEl = document.getElementById('gpsStatus');
@@ -123,6 +176,7 @@ export const stopGps = () => {
   isGpsActive = false;
   lastPosition = null;
   updateGpsButtonState(false);
+  stopCompass();
 
   // Update status
   const statusEl = document.getElementById('gpsStatus');
@@ -167,6 +221,14 @@ export const setPositionUpdateCallback = (callback) => {
   onPositionUpdate = callback;
 };
 
+// Register callback for heading updates (used by map to rotate marker)
+export const setHeadingUpdateCallback = (callback) => {
+  onHeadingUpdate = callback;
+};
+
+// Get current compass heading
+export const getCompassHeading = () => compassHeading;
+
 // Check if click handlers should be active (disabled when GPS is active)
 export const shouldAllowMapClicks = () => !isGpsActive;
 
@@ -190,6 +252,7 @@ window._gpsCleanup = () => {
       navigator.geolocation.clearWatch(watchId);
       watchId = null;
     }
+    window.removeEventListener('deviceorientation', handleDeviceOrientation, true);
   }
 };
 
@@ -201,5 +264,7 @@ window._gpsResume = () => {
       handlePositionError,
       GPS_OPTIONS
     );
+    // Restart compass (no permission re-request needed on Android)
+    window.addEventListener('deviceorientation', handleDeviceOrientation, true);
   }
 };
