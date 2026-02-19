@@ -1,0 +1,118 @@
+name,mile,landmark,details,onTrail,suggested_landmark,suggested_details,suggested_subcategory,flags
+CV101,0,.1 miles off trail,reliable: water spigots - Peters OHV Campground ,False,,reliable: water spigots - Peters OHV Campground,,"trailing whitespace in details | mile=0: alternate route, no main trail mile marker"
+ALTBRT01,0,,reliable: Donner & Blitzen River,True,,,,"mile=0: alternate route, no main trail mile marker | copy-paste cluster: 5 entries share identical details text"
+ALTBRT02,0,,reliable: Donner & Blitzen River,True,,,,"mile=0: alternate route, no main trail mile marker | copy-paste cluster: 5 entries share identical details text"
+ALTBRT03,0,,reliable: Donner & Blitzen River,True,,,,"mile=0: alternate route, no main trail mile marker | copy-paste cluster: 5 entries share identical details text"
+ALTBRT04,0,confluence with Fish Creek,reliable: Donner & Blitzen River,True,,,,"mile=0: alternate route, no main trail mile marker | copy-paste cluster: 5 entries share identical details text"
+ALTBRT05,0,meet ODT route at Big Spring,reliable: Big Spring,True,,,,"mile=0: alternate route, no main trail mile marker"
+ALTAV02,0,Alvord Hot Springs,reliable: water for sale at Hot Springs,True,,,,"mile=0: alternate route, no main trail mile marker"
+OC019,0,trough .1 W,reliable: Chicken Springs,True,,,,"mile=0: alternate route, no main trail mile marker"
+ALTFC08,0,West Little Owyhee,reliable: West Little Owyhee,True,,,,"mile=0: alternate route, no main trail mile marker | copy-paste cluster: 24 entries share identical details text"
+ALTIC03,0,,reliable: Owyhee River,True,,,,"mile=0: alternate route, no main trail mile marker | copy-paste cluster: 10 entries share identical details text"
+ALTSC04,0,,reliable: Owyhee River,True,,,,"mile=0: alternate route, no main trail mile marker | copy-paste cluster: 10 entries share identical details text"
+OC136,0,river/camping OC136 .2 N,reliable: Owyhee River .2 N,True,,,,"mile=0: alternate route, no main trail mile marker"
+ALTGB03,0,Owyhee River,reliable: Owyhee River,True,,,,"mile=0: alternate route, no main trail mile marker | copy-paste cluster: 10 entries share identical details text"
+ALTGB04,0,,reliable: Owyhee River,True,,,,"mile=0: alternate route, no main trail mile marker | copy-paste cluster: 10 entries share identical details text"
+ALTGB05,0,,reliable: Owyhee River,True,,,,"mile=0: alternate route, no main trail mile marker | copy-paste cluster: 10 entries share identical details text"
+ALTGB06,0,Hot springs across the river,reliable: Owyhee River,True,,,,"mile=0: alternate route, no main trail mile marker | copy-paste cluster: 10 entries share identical details text"
+ALTGB07,0,,reliable: Owyhee River,True,,,,"mile=0: alternate route, no main trail mile marker | copy-paste cluster: 10 entries share identical details text"
+CV002,0.5,junction Black Lava Trail,"canal, reliable late April to mid October",True,,,,
+CV052,36.4,Sand Springs Campground (primitive),reliable until dry years in fall: Sand Spring in campground,True,,,,
+ALTCV20a,84.3,Christmas Valley,reliable: Christmas Valley ,True,,reliable: Christmas Valley,,trailing whitespace in details
+WB008,102.9,left at junction/trough,reliable: water trough (big blue tub of water),True,,,,
+WB082,167.6,campground/pit toilets/water from Chewaucan River,reliable: Chewaucan River,True,,,,
+WB083,168.2,Chewaucan Crossing/campground/pit toilets/water/join trail,reliable: Chewaucan River,True,,,,
+WB085,170.4,Cat Canyon,reliable: creek,True,,,,vague/missing details -- no water source name
+WB097,187.2,Moss Pass - cross road/spring,reliable: Moss spring,True,,,,
+WB099,193.2,creek,reliable: Pine creek,True,,,,
+WB113,212.4,Mill Trail Head - start to walk along creek,reliable: Crooked creek until WB118,True,,,,copy-paste cluster: 6 entries share identical details text
+WB114,213.2,,reliable: Crooked creek until WB118,True,,,,copy-paste cluster: 6 entries share identical details text
+WB115,213.7,junction,reliable: Crooked creek until WB118,True,,,,copy-paste cluster: 6 entries share identical details text
+WB116,215.3,junction,reliable: Crooked creek until WB118,True,,,,copy-paste cluster: 6 entries share identical details text
+WB117,217.2,,reliable: Crooked creek until WB118,True,,,,copy-paste cluster: 6 entries share identical details text
+WB118,218.6,continue uphill at intersection,reliable: Crooked creek until WB118,True,,,,copy-paste cluster: 6 entries share identical details text
+WB125,225.6,creek,reliable: First Swale creek,True,,,,
+WB129,227.7,creek,reliable: Honey creek,True,,,,
+WB131,230.0,creek,reliable: creek,True,,,,vague/missing details -- no water source name
+WB135,232.4,creek,reliable: Little Honey creek,True,,,,
+WB148,243.0,Colvin Lake to south,reliable: Colvin Lake,True,,,,
+WB175,273.4,spring under road,reliable: spring,True,,,,vague/missing details -- no water source name | copy-paste cluster: 3 entries share identical details text
+WB176,274.8,spring uphill from road,reliable: spring,True,,,,vague/missing details -- no water source name | copy-paste cluster: 3 entries share identical details text
+WB192,297.3,creek,reliable: Guano Creek,True,,,,copy-paste cluster: 3 entries share identical details text
+WB195,300.1,creek,reliable: Guano Creek,True,,,,copy-paste cluster: 3 entries share identical details text
+WB197,301.1,creek,reliable: Guano Creek,True,,,,copy-paste cluster: 3 entries share identical details text
+WB198,303.0,junction,reliable: at start of Guano Creek .5 mile S,True,,,,
+WB201,306.8,creek/Hot Springs Campground - pit toilets & hot springs!,reliable: Rock Creek,True,,,,
+WB202,307.1,,reliable: Rock Creek,True,,,,
+WB208,311.3,Hart Headquarters,reliable: spigot in parking lot ,True,,reliable: spigot in parking lot,,trailing whitespace in details
+WB230,343.0,gate/start x-country,Reliable: Augustine Gilbert Place (1.25 miles one way to homestead),True,,reliable: Augustine Gilbert Place (1.25 miles one way to homestead),,"capitalization: starts with ""Reliable:"" not ""reliable:"""
+WB235,352.4,"trough to N, hikers have permission to access water at Miller Place. Please respect the private land. No camping.",reliable: Miller Place trough & electric pump (on private land) to the N,True,,,,
+EB009,382.3,cross river,reliable: Donner & Blitzen River,True,,,,copy-paste cluster: 5 entries share identical details text
+EB010,383.1,spring,reliable: Big Spring,True,,,,
+EB014,389.8,reservoir to SW,reliable: Desert Meadow Reservoir,True,,,,
+EB017,391.7,creek,reliable: Little Blitzen Creek,True,,,,
+EB018,392.5,"0.1 before EB018 join maintained road/South Steens Campground -$6, water & pit toilets",reliable: South Steens Campground - spigot near pumphouse at entrance,True,,,,
+EB020,394.7,creek,reliable: Little Indian Creek,True,,,,
+EB020a,397.0,creek,reliable: Little Indian Creek,True,,,,
+EB021,398.1,creek,reliable: Big Indian Creek,True,,,,
+EB023,402.0,join Steens Mountain Loop Road,reliable: spring at marshy bench area at top of climb,True,,,,
+EB025,406.3,lake/follow creek at outlet,reliable: Wildhorse Lake/creek until EB026,True,,,,
+EB025a,407.2,creek,reliable: Wildhorse Creek until EB026,True,,,,
+EB026,408.8,creek,reliable: Wildhorse Creek until EB026,True,,,,
+EB051,446.8,spring,reliable: Roux Spring,True,,,,
+EB091,461.4,,reliable: Denio Creek,True,,,,
+EB125,489.2,junction,reliable: trough,True,,,,
+EB128,491.1,spring,reliable: spring,True,,,,vague/missing details -- no water source name | copy-paste cluster: 3 entries share identical details text
+EB130,491.8,creek,reliable: Trout Creek,True,,,,
+EB163,518.0,creek/confluence Island Canyon,reliable: Oregon Canyon Creek,True,,,,copy-paste cluster: 9 entries share identical details text
+EB164,518.7,creek/confluence Fall Canyon,reliable: Oregon Canyon Creek,True,,,,copy-paste cluster: 9 entries share identical details text
+EB165,519.2,creek/confluence Buck Corral Canyon,reliable: Oregon Canyon Creek,True,,,,copy-paste cluster: 9 entries share identical details text
+EB166,519.8,creek/confluence west fork,reliable: Oregon Canyon Creek,True,,,,copy-paste cluster: 9 entries share identical details text
+ALTMC02,520.6,start x-country down cottonwood creek drainage,reliable: Cottonwood Creek,True,,,,
+EB167,521.1,creek,reliable: Oregon Canyon Creek,True,,,,copy-paste cluster: 9 entries share identical details text
+EB168,522.0,creek/confluence east canyon,reliable: Oregon Canyon Creek,True,,,,copy-paste cluster: 9 entries share identical details text
+EB169,522.2,creek,reliable: Oregon Canyon Creek,True,,,,copy-paste cluster: 9 entries share identical details text
+EB170,522.5,creek,reliable: Oregon Canyon Creek,True,,,,copy-paste cluster: 9 entries share identical details text
+EB171,524.0,creek/climb up canyon,reliable: Oregon Canyon Creek,True,,,,copy-paste cluster: 9 entries share identical details text
+ALTMC04,525.2,,reliable: water tank,True,,,,
+EB177,528.0,trough,reliable: water trough,True,,,,
+EB178,528.8,trough,reliable: water trough,True,,,,
+OC030,563.2,creek/fence,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC031,564.3,creek,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC043,576.5,river,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC044,576.7,river,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC045,578.2,river,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC046,579.6,river,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC047,581.2,river/confluence with Dry Canyon,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC048,583.0,river,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC049,584.7,river,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC050,586.1,river/old water gauge,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC051,587.4,river,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC052,588.8,river,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC053,590.0,river,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC054,590.6,river,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC055,591.7,river,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC056,593.3,river,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC057,595.3,river,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC058,596.3,river,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC059,596.6,river,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC060,597.0,river,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC061,598.5,river,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC062,599.5,river,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC063,601.2,river,reliable: West Little Owyhee,True,,,,copy-paste cluster: 24 entries share identical details text
+OC071,611.6,join Owyhee River,reliable: Owyhee River,True,,,,copy-paste cluster: 10 entries share identical details text
+OC076e,620.4,join Owyhee River,reliable: Owyhee River,True,,,,copy-paste cluster: 10 entries share identical details text
+OC077,621.0,pit toilet,reliable: Owyhee River,True,,,,copy-paste cluster: 10 entries share identical details text
+OC109,660.2,campground/pit toilets,reliable: Rome Launch Campground spigot,True,,,,
+OC114,665.3,,reliable: Jordan Creek,True,,,,
+OC129,683.5,.5 W river/camping/jeep road to river OC130,reliable: Owyhee River .5 W,True,,,,
+OC156,712.6,spring,reliable: developed spring,True,,,,
+OC162,718.3,reservoir,reliable: Owyhee Reservoir (cloudy but filterable),True,,,,
+OC163,719.6,creek,Reliable: Spring Creek,True,,reliable: Spring Creek,,"capitalization: starts with ""Reliable:"" not ""reliable:"""
+OC172,721.2,reservoir/Slocum Creek campground/pit toilets,reliable: Owyhee Reservoir (cloudy but filterable),True,,,,
+OC183,732.8,start x-country,reliable: Owyhee Reservoir 1 mile W,True,,,,
+OC195,744.0,spring,reliable: Rookie Canyon Spring,True,,,,
+OC201,749.9,creek,reliable: Birch Creek (watch for poison ivy),True,,,,copy-paste cluster: 3 entries share identical details text
+OC202,750.4,creek,reliable: Birch Creek (watch for poison ivy),True,,,,copy-paste cluster: 3 entries share identical details text
+OC203,750.6,creek/join 2-track road,reliable: Birch Creek (watch for poison ivy),True,,,,copy-paste cluster: 3 entries share identical details text
+OC204,751.1,campground,reliable: Indian Creek Campground spigot,True,,,,
