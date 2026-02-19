@@ -344,34 +344,5 @@ export const initModals = () => {
     });
   }
 
-  // Water card click handlers (reliable and other both open water sources list)
-  const reliableWaterCard = document.getElementById('nextReliableWaterCard');
-  if (reliableWaterCard) {
-    reliableWaterCard.addEventListener('click', () => showSourcesList('water'));
-    reliableWaterCard.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showSourcesList('water'); }
-    });
-  }
-
-  const otherWaterCard = document.getElementById('nextOtherWaterCard');
-  if (otherWaterCard) {
-    otherWaterCard.addEventListener('click', () => showSourcesList('water'));
-    otherWaterCard.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showSourcesList('water'); }
-    });
-  }
-
-  const townCard = document.getElementById('nextTownCard');
-  if (townCard) {
-    townCard.addEventListener('click', () => {
-      showSourcesList('town');
-    });
-    // [UX] Changed: Added keyboard activation for town card (WCAG 2.1.1)
-    townCard.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        showSourcesList('town');
-      }
-    });
-  }
+  // Note: water/town card clicks are handled in app.js to avoid circular imports
 };
