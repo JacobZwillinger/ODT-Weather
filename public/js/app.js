@@ -202,16 +202,27 @@ const initSettingsPopover = () => {
   });
 };
 
-// Position the settings popover near the layers sub-button
+// Position a panel to the right of a given button
+const positionToRightOf = (btn, panel) => {
+  const rect = btn.getBoundingClientRect();
+  panel.style.left = (rect.right + 10) + 'px';
+  panel.style.top = rect.top + 'px';
+  panel.style.right = 'auto';
+  panel.style.bottom = 'auto';
+};
+
 const positionSettingsPopover = () => {
-  const layersBtn = document.getElementById('btnKebabLayers');
-  const popover = document.getElementById('settingsPopover');
-  const rect = layersBtn.getBoundingClientRect();
-  // Position to the right of the kebab group
-  popover.style.left = (rect.right + 10) + 'px';
-  popover.style.top = rect.top + 'px';
-  popover.style.right = 'auto';
-  popover.style.bottom = 'auto';
+  positionToRightOf(
+    document.getElementById('btnKebabLayers'),
+    document.getElementById('settingsPopover')
+  );
+};
+
+const positionApiPanel = () => {
+  positionToRightOf(
+    document.getElementById('btnKebabApiKey'),
+    document.getElementById('kebabApiPanel')
+  );
 };
 
 // ========== Test Mode Adapter ==========
@@ -296,11 +307,12 @@ const initKebabMenu = () => {
     }
   });
 
-  // API Key sub-button: toggle the API panel
+  // API Key sub-button: toggle the API panel (positioned to the right)
   apiKeyBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     const isOpen = !apiPanel.hidden;
     apiPanel.hidden = isOpen;
+    if (!isOpen) positionApiPanel();
   });
 
   // Save API key

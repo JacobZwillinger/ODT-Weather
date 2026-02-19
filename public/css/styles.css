@@ -301,11 +301,11 @@ body {
   color: #555;
 }
 
-/* ========== API Key Panel (inline below sub-buttons) ========== */
+/* ========== API Key Panel (to the right of the kebab sub-buttons) ========== */
 .kebab-api-panel {
   position: fixed;
-  left: 24px;
-  top: 80px; /* below the kebab button */
+  left: 92px;  /* JS overrides to sit right of the buttons */
+  top: 80px;
   background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -313,7 +313,7 @@ body {
   padding: 14px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
   z-index: 25;
-  width: min(280px, calc(100vw - 48px));
+  width: min(260px, calc(100vw - 116px));
   animation: kebab-expand 0.15s ease-out;
 }
 
@@ -718,66 +718,76 @@ body {
 
 /* ========== About Modal ========== */
 .about-modal-content {
-  max-width: 480px;
+  max-width: 340px;
+  min-height: auto !important;
+}
+
+@media (max-width: 640px) {
+  .about-modal-content {
+    max-width: calc(100% - 48px);
+    margin: 10vh 24px !important;
+    border-radius: 12px !important;
+    min-height: auto !important;
+  }
 }
 
 .about-body {
-  padding: 8px 0 16px;
+  padding: 4px 0 12px;
 }
 
 .about-credit {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 0 16px;
-  gap: 14px;
+  padding: 12px 0 10px;
+  gap: 10px;
 }
 
 .about-avatar-pair {
   display: flex;
   align-items: flex-end;
-  gap: 16px;
+  gap: 12px;
 }
 
 .about-avatar {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
 }
 
 .about-photo {
-  width: 88px;
-  height: 88px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center top;
-  border: 3px solid #e5e5e5;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  border: 2px solid #e5e5e5;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .about-photo-fallback {
-  width: 88px;
-  height: 88px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   background: #f0f0f0;
   align-items: center;
   justify-content: center;
-  border: 3px solid #e5e5e5;
+  border: 2px solid #e5e5e5;
 }
 
 .about-photo-fallback svg {
-  width: 48px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
 }
 
 .about-claude-avatar {
-  width: 88px;
-  height: 88px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   overflow: hidden;
-  border: 3px solid #e5e5e5;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  border: 2px solid #e5e5e5;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .about-claude-avatar svg {
@@ -787,7 +797,7 @@ body {
 }
 
 .about-avatar-name {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.3px;
@@ -795,14 +805,14 @@ body {
 }
 
 .about-heart {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   color: #ef4444;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
   line-height: 1;
 }
 
 .about-tagline {
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: #1b1b1b;
   text-align: center;
@@ -812,22 +822,22 @@ body {
 .about-divider {
   border: none;
   border-top: 1px solid #e5e5e5;
-  margin: 16px 0;
+  margin: 10px 0;
 }
 
 .about-info {
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: 0.82rem;
+  line-height: 1.5;
   color: #444;
 }
 
 .about-info p {
-  margin: 0 0 12px;
+  margin: 0 0 8px;
 }
 
 .about-info h4 {
-  margin: 16px 0 6px;
-  font-size: 0.85rem;
+  margin: 10px 0 4px;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.3px;
@@ -835,12 +845,12 @@ body {
 }
 
 .about-info ul {
-  margin: 0 0 8px;
-  padding-left: 18px;
+  margin: 0 0 6px;
+  padding-left: 16px;
 }
 
 .about-info li {
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 /* ========== View on Map Button ========== */
