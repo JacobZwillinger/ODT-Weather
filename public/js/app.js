@@ -158,13 +158,13 @@ const renderWaypointList = (activeFilters) => {
 // ========== Settings Popover ==========
 
 const initSettingsPopover = () => {
-  const settingsBtn = document.getElementById('btnSettings');
+  const layersBtn = document.getElementById('btnKebabLayers');
   const popover = document.getElementById('settingsPopover');
 
-  settingsBtn.addEventListener('click', () => {
+  layersBtn.addEventListener('click', () => {
     const isOpen = !popover.hidden;
     popover.hidden = isOpen;
-    settingsBtn.classList.toggle('active', !isOpen);
+    layersBtn.classList.toggle('active', !isOpen);
     if (!isOpen) positionSettingsPopover();
   });
 
@@ -195,19 +195,23 @@ const initSettingsPopover = () => {
 
   // Close popover when clicking outside
   document.addEventListener('click', (e) => {
-    if (!popover.hidden && !popover.contains(e.target) && !settingsBtn.contains(e.target)) {
+    if (!popover.hidden && !popover.contains(e.target) && !layersBtn.contains(e.target)) {
       popover.hidden = true;
-      settingsBtn.classList.remove('active');
+      layersBtn.classList.remove('active');
     }
   });
 };
 
-// Position the settings popover near the settings button
+// Position the settings popover near the layers sub-button
 const positionSettingsPopover = () => {
-  const settingsBtn = document.getElementById('btnSettings');
+  const layersBtn = document.getElementById('btnKebabLayers');
   const popover = document.getElementById('settingsPopover');
-  const rect = settingsBtn.getBoundingClientRect();
-  popover.style.bottom = (window.innerHeight - rect.bottom) + 'px';
+  const rect = layersBtn.getBoundingClientRect();
+  // Position to the right of the kebab group
+  popover.style.left = (rect.right + 10) + 'px';
+  popover.style.top = rect.top + 'px';
+  popover.style.right = 'auto';
+  popover.style.bottom = 'auto';
 };
 
 // ========== Test Mode Adapter ==========
@@ -243,15 +247,30 @@ const applyDataset = (dataset) => {
 
 // ========== Kebab Menu ==========
 
+const closeKebabMenu = () => {
+  const subButtons = document.getElementById('kebabSubButtons');
+  const apiPanel = document.getElementById('kebabApiPanel');
+  const settingsPopover = document.getElementById('settingsPopover');
+  const btn = document.getElementById('btnKebab');
+  subButtons.hidden = true;
+  apiPanel.hidden = true;
+  settingsPopover.hidden = true;
+  btn.classList.remove('active');
+  btn.setAttribute('aria-expanded', 'false');
+};
+
 const initKebabMenu = () => {
   const btn = document.getElementById('btnKebab');
-  const popover = document.getElementById('kebabPopover');
+  const subButtons = document.getElementById('kebabSubButtons');
+  const apiPanel = document.getElementById('kebabApiPanel');
   const apiKeyInput = document.getElementById('apiKeyInput');
   const apiKeyHint = document.getElementById('apiKeyHint');
   const saveBtn = document.getElementById('btnSaveApiKey');
-  const testModeBtn = document.getElementById('btnTestMode');
+  const testModeBtn = document.getElementById('btnKebabTestMode');
+  const aboutBtn = document.getElementById('btnKebabAbout');
+  const apiKeyBtn = document.getElementById('btnKebabApiKey');
 
-  // Load saved API key into input
+  // Load saved API key
   const savedKey = localStorage.getItem('pirateweatherApiKey') || '';
   if (savedKey) {
     apiKeyInput.value = savedKey;
@@ -263,11 +282,25 @@ const initKebabMenu = () => {
   testModeBtn.setAttribute('aria-pressed', String(testModeActive));
   testModeBtn.classList.toggle('active', testModeActive);
 
-  // Open/close toggle
-  btn.addEventListener('click', () => {
-    const isOpen = !popover.hidden;
-    popover.hidden = isOpen;
-    btn.classList.toggle('active', !isOpen);
+  // Main kebab button: toggle sub-buttons
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = !subButtons.hidden;
+    if (isOpen) {
+      closeKebabMenu();
+    } else {
+      subButtons.hidden = false;
+      apiPanel.hidden = true;
+      btn.classList.add('active');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  // API Key sub-button: toggle the API panel
+  apiKeyBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = !apiPanel.hidden;
+    apiPanel.hidden = isOpen;
   });
 
   // Save API key
@@ -285,8 +318,9 @@ const initKebabMenu = () => {
     }, 2000);
   });
 
-  // Test mode toggle — swaps state + map sources between Oregon and DC fixtures
-  testModeBtn.addEventListener('click', () => {
+  // Test mode sub-button — swaps state + map sources between Oregon and DC fixtures
+  testModeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
     const isActive = testModeBtn.getAttribute('aria-pressed') === 'true';
     const next = !isActive;
     testModeBtn.setAttribute('aria-pressed', String(next));
@@ -302,11 +336,25 @@ const initKebabMenu = () => {
     }
   });
 
-  // Close when clicking outside
+  // About sub-button — open info modal
+  aboutBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeKebabMenu();
+    document.getElementById('infoModal').classList.add('visible');
+  });
+
+  // Close info modal
+  document.getElementById('closeInfoModal').addEventListener('click', () => {
+    document.getElementById('infoModal').classList.remove('visible');
+  });
+
+  // Close when clicking outside the kebab group
   document.addEventListener('click', (e) => {
-    if (!popover.hidden && !popover.contains(e.target) && !btn.contains(e.target)) {
-      popover.hidden = true;
-      btn.classList.remove('active');
+    const group = document.getElementById('kebabGroup');
+    const apiPanelEl = document.getElementById('kebabApiPanel');
+    if (subButtons.hidden && apiPanelEl.hidden) return;
+    if (!group.contains(e.target) && !apiPanelEl.contains(e.target)) {
+      closeKebabMenu();
     }
   });
 };
@@ -468,16 +516,10 @@ const initUI = () => {
         o.hidden = true;
       });
       if (hadOpenOverlay) { restoreMapView(); resetViewportScale(); }
-      const settingsPopover = document.getElementById('settingsPopover');
-      if (!settingsPopover.hidden) {
-        settingsPopover.hidden = true;
-        document.getElementById('btnSettings').classList.remove('active');
-      }
-      const kebabPopover = document.getElementById('kebabPopover');
-      if (!kebabPopover.hidden) {
-        kebabPopover.hidden = true;
-        document.getElementById('btnKebab').classList.remove('active');
-      }
+      // Close info modal if open
+      document.getElementById('infoModal').classList.remove('visible');
+      // Close kebab sub-buttons / panels
+      closeKebabMenu();
     }
   });
 };

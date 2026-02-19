@@ -81,8 +81,8 @@ body {
   box-shadow: 0 2px 8px rgba(34, 197, 94, 0.4);
 }
 
-/* Settings button active state */
-#btnSettings.active {
+/* Kebab active state */
+#btnKebab.active {
   background: #1b1b1b;
   color: #fff;
 }
@@ -202,8 +202,8 @@ body {
 /* ========== Settings Popover ========== */
 .settings-popover {
   position: fixed;
-  right: 128px;
-  bottom: 132px;
+  left: 92px;  /* default fallback; JS overrides to be right of layers button */
+  top: 80px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -218,32 +218,97 @@ body {
 
 .settings-popover[hidden] { display: none; }
 
-/* ========== Kebab Popover ========== */
-.kebab-popover {
-  position: fixed;
-  left: 128px;
-  top: 12px;
+/* ========== Kebab Expanding Sub-Buttons ========== */
+
+/* The kebab group is a flex column so sub-buttons stack below the main button */
+#kebabGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.kebab-sub-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: kebab-expand 0.18s ease-out;
+}
+
+.kebab-sub-buttons[hidden] { display: none; }
+
+@keyframes kebab-expand {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Each sub-button: same circle as main map buttons, but slightly smaller */
+.kebab-sub-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
+  border: none;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+  color: #333;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  position: relative;
+}
+
+.kebab-sub-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+.kebab-sub-label {
+  font-size: 0.45rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  line-height: 1;
+  color: #555;
+}
+
+.kebab-sub-btn:active {
+  transform: scale(0.92);
+}
+
+/* Active state for test mode button */
+.kebab-sub-btn.active {
+  background: #1b1b1b;
+  color: #fff;
+}
+.kebab-sub-btn.active .kebab-sub-label {
+  color: rgba(255,255,255,0.7);
+}
+
+/* ========== API Key Panel (inline below sub-buttons) ========== */
+.kebab-api-panel {
+  position: fixed;
+  left: 24px;
+  top: 80px; /* below the kebab button */
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 12px;
-  padding: 12px;
+  padding: 14px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
   z-index: 25;
-  min-width: 260px;
+  width: min(280px, calc(100vw - 48px));
+  animation: kebab-expand 0.15s ease-out;
 }
 
-.kebab-popover[hidden] { display: none; }
-
-.kebab-section {
-  padding: 8px 4px;
-}
-
-.kebab-divider {
-  height: 1px;
-  background: rgba(0,0,0,0.08);
-  margin: 4px 0;
-}
+.kebab-api-panel[hidden] { display: none; }
 
 .kebab-label {
   display: block;
@@ -270,6 +335,7 @@ body {
   color: #1b1b1b;
   outline: none;
   min-width: 0;
+  font-family: inherit;
 }
 
 .kebab-api-input:focus {
@@ -287,6 +353,7 @@ body {
   white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+  font-family: inherit;
 }
 
 .kebab-save-btn:active { transform: scale(0.95); }
@@ -296,55 +363,6 @@ body {
   color: #888;
   margin: 6px 0 0 0;
   min-height: 1em;
-}
-
-.kebab-toggle-btn {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  padding: 10px 8px;
-  border: none;
-  border-radius: 8px;
-  background: transparent;
-  cursor: pointer;
-  font-size: 0.95rem;
-  color: #333;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-}
-
-.kebab-toggle-btn:active { transform: scale(0.97); }
-
-.kebab-toggle-indicator {
-  width: 40px;
-  height: 24px;
-  border-radius: 12px;
-  background: #ccc;
-  position: relative;
-  flex-shrink: 0;
-  transition: background 0.15s ease;
-}
-
-.kebab-toggle-indicator::after {
-  content: '';
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #fff;
-  top: 3px;
-  left: 3px;
-  transition: transform 0.15s ease;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-}
-
-.kebab-toggle-btn.active .kebab-toggle-indicator {
-  background: #1b1b1b;
-}
-
-.kebab-toggle-btn.active .kebab-toggle-indicator::after {
-  transform: translateX(16px);
 }
 
 /* Category toggle buttons (used in settings popover) */
@@ -687,6 +705,132 @@ body {
   text-align: center;
   color: #999;
   font-size: 0.95rem;
+}
+
+/* ========== About Modal ========== */
+.about-modal-content {
+  max-width: 480px;
+}
+
+.about-body {
+  padding: 8px 0 16px;
+}
+
+.about-credit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0 16px;
+  gap: 14px;
+}
+
+.about-avatar-pair {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.about-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.about-photo {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e5e5e5;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.about-photo-fallback {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #e5e5e5;
+}
+
+.about-photo-fallback svg {
+  width: 48px;
+  height: 48px;
+}
+
+.about-claude-avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #e5e5e5;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.about-claude-avatar svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.about-avatar-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: #555;
+}
+
+.about-heart {
+  font-size: 1.8rem;
+  color: #ef4444;
+  margin-bottom: 24px;
+  line-height: 1;
+}
+
+.about-tagline {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1b1b1b;
+  text-align: center;
+  margin: 0;
+}
+
+.about-divider {
+  border: none;
+  border-top: 1px solid #e5e5e5;
+  margin: 16px 0;
+}
+
+.about-info {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+.about-info p {
+  margin: 0 0 12px;
+}
+
+.about-info h4 {
+  margin: 16px 0 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: #888;
+}
+
+.about-info ul {
+  margin: 0 0 8px;
+  padding-left: 18px;
+}
+
+.about-info li {
+  margin-bottom: 4px;
 }
 
 /* ========== View on Map Button ========== */

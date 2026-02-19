@@ -11,34 +11,60 @@
     <!-- Fullscreen map -->
     <div id="mapContainer"></div>
 
-    <!-- Top-left kebab menu -->
-    <div class="btn-group-top-left">
-      <button id="btnKebab" aria-label="Menu">
+    <!-- Top-left kebab menu + expanding sub-buttons -->
+    <div class="btn-group-top-left" id="kebabGroup">
+      <button id="btnKebab" aria-label="Menu" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <circle cx="12" cy="5" r="2" fill="currentColor"/>
           <circle cx="12" cy="12" r="2" fill="currentColor"/>
           <circle cx="12" cy="19" r="2" fill="currentColor"/>
         </svg>
       </button>
-    </div>
-
-    <!-- Kebab popover -->
-    <div class="kebab-popover" id="kebabPopover" hidden>
-      <div class="kebab-section">
-        <label class="kebab-label" for="apiKeyInput">PirateWeather API Key</label>
-        <div class="kebab-api-row">
-          <input type="password" id="apiKeyInput" class="kebab-api-input" placeholder="Leave blank to use default" autocomplete="off" spellcheck="false"/>
-          <button id="btnSaveApiKey" class="kebab-save-btn">Save</button>
-        </div>
-        <p class="kebab-hint" id="apiKeyHint"></p>
-      </div>
-      <div class="kebab-divider"></div>
-      <div class="kebab-section">
-        <button id="btnTestMode" class="kebab-toggle-btn" aria-pressed="false">
-          <span class="kebab-toggle-indicator"></span>
-          <span>Test Mode</span>
+      <!-- Expanding sub-buttons (hidden until kebab is tapped) -->
+      <div class="kebab-sub-buttons" id="kebabSubButtons" hidden>
+        <button id="btnKebabLayers" class="kebab-sub-btn" aria-label="Map Layers">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <polygon points="12,2 22,8 12,14 2,8" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="none"/>
+            <polyline points="2,12 12,18 22,12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <polyline points="2,16 12,22 22,16" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          <span class="kebab-sub-label">Layers</span>
+        </button>
+        <button id="btnKebabApiKey" class="kebab-sub-btn" aria-label="API Key">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="8" cy="15" r="3" stroke="currentColor" stroke-width="2" fill="none"/>
+            <path d="M11 12l9-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M18 5l2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M16 7l2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="kebab-sub-label">API Key</span>
+        </button>
+        <button id="btnKebabTestMode" class="kebab-sub-btn" aria-label="Test Mode" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M9 3v8l-4 8h14l-4-8V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="9" y1="3" x2="15" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="kebab-sub-label">Test</span>
+        </button>
+        <button id="btnKebabAbout" class="kebab-sub-btn" aria-label="About">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"/>
+            <line x1="12" y1="11" x2="12" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="12" cy="8" r="1" fill="currentColor"/>
+          </svg>
+          <span class="kebab-sub-label">About</span>
         </button>
       </div>
+    </div>
+
+    <!-- API Key panel (shown below kebab sub-buttons) -->
+    <div class="kebab-api-panel" id="kebabApiPanel" hidden>
+      <label class="kebab-label" for="apiKeyInput">PirateWeather API Key</label>
+      <div class="kebab-api-row">
+        <input type="password" id="apiKeyInput" class="kebab-api-input" placeholder="Leave blank to use default" autocomplete="off" spellcheck="false"/>
+        <button id="btnSaveApiKey" class="kebab-save-btn">Save</button>
+      </div>
+      <p class="kebab-hint" id="apiKeyHint"></p>
     </div>
 
     <!-- Top-right button group -->
@@ -120,14 +146,7 @@
           <line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="2"/>
         </svg>
       </button>
-      <button id="btnSettings" aria-label="Map layer settings">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <polygon points="12,2 22,8 12,14 2,8" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="none"/>
-          <polyline points="2,12 12,18 22,12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-          <polyline points="2,16 12,22 22,16" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-        </svg>
-      </button>
-      <button id="btnGpsToggle" aria-label="Toggle GPS tracking" aria-pressed="false">
+<button id="btnGpsToggle" aria-label="Toggle GPS tracking" aria-pressed="false">
         <svg class="gps-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <polygon points="12,2 19,21 12,17 5,21" fill="currentColor"/>
         </svg>
@@ -262,34 +281,60 @@
       </div>
     </div>
 
-    <!-- Info Modal -->
+    <!-- Info Modal (About) -->
     <div id="infoModal" class="sources-modal" role="dialog" aria-modal="true" aria-labelledby="infoModalTitle">
-      <div class="sources-modal-content">
+      <div class="sources-modal-content about-modal-content">
         <div class="sources-modal-header">
-          <h3 id="infoModalTitle">About This App</h3>
+          <h3 id="infoModalTitle">About</h3>
           <button class="sources-modal-close" id="closeInfoModal" aria-label="Close dialog">Close</button>
         </div>
-        <div class="sources-list" style="max-height: none;">
-          <div style="padding: 8px 0; line-height: 1.6;">
-            <p style="margin: 0 0 16px;"><strong>Oregon Desert Trail Weather</strong> provides real-time weather forecasts for all 25 sections of the 750-mile Oregon Desert Trail.</p>
+        <div class="about-body">
 
-            <h4 style="margin: 24px 0 8px; font-size: 1rem; font-weight: 600;">Data Architecture</h4>
-            <ul style="margin: 0 0 16px; padding-left: 20px;">
-              <li style="margin-bottom: 8px;"><strong>Weather:</strong> PirateWeather API for hourly forecasts</li>
-              <li style="margin-bottom: 8px;"><strong>Route & Waypoints:</strong> GPS coordinates from authoritative GPX files</li>
-              <li style="margin-bottom: 8px;"><strong>Elevation:</strong> Profile data derived from USGS DEMs</li>
-              <li style="margin-bottom: 8px;"><strong>Map Tiles:</strong> PMTiles vector basemap with contours</li>
+          <!-- Credit row -->
+          <div class="about-credit">
+            <div class="about-avatar-pair">
+              <div class="about-avatar">
+                <img src="img/meatwagon.jpg" alt="Meatwagon on the ODT" class="about-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+                <div class="about-photo-fallback" style="display:none">
+                  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="#888"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="#888"/></svg>
+                </div>
+                <span class="about-avatar-name">Meatwagon</span>
+              </div>
+              <div class="about-heart">♥</div>
+              <div class="about-avatar">
+                <!-- Claude avatar: a simple "C" monogram circle -->
+                <div class="about-claude-avatar">
+                  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="40" cy="40" r="40" fill="#D97757"/>
+                    <text x="40" y="54" text-anchor="middle" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#fff">C</text>
+                  </svg>
+                </div>
+                <span class="about-avatar-name">Claude</span>
+              </div>
+            </div>
+            <p class="about-tagline">Made with Love by Claude and Meatwagon</p>
+          </div>
+
+          <hr class="about-divider"/>
+
+          <!-- App info -->
+          <div class="about-info">
+            <p><strong>Oregon Desert Trail Weather</strong> provides real-time forecasts for all 25 sections of the 750-mile ODT.</p>
+
+            <h4>Data Sources</h4>
+            <ul>
+              <li><strong>Weather:</strong> PirateWeather API</li>
+              <li><strong>Route & Waypoints:</strong> Authoritative GPX files</li>
+              <li><strong>Elevation:</strong> USGS DEM data</li>
+              <li><strong>Map Tiles:</strong> PMTiles vector basemap</li>
             </ul>
 
-            <h4 style="margin: 24px 0 8px; font-size: 1rem; font-weight: 600;">Features</h4>
-            <ul style="margin: 0 0 16px; padding-left: 20px;">
-              <li style="margin-bottom: 8px;">852 waypoints with precise GPS coordinates</li>
-              <li style="margin-bottom: 8px;">325 water sources with reliability ratings</li>
-              <li style="margin-bottom: 8px;">Interactive map with terrain visualization</li>
-              <li style="margin-bottom: 8px;">Elevation profiles for route planning</li>
+            <h4>By the Numbers</h4>
+            <ul>
+              <li>852 waypoints with precise GPS coordinates</li>
+              <li>325 water sources with reliability ratings</li>
+              <li>25 trail sections · 750 miles</li>
             </ul>
-
-            <p style="margin: 16px 0 0; font-size: 0.9rem; color: #666;">Built for Oregon Desert Trail hikers. Data updated regularly.</p>
           </div>
         </div>
       </div>
