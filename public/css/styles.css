@@ -101,61 +101,67 @@ body {
   z-index: 20;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  padding: 0 4px;
+  align-items: stretch;
+  padding: 0;
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* Mile + Nearest grouped as a pair */
+/* Mile + Nearest grouped as a pair — left side, column stacked */
 .info-group-pair {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4px 8px 4px 10px;
+  gap: 2px;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(0,0,0,0.08);
 }
 
-.info-item-nearest {
-  padding-left: 2px;
-  border-left: 1px solid rgba(0,0,0,0.1);
-}
-
-/* Each info-item is a horizontal row: icon label value */
-.info-item {
+.info-group-pair .info-item {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: baseline;
   gap: 4px;
-  padding: 4px 6px;
+  padding: 0;
+}
+
+/* The 4 data items fill remaining space equally */
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  flex: 1;
+  padding: 4px 2px;
   min-width: 0;
 }
 
 .info-item[role="button"] {
   cursor: pointer;
-  border-radius: 8px;
 }
 
 .info-item[role="button"]:active {
   background: rgba(0,0,0,0.05);
-  transform: scale(0.95);
 }
 
 .info-icon {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   flex-shrink: 0;
 }
 
 .info-label {
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   text-transform: uppercase;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.2px;
   color: #737373;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .info-value {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: #1b1b1b;
   line-height: 1;
@@ -163,15 +169,21 @@ body {
 }
 
 .info-value-mile {
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .info-value-nearest {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  max-width: 110px;
+  max-width: 90px;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Mile label in pair */
+#mileLabel {
+  font-size: 0.6rem;
 }
 
 .info-value.warning {
@@ -1173,14 +1185,14 @@ thead th.night-header { background: #ebebf7; }
 
 /* ========== Map Controls ========== */
 .maplibregl-ctrl-scale {
-  background: rgba(255, 255, 255, 0.95) !important;
-  border: 2px solid #1b1b1b !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+  border: 1.5px solid rgba(0,0,0,0.4) !important;
   border-top: none !important;
   color: #1b1b1b !important;
-  font-size: 16px !important;
-  font-weight: 700 !important;
-  padding: 6px 10px !important;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  padding: 2px 6px !important;
+  box-shadow: none !important;
 }
 
 .maplibregl-ctrl-top-left,
@@ -1196,14 +1208,14 @@ thead th.night-header { background: #ebebf7; }
 
 /* Zoom level display */
 .zoom-level-display {
-  background: rgba(255, 255, 255, 0.9);
-  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 2px 6px;
   border-radius: 4px;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 600;
   color: #333;
-  margin-top: 8px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  margin-top: 4px;
+  box-shadow: none;
 }
 
 .maplibregl-ctrl-bottom-left .maplibregl-ctrl-scale {
