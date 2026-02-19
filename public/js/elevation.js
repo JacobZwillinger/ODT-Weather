@@ -95,7 +95,7 @@ const draw = () => {
 
   const parent = canvas.parentElement;
   const displayWidth = parent ? parent.clientWidth - 32 : window.innerWidth - 32;
-  const statsBarHeight = 96;  // single row stats bar
+  const statsBarHeight = 72;  // single row stats bar
   // Total canvas height = all available space in parent (minus horizontal padding equiv)
   // We use the parent's full clientHeight minus a small margin so nothing gets clipped
   const totalHeight = parent
@@ -115,13 +115,13 @@ const draw = () => {
 
   // ---- All font sizes in one place ----
   const FONT = {
-    statHeader: isMobile ? '13px system-ui' : '14px system-ui',
-    statLabel:  isMobile ? '14px system-ui' : '15px system-ui',
-    statValue:  isMobile ? 'bold 24px system-ui' : 'bold 26px system-ui',
-    yAxis:      isMobile ? 'bold 22px system-ui' : 'bold 24px system-ui',
-    xMile:      isMobile ? 22 : 24,   // px number (used in template literal)
-    you:        isMobile ? 'bold 20px system-ui' : 'bold 22px system-ui',
-    drag:       isMobile ? '16px system-ui' : '18px system-ui',
+    statHeader: isMobile ? '11px system-ui' : '12px system-ui',
+    statLabel:  isMobile ? '11px system-ui' : '12px system-ui',
+    statValue:  isMobile ? 'bold 14px system-ui' : 'bold 15px system-ui',
+    yAxis:      isMobile ? 'bold 11px system-ui' : 'bold 12px system-ui',
+    xMile:      isMobile ? 11 : 12,   // px number (used in template literal)
+    you:        isMobile ? 'bold 12px system-ui' : 'bold 13px system-ui',
+    drag:       isMobile ? '11px system-ui' : '12px system-ui',
   };
 
   _startMile = Math.max(0, Math.min(_startMile, maxMile - _windowMiles));
@@ -145,7 +145,7 @@ const draw = () => {
   // Center divider
   ctx.strokeStyle = '#aaa';
   ctx.lineWidth = 1.5;
-  ctx.beginPath(); ctx.moveTo(displayWidth / 2, 6); ctx.lineTo(displayWidth / 2, statsBarHeight - 6); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(displayWidth / 2, 4); ctx.lineTo(displayWidth / 2, statsBarHeight - 4); ctx.stroke();
 
   const halfW = displayWidth / 2;
   const colW  = halfW / 3;
@@ -154,20 +154,20 @@ const draw = () => {
   ctx.fillStyle = '#999';
   ctx.font = FONT.statHeader;
   ctx.textAlign = 'center';
-  ctx.fillText('FROM GPS',  halfW / 2,                        14);
-  ctx.fillText('FROM VIEW', displayWidth / 2 + halfW / 2,     14);
+  ctx.fillText('FROM GPS',  halfW / 2,                        11);
+  ctx.fillText('FROM VIEW', displayWidth / 2 + halfW / 2,     11);
 
   // Column dividers
   [1, 2, 4, 5].forEach(i => {
     ctx.strokeStyle = '#e2e2e2'; ctx.lineWidth = 1;
     ctx.beginPath();
-    ctx.moveTo(colW * i, 20); ctx.lineTo(colW * i, statsBarHeight - 4);
+    ctx.moveTo(colW * i, 14); ctx.lineTo(colW * i, statsBarHeight - 4);
     ctx.stroke();
   });
 
-  const labelY = 33;
-  const gainY  = 63;
-  const lossY  = 92;
+  const labelY = 24;
+  const gainY  = 44;
+  const lossY  = 62;
 
   windows.forEach((w, i) => {
     const gcx = colW * i + colW / 2;
@@ -197,8 +197,8 @@ const draw = () => {
   const mileFontSize = FONT.xMile;
   const overviewH = 8;
   const padding = isMobile
-    ? { top: 24, right: 16, bottom: mileFontSize + 6 + 8 + overviewH + 12, left: 108 }
-    : { top: 28, right: 20, bottom: mileFontSize + 6 + 8 + overviewH + 14, left: 124 };
+    ? { top: 18, right: 12, bottom: mileFontSize + 6 + 8 + overviewH + 10, left: 64 }
+    : { top: 20, right: 14, bottom: mileFontSize + 6 + 8 + overviewH + 12, left: 72 };
   const chartWidth  = displayWidth - padding.left - padding.right;
   const chartHeight = displayHeight - padding.top - padding.bottom;
 
@@ -454,18 +454,18 @@ const showWaypointTooltip = (wp, canvas, cx, cy) => {
     position: absolute;
     background: rgba(0,0,0,0.88);
     color: #fff;
-    padding: 14px 18px;
-    border-radius: 12px;
-    border-left: 5px solid ${color};
-    font: bold 20px system-ui;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border-left: 4px solid ${color};
+    font: bold 13px system-ui;
     pointer-events: none;
     z-index: 9999;
-    max-width: 340px;
+    max-width: 260px;
     line-height: 1.4;
     white-space: normal;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
   `;
-  tip.innerHTML = `<div>${name}</div><div style="font-weight:500;font-size:17px;opacity:0.75;margin-top:4px">${mile}${sub}</div>`;
+  tip.innerHTML = `<div>${name}</div><div style="font-weight:500;font-size:12px;opacity:0.75;margin-top:3px">${mile}${sub}</div>`;
 
   // Position relative to the canvas's offset parent
   const canvasRect = canvas.getBoundingClientRect();
