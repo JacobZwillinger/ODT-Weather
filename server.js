@@ -65,8 +65,8 @@ app.get("/api/forecast", async (req, res) => {
       summary: day.summary || ""
     }));
 
-    // Format hourly forecast for 48 hours
-    const hourly = hourlyData.slice(0, 48).map((h) => ({
+    // Format hourly forecast for 96 hours (4 days)
+    const hourly = hourlyData.slice(0, 96).map((h) => ({
       time: h.time,
       icon: h.icon || "",
       temp: h.temperature,

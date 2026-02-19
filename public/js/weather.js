@@ -1,5 +1,5 @@
 import { sectionPoints, weatherIcons } from './config.js';
-import { getDayHeaders, getMapUrl } from './utils.js';
+import { getDayHeaders } from './utils.js';
 
 const getIcon = (iconName) => {
   return weatherIcons[iconName] || weatherIcons["cloudy"];
@@ -30,7 +30,7 @@ const sliceDayNight = (hourlyData) => {
   }
 
   const periods = [];
-  const days = dateOrder.slice(0, 3);
+  const days = dateOrder.slice(0, 4);
 
   days.forEach((dateKey, i) => {
     const hours = byDate[dateKey] || [];
@@ -53,7 +53,7 @@ const sliceDayNight = (hourlyData) => {
     }
   });
 
-  return periods.slice(0, 6);
+  return periods.slice(0, 8);
 };
 
 // Summarize a set of hours into a single display object
@@ -180,7 +180,7 @@ export const renderWeatherTable = (forecasts) => {
       <tr>
         <td class="section-cell"><div class="section-indicator section-${point.section}"></div></td>
         <td class="location-cell">
-          <div class="location-name"><a href="${getMapUrl(point.lat, point.lon)}" target="_blank" rel="noopener">${point.name}</a></div>
+          <div class="location-name">${point.name}</div>
           <div class="elevation">${point.elevation.toLocaleString()}′</div>
         </td>
         <td class="mile">${point.mile}</td>
@@ -281,7 +281,7 @@ const adaptPirateWeatherResponse = (data, response) => {
       icon: day.icon || '',
       summary: day.summary || ''
     })),
-    hourly: hourlyData.slice(0, 48).map(h => ({
+    hourly: hourlyData.slice(0, 96).map(h => ({
       time: h.time,
       icon: h.icon || '',
       temp: h.temperature,

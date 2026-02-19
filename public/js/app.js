@@ -6,6 +6,7 @@ import { showMapInfo, scheduleMapInit, toggleCategoryLayer, swapCategoryData, on
 import { TEST_DATA } from './test-data.js';
 import { initGpsButton, getLastPosition } from './gps.js';
 import { renderElevationChart, jumpToCurrentMile } from './elevation.js';
+import { getMoonData } from './moon.js';
 
 // Safe fetch with error handling
 const safeFetch = async (url, defaultValue = []) => {
@@ -280,6 +281,57 @@ const initUI = () => {
   document.getElementById('btnWeather').addEventListener('click', () => {
     saveMapView();
     openOverlay('weatherOverlay');
+  });
+
+  // Moon panel
+  const moonPanel = document.getElementById('moonPanel');
+  const moonPanelContent = document.getElementById('moonPanelContent');
+  document.getElementById('btnMoon').addEventListener('click', () => {
+    if (!moonPanel.hidden) {
+      moonPanel.hidden = true;
+      return;
+    }
+    // Use central ODT location (Burns, OR area) and current timezone
+    const lat = 43.5;
+    const lon = -118.9;
+    const now = new Date();
+    const tzOffsetMin = now.getTimezoneOffset() * -1; // JS returns negative offset, we need positive for west
+    const moonData = getMoonData(now, lat, lon, tzOffsetMin);
+    moonPanelContent.innerHTML = `
+      <div class="moon-panel-inner">
+        <div class="moon-phase-row">
+          <span class="moon-phase-emoji">${moonData.emoji}</span>
+          <div class="moon-phase-info">
+            <div class="moon-phase-name">${moonData.name}</div>
+            <div class="moon-phase-illumination">${moonData.illumination}% illuminated</div>
+            <div class="moon-phase-age">Day ${moonData.age} of 29.5</div>
+          </div>
+        </div>
+        <div class="moon-times-row">
+          <div class="moon-time-card">
+            <div class="moon-time-label">Moonrise</div>
+            <div class="moon-time-value">${moonData.rise}</div>
+          </div>
+          <div class="moon-time-card">
+            <div class="moon-time-label">Moonset</div>
+            <div class="moon-time-value">${moonData.set}</div>
+          </div>
+        </div>
+        <div class="moon-location-note">Times approximate for ODT corridor (Burns, OR area) · Your local time</div>
+        <div class="moon-panel-close-row">
+          <button class="moon-panel-close" id="btnMoonClose">Close</button>
+        </div>
+      </div>
+    `;
+    moonPanel.hidden = false;
+    document.getElementById('btnMoonClose').addEventListener('click', () => {
+      moonPanel.hidden = true;
+    });
+  });
+
+  // Hide moon panel when weather overlay closes
+  document.querySelectorAll('#weatherOverlay .overlay-close').forEach(btn => {
+    btn.addEventListener('click', () => { moonPanel.hidden = true; });
   });
 
   // Top-right: GPS Center button

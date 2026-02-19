@@ -439,21 +439,53 @@ body {
   background: #e5e5e5;
 }
 
-.elev-jump-btn {
-  background: #1d4ed8;
-  color: #fff;
+/* Floating circular buttons for elevation overlay (bottom-right, match map button style) */
+.elev-float-btns {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  bottom: max(24px, calc(24px + env(safe-area-inset-bottom)));
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 10;
+}
+
+.elev-float-btn {
+  width: 96px;
+  height: 96px;
+  border-radius: 48px;
   border: none;
-  border-radius: 8px;
-  padding: 10px 16px;
-  font-size: 0.9rem;
-  font-weight: 600;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  min-height: 44px;
-  white-space: nowrap;
+  color: #333;
+  padding: 0;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+  /* override .overlay-close styles when both classes present */
+  min-width: unset;
+  min-height: unset;
+  font-size: unset;
+  font-weight: unset;
 }
-.elev-jump-btn:active { background: #1e40af; }
+
+.elev-float-btn svg {
+  width: 44px;
+  height: 44px;
+}
+
+.elev-float-btn:active {
+  transform: scale(0.92);
+}
+
+/* Legacy elev-jump-btn kept for any references */
+.elev-jump-btn { display: none; }
 
 .overlay-body {
   flex: 1;
@@ -462,12 +494,18 @@ body {
 }
 
 /* Elevation overlay — canvas fills the available body space */
+#elevationOverlay {
+  position: fixed;
+  inset: 0;
+}
+
 #elevationOverlay .overlay-body {
   display: flex;
   align-items: stretch;
   justify-content: stretch;
-  padding: 24px 16px;
+  padding: 16px;
   overflow: hidden;
+  position: relative;
 }
 
 #elevationOverlay canvas {
@@ -749,6 +787,132 @@ th {
 .hi-precip.precip-mod { color: #3b82f6; }
 .hi-precip.precip-heavy { color: #dc2626; }
 .hi-amount { font-size: 0.78rem; color: #3b82f6; }
+
+/* ========== Moon Button & Panel ========== */
+.moon-btn {
+  background: rgba(30, 27, 75, 0.9);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  min-height: 44px;
+  line-height: 1;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.moon-btn:active { filter: brightness(1.2); }
+
+.moon-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: rgba(20, 15, 60, 0.97);
+  color: #e8e4ff;
+  padding: 20px 24px;
+  padding-top: max(20px, env(safe-area-inset-top));
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  font-family: system-ui, sans-serif;
+}
+
+.moon-panel[hidden] { display: none; }
+
+.moon-panel-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.moon-phase-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.moon-phase-emoji {
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+.moon-phase-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.moon-phase-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.moon-phase-illumination {
+  font-size: 1rem;
+  color: #b0a8ff;
+}
+
+.moon-phase-age {
+  font-size: 0.9rem;
+  color: #8080cc;
+}
+
+.moon-times-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.moon-time-card {
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.moon-time-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #8080cc;
+}
+
+.moon-time-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.moon-panel-close-row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.moon-panel-close {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  border-radius: 6px;
+  padding: 8px 20px;
+  color: #e8e4ff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.moon-panel-close:active { background: rgba(255,255,255,0.25); }
+
+.moon-location-note {
+  font-size: 0.8rem;
+  color: #6060aa;
+  margin-top: 4px;
+}
 
 .loading {
   padding: 20px;

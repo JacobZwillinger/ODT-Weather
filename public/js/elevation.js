@@ -96,14 +96,18 @@ const draw = () => {
   const parent = canvas.parentElement;
   const displayWidth = parent ? parent.clientWidth - 32 : window.innerWidth - 32;
   const statsBarHeight = 96;  // single row stats bar
-  const displayHeight = parent
-    ? Math.max(parent.clientHeight - 48, 200)
-    : Math.max(window.innerHeight * 0.6, 200);
+  // Total canvas height = all available space in parent (minus horizontal padding equiv)
+  // We use the parent's full clientHeight minus a small margin so nothing gets clipped
+  const totalHeight = parent
+    ? Math.max(parent.clientHeight - 32, 300)
+    : Math.max(window.innerHeight * 0.6, 300);
+  // Chart area is total minus stats bar
+  const displayHeight = totalHeight - statsBarHeight;
 
   canvas.width = displayWidth * dpr;
-  canvas.height = (displayHeight + statsBarHeight) * dpr;
+  canvas.height = totalHeight * dpr;
   canvas.style.width = displayWidth + 'px';
-  canvas.style.height = (displayHeight + statsBarHeight) + 'px';
+  canvas.style.height = totalHeight + 'px';
   ctx.scale(dpr, dpr);
 
   const isMobile = displayWidth < 500;
@@ -403,6 +407,9 @@ const onPointerMove = (e) => {
   const parent = canvas.parentElement;
   const displayWidth = parent ? parent.clientWidth - 32 : window.innerWidth - 32;
   const isMobile = displayWidth < 500;
+  const statsBarHeight = 96;
+  const totalHeight = parent ? Math.max(parent.clientHeight - 32, 300) : Math.max(window.innerHeight * 0.6, 300);
+  const displayHeight = totalHeight - statsBarHeight;
   const chartWidth = displayWidth - (isMobile ? 108 + 16 : 124 + 20);
   const pxPerMile = chartWidth / _windowMiles;
   const deltaMile = -deltaX / pxPerMile;
