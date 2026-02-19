@@ -1190,6 +1190,33 @@ thead th.night-header { background: #ebebf7; }
   font-style: italic;
 }
 
+.weather-status-banner {
+  margin: 12px 12px 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  border: 1px solid transparent;
+}
+
+.weather-status-info {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1e3a8a;
+}
+
+.weather-status-warning {
+  background: #fffbeb;
+  border-color: #fde68a;
+  color: #92400e;
+}
+
+.weather-status-error {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
 .error-banner {
   background: #fef2f2;
   border: 1px solid #fecaca;
@@ -1506,4 +1533,3 @@ button { touch-action: manipulation; }
     background: #333;
   }
 }
-
