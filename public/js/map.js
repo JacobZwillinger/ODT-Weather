@@ -2,7 +2,7 @@ import { sectionPoints, WATER_WARNING_MILES, MAP_INIT_DELAY_MS, CATEGORY_CONFIG 
 import { state, loadElevationProfile, findNearestWaypoint, findMileFromCoords, findNextWater, findNextReliableWater, findNextOtherWater, findNextTown, getWaypointShortName, OFF_TRAIL_THRESHOLD } from './utils.js';
 import { renderElevationChart } from './elevation.js';
 import { showWaypointDetail, showWaterDetail, showTownDetail } from './modals.js';
-import { setPositionUpdateCallback, shouldAllowMapClicks } from './gps.js';
+import { setPositionUpdateCallback, setHeadingUpdateCallback, shouldAllowMapClicks } from './gps.js';
 
 let map = null;
 let mapInitialized = false;
@@ -645,6 +645,8 @@ export const initMap = () => {
 
   // Register GPS position update callback for map marker
   setPositionUpdateCallback(updateUserLocationMarker);
+  // Register compass heading callback for marker rotation
+  setHeadingUpdateCallback(updateUserLocationHeading);
 };
 
 // Update user location marker on the map
@@ -716,8 +718,14 @@ const updateUserLocationMarker = (lat, lon, accuracy) => {
   if (!userLocationMarker) {
     const el = document.createElement('div');
     el.className = 'user-location-marker pulsing';
+    // SVG: circle base + upward-pointing arrow cone for direction
+    el.innerHTML = `
+      <svg class="location-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+        <circle cx="20" cy="20" r="8" fill="#3b82f6" stroke="#fff" stroke-width="2.5"/>
+        <path class="location-cone" d="M20 2 L26 16 L20 13 L14 16 Z" fill="#3b82f6" opacity="0.85"/>
+      </svg>`;
 
-    userLocationMarker = new maplibregl.Marker({ element: el })
+    userLocationMarker = new maplibregl.Marker({ element: el, anchor: 'center' })
       .setLngLat(lngLat)
       .addTo(map);
 
@@ -736,6 +744,21 @@ const updateUserLocationMarker = (lat, lon, accuracy) => {
     }
   } else {
     userLocationMarker.setLngLat(lngLat);
+  }
+};
+
+// Update the rotation of the location marker arrow based on compass heading
+const updateUserLocationHeading = (heading) => {
+  if (!userLocationMarker) return;
+  const el = userLocationMarker.getElement();
+  const svg = el.querySelector('.location-arrow');
+  if (!svg) return;
+  if (heading === null) {
+    // No heading available — hide the cone, show only the circle
+    svg.querySelector('.location-cone').style.display = 'none';
+  } else {
+    svg.querySelector('.location-cone').style.display = '';
+    svg.style.transform = `rotate(${heading}deg)`;
   }
 };
 

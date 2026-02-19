@@ -1455,22 +1455,27 @@ thead th.night-header { background: #ebebf7; }
 
 /* ========== User Location Marker ========== */
 .user-location-marker {
-  width: 20px;
-  height: 20px;
-  background: #3b82f6;
-  border: 3px solid #fff;
-  border-radius: 50%;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.35));
 }
 
-.user-location-marker.pulsing {
-  animation: pulse 2s infinite;
+.location-arrow {
+  transition: transform 0.3s ease-out;
+  overflow: visible;
 }
 
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5); }
-  70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+.user-location-marker.pulsing .location-arrow circle {
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0% { stroke-width: 2.5; stroke: rgba(255,255,255,1); }
+  50% { stroke-width: 5; stroke: rgba(59,130,246,0.4); }
+  100% { stroke-width: 2.5; stroke: rgba(255,255,255,1); }
 }
 
 /* ========== Accessibility ========== */
@@ -1500,7 +1505,7 @@ button { touch-action: manipulation; }
 
 /* ========== Reduced Motion ========== */
 @media (prefers-reduced-motion: reduce) {
-  .user-location-marker.pulsing { animation: none; }
+  .user-location-marker.pulsing .location-arrow circle { animation: none; }
   .category-toggle-btn { transition: none; }
   .btn-group-top-left button,
   .btn-group-top-right button,
