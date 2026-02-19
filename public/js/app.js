@@ -141,35 +141,16 @@ const renderWaypointList = (activeFilters) => {
     </div>`;
   }).join('');
 
-  // Click handler: open detail modal with "View on Map"
+  // Click handler: fly directly to waypoint on map
   container.querySelectorAll('.waypoint-list-item').forEach(el => {
     el.addEventListener('click', () => {
-      const name = el.dataset.name;
-      const type = el.dataset.type;
-
-      if (type === 'sections') {
-        // Show section detail directly (sections aren't in allWaypoints)
-        const section = sectionPoints.find(s => s.name === name);
-        if (section) {
-          const modal = document.getElementById('waypointModal');
-          const title = document.getElementById('waypointModalTitle');
-          const detail = document.getElementById('waypointDetail');
-          if (modal && title && detail) {
-            title.textContent = section.name;
-            detail.innerHTML = `<p><strong>Mile:</strong> ${section.mile.toFixed(1)}</p><p><strong>Elevation:</strong> ${section.elevation.toLocaleString()} ft</p>`;
-            modal.classList.add('visible');
-          }
-        }
-      } else if (type === 'water') showWaterDetail(name);
-      else if (type === 'towns') showTownDetail(name);
-      else showWaypointDetail(name);
-
-      // Show "View on Map" button with coordinates
-      const viewBtn = document.getElementById('viewOnMapBtn');
-      viewBtn.hidden = false;
-      viewBtn.dataset.lat = el.dataset.lat;
-      viewBtn.dataset.lon = el.dataset.lon;
-      viewBtn.dataset.name = name;
+      const lat = parseFloat(el.dataset.lat);
+      const lon = parseFloat(el.dataset.lon);
+      if (!isNaN(lat) && !isNaN(lon) && window._odtMap) {
+        closeAllOverlays();
+        resetViewportScale();
+        window._odtMap.flyTo({ center: [lon, lat], zoom: 14, duration: 800 });
+      }
     });
   });
 };

@@ -583,9 +583,17 @@ body {
 
 .filter-btn.active {
   color: #1b1b1b;
-  border-bottom-color: #1b1b1b;
-  background: transparent;
+  border-bottom: 3px solid currentColor;
+  background: rgba(0,0,0,0.05);
 }
+
+/* Per-category active tint colors */
+.filter-btn[data-filter="reliable-water"].active { color: #3b82f6; background: rgba(59,130,246,0.08); }
+.filter-btn[data-filter="other-water"].active    { color: #94a3b8; background: rgba(148,163,184,0.10); }
+.filter-btn[data-filter="towns"].active          { color: #059669; background: rgba(5,150,105,0.08); }
+.filter-btn[data-filter="navigation"].active     { color: #8b5cf6; background: rgba(139,92,246,0.08); }
+.filter-btn[data-filter="toilets"].active        { color: #f59e0b; background: rgba(245,158,11,0.08); }
+.filter-btn[data-filter="sections"].active       { color: #7c3aed; background: rgba(124,58,237,0.08); }
 
 .filter-btn:active {
   background: rgba(0,0,0,0.04);
