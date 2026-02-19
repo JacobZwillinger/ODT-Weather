@@ -70,13 +70,15 @@
 
     <!-- Bottom info bar -->
     <div class="bottom-info-bar" id="bottomInfoBar">
-      <div class="info-item">
-        <span class="info-label" id="mileLabel">Mile</span>
-        <span class="info-value info-value-mile" id="mapCurrentMile">0.0</span>
-      </div>
-      <div class="info-item">
-        <span class="info-label">Nearest</span>
-        <span class="info-value info-value-nearest" id="mapNearestWaypoint">Start</span>
+      <div class="info-group-pair">
+        <div class="info-item">
+          <span class="info-label" id="mileLabel">Mile</span>
+          <span class="info-value info-value-mile" id="mapCurrentMile">0.0</span>
+        </div>
+        <div class="info-item info-item-nearest">
+          <span class="info-label">Nearest</span>
+          <span class="info-value info-value-nearest" id="mapNearestWaypoint">Start</span>
+        </div>
       </div>
       <div class="info-item" id="nextReliableWaterCard" role="button" tabindex="0" aria-label="Next reliable water source">
         <svg class="info-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -98,6 +100,14 @@
         </svg>
         <span class="info-label">Town</span>
         <div class="info-value" id="mapNextTown"><span>--</span></div>
+      </div>
+      <div class="info-item" id="nextSectionCard" role="button" tabindex="0" aria-label="Current trail section, click for sections list">
+        <svg class="info-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" stroke="#7c3aed" stroke-width="2" stroke-linejoin="round" fill="none"/>
+          <line x1="4" y1="22" x2="4" y2="15" stroke="#7c3aed" stroke-width="2"/>
+        </svg>
+        <span class="info-label">Section</span>
+        <span class="info-value" id="mapCurrentSection">--</span>
       </div>
     </div>
 
@@ -221,6 +231,7 @@
         <button class="filter-btn" data-filter="towns">Towns</button>
         <button class="filter-btn" data-filter="navigation">Navigation</button>
         <button class="filter-btn" data-filter="toilets">Toilets</button>
+        <button class="filter-btn" data-filter="sections">Sections</button>
       </div>
       <div class="overlay-body">
         <div id="waypointListContent" class="waypoint-list"></div>

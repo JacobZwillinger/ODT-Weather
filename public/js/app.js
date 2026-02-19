@@ -7,6 +7,7 @@ import { TEST_DATA } from './test-data.js';
 import { initGpsButton, getLastPosition } from './gps.js';
 import { renderElevationChart, jumpToCurrentMile } from './elevation.js';
 import { getMoonData } from './moon.js';
+import { sectionPoints } from './config.js';
 
 // Safe fetch with error handling
 const safeFetch = async (url, defaultValue = []) => {
@@ -73,6 +74,17 @@ const renderWaypointList = (filter) => {
     case 'toilets':
       items = (state.categories.toilets || []).map(t => ({ ...t, type: 'toilets' }));
       break;
+    case 'sections':
+      items = sectionPoints.map(s => ({
+        name: s.name,
+        mile: s.mile,
+        lat: s.lat,
+        lon: s.lon,
+        type: 'sections',
+        subcategory: null,
+        landmark: null
+      }));
+      break;
   }
 
   // Sort by mile
@@ -118,7 +130,20 @@ const renderWaypointList = (filter) => {
       const name = el.dataset.name;
       const type = el.dataset.type;
 
-      if (type === 'water') showWaterDetail(name);
+      if (type === 'sections') {
+        // Show section detail directly (sections aren't in allWaypoints)
+        const section = sectionPoints.find(s => s.name === name);
+        if (section) {
+          const modal = document.getElementById('waypointModal');
+          const title = document.getElementById('waypointModalTitle');
+          const detail = document.getElementById('waypointDetail');
+          if (modal && title && detail) {
+            title.textContent = section.name;
+            detail.innerHTML = `<p><strong>Mile:</strong> ${section.mile.toFixed(1)}</p><p><strong>Elevation:</strong> ${section.elevation.toLocaleString()} ft</p>`;
+            modal.classList.add('visible');
+          }
+        }
+      } else if (type === 'water') showWaterDetail(name);
       else if (type === 'towns') showTownDetail(name);
       else showWaypointDetail(name);
 
@@ -380,6 +405,24 @@ const initUI = () => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     document.querySelector('.filter-btn[data-filter="all-water"]').classList.add('active');
   });
+
+  // Bottom bar: Section card opens Waypoints overlay on Sections tab
+  const sectionCard = document.getElementById('nextSectionCard');
+  if (sectionCard) {
+    sectionCard.addEventListener('click', () => {
+      saveMapView();
+      openOverlay('waypointListOverlay');
+      renderWaypointList('sections');
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector('.filter-btn[data-filter="sections"]').classList.add('active');
+    });
+    sectionCard.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        sectionCard.click();
+      }
+    });
+  }
 
   // Top-left: Kebab menu
   initKebabMenu();
