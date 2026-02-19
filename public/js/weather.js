@@ -257,6 +257,68 @@ export const renderWeatherTable = (forecasts) => {
 // ------- API / Fetch -------
 
 const isAndroid = typeof AndroidBridge !== 'undefined';
+const FORECAST_CACHE_KEY = 'odtForecastCacheV1';
+
+const hasUsableForecastData = (forecast) => {
+  if (!forecast) return false;
+  const hasHourly = Array.isArray(forecast.hourly) && forecast.hourly.length > 0;
+  const hasDaily = Array.isArray(forecast.daily) && forecast.daily.length > 0;
+  return hasHourly || hasDaily;
+};
+
+const loadForecastCache = () => {
+  if (typeof localStorage === 'undefined') return null;
+  try {
+    const raw = localStorage.getItem(FORECAST_CACHE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed || !Array.isArray(parsed.forecasts)) return null;
+    return {
+      savedAt: Number.isFinite(parsed.savedAt) ? parsed.savedAt : null,
+      forecasts: parsed.forecasts
+    };
+  } catch (error) {
+    return null;
+  }
+};
+
+const saveForecastCache = (forecasts) => {
+  if (typeof localStorage === 'undefined') return;
+  if (!Array.isArray(forecasts) || !forecasts.some(hasUsableForecastData)) return;
+  try {
+    localStorage.setItem(FORECAST_CACHE_KEY, JSON.stringify({
+      savedAt: Date.now(),
+      forecasts
+    }));
+  } catch (error) {
+    // Ignore storage errors (quota/private mode)
+  }
+};
+
+const getCacheTimestampLabel = (savedAt) => {
+  if (!Number.isFinite(savedAt)) return '';
+  try {
+    return new Date(savedAt).toLocaleString();
+  } catch (error) {
+    return '';
+  }
+};
+
+const setWeatherStatusBanner = (message, level = 'info') => {
+  const container = document.getElementById('container');
+  if (!container) return;
+
+  const existing = container.querySelector('.weather-status-banner');
+  if (!message) {
+    if (existing) existing.remove();
+    return;
+  }
+
+  const banner = existing || document.createElement('div');
+  banner.className = `weather-status-banner weather-status-${level}`;
+  banner.textContent = message;
+  if (!existing) container.prepend(banner);
+};
 
 const adaptPirateWeatherResponse = (data, response) => {
   const currently = data.currently || {};
@@ -360,12 +422,40 @@ export const loadForecasts = async () => {
     })
   );
 
-  renderWeatherTable(forecasts);
+  const cache = loadForecastCache();
+  const mergedForecasts = forecasts.map((forecast, idx) => {
+    if (hasUsableForecastData(forecast)) return forecast;
+    return cache?.forecasts?.[idx] || null;
+  });
 
-  const lastForecast = forecasts.find(f => f && f._usage && f._usage.calls !== null);
+  const liveCount = forecasts.filter(hasUsableForecastData).length;
+  const mergedCount = mergedForecasts.filter(hasUsableForecastData).length;
+  const usedCache = mergedCount > liveCount;
+
+  if (liveCount > 0) {
+    saveForecastCache(mergedForecasts);
+  }
+
+  renderWeatherTable(mergedForecasts);
+
+  if (liveCount === 0 && mergedCount === 0) {
+    setWeatherStatusBanner('Offline: no cached forecast available yet. Connect once to download forecasts.', 'error');
+  } else if (usedCache && liveCount === 0) {
+    const ts = getCacheTimestampLabel(cache?.savedAt);
+    setWeatherStatusBanner(`Offline: showing cached forecast${ts ? ` from ${ts}` : ''}.`, 'warning');
+  } else if (usedCache) {
+    const ts = getCacheTimestampLabel(cache?.savedAt);
+    setWeatherStatusBanner(`Some sections failed to refresh; using cached forecast${ts ? ` from ${ts}` : ''} for missing data.`, 'info');
+  } else {
+    setWeatherStatusBanner('');
+  }
+
+  const usageEl = document.getElementById('apiUsage');
+  if (usageEl) usageEl.textContent = '';
+
+  const lastForecast = mergedForecasts.find(f => f && f._usage && f._usage.calls !== null);
   if (lastForecast) {
     const { calls, limit } = lastForecast._usage;
-    const usageEl = document.getElementById('apiUsage');
     if (usageEl && calls !== null) {
       const usageText = limit
         ? `API: ${calls.toLocaleString()} / ${limit.toLocaleString()}`

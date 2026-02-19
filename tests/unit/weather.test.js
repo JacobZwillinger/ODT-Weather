@@ -127,6 +127,7 @@ describe('loadForecasts', () => {
   beforeEach(() => {
     document.getElementById('container').innerHTML = 'Loading...';
     document.getElementById('apiUsage').textContent = '';
+    localStorage.clear();
   });
 
   afterEach(() => {
@@ -142,6 +143,7 @@ describe('loadForecasts', () => {
     const container = document.getElementById('container');
     // Should still render a table (with "--" cells)
     expect(container.innerHTML).toContain('<table>');
+    expect(container.textContent).toContain('Offline: no cached forecast available yet');
   });
 
   // [TEST] Added: verifies API usage display when _usage is present in response
@@ -193,5 +195,50 @@ describe('loadForecasts', () => {
     cells.forEach(cell => {
       expect(cell.textContent).toBe('--');
     });
+  });
+
+  it('uses cached forecast data when offline', async () => {
+    localStorage.setItem('odtForecastCacheV1', JSON.stringify({
+      savedAt: 1700000000000,
+      forecasts: [
+        {
+          daily: [
+            { high: 88, low: 66, icon: 'clear-day', summary: 'Hot' },
+            ...Array(6).fill({ high: 75, low: 50, icon: 'cloudy', summary: 'Cloudy' })
+          ]
+        },
+        {
+          daily: [
+            { high: 70, low: 45, icon: 'rain', summary: 'Wet' },
+            ...Array(6).fill({ high: 65, low: 42, icon: 'cloudy', summary: 'Cloudy' })
+          ]
+        }
+      ]
+    }));
+
+    vi.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('Network error'));
+
+    await loadForecasts();
+
+    const container = document.getElementById('container');
+    expect(container.innerHTML).toContain('88° / 66°');
+    expect(container.textContent).toContain('Offline: showing cached forecast');
+  });
+
+  it('stores forecasts in cache after successful load', async () => {
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve({
+        daily: Array(7).fill({ high: 70, low: 50, icon: 'clear-day' }),
+        _usage: { calls: 123, limit: 25000, remaining: 24877 }
+      })
+    });
+
+    await loadForecasts();
+
+    const cached = JSON.parse(localStorage.getItem('odtForecastCacheV1'));
+    expect(Array.isArray(cached.forecasts)).toBe(true);
+    expect(cached.forecasts.length).toBe(2);
+    expect(Number.isFinite(cached.savedAt)).toBe(true);
   });
 });
