@@ -83,6 +83,13 @@ export const showMapInfo = (mile, distanceFromTrail = 0) => {
     document.getElementById('mapNextTown').querySelector('span').textContent = '--';
   }
 
+  // Current section
+  const currentSection = [...sectionPoints].reverse().find(s => s.mile <= mile);
+  const sectionEl = document.getElementById('mapCurrentSection');
+  if (sectionEl) {
+    sectionEl.textContent = currentSection ? currentSection.section : '--';
+  }
+
   renderElevationChart(mile, 'mapElevationChart');
 };
 

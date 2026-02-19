@@ -107,6 +107,19 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
+/* Mile + Nearest grouped as a pair */
+.info-group-pair {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+}
+
+.info-item-nearest {
+  padding-left: 2px;
+  border-left: 1px solid rgba(0,0,0,0.1);
+}
+
 /* Each info-item is a horizontal row: icon label value */
 .info-item {
   display: flex;
@@ -582,6 +595,7 @@ body {
 .waypoint-list-bar.bar-navigation     { background: #8b5cf6; }
 .waypoint-list-bar.bar-toilets        { background: #f59e0b; }
 .waypoint-list-bar.bar-water          { background: #3b82f6; }
+.waypoint-list-bar.bar-sections       { background: #7c3aed; }
 
 .waypoint-list-content {
   flex: 1;
