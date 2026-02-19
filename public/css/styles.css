@@ -150,7 +150,7 @@ body {
 }
 
 .info-value-mile {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .info-value-nearest {
@@ -639,7 +639,7 @@ body {
   padding: 48px 20px;
   text-align: center;
   color: #999;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
 }
 
 /* ========== View on Map Button ========== */
@@ -651,7 +651,7 @@ body {
   color: #fff;
   border: none;
   border-radius: 12px;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -764,7 +764,7 @@ th {
 }
 
 .fc-temp {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #111;
 }
@@ -860,7 +860,7 @@ th {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 16px;
 }
 
 .moon-panel[hidden] { display: none; }
@@ -1044,7 +1044,7 @@ th {
 
 .sources-modal-header h3 {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 
