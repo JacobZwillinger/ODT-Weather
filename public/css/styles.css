@@ -416,8 +416,8 @@ body {
 
 .overlay-header h3 {
   margin: 0;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.3rem;
+  font-weight: 700;
 }
 
 .overlay-close {
@@ -517,25 +517,30 @@ body {
 /* ========== Waypoint List Filter Bar ========== */
 .overlay-filter-bar {
   display: flex;
-  gap: 6px;
-  padding: 8px 12px;
+  gap: 8px;
+  padding: 12px 16px;
   overflow-x: auto;
   flex-shrink: 0;
   border-bottom: 1px solid #e5e5e5;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
+.overlay-filter-bar::-webkit-scrollbar { display: none; }
 
 .filter-btn {
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-radius: 16px;
+  padding: 10px 20px;
+  border: 2px solid #ddd;
+  border-radius: 999px;
   background: #f5f5f5;
-  font-size: 0.8rem;
+  font-size: 1rem;
+  font-weight: 600;
   white-space: nowrap;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   font-family: inherit;
+  color: #555;
+  min-height: 48px;
 }
 
 .filter-btn.active {
@@ -550,61 +555,105 @@ body {
 
 /* ========== Waypoint List Items ========== */
 .waypoint-list-item {
-  padding: 12px 16px;
+  padding: 18px 20px;
   border-bottom: 1px solid #e5e5e5;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  min-height: 72px;
 }
 
 .waypoint-list-item:active {
   background: #f5f5f5;
 }
 
+/* Color bar on left edge indicating type */
+.waypoint-list-bar {
+  width: 5px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-right: 16px;
+  align-self: stretch;
+}
+.waypoint-list-bar.bar-water-reliable { background: #3b82f6; }
+.waypoint-list-bar.bar-water-other    { background: #94a3b8; }
+.waypoint-list-bar.bar-towns          { background: #059669; }
+.waypoint-list-bar.bar-navigation     { background: #8b5cf6; }
+.waypoint-list-bar.bar-toilets        { background: #f59e0b; }
+.waypoint-list-bar.bar-water          { background: #3b82f6; }
+
+.waypoint-list-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+
 .waypoint-list-header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  gap: 8px;
+  gap: 12px;
 }
 
 .waypoint-list-name {
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-weight: 700;
+  font-size: 1.15rem;
   color: #1b1b1b;
+  line-height: 1.2;
+  flex: 1;
+  min-width: 0;
 }
 
 .waypoint-list-mile {
-  font-size: 0.85rem;
-  color: #737373;
-  font-weight: 600;
+  font-size: 1.1rem;
+  color: #1b1b1b;
+  font-weight: 700;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
+.waypoint-list-sub {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-bottom: 2px;
+}
+.waypoint-list-sub.sub-reliable  { color: #2563eb; }
+.waypoint-list-sub.sub-seasonal  { color: #7c3aed; }
+.waypoint-list-sub.sub-unreliable{ color: #dc2626; }
+.waypoint-list-sub.sub-full      { color: #059669; }
+.waypoint-list-sub.sub-limited   { color: #d97706; }
+.waypoint-list-sub.sub-other     { color: #6b7280; }
+
 .waypoint-list-desc {
-  font-size: 0.85rem;
-  color: #666;
-  margin-top: 4px;
-  line-height: 1.3;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.35;
 }
 
 .waypoint-list-empty {
-  padding: 40px 16px;
+  padding: 48px 20px;
   text-align: center;
   color: #999;
-  font-style: italic;
+  font-size: 1.1rem;
 }
 
 /* ========== View on Map Button ========== */
 .view-on-map-btn {
   width: 100%;
-  padding: 10px;
+  padding: 18px;
   margin-top: 12px;
   background: #1b1b1b;
   color: #fff;
   border: none;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 600;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;

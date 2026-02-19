@@ -83,15 +83,34 @@ const renderWaypointList = (filter) => {
     return;
   }
 
-  container.innerHTML = items.map(item => `
+  container.innerHTML = items.map(item => {
+    // Pick bar color class based on type + subcategory
+    const barClass = item.type === 'water'
+      ? (item.subcategory === 'reliable' ? 'bar-water-reliable' : 'bar-water-other')
+      : `bar-${item.type}`;
+
+    // Subcategory label with color
+    const subClass = {
+      reliable: 'sub-reliable', seasonal: 'sub-seasonal', unreliable: 'sub-unreliable',
+      full: 'sub-full', limited: 'sub-limited'
+    }[item.subcategory] || 'sub-other';
+    const subLabel = item.subcategory
+      ? `<div class="waypoint-list-sub ${subClass}">${escapeHtml(item.subcategory)}</div>`
+      : '';
+
+    return `
     <div class="waypoint-list-item" data-name="${escapeHtml(item.name)}" data-type="${item.type}" data-lat="${item.lat}" data-lon="${item.lon}">
-      <div class="waypoint-list-header">
-        <span class="waypoint-list-name">${escapeHtml(item.name)}</span>
-        <span class="waypoint-list-mile">Mi ${item.mile.toFixed(1)}</span>
+      <div class="waypoint-list-bar ${barClass}"></div>
+      <div class="waypoint-list-content">
+        <div class="waypoint-list-header">
+          <span class="waypoint-list-name">${escapeHtml(item.name)}</span>
+          <span class="waypoint-list-mile">Mi ${item.mile.toFixed(1)}</span>
+        </div>
+        ${subLabel}
+        ${item.landmark ? `<div class="waypoint-list-desc">${escapeHtml(item.landmark)}</div>` : ''}
       </div>
-      ${item.landmark ? `<div class="waypoint-list-desc">${escapeHtml(item.landmark)}</div>` : ''}
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 
   // Click handler: open detail modal with "View on Map"
   container.querySelectorAll('.waypoint-list-item').forEach(el => {
