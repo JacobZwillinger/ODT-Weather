@@ -283,13 +283,22 @@ body {
   transform: scale(0.92);
 }
 
-/* Active state for test mode button */
+/* Active state for stateful sub-buttons (test mode only — layers never shows active) */
 .kebab-sub-btn.active {
   background: #1b1b1b;
   color: #fff;
 }
 .kebab-sub-btn.active .kebab-sub-label {
   color: rgba(255,255,255,0.7);
+}
+
+/* Layers button specifically: never show selected state */
+#btnKebabLayers.active {
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+}
+#btnKebabLayers.active .kebab-sub-label {
+  color: #555;
 }
 
 /* ========== API Key Panel (inline below sub-buttons) ========== */

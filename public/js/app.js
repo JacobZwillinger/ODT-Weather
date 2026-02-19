@@ -161,10 +161,10 @@ const initSettingsPopover = () => {
   const layersBtn = document.getElementById('btnKebabLayers');
   const popover = document.getElementById('settingsPopover');
 
-  layersBtn.addEventListener('click', () => {
+  layersBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
     const isOpen = !popover.hidden;
     popover.hidden = isOpen;
-    layersBtn.classList.toggle('active', !isOpen);
     if (!isOpen) positionSettingsPopover();
   });
 
@@ -181,9 +181,10 @@ const initSettingsPopover = () => {
     }
   });
 
-  // Category toggle handlers
+  // Category toggle handlers — stopPropagation so clicks don't close the popover
   toggleButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
       const category = btn.dataset.category;
       state.visibleCategories[category] = !state.visibleCategories[category];
       btn.classList.toggle('active');
@@ -193,11 +194,10 @@ const initSettingsPopover = () => {
     });
   });
 
-  // Close popover when clicking outside
+  // Close popover when clicking outside (but not when clicking inside it or its trigger)
   document.addEventListener('click', (e) => {
     if (!popover.hidden && !popover.contains(e.target) && !layersBtn.contains(e.target)) {
       popover.hidden = true;
-      layersBtn.classList.remove('active');
     }
   });
 };
