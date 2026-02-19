@@ -38,14 +38,14 @@ body {
 }
 
 .btn-group-top-right { top: 12px; }
-.btn-group-bottom-right { bottom: 120px; }
+.btn-group-bottom-right { bottom: 76px; }
 
 .btn-group-top-left button,
 .btn-group-top-right button,
 .btn-group-bottom-right button {
-  width: 96px;
-  height: 96px;
-  border-radius: 48px;
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
   border: none;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -70,8 +70,8 @@ body {
 .btn-group-top-left button svg,
 .btn-group-top-right button svg,
 .btn-group-bottom-right button svg {
-  width: 44px;
-  height: 44px;
+  width: 26px;
+  height: 26px;
 }
 
 /* GPS toggle active state */
@@ -93,7 +93,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 104px;
+  height: 64px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -128,13 +128,13 @@ body {
 }
 
 .info-icon {
-  width: 28px;
-  height: 28px;
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
 }
 
 .info-label {
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.3px;
   color: #737373;
@@ -142,7 +142,7 @@ body {
 }
 
 .info-value {
-  font-size: 1.8rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #1b1b1b;
   line-height: 1;
@@ -150,11 +150,11 @@ body {
 }
 
 .info-value-mile {
-  font-size: 2.2rem;
+  font-size: 1.2rem;
 }
 
 .info-value-nearest {
-  font-size: 1.1rem;
+  font-size: 0.85rem;
   font-weight: 600;
   max-width: 110px;
   overflow: hidden;
@@ -326,18 +326,18 @@ body {
 .category-toggle-btn {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 14px 18px;
+  gap: 10px;
+  padding: 10px 14px;
   border: 2px solid transparent;
-  border-radius: 12px;
+  border-radius: 10px;
   background: transparent;
   cursor: pointer;
   transition: all 0.15s ease;
-  min-height: 80px;
+  min-height: 48px;
   color: #999;
   -webkit-tap-highlight-color: transparent;
   white-space: nowrap;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .category-toggle-btn:active {
@@ -374,8 +374,8 @@ body {
 }
 
 .category-toggle-icon {
-  width: 32px;
-  height: 32px;
+  width: 22px;
+  height: 22px;
   flex-shrink: 0;
 }
 
@@ -416,7 +416,7 @@ body {
 
 .overlay-header h3 {
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: 700;
 }
 
@@ -424,13 +424,13 @@ body {
   background: none;
   border: 1.5px solid #bbb;
   border-radius: 8px;
-  padding: 12px 24px;
+  padding: 8px 16px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 600;
   color: #555;
-  min-width: 80px;
-  min-height: 44px;
+  min-width: 60px;
+  min-height: 36px;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
 }
@@ -452,9 +452,9 @@ body {
 }
 
 .elev-float-btn {
-  width: 96px;
-  height: 96px;
-  border-radius: 48px;
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
   border: none;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -476,8 +476,8 @@ body {
 }
 
 .elev-float-btn svg {
-  width: 44px;
-  height: 44px;
+  width: 26px;
+  height: 26px;
 }
 
 .elev-float-btn:active {
@@ -528,11 +528,11 @@ body {
 .overlay-filter-bar::-webkit-scrollbar { display: none; }
 
 .filter-btn {
-  padding: 12px 22px;
+  padding: 8px 16px;
   border: 2px solid #ddd;
   border-radius: 999px;
   background: #f5f5f5;
-  font-size: 1.15rem;
+  font-size: 0.85rem;
   font-weight: 600;
   white-space: nowrap;
   cursor: pointer;
@@ -540,7 +540,7 @@ body {
   touch-action: manipulation;
   font-family: inherit;
   color: #555;
-  min-height: 52px;
+  min-height: 36px;
 }
 
 .filter-btn.active {
@@ -555,7 +555,7 @@ body {
 
 /* ========== Waypoint List Items ========== */
 .waypoint-list-item {
-  padding: 14px 16px;
+  padding: 12px 16px;
   border-bottom: 1px solid #e5e5e5;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -601,7 +601,7 @@ body {
 
 .waypoint-list-name {
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #1b1b1b;
   line-height: 1.2;
   flex: 1;
@@ -609,7 +609,7 @@ body {
 }
 
 .waypoint-list-mile {
-  font-size: 1.4rem;
+  font-size: 0.95rem;
   color: #1b1b1b;
   font-weight: 700;
   white-space: nowrap;
@@ -617,7 +617,7 @@ body {
 }
 
 .waypoint-list-sub {
-  font-size: 1.15rem;
+  font-size: 0.8rem;
   font-weight: 600;
   text-transform: capitalize;
   margin-bottom: 2px;
@@ -630,7 +630,7 @@ body {
 .waypoint-list-sub.sub-other     { color: #6b7280; }
 
 .waypoint-list-desc {
-  font-size: 1.15rem;
+  font-size: 0.82rem;
   color: #555;
   line-height: 1.35;
 }
@@ -841,10 +841,10 @@ th {
   background: rgba(30, 27, 75, 0.9);
   border: none;
   border-radius: 8px;
-  padding: 10px 16px;
-  font-size: 1.3rem;
+  padding: 6px 10px;
+  font-size: 1rem;
   cursor: pointer;
-  min-height: 44px;
+  min-height: 36px;
   line-height: 1;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
@@ -868,13 +868,13 @@ th {
 /* Modal card */
 .moon-panel-inner {
   background: #1a1440;
-  border-radius: 20px;
-  padding: 36px 32px 32px;
+  border-radius: 16px;
+  padding: 24px 20px 20px;
   width: 100%;
-  max-width: 420px;
+  max-width: 360px;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 18px;
   box-shadow: 0 8px 40px rgba(0,0,0,0.6);
 }
 
@@ -885,7 +885,7 @@ th {
 }
 
 .moon-phase-emoji {
-  font-size: 5rem;
+  font-size: 3rem;
   line-height: 1;
   flex-shrink: 0;
 }
@@ -893,24 +893,24 @@ th {
 .moon-phase-info {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .moon-phase-name {
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   font-weight: 800;
   color: #ffffff;
   line-height: 1.1;
 }
 
 .moon-phase-illumination {
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #d4cfff;
 }
 
 .moon-phase-age {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: #a89fd4;
 }
@@ -923,15 +923,15 @@ th {
 
 .moon-time-card {
   background: rgba(255,255,255,0.1);
-  border-radius: 14px;
-  padding: 20px 20px;
+  border-radius: 10px;
+  padding: 12px 14px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 
 .moon-time-label {
-  font-size: 1rem;
+  font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -939,14 +939,14 @@ th {
 }
 
 .moon-time-value {
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   font-weight: 800;
   color: #ffffff;
   line-height: 1;
 }
 
 .moon-location-note {
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: #9890c8;
   line-height: 1.4;
 }
@@ -959,11 +959,11 @@ th {
 .moon-panel-close {
   background: rgba(255,255,255,0.15);
   border: 2px solid rgba(255,255,255,0.3);
-  border-radius: 14px;
-  padding: 18px 0;
+  border-radius: 10px;
+  padding: 12px 0;
   width: 100%;
   color: #ffffff;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -1167,7 +1167,7 @@ th {
 }
 
 .maplibregl-ctrl-bottom-left {
-  bottom: 112px !important;
+  bottom: 72px !important;
 }
 
 /* Zoom level display */
