@@ -50,6 +50,15 @@ const resetViewportScale = () => {
   requestAnimationFrame(() => { meta.content = original; });
 };
 
+// Open the waypoints overlay to a specific filter tab — used by bottom bar cards
+export const openWaypointFilter = (filter) => {
+  saveMapView();
+  openOverlay('waypointListOverlay');
+  renderWaypointList(filter);
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.filter-btn[data-filter="${filter}"]`).classList.add('active');
+};
+
 // ========== Waypoint List ==========
 
 const renderWaypointList = (filter) => {
@@ -397,32 +406,22 @@ const initUI = () => {
   });
 
   // Bottom-right: Waypoint list button
-  document.getElementById('btnWaypointList').addEventListener('click', () => {
-    saveMapView();
-    openOverlay('waypointListOverlay');
-    renderWaypointList('all-water');
-    // Ensure first filter is active
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    document.querySelector('.filter-btn[data-filter="all-water"]').classList.add('active');
-  });
+  document.getElementById('btnWaypointList').addEventListener('click', () => openWaypointFilter('all-water'));
 
-  // Bottom bar: Section card opens Waypoints overlay on Sections tab
-  const sectionCard = document.getElementById('nextSectionCard');
-  if (sectionCard) {
-    sectionCard.addEventListener('click', () => {
-      saveMapView();
-      openOverlay('waypointListOverlay');
-      renderWaypointList('sections');
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      document.querySelector('.filter-btn[data-filter="sections"]').classList.add('active');
+  // Bottom bar cards → open waypoints overlay with correct filter
+  [
+    { id: 'nextReliableWaterCard', filter: 'reliable-water' },
+    { id: 'nextOtherWaterCard',    filter: 'all-water' },
+    { id: 'nextTownCard',          filter: 'towns' },
+    { id: 'nextSectionCard',       filter: 'sections' },
+  ].forEach(({ id, filter }) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('click', () => openWaypointFilter(filter));
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openWaypointFilter(filter); }
     });
-    sectionCard.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        sectionCard.click();
-      }
-    });
-  }
+  });
 
   // Top-left: Kebab menu
   initKebabMenu();
