@@ -227,27 +227,33 @@
       </div>
       <div class="overlay-filter-bar" id="waypointFilterBar">
         <button class="filter-btn active" data-filter="reliable-water" aria-label="Reliable Water">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3C10 6 7 9 7 12a5 5 0 0 0 10 0c0-3-3-6-5-9z" fill="currentColor"/></svg>
+          <!-- Same droplet as map water-reliable icon -->
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 7c-1.5 2-3 3.5-3 5.5a3 3 0 0 0 6 0c0-2-1.5-3.5-3-5.5z" fill="currentColor"/></svg>
           <span>Reliable</span>
         </button>
         <button class="filter-btn" data-filter="other-water" aria-label="Other Water">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3C10 6 7 9 7 12a5 5 0 0 0 10 0c0-3-3-6-5-9z" fill="currentColor" opacity="0.4"/></svg>
+          <!-- Same droplet, dimmed -->
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 7c-1.5 2-3 3.5-3 5.5a3 3 0 0 0 6 0c0-2-1.5-3.5-3-5.5z" fill="currentColor" opacity="0.45"/></svg>
           <span>Other</span>
         </button>
         <button class="filter-btn" data-filter="towns" aria-label="Towns">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="currentColor"/></svg>
+          <!-- Same building as map town icon -->
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 16h8v-3h-2v-2h-1V9h-2v2H10v2H8v3zm3-7h2v1h-2V9z" fill="currentColor"/></svg>
           <span>Towns</span>
         </button>
         <button class="filter-btn" data-filter="navigation" aria-label="Navigation">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="currentColor"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <!-- Same compass needle as map nav icon -->
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 6L16 16L12 14L8 16Z" fill="currentColor"/></svg>
           <span>Nav</span>
         </button>
         <button class="filter-btn" data-filter="toilets" aria-label="Toilets">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="5" r="2" fill="currentColor"/><circle cx="15" cy="5" r="2" fill="currentColor"/><path d="M6 9h4l1 5H7L6 9zM14 9h4l-1 5h-4l1-5z" fill="currentColor"/><path d="M9 14v5M15 14v5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <!-- Same toilet symbol as map toilet icon -->
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="10" width="6" height="7" rx="1" fill="currentColor"/><circle cx="12" cy="7.5" r="1.5" fill="currentColor"/></svg>
           <span>Toilets</span>
         </button>
         <button class="filter-btn" data-filter="sections" aria-label="Sections">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" fill="currentColor" opacity="0.3" stroke="currentColor" stroke-width="1.5"/><line x1="4" y1="22" x2="4" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <!-- Flag matching bottom bar section icon -->
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" fill="currentColor" opacity="0.35" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><line x1="4" y1="22" x2="4" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           <span>Sections</span>
         </button>
       </div>
