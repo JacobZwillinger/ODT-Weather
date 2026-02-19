@@ -9,12 +9,14 @@ let mapInitialized = false;
 let userLocationMarker = null;
 let userAccuracyCircle = null;
 let initialBounds = null;
+let pendingUserLocationUpdate = null;
 
 // Track pending async operations to prevent race conditions
 let pendingMileUpdate = 0;
 
 // Track off-trail status
 let isOffTrail = false;
+const isMapStyleReady = () => Boolean(map && map.isStyleLoaded && map.isStyleLoaded());
 
 // Update map info panel with current mile data
 // distanceFromTrail is optional - if provided, shows off-trail indicator when > threshold
@@ -198,11 +200,9 @@ export const initMap = () => {
 
     // Create category layers dynamically
     const createCategoryLayers = (category, data, config) => {
-      if (!data || data.length === 0) return;
-
       const geojson = {
         type: 'FeatureCollection',
-        features: data.map(item => ({
+        features: (data || []).map(item => ({
           type: 'Feature',
           geometry: {
             type: 'Point',
@@ -322,10 +322,11 @@ export const initMap = () => {
       map.on('mouseleave', `${category}-points-unclustered`, () => map.getCanvas().style.cursor = '');
     };
 
-    // Populate coordinates from elevation profile and create category layers
+    // Warm elevation profile (for GPS distance calculations) and create category layers.
     const populateCoords = async () => {
-      const profile = await loadElevationProfile();
-      if (!profile) return;
+      // Keep trying to load the dense track for distance calculations, but do not
+      // block category source/layer creation when this request fails.
+      await loadElevationProfile();
 
       // Create layers for all categories
       for (const [category, config] of Object.entries(CATEGORY_CONFIG)) {
@@ -608,6 +609,11 @@ export const initMap = () => {
     map.on('mouseleave', 'route-line', () => map.getCanvas().style.cursor = '');
 
     // Category toggles are now managed by app.js settings popover
+    if (pendingUserLocationUpdate) {
+      const [pendingLat, pendingLon, pendingAccuracy] = pendingUserLocationUpdate;
+      pendingUserLocationUpdate = null;
+      updateUserLocationMarker(pendingLat, pendingLon, pendingAccuracy);
+    }
   });
 
   // NavigationControl (+/-) removed — zoom handled by pinch/scroll
@@ -644,6 +650,12 @@ export const initMap = () => {
 // Update user location marker on the map
 const updateUserLocationMarker = (lat, lon, accuracy) => {
   if (!map) return;
+  if (!isMapStyleReady()) {
+    pendingUserLocationUpdate = [lat, lon, accuracy];
+    return;
+  }
+
+  pendingUserLocationUpdate = null;
 
   // If lat/lon is null, remove the marker
   if (lat === null || lon === null) {
@@ -671,20 +683,25 @@ const updateUserLocationMarker = (lat, lon, accuracy) => {
 
   if (!userAccuracyCircle) {
     // Add accuracy circle source and layer
-    map.addSource('user-accuracy', {
-      type: 'geojson',
-      data: accuracyCircleData
-    });
+    if (!map.getSource('user-accuracy')) {
+      map.addSource('user-accuracy', {
+        type: 'geojson',
+        data: accuracyCircleData
+      });
+    }
 
-    map.addLayer({
-      id: 'user-accuracy-circle',
-      type: 'fill',
-      source: 'user-accuracy',
-      paint: {
-        'fill-color': '#3b82f6',
-        'fill-opacity': 0.15
-      }
-    }, 'route-line'); // Insert below route line
+    if (!map.getLayer('user-accuracy-circle')) {
+      const beforeId = map.getLayer('route-line') ? 'route-line' : undefined;
+      map.addLayer({
+        id: 'user-accuracy-circle',
+        type: 'fill',
+        source: 'user-accuracy',
+        paint: {
+          'fill-color': '#3b82f6',
+          'fill-opacity': 0.15
+        }
+      }, beforeId); // Insert below route line when available
+    }
 
     userAccuracyCircle = true;
   } else {

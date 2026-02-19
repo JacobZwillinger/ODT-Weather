@@ -61,13 +61,12 @@ describe('showWaypointDetail', () => {
     expect(detail.textContent).toContain('Test Creek');
   });
 
-  // [TEST] Added: verifies showWaypointDetail returns a waypoint even for unknown name
-  // because the fallback coord search with null coords (which coerce to 0) finds the closest waypoint
-  it('falls back to coordinate search when name not found (null coerces to 0)', () => {
+  it('returns null when name is not found', () => {
     const result = showWaypointDetail('NONEXISTENT');
-    // findWaypoint: name not found, falls to coord search with lat=null, lon=null
-    // null coerces to 0 in arithmetic, so it finds the closest waypoint to (0, 0)
-    expect(result).not.toBeNull();
+    expect(result).toBeNull();
+
+    const modal = document.getElementById('waypointModal');
+    expect(modal.classList.contains('visible')).toBe(false);
   });
 
   // [TEST] Added: verifies fallback coordinate-based waypoint lookup

@@ -9,6 +9,7 @@ let _currentMile = 0;      // GPS position marker
 let _isDragging = false;
 let _dragStartX = 0;
 let _dragStartMile = 0;
+const STATS_BAR_HEIGHT = 72;
 
 // Hit-test rects for waypoint icons [ { x, y, size, wp } ]
 let _iconHitRects = [];
@@ -95,7 +96,7 @@ const draw = () => {
 
   const parent = canvas.parentElement;
   const displayWidth = parent ? parent.clientWidth - 32 : window.innerWidth - 32;
-  const statsBarHeight = 72;  // single row stats bar
+  const statsBarHeight = STATS_BAR_HEIGHT;
   // Total canvas height = all available space in parent (minus horizontal padding equiv)
   // We use the parent's full clientHeight minus a small margin so nothing gets clipped
   const totalHeight = parent
@@ -293,7 +294,8 @@ const draw = () => {
     });
   };
 
-  addCategoryPoints('water',      state.categories.water);
+  addCategoryPoints('water-reliable', state.categories['water-reliable']);
+  addCategoryPoints('water-other', state.categories['water-other']);
   addCategoryPoints('towns',      state.categories.towns);
   addCategoryPoints('navigation', state.categories.navigation);
   addCategoryPoints('toilets',    state.categories.toilets);
@@ -407,7 +409,7 @@ const onPointerMove = (e) => {
   const parent = canvas.parentElement;
   const displayWidth = parent ? parent.clientWidth - 32 : window.innerWidth - 32;
   const isMobile = displayWidth < 500;
-  const statsBarHeight = 96;
+  const statsBarHeight = STATS_BAR_HEIGHT;
   const totalHeight = parent ? Math.max(parent.clientHeight - 32, 300) : Math.max(window.innerHeight * 0.6, 300);
   const displayHeight = totalHeight - statsBarHeight;
   const chartWidth = displayWidth - (isMobile ? 108 + 16 : 124 + 20);
@@ -465,7 +467,17 @@ const showWaypointTooltip = (wp, canvas, cx, cy) => {
     white-space: normal;
     box-shadow: 0 4px 16px rgba(0,0,0,0.4);
   `;
-  tip.innerHTML = `<div>${name}</div><div style="font-weight:500;font-size:12px;opacity:0.75;margin-top:3px">${mile}${sub}</div>`;
+  const title = document.createElement('div');
+  title.textContent = name;
+  tip.appendChild(title);
+
+  const meta = document.createElement('div');
+  meta.style.fontWeight = '500';
+  meta.style.fontSize = '12px';
+  meta.style.opacity = '0.75';
+  meta.style.marginTop = '3px';
+  meta.textContent = `${mile}${sub}`;
+  tip.appendChild(meta);
 
   // Position relative to the canvas's offset parent
   const canvasRect = canvas.getBoundingClientRect();

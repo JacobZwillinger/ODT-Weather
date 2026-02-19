@@ -8,7 +8,8 @@ export const state = {
   elevationProfile: null,
   currentMile: 0,
   categories: {
-    water: [],
+    'water-reliable': [],
+    'water-other': [],
     towns: [],
     navigation: [],
     toilets: []
@@ -107,27 +108,34 @@ const toLocalMiles = (lat, lon, refLat) => {
   return { x, y };
 };
 
-// Find the shortest distance from point P to segment AB, all in local mile coordinates.
-// Returns the perpendicular distance (or distance to nearest endpoint if projection
-// falls outside the segment).
-const pointToSegmentDistMiles = (px, py, ax, ay, bx, by) => {
+// Project point P onto segment AB (all in local mile coordinates).
+// Returns perpendicular distance and interpolation factor t clamped to [0, 1].
+const projectPointToSegmentMiles = (px, py, ax, ay, bx, by) => {
   const dx = bx - ax;
   const dy = by - ay;
   const lenSq = dx * dx + dy * dy;
 
-  if (lenSq === 0) return Math.hypot(px - ax, py - ay);
+  if (lenSq === 0) {
+    return { distance: Math.hypot(px - ax, py - ay), t: 0 };
+  }
 
   // Project P onto line AB, clamp t to [0,1] to stay on segment
   const t = Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / lenSq));
   const closestX = ax + t * dx;
   const closestY = ay + t * dy;
-  return Math.hypot(px - closestX, py - closestY);
+  return { distance: Math.hypot(px - closestX, py - closestY), t };
 };
 
-// Find mile marker from lat/lon coordinates
-// Uses WAYPOINTS for mile markers, and the GPX TRACK (elevation profile
-// coordinates) for distance-from-trail via perpendicular projection onto
-// consecutive track segments.
+const getTrackMile = (point) => {
+  if (point && Number.isFinite(point.mile)) return point.mile;
+  if (point && Number.isFinite(point.distance)) return point.distance;
+  return null;
+};
+
+// Find mile marker from lat/lon coordinates.
+// Uses perpendicular projection onto the trail polyline both for:
+// - distance-from-trail, and
+// - interpolated mile marker between adjacent trail points.
 //
 // Map click handlers for on-trail features (route-line, section-circles,
 // waypoint-icons) pass distanceFromTrail: 0 directly, since clicking on a
@@ -139,18 +147,6 @@ export const findMileFromCoords = (lat, lon) => {
     return { mile: 0, distanceFromTrail: 0 };
   }
 
-  // Find the closest waypoint for the mile marker (authoritative for mile values)
-  let closestWp = state.allWaypoints[0];
-  let minWpDist = Math.hypot(lon - closestWp.lon, lat - closestWp.lat);
-
-  for (const wp of state.allWaypoints) {
-    const dist = Math.hypot(lon - wp.lon, lat - wp.lat);
-    if (dist < minWpDist) {
-      minWpDist = dist;
-      closestWp = wp;
-    }
-  }
-
   // Calculate distance from trail by projecting the point onto the track.
   // Use the elevation profile (dense GPX track coords, ~0.1 mi spacing) if available,
   // otherwise fall back to waypoint segments (~0.9 mi spacing).
@@ -160,21 +156,49 @@ export const findMileFromCoords = (lat, lon) => {
 
   const p = toLocalMiles(lat, lon, lat);
   let minDist = Infinity;
+  let projectedMile = null;
 
   if (track.length >= 2) {
     for (let i = 0; i < track.length - 1; i++) {
       const a = toLocalMiles(track[i].lat, track[i].lon, lat);
       const b = toLocalMiles(track[i + 1].lat, track[i + 1].lon, lat);
-      const dist = pointToSegmentDistMiles(p.x, p.y, a.x, a.y, b.x, b.y);
-      if (dist < minDist) minDist = dist;
+      const projection = projectPointToSegmentMiles(p.x, p.y, a.x, a.y, b.x, b.y);
+
+      if (projection.distance < minDist) {
+        minDist = projection.distance;
+        const startMile = getTrackMile(track[i]);
+        const endMile = getTrackMile(track[i + 1]);
+        if (Number.isFinite(startMile) && Number.isFinite(endMile)) {
+          projectedMile = startMile + (endMile - startMile) * projection.t;
+        } else {
+          projectedMile = null;
+        }
+      }
     }
   } else {
     // Single point — distance to it
     minDist = degreesToMiles(lat - track[0].lat, lon - track[0].lon, lat);
+    projectedMile = getTrackMile(track[0]);
+  }
+
+  // Fallback to nearest waypoint mile if track points lack mile metadata.
+  if (!Number.isFinite(projectedMile)) {
+    let closestWp = state.allWaypoints[0];
+    let minWpDist = Math.hypot(lon - closestWp.lon, lat - closestWp.lat);
+
+    for (const wp of state.allWaypoints) {
+      const dist = Math.hypot(lon - wp.lon, lat - wp.lat);
+      if (dist < minWpDist) {
+        minWpDist = dist;
+        closestWp = wp;
+      }
+    }
+
+    projectedMile = closestWp.mile;
   }
 
   return {
-    mile: closestWp.mile,
+    mile: projectedMile,
     distanceFromTrail: minDist
   };
 };
