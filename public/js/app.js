@@ -39,6 +39,16 @@ const closeAllOverlays = () => {
   document.querySelectorAll('.fullscreen-overlay').forEach(o => { o.hidden = true; });
 };
 
+// Reset browser viewport zoom back to 1 after user may have pinched-zoomed inside an overlay.
+// Works by briefly locking then releasing maximum-scale, which forces Chrome/Safari to snap back.
+const resetViewportScale = () => {
+  const meta = document.querySelector('meta[name=viewport]');
+  if (!meta) return;
+  const original = meta.content;
+  meta.content = original + ', maximum-scale=1';
+  requestAnimationFrame(() => { meta.content = original; });
+};
+
 // ========== Waypoint List ==========
 
 const renderWaypointList = (filter) => {
@@ -363,6 +373,7 @@ const initUI = () => {
     btn.addEventListener('click', () => {
       btn.closest('.fullscreen-overlay').hidden = true;
       restoreMapView();
+      resetViewportScale();
     });
   });
 
@@ -398,7 +409,7 @@ const initUI = () => {
       document.querySelectorAll('.fullscreen-overlay:not([hidden])').forEach(o => {
         o.hidden = true;
       });
-      if (hadOpenOverlay) restoreMapView();
+      if (hadOpenOverlay) { restoreMapView(); resetViewportScale(); }
       const settingsPopover = document.getElementById('settingsPopover');
       if (!settingsPopover.hidden) {
         settingsPopover.hidden = true;
