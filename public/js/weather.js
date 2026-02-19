@@ -46,10 +46,12 @@ const sliceDayNight = (hourlyData) => {
     const nightHours = [...lateHours, ...earlyNextHours];
 
     if (dayHours.length > 0) {
-      periods.push({ label: `${dayName} Day`, period: 'day', hours: dayHours });
+      const dayLabel = i === 0 ? 'Today' : `${dayName} Day`;
+      periods.push({ label: dayLabel, period: 'day', hours: dayHours });
     }
     if (nightHours.length > 0) {
-      periods.push({ label: `${dayName} Night`, period: 'night', hours: nightHours });
+      const nightLabel = i === 0 ? 'Tonight' : `${dayName} Night`;
+      periods.push({ label: nightLabel, period: 'night', hours: nightHours });
     }
   });
 

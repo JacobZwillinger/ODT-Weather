@@ -685,6 +685,16 @@ th {
   font-size: 0.9rem;
 }
 
+/* Sticky header row */
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #f5f5f5;
+}
+thead th.day-header { background: #e8eeff; }
+thead th.night-header { background: #ebebf7; }
+
 .location-header { min-width: 130px; }
 .mile-header { min-width: 52px; text-align: center; }
 
