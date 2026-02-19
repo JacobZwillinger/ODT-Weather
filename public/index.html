@@ -302,11 +302,32 @@
               </div>
               <div class="about-heart">♥</div>
               <div class="about-avatar">
-                <!-- Claude avatar: a simple "C" monogram circle -->
+                <!-- Claude avatar: robot face with Anthropic vibes -->
                 <div class="about-claude-avatar">
-                  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="40" cy="40" r="40" fill="#D97757"/>
-                    <text x="40" y="54" text-anchor="middle" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#fff">C</text>
+                  <svg viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <circle cx="44" cy="44" r="44" fill="#1a1a2e"/>
+                    <!-- Antenna -->
+                    <line x1="44" y1="10" x2="44" y2="22" stroke="#D97757" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="44" cy="8" r="3" fill="#D97757"/>
+                    <!-- Head box -->
+                    <rect x="16" y="22" width="56" height="44" rx="10" fill="#2d2d4e"/>
+                    <rect x="16" y="22" width="56" height="44" rx="10" stroke="#D97757" stroke-width="2"/>
+                    <!-- Eyes: glowing dots -->
+                    <circle cx="32" cy="40" r="6" fill="#1a1a2e"/>
+                    <circle cx="32" cy="40" r="4" fill="#D97757" opacity="0.9"/>
+                    <circle cx="30.5" cy="38.5" r="1.5" fill="#fff" opacity="0.6"/>
+                    <circle cx="56" cy="40" r="6" fill="#1a1a2e"/>
+                    <circle cx="56" cy="40" r="4" fill="#D97757" opacity="0.9"/>
+                    <circle cx="54.5" cy="38.5" r="1.5" fill="#fff" opacity="0.6"/>
+                    <!-- Mouth: friendly arc -->
+                    <path d="M33 52 Q44 60 55 52" stroke="#D97757" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                    <!-- Ears / side details -->
+                    <rect x="10" y="34" width="6" height="12" rx="3" fill="#2d2d4e" stroke="#D97757" stroke-width="1.5"/>
+                    <rect x="72" y="34" width="6" height="12" rx="3" fill="#2d2d4e" stroke="#D97757" stroke-width="1.5"/>
+                    <!-- Chest / body stub -->
+                    <rect x="30" y="66" width="28" height="12" rx="5" fill="#2d2d4e" stroke="#D97757" stroke-width="1.5"/>
+                    <line x1="44" y1="66" x2="44" y2="78" stroke="#D97757" stroke-width="1.5"/>
                   </svg>
                 </div>
                 <span class="about-avatar-name">Claude</span>
