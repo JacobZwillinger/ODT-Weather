@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
     <title>Oregon Desert Trail</title>
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="lib/maplibre-gl.css" />
@@ -163,13 +163,28 @@
     <div class="fullscreen-overlay" id="elevationOverlay" hidden>
       <div class="overlay-header">
         <h3>Elevation Profile</h3>
-        <div style="display:flex;gap:8px;align-items:center;">
-          <button id="btnElevJump" class="elev-jump-btn" aria-label="Jump to current location" title="Jump to my location">📍 My Location</button>
-          <button class="overlay-close" aria-label="Close">Close</button>
-        </div>
       </div>
       <div class="overlay-body">
         <canvas id="mapElevationChart" role="img" aria-label="Elevation profile chart showing trail elevation"></canvas>
+      </div>
+      <!-- Floating circular buttons bottom-right, matching map button style -->
+      <div class="elev-float-btns">
+        <button id="btnElevJump" class="elev-float-btn" aria-label="Jump to my location" title="Jump to my location">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="3" fill="currentColor"/>
+            <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+            <line x1="12" y1="2" x2="12" y2="5" stroke="currentColor" stroke-width="2"/>
+            <line x1="12" y1="19" x2="12" y2="22" stroke="currentColor" stroke-width="2"/>
+            <line x1="2" y1="12" x2="5" y2="12" stroke="currentColor" stroke-width="2"/>
+            <line x1="19" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+        <button class="overlay-close elev-float-btn" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </button>
       </div>
     </div>
 
@@ -177,13 +192,21 @@
     <div class="fullscreen-overlay" id="weatherOverlay" hidden>
       <div class="overlay-header">
         <h3>Weather Forecasts</h3>
-        <button class="overlay-close" aria-label="Close">Close</button>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <button id="btnMoon" class="moon-btn" aria-label="Moon phase">🌙</button>
+          <button class="overlay-close" aria-label="Close">Close</button>
+        </div>
       </div>
       <div class="overlay-body">
         <div id="container" aria-live="polite">
           <div class="loading" role="status">Loading forecasts...</div>
         </div>
       </div>
+    </div>
+
+    <!-- Moon panel (shown inline below header when moon btn tapped) -->
+    <div id="moonPanel" class="moon-panel" hidden>
+      <div id="moonPanelContent"></div>
     </div>
 
     <!-- Full-screen overlay: Waypoint List -->
