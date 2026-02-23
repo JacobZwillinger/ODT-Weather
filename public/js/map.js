@@ -95,6 +95,24 @@ export const showMapInfo = (mile, distanceFromTrail = 0) => {
   renderElevationChart(mile, 'mapElevationChart');
 };
 
+// Update daily miles counter — called only on GPS fixes (not map clicks)
+export const updateDailyMiles = (mile) => {
+  const today = new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD in local time
+  const savedDate = localStorage.getItem('dailyMilesDate');
+  if (savedDate !== today) {
+    // New day — set this fix as day-start
+    localStorage.setItem('dailyMilesDate', today);
+    localStorage.setItem('dailyMilesStart', String(mile));
+  }
+  const dayStart = parseFloat(localStorage.getItem('dailyMilesStart'));
+  const start = isNaN(dayStart) ? mile : dayStart;
+  const walked = Math.max(0, mile - start);
+  const block = document.getElementById('dailyMilesBlock');
+  const el = document.getElementById('dailyMilesDisplay');
+  if (block) block.style.display = '';
+  if (el) el.textContent = walked.toFixed(1) + ' mi';
+};
+
 // Initialize the map
 export const initMap = () => {
   if (mapInitialized) return;
