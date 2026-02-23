@@ -19,7 +19,8 @@ export const state = {
     'water-other': true,
     towns: true,
     navigation: false,
-    toilets: true
+    toilets: true,
+    sections: true
   }
 };
 

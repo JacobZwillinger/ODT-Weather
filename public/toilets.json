@@ -1,1 +1,106 @@
-[]
+[
+  {
+    "mile": 179.1,
+    "lat": 42.53999087088962,
+    "lon": -120.5442935228348,
+    "name": "Pit Toilet",
+    "landmark": "",
+    "subcategory": ""
+  },
+  {
+    "mile": 187.2,
+    "lat": 42.4705141578479,
+    "lon": -120.4993343353272,
+    "name": "Pit Toilet",
+    "landmark": "",
+    "subcategory": ""
+  },
+  {
+    "mile": 299,
+    "lat": 42.4129045191013,
+    "lon": -119.7184066194215,
+    "name": "Pit toilet",
+    "landmark": "Closed for the season",
+    "subcategory": ""
+  },
+  {
+    "mile": 300.5,
+    "lat": 42.42981758186221,
+    "lon": -119.7231149834068,
+    "name": "Pit toilet",
+    "landmark": "",
+    "subcategory": ""
+  },
+  {
+    "mile": 303,
+    "lat": 42.45017674533252,
+    "lon": -119.7296319905308,
+    "name": "Toilet",
+    "landmark": "",
+    "subcategory": ""
+  },
+  {
+    "mile": 377.3,
+    "lat": 42.8026722263894,
+    "lon": -118.8671944635802,
+    "name": "Pit toilet",
+    "landmark": "",
+    "subcategory": ""
+  },
+  {
+    "mile": 392.5,
+    "lat": 42.65601400502206,
+    "lon": -118.7271881164909,
+    "name": "Pit toilet",
+    "landmark": "",
+    "subcategory": ""
+  },
+  {
+    "mile": 392.5,
+    "lat": 42.65663963433038,
+    "lon": -118.726016023446,
+    "name": "Pit toilet",
+    "landmark": "",
+    "subcategory": ""
+  },
+  {
+    "mile": 392.5,
+    "lat": 42.65673539212713,
+    "lon": -118.7290136606947,
+    "name": "Pit toilet",
+    "landmark": "",
+    "subcategory": ""
+  },
+  {
+    "mile": 392.9,
+    "lat": 42.65640917996468,
+    "lon": -118.7245343630734,
+    "name": "Pit toilet",
+    "landmark": "",
+    "subcategory": ""
+  },
+  {
+    "mile": 416.5,
+    "lat": 42.50801906653202,
+    "lon": -118.5326088037961,
+    "name": "Pit toilet",
+    "landmark": "",
+    "subcategory": ""
+  },
+  {
+    "mile": 621,
+    "lat": 42.5449550300801,
+    "lon": -117.1670292963243,
+    "name": "Pit toilet",
+    "landmark": "",
+    "subcategory": ""
+  },
+  {
+    "mile": 705.3,
+    "lat": 43.22613253669117,
+    "lon": -117.495511293453,
+    "name": "Pit toilet",
+    "landmark": "",
+    "subcategory": ""
+  }
+]
