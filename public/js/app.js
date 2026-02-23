@@ -565,6 +565,7 @@ const init = async () => {
     };
 
     console.log('Loaded', state.allWaypoints.length, 'waypoints,', water.length, 'water,', townData.length, 'towns,', navigation.length, 'nav,', toilets.length, 'toilets');
+    window._odtState = state;
 
     // Stash real data so test mode can restore it
     realData = {
