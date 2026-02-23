@@ -345,7 +345,7 @@ const adaptPirateWeatherResponse = (data, response) => {
       icon: day.icon || '',
       summary: day.summary || ''
     })),
-    hourly: hourlyData.slice(0, 96).map(h => ({
+    hourly: hourlyData.slice(0, 168).map(h => ({
       time: h.time,
       icon: h.icon || '',
       temp: h.temperature,
@@ -367,7 +367,7 @@ const fetchForecast = async (lat, lon) => {
   if (isAndroid) {
     const apiKey = AndroidBridge.getApiKey();
     if (!apiKey) return null;
-    const url = `https://api.pirateweather.net/forecast/${apiKey}/${lat},${lon}?exclude=minutely,alerts&units=us`;
+    const url = `https://api.pirateweather.net/forecast/${apiKey}/${lat},${lon}?exclude=minutely,alerts&units=us&extend=hourly`;
     const response = await fetch(url);
     if (!response.ok) throw new Error('Bad response');
     const data = await response.json();
@@ -375,7 +375,7 @@ const fetchForecast = async (lat, lon) => {
   } else {
     const userKey = localStorage.getItem('pirateweatherApiKey');
     if (userKey) {
-      const url = `https://api.pirateweather.net/forecast/${userKey}/${lat},${lon}?exclude=minutely,alerts&units=us`;
+      const url = `https://api.pirateweather.net/forecast/${userKey}/${lat},${lon}?exclude=minutely,alerts&units=us&extend=hourly`;
       const response = await fetch(url);
       if (!response.ok) throw new Error('Bad response');
       const data = await response.json();

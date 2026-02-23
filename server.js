@@ -21,7 +21,7 @@ app.use(compression());
 
 app.use((req, res, next) => {
   // No caching for JS/CSS so edits reflect immediately during development
-  if (req.path.match(/\.(js|css)$/)) {
+  if (req.path.match(/\.(js|css|html)$/) || req.path === '/') {
     res.set("Cache-Control", "no-store");
   } else {
     res.set("Cache-Control", "public, max-age=60");
