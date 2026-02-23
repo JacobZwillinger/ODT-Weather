@@ -556,6 +556,10 @@ const initUI = () => {
 
   // Android back swipe / hardware back button — closes the topmost open panel
   const closeActivePanel = () => {
+    // 1. Close topmost modal first (hourly, apiKeyInfo, waypoint, etc.)
+    const modal = document.querySelector('.sources-modal.visible');
+    if (modal) { modal.classList.remove('visible'); return; }
+    // 2. Then fullscreen overlays (weather, elevation, waypoints)
     const overlay = document.querySelector('.fullscreen-overlay:not([hidden])');
     if (overlay) {
       overlay.hidden = true;
@@ -564,8 +568,7 @@ const initUI = () => {
       document.getElementById('moonPanel').hidden = true;
       return;
     }
-    const modal = document.querySelector('.sources-modal.visible');
-    if (modal) { modal.classList.remove('visible'); return; }
+    // 3. Then moon panel standalone
     const moonPanel = document.getElementById('moonPanel');
     if (moonPanel && !moonPanel.hidden) { moonPanel.hidden = true; return; }
   };

@@ -1,6 +1,6 @@
 // GPS tracking module
 import { findMileFromCoords } from './utils.js';
-import { showMapInfo } from './map.js';
+import { showMapInfo, updateDailyMiles } from './map.js';
 
 // GPS state
 let watchId = null;
@@ -60,6 +60,7 @@ const handlePositionSuccess = async (position) => {
   // Find mile marker and update info panel
   const result = await findMileFromCoords(latitude, longitude);
   showMapInfo(result.mile, result.distanceFromTrail);
+  updateDailyMiles(result.mile);
 };
 
 // Handle GPS errors
