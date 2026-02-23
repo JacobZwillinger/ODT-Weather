@@ -885,11 +885,10 @@ export const swapCategoryData = (category, data) => {
 export const toggleCategoryLayer = (category, visible) => {
   if (!map) return;
   const visibility = visible ? 'visible' : 'none';
-  const layerIds = [
-    `${category}-clusters`,
-    `${category}-cluster-count`,
-    `${category}-points-unclustered`
-  ];
+  // Sections use custom layer IDs (sourced from PMTiles overlay, not GeoJSON)
+  const layerIds = category === 'sections'
+    ? ['section-circles', 'section-numbers', 'section-labels']
+    : [`${category}-clusters`, `${category}-cluster-count`, `${category}-points-unclustered`];
   for (const id of layerIds) {
     if (map.getLayer(id)) {
       map.setLayoutProperty(id, 'visibility', visibility);

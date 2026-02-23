@@ -557,6 +557,11 @@ body {
   border-color: #f59e0b;
 }
 
+.category-toggle-btn[data-category="sections"].active {
+  color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
 .category-toggle-icon {
   width: 22px;
   height: 22px;
