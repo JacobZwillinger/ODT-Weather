@@ -2,7 +2,7 @@
 import { state, loadToggleState, saveToggleState } from './utils.js';
 import { loadForecasts } from './weather.js';
 import { initModals, showWaypointDetail, showWaterDetail, showTownDetail } from './modals.js';
-import { showMapInfo, scheduleMapInit, toggleCategoryLayer, swapCategoryData, onMapReady, resetMapView, saveMapView, restoreMapView } from './map.js';
+import { showMapInfo, scheduleMapInit, toggleCategoryLayer, swapCategoryData, onMapReady, resetMapView, saveMapView, restoreMapView, getMileageLog, deleteMileageDay } from './map.js';
 import { TEST_DATA } from './test-data.js';
 import { initGpsButton, getLastPosition } from './gps.js';
 import { renderElevationChart, jumpToCurrentMile } from './elevation.js';
@@ -219,13 +219,6 @@ const positionSettingsPopover = () => {
   );
 };
 
-const positionApiPanel = () => {
-  positionToRightOf(
-    document.getElementById('btnKebabApiKey'),
-    document.getElementById('kebabApiPanel')
-  );
-};
-
 // ========== Test Mode Adapter ==========
 
 // Snapshot of real ODT data — stashed after init so test mode can restore it
@@ -261,11 +254,9 @@ const applyDataset = (dataset) => {
 
 const closeKebabMenu = () => {
   const subButtons = document.getElementById('kebabSubButtons');
-  const apiPanel = document.getElementById('kebabApiPanel');
   const settingsPopover = document.getElementById('settingsPopover');
   const btn = document.getElementById('btnKebab');
   subButtons.hidden = true;
-  apiPanel.hidden = true;
   settingsPopover.hidden = true;
   btn.classList.remove('active');
   btn.setAttribute('aria-expanded', 'false');
@@ -274,20 +265,8 @@ const closeKebabMenu = () => {
 const initKebabMenu = () => {
   const btn = document.getElementById('btnKebab');
   const subButtons = document.getElementById('kebabSubButtons');
-  const apiPanel = document.getElementById('kebabApiPanel');
-  const apiKeyInput = document.getElementById('apiKeyInput');
-  const apiKeyHint = document.getElementById('apiKeyHint');
-  const saveBtn = document.getElementById('btnSaveApiKey');
   const testModeBtn = document.getElementById('btnKebabTestMode');
   const aboutBtn = document.getElementById('btnKebabAbout');
-  const apiKeyBtn = document.getElementById('btnKebabApiKey');
-
-  // Load saved API key
-  const savedKey = localStorage.getItem('pirateweatherApiKey') || '';
-  if (savedKey) {
-    apiKeyInput.value = savedKey;
-    apiKeyHint.textContent = 'Custom key active';
-  }
 
   // Load test mode state
   const testModeActive = localStorage.getItem('testMode') === 'true';
@@ -302,48 +281,8 @@ const initKebabMenu = () => {
       closeKebabMenu();
     } else {
       subButtons.hidden = false;
-      apiPanel.hidden = true;
       btn.classList.add('active');
       btn.setAttribute('aria-expanded', 'true');
-    }
-  });
-
-  // API Key sub-button: toggle the API panel (positioned to the right)
-  apiKeyBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isOpen = !apiPanel.hidden;
-    apiPanel.hidden = isOpen;
-    if (!isOpen) positionApiPanel();
-  });
-
-  // Save API key
-  saveBtn.addEventListener('click', () => {
-    const key = apiKeyInput.value.trim();
-    if (key) {
-      localStorage.setItem('pirateweatherApiKey', key);
-      apiKeyHint.textContent = 'Saved!';
-    } else {
-      localStorage.removeItem('pirateweatherApiKey');
-      apiKeyHint.textContent = 'Cleared — using default key';
-    }
-    setTimeout(() => {
-      apiKeyHint.textContent = key ? 'Custom key active' : '';
-    }, 2000);
-  });
-
-  // API key info button
-  document.getElementById('btnApiKeyInfo').addEventListener('click', (e) => {
-    e.stopPropagation();
-    const modal = document.getElementById('apiKeyInfoModal');
-    history.pushState({ panel: 'apiKeyInfoModal' }, '');
-    modal.classList.add('visible');
-  });
-  document.getElementById('apiKeyInfoClose').addEventListener('click', () => {
-    document.getElementById('apiKeyInfoModal').classList.remove('visible');
-  });
-  document.getElementById('apiKeyInfoModal').addEventListener('click', (e) => {
-    if (e.target === document.getElementById('apiKeyInfoModal')) {
-      document.getElementById('apiKeyInfoModal').classList.remove('visible');
     }
   });
 
@@ -381,11 +320,8 @@ const initKebabMenu = () => {
   // Close when clicking outside the kebab group
   document.addEventListener('click', (e) => {
     const group = document.getElementById('kebabGroup');
-    const apiPanelEl = document.getElementById('kebabApiPanel');
-    if (subButtons.hidden && apiPanelEl.hidden) return;
-    if (!group.contains(e.target) && !apiPanelEl.contains(e.target)) {
-      closeKebabMenu();
-    }
+    if (subButtons.hidden) return;
+    if (!group.contains(e.target)) closeKebabMenu();
   });
 };
 
@@ -537,6 +473,129 @@ const initUI = () => {
       // Fly to location
       window._odtMap.flyTo({ center: [lon, lat], zoom: 14, duration: 1000 });
     }
+  });
+
+  // Daily miles block → open mileage log modal
+  const renderMileageLog = (fromDate = '', toDate = '') => {
+    const body = document.getElementById('mileageLogBody');
+    if (!body) return;
+
+    const log = getMileageLog(); // sorted ascending by date
+
+    // Build today's live entry from current localStorage state
+    const now = new Date();
+    const todayKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    const todayDateSaved = localStorage.getItem('dailyMilesDate') === todayKey;
+    const todayStart = parseFloat(localStorage.getItem('dailyMilesStart'));
+    const todayEnd   = parseFloat(localStorage.getItem('dailyMilesEnd'));
+    const todayMiles = (todayDateSaved && !isNaN(todayStart) && !isNaN(todayEnd))
+      ? Math.max(0, todayEnd - todayStart)
+      : null;
+
+    // Apply date range filter to history
+    let filtered = log;
+    if (fromDate) filtered = filtered.filter(e => e.date >= fromDate);
+    if (toDate)   filtered = filtered.filter(e => e.date <= toDate);
+
+    const totalMiles = filtered.reduce((s, e) => s + e.miles, 0);
+    const dayCount = filtered.length;
+    const avgPerDay = dayCount > 0 ? totalMiles / dayCount : 0;
+
+    const rollingAvg = (sorted, upToIdx, window = 5) => {
+      const slice = sorted.slice(Math.max(0, upToIdx - window + 1), upToIdx + 1);
+      return slice.reduce((s, e) => s + e.miles, 0) / slice.length;
+    };
+
+    const fmt = (dateStr) => new Date(dateStr + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+    let html = `<div class="mileage-filter-row">
+      <label class="mileage-filter-label">From</label>
+      <input type="date" id="mileageFrom" class="mileage-date-input" value="${fromDate}" />
+      <label class="mileage-filter-label">To</label>
+      <input type="date" id="mileageTo" class="mileage-date-input" value="${toDate}" />
+      <button id="mileageApply" class="mileage-apply-btn">Apply</button>
+    </div>`;
+
+    if (filtered.length === 0 && todayMiles === null) {
+      html += `<div class="mileage-empty">No mileage data yet. Enable GPS to start tracking.</div>`;
+    } else {
+      html += `<table class="mileage-table">
+        <thead><tr><th>Date</th><th>Miles</th><th>Range</th><th>5-day avg</th><th></th></tr></thead>
+        <tbody>`;
+
+      // Today row (live)
+      if (todayMiles !== null) {
+        const rangeStr = (!isNaN(todayStart) && !isNaN(todayEnd))
+          ? `${todayStart.toFixed(0)}→${todayEnd.toFixed(0)}` : '--';
+        html += `<tr class="mileage-today-row">
+          <td><span class="mileage-live-badge">Live</span> Today</td>
+          <td>${todayMiles.toFixed(1)}</td>
+          <td class="mileage-range">${rangeStr}</td>
+          <td>--</td>
+          <td></td>
+        </tr>`;
+      }
+
+      // History rows — newest first
+      [...filtered].reverse().forEach((entry) => {
+        const origIdx = filtered.indexOf(entry);
+        const avg = filtered.length >= 5 ? rollingAvg(filtered, origIdx) : null;
+        html += `<tr>
+          <td>${fmt(entry.date)}</td>
+          <td>${entry.miles.toFixed(1)}</td>
+          <td class="mileage-range">${entry.startMile.toFixed(0)}→${entry.endMile.toFixed(0)}</td>
+          <td>${avg !== null ? avg.toFixed(1) : '--'}</td>
+          <td><button class="mileage-delete-btn" data-date="${entry.date}" aria-label="Delete ${entry.date}">×</button></td>
+        </tr>`;
+      });
+
+      html += `</tbody></table>`;
+      if (dayCount > 0) {
+        html += `<div class="mileage-summary-row">
+          ${dayCount} day${dayCount !== 1 ? 's' : ''} &nbsp;·&nbsp; ${totalMiles.toFixed(1)} mi total &nbsp;·&nbsp; ${avgPerDay.toFixed(1)} mi/day avg
+        </div>`;
+      }
+    }
+
+    body.innerHTML = html;
+
+    document.getElementById('mileageApply')?.addEventListener('click', () => {
+      renderMileageLog(
+        document.getElementById('mileageFrom').value,
+        document.getElementById('mileageTo').value
+      );
+    });
+    body.querySelectorAll('.mileage-delete-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        deleteMileageDay(btn.dataset.date);
+        renderMileageLog(
+          document.getElementById('mileageFrom')?.value || '',
+          document.getElementById('mileageTo')?.value || ''
+        );
+      });
+    });
+  };
+
+  const openMileageLog = () => {
+    renderMileageLog();
+    history.pushState({ panel: 'mileageLogModal' }, '');
+    document.getElementById('mileageLogModal').classList.add('visible');
+  };
+
+  const dailyMilesBlock = document.getElementById('dailyMilesBlock');
+  if (dailyMilesBlock) {
+    dailyMilesBlock.addEventListener('click', openMileageLog);
+    dailyMilesBlock.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openMileageLog(); }
+    });
+  }
+
+  const mileageLogModal = document.getElementById('mileageLogModal');
+  document.getElementById('mileageLogClose')?.addEventListener('click', () => {
+    mileageLogModal.classList.remove('visible');
+  });
+  mileageLogModal?.addEventListener('click', (e) => {
+    if (e.target === mileageLogModal) mileageLogModal.classList.remove('visible');
   });
 
   // Escape key closes overlays

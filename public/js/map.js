@@ -100,11 +100,32 @@ export const updateDailyMiles = (mile) => {
   const d = new Date();
   const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
   const savedDate = localStorage.getItem('dailyMilesDate');
-  if (savedDate !== today) {
-    // New day — set this fix as day-start
+
+  if (savedDate && savedDate !== today) {
+    // New day — archive the completed day before resetting
+    const prevStart = parseFloat(localStorage.getItem('dailyMilesStart'));
+    const prevEnd   = parseFloat(localStorage.getItem('dailyMilesEnd'));
+    if (!isNaN(prevStart) && !isNaN(prevEnd)) {
+      const entry = { date: savedDate, startMile: prevStart, endMile: prevEnd, miles: Math.max(0, prevEnd - prevStart) };
+      try {
+        const log = JSON.parse(localStorage.getItem('odt_mileage_log') || '[]');
+        const idx = log.findIndex(e => e.date === savedDate);
+        if (idx >= 0) log[idx] = entry; else log.push(entry);
+        localStorage.setItem('odt_mileage_log', JSON.stringify(log));
+      } catch (_) { /* ignore storage errors */ }
+    }
+    // Reset for new day
+    localStorage.setItem('dailyMilesDate', today);
+    localStorage.setItem('dailyMilesStart', String(mile));
+  } else if (!savedDate) {
+    // First ever GPS fix
     localStorage.setItem('dailyMilesDate', today);
     localStorage.setItem('dailyMilesStart', String(mile));
   }
+
+  // Always track the latest mile (becomes end-of-day on archive)
+  localStorage.setItem('dailyMilesEnd', String(mile));
+
   const dayStart = parseFloat(localStorage.getItem('dailyMilesStart'));
   const start = isNaN(dayStart) ? mile : dayStart;
   const walked = Math.max(0, mile - start);
@@ -112,6 +133,24 @@ export const updateDailyMiles = (mile) => {
   const el = document.getElementById('dailyMilesDisplay');
   if (block) block.style.display = '';
   if (el) el.textContent = walked.toFixed(1) + ' mi';
+};
+
+// Return all past daily log entries, sorted oldest-first
+export const getMileageLog = () => {
+  try {
+    const raw = localStorage.getItem('odt_mileage_log');
+    if (!raw) return [];
+    const log = JSON.parse(raw);
+    return Array.isArray(log) ? log.sort((a, b) => a.date.localeCompare(b.date)) : [];
+  } catch (_) { return []; }
+};
+
+// Remove a specific date entry from the log
+export const deleteMileageDay = (date) => {
+  try {
+    const log = JSON.parse(localStorage.getItem('odt_mileage_log') || '[]');
+    localStorage.setItem('odt_mileage_log', JSON.stringify(log.filter(e => e.date !== date)));
+  } catch (_) { /* ignore */ }
 };
 
 // Initialize the map

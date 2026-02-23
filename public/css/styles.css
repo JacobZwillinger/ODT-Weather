@@ -310,83 +310,37 @@ body {
   color: #555;
 }
 
-/* ========== API Key Panel (to the right of the kebab sub-buttons) ========== */
-.kebab-api-panel {
-  position: fixed;
-  left: 92px;  /* JS overrides to sit right of the buttons */
-  top: 80px;
-  background: rgba(255, 255, 255, 0.97);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 12px;
-  padding: 14px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  z-index: 25;
-  width: min(260px, calc(100vw - 116px));
-  animation: kebab-expand 0.15s ease-out;
+/* ========== Weather API Key Setup Screen ========== */
+.weather-api-setup {
+  padding: 32px 24px;
+  max-width: 360px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.kebab-api-panel[hidden] { display: none; }
-
-.kebab-label-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 8px;
-}
-
-.kebab-label {
-  display: block;
-  font-size: 0.75rem;
+.weather-setup-title {
+  font-size: 1.05rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #888;
-  margin-bottom: 0;
+  color: #1b1b1b;
+  margin: 0 0 10px;
 }
 
-.api-key-info-btn {
-  background: none;
-  border: 1px solid #666;
-  padding: 0;
-  font-size: 1rem;
-  color: #ccc;
-  cursor: pointer;
-  line-height: 1;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.api-key-info-btn:hover { color: #fff; border-color: #aaa; }
-
-.api-key-info-body ol {
-  margin: 0 0 12px 0;
-  padding-left: 20px;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-.api-key-info-body li { margin-bottom: 4px; }
-
-.api-key-info-body a { color: #3b82f6; }
-
-.api-key-info-note {
-  font-size: 0.82rem;
-  color: #666;
-  margin: 0;
+.weather-setup-desc {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0 0 20px;
   line-height: 1.5;
 }
 
-.kebab-api-row {
+.weather-setup-desc a { color: #3b82f6; }
+
+.weather-key-row {
   display: flex;
   gap: 8px;
+  margin-bottom: 12px;
 }
 
-.kebab-api-input {
+.weather-key-input {
   flex: 1;
   padding: 10px 12px;
   border: 1.5px solid #e0e0e0;
@@ -399,11 +353,9 @@ body {
   font-family: inherit;
 }
 
-.kebab-api-input:focus {
-  border-color: #1b1b1b;
-}
+.weather-key-input:focus { border-color: #1b1b1b; }
 
-.kebab-save-btn {
+.weather-key-save {
   padding: 10px 16px;
   background: #1b1b1b;
   color: #fff;
@@ -417,13 +369,141 @@ body {
   font-family: inherit;
 }
 
-.kebab-save-btn:active { transform: scale(0.95); }
+.weather-key-save:active { transform: scale(0.95); }
 
-.kebab-hint {
+.weather-key-hint {
+  font-size: 0.78rem;
+  color: #888;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.weather-change-key {
+  text-align: center;
+  font-size: 0.78rem;
+  color: #aaa;
+  margin: 16px 0 8px;
+  padding-bottom: 8px;
+}
+
+.weather-change-key a { color: #aaa; text-decoration: underline; }
+
+/* ========== Mileage Log Modal ========== */
+.mileage-filter-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-bottom: 1px solid #eee;
+  flex-wrap: wrap;
+}
+
+.mileage-filter-label {
   font-size: 0.75rem;
   color: #888;
-  margin: 6px 0 0 0;
-  min-height: 1em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.mileage-date-input {
+  padding: 5px 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  color: #1b1b1b;
+  background: #fff;
+}
+
+.mileage-apply-btn {
+  padding: 5px 12px;
+  background: #1b1b1b;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mileage-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.mileage-table th {
+  text-align: left;
+  padding: 8px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #888;
+  border-bottom: 1px solid #eee;
+}
+
+.mileage-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #1b1b1b;
+}
+
+.mileage-today-row td {
+  background: #f0f7ff;
+  font-weight: 500;
+}
+
+.mileage-live-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: #22c55e;
+  color: #fff;
+  border-radius: 4px;
+  padding: 1px 5px;
+  margin-right: 4px;
+  vertical-align: middle;
+  letter-spacing: 0.04em;
+}
+
+.mileage-range {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.mileage-delete-btn {
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  line-height: 1;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mileage-delete-btn:hover { color: #e11d48; background: #fff0f3; }
+
+.mileage-summary-row {
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #444;
+  border-top: 2px solid #eee;
+  text-align: center;
+  background: #fafafa;
+}
+
+.mileage-empty {
+  padding: 32px 24px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #888;
 }
 
 /* Category toggle buttons (used in settings popover) */
