@@ -571,6 +571,20 @@ export const initMap = () => {
       }
     });
 
+    // Add alternate routes (dashed orange, behind main route)
+    map.addLayer({
+      id: 'alternates-line',
+      type: 'line',
+      source: 'overlay',
+      'source-layer': 'alternates',
+      paint: {
+        'line-color': '#f97316',
+        'line-width': 2,
+        'line-opacity': 0.8,
+        'line-dasharray': [5, 3]
+      }
+    });
+
     // Add route line layer from overlay
     map.addLayer({
       id: 'route-line',
