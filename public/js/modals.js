@@ -56,6 +56,7 @@ const releaseFocusTrap = (modal) => {
 
 // [UX] Changed: Focus the close button when a modal opens for keyboard accessibility (WCAG 2.4.3)
 const focusModalClose = (modal) => {
+  history.pushState({ panel: modal.id }, '');
   lastFocusedElement = document.activeElement;
   trapFocus(modal);
   const closeBtn = modal.querySelector('.sources-modal-close');

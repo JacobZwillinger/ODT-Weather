@@ -78,72 +78,50 @@ const summarizePeriod = (hours, period) => {
   return { icon, temp, precipChance, precipAmount };
 };
 
-// ------- Inline Hourly Expansion -------
+// ------- Hourly Detail Modal -------
 
-// Build the HTML for the expanded hourly sub-rows for one location's period.
-// The first 3 columns (section swatch, location, mile) are left empty so the
-// filmstrip starts directly under the forecast columns — no left-edge scroll.
-const buildHourlyRows = (hours, forecastColCount) => {
-  const hourCards = hours.map(h => {
+let hourlyModalInitialized = false;
+
+const closeHourlyModal = () => {
+  document.getElementById('hourlyModal')?.classList.remove('visible');
+};
+
+const openHourlyModal = (locationName, periodLabel, hours) => {
+  const modal = document.getElementById('hourlyModal');
+  const title = document.getElementById('hourlyModalTitle');
+  const body = document.getElementById('hourlyModalBody');
+  if (!modal || !title || !body) return;
+
+  title.textContent = `${locationName} — ${periodLabel}`;
+
+  body.innerHTML = hours.map(h => {
     const d = new Date(h.time * 1000);
     const hr = d.getHours();
     const ampm = hr >= 12 ? 'PM' : 'AM';
     const hr12 = hr % 12 || 12;
     const timeStr = `${hr12} ${ampm}`;
     const temp = h.temp !== undefined ? Math.round(h.temp) + '°' : '--';
-    const chance = (h.precipProbability || 0) > 0 ? Math.round(h.precipProbability * 100) + '%' : '';
+    const chance = (h.precipProbability || 0) > 0.04 ? Math.round(h.precipProbability * 100) + '%' : '';
     const amount = h.precipIntensity > 0.01 ? h.precipIntensity.toFixed(2) + '″' : '';
     const isHeavy = (h.precipProbability || 0) >= 0.6;
-    return `<div class="hourly-inline-row${isHeavy ? ' hourly-inline-heavy' : ''}">
-      <span class="hi-time">${timeStr}</span>
-      <span class="hi-icon">${getIcon(h.icon)}</span>
-      <span class="hi-temp">${temp}</span>
-      <span class="hi-precip${isHeavy ? ' precip-heavy' : (chance ? ' precip-mod' : '')}">${chance}</span>
-      ${amount ? `<span class="hi-amount">${amount}</span>` : ''}
+    const precipClass = isHeavy ? 'precip-heavy' : chance ? 'precip-mod' : '';
+    return `<div class="hm-row${isHeavy ? ' hm-row-heavy' : ''}">
+      <span class="hm-time">${timeStr}</span>
+      <span class="hm-icon">${getIcon(h.icon)}</span>
+      <span class="hm-temp">${temp}</span>
+      <span class="hm-precip ${precipClass}">${chance}</span>
+      <span class="hm-amount">${amount}</span>
     </div>`;
   }).join('');
 
-  // 3 fixed cols (section + location + mile) + forecast cols
-  return `<tr class="hourly-expansion-row">
-    <td class="hourly-expansion-spacer" colspan="3"></td>
-    <td colspan="${forecastColCount}" class="hourly-expansion-cell">
-      <div class="hourly-expansion-inner">
-        <div class="hourly-inline-list">${hourCards}</div>
-      </div>
-    </td>
-  </tr>`;
-};
-
-// Toggle inline expansion for a clicked forecast cell
-let activeExpansion = null; // { rowEl, expansionEl }
-
-const toggleExpansion = (cell, hours, forecastColCount) => {
-  // If clicking the already-open row, close it
-  if (activeExpansion && activeExpansion.cell === cell) {
-    activeExpansion.expansionEl.remove();
-    cell.classList.remove('forecast-cell-active');
-    activeExpansion = null;
-    return;
+  if (!hourlyModalInitialized) {
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeHourlyModal(); });
+    document.getElementById('hourlyModalClose')?.addEventListener('click', closeHourlyModal);
+    hourlyModalInitialized = true;
   }
 
-  // Close any existing expansion
-  if (activeExpansion) {
-    activeExpansion.expansionEl.remove();
-    activeExpansion.cell.classList.remove('forecast-cell-active');
-    activeExpansion = null;
-  }
-
-  // Insert new expansion after the parent <tr>
-  const parentRow = cell.closest('tr');
-  const expansionHtml = buildHourlyRows(hours, forecastColCount);
-  parentRow.insertAdjacentHTML('afterend', expansionHtml);
-  const expansionEl = parentRow.nextElementSibling;
-
-  // Scroll expansion into view smoothly
-  expansionEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
-  cell.classList.add('forecast-cell-active');
-  activeExpansion = { cell, expansionEl };
+  history.pushState({ panel: 'hourlyModal' }, '');
+  modal.classList.add('visible');
 };
 
 // ------- Weather Table -------
@@ -236,9 +214,8 @@ export const renderWeatherTable = (forecasts) => {
   html += `</tbody></table>`;
   container.innerHTML = html;
 
-  // Wire click listeners for inline expansion
+  // Wire click listeners for hourly modal
   if (useNewLayout) {
-    const table = container.querySelector('table');
     container.querySelectorAll('.forecast-cell[data-location-idx]').forEach(cell => {
       cell.addEventListener('click', () => {
         const locIdx = parseInt(cell.dataset.locationIdx);
@@ -248,7 +225,7 @@ export const renderWeatherTable = (forecasts) => {
         const periods = sliceDayNight(forecast.hourly);
         const p = periods[periodIdx];
         if (!p) return;
-        toggleExpansion(cell, p.hours, forecastColCount);
+        openHourlyModal(sectionPoints[locIdx]?.name || '', p.label, p.hours);
       });
     });
   }

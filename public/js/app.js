@@ -33,6 +33,7 @@ const escapeHtml = (str) => {
 // ========== Overlay Management ==========
 
 const openOverlay = (id) => {
+  history.pushState({ panel: id }, '');
   document.getElementById(id).hidden = false;
 };
 
@@ -352,6 +353,7 @@ const initKebabMenu = () => {
   aboutBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     closeKebabMenu();
+    history.pushState({ panel: 'infoModal' }, '');
     document.getElementById('infoModal').classList.add('visible');
   });
 
@@ -435,6 +437,7 @@ const initUI = () => {
         </div>
       </div>
     `;
+    history.pushState({ panel: 'moon' }, '');
     moonPanel.hidden = false;
     document.getElementById('btnMoonClose').addEventListener('click', () => {
       moonPanel.hidden = true;
@@ -533,6 +536,25 @@ const initUI = () => {
       // Close kebab sub-buttons / panels
       closeKebabMenu();
     }
+  });
+
+  // Android back swipe / hardware back button — closes the topmost open panel
+  const closeActivePanel = () => {
+    const overlay = document.querySelector('.fullscreen-overlay:not([hidden])');
+    if (overlay) {
+      overlay.hidden = true;
+      restoreMapView();
+      resetViewportScale();
+      document.getElementById('moonPanel').hidden = true;
+      return;
+    }
+    const modal = document.querySelector('.sources-modal.visible');
+    if (modal) { modal.classList.remove('visible'); return; }
+    const moonPanel = document.getElementById('moonPanel');
+    if (moonPanel && !moonPanel.hidden) { moonPanel.hidden = true; return; }
+  };
+  window.addEventListener('popstate', (e) => {
+    if (e.state?.panel) closeActivePanel();
   });
 };
 
