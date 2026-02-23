@@ -133,7 +133,7 @@ body {
   justify-content: center;
   gap: 1px;
   flex: 1;
-  padding: 4px 2px;
+  padding: 4px 0;
   min-width: 0;
 }
 
@@ -175,7 +175,7 @@ body {
 .info-value-nearest {
   font-size: 0.8rem;
   font-weight: 600;
-  max-width: 90px;
+  max-width: 140px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
