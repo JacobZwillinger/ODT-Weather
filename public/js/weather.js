@@ -328,6 +328,43 @@ const adaptPirateWeatherResponse = (data, response) => {
   };
 };
 
+// Show API key setup screen in the weather overlay container
+const showApiKeySetup = () => {
+  const container = document.getElementById('container');
+  container.innerHTML = `
+    <div class="weather-api-setup">
+      <p class="weather-setup-title">Weather API Key Required</p>
+      <p class="weather-setup-desc">Enter your free <a href="https://pirateweather.net" target="_blank" rel="noopener">PirateWeather</a> API key to see forecasts along the trail.</p>
+      <div class="weather-key-row">
+        <input type="password" id="weatherApiKeyInput" class="weather-key-input" placeholder="Paste API key…" autocomplete="off" spellcheck="false" />
+        <button id="weatherApiKeySave" class="weather-key-save">Save</button>
+      </div>
+      <p class="weather-key-hint">Free tier: sign up at pirateweather.net → subscribe to Forecast API → copy key from dashboard</p>
+    </div>
+  `;
+  const save = () => {
+    const key = document.getElementById('weatherApiKeyInput').value.trim();
+    if (key) { localStorage.setItem('pirateweatherApiKey', key); loadForecasts(); }
+  };
+  document.getElementById('weatherApiKeySave').addEventListener('click', save);
+  document.getElementById('weatherApiKeyInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') save(); });
+};
+
+// Append a subtle "Change API key" link below the forecast table
+const appendChangeKeyLink = () => {
+  const container = document.getElementById('container');
+  if (!container || container.querySelector('.weather-change-key')) return;
+  const p = document.createElement('p');
+  p.className = 'weather-change-key';
+  p.innerHTML = '<a href="#" id="btnChangeWeatherKey">Change API key</a>';
+  container.appendChild(p);
+  document.getElementById('btnChangeWeatherKey').addEventListener('click', (e) => {
+    e.preventDefault();
+    localStorage.removeItem('pirateweatherApiKey');
+    showApiKeySetup();
+  });
+};
+
 const fetchForecast = async (lat, lon) => {
   if (isAndroid) {
     const apiKey = AndroidBridge.getApiKey();
@@ -339,42 +376,21 @@ const fetchForecast = async (lat, lon) => {
     return adaptPirateWeatherResponse(data, response);
   } else {
     const userKey = localStorage.getItem('pirateweatherApiKey');
-    if (userKey) {
-      const url = `https://api.pirateweather.net/forecast/${userKey}/${lat},${lon}?exclude=minutely,alerts&units=us&extend=hourly`;
-      const response = await fetch(url);
-      if (!response.ok) throw new Error('Bad response');
-      const data = await response.json();
-      return adaptPirateWeatherResponse(data, response);
-    }
-    const response = await fetch(`/api/forecast?lat=${lat}&lon=${lon}`);
+    const url = `https://api.pirateweather.net/forecast/${userKey}/${lat},${lon}?exclude=minutely,alerts&units=us&extend=hourly`;
+    const response = await fetch(url);
     if (!response.ok) throw new Error('Bad response');
-    return await response.json();
+    const data = await response.json();
+    return adaptPirateWeatherResponse(data, response);
   }
 };
 
 export const loadForecasts = async () => {
   if (isAndroid) {
     const apiKey = AndroidBridge.getApiKey();
-    if (!apiKey) {
-      const container = document.getElementById('container');
-      container.innerHTML = `
-        <div style="padding: 24px; text-align: center; color: #666;">
-          <p style="margin-bottom: 16px;"><strong>Weather API Key Required</strong></p>
-          <p style="margin-bottom: 16px;">Enter your <a href="https://pirateweather.net" target="_blank">PirateWeather</a> API key to see forecasts.</p>
-          <input type="text" id="androidApiKeyInput" placeholder="Enter API key..." style="width: 100%; max-width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; margin-bottom: 12px;" />
-          <br/>
-          <button id="androidSaveApiKeyBtn" style="padding: 10px 24px; background: #1b1b1b; color: #fff; border: none; border-radius: 6px; font-size: 0.95rem; cursor: pointer;">Save Key</button>
-        </div>
-      `;
-      document.getElementById('androidSaveApiKeyBtn').addEventListener('click', () => {
-        const key = document.getElementById('androidApiKeyInput').value.trim();
-        if (key) {
-          AndroidBridge.setApiKey(key);
-          loadForecasts();
-        }
-      });
-      return;
-    }
+    if (!apiKey) { showApiKeySetup(); return; }
+  } else {
+    const userKey = localStorage.getItem('pirateweatherApiKey');
+    if (!userKey) { showApiKeySetup(); return; }
   }
 
   const forecasts = await Promise.all(
@@ -402,6 +418,7 @@ export const loadForecasts = async () => {
   }
 
   renderWeatherTable(mergedForecasts);
+  appendChangeKeyLink();
 
   if (liveCount === 0 && mergedCount === 0) {
     setWeatherStatusBanner('Offline: no cached forecast available yet. Connect once to download forecasts.', 'error');

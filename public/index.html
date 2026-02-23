@@ -37,15 +37,6 @@
           </svg>
           <span class="kebab-sub-label">Layers</span>
         </button>
-        <button id="btnKebabApiKey" class="kebab-sub-btn" aria-label="API Key">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <circle cx="8" cy="15" r="3" stroke="currentColor" stroke-width="2" fill="none"/>
-            <path d="M11 12l9-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <path d="M18 5l2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <path d="M16 7l2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <span class="kebab-sub-label">API Key</span>
-        </button>
         <button id="btnKebabTestMode" class="kebab-sub-btn" aria-label="Test Mode" aria-pressed="false">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M9 3v8l-4 8h14l-4-8V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -62,19 +53,6 @@
           <span class="kebab-sub-label">About</span>
         </button>
       </div>
-    </div>
-
-    <!-- API Key panel (shown below kebab sub-buttons) -->
-    <div class="kebab-api-panel" id="kebabApiPanel" hidden>
-      <div class="kebab-label-row">
-        <label class="kebab-label" for="apiKeyInput">PirateWeather API Key</label>
-        <button id="btnApiKeyInfo" class="api-key-info-btn" aria-label="How to get an API key">ℹ</button>
-      </div>
-      <div class="kebab-api-row">
-        <input type="password" id="apiKeyInput" class="kebab-api-input" placeholder="Leave blank to use default" autocomplete="off" spellcheck="false"/>
-        <button id="btnSaveApiKey" class="kebab-save-btn">Save</button>
-      </div>
-      <p class="kebab-hint" id="apiKeyHint"></p>
     </div>
 
     <!-- Top-right button group -->
@@ -144,7 +122,7 @@
       <div class="info-bar-nearest-row">
         <span class="info-label">Nearest</span>
         <span class="info-value-nearest" id="mapNearestWaypoint">Start</span>
-        <div class="daily-miles-block" id="dailyMilesBlock" style="display:none">
+        <div class="daily-miles-block" id="dailyMilesBlock" role="button" tabindex="0" aria-label="Open mileage log" style="display:none">
           <span class="info-label">Today</span>
           <span class="info-value" id="dailyMilesDisplay">0.0 mi</span>
         </div>
@@ -386,22 +364,14 @@
       </div>
     </div>
 
-    <!-- API Key Info Modal -->
-    <div id="apiKeyInfoModal" class="sources-modal" role="dialog" aria-modal="true" aria-labelledby="apiKeyInfoTitle">
+    <!-- Mileage Log Modal -->
+    <div id="mileageLogModal" class="sources-modal" role="dialog" aria-modal="true" aria-labelledby="mileageLogTitle">
       <div class="sources-modal-content">
         <div class="sources-modal-header">
-          <h3 id="apiKeyInfoTitle">Getting a PirateWeather API Key</h3>
-          <button class="sources-modal-close" id="apiKeyInfoClose" aria-label="Close dialog">Close</button>
+          <h3 id="mileageLogTitle">Mileage Log</h3>
+          <button class="sources-modal-close" id="mileageLogClose" aria-label="Close dialog">Close</button>
         </div>
-        <div class="api-key-info-body">
-          <ol>
-            <li>Go to <a href="https://pirateweather.net" target="_blank" rel="noopener">pirateweather.net</a></li>
-            <li>Sign up for a free account</li>
-            <li>Copy your API key from the dashboard</li>
-            <li>Paste it into the API Key field — it's stored only on your device</li>
-          </ol>
-          <p class="api-key-info-note">The free tier includes 20,000 calls/month, enough for regular trail use. The default shared key may be rate-limited during peak periods.</p>
-        </div>
+        <div id="mileageLogBody"></div>
       </div>
     </div>
 
