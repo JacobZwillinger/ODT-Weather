@@ -1,7 +1,7 @@
 import { sectionPoints, WATER_WARNING_MILES, MAP_INIT_DELAY_MS, CATEGORY_CONFIG } from './config.js';
 import { state, loadElevationProfile, findNearestWaypoint, findMileFromCoords, findNextWater, findNextReliableWater, findNextOtherWater, findNextTown, getWaypointShortName, OFF_TRAIL_THRESHOLD } from './utils.js';
 import { renderElevationChart } from './elevation.js';
-import { showWaypointDetail, showWaterDetail, showTownDetail } from './modals.js';
+import { showWaypointDetail, showWaterDetail, showTownDetail, showSectionDetail } from './modals.js';
 import { setPositionUpdateCallback, setHeadingUpdateCallback, shouldAllowMapClicks } from './gps.js';
 
 let map = null;
@@ -191,7 +191,7 @@ export const initMap = () => {
         },
         'overlay': {
           type: 'vector',
-          url: 'pmtiles://overlay.pmtiles'
+          url: 'pmtiles://overlay.pmtiles?v=2'
         },
         'contours': {
           type: 'vector',
@@ -601,8 +601,8 @@ export const initMap = () => {
       source: 'overlay',
       'source-layer': 'sections',
       paint: {
-        'circle-radius': 8,
-        'circle-color': '#1b1b1b',
+        'circle-radius': 14,
+        'circle-color': '#1d4ed8',
         'circle-stroke-color': '#fff',
         'circle-stroke-width': 2
       }
@@ -615,8 +615,8 @@ export const initMap = () => {
       'source-layer': 'sections',
       layout: {
         'text-field': ['slice', ['get', 'name'], 0, ['index-of', ':', ['get', 'name']]],
-        'text-size': 10,
-        'text-font': ['Noto Sans Regular'],
+        'text-size': 12,
+        'text-font': ['Noto Sans Bold'],
         'text-allow-overlap': true
       },
       paint: { 'text-color': '#fff' }
@@ -642,16 +642,13 @@ export const initMap = () => {
     // Use pendingMileUpdate to prevent race conditions from rapid clicks
     // These only update mile info when GPS mode is off (except waypoint modal still opens)
     // Section circles are ON the trail by definition — always pass distanceFromTrail: 0
-    map.on('click', 'section-circles', async (e) => {
+    map.on('click', 'section-circles', (e) => {
       if (!e.features || e.features.length === 0) return;
       if (!shouldAllowMapClicks()) return; // GPS mode active, ignore clicks
       e.preventDefault();
-      const updateId = ++pendingMileUpdate;
-      const coords = e.features[0].geometry.coordinates;
-      const result = await findMileFromCoords(coords[1], coords[0]);
-      if (updateId === pendingMileUpdate) {
-        showMapInfo(result.mile, 0);
-      }
+      const { name, mile } = e.features[0].properties;
+      showMapInfo(mile, 0);
+      showSectionDetail(name, mile);
     });
 
     // Route-line clicks are ON the trail by definition — always pass distanceFromTrail: 0
