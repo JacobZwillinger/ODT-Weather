@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="80" fill="#1a1a2e"/>
+  <!-- Desert horizon line -->
+  <line x1="64" y1="346" x2="448" y2="346" stroke="#6060aa" stroke-width="4" opacity="0.5"/>
+  <!-- Trail line -->
+  <polyline points="256,346 213,288 256,230 299,288 256,346" fill="none" stroke="#c4bcf0" stroke-width="7" stroke-linejoin="round" opacity="0.7"/>
+  <!-- Sun -->
+  <circle cx="256" cy="192" r="58" fill="#f5c842" opacity="0.95"/>
+  <!-- Sun rays -->
+  <g stroke="#f5c842" stroke-width="7" stroke-linecap="round" opacity="0.7">
+    <line x1="256" y1="96" x2="256" y2="74"/>
+    <line x1="256" y1="310" x2="256" y2="288"/>
+    <line x1="160" y1="192" x2="138" y2="192"/>
+    <line x1="374" y1="192" x2="352" y2="192"/>
+    <line x1="188" y1="124" x2="172" y2="108"/>
+    <line x1="340" y1="276" x2="324" y2="260"/>
+    <line x1="324" y1="124" x2="340" y2="108"/>
+    <line x1="172" y1="276" x2="188" y2="260"/>
+  </g>
+  <!-- ODT label -->
+  <text x="256" y="440" text-anchor="middle" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#d4cfff" letter-spacing="8">ODT</text>
+</svg>
