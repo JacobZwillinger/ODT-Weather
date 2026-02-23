@@ -97,7 +97,8 @@ export const showMapInfo = (mile, distanceFromTrail = 0) => {
 
 // Update daily miles counter — called only on GPS fixes (not map clicks)
 export const updateDailyMiles = (mile) => {
-  const today = new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD in local time
+  const d = new Date();
+  const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
   const savedDate = localStorage.getItem('dailyMilesDate');
   if (savedDate !== today) {
     // New day — set this fix as day-start
