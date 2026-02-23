@@ -38,7 +38,7 @@ body {
 }
 
 .btn-group-top-right { top: 12px; }
-.btn-group-bottom-right { bottom: 76px; }
+.btn-group-bottom-right { bottom: 88px; }
 
 .btn-group-top-left button,
 .btn-group-top-right button,
@@ -93,36 +93,35 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 64px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-top: 1px solid rgba(0,0,0,0.1);
   z-index: 20;
   display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  padding: 0;
+  flex-direction: column;
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* Mile + Nearest grouped as a pair — left side, column stacked */
-.info-group-pair {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 4px 8px 4px 10px;
-  gap: 2px;
-  flex-shrink: 0;
-  border-right: 1px solid rgba(0,0,0,0.08);
-}
-
-.info-group-pair .info-item {
+/* Main row: Mile + 4 data cards */
+.info-bar-main-row {
   display: flex;
   flex-direction: row;
-  align-items: baseline;
-  gap: 4px;
-  padding: 0;
+  align-items: stretch;
+  height: 56px;
+}
+
+/* Full-width nearest strip below main row */
+.info-bar-nearest-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  padding: 0 12px 5px;
+}
+
+.info-bar-nearest-row .info-label {
+  flex-shrink: 0;
 }
 
 /* The 4 data items fill remaining space equally */
@@ -175,10 +174,10 @@ body {
 .info-value-nearest {
   font-size: 0.8rem;
   font-weight: 600;
-  max-width: 140px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  min-width: 0;
 }
 
 /* Mile label in pair */
