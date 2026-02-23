@@ -15,10 +15,9 @@ const localDateStr = (unixSec) => {
 
 const DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-// Slice 48-hour array into 6 day/night periods (3 days × 2)
-// Day   = hours 6–21 inclusive on that calendar day
-// Night = hours 22–23 on that day + hours 0–5 on the NEXT day
-const sliceDayNight = (hourlyData) => {
+// Group hourly data into calendar days (up to 4). Returns:
+// [{ label, hours }]  where hours = all hours on that calendar day.
+const sliceByDay = (hourlyData) => {
   if (!hourlyData || hourlyData.length === 0) return [];
 
   const byDate = {};
@@ -29,53 +28,42 @@ const sliceDayNight = (hourlyData) => {
     byDate[key].push(h);
   }
 
-  const periods = [];
-  const days = dateOrder.slice(0, 4);
-
-  days.forEach((dateKey, i) => {
-    const hours = byDate[dateKey] || [];
+  return dateOrder.slice(0, 4).map((dateKey, i) => {
+    const hours = byDate[dateKey];
     const d = new Date(hours[0].time * 1000);
-    const dayName = i === 0 ? 'Today' : DAY_NAMES[d.getDay()];
-
-    const dayHours = hours.filter(h => { const hr = localHour(h.time); return hr >= 6 && hr <= 21; });
-    const lateHours = hours.filter(h => localHour(h.time) >= 22);
-    const nextKey = dateOrder[dateOrder.indexOf(dateKey) + 1];
-    const earlyNextHours = nextKey
-      ? (byDate[nextKey] || []).filter(h => localHour(h.time) <= 5)
-      : [];
-    const nightHours = [...lateHours, ...earlyNextHours];
-
-    if (dayHours.length > 0) {
-      const dayLabel = i === 0 ? 'Today' : `${dayName} Day`;
-      periods.push({ label: dayLabel, period: 'day', hours: dayHours });
-    }
-    if (nightHours.length > 0) {
-      const nightLabel = i === 0 ? 'Tonight' : `${dayName} Night`;
-      periods.push({ label: nightLabel, period: 'night', hours: nightHours });
-    }
+    const label = i === 0 ? 'Today' : DAY_NAMES[d.getDay()];
+    return { label, hours };
   });
-
-  return periods.slice(0, 8);
 };
 
-// Summarize a set of hours into a single display object
-const summarizePeriod = (hours, period) => {
+// Summarize a full calendar day's hours into display values.
+// high  = max temp from daytime hours (6–21); fallback all hours
+// low   = min temp from overnight hours (0–5 or 22–23); fallback all hours
+// icon  = most common icon among daytime hours (6–21)
+// precipChance = max probability across all hours, rounded to 10%
+// precipAmount = sum of intensity across all hours
+const summarizeDay = (hours) => {
   if (!hours || hours.length === 0) return null;
 
+  const dayHours = hours.filter(h => { const hr = localHour(h.time); return hr >= 6 && hr <= 21; });
+  const nightHours = hours.filter(h => { const hr = localHour(h.time); return hr < 6 || hr >= 22; });
+
+  const iconSource = dayHours.length > 0 ? dayHours : hours;
   const iconCounts = {};
-  for (const h of hours) { iconCounts[h.icon] = (iconCounts[h.icon] || 0) + 1; }
+  for (const h of iconSource) { iconCounts[h.icon] = (iconCounts[h.icon] || 0) + 1; }
   const icon = Object.entries(iconCounts).sort((a, b) => b[1] - a[1])[0][0];
 
-  const temps = hours.map(h => h.temp).filter(t => t !== undefined);
-  const temp = period === 'day'
-    ? Math.round(Math.max(...temps))
-    : Math.round(Math.min(...temps));
+  const dayTemps = (dayHours.length > 0 ? dayHours : hours).map(h => h.temp).filter(t => t !== undefined);
+  const high = dayTemps.length > 0 ? Math.round(Math.max(...dayTemps)) : null;
+
+  const nightTemps = (nightHours.length > 0 ? nightHours : hours).map(h => h.temp).filter(t => t !== undefined);
+  const low = nightTemps.length > 0 ? Math.round(Math.min(...nightTemps)) : null;
 
   const maxChance = Math.max(...hours.map(h => h.precipProbability || 0));
   const precipChance = Math.round(maxChance * 10) * 10;
   const precipAmount = hours.reduce((sum, h) => sum + (h.precipIntensity || 0), 0);
 
-  return { icon, temp, precipChance, precipAmount };
+  return { icon, high, low, precipChance, precipAmount };
 };
 
 // ------- Hourly Detail Modal -------
@@ -130,13 +118,13 @@ export const renderWeatherTable = (forecasts) => {
   const container = document.getElementById("container");
 
   const sampleForecast = forecasts.find(f => f && f.hourly && f.hourly.length > 0);
-  const samplePeriods = sampleForecast ? sliceDayNight(sampleForecast.hourly) : [];
-  const periodLabels = samplePeriods.length > 0
-    ? samplePeriods.map(p => p.label)
-    : getDayHeaders();
+  const sampleDays = sampleForecast ? sliceByDay(sampleForecast.hourly) : [];
+  const dayLabels = sampleDays.length > 0
+    ? sampleDays.map(d => d.label)
+    : getDayHeaders().slice(0, 4);
 
-  const useNewLayout = samplePeriods.length > 0;
-  const forecastColCount = periodLabels.length;
+  const useHourly = sampleDays.length > 0;
+  const colCount = dayLabels.length;
 
   let html = `
     <table>
@@ -145,10 +133,7 @@ export const renderWeatherTable = (forecasts) => {
           <th class="section-cell"></th>
           <th class="location-header">Location</th>
           <th class="mile-header">Mile</th>
-          ${periodLabels.map((l, i) => {
-            const isNight = useNewLayout && samplePeriods[i]?.period === 'night';
-            return `<th class="${isNight ? 'night-header' : 'day-header'}">${l}</th>`;
-          }).join("")}
+          ${dayLabels.map(l => `<th class="day-header">${l}</th>`).join("")}
         </tr>
       </thead>
       <tbody>
@@ -166,44 +151,47 @@ export const renderWeatherTable = (forecasts) => {
         <td class="mile">${point.mile}</td>
     `;
 
-    if (useNewLayout && forecast && forecast.hourly && forecast.hourly.length > 0) {
-      const periods = sliceDayNight(forecast.hourly);
-      for (let i = 0; i < periodLabels.length; i++) {
-        const p = periods[i];
-        if (!p) { html += `<td class="forecast-cell">--</td>`; continue; }
-        const s = summarizePeriod(p.hours, p.period);
+    if (useHourly && forecast && forecast.hourly && forecast.hourly.length > 0) {
+      const days = sliceByDay(forecast.hourly);
+      for (let i = 0; i < colCount; i++) {
+        const day = days[i];
+        if (!day) { html += `<td class="forecast-cell">--</td>`; continue; }
+        const s = summarizeDay(day.hours);
         if (!s) { html += `<td class="forecast-cell">--</td>`; continue; }
 
-        const isNight = p.period === 'night';
         const precipColor = s.precipChance >= 60 ? 'precip-heavy' : s.precipChance >= 20 ? 'precip-mod' : '';
-        const precipStr = s.precipChance > 0 ? `<span class="fc-precip ${precipColor}">${s.precipChance}%</span>` : `<span class="fc-precip"></span>`;
-        const amountStr = s.precipAmount > 0.01 ? `<span class="fc-amount">${s.precipAmount.toFixed(2)}″</span>` : '';
+        const precipStr = s.precipChance > 0
+          ? `<span class="fc-precip ${precipColor}">${s.precipChance}%</span>`
+          : '';
+        const amountStr = s.precipAmount > 0.01
+          ? `<span class="fc-amount">${s.precipAmount.toFixed(2)}″</span>`
+          : '';
+        const highStr = s.high !== null ? `<span class="fc-high">${s.high}°</span>` : '';
+        const lowStr = s.low !== null ? `<span class="fc-low">${s.low}°</span>` : '';
 
-        html += `<td class="forecast-cell${isNight ? ' night-cell' : ' day-cell'}"
-          data-location-idx="${index}" data-period-idx="${i}">
+        html += `<td class="forecast-cell" data-location-idx="${index}" data-day-idx="${i}">
           <div class="fc-inner">
             <span class="fc-icon">${getIcon(s.icon)}</span>
             <div class="fc-values">
-              <span class="fc-temp">${s.temp}°</span>
-              ${precipStr}
-              ${amountStr}
+              <div class="fc-temps">${highStr}${lowStr}</div>
+              <div class="fc-precip-row">${precipStr}${amountStr}</div>
             </div>
           </div>
         </td>`;
       }
-    } else if (!useNewLayout && forecast && forecast.daily) {
-      for (let i = 0; i < 7; i++) {
+    } else if (!useHourly && forecast && forecast.daily) {
+      for (let i = 0; i < colCount; i++) {
         const day = forecast.daily[i];
         if (day) {
-          const high = day.high !== undefined ? Math.round(day.high) : "--";
-          const low = day.low !== undefined ? Math.round(day.low) : "--";
-          html += `<td class="forecast-cell"><div class="fc-inner"><span class="fc-icon">${getIcon(day.icon || 'cloudy')}</span><div class="fc-values"><span class="fc-temp">${high}° / ${low}°</span></div></div></td>`;
+          const high = day.high !== undefined ? `<span class="fc-high">${Math.round(day.high)}°</span>` : '';
+          const low = day.low !== undefined ? `<span class="fc-low">${Math.round(day.low)}°</span>` : '';
+          html += `<td class="forecast-cell"><div class="fc-inner"><span class="fc-icon">${getIcon(day.icon || 'cloudy')}</span><div class="fc-values"><div class="fc-temps">${high}${low}</div></div></div></td>`;
         } else {
           html += `<td class="forecast-cell">--</td>`;
         }
       }
     } else {
-      for (let i = 0; i < periodLabels.length; i++) {
+      for (let i = 0; i < colCount; i++) {
         html += `<td class="forecast-cell">--</td>`;
       }
     }
@@ -215,17 +203,17 @@ export const renderWeatherTable = (forecasts) => {
   container.innerHTML = html;
 
   // Wire click listeners for hourly modal
-  if (useNewLayout) {
+  if (useHourly) {
     container.querySelectorAll('.forecast-cell[data-location-idx]').forEach(cell => {
       cell.addEventListener('click', () => {
         const locIdx = parseInt(cell.dataset.locationIdx);
-        const periodIdx = parseInt(cell.dataset.periodIdx);
+        const dayIdx = parseInt(cell.dataset.dayIdx);
         const forecast = forecasts[locIdx];
         if (!forecast || !forecast.hourly) return;
-        const periods = sliceDayNight(forecast.hourly);
-        const p = periods[periodIdx];
-        if (!p) return;
-        openHourlyModal(sectionPoints[locIdx]?.name || '', p.label, p.hours);
+        const days = sliceByDay(forecast.hourly);
+        const day = days[dayIdx];
+        if (!day) return;
+        openHourlyModal(sectionPoints[locIdx]?.name || '', day.label, day.hours);
       });
     });
   }

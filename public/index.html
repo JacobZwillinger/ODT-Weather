@@ -66,7 +66,10 @@
 
     <!-- API Key panel (shown below kebab sub-buttons) -->
     <div class="kebab-api-panel" id="kebabApiPanel" hidden>
-      <label class="kebab-label" for="apiKeyInput">PirateWeather API Key</label>
+      <div class="kebab-label-row">
+        <label class="kebab-label" for="apiKeyInput">PirateWeather API Key</label>
+        <button id="btnApiKeyInfo" class="api-key-info-btn" aria-label="How to get an API key">ℹ</button>
+      </div>
       <div class="kebab-api-row">
         <input type="password" id="apiKeyInput" class="kebab-api-input" placeholder="Leave blank to use default" autocomplete="off" spellcheck="false"/>
         <button id="btnSaveApiKey" class="kebab-save-btn">Save</button>
@@ -376,6 +379,25 @@
           <button class="sources-modal-close" id="closeSourcesModal" aria-label="Close dialog">Close</button>
         </div>
         <div id="sourcesList" class="sources-list"></div>
+      </div>
+    </div>
+
+    <!-- API Key Info Modal -->
+    <div id="apiKeyInfoModal" class="sources-modal" role="dialog" aria-modal="true" aria-labelledby="apiKeyInfoTitle">
+      <div class="sources-modal-content">
+        <div class="sources-modal-header">
+          <h3 id="apiKeyInfoTitle">Getting a PirateWeather API Key</h3>
+          <button class="sources-modal-close" id="apiKeyInfoClose" aria-label="Close dialog">Close</button>
+        </div>
+        <div class="api-key-info-body">
+          <ol>
+            <li>Go to <a href="https://pirateweather.net" target="_blank" rel="noopener">pirateweather.net</a></li>
+            <li>Sign up for a free account</li>
+            <li>Copy your API key from the dashboard</li>
+            <li>Paste it into the API Key field — it's stored only on your device</li>
+          </ol>
+          <p class="api-key-info-note">The free tier includes 20,000 calls/month, enough for regular trail use. The default shared key may be rate-limited during peak periods.</p>
+        </div>
       </div>
     </div>
 

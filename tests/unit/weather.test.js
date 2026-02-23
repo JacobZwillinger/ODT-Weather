@@ -68,8 +68,8 @@ describe('renderWeatherTable', () => {
 
     const container = document.getElementById('container');
     const cells = container.querySelectorAll('.forecast-cell');
-    // 2 sections * 7 days = 14 forecast cells
-    expect(cells.length).toBe(14);
+    // 2 sections * 4 days = 8 forecast cells
+    expect(cells.length).toBe(8);
     cells.forEach(cell => {
       expect(cell.textContent).toBe('--');
     });
@@ -95,7 +95,7 @@ describe('renderWeatherTable', () => {
     expect(firstIcon.innerHTML).toContain('cloudy');
   });
 
-  // [TEST] Added: verifies "--" for undefined high/low temperatures
+  // [TEST] Added: verifies no temp spans when high/low are undefined
   it('renders "--" for undefined temperature values', () => {
     const forecasts = [
       {
@@ -111,7 +111,9 @@ describe('renderWeatherTable', () => {
 
     const container = document.getElementById('container');
     const firstCell = container.querySelector('.forecast-cell');
-    expect(firstCell.textContent).toContain('--');
+    // With no high/low, no temp spans should appear in the cell
+    expect(firstCell.querySelector('.fc-high')).toBeNull();
+    expect(firstCell.querySelector('.fc-low')).toBeNull();
   });
 
   // [TEST] Added: verifies elevation is formatted with locale string and foot mark
@@ -221,7 +223,8 @@ describe('loadForecasts', () => {
     await loadForecasts();
 
     const container = document.getElementById('container');
-    expect(container.innerHTML).toContain('88° / 66°');
+    expect(container.innerHTML).toContain('fc-high">88°');
+    expect(container.innerHTML).toContain('fc-low">66°');
     expect(container.textContent).toContain('Offline: showing cached forecast');
   });
 

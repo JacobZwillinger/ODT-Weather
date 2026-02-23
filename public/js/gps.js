@@ -153,6 +153,7 @@ export const startGps = () => {
   );
 
   isGpsActive = true;
+  localStorage.setItem('gpsEnabled', 'true');
   updateGpsButtonState(true);
   startCompass();
 
@@ -175,6 +176,7 @@ export const stopGps = () => {
 
   isGpsActive = false;
   lastPosition = null;
+  localStorage.setItem('gpsEnabled', 'false');
   updateGpsButtonState(false);
   stopCompass();
 
@@ -232,11 +234,17 @@ export const getCompassHeading = () => compassHeading;
 // Check if click handlers should be active (disabled when GPS is active)
 export const shouldAllowMapClicks = () => !isGpsActive;
 
-// Initialize GPS button
+// Initialize GPS button — defaults to ON unless user explicitly turned it off
 export const initGpsButton = () => {
   const btn = document.getElementById('btnGpsToggle');
   if (btn) {
     btn.addEventListener('click', toggleGps);
+  }
+
+  // Auto-start GPS: default is ON; only skip if user explicitly set it to 'false'
+  const saved = localStorage.getItem('gpsEnabled');
+  if (saved !== 'false') {
+    startGps();
   }
 };
 

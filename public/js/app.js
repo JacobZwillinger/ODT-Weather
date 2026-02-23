@@ -331,6 +331,22 @@ const initKebabMenu = () => {
     }, 2000);
   });
 
+  // API key info button
+  document.getElementById('btnApiKeyInfo').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const modal = document.getElementById('apiKeyInfoModal');
+    history.pushState({ panel: 'apiKeyInfoModal' }, '');
+    modal.classList.add('visible');
+  });
+  document.getElementById('apiKeyInfoClose').addEventListener('click', () => {
+    document.getElementById('apiKeyInfoModal').classList.remove('visible');
+  });
+  document.getElementById('apiKeyInfoModal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('apiKeyInfoModal')) {
+      document.getElementById('apiKeyInfoModal').classList.remove('visible');
+    }
+  });
+
   // Test mode sub-button — swaps state + map sources between Oregon and DC fixtures
   testModeBtn.addEventListener('click', (e) => {
     e.stopPropagation();

@@ -318,6 +318,13 @@ body {
 
 .kebab-api-panel[hidden] { display: none; }
 
+.kebab-label-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
 .kebab-label {
   display: block;
   font-size: 0.75rem;
@@ -325,7 +332,42 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: #888;
-  margin-bottom: 8px;
+  margin-bottom: 0;
+}
+
+.api-key-info-btn {
+  background: none;
+  border: none;
+  padding: 0 2px;
+  font-size: 0.85rem;
+  color: #aaa;
+  cursor: pointer;
+  line-height: 1;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.api-key-info-btn:hover { color: #555; }
+
+.api-key-info-body ol {
+  margin: 0 0 12px 0;
+  padding-left: 20px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.api-key-info-body li { margin-bottom: 4px; }
+
+.api-key-info-body a { color: #3b82f6; }
+
+.api-key-info-note {
+  font-size: 0.82rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
 }
 
 .kebab-api-row {
@@ -948,7 +990,6 @@ thead th.night-header { background: #ebebf7; }
 
 /* Forecast cells */
 .day-header { background: #e8eeff; }
-.night-header { background: #ebebf7; }
 
 .forecast-cell {
   min-width: 80px;
@@ -957,8 +998,6 @@ thead th.night-header { background: #ebebf7; }
   cursor: pointer;
   transition: background 0.1s;
 }
-.day-cell { background: #f6f8ff; }
-.night-cell { background: #f3f3fb; }
 .forecast-cell:active { filter: brightness(0.95); }
 .forecast-cell-active { outline: 2px solid #3b82f6; outline-offset: -2px; }
 
@@ -983,17 +1022,37 @@ thead th.night-header { background: #ebebf7; }
   line-height: 1.2;
 }
 
-.fc-temp {
+/* High / Low temps row */
+.fc-temps {
+  display: flex;
+  gap: 5px;
+  align-items: baseline;
+}
+
+.fc-high {
   font-size: 1rem;
   font-weight: 700;
-  color: #111;
+  color: #c0392b;
+}
+
+.fc-low {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #2980b9;
+}
+
+/* Precip row */
+.fc-precip-row {
+  display: flex;
+  gap: 4px;
+  align-items: baseline;
+  min-height: 1.1em;
 }
 
 .fc-precip {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 500;
-  color: transparent; /* empty string keeps layout */
-  min-height: 1.1em;
+  color: #aaa;
 }
 .fc-precip.precip-mod { color: #3b82f6; }
 .fc-precip.precip-heavy { color: #dc2626; font-weight: 700; }
