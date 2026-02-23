@@ -11,6 +11,7 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+const { parseAlternatesKml } = require('./parse-alternates');
 
 // Section waypoints from index.html (25 sections with coordinates)
 const sections = [
@@ -148,8 +149,18 @@ const sectionsPath = path.join(buildDir, 'sections.geojson');
 fs.writeFileSync(sectionsPath, JSON.stringify(sectionsGeoJSON));
 console.log(`   Written: ${sectionsPath} (${sections.length} sections)`);
 
-// 4. Run Tippecanoe to create overlay PMTiles
-console.log('\n4. Running Tippecanoe...');
+// 4. Parse alternate routes from KML
+console.log('\n4. Parsing alternate routes...');
+
+const kmlPath = path.join(projectRoot, 'Track Files', 'All_ODT_Alternates.kml');
+const alternateFeatures = parseAlternatesKml(kmlPath);
+const alternatesGeoJSON = { type: 'FeatureCollection', features: alternateFeatures };
+const alternatesPath = path.join(buildDir, 'alternates.geojson');
+fs.writeFileSync(alternatesPath, JSON.stringify(alternatesGeoJSON));
+console.log(`   Written: ${alternatesPath} (${alternateFeatures.length} segments)`);
+
+// 5. Run Tippecanoe to create overlay PMTiles
+console.log('\n5. Running Tippecanoe...');
 
 // Create both in public/ (for dev) and dist/ (for production)
 const distDir = path.join(projectRoot, 'dist');
@@ -161,7 +172,7 @@ const overlayPath = path.join(distDir, 'overlay.pmtiles');
 try {
   // Create PMTiles with all layers using named-layer option
   // Each file becomes its own layer
-  const tippecanoeCmd = `tippecanoe -o "${pmtilesPath}" --force --minimum-zoom=0 --maximum-zoom=13 --named-layer=route:"${routeLinePath}" --named-layer=waypoints:"${waypointsPath}" --named-layer=sections:"${sectionsPath}"`;
+  const tippecanoeCmd = `tippecanoe -o "${pmtilesPath}" --force --minimum-zoom=0 --maximum-zoom=13 --named-layer=route:"${routeLinePath}" --named-layer=waypoints:"${waypointsPath}" --named-layer=sections:"${sectionsPath}" --named-layer=alternates:"${alternatesPath}"`;
 
   execSync(tippecanoeCmd, { stdio: 'inherit' });
 
@@ -171,6 +182,11 @@ try {
   // Copy to dist/overlay.pmtiles for production use
   fs.copyFileSync(pmtilesPath, overlayPath);
   console.log(`✓ Copied to: ${overlayPath}`);
+
+  // Also copy to public/overlay.pmtiles (used by the map in development)
+  const publicOverlayPath = path.join(publicDir, 'overlay.pmtiles');
+  fs.copyFileSync(pmtilesPath, publicOverlayPath);
+  console.log(`✓ Updated: ${publicOverlayPath}`);
 
 } catch (error) {
   console.error('Error running Tippecanoe:', error.message);
