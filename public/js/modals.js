@@ -335,6 +335,32 @@ export const showSourcesList = (type) => {
   }, SCROLL_DELAY_MS);
 };
 
+// Show section detail modal (section markers from overlay PMTiles)
+// name format: "6: Diablo Peak North to Paisley", mile: start mile of section
+export const showSectionDetail = (name, mile) => {
+  const modal = document.getElementById('waypointModal');
+  const title = document.getElementById('waypointModalTitle');
+  const detail = document.getElementById('waypointDetail');
+
+  if (!modal || !title || !detail) return null;
+
+  title.textContent = name || 'ODT Section';
+
+  detail.innerHTML = '';
+
+  const milePara = document.createElement('p');
+  milePara.innerHTML = `<strong>Mile:</strong> ${parseFloat(mile).toFixed(1)}`;
+  detail.appendChild(milePara);
+
+  const typePara = document.createElement('p');
+  typePara.innerHTML = '<strong>Type:</strong> ODT Section Boundary';
+  detail.appendChild(typePara);
+
+  modal.classList.add('visible');
+  focusModalClose(modal);
+  return { name, mile };
+};
+
 // Initialize all modal handlers
 export const initModals = () => {
   setupModal('infoModal', 'closeInfoModal');
