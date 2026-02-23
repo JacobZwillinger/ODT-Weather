@@ -20,7 +20,12 @@ if (!apiKey) {
 app.use(compression());
 
 app.use((req, res, next) => {
-  res.set("Cache-Control", "public, max-age=60");
+  // No caching for JS/CSS so edits reflect immediately during development
+  if (req.path.match(/\.(js|css)$/)) {
+    res.set("Cache-Control", "no-store");
+  } else {
+    res.set("Cache-Control", "public, max-age=60");
+  }
   next();
 });
 
