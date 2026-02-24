@@ -12,6 +12,9 @@ let onPositionUpdate = null;
 // Compass heading state
 let onHeadingUpdate = null;
 let compassHeading = null;  // current heading in degrees (0 = north, clockwise)
+let smoothedHeading = null;
+let lastCourseHeading = null;
+let lastSpeedMps = 0;
 
 // GPS options optimized for hiking
 const GPS_OPTIONS = {
@@ -35,16 +38,90 @@ const getDistanceMeters = (lat1, lon1, lat2, lon2) => {
   return R * c;
 };
 
+const normalizeHeading = (deg) => ((deg % 360) + 360) % 360;
+
+// Blend angles using shortest-turn interpolation on a circle.
+const blendHeading = (fromDeg, toDeg, weight) => {
+  const from = normalizeHeading(fromDeg);
+  const to = normalizeHeading(toDeg);
+  const delta = ((to - from + 540) % 360) - 180;
+  return normalizeHeading(from + (delta * weight));
+};
+
+const getScreenAngle = () => {
+  if (screen.orientation && typeof screen.orientation.angle === 'number') {
+    return screen.orientation.angle;
+  }
+  if (typeof window.orientation === 'number') {
+    return window.orientation;
+  }
+  return 0;
+};
+
+// Initial bearing from point A to B in degrees clockwise from true north.
+const getBearing = (lat1, lon1, lat2, lon2) => {
+  const p1 = lat1 * Math.PI / 180;
+  const p2 = lat2 * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const y = Math.sin(dLon) * Math.cos(p2);
+  const x = Math.cos(p1) * Math.sin(p2) - Math.sin(p1) * Math.cos(p2) * Math.cos(dLon);
+  return normalizeHeading((Math.atan2(y, x) * 180 / Math.PI));
+};
+
+const pushHeadingUpdate = (sensorHeading) => {
+  let target = normalizeHeading(sensorHeading);
+
+  // Blend in course-over-ground when moving; this dampens magnetometer drift.
+  if (lastCourseHeading != null) {
+    let courseWeight = 0;
+    if (lastSpeedMps >= 2.0) {
+      courseWeight = 0.75;
+    } else if (lastSpeedMps >= 1.0) {
+      courseWeight = 0.45;
+    }
+    if (courseWeight > 0) {
+      target = blendHeading(target, lastCourseHeading, courseWeight);
+    }
+  }
+
+  // Low-pass filter on heading; lighter smoothing at higher speed for responsiveness.
+  const smoothWeight = lastSpeedMps >= 1.5 ? 0.45 : 0.2;
+  smoothedHeading = smoothedHeading == null
+    ? target
+    : blendHeading(smoothedHeading, target, smoothWeight);
+
+  compassHeading = smoothedHeading;
+  if (onHeadingUpdate) {
+    onHeadingUpdate(compassHeading);
+  }
+};
+
 // Handle successful position update
 const handlePositionSuccess = async (position) => {
   const { latitude, longitude, accuracy } = position.coords;
 
-  // Skip update if we haven't moved enough
+  // Update movement-derived heading data before any early return.
   if (lastPosition) {
     const distance = getDistanceMeters(
       lastPosition.latitude, lastPosition.longitude,
       latitude, longitude
     );
+    const dtSeconds = Math.max(0.1, (position.timestamp - lastPosition.timestamp) / 1000);
+    const derivedSpeed = distance / dtSeconds;
+
+    const sensorSpeed = Number.isFinite(position.coords.speed) ? position.coords.speed : null;
+    lastSpeedMps = sensorSpeed != null && sensorSpeed >= 0 ? sensorSpeed : derivedSpeed;
+
+    if (distance >= 3 && dtSeconds > 0) {
+      const gpsHeading = Number.isFinite(position.coords.heading) && position.coords.heading >= 0
+        ? position.coords.heading
+        : null;
+      lastCourseHeading = gpsHeading != null
+        ? normalizeHeading(gpsHeading)
+        : getBearing(lastPosition.latitude, lastPosition.longitude, latitude, longitude);
+    }
+
+    // Skip UI updates if we haven't moved enough.
     if (distance < MIN_UPDATE_DISTANCE) {
       return;
     }
@@ -94,22 +171,17 @@ const handleDeviceOrientation = (event) => {
   let heading = null;
 
   if (event.webkitCompassHeading != null) {
-    // iOS: webkitCompassHeading is degrees from north, already corrected for screen orientation
+    // iOS: already corrected heading from north.
     heading = event.webkitCompassHeading;
-  } else if (event.absolute && event.alpha != null) {
-    // Android (absolute mode): alpha is degrees counter-clockwise from north
-    // Convert to clockwise bearing
-    heading = (360 - event.alpha) % 360;
   } else if (event.alpha != null) {
-    // Non-absolute fallback — less reliable but better than nothing
-    heading = (360 - event.alpha) % 360;
+    // Android/other: compensate alpha with screen rotation.
+    // alpha increases counter-clockwise; convert to clockwise compass bearing.
+    const screenAngle = getScreenAngle();
+    heading = normalizeHeading((360 - event.alpha) + screenAngle);
   }
 
-  if (heading !== null) {
-    compassHeading = heading;
-    if (onHeadingUpdate) {
-      onHeadingUpdate(heading);
-    }
+  if (heading != null) {
+    pushHeadingUpdate(heading);
   }
 };
 
@@ -128,12 +200,16 @@ const startCompass = async () => {
     }
   }
 
+  // deviceorientationabsolute is preferred when supported; keep fallback listener too.
+  window.addEventListener('deviceorientationabsolute', handleDeviceOrientation, true);
   window.addEventListener('deviceorientation', handleDeviceOrientation, true);
 };
 
 const stopCompass = () => {
+  window.removeEventListener('deviceorientationabsolute', handleDeviceOrientation, true);
   window.removeEventListener('deviceorientation', handleDeviceOrientation, true);
   compassHeading = null;
+  smoothedHeading = null;
   if (onHeadingUpdate) onHeadingUpdate(null);
 };
 
@@ -177,6 +253,8 @@ export const stopGps = () => {
 
   isGpsActive = false;
   lastPosition = null;
+  lastCourseHeading = null;
+  lastSpeedMps = 0;
   localStorage.setItem('gpsEnabled', 'false');
   updateGpsButtonState(false);
   stopCompass();
@@ -261,6 +339,7 @@ window._gpsCleanup = () => {
       navigator.geolocation.clearWatch(watchId);
       watchId = null;
     }
+    window.removeEventListener('deviceorientationabsolute', handleDeviceOrientation, true);
     window.removeEventListener('deviceorientation', handleDeviceOrientation, true);
   }
 };
@@ -274,6 +353,7 @@ window._gpsResume = () => {
       GPS_OPTIONS
     );
     // Restart compass (no permission re-request needed on Android)
+    window.addEventListener('deviceorientationabsolute', handleDeviceOrientation, true);
     window.addEventListener('deviceorientation', handleDeviceOrientation, true);
   }
 };
