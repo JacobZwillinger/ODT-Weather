@@ -1,6 +1,6 @@
-# Oregon Desert Trail Weather (ODT)
+# Oregon Desert Trail (ODT)
 
-Lightweight frontend + backend for quick weather snapshots along the Oregon Desert Trail.
+Lightweight frontend + backend for map, forecast, and trail data along the Oregon Desert Trail.
 
 ## Setup
 

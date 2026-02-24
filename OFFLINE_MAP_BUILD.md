@@ -1,6 +1,6 @@
 # Offline Map Build Guide
 
-This document explains how to build the offline basemap for the ODT Weather app.
+This document explains how to build the offline basemap for the ODT app.
 
 ## Overview
 

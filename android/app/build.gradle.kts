@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.odtweather.app"
+    namespace = "com.odt.app"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.odtweather.app"
+        applicationId = "com.odt.app"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

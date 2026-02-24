@@ -1,4 +1,4 @@
-package com.odtweather.app
+package com.odt.app
 
 import android.Manifest
 import android.annotation.SuppressLint

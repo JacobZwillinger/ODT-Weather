@@ -1,4 +1,4 @@
-# Claude Instructions for ODT Weather Project
+# Claude Instructions for ODT Project
 
 ## Auto-Push Policy
 **CRITICAL**: Always push changes to the remote repository when completing tasks. Don't wait for the user to ask.
@@ -11,7 +11,7 @@ After completing work:
 This should happen automatically at the end of each task completion.
 
 ## Project Overview
-Oregon Desert Trail weather snapshot application with interactive map and weather forecasts.
+Oregon Desert Trail application with interactive map, forecasts, and trail data.
 
 ## Key Technical Details
 - **GPS Coordinates**: GPX files are the authoritative source. Never interpolate from mileage.

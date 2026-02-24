@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('ODT Weather App', () => {
+test.describe('ODT App', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
     // Wait for app to initialize

@@ -383,7 +383,7 @@ const initUI = () => {
             <div class="moon-time-value">${moonData.set}</div>
           </div>
         </div>
-        <div class="moon-location-note">Times approximate for ODT corridor (Burns, OR area) · Your local time</div>
+        <div class="moon-location-note">Times approximate for ODT corridor</div>
         <div class="moon-panel-close-row">
           <button class="moon-panel-close" id="btnMoonClose">Close</button>
         </div>
