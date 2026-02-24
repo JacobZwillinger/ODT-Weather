@@ -1,4 +1,4 @@
 # Keep the JavaScript interface methods
--keepclassmembers class com.odtweather.app.MainActivity$AppBridge {
+-keepclassmembers class com.odt.app.MainActivity$AppBridge {
     @android.webkit.JavascriptInterface <methods>;
 }

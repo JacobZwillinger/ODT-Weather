@@ -594,12 +594,31 @@ export const initMap = () => {
       paint: { 'line-color': '#e11d48', 'line-width': 3, 'line-opacity': 0.9 }
     });
 
-    // Add section markers from overlay
+    // Add section markers from in-app GeoJSON (not vector tiles) so all sections
+    // remain visible at low zoom and are not dropped by tile simplification.
+    map.addSource('sections-points', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: sectionPoints.map((s) => ({
+          type: 'Feature',
+          properties: {
+            name: s.name,
+            mile: s.mile,
+            section: s.section
+          },
+          geometry: {
+            type: 'Point',
+            coordinates: [s.lon, s.lat]
+          }
+        }))
+      }
+    });
+
     map.addLayer({
       id: 'section-circles',
       type: 'circle',
-      source: 'overlay',
-      'source-layer': 'sections',
+      source: 'sections-points',
       paint: {
         'circle-radius': 14,
         'circle-color': '#1d4ed8',
@@ -611,10 +630,9 @@ export const initMap = () => {
     map.addLayer({
       id: 'section-numbers',
       type: 'symbol',
-      source: 'overlay',
-      'source-layer': 'sections',
+      source: 'sections-points',
       layout: {
-        'text-field': ['slice', ['get', 'name'], 0, ['index-of', ':', ['get', 'name']]],
+        'text-field': ['to-string', ['get', 'section']],
         'text-size': 12,
         'text-font': ['Noto Sans Bold'],
         'text-allow-overlap': true
@@ -625,8 +643,7 @@ export const initMap = () => {
     map.addLayer({
       id: 'section-labels',
       type: 'symbol',
-      source: 'overlay',
-      'source-layer': 'sections',
+      source: 'sections-points',
       layout: {
         'text-field': ['get', 'name'],
         'text-size': 11,

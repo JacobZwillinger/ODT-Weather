@@ -1,4 +1,4 @@
-// ODT Weather Service Worker
+// ODT Service Worker
 // Bumping CACHE_VERSION forces all clients to download fresh assets on next visit.
 const CACHE_VERSION = 'odt-v1';
 

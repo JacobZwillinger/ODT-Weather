@@ -1,4 +1,4 @@
-/* ODT Weather - Mobile-First Styles */
+/* ODT - Mobile-First Styles */
 
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -628,53 +628,36 @@ body {
   background: #e5e5e5;
 }
 
-/* Floating circular buttons for elevation overlay (bottom-right, match map button style) */
-.elev-float-btns {
-  position: absolute;
-  bottom: 24px;
-  right: 24px;
-  bottom: max(24px, calc(24px + env(safe-area-inset-bottom)));
+.elev-header-actions {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  z-index: 10;
+  gap: 8px;
+  align-items: center;
 }
 
-.elev-float-btn {
-  width: 46px;
-  height: 46px;
-  border-radius: 23px;
-  border: none;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+.elev-jump-btn-top {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1.5px solid #bbb;
+  background: #fff;
+  color: #555;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #333;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
-  /* override .overlay-close styles when both classes present */
-  min-width: unset;
-  min-height: unset;
-  font-size: unset;
-  font-weight: unset;
 }
 
-.elev-float-btn svg {
-  width: 21px;
-  height: 21px;
+.elev-jump-btn-top svg {
+  width: 20px;
+  height: 20px;
 }
 
-.elev-float-btn:active {
-  transform: scale(0.92);
+.elev-jump-btn-top:active {
+  background: #e5e5e5;
 }
-
-/* Legacy elev-jump-btn kept for any references */
-.elev-jump-btn { display: none; }
 
 .overlay-body {
   flex: 1;
@@ -732,8 +715,8 @@ body {
 }
 
 .filter-btn svg {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   flex-shrink: 0;
 }
 

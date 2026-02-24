@@ -67,5 +67,5 @@ app.get("/api/usage", async (req, res) => {
 app.use(express.static("public"));
 
 app.listen(port, () => {
-  console.log(`ODT Weather listening on port ${port}`);
+  console.log(`ODT listening on port ${port}`);
 });

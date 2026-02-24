@@ -1,7 +1,7 @@
 {
-  "name": "ODT Weather",
-  "short_name": "ODT Weather",
-  "description": "Oregon Desert Trail interactive map with weather forecasts",
+  "name": "ODT",
+  "short_name": "ODT",
+  "description": "Oregon Desert Trail interactive map and trail data platform",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",

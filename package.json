@@ -1,7 +1,7 @@
 {
-  "name": "odt-weather",
+  "name": "odt",
   "version": "0.1.0",
-  "description": "Oregon Desert Trail weather snapshots using PirateWeather.",
+  "description": "Oregon Desert Trail platform with map, forecasts, and trail data.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
