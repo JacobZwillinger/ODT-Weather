@@ -1,66 +1,86 @@
 #!/usr/bin/env node
 /**
- * Build corridor polygon around the route
+ * Build corridor polygon around the route + alternates
  *
- * Creates a 5km (1 mile = ~1.6km, so ~3 miles) buffer on each side of the route line
- * for offline basemap generation.
+ * Creates a 5km buffer on each side of all routes using ogr2ogr
+ * for memory-efficient processing of large geometries.
  */
 
 const fs = require('fs');
 const path = require('path');
-const buffer = require('@turf/buffer').default;
+const { execSync } = require('child_process');
 const bbox = require('@turf/bbox').default;
 
 const projectRoot = path.join(__dirname, '..');
 const buildDir = path.join(projectRoot, 'build');
 const routeLinePath = path.join(buildDir, 'route_line.geojson');
+const alternatesPath = path.join(buildDir, 'alternates.geojson');
 const corridorPath = path.join(buildDir, 'corridor.geojson');
 const bboxPath = path.join(buildDir, 'route_bbox.json');
+const tmpCombined = '/tmp/odt-combined-lines.geojson';
+const tmpBuffered = '/tmp/odt-buffered-corridor.geojson';
 
-console.log('Building corridor around route...\n');
+console.log('Building corridor around route + alternates...\n');
 
 // Read the route line
 console.log('1. Reading route line...');
 const routeGeoJSON = JSON.parse(fs.readFileSync(routeLinePath, 'utf8'));
-console.log(`   Found ${routeGeoJSON.features.length} feature(s)`);
-
-// Extract the route geometry
-// Handle both MultiLineString and single LineString
-let routeFeature = routeGeoJSON.features[0];
-
-// Count total points
-let totalPoints = 0;
+const routeFeature = routeGeoJSON.features[0];
+let lineCount = 0;
 if (routeFeature.geometry.type === 'MultiLineString') {
-  totalPoints = routeFeature.geometry.coordinates.reduce((sum, line) => sum + line.length, 0);
+  lineCount = routeFeature.geometry.coordinates.length;
 } else if (routeFeature.geometry.type === 'LineString') {
-  totalPoints = routeFeature.geometry.coordinates.length;
+  lineCount = 1;
 }
-console.log(`   Route has ${totalPoints} points`);
+console.log(`   Route: ${lineCount} segment(s)`);
 
-// Create buffer - 5km = 5 kilometers
-console.log('\n2. Creating 5km buffer...');
-const bufferDistance = 5; // kilometers
-const buffered = buffer(routeFeature, bufferDistance, { units: 'kilometers' });
+// Read alternates
+console.log('\n2. Reading alternates...');
+const alternatesGeoJSON = JSON.parse(fs.readFileSync(alternatesPath, 'utf8'));
+console.log(`   Alternates: ${alternatesGeoJSON.features.length} routes`);
 
-console.log(`   Buffer created: ${buffered.geometry.type}`);
+// Merge route and alternates into a single GeoJSON file for ogr2ogr
+console.log('\n3. Merging route + alternates...');
+const combined = {
+  type: 'FeatureCollection',
+  features: [...routeGeoJSON.features, ...alternatesGeoJSON.features]
+};
+fs.writeFileSync(tmpCombined, JSON.stringify(combined));
+const combinedSize = (fs.statSync(tmpCombined).size / 1024).toFixed(0);
+console.log(`   Combined: ${combinedSize} KB (${combined.features.length} features)`);
 
-// Create corridor GeoJSON
+// Buffer 5km ≈ 0.045 degrees latitude
+// Union all buffered geometries into one polygon using ogr2ogr SQLite dialect
+const BUFFER_DEG = 0.045; // ~5km
+console.log(`\n4. Buffering (${BUFFER_DEG}° ≈ 5km) and unioning via ogr2ogr...`);
+execSync(
+  `ogr2ogr -f GeoJSON -overwrite ${tmpBuffered} ${tmpCombined} ` +
+  `-dialect SQLite -sql "SELECT ST_Union(ST_Buffer(geometry, ${BUFFER_DEG})) AS geometry FROM \\"odt-combined-lines\\""`,
+  { stdio: 'inherit' }
+);
+console.log('   Buffer complete');
+
+// Load the buffered polygon to extract its geometry and bbox
+const bufferedGeoJSON = JSON.parse(fs.readFileSync(tmpBuffered, 'utf8'));
+const bufferedFeature = bufferedGeoJSON.features[0];
+
+// Create corridor GeoJSON with metadata
 const corridorGeoJSON = {
   type: 'FeatureCollection',
   features: [{
     type: 'Feature',
     properties: {
       name: 'ODT Corridor',
-      buffer_km: bufferDistance,
-      description: `${bufferDistance}km buffer around Oregon Desert Trail`
+      buffer_km: 5,
+      description: '5km buffer around Oregon Desert Trail + alternates'
     },
-    geometry: buffered.geometry
+    geometry: bufferedFeature.geometry
   }]
 };
 
 // Calculate bounding box
-console.log('\n3. Calculating bounding box...');
-const bounds = bbox(buffered);
+console.log('\n5. Calculating bounding box...');
+const bounds = bbox(bufferedFeature);
 const bboxInfo = {
   bbox: bounds,
   west: bounds[0],
@@ -87,5 +107,9 @@ console.log(`  File size: ${(fs.statSync(corridorPath).size / 1024).toFixed(1)} 
 // Write bounding box
 fs.writeFileSync(bboxPath, JSON.stringify(bboxInfo, null, 2));
 console.log(`\n✓ Bounding box saved: ${bboxPath}`);
+
+// Cleanup temp files
+fs.unlinkSync(tmpCombined);
+fs.unlinkSync(tmpBuffered);
 
 console.log('\nDone!');
