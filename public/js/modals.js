@@ -164,6 +164,41 @@ export const showWaypointDetail = (latOrName, lon) => {
   return null;
 };
 
+// Show a toilet detail modal directly from the clicked feature's properties.
+// Toilet entries live in their own JSON file and are NOT mirrored into
+// state.allWaypoints, so the name-based findWaypoint lookup used by
+// showWaypointDetail returns null for them. Render straight from props instead.
+export const showToiletDetail = (props) => {
+  if (!props) return null;
+
+  const modal = document.getElementById('waypointModal');
+  const title = document.getElementById('waypointModalTitle');
+  const detail = document.getElementById('waypointDetail');
+
+  if (!modal || !title || !detail) return null;
+
+  title.textContent = props.name || 'Toilet';
+  detail.innerHTML = '';
+
+  if (Number.isFinite(props.mile)) {
+    const milePara = document.createElement('p');
+    milePara.innerHTML = `<strong>Mile:</strong> ${Number(props.mile).toFixed(1)}`;
+    detail.appendChild(milePara);
+  }
+
+  if (props.landmark) {
+    const descPara = document.createElement('p');
+    descPara.innerHTML = '<strong>Description:</strong> ';
+    descPara.appendChild(document.createTextNode(props.landmark));
+    detail.appendChild(descPara);
+  }
+
+  modal.classList.add('visible');
+  focusModalClose(modal);
+  // Return a minimal waypoint-like object so callers can read mile for showMapInfo.
+  return { name: props.name, mile: Number(props.mile), landmark: props.landmark };
+};
+
 // Find water source by name
 const findWaterSource = (name) => {
   if (!name) return null;

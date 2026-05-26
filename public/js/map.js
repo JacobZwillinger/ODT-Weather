@@ -1,7 +1,7 @@
 import { WATER_WARNING_MILES, MAP_INIT_DELAY_MS, CATEGORY_CONFIG } from './config.js';
 import { getSectionPoints, getTrailStorageKey, state, loadElevationProfile, findNearestWaypoint, findMileFromCoords, findNextReliableWater, findNextOtherWater, findNextTown, OFF_TRAIL_THRESHOLD } from './utils.js';
 import { renderElevationChart } from './elevation.js';
-import { showWaypointDetail, showWaterDetail, showTownDetail, showSectionDetail } from './modals.js';
+import { showWaypointDetail, showWaterDetail, showTownDetail, showSectionDetail, showToiletDetail } from './modals.js';
 import { setPositionUpdateCallback, setHeadingUpdateCallback, shouldAllowMapClicks } from './gps.js';
 
 let map = null;
@@ -404,8 +404,16 @@ export const initMap = () => {
       loadIcon('toilet-icon', 48, 48, `
         <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="11" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
-          <rect x="9" y="10" width="6" height="7" rx="1" fill="#fff"/>
-          <circle cx="12" cy="7.5" r="1.5" fill="#fff"/>
+          <!-- Tank -->
+          <rect x="8.4" y="6" width="7.2" height="4.6" rx="0.7" fill="#fff"/>
+          <!-- Flush button -->
+          <circle cx="12" cy="8.3" r="0.6" fill="#f59e0b"/>
+          <!-- Bowl -->
+          <path d="M6.8 10.6 L17.2 10.6 L16 16.4 Q12 18.4 8 16.4 Z" fill="#fff"/>
+          <!-- Seat opening -->
+          <ellipse cx="12" cy="14" rx="2.6" ry="1.5" fill="#f59e0b"/>
+          <!-- Base -->
+          <rect x="7.5" y="17" width="9" height="1.4" rx="0.5" fill="#fff"/>
         </svg>
       `)
     ]);
@@ -520,6 +528,11 @@ export const initMap = () => {
           const town = showTownDetail(itemName);
           if (!shouldAllowMapClicks()) return;
           if (town && town.mile >= 0) showMapInfo(town.mile, 0);
+        } else if (category === 'toilets') {
+          // Toilets aren't mirrored in state.allWaypoints; render straight from feature props.
+          const toilet = showToiletDetail(features[0].properties);
+          if (!shouldAllowMapClicks()) return;
+          if (toilet && Number.isFinite(toilet.mile) && toilet.mile >= 0) showMapInfo(toilet.mile);
         } else {
           const waypoint = showWaypointDetail(itemName);
           if (!shouldAllowMapClicks()) return;
