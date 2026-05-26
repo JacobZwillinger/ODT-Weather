@@ -86,7 +86,7 @@ export const TRAILS = {
     sectionBoundaryType: 'NNML Section Boundary',
     about: {
       summary: '<strong>NNML</strong> provides real-time trail data and forecasts for the Northern New Mexico Loop.',
-      routeSource: 'Northern New Mexico Loop GPX tracks and Data Book milepoints',
+      routeSource: 'Provided GPX tracks and Data Book milepoints; unmapped segments use waypoints only',
       byTheNumbers: [
         '518 parsed milepoint waypoints',
         '141 water sources with W1/W2/W3 reliability ratings',
@@ -99,7 +99,8 @@ export const TRAILS = {
       towns: 'trails/nnml/towns.json',
       navigation: 'trails/nnml/navigation.json',
       toilets: 'trails/nnml/toilets.json',
-      elevationProfile: 'trails/nnml/elevation-profile.json'
+      routeGeoJson: 'trails/nnml/route.geojson',
+      elevationProfile: null
     },
     sections: nnmlSectionPoints,
     center: { lat: 36.36, lon: -106.05 }

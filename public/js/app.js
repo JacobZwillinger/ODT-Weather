@@ -30,9 +30,10 @@ const escapeHtml = (str) => {
   return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 };
 
-const buildDataset = (trail, waypoints, water, townData, navigation, toilets) => ({
+const buildDataset = (trail, waypoints, water, townData, navigation, toilets, routeGeoJson) => ({
   trail,
   allWaypoints: waypoints,
+  routeGeoJson,
   waterSources: water,
   towns: townData,
   categories: {
@@ -45,14 +46,15 @@ const buildDataset = (trail, waypoints, water, townData, navigation, toilets) =>
 });
 
 const loadTrailDataset = async (trail) => {
-  const [waypoints, water, townData, navigation, toilets] = await Promise.all([
+  const [waypoints, water, townData, navigation, toilets, routeGeoJson] = await Promise.all([
     safeFetch(trail.data.waypoints, []),
     safeFetch(trail.data.water, []),
     safeFetch(trail.data.towns, []),
     safeFetch(trail.data.navigation, []),
-    safeFetch(trail.data.toilets, [])
+    safeFetch(trail.data.toilets, []),
+    trail.data.routeGeoJson ? safeFetch(trail.data.routeGeoJson, null) : Promise.resolve(null)
   ]);
-  return buildDataset(trail, waypoints, water, townData, navigation, toilets);
+  return buildDataset(trail, waypoints, water, townData, navigation, toilets, routeGeoJson);
 };
 
 const updateTrailChrome = () => {
@@ -279,6 +281,7 @@ const switchTrail = async (trailId) => {
     waterSources: state.waterSources,
     towns: state.towns,
     categories: { ...state.categories },
+    routeGeoJson: state.routeGeoJson,
     trail: state.trail
   };
   await applyTrailMapData({ fitToTrail: true });
@@ -342,6 +345,7 @@ let realData = null;
 const buildTestDataset = () => ({
   trail: state.trail,
   allWaypoints: TEST_DATA.waypoints,
+  routeGeoJson: null,
   waterSources: TEST_DATA.water,
   towns: TEST_DATA.towns,
   categories: {
@@ -357,6 +361,7 @@ const buildTestDataset = () => ({
 const applyDataset = (dataset) => {
   if (dataset.trail) state.trail = dataset.trail;
   state.allWaypoints = dataset.allWaypoints;
+  state.routeGeoJson = dataset.routeGeoJson || null;
   state.waterSources = dataset.waterSources;
   state.towns        = dataset.towns;
   state.categories   = dataset.categories;
@@ -774,6 +779,7 @@ const init = async () => {
       waterSources: state.waterSources,
       towns: state.towns,
       categories: { ...state.categories },
+      routeGeoJson: state.routeGeoJson,
       trail: state.trail
     };
 

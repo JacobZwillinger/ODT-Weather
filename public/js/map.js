@@ -18,7 +18,18 @@ let pendingMileUpdate = 0;
 let isOffTrail = false;
 const isMapStyleReady = () => Boolean(map && map.isStyleLoaded && map.isStyleLoaded());
 
-const getRouteCoordinates = () => {
+const getGeoJsonCoordinates = (geojson) => {
+  if (!geojson || !Array.isArray(geojson.features)) return [];
+  return geojson.features.flatMap(feature => {
+    const geometry = feature.geometry;
+    if (!geometry) return [];
+    if (geometry.type === 'LineString') return geometry.coordinates || [];
+    if (geometry.type === 'MultiLineString') return (geometry.coordinates || []).flat();
+    return [];
+  });
+};
+
+const getFallbackRouteCoordinates = () => {
   const profile = state.elevationProfile;
   const source = Array.isArray(profile) && profile.length >= 2 ? profile : state.allWaypoints;
   return (source || [])
@@ -26,16 +37,23 @@ const getRouteCoordinates = () => {
     .map(point => [point.lon, point.lat]);
 };
 
-const buildRouteGeoJson = () => ({
-  type: 'FeatureCollection',
-  features: getRouteCoordinates().length >= 2
-    ? [{
-      type: 'Feature',
-      properties: { trail: state.trail.id },
-      geometry: { type: 'LineString', coordinates: getRouteCoordinates() }
-    }]
-    : []
-});
+const buildRouteGeoJson = () => {
+  if (state.trail.data.routeGeoJson) {
+    return state.routeGeoJson || { type: 'FeatureCollection', features: [] };
+  }
+
+  const coordinates = getFallbackRouteCoordinates();
+  return {
+    type: 'FeatureCollection',
+    features: coordinates.length >= 2
+      ? [{
+        type: 'Feature',
+        properties: { trail: state.trail.id, routeType: 'main' },
+        geometry: { type: 'LineString', coordinates }
+      }]
+      : []
+  };
+};
 
 const buildSectionsGeoJson = () => ({
   type: 'FeatureCollection',
@@ -54,10 +72,13 @@ const buildSectionsGeoJson = () => ({
 });
 
 const getTrailBounds = () => {
-  const routeCoords = getRouteCoordinates();
-  const coords = routeCoords.length > 0
-    ? routeCoords
-    : getSectionPoints().map(p => [p.lon, p.lat]);
+  const routeCoords = getGeoJsonCoordinates(buildRouteGeoJson());
+  const waypointCoords = state.allWaypoints
+    .filter(p => Number.isFinite(p.lat) && Number.isFinite(p.lon))
+    .map(p => [p.lon, p.lat]);
+  const sectionCoords = getSectionPoints().map(p => [p.lon, p.lat]);
+  const coords = [...routeCoords, ...waypointCoords, ...sectionCoords];
+  if (coords.length === 0) return [[-122, 42], [-116, 45]];
   return coords.reduce((acc, coord) => {
     return [
       [Math.min(acc[0][0], coord[0]), Math.min(acc[0][1], coord[1])],
@@ -642,7 +663,21 @@ export const initMap = () => {
       id: 'route-line',
       type: 'line',
       source: 'active-route',
+      filter: ['!=', 'routeType', 'alternate'],
       paint: { 'line-color': '#e11d48', 'line-width': 3, 'line-opacity': 0.9 }
+    });
+
+    map.addLayer({
+      id: 'route-alternate-line',
+      type: 'line',
+      source: 'active-route',
+      filter: ['==', 'routeType', 'alternate'],
+      paint: {
+        'line-color': '#f97316',
+        'line-width': 2.5,
+        'line-opacity': 0.85,
+        'line-dasharray': [5, 3]
+      }
     });
 
     // Add section markers from in-app GeoJSON (not vector tiles) so all sections
@@ -706,7 +741,7 @@ export const initMap = () => {
     });
 
     // Route-line clicks are ON the trail by definition — always pass distanceFromTrail: 0
-    map.on('click', 'route-line', async (e) => {
+    const handleRouteClick = async (e) => {
       // Check if a category point was tapped nearby — if so, let the icon handler take it
       const R = 30;
       const bbox = [[e.point.x - R, e.point.y - R], [e.point.x + R, e.point.y + R]];
@@ -723,13 +758,18 @@ export const initMap = () => {
       if (updateId === pendingMileUpdate) {
         showMapInfo(result.mile, 0);
       }
-    });
+    };
+
+    map.on('click', 'route-line', handleRouteClick);
+    map.on('click', 'route-alternate-line', handleRouteClick);
 
     // Cursor changes for overlay layers
     map.on('mouseenter', 'section-circles', () => map.getCanvas().style.cursor = 'pointer');
     map.on('mouseleave', 'section-circles', () => map.getCanvas().style.cursor = '');
     map.on('mouseenter', 'route-line', () => map.getCanvas().style.cursor = 'pointer');
     map.on('mouseleave', 'route-line', () => map.getCanvas().style.cursor = '');
+    map.on('mouseenter', 'route-alternate-line', () => map.getCanvas().style.cursor = 'pointer');
+    map.on('mouseleave', 'route-alternate-line', () => map.getCanvas().style.cursor = '');
 
     // Category toggles are now managed by app.js settings popover
     if (pendingUserLocationUpdate) {

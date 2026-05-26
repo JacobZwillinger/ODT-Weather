@@ -11,6 +11,7 @@ export const state = {
   waterSources: [],
   towns: [],
   allWaypoints: [],
+  routeGeoJson: null,
   elevationProfile: null,
   currentMile: 0,
   categories: {
@@ -60,6 +61,28 @@ export const saveToggleState = () => {
 // Load elevation profile (cached)
 export const loadElevationProfile = async () => {
   if (state.elevationProfile) return state.elevationProfile;
+
+  if (!state.trail.data.elevationProfile) {
+    const waypointProfile = state.allWaypoints
+      .filter(point =>
+        Number.isFinite(point.mile) &&
+        Number.isFinite(point.elevation) &&
+        Number.isFinite(point.lat) &&
+        Number.isFinite(point.lon)
+      )
+      .map(point => ({
+        distance: point.mile,
+        mile: point.mile,
+        elevation: point.elevation,
+        lat: point.lat,
+        lon: point.lon
+      }))
+      .sort((a, b) => a.distance - b.distance);
+
+    state.elevationProfile = waypointProfile.length >= 2 ? waypointProfile : null;
+    return state.elevationProfile;
+  }
+
   try {
     const response = await fetch(state.trail.data.elevationProfile);
     if (!response.ok) throw new Error(`HTTP ${response.status}`); // [BUGS] Fixed: missing response.ok check before parsing JSON
