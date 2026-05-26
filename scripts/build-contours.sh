@@ -5,16 +5,39 @@
 set -e
 
 PROJECT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+
+# Per-trail layout: --trail nnml uses build/nnml/ + contours-nnml.pmtiles.
+# Default (odt) uses the existing build/ + contours.pmtiles paths.
+TRAIL="odt"
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --trail) TRAIL="$2"; shift 2 ;;
+    *) echo "Unknown arg: $1"; exit 1 ;;
+  esac
+done
+
+if [ "$TRAIL" = "odt" ]; then
+  TRAIL_BUILD_DIR="$PROJECT_ROOT/build"
+  PMTILES_NAME="contours.pmtiles"
+  DEM_NAME="corridor_dem.tif"
+else
+  TRAIL_BUILD_DIR="$PROJECT_ROOT/build/$TRAIL"
+  PMTILES_NAME="contours-${TRAIL}.pmtiles"
+  DEM_NAME="${TRAIL}_corridor_dem.tif"
+fi
+
 BUILD_DIR="$PROJECT_ROOT/build"
 DATA_DIR="$PROJECT_ROOT/data"
 DIST_DIR="$PROJECT_ROOT/dist"
-BBOX_FILE="$BUILD_DIR/route_bbox.json"
-CORRIDOR_FILE="$BUILD_DIR/corridor.geojson"
-NARROW_BUFFER_FILE="$BUILD_DIR/narrow_buffer.geojson"
-DEM_FILE="$DATA_DIR/corridor_dem.tif"
-CONTOURS_GEOJSON="$BUILD_DIR/contours.geojson"
-CONTOURS_CLIPPED_GEOJSON="$BUILD_DIR/contours_clipped.geojson"
-CONTOURS_PMTILES="$DIST_DIR/contours.pmtiles"
+BBOX_FILE="$TRAIL_BUILD_DIR/route_bbox.json"
+CORRIDOR_FILE="$TRAIL_BUILD_DIR/corridor.geojson"
+NARROW_BUFFER_FILE="$TRAIL_BUILD_DIR/narrow_buffer.geojson"
+DEM_FILE="$DATA_DIR/$DEM_NAME"
+CONTOURS_GEOJSON="$TRAIL_BUILD_DIR/contours.geojson"
+CONTOURS_CLIPPED_GEOJSON="$TRAIL_BUILD_DIR/contours_clipped.geojson"
+CONTOURS_PMTILES="$DIST_DIR/$PMTILES_NAME"
+
+mkdir -p "$TRAIL_BUILD_DIR"
 
 # Ensure directories exist
 mkdir -p "$BUILD_DIR"
@@ -46,38 +69,65 @@ echo ""
 
 # Download SRTM elevation data from OpenTopography
 # Using SRTM GL1 (30m resolution, global coverage)
+API_URL="https://portal.opentopography.org/API/globaldem"
+API_KEY="demoapikeyot2022"
+
+download_dem_single_shot() {
+  local out="$1"
+  local url="${API_URL}?demtype=SRTMGL1&south=${SOUTH}&north=${NORTH}&west=${WEST}&east=${EAST}&outputFormat=GTiff&API_Key=${API_KEY}"
+  echo "  URL: $url"
+  # --fail returns non-zero on HTTP errors (the API hands back text errors otherwise)
+  # --max-time 300 caps the request at 5 minutes so we can fall back to chunking on stall
+  curl -L --fail --max-time 300 -o "$out" "$url"
+}
+
+download_dem_chunked() {
+  # Split the bbox into a 2x2 grid, download each, then merge with gdalwarp.
+  local out="$1"
+  local mid_lon mid_lat
+  mid_lon=$(node -pe "(${WEST} + ${EAST}) / 2")
+  mid_lat=$(node -pe "(${SOUTH} + ${NORTH}) / 2")
+
+  local tmp_dir
+  tmp_dir=$(mktemp -d)
+  echo "  Splitting bbox into 4 tiles, output dir: $tmp_dir"
+
+  local i=0
+  for bounds in \
+    "$WEST $SOUTH $mid_lon $mid_lat" \
+    "$mid_lon $SOUTH $EAST $mid_lat" \
+    "$WEST $mid_lat $mid_lon $NORTH" \
+    "$mid_lon $mid_lat $EAST $NORTH"; do
+    i=$((i + 1))
+    local w s e n
+    read -r w s e n <<<"$bounds"
+    local tile_url="${API_URL}?demtype=SRTMGL1&south=${s}&north=${n}&west=${w}&east=${e}&outputFormat=GTiff&API_Key=${API_KEY}"
+    local tile_file="$tmp_dir/tile_${i}.tif"
+    echo "  [$i/4] $w $s $e $n"
+    curl -L --fail --max-time 300 -o "$tile_file" "$tile_url" || return 1
+  done
+
+  echo "  Merging 4 tiles into $out"
+  gdalwarp -overwrite "$tmp_dir"/tile_*.tif "$out" || return 1
+  rm -rf "$tmp_dir"
+}
+
 if [ ! -f "$DEM_FILE" ]; then
   echo "Downloading SRTM elevation data from OpenTopography..."
   echo "This may take a few minutes..."
-
-  # OpenTopography API endpoint for SRTM GL1
-  API_URL="https://portal.opentopography.org/API/globaldem"
-
-  # Create download URL with parameters
-  DOWNLOAD_URL="${API_URL}?demtype=SRTMGL1&south=${SOUTH}&north=${NORTH}&west=${WEST}&east=${EAST}&outputFormat=GTiff&API_Key=demoapikeyot2022"
-
-  echo "  URL: $DOWNLOAD_URL"
   echo ""
 
-  # Download DEM
-  curl -L -o "$DEM_FILE" "$DOWNLOAD_URL"
-
-  if [ ! -f "$DEM_FILE" ] || [ ! -s "$DEM_FILE" ]; then
+  if ! download_dem_single_shot "$DEM_FILE" || [ ! -s "$DEM_FILE" ]; then
     echo ""
-    echo "Error: Failed to download DEM from OpenTopography"
-    echo ""
-    echo "Alternative: Download SRTM tiles manually from:"
-    echo "  https://dwtkns.com/srtm30m/"
-    echo ""
-    echo "The trail corridor spans approximately:"
-    echo "  West:  $WEST"
-    echo "  South: $SOUTH"
-    echo "  East:  $EAST"
-    echo "  North: $NORTH"
-    echo ""
-    echo "Download all tiles covering this area and merge them with:"
-    echo "  gdalwarp -te $WEST $SOUTH $EAST $NORTH tile1.hgt tile2.hgt ... $DEM_FILE"
-    exit 1
+    echo "Single-shot download failed or stalled; falling back to 2x2 chunked download..."
+    rm -f "$DEM_FILE"
+    if ! download_dem_chunked "$DEM_FILE" || [ ! -s "$DEM_FILE" ]; then
+      echo ""
+      echo "Error: chunked DEM download also failed."
+      echo "Manual fallback: download SRTM tiles from https://dwtkns.com/srtm30m/"
+      echo "  and merge with: gdalwarp -te $WEST $SOUTH $EAST $NORTH tile1.hgt ... $DEM_FILE"
+      exit 1
+    fi
   fi
 
   echo "✓ DEM downloaded"
@@ -96,7 +146,7 @@ echo ""
 
 # Always recreate buffer (in case distance changed)
 echo "Creating 10-mile buffer around route..."
-node "$PROJECT_ROOT/scripts/create-narrow-buffer.js"
+node "$PROJECT_ROOT/scripts/create-narrow-buffer.js" --trail "$TRAIL"
 echo ""
 
 # Generate contour lines
@@ -183,7 +233,7 @@ echo "  Size: $PMTILES_SIZE"
 echo ""
 
 # Copy to public directory for Vercel
-cp "$CONTOURS_PMTILES" "$PROJECT_ROOT/public/contours.pmtiles"
-echo "✓ Copied to public/contours.pmtiles"
+cp "$CONTOURS_PMTILES" "$PROJECT_ROOT/public/$PMTILES_NAME"
+echo "✓ Copied to public/$PMTILES_NAME"
 echo ""
 echo "Done!"

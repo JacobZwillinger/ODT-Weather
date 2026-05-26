@@ -11,8 +11,91 @@ let userAccuracyCircle = null;
 let initialBounds = null;
 let pendingUserLocationUpdate = null;
 
+// Tracks which trail's contour pmtiles is currently loaded so we know when to swap it.
+let loadedContoursTrailId = null;
+
 // Track pending async operations to prevent race conditions
 let pendingMileUpdate = 0;
+
+// Maps a trail id to its contours pmtiles. Each trail has its own DEM-derived contour file.
+const contoursPmtilesUrl = (trailId) =>
+  trailId === 'nnml' ? 'pmtiles://contours-nnml.pmtiles' : 'pmtiles://contours.pmtiles';
+
+const CONTOUR_LAYER_IDS = ['contour-lines', 'contour-lines-index', 'contour-labels'];
+
+// Filter that keeps only index contours (every 100 ft). Shared by index lines + labels.
+const buildIndexContourFilter = () => ['==', ['%', ['round', ['*', ['get', 'ELEVATION'], 3.28084]], 100], 0];
+
+const addContourLayers = () => {
+  // Minor contours (every 20 ft) — visible only at high zoom
+  map.addLayer({
+    id: 'contour-lines',
+    type: 'line',
+    source: 'contours',
+    'source-layer': 'contours',
+    minzoom: 12,
+    paint: {
+      'line-color': '#c8a87a',
+      'line-width': 0.5,
+      'line-opacity': 0.5
+    }
+  });
+
+  // Index contours (every 100 ft) — thicker, visible at lower zoom
+  // Convert meters to feet and round to avoid floating-point modulo issues
+  const indexFilter = buildIndexContourFilter();
+  map.addLayer({
+    id: 'contour-lines-index',
+    type: 'line',
+    source: 'contours',
+    'source-layer': 'contours',
+    minzoom: 9,
+    filter: indexFilter,
+    paint: {
+      'line-color': '#b0926a',
+      'line-width': ['interpolate', ['linear'], ['zoom'], 9, 0.8, 14, 1.5],
+      'line-opacity': 0.7
+    }
+  });
+
+  // Elevation labels on index contours
+  map.addLayer({
+    id: 'contour-labels',
+    type: 'symbol',
+    source: 'contours',
+    'source-layer': 'contours',
+    minzoom: 11,
+    filter: indexFilter,
+    layout: {
+      'symbol-placement': 'line',
+      'text-field': ['concat', ['to-string', ['round', ['*', ['get', 'ELEVATION'], 3.28084]]], '′'],
+      'text-size': ['interpolate', ['linear'], ['zoom'], 11, 14, 14, 18],
+      'text-font': ['Noto Sans Bold'],
+      'text-max-angle': 25
+    },
+    paint: {
+      'text-color': '#7a5d3a',
+      'text-halo-color': '#fff',
+      'text-halo-width': 2
+    }
+  });
+};
+
+const removeContourLayers = () => {
+  for (const id of CONTOUR_LAYER_IDS) {
+    if (map.getLayer(id)) map.removeLayer(id);
+  }
+};
+
+const ensureContoursForTrail = (trailId) => {
+  if (!map) return;
+  if (loadedContoursTrailId === trailId && map.getSource('contours')) return;
+  removeContourLayers();
+  if (map.getSource('contours')) map.removeSource('contours');
+  map.addSource('contours', { type: 'vector', url: contoursPmtilesUrl(trailId) });
+  addContourLayers();
+  loadedContoursTrailId = trailId;
+};
 
 // Track off-trail status
 let isOffTrail = false;
@@ -262,7 +345,7 @@ export const initMap = () => {
         },
         'contours': {
           type: 'vector',
-          url: 'pmtiles://contours.pmtiles'
+          url: contoursPmtilesUrl(state.trail.id)
         },
         'active-route': {
           type: 'geojson',
@@ -589,59 +672,9 @@ export const initMap = () => {
       paint: { 'text-color': '#666', 'text-halo-color': '#fff', 'text-halo-width': 2 }
     });
 
-    // Add contour lines from contours PMTiles
-    // Minor contours (every 20 ft) — visible only at high zoom
-    map.addLayer({
-      id: 'contour-lines',
-      type: 'line',
-      source: 'contours',
-      'source-layer': 'contours',
-      minzoom: 12,
-      paint: {
-        'line-color': '#c8a87a',
-        'line-width': 0.5,
-        'line-opacity': 0.5
-      }
-    });
-
-    // Index contours (every 100 ft) — thicker, visible at lower zoom
-    // Convert meters to feet and round to avoid floating-point modulo issues
-    const indexFilter = ['==', ['%', ['round', ['*', ['get', 'ELEVATION'], 3.28084]], 100], 0];
-    map.addLayer({
-      id: 'contour-lines-index',
-      type: 'line',
-      source: 'contours',
-      'source-layer': 'contours',
-      minzoom: 9,
-      filter: indexFilter,
-      paint: {
-        'line-color': '#b0926a',
-        'line-width': ['interpolate', ['linear'], ['zoom'], 9, 0.8, 14, 1.5],
-        'line-opacity': 0.7
-      }
-    });
-
-    // Elevation labels on index contours
-    map.addLayer({
-      id: 'contour-labels',
-      type: 'symbol',
-      source: 'contours',
-      'source-layer': 'contours',
-      minzoom: 11,
-      filter: indexFilter,
-      layout: {
-        'symbol-placement': 'line',
-        'text-field': ['concat', ['to-string', ['round', ['*', ['get', 'ELEVATION'], 3.28084]]], '′'],
-        'text-size': ['interpolate', ['linear'], ['zoom'], 11, 14, 14, 18],
-        'text-font': ['Noto Sans Bold'],
-        'text-max-angle': 25
-      },
-      paint: {
-        'text-color': '#7a5d3a',
-        'text-halo-color': '#fff',
-        'text-halo-width': 2
-      }
-    });
+    // Contour layers (sourced from the trail-specific contours pmtiles registered above)
+    addContourLayers();
+    loadedContoursTrailId = state.trail.id;
 
     // Add alternate routes (dashed orange, behind main route)
     map.addLayer({
@@ -983,6 +1016,9 @@ export const applyTrailMapData = async ({ fitToTrail = false } = {}) => {
   if (!map) return;
 
   await loadElevationProfile();
+
+  // Swap the contours pmtiles source if the active trail has its own file (ODT vs NNML).
+  ensureContoursForTrail(state.trail.id);
 
   const routeSource = map.getSource('active-route');
   if (routeSource) routeSource.setData(buildRouteGeoJson());

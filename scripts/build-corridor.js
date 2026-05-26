@@ -13,14 +13,22 @@ const bbox = require('@turf/bbox').default;
 
 const projectRoot = path.join(__dirname, '..');
 const buildDir = path.join(projectRoot, 'build');
-const routeLinePath = path.join(buildDir, 'route_line.geojson');
-const alternatesPath = path.join(buildDir, 'alternates.geojson');
-const corridorPath = path.join(buildDir, 'corridor.geojson');
-const bboxPath = path.join(buildDir, 'route_bbox.json');
-const tmpCombined = '/tmp/odt-combined-lines.geojson';
-const tmpBuffered = '/tmp/odt-buffered-corridor.geojson';
 
-console.log('Building corridor around route + alternates...\n');
+// Per-trail layout: --trail nnml writes/reads build/nnml/. Default (odt) writes/reads build/.
+const trailArgIdx = process.argv.indexOf('--trail');
+const trail = trailArgIdx !== -1 ? process.argv[trailArgIdx + 1] : 'odt';
+const trailBuildDir = trail === 'odt' ? buildDir : path.join(buildDir, trail);
+fs.mkdirSync(trailBuildDir, { recursive: true });
+
+const routeLinePath = path.join(trailBuildDir, 'route_line.geojson');
+const alternatesPath = path.join(trailBuildDir, 'alternates.geojson');
+const corridorPath = path.join(trailBuildDir, 'corridor.geojson');
+const bboxPath = path.join(trailBuildDir, 'route_bbox.json');
+const tmpCombined = `/tmp/${trail}-combined-lines.geojson`;
+const tmpBuffered = `/tmp/${trail}-buffered-corridor.geojson`;
+const sqlLayerName = `${trail}-combined-lines`;
+
+console.log(`Building corridor around ${trail} route + alternates...\n`);
 
 // Read the route line
 console.log('1. Reading route line...');
@@ -55,7 +63,7 @@ const BUFFER_DEG = 0.045; // ~5km
 console.log(`\n4. Buffering (${BUFFER_DEG}° ≈ 5km) and unioning via ogr2ogr...`);
 execSync(
   `ogr2ogr -f GeoJSON -overwrite ${tmpBuffered} ${tmpCombined} ` +
-  `-dialect SQLite -sql "SELECT ST_Union(ST_Buffer(geometry, ${BUFFER_DEG})) AS geometry FROM \\"odt-combined-lines\\""`,
+  `-dialect SQLite -sql "SELECT ST_Union(ST_Buffer(geometry, ${BUFFER_DEG})) AS geometry FROM \\"${sqlLayerName}\\""`,
   { stdio: 'inherit' }
 );
 console.log('   Buffer complete');
@@ -70,9 +78,10 @@ const corridorGeoJSON = {
   features: [{
     type: 'Feature',
     properties: {
-      name: 'ODT Corridor',
+      name: `${trail.toUpperCase()} Corridor`,
+      trail,
       buffer_km: 5,
-      description: '5km buffer around Oregon Desert Trail + alternates'
+      description: `5km buffer around ${trail.toUpperCase()} route + alternates`
     },
     geometry: bufferedFeature.geometry
   }]

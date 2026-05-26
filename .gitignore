@@ -12,7 +12,12 @@ build/tile_weights.tsv.gz
 build/contours.geojson
 build/contours_clipped.geojson
 build/narrow_buffer.geojson
+# Per-trail build artifacts (huge intermediates; rebuilt by scripts/build-contours.sh --trail X)
+build/*/contours.geojson
+build/*/contours_clipped.geojson
+build/*/narrow_buffer.geojson
 dist/contours.pmtiles
+dist/contours-*.pmtiles
 
 # Data sources (large files, can be re-downloaded)
 data/

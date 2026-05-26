@@ -10,11 +10,19 @@ const { execSync } = require('child_process');
 
 const projectRoot = path.join(__dirname, '..');
 const buildDir = path.join(projectRoot, 'build');
-const routeLinePath = path.join(buildDir, 'route_line.geojson');
-const alternatesPath = path.join(buildDir, 'alternates.geojson');
-const narrowBufferPath = path.join(buildDir, 'narrow_buffer.geojson');
-const tmpCombined = '/tmp/odt-combined-for-buffer.geojson';
-const tmpBuffered = '/tmp/odt-narrow-buffer.geojson';
+
+// Per-trail layout: --trail nnml writes/reads build/nnml/. Default (odt) writes/reads build/.
+const trailArgIdx = process.argv.indexOf('--trail');
+const trail = trailArgIdx !== -1 ? process.argv[trailArgIdx + 1] : 'odt';
+const trailBuildDir = trail === 'odt' ? buildDir : path.join(buildDir, trail);
+fs.mkdirSync(trailBuildDir, { recursive: true });
+
+const routeLinePath = path.join(trailBuildDir, 'route_line.geojson');
+const alternatesPath = path.join(trailBuildDir, 'alternates.geojson');
+const narrowBufferPath = path.join(trailBuildDir, 'narrow_buffer.geojson');
+const tmpCombined = `/tmp/${trail}-combined-for-buffer.geojson`;
+const tmpBuffered = `/tmp/${trail}-narrow-buffer.geojson`;
+const sqlLayerName = `${trail}-combined-for-buffer`;
 
 // 10 miles = 16.09 km ≈ 0.145 degrees latitude
 const BUFFER_MILES = 10;
@@ -46,7 +54,7 @@ console.log(`   Combined: ${combinedSize} KB (${combined.features.length} featur
 console.log(`\n4. Buffering (${BUFFER_DEG}° ≈ ${BUFFER_MILES} miles) and unioning via ogr2ogr...`);
 execSync(
   `ogr2ogr -f GeoJSON -overwrite ${tmpBuffered} ${tmpCombined} ` +
-  `-dialect SQLite -sql "SELECT ST_Union(ST_Buffer(geometry, ${BUFFER_DEG})) AS geometry FROM \\"odt-combined-for-buffer\\""`,
+  `-dialect SQLite -sql "SELECT ST_Union(ST_Buffer(geometry, ${BUFFER_DEG})) AS geometry FROM \\"${sqlLayerName}\\""`,
   { stdio: 'inherit' }
 );
 console.log('   Buffer complete');
@@ -60,10 +68,11 @@ const bufferGeoJSON = {
   features: [{
     type: 'Feature',
     properties: {
-      name: 'Contour Buffer',
+      name: `${trail.toUpperCase()} Contour Buffer`,
+      trail,
       buffer_miles: BUFFER_MILES,
       buffer_deg: BUFFER_DEG,
-      description: `${BUFFER_MILES}-mile buffer around Oregon Desert Trail + alternates for contour clipping`
+      description: `${BUFFER_MILES}-mile buffer around ${trail.toUpperCase()} route + alternates for contour clipping`
     },
     geometry: bufferedFeature.geometry
   }]
