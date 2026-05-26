@@ -664,7 +664,11 @@ export const initMap = () => {
       type: 'line',
       source: 'active-route',
       filter: ['!=', 'routeType', 'alternate'],
-      paint: { 'line-color': '#e11d48', 'line-width': 3, 'line-opacity': 0.9 }
+      paint: {
+        'line-color': ['case', ['has', 'color'], ['get', 'color'], '#e11d48'],
+        'line-width': 3.5,
+        'line-opacity': 0.95
+      }
     });
 
     map.addLayer({
@@ -673,8 +677,8 @@ export const initMap = () => {
       source: 'active-route',
       filter: ['==', 'routeType', 'alternate'],
       paint: {
-        'line-color': '#f97316',
-        'line-width': 2.5,
+        'line-color': ['case', ['has', 'color'], ['get', 'color'], '#f97316'],
+        'line-width': 3,
         'line-opacity': 0.85,
         'line-dasharray': [5, 3]
       }
