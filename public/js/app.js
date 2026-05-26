@@ -304,23 +304,40 @@ const initSettingsPopover = () => {
   });
 };
 
+const isTestModeActive = () => localStorage.getItem('testMode') === 'true';
+
 const syncTrailButtons = () => {
+  const testActive = isTestModeActive();
   document.querySelectorAll('.trail-choice-btn').forEach(btn => {
-    const active = btn.dataset.trailId === state.trail.id;
+    const id = btn.dataset.trailId;
+    // Test choice lights up when test mode is on; real trail choices only when test is off.
+    const active = id === 'test' ? testActive : (!testActive && id === state.trail.id);
     btn.classList.toggle('active', active);
     btn.setAttribute('aria-pressed', String(active));
   });
   updateTrailChrome();
 };
 
+const toggleTestMode = () => {
+  const next = !isTestModeActive();
+  localStorage.setItem('testMode', String(next));
+  if (next) {
+    applyDataset(buildTestDataset());
+    window._odtMap?.flyTo({ center: [-77.0148, 38.8728], zoom: 16, duration: 1200 });
+  } else {
+    if (realData) applyDataset(realData);
+    window._odtMap?.flyTo({ center: [state.trail.center.lon, state.trail.center.lat], zoom: 8, duration: 1200 });
+  }
+  syncTrailButtons();
+  closeKebabMenu();
+};
+
 const switchTrail = async (trailId) => {
-  if (!TRAILS[trailId] || trailId === state.trail.id) return;
+  if (!TRAILS[trailId] || (trailId === state.trail.id && !isTestModeActive())) return;
 
   setActiveTrail(trailId);
+  // Switching to a real trail always exits test mode.
   localStorage.setItem('testMode', 'false');
-  const testModeBtn = document.getElementById('btnKebabTestMode');
-  testModeBtn?.setAttribute('aria-pressed', 'false');
-  testModeBtn?.classList.remove('active');
   clearElevationProfile();
   resetElevationChart();
   const dataset = await loadTrailDataset(state.trail);
@@ -357,7 +374,12 @@ const initTrailSwitcher = () => {
   popover.querySelectorAll('.trail-choice-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
-      switchTrail(btn.dataset.trailId);
+      const id = btn.dataset.trailId;
+      if (id === 'test') {
+        toggleTestMode();
+      } else {
+        switchTrail(id);
+      }
     });
   });
 
@@ -438,15 +460,10 @@ const closeKebabMenu = () => {
 const initKebabMenu = () => {
   const btn = document.getElementById('btnKebab');
   const subButtons = document.getElementById('kebabSubButtons');
-  const testModeBtn = document.getElementById('btnKebabTestMode');
   const aboutBtn = document.getElementById('btnKebabAbout');
 
-  // Load test mode state
-  const testModeActive = localStorage.getItem('testMode') === 'true';
-  testModeBtn.setAttribute('aria-pressed', String(testModeActive));
-  testModeBtn.classList.toggle('active', testModeActive);
-
-  // Main kebab button: toggle sub-buttons
+  // Main kebab button: toggle sub-buttons.
+  // Test mode lives inside the trail popover now — see initTrailSwitcher / toggleTestMode.
   btn.addEventListener('click', (e) => {
     e.stopPropagation();
     const isOpen = !subButtons.hidden;
@@ -456,24 +473,6 @@ const initKebabMenu = () => {
       subButtons.hidden = false;
       btn.classList.add('active');
       btn.setAttribute('aria-expanded', 'true');
-    }
-  });
-
-  // Test mode sub-button — swaps state + map sources between Oregon and DC fixtures
-  testModeBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isActive = testModeBtn.getAttribute('aria-pressed') === 'true';
-    const next = !isActive;
-    testModeBtn.setAttribute('aria-pressed', String(next));
-    testModeBtn.classList.toggle('active', next);
-    localStorage.setItem('testMode', String(next));
-
-    if (next) {
-      applyDataset(buildTestDataset());
-      window._odtMap?.flyTo({ center: [-77.0148, 38.8728], zoom: 16, duration: 1200 });
-    } else {
-      if (realData) applyDataset(realData);
-      window._odtMap?.flyTo({ center: [state.trail.center.lon, state.trail.center.lat], zoom: 8, duration: 1200 });
     }
   });
 

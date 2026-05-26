@@ -28,7 +28,7 @@
         </svg>
       </button>
       <!-- Expanding sub-buttons (hidden until kebab is tapped) -->
-      <!-- Order: Trail, Test, Layers, About — trail switcher is the most-used and stays on top. -->
+      <!-- Order: Trail (expands into its own popover with ODT/NNML/Test), Layers, About. -->
       <div class="kebab-sub-buttons" id="kebabSubButtons" hidden>
         <button id="btnKebabTrail" class="kebab-sub-btn" aria-label="Change trail">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -37,13 +37,6 @@
             <circle cx="20" cy="10" r="2" fill="currentColor"/>
           </svg>
           <span class="kebab-sub-label" id="activeTrailName">ODT</span>
-        </button>
-        <button id="btnKebabTestMode" class="kebab-sub-btn" aria-label="Test Mode" aria-pressed="false">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M9 3v8l-4 8h14l-4-8V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="9" y1="3" x2="15" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <span class="kebab-sub-label">Test</span>
         </button>
         <button id="btnKebabLayers" class="kebab-sub-btn" aria-label="Map Layers">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -206,10 +199,11 @@
       </button>
     </div>
 
-    <!-- Trail switcher popover -->
+    <!-- Trail switcher popover — three choices: two real trails + a Test fixture mode. -->
     <div class="trail-popover" id="trailPopover" hidden>
       <button class="trail-choice-btn active" data-trail-id="odt" aria-pressed="true">Oregon Desert Trail</button>
       <button class="trail-choice-btn" data-trail-id="nnml" aria-pressed="false">Northern New Mexico Loop</button>
+      <button class="trail-choice-btn" data-trail-id="test" aria-pressed="false">Test Mode</button>
     </div>
 
     <!-- Full-screen overlay: Elevation Profile -->
