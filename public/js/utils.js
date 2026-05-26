@@ -40,6 +40,59 @@ export const getSectionPoints = () => state.trail.sections;
 
 export const getTrailStorageKey = (key) => `${state.trail.id}_${key}`;
 
+const normalizeWaterRating = (rating) => {
+  const match = String(rating || '').trim().toLowerCase().match(/^w([0-3])$/);
+  return match ? `w${match[1]}` : null;
+};
+
+export const getWaterRating = (source) => {
+  const explicit = normalizeWaterRating(source?.waterRating);
+  if (explicit) return explicit;
+
+  const text = [source?.landmark, source?.name, source?.details]
+    .filter(Boolean)
+    .join(' ');
+  const match = text.match(/\bW\s*([0-3])(?:\s*-\s*[0-3])?\b/i);
+  return match ? `w${match[1]}` : null;
+};
+
+export const getReliableWaterRatings = () => {
+  const config = state.trail.waterReliability;
+  if (!config) return [];
+
+  const validRatings = new Set(config.ratings);
+  try {
+    const raw = localStorage.getItem(getTrailStorageKey('reliableWaterRatings'));
+    if (raw !== null) {
+      const saved = JSON.parse(raw);
+      const normalized = saved
+        .map(normalizeWaterRating)
+        .filter(rating => validRatings.has(rating));
+      return [...new Set(normalized)];
+    }
+  } catch (_) {
+    // ignore invalid stored state
+  }
+
+  return [...config.defaultReliable];
+};
+
+export const saveReliableWaterRatings = (ratings) => {
+  const config = state.trail.waterReliability;
+  if (!config) return;
+
+  const validRatings = new Set(config.ratings);
+  const normalized = ratings
+    .map(normalizeWaterRating)
+    .filter(rating => validRatings.has(rating));
+  localStorage.setItem(getTrailStorageKey('reliableWaterRatings'), JSON.stringify([...new Set(normalized)]));
+};
+
+export const isReliableWaterSource = (source) => {
+  if (!state.trail.waterReliability) return source?.subcategory === 'reliable';
+  return getReliableWaterRatings().includes(getWaterRating(source));
+};
+
 // Load saved toggle state from localStorage
 export const loadToggleState = () => {
   const saved = localStorage.getItem('categoryToggles');
@@ -253,12 +306,12 @@ export const findNextWater = (mile) => {
 
 // Find next reliable water source after given mile
 export const findNextReliableWater = (mile) => {
-  return state.waterSources.find(s => s.mile > mile + MILE_EPSILON && s.subcategory === 'reliable') || null;
+  return state.waterSources.find(s => s.mile > mile + MILE_EPSILON && isReliableWaterSource(s)) || null;
 };
 
 // Find next non-reliable water source after given mile
 export const findNextOtherWater = (mile) => {
-  return state.waterSources.find(s => s.mile > mile + MILE_EPSILON && s.subcategory !== 'reliable') || null;
+  return state.waterSources.find(s => s.mile > mile + MILE_EPSILON && !isReliableWaterSource(s)) || null;
 };
 
 // Find next town after given mile

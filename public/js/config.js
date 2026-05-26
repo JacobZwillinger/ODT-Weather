@@ -102,6 +102,10 @@ export const TRAILS = {
       routeGeoJson: 'trails/nnml/route.geojson',
       elevationProfile: null
     },
+    waterReliability: {
+      ratings: ['w3', 'w2', 'w1', 'w0'],
+      defaultReliable: ['w3']
+    },
     sections: nnmlSectionPoints,
     center: { lat: 36.36, lon: -106.05 }
   }

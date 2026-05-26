@@ -1,5 +1,5 @@
 // Main application entry point
-import { clearElevationProfile, getSectionPoints, getTrailStorageKey, setActiveTrail, state, loadToggleState, saveToggleState } from './utils.js';
+import { clearElevationProfile, getReliableWaterRatings, getSectionPoints, getTrailStorageKey, getWaterRating, isReliableWaterSource, saveReliableWaterRatings, setActiveTrail, state, loadToggleState, saveToggleState } from './utils.js';
 import { loadForecasts } from './weather.js';
 import { initModals, showWaypointDetail, showWaterDetail, showTownDetail } from './modals.js';
 import { applyTrailMapData, showMapInfo, scheduleMapInit, toggleCategoryLayer, swapCategoryData, onMapReady, resetMapView, saveMapView, restoreMapView, getMileageLog, deleteMileageDay } from './map.js';
@@ -37,8 +37,8 @@ const buildDataset = (trail, waypoints, water, townData, navigation, toilets, ro
   waterSources: water,
   towns: townData,
   categories: {
-    'water-reliable': water.filter(s => s.subcategory === 'reliable'),
-    'water-other': water.filter(s => s.subcategory !== 'reliable'),
+    'water-reliable': water.filter(isReliableWaterSource),
+    'water-other': water.filter(s => !isReliableWaterSource(s)),
     towns: townData,
     navigation,
     toilets
@@ -119,11 +119,11 @@ const getItemsForFilter = (filter) => {
   switch (filter) {
     case 'reliable-water':
       return state.waterSources
-        .filter(s => s.subcategory === 'reliable')
+        .filter(isReliableWaterSource)
         .map(s => ({ ...s, type: 'water' }));
     case 'other-water':
       return state.waterSources
-        .filter(s => s.subcategory !== 'reliable')
+        .filter(s => !isReliableWaterSource(s))
         .map(s => ({ ...s, type: 'water' }));
     case 'towns':
       return state.towns.map(t => ({ ...t, type: 'towns' }));
@@ -167,16 +167,18 @@ const renderWaypointList = (activeFilters) => {
   container.innerHTML = items.map(item => {
     // Pick bar color class based on type + subcategory
     const barClass = item.type === 'water'
-      ? (item.subcategory === 'reliable' ? 'bar-water-reliable' : 'bar-water-other')
+      ? (isReliableWaterSource(item) ? 'bar-water-reliable' : 'bar-water-other')
       : `bar-${item.type}`;
 
     // Subcategory label with color
+    const waterRating = item.type === 'water' ? getWaterRating(item) : null;
+    const displaySubcategory = waterRating ? waterRating.toUpperCase() : item.subcategory;
     const subClass = {
       reliable: 'sub-reliable', seasonal: 'sub-seasonal', unreliable: 'sub-unreliable',
       full: 'sub-full', limited: 'sub-limited'
-    }[item.subcategory] || 'sub-other';
-    const subLabel = item.subcategory
-      ? `<div class="waypoint-list-sub ${subClass}">${escapeHtml(item.subcategory)}</div>`
+    }[item.subcategory] || (isReliableWaterSource(item) ? 'sub-reliable' : 'sub-other');
+    const subLabel = displaySubcategory
+      ? `<div class="waypoint-list-sub ${subClass}">${escapeHtml(displaySubcategory)}</div>`
       : '';
 
     return `
@@ -204,6 +206,35 @@ const renderWaypointList = (activeFilters) => {
         window._odtMap.flyTo({ center: [lon, lat], zoom: 14, duration: 800 });
       }
     });
+  });
+};
+
+const getActiveWaypointFilters = () => [...document.querySelectorAll('.filter-btn.active')].map(b => b.dataset.filter);
+
+const refreshWaterClassification = () => {
+  state.categories['water-reliable'] = state.waterSources.filter(isReliableWaterSource);
+  state.categories['water-other'] = state.waterSources.filter(s => !isReliableWaterSource(s));
+  swapCategoryData('water-reliable', state.categories['water-reliable']);
+  swapCategoryData('water-other', state.categories['water-other']);
+  showMapInfo(state.currentMile || 0);
+  renderWaypointList(getActiveWaypointFilters());
+};
+
+const syncWaterReliabilityControls = () => {
+  const panel = document.getElementById('waterReliabilityPanel');
+  if (!panel) return;
+
+  const config = state.trail.waterReliability;
+  panel.hidden = !config;
+  if (!config) return;
+
+  const reliableRatings = new Set(getReliableWaterRatings());
+  panel.querySelectorAll('.water-rating-btn').forEach(btn => {
+    const rating = btn.dataset.waterRating;
+    const active = reliableRatings.has(rating);
+    btn.hidden = !config.ratings.includes(rating);
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-pressed', String(active));
   });
 };
 
@@ -247,6 +278,24 @@ const initSettingsPopover = () => {
     });
   });
 
+  popover.querySelectorAll('.water-rating-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const active = new Set(getReliableWaterRatings());
+      const rating = btn.dataset.waterRating;
+      if (active.has(rating)) {
+        active.delete(rating);
+      } else {
+        active.add(rating);
+      }
+      saveReliableWaterRatings([...active]);
+      syncWaterReliabilityControls();
+      refreshWaterClassification();
+    });
+  });
+
+  syncWaterReliabilityControls();
+
   // Close popover when clicking outside (but not when clicking inside it or its trigger)
   document.addEventListener('click', (e) => {
     if (!popover.hidden && !popover.contains(e.target) && !layersBtn.contains(e.target)) {
@@ -286,7 +335,8 @@ const switchTrail = async (trailId) => {
   };
   await applyTrailMapData({ fitToTrail: true });
   syncTrailButtons();
-  renderWaypointList([...document.querySelectorAll('.filter-btn.active')].map(b => b.dataset.filter));
+  syncWaterReliabilityControls();
+  renderWaypointList(getActiveWaypointFilters());
   loadForecasts();
   closeKebabMenu();
 };

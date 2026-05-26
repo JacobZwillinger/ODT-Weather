@@ -167,6 +167,15 @@
         </svg>
         <span class="category-toggle-label">Other Water</span>
       </button>
+      <div class="water-reliability-panel" id="waterReliabilityPanel" hidden>
+        <div class="water-reliability-title">Reliable</div>
+        <div class="water-rating-controls" id="waterRatingControls">
+          <button class="water-rating-btn active" data-water-rating="w3" aria-pressed="true">W3</button>
+          <button class="water-rating-btn" data-water-rating="w2" aria-pressed="false">W2</button>
+          <button class="water-rating-btn" data-water-rating="w1" aria-pressed="false">W1</button>
+          <button class="water-rating-btn" data-water-rating="w0" aria-pressed="false">W0</button>
+        </div>
+      </div>
       <button class="category-toggle-btn active" data-category="towns" aria-label="Toggle towns" aria-pressed="true">
         <svg class="category-toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="currentColor"/>

@@ -6,10 +6,16 @@ import {
   findNearestWaypoint,
   findMileFromCoords,
   findNextWater,
+  findNextReliableWater,
+  findNextOtherWater,
   findNextTown,
   getDayHeaders,
   getMapUrl,
   loadElevationProfile,
+  getWaterRating,
+  getReliableWaterRatings,
+  saveReliableWaterRatings,
+  isReliableWaterSource,
   OFF_TRAIL_THRESHOLD
 } from '../../public/js/utils.js';
 
@@ -134,6 +140,53 @@ describe('findNextTown', () => {
   it('returns null when past last town', () => {
     const result = findNextTown(350);
     expect(result).toBeNull();
+  });
+});
+
+describe('configurable water reliability ratings', () => {
+  const originalTrail = state.trail;
+
+  beforeEach(() => {
+    localStorage.clear();
+    state.trail = {
+      id: 'nnml',
+      waterReliability: {
+        ratings: ['w3', 'w2', 'w1', 'w0'],
+        defaultReliable: ['w3']
+      }
+    };
+    state.waterSources = [
+      { mile: 4.3, landmark: 'T>XC (W3 0.15S)', details: '' },
+      { mile: 6.1, landmark: 'W2', details: '' },
+      { mile: 9.5, landmark: 'W1', details: '' },
+      { mile: 12.5, landmark: 'Dry tank', details: 'W0' }
+    ];
+  });
+
+  afterEach(() => {
+    state.trail = originalTrail;
+    state.waterSources = [];
+    localStorage.clear();
+  });
+
+  it('extracts W ratings from water text', () => {
+    expect(getWaterRating({ landmark: 'JR (TH W2-3 0.25SW)' })).toBe('w2');
+    expect(getWaterRating({ name: 'S1 4.3 - T>XC (W3 0.15S)' })).toBe('w3');
+    expect(getWaterRating({ details: 'historic source W0' })).toBe('w0');
+  });
+
+  it('defaults to W3 only as reliable', () => {
+    expect(getReliableWaterRatings()).toEqual(['w3']);
+    expect(isReliableWaterSource(state.waterSources[0])).toBe(true);
+    expect(isReliableWaterSource(state.waterSources[1])).toBe(false);
+  });
+
+  it('uses saved W rating choices for next reliable and other water', () => {
+    saveReliableWaterRatings(['w3', 'w2']);
+
+    expect(getReliableWaterRatings()).toEqual(['w3', 'w2']);
+    expect(findNextReliableWater(4.5).mile).toBe(6.1);
+    expect(findNextOtherWater(4.5).mile).toBe(9.5);
   });
 });
 
