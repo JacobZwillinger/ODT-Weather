@@ -471,6 +471,10 @@ export const initMap = () => {
           'text-field': '{point_count_abbreviated}',
           'text-font': ['Noto Sans Regular'],
           'text-size': 12,
+          // Match the unclustered points: never hide a cluster count because a
+          // neighbouring category's marker happens to overlap it.
+          'text-allow-overlap': true,
+          'text-ignore-placement': true,
           visibility: visible
         },
         paint: { 'text-color': '#fff' }
@@ -484,7 +488,11 @@ export const initMap = () => {
         layout: {
           'icon-image': config.icon,
           'icon-size': 1,
-          'icon-allow-overlap': false,
+          // Render icons from different categories independently — without this,
+          // an overlap with another category's marker (e.g. toilet near a water
+          // point) silently hides one of them rather than drawing both.
+          'icon-allow-overlap': true,
+          'icon-ignore-placement': true,
           visibility: visible
         },
         minzoom: config.minZoom
