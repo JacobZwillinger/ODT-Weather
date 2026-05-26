@@ -1,0 +1,4664 @@
+[
+  {
+    "mile": 0,
+    "lat": 35.68744,
+    "lon": -105.93996,
+    "name": "S1/8 0.0 - SANTA FE PLAZA",
+    "landmark": "restaurants in the vicinity. The famed Georgia O'Keefe Museum is also nearby. Buena suerte! Good luck on your journey! To begin clockwise along the Loop, from the plaza head west on San Francisco Street.",
+    "section": 1,
+    "elevation": 6985
+  },
+  {
+    "mile": 0.3,
+    "lat": 35.68827,
+    "lon": -105.9434,
+    "name": "S1 0.3 - JL",
+    "landmark": "San Francisco St to Guadalupe St Guadalupe St to Santa Fe River Park along Alameda St. Join sidewalk trail",
+    "section": 1,
+    "elevation": 6956
+  },
+  {
+    "mile": 0.4,
+    "lat": 35.68724,
+    "lon": -105.94417,
+    "name": "S1 0.4 - JR",
+    "landmark": "W. El Camino Real (sidewalk path) at S St Francis Dr. Cross busy road with",
+    "section": 1,
+    "elevation": 6953
+  },
+  {
+    "mile": 1,
+    "lat": 35.68855,
+    "lon": -105.95404,
+    "name": "S1 1.0 - XR",
+    "landmark": "caution (traffic light and crosswalk) Sidewalk to paved Camino Real hiking trail. Trail crosses Santa Fe River",
+    "section": 1,
+    "elevation": 6899
+  },
+  {
+    "mile": 1.1,
+    "lat": 35.68837,
+    "lon": -105.95631,
+    "name": "S1 1.1 - TJ",
+    "landmark": "on bridge. Trail closed / unfinished to west. Join Santa Fe River drainage (often",
+    "section": 1,
+    "elevation": 6880
+  },
+  {
+    "mile": 4.3,
+    "lat": 35.6649,
+    "lon": -105.99852,
+    "name": "S1 4.3 - TR>XC (W3 0.15S)",
+    "landmark": "dry). CCW climb out to join paved trail. Water 0.15 south via paved Siler Rd at Agua Fria St (Speedway c-store). Developed trail starts up again W of Camino Real TH. CCW cross road",
+    "section": 1,
+    "elevation": 6656
+  },
+  {
+    "mile": 5.2,
+    "lat": 35.66031,
+    "lon": -106.01347,
+    "name": "S1 5.2 - TH",
+    "landmark": "then follow dirt roads / swaths / drainage bottom. Trailhead at east end of Romero Park. Leave paved Camino Real hiking",
+    "section": 1,
+    "elevation": 6593
+  },
+  {
+    "mile": 6,
+    "lat": 35.65867,
+    "lon": -106.02531,
+    "name": "S1 6.0 - TH",
+    "landmark": "trail, join paved Caja del Oro Grant Rd (W). Crosswalk. Romero Park main area to N. Large Ramada with picnic",
+    "section": 1,
+    "elevation": 6578
+  },
+  {
+    "mile": 6.1,
+    "lat": 35.65852,
+    "lon": -106.02677,
+    "name": "S1 6.1 - W2",
+    "landmark": "tables. Developed restrooms with probable running water. Hand standpipe locked. Trash and recycling. Playground and grassy field. Paved Frontage Rd at Caja del Oro Grant Rd (CR 62). Becomes graded",
+    "section": 1,
+    "elevation": 6575
+  },
+  {
+    "mile": 7.3,
+    "lat": 35.66211,
+    "lon": -106.03396,
+    "name": "S1 7.3 - JL",
+    "landmark": "dirt in 0.15 mi (W), where state land begins with possibility for legal camping. Leave state land NW (no camping beyond). (CCW legal camping for",
+    "section": 1,
+    "elevation": 6574
+  },
+  {
+    "mile": 8.6,
+    "lat": 35.66758,
+    "lon": -106.05399,
+    "name": "S1 8.6 - !!",
+    "landmark": "about a mile.) Caja del Rio Grant Rd at paved Caja del Rio Rd. and El Camino Real bike",
+    "section": 1,
+    "elevation": 6456
+  },
+  {
+    "mile": 9.5,
+    "lat": 35.67369,
+    "lon": -106.06745,
+    "name": "S1 9.5 - JR (W3 M 0.25W)",
+    "landmark": "path (paved). Marty Sanchez golf course with restaurant on premises is 0.25W.",
+    "section": 1,
+    "elevation": 6443
+  },
+  {
+    "mile": 10.4,
+    "lat": 35.68517,
+    "lon": -106.07189,
+    "name": "S1 10.4 - XR",
+    "landmark": "Cross CR 62. El Camino Real becomes dirt path NW. Informal Camino Real TH. Public lands along route again (W). (CCW no",
+    "section": 1,
+    "elevation": 6511
+  },
+  {
+    "mile": 10.9,
+    "lat": 35.6896,
+    "lon": -106.07745,
+    "name": "S1 10.9 - TH C",
+    "landmark": "camping beyond to SF except for one area of state land.) (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. Remain on El Camino Real hiking trail at turn. Spur trail heads SW to trailhead (vault toilet, tables). Road continues beyond to Headquarters",
+    "section": 1,
+    "elevation": 6473
+  },
+  {
+    "mile": 11.9,
+    "lat": 35.68997,
+    "lon": -106.09174,
+    "name": "S1 11.9 - JR (TH W2-3 0.25SW)",
+    "landmark": "Well (has been reliable). Troughs located within corral (SW corner). 0.25 SW off-route. El Camino Real at XC or side trail NW. Leave main trail here. Don't follow side trail too long. Proceed to N side of leading ridge to W, picking up wash there W, then constructed trail which switchbacks up to mesa top.",
+    "section": 1,
+    "elevation": 6431
+  },
+  {
+    "mile": 16.1,
+    "lat": 35.74276,
+    "lon": -106.10671,
+    "name": "S1 16.1 - JL (TR>XC) (w2 0.7N)",
+    "landmark": "(Or to visit Dead Dog Well, 0.7N of route, continue on Camino Real Trail to Dead Dog TH then east on dirt road to corral. Satellite shows large metal cistern and a trough in corral with cows. Recent imagery shows wet (older imagery looks dry).) Pick up trail around here, which switchbacks up to mesa top to W. From",
+    "section": 1,
+    "elevation": 6188
+  },
+  {
+    "mile": 16.3,
+    "lat": 35.74287,
+    "lon": -106.11025,
+    "name": "S1 16.3 - (XC>TR)",
+    "landmark": "there, continue W XC to next waypoint at road.",
+    "section": 1,
+    "elevation": 6234
+  },
+  {
+    "mile": 16.6,
+    "lat": 35.74149,
+    "lon": -106.11197,
+    "name": "S1 16.6 - JR (XC>RD)",
+    "landmark": "Join 2-track NW.",
+    "section": 1,
+    "elevation": 6425
+  },
+  {
+    "mile": 16.7,
+    "lat": 35.74279,
+    "lon": -106.11317,
+    "name": "S1 16.7 - JL",
+    "landmark": "2-track junction, turn left (SW). 4-way 4WD junction. Main route heads right / W. Or head E 0.2mi to 700 Well. Satellite shows a large metal tank, a few cows in a corral, and",
+    "section": 1,
+    "elevation": 6417
+  },
+  {
+    "mile": 17.9,
+    "lat": 35.72995,
+    "lon": -106.12371,
+    "name": "S1 17.9 - JR (w2 0.2E)",
+    "landmark": "a ranching truck alongside. Cows appear to be drinking from a trough. If dry then 1100 Well is 2.7mi W.",
+    "section": 1,
+    "elevation": 6514
+  },
+  {
+    "mile": 18.4,
+    "lat": 35.72756,
+    "lon": -106.13182,
+    "name": "S1 18.4 - JR",
+    "landmark": "2-track road at better dirt road (NW). Turn off to 1100 Well. Satellite shows a huge metal tank with water, a",
+    "section": 1,
+    "elevation": 6569
+  },
+  {
+    "mile": 20.1,
+    "lat": 35.73953,
+    "lon": -106.1589,
+    "name": "S1 20.1 - w2 0.1N",
+    "landmark": "cement trough in a corral that appears to be overflowing. No cows present in image.",
+    "section": 1,
+    "elevation": 6635
+  },
+  {
+    "mile": 21,
+    "lat": 35.74143,
+    "lon": -106.17318,
+    "name": "S1 21.0 - JR JL",
+    "landmark": "Dirt road junction. Pass thru fence at cattleguard. Left / S briefly on powerline track and through gate, then right / W onto",
+    "section": 1,
+    "elevation": 6588
+  },
+  {
+    "mile": 22.1,
+    "lat": 35.7364,
+    "lon": -106.18978,
+    "name": "S1 22.1 - JL JR",
+    "landmark": "another track.",
+    "section": 1,
+    "elevation": 6573
+  },
+  {
+    "mile": 23,
+    "lat": 35.73155,
+    "lon": -106.20373,
+    "name": "S1 23.0 - JR",
+    "landmark": "2-track junction, keep right / W.",
+    "section": 1,
+    "elevation": 6695
+  },
+  {
+    "mile": 24.2,
+    "lat": 35.73039,
+    "lon": -106.22256,
+    "name": "S1 24.2 - JR JL",
+    "landmark": "2-track junction. Right / NW here, then left / W in 0.15mi. Left fork / W. Unofficial start of Frijoles Overlook Trail, although remains",
+    "section": 1,
+    "elevation": 6738
+  },
+  {
+    "mile": 26.1,
+    "lat": 35.74504,
+    "lon": -106.24704,
+    "name": "S1 26.1 - JL",
+    "landmark": "a 4WD road for now. Frijoles Overlook Trail becomes a faint singletrack / game trail to N here as it descends steeply off the rim of White Rock Canyon toward the Rio",
+    "section": 1,
+    "elevation": 6400
+  },
+  {
+    "mile": 26.7,
+    "lat": 35.74229,
+    "lon": -106.25402,
+    "name": "S1 26.7 - RD>TR",
+    "landmark": "Grande. 1000ft total elevation loss. May become essentially XC, especially the last 200'. Aim for next waypoint at suggested fording spot as needed. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. Mandatory unbridged crossing of Rio Grande within White Rock Canyon. Suggested fording location is at bottom of Frijoles Overlook Trail, at a wide-ish spot where river can be up to 300ft across (but shallower and with less current than elsewhere esp upstream). River here is under influence from Cochiti Reservoir downstream. Muddy banks common. Avoid during times of high run-off (CW consider beginning hike in White",
+    "section": 1,
+    "elevation": 6339
+  },
+  {
+    "mile": 27.6,
+    "lat": 35.74776,
+    "lon": -106.25922,
+    "name": "S1 27.6 - Rio Grande Ford",
+    "landmark": "Rock instead of SF). Check USGS streamflow gage reports for Otowi Bridge (along NM 502 too far / illegal to walk upstream) before starting from Santa Fe. Swimming or an inflatable raft / kayak have historically been required during avg. May / June flow. WB turn around if unsafe! Return toward SF, then RTD bus to White Rock and backtrack via WR Alt Rte to other side of Rio to connect footsteps minus the crossing. (CCW can also use Alt to do same in reverse.) Main route (XC) meets start of Frijoles Rim Alt (also XC here). Goal of alt is to exit White Rock Cyn via ridge to W of Frijoles Cyn, thus offering a significant shortcut vs the main route (10 mi shorter, 4+ mi of which are paved on main route). Alt initially very steep and loose (but proven",
+    "section": 1,
+    "elevation": 5369
+  },
+  {
+    "mile": 27.8,
+    "lat": 35.74985,
+    "lon": -106.25843,
+    "name": "S1 27.8 - (S1A START)",
+    "landmark": "manageable - decide when you get here). No viable route exists up Frijoles since flooding after 2011 Las Conchas Fire took out the trail in the lower canyon (dangerous, impassable obstructions / erosion). If staying on main route, continue XC NE along alluvial plain of Frijoles confluence, near banks of Rio. Seasonal water in Frijoles Canyon here, flowing through its alluvial fan near confluence with Rio Grande. XC ends hereabouts. Semi-informal",
+    "section": 1,
+    "elevation": 5377
+  },
+  {
+    "mile": 28.2,
+    "lat": 35.75451,
+    "lon": -106.2535,
+    "name": "S1 28.2 - W1 (XC>TR)",
+    "landmark": "River Trail continues NE, again near banks of Rio, back from riverside brush. Seasonal water where River Trail crosses Ancho Canyon. Good alternative to drinking from the Rio Grande. Just beyond is jct w/ Ancho Rapids Tr, which main route follows N soon climbing out of White Rock Cyn on established trail. White Rock Resupply Loop instead stays with",
+    "section": 1,
+    "elevation": 5382
+  },
+  {
+    "mile": 30.7,
+    "lat": 35.77214,
+    "lon": -106.22051,
+    "name": "S1 30.7 - w2 (S1B START)",
+    "landmark": "River Trail, which itself continues to improve heading NE, then joins other established trails up to village of White Rock. Very scenic albeit considerably longer than main route - only really recommended if intending to resupply or to send home a packraft after fording Rio.",
+    "section": 1,
+    "elevation": 5459
+  },
+  {
+    "mile": 32.3,
+    "lat": 35.78856,
+    "lon": -106.22266,
+    "name": "S1 32.3 - JL",
+    "landmark": "Ancho Rapids Tr ends here at Powerline Point Tr. Head NW. End of 13.2 mi long White Rock Resupply Loop (jct with Broken Mesa Tr",
+    "section": 1,
+    "elevation": 6390
+  },
+  {
+    "mile": 32.9,
+    "lat": 35.79347,
+    "lon": -106.23204,
+    "name": "S1 32.9 - (S1B END)",
+    "landmark": "here). Continue NW on Powerline Point Tr. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. Powerline Point Tr (old closed road aka 'trail') ends at parking area along NM Hwy 4. Turn left / W onto the paved 2-lane road. Route has to remain on hwy until entering Bandelier N.M. 4 mi ahead due to surrounding land owned by Los Alamos National Lab (strictly off limits",
+    "section": 1,
+    "elevation": 6483
+  },
+  {
+    "mile": 33.8,
+    "lat": 35.79699,
+    "lon": -106.24651,
+    "name": "S1 33.8 - TH JL (TR>RD)",
+    "landmark": "with lots of signs and fences). It's a pretty walk but the shoulder can be narrow so stay alert. In places where shoulder is wider, can avoid walking pavement at times but remain on public / hwy side of any fences. Leave NM Hwy 4 at long last, left / SW onto Bandelier National Monument entrance road, then within 0.2 turn right on road to Juniper CG. You won't pass an entrance station but should pay the fee when you",
+    "section": 1,
+    "elevation": 6524
+  },
+  {
+    "mile": 38.1,
+    "lat": 35.79592,
+    "lon": -106.27514,
+    "name": "S1 38.1 - JL JR",
+    "landmark": "get near the visitor center farther ahead. No camping within Bandelier except in backcountry (or at campgrounds, space dependent). Get required free backcountry permit at VC ahead. Trailhead for Frey Trail in Juniper Campground. Should be developed",
+    "section": 1,
+    "elevation": 6661
+  },
+  {
+    "mile": 38.6,
+    "lat": 35.79518,
+    "lon": -106.28141,
+    "name": "S1 38.6 - TH CG W2 (RD>TR)",
+    "landmark": "water here (along with toilets etc). Frey Tr ends here at Pueblo Loop Tr., which is very much worth exploring in full to learn about the ruins and history at Bandelier. Before",
+    "section": 1,
+    "elevation": 6652
+  },
+  {
+    "mile": 40.4,
+    "lat": 35.7826,
+    "lon": -106.27412,
+    "name": "S1 40.4 - JL",
+    "landmark": "heading farther afield, such as to Alcove House or into the Bandelier backcountry, continue on the main route (S) to the visitor center to pay entrance fee and get camping permit. Bandelier NM visitor center / permit office. Get free overnight permit to spend more time in the Bandelier backcountry. This is only place to get a permit to be legal overnight within the park. (And you'll find that A] staying overnight makes taking the main rather roundabout / worthwhile route in the park much easier, while B] the Frijoles Canyon Alt may speed you through the park and avoid the need to camp, which",
+    "section": 1,
+    "elevation": 6121
+  },
+  {
+    "mile": 40.8,
+    "lat": 35.77878,
+    "lon": -106.27091,
+    "name": "S1 40.8 - HQ W3",
+    "landmark": "is good since you can't camp in canyon bottoms anyway). You should also pay the entrance fee while at the VC ($15 per indv arriving on foot., good for a week). Shuttles stop in the parking lot seasonally and run to village of White Rock, providing an alternative way to resupply vs walking into town via the Resupply Loop - useful if you took the Frijoles RIM Alt into the park to get here). Jct main route and end of 2.8 mi long Frijoles Rim Alternate. (Water and",
+    "section": 1,
+    "elevation": 6066
+  },
+  {
+    "mile": 41,
+    "lat": 35.7789,
+    "lon": -106.27251,
+    "name": "S1 41.0 - JR (S1A END w3 0.25E)",
+    "landmark": "overnight permits from Bandelier visitor center 0.25E. Those having taken the alternate should also pay the entrance fee at VC). (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. Jct Long Tr / Frijoles Rim Tr / Middle Alamo Tr. Turn left (W) on Middle Alamo. (CCW follow Long Trail SE.) Middle Alamo produces a longer and",
+    "section": 1,
+    "elevation": 6092
+  },
+  {
+    "mile": 42.1,
+    "lat": 35.78621,
+    "lon": -106.28707,
+    "name": "S1 42.1 - JL",
+    "landmark": "more rewarding route across Bandelier than would following Frijoles Rim. Alamo Canyon crossing. Very seasonal water here. More likely at 2nd",
+    "section": 1,
+    "elevation": 6575
+  },
+  {
+    "mile": 44.9,
+    "lat": 35.76411,
+    "lon": -106.30322,
+    "name": "S1 44.9 - W1",
+    "landmark": "crossing to north. Jct Middle Alamo Tr and Tierra Media Tr. Main route remains on Middle",
+    "section": 1,
+    "elevation": 5948
+  },
+  {
+    "mile": 46.2,
+    "lat": 35.7582,
+    "lon": -106.30804,
+    "name": "S1 46.2 - JR",
+    "landmark": "Alamo. Yapashi Pueblo interpretive site. Yapashi was inhabited from 1200 and 1500AD by the Keres people, and at its peak was a major village, with",
+    "section": 1,
+    "elevation": 6364
+  },
+  {
+    "mile": 46.7,
+    "lat": 35.76122,
+    "lon": -106.31457,
+    "name": "S1 46.7 - !!",
+    "landmark": "several hundred rooms, and structures up to three stories high. Potsherds are numerous. (Please take only pictures.) Stone Lions Shrine. Highly unique prehistoric ceremonial site featuring a series of carved stone lions within a rock amphitheater. The statues,",
+    "section": 1,
+    "elevation": 6532
+  },
+  {
+    "mile": 47.2,
+    "lat": 35.76537,
+    "lon": -106.32176,
+    "name": "S1 47.2 - !!",
+    "landmark": "while eroded, still bear some resemblance to mountain lions, and presented in a crouching or sleeping posture. Upper Alamo Tr at Hondo Tr. Main route remains on Upper Alamo. (A 7",
+    "section": 1,
+    "elevation": 6673
+  },
+  {
+    "mile": 47.4,
+    "lat": 35.76707,
+    "lon": -106.32425,
+    "name": "S1 47.4 - JR",
+    "landmark": "mi round-trip hike off-route to renowned and remote Painted Cave pictograph site is possible via Hondo and Lower Capulin trails.) Alamo Canyon 2nd crossing. Seasonal water. More likely here than at",
+    "section": 1,
+    "elevation": 6687
+  },
+  {
+    "mile": 50.1,
+    "lat": 35.79251,
+    "lon": -106.35003,
+    "name": "S1 50.1 - W2",
+    "landmark": "1st crossing to south.",
+    "section": 1,
+    "elevation": 6829
+  },
+  {
+    "mile": 51.1,
+    "lat": 35.8014,
+    "lon": -106.34471,
+    "name": "S1 51.1 - JL",
+    "landmark": "Upper Alamo Tr ends at Frijoles Rim Tr. Left (W) on Frijoles Rim. Main route at west end of 7.5 mi long Frijoles Canyon Alt. Main route",
+    "section": 1,
+    "elevation": 7235
+  },
+  {
+    "mile": 51.6,
+    "lat": 35.80431,
+    "lon": -106.35169,
+    "name": "S1 51.6 - TJ (S1C END)",
+    "landmark": "leaves Frijoles Rim Tr, continuing west on trail connecting to old Sawyer Mesa Rd beyond the park boundary. Bandelier N.M. boundary. USFS lands to west, with legal permit-less",
+    "section": 1,
+    "elevation": 7436
+  },
+  {
+    "mile": 52,
+    "lat": 35.80373,
+    "lon": -106.357,
+    "name": "S1 52.0 - camping",
+    "landmark": "C camping. Trail / old road may be increasingly hard to follow since Las Conchas Fire of 2011.",
+    "section": 1,
+    "elevation": 7775
+  },
+  {
+    "mile": 57.3,
+    "lat": 35.82665,
+    "lon": -106.43507,
+    "name": "S1 57.3 - W2 0.1S",
+    "landmark": "Alamo Spring 0.1 mile S in drainage (or flowing before). Graded dirt road junction. FR 287 / Sawyer Mesa Rd at FR 89 / St Peter's",
+    "section": 1,
+    "elevation": 8757
+  },
+  {
+    "mile": 57.9,
+    "lat": 35.82543,
+    "lon": -106.44418,
+    "name": "S1 57.9 - JR",
+    "landmark": "Dome Rd. Heading N, soon leave Santa Fe NF back into Bandelier for a bit (no camping).",
+    "section": 1,
+    "elevation": 8853
+  },
+  {
+    "mile": 58.5,
+    "lat": 35.83336,
+    "lon": -106.44333,
+    "name": "S1 58.5 - JL TH",
+    "landmark": "St Peter's Dome Rd at Alamo Boundary Tr.",
+    "section": 1,
+    "elevation": 8906
+  },
+  {
+    "mile": 58.6,
+    "lat": 35.83403,
+    "lon": -106.44465,
+    "name": "S1 58.6 - W2",
+    "landmark": "Wildlife tank / pond just E of Alamo Boundary Trail. Bandelier N.M. at Valles Caldera National Preserve boundary. No camping within the Preserve and only certain areas are open for hiking",
+    "section": 1,
+    "elevation": 8920
+  },
+  {
+    "mile": 59.4,
+    "lat": 35.84597,
+    "lon": -106.44805,
+    "name": "S1 59.4 - !!",
+    "landmark": "without paying entrance fee. Our route only remains for several miles and should be logistically easy enough for hikers to deal with. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note icon color.",
+    "section": 1,
+    "elevation": 9151
+  },
+  {
+    "mile": 59.5,
+    "lat": 35.84707,
+    "lon": -106.44808,
+    "name": "S1 59.5 - JL",
+    "landmark": "Head NW on Coyote Call Tr. Leave marked trail W onto a combo of old 2-track / swath / xc. Goal is to",
+    "section": 1,
+    "elevation": 9144
+  },
+  {
+    "mile": 60.9,
+    "lat": 35.84584,
+    "lon": -106.46604,
+    "name": "S1 60.9 - JL",
+    "landmark": "avoid walking nearby paved NM 4.",
+    "section": 1,
+    "elevation": 8817
+  },
+  {
+    "mile": 62.5,
+    "lat": 35.83387,
+    "lon": -106.48643,
+    "name": "S1 62.5 - JR JL",
+    "landmark": "End x-c (S) at FR 286. Then follow NM 4 (S) briefly to next wpt. NM 4 at Valles Caldera entrance road. Gate is open most days, daylight",
+    "section": 1,
+    "elevation": 8691
+  },
+  {
+    "mile": 62.6,
+    "lat": 35.83215,
+    "lon": -106.4871,
+    "name": "S1 62.6 - JR",
+    "landmark": "hours only. No camping or night travel advised, but should be fine to enter on foot whether gate is locked or not. Missing Cabin / Hidden Valley TH. Follow trail W past remains of old cabin once used as part of a movie set. The trail then drops down a small hill to follow the E Fork Jemez R. as it flows toward SW corner of the preserve, following a narrow valley and passing interesting volcanic",
+    "section": 1,
+    "elevation": 8691
+  },
+  {
+    "mile": 63.2,
+    "lat": 35.83883,
+    "lon": -106.49185,
+    "name": "S1 63.2 - JL TH",
+    "landmark": "formations. Some parts of the trail may be marshy. Backcountry permit not needed for this hike and entrance fee seems to only apply to vehicles parking at or beyond entrance station (which is another half mile N along entrance road). E Fork Jemez River. First crossing (usu a small creek). Becomes reliable",
+    "section": 1,
+    "elevation": 8541
+  },
+  {
+    "mile": 64,
+    "lat": 35.83675,
+    "lon": -106.50164,
+    "name": "S1 64.0 - W2-3",
+    "landmark": "down-canyon. Valles Caldera National Preserve boundary. Re-enter Santa Fe NF to S",
+    "section": 1,
+    "elevation": 8474
+  },
+  {
+    "mile": 65,
+    "lat": 35.82764,
+    "lon": -106.51036,
+    "name": "S1 65.0 - !! W3",
+    "landmark": "(legal camping). Use-trail and/or xc continues along canyon bottom of E Fork Jemez River.",
+    "section": 1,
+    "elevation": 8462
+  },
+  {
+    "mile": 66.4,
+    "lat": 35.8145,
+    "lon": -106.52428,
+    "name": "S1 66.4 - JR W3",
+    "landmark": "East Fork Jemez River at highway below Las Conchas day-use area. East Fork Tr 137 TH. Popular and well-established trail heads N along",
+    "section": 1,
+    "elevation": 8445
+  },
+  {
+    "mile": 67,
+    "lat": 35.81514,
+    "lon": -106.53288,
+    "name": "S1 67.0 - JR TH W3",
+    "landmark": "river. You probably won't even get your feet wet now, due to series of well-constructed bridges.",
+    "section": 1,
+    "elevation": 8407
+  },
+  {
+    "mile": 68.5,
+    "lat": 35.82419,
+    "lon": -106.55028,
+    "name": "S1 68.5 - W3 !!",
+    "landmark": "CW trail leaves E Fork Jemez River (S)",
+    "section": 1,
+    "elevation": 8333
+  },
+  {
+    "mile": 71.7,
+    "lat": 35.82089,
+    "lon": -106.59118,
+    "name": "S1 71.7 - XR",
+    "landmark": "E Fork Tr 137 crosses over NM Hwy 4",
+    "section": 1,
+    "elevation": 8084
+  },
+  {
+    "mile": 72.8,
+    "lat": 35.81752,
+    "lon": -106.60487,
+    "name": "S1 72.8 - W3",
+    "landmark": "E Fork Jemez River crossing. Jct within Jemez Falls Campground. Head S 0.3 mi via side trail to",
+    "section": 1,
+    "elevation": 7839
+  },
+  {
+    "mile": 73.1,
+    "lat": 35.81644,
+    "lon": -106.60692,
+    "name": "S1 73.1 - TJ CG",
+    "landmark": "overlook of popular and scenic Jemez Falls. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note icon color. Watch carefully for a junction here and turn right onto old road / track / swath, likely unmarked, leaving Trail 137 for good. Alternatively, remain on Trail 137 in order to follow the 2.8 mi mapped alternate that runs by inviting McCauley Warm Spring. It's inviting because it's warm (not overly hot), consists of several nice soaking pools, and is located far",
+    "section": 1,
+    "elevation": 7923
+  },
+  {
+    "mile": 73.4,
+    "lat": 35.81835,
+    "lon": -106.61209,
+    "name": "S1 73.4 - JR !! (S1D START)",
+    "landmark": "enough into the backcountry to avoid the crowds, at least most weekdays (spring or fall). This alternate then leaves Trail 137 itself at another vague junction and climbs adventurously back to higher ground (after losing a fair bit of elevation to reach the spring). You'll have to decide whether it's worth the effort to take that dip! Approx jct old 2-track road and swath climbing out of canyon to left / W.",
+    "section": 1,
+    "elevation": 7881
+  },
+  {
+    "mile": 73.7,
+    "lat": 35.82115,
+    "lon": -106.61058,
+    "name": "S1 73.7 - JL !!",
+    "landmark": "Watch carefully. May be more of an xc affair here to next wpt. Old dirt road junction at end of 2.8 mi long McCauley Warm Spring Alt.",
+    "section": 1,
+    "elevation": 7920
+  },
+  {
+    "mile": 74.3,
+    "lat": 35.82487,
+    "lon": -106.61879,
+    "name": "S1 74.3 - JR (S1D END)",
+    "landmark": "Main route continues right / NW. (If coming from alt, turn left.)",
+    "section": 1,
+    "elevation": 8118
+  },
+  {
+    "mile": 76.5,
+    "lat": 35.85412,
+    "lon": -106.62373,
+    "name": "S1 76.5 - JL",
+    "landmark": "Dirt road junction. Turn left / NW. Don't join the highway here. Jemez Canyon overlook. Various side trails, some paved, head W to",
+    "section": 1,
+    "elevation": 8178
+  },
+  {
+    "mile": 76.8,
+    "lat": 35.85686,
+    "lon": -106.62666,
+    "name": "S1 76.8 - !!",
+    "landmark": "canyon rim. Parking for Jemez Canyon Overlook. Turn left (NW) on NM Hwy 4, then",
+    "section": 1,
+    "elevation": 8156
+  },
+  {
+    "mile": 77,
+    "lat": 35.86006,
+    "lon": -106.6275,
+    "name": "S1 77.0 - TH JL",
+    "landmark": "left again within 200 yds onto closed road network, following it W and N. 2-track junction. Follow road W, eventually may become xc. Goal is to follow ridge W at edge of forest. Drops steeply to S with cliffs, so stay generally north of that and eventually descend steeply back down to",
+    "section": 1,
+    "elevation": 8167
+  },
+  {
+    "mile": 77.6,
+    "lat": 35.86525,
+    "lon": -106.63156,
+    "name": "S1 77.6 - JL",
+    "landmark": "Hwy 4 just S of La Cueva village. If this connection doesn't work out (although some version of it has been verified workable by a NNML hiker), can also just remain on NM 4 from Jemez Canyon overlook area, but it adds about a mile. A quick stop popular on weekend getaways to Jemez Country from the big ABQ, the small village of La Cueva features a convenience / general La Cueva (G M L store (adequate for short-term resupply), a restaurant with limited",
+    "section": 1,
+    "elevation": 8067
+  },
+  {
+    "mile": 78.4,
+    "lat": 35.86714,
+    "lon": -106.63909,
+    "name": "S1/2 78.4 - La Cueva",
+    "landmark": "maildrop) hours, and the La Cueva Lodge (motel) which may accept maildrops contingent upon stay. (575) 829-3200. The store may also accept packages but give them a call first too. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note icon color. Main route (XC) meets start of Frijoles Rim Alt (also XC here). Goal of alt is to exit White Rock Cyn via ridge to W of Frijoles Cyn, thus offering a significant shortcut vs the main route (10 mi shorter, 4+ mi of which are paved on main route). Alt initially very steep and loose (but proven",
+    "section": 1,
+    "elevation": 7638
+  },
+  {
+    "mile": 79.3,
+    "lat": 35.87804,
+    "lon": -106.64291,
+    "name": "S2 0.9 - JL",
+    "landmark": "NM 126 at Horseshoe Spring Rd (W). Local homeowners have posted private property signs at start of this secondary dirt road to the NW, but it's not true (and you won't pass any",
+    "section": 2,
+    "elevation": 7686
+  },
+  {
+    "mile": 80,
+    "lat": 35.8797,
+    "lon": -106.6538,
+    "name": "S2 1.6 - !!",
+    "landmark": "homes). Just stay on the road which leads to a trailhead and walk past the gate onto a closed road N. Join closed road (N). There are some signs around here giving the",
+    "section": 2,
+    "elevation": 7861
+  },
+  {
+    "mile": 80.1,
+    "lat": 35.8807,
+    "lon": -106.6552,
+    "name": "S2 1.7 - JR",
+    "landmark": "impression the area is private but it's not.",
+    "section": 2,
+    "elevation": 7899
+  },
+  {
+    "mile": 81.4,
+    "lat": 35.89588,
+    "lon": -106.65336,
+    "name": "S2 3.0 - XR",
+    "landmark": "Cross NM 126 onto another gated road / trail (N). XC crossing of San Antonio Creek W of Hot Spring Tr (former FR 132).",
+    "section": 2,
+    "elevation": 7948
+  },
+  {
+    "mile": 82.2,
+    "lat": 35.90696,
+    "lon": -106.65499,
+    "name": "S2 3.8 - W3 JL",
+    "landmark": "CW join trail N. CCW leave trail xc. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. Trail crosses Rio San Antonio. CW N from trailhead either along",
+    "section": 2,
+    "elevation": 7906
+  },
+  {
+    "mile": 85.1,
+    "lat": 35.94135,
+    "lon": -106.64436,
+    "name": "S2 6.7 - W3 TH JR",
+    "landmark": "creekside meadow trail(s) or closed road above creek.",
+    "section": 2,
+    "elevation": 8254
+  },
+  {
+    "mile": 87,
+    "lat": 35.96244,
+    "lon": -106.63037,
+    "name": "S2 8.6 - JL",
+    "landmark": "road jct (N)",
+    "section": 2,
+    "elevation": 8409
+  },
+  {
+    "mile": 87.7,
+    "lat": 35.96138,
+    "lon": -106.63664,
+    "name": "S2 9.3 - XR",
+    "landmark": "Cross FR 144 and join trail / closed road (W).",
+    "section": 2,
+    "elevation": 8743
+  },
+  {
+    "mile": 90.2,
+    "lat": 35.97024,
+    "lon": -106.65491,
+    "name": "S2 11.8 - JL",
+    "landmark": "Left (N) and then left again (W) between moto trails and on to FR 314. Rio Cebolla crossing. Use-trail along creek W side (CW). Creek nearby for",
+    "section": 2,
+    "elevation": 8591
+  },
+  {
+    "mile": 91,
+    "lat": 35.96466,
+    "lon": -106.6646,
+    "name": "S2 12.6 - W2-3 JR",
+    "landmark": "2 mi. (CCW leave drainage via side canyon E)",
+    "section": 2,
+    "elevation": 8255
+  },
+  {
+    "mile": 93.4,
+    "lat": 35.99109,
+    "lon": -106.64429,
+    "name": "S2 15.0 - TH W2-3 JL",
+    "landmark": "Rio Cebolla TH / join 4WD (N) (CW)",
+    "section": 2,
+    "elevation": 8481
+  },
+  {
+    "mile": 96,
+    "lat": 35.98563,
+    "lon": -106.67792,
+    "name": "S2 17.6 - W0",
+    "landmark": "Calaveras Well (SW of road) (dry)",
+    "section": 2,
+    "elevation": 8540
+  },
+  {
+    "mile": 99,
+    "lat": 36.00081,
+    "lon": -106.70831,
+    "name": "S2 20.6 - W2-3",
+    "landmark": "Rito Penas Negras bridged crossing on FR 527.",
+    "section": 2,
+    "elevation": 8458
+  },
+  {
+    "mile": 99.4,
+    "lat": 36.00239,
+    "lon": -106.71453,
+    "name": "S2 21.0 - JR",
+    "landmark": "jct / FR 103 (N)",
+    "section": 2,
+    "elevation": 8525
+  },
+  {
+    "mile": 100.7,
+    "lat": 36.01558,
+    "lon": -106.71219,
+    "name": "S2 22.3 - JL",
+    "landmark": "jct / FR 70 (NW)",
+    "section": 2,
+    "elevation": 8685
+  },
+  {
+    "mile": 103.6,
+    "lat": 36.03842,
+    "lon": -106.73114,
+    "name": "S2 25.2 - JR",
+    "landmark": "Right (W) onto lesser track Leave 2-track approx here and head S up to ridge in search of next wpt",
+    "section": 2,
+    "elevation": 9331
+  },
+  {
+    "mile": 104.3,
+    "lat": 36.04396,
+    "lon": -106.73953,
+    "name": "S2 25.9 - RD>XC",
+    "landmark": "at terminus of another road.",
+    "section": 2,
+    "elevation": 9494
+  },
+  {
+    "mile": 104.4,
+    "lat": 36.04268,
+    "lon": -106.74096,
+    "name": "S2 26.0 - XC>RD",
+    "landmark": "join road (W) Impromptu trailhead. Leave 2-track NW onto Penas Negras Tr 32, soon entering San Pedro Parks Wilderness. Trail is little-used and featured",
+    "section": 2,
+    "elevation": 9655
+  },
+  {
+    "mile": 105.5,
+    "lat": 36.04952,
+    "lon": -106.75439,
+    "name": "S2 27.1 - TH JL",
+    "landmark": "semi-frequent blowdowns in 2017 requiring short diversions to avoid. Reportedly has received at least some trail maintenance since then. (CCW join road S.) 2017 this area was really slow going for over a mile due to lots of",
+    "section": 2,
+    "elevation": 9785
+  },
+  {
+    "mile": 106.5,
+    "lat": 36.055,
+    "lon": -106.7696,
+    "name": "S2 28.1 - !!",
+    "landmark": "deadfall and bushwhacking and vague or obliterated trail.",
+    "section": 2,
+    "elevation": 9915
+  },
+  {
+    "mile": 107,
+    "lat": 36.05949,
+    "lon": -106.77442,
+    "name": "S2 28.6 - W2",
+    "landmark": "seasonal flow Rito de las Perchas. Seasonal snowmelt flow / pools in meadow.",
+    "section": 2,
+    "elevation": 9974
+  },
+  {
+    "mile": 108.4,
+    "lat": 36.07479,
+    "lon": -106.78087,
+    "name": "S2 30.0 - W2",
+    "landmark": "Seasonal pond is 0.2E at edge of meadow. Possible obscure junction with Vega Redonda Tr. Remain on Penas",
+    "section": 2,
+    "elevation": 10014
+  },
+  {
+    "mile": 109.3,
+    "lat": 36.08508,
+    "lon": -106.79063,
+    "name": "S2 30.9 - JL",
+    "landmark": "Negras Tr.",
+    "section": 2,
+    "elevation": 10129
+  },
+  {
+    "mile": 111.9,
+    "lat": 36.10669,
+    "lon": -106.81133,
+    "name": "S2 33.5 - JL",
+    "landmark": "Jct with Highline Tr 385. Remain on Penas Negras Tr (W). Penas Negras Tr 32 at CDT. CW join CDT nobo. (Rio de las Vacas 0.5W via",
+    "section": 2,
+    "elevation": 10452
+  },
+  {
+    "mile": 112.2,
+    "lat": 36.10705,
+    "lon": -106.81428,
+    "name": "S2 33.8 - JR (W2-3 0.5W)",
+    "landmark": "CDT S.)",
+    "section": 2,
+    "elevation": 10453
+  },
+  {
+    "mile": 119.9,
+    "lat": 36.18506,
+    "lon": -106.79073,
+    "name": "S2 41.5 - W2",
+    "landmark": "Cecilia Canyon",
+    "section": 2,
+    "elevation": 8189
+  },
+  {
+    "mile": 121.9,
+    "lat": 36.19586,
+    "lon": -106.76563,
+    "name": "S2 43.5 - XR",
+    "landmark": "CDT / NNML crosses graded FR 103 CDT / NNML crosses paved NM Hwy 96. Coyote, 7 mi E, has a post",
+    "section": 2,
+    "elevation": 7836
+  },
+  {
+    "mile": 125.2,
+    "lat": 36.20351,
+    "lon": -106.72044,
+    "name": "S2 46.8 - XR",
+    "landmark": "office, church, and maybe has (or maybe used to have) a small c-store. Leave trail SE briefly xc then NE on road to Fuertes Spring (piped",
+    "section": 2,
+    "elevation": 7481
+  },
+  {
+    "mile": 129.4,
+    "lat": 36.23846,
+    "lon": -106.68434,
+    "name": "S2 51.0 - W2 0.35E",
+    "landmark": "trough). Has had water most observations. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color.",
+    "section": 2,
+    "elevation": 8389
+  },
+  {
+    "mile": 130.7,
+    "lat": 36.24875,
+    "lon": -106.68914,
+    "name": "S2 52.3 - TR>RD",
+    "landmark": "CDT / NNML joins jeep road (NE).",
+    "section": 2,
+    "elevation": 8323
+  },
+  {
+    "mile": 130.8,
+    "lat": 36.25055,
+    "lon": -106.68722,
+    "name": "S2 52.4 - JL",
+    "landmark": "Jeep road jct, left (N).",
+    "section": 2,
+    "elevation": 8307
+  },
+  {
+    "mile": 132.6,
+    "lat": 36.27092,
+    "lon": -106.67315,
+    "name": "S2 54.2 - JL RD>TR",
+    "landmark": "CDT / NNML leaves road (W) back onto trail.",
+    "section": 2,
+    "elevation": 8150
+  },
+  {
+    "mile": 133.2,
+    "lat": 36.27896,
+    "lon": -106.67376,
+    "name": "S2 54.8 - !!",
+    "landmark": "enter Chama River Cyn Wilderness",
+    "section": 2,
+    "elevation": 7968
+  },
+  {
+    "mile": 135,
+    "lat": 36.29253,
+    "lon": -106.67499,
+    "name": "S2 56.6 - W1",
+    "landmark": "Ojitos Canyon. Seasonal flow / pools to N for a mile or so.",
+    "section": 2,
+    "elevation": 6915
+  },
+  {
+    "mile": 138.5,
+    "lat": 36.3222,
+    "lon": -106.63479,
+    "name": "S2 60.1 - !!",
+    "landmark": "leave Chama River Cyn Wilderness A trough (full and flowing) was present 6-2017 100 ft NW of route in",
+    "section": 2,
+    "elevation": 6430
+  },
+  {
+    "mile": 139.2,
+    "lat": 36.32828,
+    "lon": -106.62653,
+    "name": "S2 60.8 - W1 100ft NW",
+    "landmark": "sagebrush meadow. Rio Chama / Skull Bridge. Footbridge over renowned whitewater river.",
+    "section": 2,
+    "elevation": 6359
+  },
+  {
+    "mile": 139.3,
+    "lat": 36.32988,
+    "lon": -106.62521,
+    "name": "S2 60.9 - W3",
+    "landmark": "Questionable water quality though. Ojitos Trailhead. CDT / NNML leaves FR 151 (N) back onto constructed singletrack. Big climb, big views, much preferred to the sometimes busy",
+    "section": 2,
+    "elevation": 6340
+  },
+  {
+    "mile": 139.3,
+    "lat": 36.32957,
+    "lon": -106.62409,
+    "name": "S2 60.9 - JL TH",
+    "landmark": "(and dusty) dirt road along Rio Chama. Stock up on water first. Possibly nothing else until Ghost Ranch. Re-enter Chama River Canyon Wilderness. CDT reaches mesa rim. Exit Chama River Canyon Wilderness for last",
+    "section": 2,
+    "elevation": 6343
+  },
+  {
+    "mile": 142.5,
+    "lat": 36.34849,
+    "lon": -106.6019,
+    "name": "S2 64.1 - !!",
+    "landmark": "time. Main route of NNML leaves official CDT, joining Rim Vista Tr 15 (S). This is the start of standard CDT hiker's Ghost Ranch resupply route, allowing for a walk-in resupply. NNML hikers not needing Ghost Ranch can opt to",
+    "section": 2,
+    "elevation": 7858
+  },
+  {
+    "mile": 147.7,
+    "lat": 36.35156,
+    "lon": -106.54921,
+    "name": "S2 69.3 - TJ (S2A START)",
+    "landmark": "remain on official CDT (what we call our CDT Ghost Ranch Bypass). Only recommended if truly needing to bypass G.R., such as if the private retreat happens to be closed to hikers, as it was during the early stages of Covid.",
+    "section": 2,
+    "elevation": 7921
+  },
+  {
+    "mile": 150.2,
+    "lat": 36.33588,
+    "lon": -106.52786,
+    "name": "S2 71.8 - TH TR>RD",
+    "landmark": "Trail 15 lower trailhead. Continue SE on TH access road.",
+    "section": 2,
+    "elevation": 6681
+  },
+  {
+    "mile": 150.6,
+    "lat": 36.33314,
+    "lon": -106.52368,
+    "name": "S2 72.2 - JL JR",
+    "landmark": "Brief left (NE) on graded FR 151, then right (E) on jeep road.",
+    "section": 2,
+    "elevation": 6619
+  },
+  {
+    "mile": 151.7,
+    "lat": 36.32419,
+    "lon": -106.51222,
+    "name": "S2 73.3 - JL",
+    "landmark": "4-way two track junction, left (E). Right (S) on paved NM 84, passing the now defunct Ghost Ranch Living",
+    "section": 2,
+    "elevation": 6562
+  },
+  {
+    "mile": 152,
+    "lat": 36.32574,
+    "lon": -106.50671,
+    "name": "S2 73.6 - JR",
+    "landmark": "Museum, a former wildlife exhibit (basically a small zoo) operated by the forest service. The old trail from the museum is blocked off with threatening signs and barbed wire now, but there's a gate around here somewhere that skirts the property and you can then pick up the rest of the trail to Ghost",
+    "section": 2,
+    "elevation": 6483
+  },
+  {
+    "mile": 152.3,
+    "lat": 36.32312,
+    "lon": -106.50461,
+    "name": "S2 73.9 - JL",
+    "landmark": "Ranch Conference Center (aka your resupply point) without incident. Remember that Ghost Ranch is private property ahead, so no camping outside of the lodging options offered on campus.",
+    "section": 2,
+    "elevation": 6475
+  },
+  {
+    "mile": 152.8,
+    "lat": 36.3238,
+    "lon": -106.49579,
+    "name": "S2 74.4 - W2",
+    "landmark": "Suspension bridge over Canjilon Creek. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color.",
+    "section": 2,
+    "elevation": 6358
+  },
+  {
+    "mile": 153.7,
+    "lat": 36.32788,
+    "lon": -106.48266,
+    "name": "S2 75.3 - JR",
+    "landmark": "E end of connector trail. Join graded road (E) rest of way to Ghost Ranch. Ghost Ranch Conference Center is a self-contained healing / spiritual / artist's retreat / resort offering a campground / showers, a variety of rustic lodging options (cheap to somewhat pricey), a (very) small Ghost Ranch convenience-type store, and cafeteria-style meals. Maildrops are",
+    "section": 2,
+    "elevation": 6398
+  },
+  {
+    "mile": 154.4,
+    "lat": 36.33072,
+    "lon": -106.47281,
+    "name": "S2/3 76.0 - Ghost Ranch Conference Center",
+    "landmark": "Conference Center (M L accepted (popular CDT resupply stop). USPS address: c/o Ghost Ranch maildrop) Conference Center, HC 77, Box 11, Abiquiu NM 87510. UPS address: c/o Ghost Ranch Conference Center, Private Drive 1708, US Hwy 84, HC 77, Box 11, Abiquiu NM 87510. Ghost Ranch",
+    "section": 2,
+    "elevation": 6470
+  },
+  {
+    "mile": 154.9,
+    "lat": 36.33632,
+    "lon": -106.46921,
+    "name": "S3 0.5 - TH",
+    "landmark": "side trail for Kitchen Mesa and continue on closed road west of Arroyo del Yeso drainge.)",
+    "section": 3,
+    "elevation": 6528
+  },
+  {
+    "mile": 155.5,
+    "lat": 36.34203,
+    "lon": -106.4636,
+    "name": "S3 1.1 - W1",
+    "landmark": "Arroyo del Yeso seasonal flow",
+    "section": 3,
+    "elevation": 6577
+  },
+  {
+    "mile": 155.6,
+    "lat": 36.34289,
+    "lon": -106.46331,
+    "name": "S3 1.2 - JL",
+    "landmark": "Ghost Ranch CDT Alt (trail) leaves drainage (N).",
+    "section": 3,
+    "elevation": 6593
+  },
+  {
+    "mile": 158,
+    "lat": 36.36079,
+    "lon": -106.43656,
+    "name": "S3 3.6 - !!",
+    "landmark": "Trail drops to cross Arroyo del Yeso drainage. Trail / 2-track returns to Arroyo del Yeso drainage and continues along it",
+    "section": 3,
+    "elevation": 7492
+  },
+  {
+    "mile": 158.6,
+    "lat": 36.36341,
+    "lon": -106.43254,
+    "name": "S3 4.2 - !!",
+    "landmark": "(NE).",
+    "section": 3,
+    "elevation": 7662
+  },
+  {
+    "mile": 160.5,
+    "lat": 36.38377,
+    "lon": -106.4147,
+    "name": "S3 6.1 - TR>XC",
+    "landmark": "Leave Arroyo del Yeso impromptu social trail and head x-c (E) up slope.",
+    "section": 3,
+    "elevation": 7908
+  },
+  {
+    "mile": 160.8,
+    "lat": 36.38266,
+    "lon": -106.41003,
+    "name": "S3 6.4 - XC>RD",
+    "landmark": "Pick up old 2-track road along mesa top approx here (E).",
+    "section": 3,
+    "elevation": 8088
+  },
+  {
+    "mile": 161.3,
+    "lat": 36.38365,
+    "lon": -106.40093,
+    "name": "S3 6.9 - W1 JL",
+    "landmark": "Yeso Tank (often foul). CW follow berm N to road W.",
+    "section": 3,
+    "elevation": 8129
+  },
+  {
+    "mile": 161.4,
+    "lat": 36.38431,
+    "lon": -106.40135,
+    "name": "S3 7.0 - JL",
+    "landmark": "Pick up better road (FR 139 or 138) NW of Yeso Tank. Main route rejoins official CDT (singletrack). (Eastern terminus of S2A",
+    "section": 3,
+    "elevation": 8159
+  },
+  {
+    "mile": 163.5,
+    "lat": 36.40864,
+    "lon": -106.39703,
+    "name": "S3 9.1 - JR (S2A END)",
+    "landmark": "Ghost Ranch Bypass.)",
+    "section": 3,
+    "elevation": 7803
+  },
+  {
+    "mile": 165.7,
+    "lat": 36.42671,
+    "lon": -106.37878,
+    "name": "S3 11.3 - XR",
+    "landmark": "CDT (on roads here) crosses graded FR 137",
+    "section": 3,
+    "elevation": 8036
+  },
+  {
+    "mile": 168.1,
+    "lat": 36.42789,
+    "lon": -106.34688,
+    "name": "S3 13.7 - JR (RD>TR)",
+    "landmark": "CDT old road to singletrack (E) Harris Bear Spring troughs located along S side of corral fence 50-100",
+    "section": 3,
+    "elevation": 8791
+  },
+  {
+    "mile": 169.5,
+    "lat": 36.42898,
+    "lon": -106.33032,
+    "name": "S3 15.1 - W2-3 100yds E",
+    "landmark": "yds E of trail.",
+    "section": 3,
+    "elevation": 9125
+  },
+  {
+    "mile": 169.9,
+    "lat": 36.43524,
+    "lon": -106.33046,
+    "name": "S3 15.5 - JR (TR>RD)",
+    "landmark": "CDT singletrack to old road (N)",
+    "section": 3,
+    "elevation": 9150
+  },
+  {
+    "mile": 171.1,
+    "lat": 36.44588,
+    "lon": -106.32091,
+    "name": "S3 16.7 - !!",
+    "landmark": "CDT follows faint road N at multi-way jct",
+    "section": 3,
+    "elevation": 9156
+  },
+  {
+    "mile": 171.8,
+    "lat": 36.45439,
+    "lon": -106.31954,
+    "name": "S3 17.4 - XR (RD>TR)",
+    "landmark": "CDT crosses better road, becoming singletrack trail (NE).",
+    "section": 3,
+    "elevation": 9240
+  },
+  {
+    "mile": 172.6,
+    "lat": 36.45951,
+    "lon": -106.32493,
+    "name": "S3 18.2 - JL (TR>RD)",
+    "landmark": "CDT heads S on FR 724 briefly.",
+    "section": 3,
+    "elevation": 9444
+  },
+  {
+    "mile": 172.6,
+    "lat": 36.45898,
+    "lon": -106.32539,
+    "name": "S3 18.2 - JL (RD>TR)",
+    "landmark": "CDT leaves FR 724 back onto singletrack (W).",
+    "section": 3,
+    "elevation": 9464
+  },
+  {
+    "mile": 174.7,
+    "lat": 36.47926,
+    "lon": -106.31887,
+    "name": "S3 20.3 - XR",
+    "landmark": "Cross 2-track (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color.",
+    "section": 3,
+    "elevation": 9480
+  },
+  {
+    "mile": 175.1,
+    "lat": 36.48058,
+    "lon": -106.31512,
+    "name": "S3 20.7 - JL (TR>RD)",
+    "landmark": "JL (TR>RD)",
+    "section": 3,
+    "elevation": 9581
+  },
+  {
+    "mile": 175.1,
+    "lat": 36.48132,
+    "lon": -106.31574,
+    "name": "S3 20.7 - JR (RD>TR)",
+    "landmark": "JR (RD>TR)",
+    "section": 3,
+    "elevation": 9609
+  },
+  {
+    "mile": 176.7,
+    "lat": 36.49463,
+    "lon": -106.30093,
+    "name": "S3 22.3 - JL (TR>RD)",
+    "landmark": "JL (TR>RD)",
+    "section": 3,
+    "elevation": 9513
+  },
+  {
+    "mile": 176.9,
+    "lat": 36.49713,
+    "lon": -106.30312,
+    "name": "S3 22.5 - JR (RD>TR)",
+    "landmark": "JR (RD>TR)",
+    "section": 3,
+    "elevation": 9510
+  },
+  {
+    "mile": 177.7,
+    "lat": 36.50716,
+    "lon": -106.30257,
+    "name": "S3 23.3 - JL (TR>RD)",
+    "landmark": "JL (TR>RD)",
+    "section": 3,
+    "elevation": 9418
+  },
+  {
+    "mile": 178,
+    "lat": 36.51184,
+    "lon": -106.30144,
+    "name": "S3 23.6 - RD>TR",
+    "landmark": "CDT returns to singletrack (N) at road junction.",
+    "section": 3,
+    "elevation": 9431
+  },
+  {
+    "mile": 179.7,
+    "lat": 36.53351,
+    "lon": -106.30391,
+    "name": "S3 25.3 - JL (TR>RD)",
+    "landmark": "CDT joins CR 280 briefly (W).",
+    "section": 3,
+    "elevation": 9492
+  },
+  {
+    "mile": 179.8,
+    "lat": 36.53355,
+    "lon": -106.30608,
+    "name": "S3 25.4 - JR",
+    "landmark": "CDT leaves graded county road onto lesser road (N)",
+    "section": 3,
+    "elevation": 9467
+  },
+  {
+    "mile": 180.1,
+    "lat": 36.53763,
+    "lon": -106.30909,
+    "name": "S3 25.7 - JR",
+    "landmark": "CDT heads N on better jeep road CDT probably becomes singletrack again to NW (somewhere around",
+    "section": 3,
+    "elevation": 9456
+  },
+  {
+    "mile": 181.5,
+    "lat": 36.55439,
+    "lon": -106.31416,
+    "name": "S3 27.1 - !!",
+    "landmark": "here, if it isn't already)",
+    "section": 3,
+    "elevation": 9887
+  },
+  {
+    "mile": 182.4,
+    "lat": 36.56196,
+    "lon": -106.32369,
+    "name": "S3 28.0 - W3",
+    "landmark": "Canjilon Creek crossing. Should be reliable here. CDT joins graded FR 129 (N). This area has had relo's in place recent",
+    "section": 3,
+    "elevation": 9971
+  },
+  {
+    "mile": 182.7,
+    "lat": 36.56217,
+    "lon": -106.32803,
+    "name": "S3 28.3 - JR (TR>RD)",
+    "landmark": "years due to aspen die-off from drought and caterpillar infestation along with resulting blowdowns. Keep eyes peeled for any related signs.",
+    "section": 3,
+    "elevation": 10088
+  },
+  {
+    "mile": 182.8,
+    "lat": 36.56387,
+    "lon": -106.32771,
+    "name": "S3 28.4 - TH (RD>TR)",
+    "landmark": "Trailhead with vault toilet near Upper Canjilon Lakes campground.",
+    "section": 3,
+    "elevation": 10107
+  },
+  {
+    "mile": 184.4,
+    "lat": 36.58152,
+    "lon": -106.32808,
+    "name": "S3 30.0 - W1",
+    "landmark": "Canjilon Creek (unreliable to N)",
+    "section": 3,
+    "elevation": 10398
+  },
+  {
+    "mile": 185.4,
+    "lat": 36.59356,
+    "lon": -106.32904,
+    "name": "S3 31.0 - JR (TR>RD)",
+    "landmark": "CDT joins 2-track road network (E) (if it hasn't already)",
+    "section": 3,
+    "elevation": 10486
+  },
+  {
+    "mile": 185.6,
+    "lat": 36.59601,
+    "lon": -106.326,
+    "name": "S3 31.2 - JR (RD>TR)",
+    "landmark": "Constructed singletrack eases burden of climb along road.",
+    "section": 3,
+    "elevation": 10527
+  },
+  {
+    "mile": 186.1,
+    "lat": 36.59752,
+    "lon": -106.32132,
+    "name": "S3 31.7 - JR (TR>RD)",
+    "landmark": "JR (TR>RD)",
+    "section": 3,
+    "elevation": 10510
+  },
+  {
+    "mile": 188.1,
+    "lat": 36.61215,
+    "lon": -106.30633,
+    "name": "S3 33.7 - JL (RD>TR)",
+    "landmark": "CDT singletrack (NE) just after cattleguard.",
+    "section": 3,
+    "elevation": 10342
+  },
+  {
+    "mile": 190.2,
+    "lat": 36.60708,
+    "lon": -106.28189,
+    "name": "S3 35.8 - JL (TR>RD)",
+    "landmark": "JL (TR>RD)",
+    "section": 3,
+    "elevation": 10090
+  },
+  {
+    "mile": 190.5,
+    "lat": 36.60389,
+    "lon": -106.27823,
+    "name": "S3 36.1 - W1",
+    "landmark": "Ojito Azul. Seasonal flow possible in drainage here.",
+    "section": 3,
+    "elevation": 9888
+  },
+  {
+    "mile": 190.9,
+    "lat": 36.60429,
+    "lon": -106.27191,
+    "name": "S3 36.5 - JL (RD>TR)",
+    "landmark": "2-track back to singletrack",
+    "section": 3,
+    "elevation": 9713
+  },
+  {
+    "mile": 191.1,
+    "lat": 36.60566,
+    "lon": -106.27029,
+    "name": "S3 36.7 - W2",
+    "landmark": "Canada Jarosita crossing",
+    "section": 3,
+    "elevation": 9654
+  },
+  {
+    "mile": 192.1,
+    "lat": 36.61261,
+    "lon": -106.25664,
+    "name": "S3 37.7 - XR",
+    "landmark": "CDT singletrack crosses FR 274 footbridge over Rio Vallecitos. (Bridge wiped out in flood 2017,",
+    "section": 3,
+    "elevation": 9607
+  },
+  {
+    "mile": 196.3,
+    "lat": 36.6269,
+    "lon": -106.2023,
+    "name": "S3 41.9 - W3",
+    "landmark": "hopefully since replaced. Can usually ford but use care in finding a safe location.)",
+    "section": 3,
+    "elevation": 8560
+  },
+  {
+    "mile": 198.7,
+    "lat": 36.64114,
+    "lon": -106.19325,
+    "name": "S3 44.3 - W2",
+    "landmark": "Rock Creek crossing",
+    "section": 3,
+    "elevation": 8895
+  },
+  {
+    "mile": 199.8,
+    "lat": 36.64906,
+    "lon": -106.19964,
+    "name": "S3 45.4 - XR",
+    "landmark": "CDT singletrack crosses graded FR 91B",
+    "section": 3,
+    "elevation": 9198
+  },
+  {
+    "mile": 205.6,
+    "lat": 36.69532,
+    "lon": -106.2351,
+    "name": "S3 51.2 - XR",
+    "landmark": "CDT crosses graded FR 41B Roadside trough along Hopewell Campground access road / CDT, full 6-",
+    "section": 3,
+    "elevation": 10010
+  },
+  {
+    "mile": 206.6,
+    "lat": 36.70115,
+    "lon": -106.23807,
+    "name": "S3 52.2 - W2",
+    "landmark": "2017. Campground proper (E) reportedly also has faucets and vault toilets, likely seasonal.",
+    "section": 3,
+    "elevation": 9885
+  },
+  {
+    "mile": 207,
+    "lat": 36.70419,
+    "lon": -106.23631,
+    "name": "S3 52.6 - W3",
+    "landmark": "Hopewell Lake with water from lake or adjacent facilities. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note icon color.",
+    "section": 3,
+    "elevation": 9778
+  },
+  {
+    "mile": 207.6,
+    "lat": 36.70991,
+    "lon": -106.23008,
+    "name": "S3 53.2 - XR JR",
+    "landmark": "CDT crosses US Hwy 64, through gate, onto 2-track (NW) CDT (old 2-track) reaches junction of two vehicle roads. Follow better",
+    "section": 3,
+    "elevation": 9780
+  },
+  {
+    "mile": 209,
+    "lat": 36.72358,
+    "lon": -106.24373,
+    "name": "S3 54.6 - !!",
+    "landmark": "road N.",
+    "section": 3,
+    "elevation": 9960
+  },
+  {
+    "mile": 212.6,
+    "lat": 36.75926,
+    "lon": -106.27412,
+    "name": "S3 58.2 - JR",
+    "landmark": "Old road junction. Right (N).",
+    "section": 3,
+    "elevation": 10510
+  },
+  {
+    "mile": 213.1,
+    "lat": 36.76513,
+    "lon": -106.2762,
+    "name": "S3 58.7 - W1",
+    "landmark": "Jawbone Tank (stock pond)",
+    "section": 3,
+    "elevation": 10347
+  },
+  {
+    "mile": 214,
+    "lat": 36.77453,
+    "lon": -106.28207,
+    "name": "S3 59.6 - JR",
+    "landmark": "2-track jct (N)",
+    "section": 3,
+    "elevation": 10311
+  },
+  {
+    "mile": 215.2,
+    "lat": 36.78954,
+    "lon": -106.27526,
+    "name": "S3 60.8 - W1-2",
+    "landmark": "Canon Manga (seasonal)",
+    "section": 3,
+    "elevation": 9984
+  },
+  {
+    "mile": 215.7,
+    "lat": 36.79594,
+    "lon": -106.27581,
+    "name": "S3 61.3 - W1-2",
+    "landmark": "Spring Tank (stock pond) Cross (or leave) 2-track. Singletrack CDT (NE). Waypoint and track just",
+    "section": 3,
+    "elevation": 9960
+  },
+  {
+    "mile": 216.7,
+    "lat": 36.80454,
+    "lon": -106.26234,
+    "name": "S3 62.3 - XR (RD>TR)",
+    "landmark": "ahead may be approximate.",
+    "section": 3,
+    "elevation": 10017
+  },
+  {
+    "mile": 217.3,
+    "lat": 36.81025,
+    "lon": -106.25663,
+    "name": "S3 62.9 - JL",
+    "landmark": "Singletrack CDT passes through gate (N). Don't stay along fence (CW). In 2017 it was all too easy to keep following",
+    "section": 3,
+    "elevation": 10129
+  },
+  {
+    "mile": 220.4,
+    "lat": 36.843,
+    "lon": -106.26584,
+    "name": "S3 66.0 - !! (JR)",
+    "landmark": "use-trail this direction. CDT / NNML turns SE, switchbacks down and along drainage. Rio San Antonio crossing. Somewhat confusing how the trail crosses the",
+    "section": 3,
+    "elevation": 9641
+  },
+  {
+    "mile": 220.8,
+    "lat": 36.8471,
+    "lon": -106.26301,
+    "name": "S3 66.4 - W3 !!",
+    "landmark": "creek, though it does about what the GPS track here shows (CW climbing steeply up the ridge to the north after crossing).",
+    "section": 3,
+    "elevation": 9482
+  },
+  {
+    "mile": 224.1,
+    "lat": 36.86198,
+    "lon": -106.31137,
+    "name": "S3 69.7 - W1",
+    "landmark": "Lagunitas Creek headwaters",
+    "section": 3,
+    "elevation": 9972
+  },
+  {
+    "mile": 225.5,
+    "lat": 36.876,
+    "lon": -106.31929,
+    "name": "S3 71.1 - XR (TR>RD)",
+    "landmark": "CDT crosses graded FR 87, joining FR 87B.",
+    "section": 3,
+    "elevation": 10255
+  },
+  {
+    "mile": 226.4,
+    "lat": 36.8852,
+    "lon": -106.32143,
+    "name": "S3 72.0 - C W3",
+    "landmark": "Lagunitas Campground. Perennial water from area lakes / ponds.",
+    "section": 3,
+    "elevation": 10445
+  },
+  {
+    "mile": 226.7,
+    "lat": 36.88699,
+    "lon": -106.32137,
+    "name": "S3 72.3 - JL CG (RD>TR)",
+    "landmark": "CDT leaves Upper Lagunitas CG back to singletrack (NW).",
+    "section": 3,
+    "elevation": 10556
+  },
+  {
+    "mile": 229.2,
+    "lat": 36.89575,
+    "lon": -106.34629,
+    "name": "S3 74.8 - XR",
+    "landmark": "CDT singletrack crosses FR 87. Brazos Ridge Overlook; end Sec.3 at Sec 3A (to N) and Sec 4 (to E). Most hikers will probably want to resupply in Chama by continuing north on",
+    "section": 3,
+    "elevation": 10676
+  },
+  {
+    "mile": 232.4,
+    "lat": 36.92603,
+    "lon": -106.35576,
+    "name": "S3/4 0.0 - START S4",
+    "landmark": "this full-service town. Section 4 begins here (SE), after returning from Chama either via repeat of S3A alternate southbound or (when train from Chama to Osier is running), S4A southbound. NNML enters Cruces Basin Wilderness beyond signs. XC hike in spirit, although you may find remnants of use-trails, game trails, etc. GPS track",
+    "section": 4,
+    "elevation": 10739
+  },
+  {
+    "mile": 232.4,
+    "lat": 36.92574,
+    "lon": -106.35544,
+    "name": "S4 0.0 - XC (E)",
+    "landmark": "is what we've hiked several times, and may be considered a mostly efficient route down into the drainage of Beaver Creek, which the route next follows.",
+    "section": 4,
+    "elevation": 10721
+  },
+  {
+    "mile": 235.6,
+    "lat": 36.93237,
+    "lon": -106.30889,
+    "name": "S4 3.2 - W3",
+    "landmark": "Beaver Creek accessible nearby for several miles.",
+    "section": 4,
+    "elevation": 9397
+  },
+  {
+    "mile": 236.6,
+    "lat": 36.93719,
+    "lon": -106.29452,
+    "name": "S4 4.2 - JR",
+    "landmark": "Join use-trail (E) near confluence Beaver Creek and Cruces Creek. Leave main use-trail (S) to head up drainage of Diablo Creek. May find",
+    "section": 4,
+    "elevation": 9278
+  },
+  {
+    "mile": 236.8,
+    "lat": 36.9359,
+    "lon": -106.29069,
+    "name": "S4 4.4 - JR",
+    "landmark": "remnants of trail although hike is XC in spirit.",
+    "section": 4,
+    "elevation": 9255
+  },
+  {
+    "mile": 236.8,
+    "lat": 36.935,
+    "lon": -106.29093,
+    "name": "S4 4.4 - W3",
+    "landmark": "Diablo Creek accessible nearby for several miles.",
+    "section": 4,
+    "elevation": 9258
+  },
+  {
+    "mile": 239,
+    "lat": 36.91139,
+    "lon": -106.30469,
+    "name": "S4 6.6 - W2",
+    "landmark": "Fork of Diablo Creek. Less reliable upstream.",
+    "section": 4,
+    "elevation": 9567
+  },
+  {
+    "mile": 239.7,
+    "lat": 36.90681,
+    "lon": -106.29317,
+    "name": "S4 7.3 - GT",
+    "landmark": "Gate in fence / xc or faint swath to E Road fork by corral / impromptu trailhead for Cruces Basin Wilderness.",
+    "section": 4,
+    "elevation": 9834
+  },
+  {
+    "mile": 240.7,
+    "lat": 36.90452,
+    "lon": -106.2783,
+    "name": "S4 8.3 - TH JR",
+    "landmark": "CW head SE. Cross graded FR 877 and continue E on faint swath to xc down side",
+    "section": 4,
+    "elevation": 10070
+  },
+  {
+    "mile": 240.9,
+    "lat": 36.9032,
+    "lon": -106.27552,
+    "name": "S4 8.5 - XR (RD>XC)",
+    "landmark": "drainage / head of Canon Largo.",
+    "section": 4,
+    "elevation": 10048
+  },
+  {
+    "mile": 242.7,
+    "lat": 36.89043,
+    "lon": -106.25479,
+    "name": "S4 10.3 - W2",
+    "landmark": "Canon Largo Canon Largo at Rio San Antonio. Continue on use-trails along/near",
+    "section": 4,
+    "elevation": 9526
+  },
+  {
+    "mile": 243.9,
+    "lat": 36.87884,
+    "lon": -106.23969,
+    "name": "S4 11.5 - W3",
+    "landmark": "drainage bottom. Small remote, private inholding here, gated on both ends though not hard to get inside. East end has sign telling public to detour around to the south. Could try walking fenceline or take your chances - get the",
+    "section": 4,
+    "elevation": 9236
+  },
+  {
+    "mile": 246,
+    "lat": 36.8579,
+    "lon": -106.2219,
+    "name": "S4 13.6 - GT !!",
+    "landmark": "impression they are trying to prevent vehicle abuses mostly. At last check there was nothing going on inside, and the west side is basically wide open. It DOES keep the upper canyon largely pristine!",
+    "section": 4,
+    "elevation": 9084
+  },
+  {
+    "mile": 246.1,
+    "lat": 36.857,
+    "lon": -106.2199,
+    "name": "S4 13.7 - GT !!",
+    "landmark": "East end of private inholding.",
+    "section": 4,
+    "elevation": 9084
+  },
+  {
+    "mile": 248.1,
+    "lat": 36.85583,
+    "lon": -106.18851,
+    "name": "S4 15.7 - W3",
+    "landmark": "Rio San Antonio nearby. CW last access on public land for 2-3 mi Graded road junction at corral. (Corral is private - please don't access for",
+    "section": 4,
+    "elevation": 8968
+  },
+  {
+    "mile": 248.3,
+    "lat": 36.85377,
+    "lon": -106.18575,
+    "name": "S4 15.9 - JL",
+    "landmark": "water, etc.) Head E on FR 93. No camping due to several private inholdings / ranches until next waypoint. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color.",
+    "section": 4,
+    "elevation": 8980
+  },
+  {
+    "mile": 250.6,
+    "lat": 36.86237,
+    "lon": -106.15021,
+    "name": "S4 18.2 - JR !!",
+    "landmark": "FR 93 at FR 87. Remain straight. Re-enter public lands (E).",
+    "section": 4,
+    "elevation": 8873
+  },
+  {
+    "mile": 251.9,
+    "lat": 36.85914,
+    "lon": -106.12858,
+    "name": "S4 19.5 - JL (W3 0.1S)",
+    "landmark": "FR 87 at FR 78. Rio San Antonio access 0.1S via FR 87. Leave FR 78 approx here and head xc or via faint swath NE generally up",
+    "section": 4,
+    "elevation": 8816
+  },
+  {
+    "mile": 252.2,
+    "lat": 36.86224,
+    "lon": -106.12422,
+    "name": "S4 19.8 - RD>XC",
+    "landmark": "wide drainage meadow. Roads shown on USFS base map this direction don't really exist anymore. Should be a gate in fence here. Continue xc SE along edge of trees ahead",
+    "section": 4,
+    "elevation": 8892
+  },
+  {
+    "mile": 253.3,
+    "lat": 36.86601,
+    "lon": -106.10857,
+    "name": "S4 20.9 - GT !!",
+    "landmark": "(for guidance). Scenic xc travel continues along rim of Rio San Antonio, now in an",
+    "section": 4,
+    "elevation": 8964
+  },
+  {
+    "mile": 253.9,
+    "lat": 36.86122,
+    "lon": -106.10139,
+    "name": "S4 21.5 - !!",
+    "landmark": "increasingly desert-like volcanic canyon.",
+    "section": 4,
+    "elevation": 8904
+  },
+  {
+    "mile": 256,
+    "lat": 36.86107,
+    "lon": -106.06888,
+    "name": "S4 23.6 - W2",
+    "landmark": "CW reach Rio San Antonio in canyon bottom. CW x-c exit canyon bottom E. Last access Rio San Antonio. CW water warning: in dry times this may be your last likely water for 21 mi, or",
+    "section": 4,
+    "elevation": 8652
+  },
+  {
+    "mile": 256.7,
+    "lat": 36.86815,
+    "lon": -106.06346,
+    "name": "S4 24.3 - JR W2",
+    "landmark": "sure-bet until the Rio Grande in 29 mi. (CCW Rio San Antonio first access here although somewhat less reliable than several miles upstream where next approached.) XC or 'cattle drive' route up from Rio San Antonio reaches FR 118 at",
+    "section": 4,
+    "elevation": 8642
+  },
+  {
+    "mile": 256.9,
+    "lat": 36.86828,
+    "lon": -106.05971,
+    "name": "S4 24.5 - GT XR",
+    "landmark": "open gate. Cross this road onto lesser FR 118B (E), ascending gradually at base of San Antonio Mtn. Junction of 2-track roads. CW head S. Nearby Game Depot Tank on map",
+    "section": 4,
+    "elevation": 8790
+  },
+  {
+    "mile": 257.6,
+    "lat": 36.86474,
+    "lon": -106.04719,
+    "name": "S4 25.2 - JR",
+    "landmark": "is almost always dry.",
+    "section": 4,
+    "elevation": 9268
+  },
+  {
+    "mile": 258,
+    "lat": 36.86029,
+    "lon": -106.04918,
+    "name": "S4 25.6 - JL",
+    "landmark": "Another faint 2-track junction. CW head E. There's an incredibly well-built trail ascending San Antonio Mtn that begins in this general area. We weren't able to find its precise terminus, though it likely is a natural continuation of the 2-track road here, so head E up the canyon bottom for now. If you can't find it once in the trees, aim for the next waypoint instead, which is where we picked up",
+    "section": 4,
+    "elevation": 9265
+  },
+  {
+    "mile": 258.3,
+    "lat": 36.85908,
+    "lon": -106.04499,
+    "name": "S4 25.9 - TH !!",
+    "landmark": "the trail by complete accident (switchbacking uphill from the north). If you're here and reading this, please mark a waypoint at actual trail start or better yet record a track if you possibly can). It was wonderful to be able to climb the steep slopes of San Antonio Mtn via good switchbacking trail instead of entirely xc as on first attempt. We found the trail here (E). This obviously old but well-built trail has withstood the test of time, yet appears on no base maps that we could",
+    "section": 4,
+    "elevation": 9526
+  },
+  {
+    "mile": 258.5,
+    "lat": 36.8576,
+    "lon": -106.04249,
+    "name": "S4 26.1 - !!",
+    "landmark": "find. Perhaps it's a sheepherder's trail, as that has historically been a primary use of the mountain (and remains so to an extent). (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. Trail suddenly ended and we picked up easy-to-follow flagging tape through the forest. Eventually the tape seemed to be heading us in the",
+    "section": 4,
+    "elevation": 9750
+  },
+  {
+    "mile": 259.7,
+    "lat": 36.8559,
+    "lon": -106.0299,
+    "name": "S4 27.3 - TR>XC",
+    "landmark": "wrong direction so we left it and made our own way xc up and over forested saddle to San Antonio Mtn Tank. San Antonio Mtn Tank (seasonal). More likely than Lower San Antone",
+    "section": 4,
+    "elevation": 10704
+  },
+  {
+    "mile": 260.2,
+    "lat": 36.85636,
+    "lon": -106.0226,
+    "name": "S4 27.8 - W1-2 100ft S",
+    "landmark": "Tank to SE but still unreliable during dry times. Don't count on finding water anywhere on San Antonio Mountain.",
+    "section": 4,
+    "elevation": 10699
+  },
+  {
+    "mile": 260.8,
+    "lat": 36.85111,
+    "lon": -106.015,
+    "name": "S4 28.4 - W1",
+    "landmark": "Lower San Antone Tank (less reliable) 2-track at graded FR 418 (SE). Road receives mostly 'official use' related to antenna array on summit, but is a public road on public land so hold",
+    "section": 4,
+    "elevation": 10239
+  },
+  {
+    "mile": 261,
+    "lat": 36.85065,
+    "lon": -106.01318,
+    "name": "S4 28.6 - JR",
+    "landmark": "your ground if receiving any strange looks (see next waypoint for reference). Believe a gate is here along road, possibly with signs stating no public access to east, but this is still USFS land for now. However, hikers should",
+    "section": 4,
+    "elevation": 10168
+  },
+  {
+    "mile": 261.3,
+    "lat": 36.84834,
+    "lon": -106.00743,
+    "name": "S4 28.9 - GT",
+    "landmark": "leave the road at next waypoint (E) to avoid private property farther ahead. Leave road (CW) for adventurous xc (SE). Road ahead leaves USFS land for private (part of community of homes on NE slopes of mountain). Road is posted no trespassing beyond public boundary, and is",
+    "section": 4,
+    "elevation": 9953
+  },
+  {
+    "mile": 261.4,
+    "lat": 36.8479,
+    "lon": -106.00621,
+    "name": "S4 29.0 - RD>XC",
+    "landmark": "enforceable so please don't do that. Waypoint here is convenient spot to proactively leave road. Our route down mountain - all public - is entirely xc, steep at times but generally open enough to make your own switchbacks.",
+    "section": 4,
+    "elevation": 9914
+  },
+  {
+    "mile": 261.9,
+    "lat": 36.84326,
+    "lon": -106.00097,
+    "name": "S4 29.5 - !!",
+    "landmark": "Enter state land (SE). Don't stray NE into private. Cross 2-track, possibly a fence or two or three between here and",
+    "section": 4,
+    "elevation": 9422
+  },
+  {
+    "mile": 263.1,
+    "lat": 36.83451,
+    "lon": -105.98388,
+    "name": "S4 30.7 - XR",
+    "landmark": "highway ahead. Enter BLM-administered Rio Grande del Norte National Monument. Unlocked gate in wire fence. (Might still have to negotiate non-gated fences before arriving here, but at least it's something.) Then cross busy GT XR XC>RD (PO M 2-lane US Hwy 285 and (slightly N) pass through unlocked metal gate",
+    "section": 4,
+    "elevation": 8612
+  },
+  {
+    "mile": 263.7,
+    "lat": 36.83279,
+    "lon": -105.97461,
+    "name": "S4 31.3 - Waypoint S4 31.3",
+    "landmark": "BUS 13S) onto unsigned 2-track road (E). On the chance you'd like to try your luck hitching, the tiny crossroads community of Tres Piedras is 13mi S, with PO and a restaurant, plus an RTD bus stop (to Taos).",
+    "section": 4,
+    "elevation": 8465
+  },
+  {
+    "mile": 264.3,
+    "lat": 36.83425,
+    "lon": -105.96462,
+    "name": "S4 31.9 - JR",
+    "landmark": "Unsigned 2-track junction (S). BLM road junction. Pass through fence / cattleguard. W side of fence, NE along road, 0.25 to Wissmath Crater seasonal stock pond. Not",
+    "section": 4,
+    "elevation": 8362
+  },
+  {
+    "mile": 266.2,
+    "lat": 36.81762,
+    "lon": -105.94815,
+    "name": "S4 33.8 - JR W1-2 0.25N",
+    "landmark": "reliable in drier times. Recently dry late June 2020. Also see similar 'crater' pond nearby S of route. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. Begin extended stretch of wide-open cross-country E / SE and down off",
+    "section": 4,
+    "elevation": 8442
+  },
+  {
+    "mile": 266.9,
+    "lat": 36.82299,
+    "lon": -105.93954,
+    "name": "S4 34.5 - RD>XC",
+    "landmark": "low ridge. (CCW aim for ridge and this wpt or next wpt for your direction of travel.) Cross N-S fence without gate. Should be a negotiable spot near",
+    "section": 4,
+    "elevation": 8546
+  },
+  {
+    "mile": 267.6,
+    "lat": 36.81986,
+    "lon": -105.92884,
+    "name": "S4 35.2 - !!",
+    "landmark": "waypoint here.",
+    "section": 4,
+    "elevation": 8379
+  },
+  {
+    "mile": 269.2,
+    "lat": 36.81853,
+    "lon": -105.90064,
+    "name": "S4 36.8 - XR",
+    "landmark": "Cross N-S 2-track road and continue on your W-E xc trajectory.",
+    "section": 4,
+    "elevation": 8056
+  },
+  {
+    "mile": 269.7,
+    "lat": 36.81817,
+    "lon": -105.89267,
+    "name": "S4 37.3 - !!",
+    "landmark": "Another N-S fence without the benefit of a gate. End of extended cross-country at a lonely 2-track road. Head right / S.",
+    "section": 4,
+    "elevation": 7994
+  },
+  {
+    "mile": 270.1,
+    "lat": 36.81924,
+    "lon": -105.88477,
+    "name": "S4 37.7 - JR (XR>RD)",
+    "landmark": "(CCW there may be a faint swath heralding the start of what is essentially all xc travel W as you leave the main 2-track here.)",
+    "section": 4,
+    "elevation": 7922
+  },
+  {
+    "mile": 271.7,
+    "lat": 36.80702,
+    "lon": -105.86554,
+    "name": "S4 39.3 - GT JL",
+    "landmark": "Pass through gate. 2-track jct by fence corner (E). Cross another 2-track. Don't pass through gate to N. Continue with E-W",
+    "section": 4,
+    "elevation": 7753
+  },
+  {
+    "mile": 272.3,
+    "lat": 36.80705,
+    "lon": -105.85483,
+    "name": "S4 39.9 - XR",
+    "landmark": "fenceline. At cattleguard, pass through W-E fence and continue on same",
+    "section": 4,
+    "elevation": 7712
+  },
+  {
+    "mile": 273.7,
+    "lat": 36.80709,
+    "lon": -105.83175,
+    "name": "S4 41.3 - JL JR",
+    "landmark": "trajectory. Follow fence swath. (CW you're now on the N side of the fence. CCW you're on the S side.) After crossing brushy drainage, leave fence and head N / NE xc on same",
+    "section": 4,
+    "elevation": 7674
+  },
+  {
+    "mile": 274.2,
+    "lat": 36.80709,
+    "lon": -105.82236,
+    "name": "S4 41.8 - JL XC",
+    "landmark": "trajectory as drainage.",
+    "section": 4,
+    "elevation": 7687
+  },
+  {
+    "mile": 274.5,
+    "lat": 36.81053,
+    "lon": -105.81923,
+    "name": "S4 42.1 - !!",
+    "landmark": "Cross drainage (CW to N side).",
+    "section": 4,
+    "elevation": 7676
+  },
+  {
+    "mile": 275.2,
+    "lat": 36.81523,
+    "lon": -105.80961,
+    "name": "S4 42.8 - !!",
+    "landmark": "Join main drainage E (Arroyo Punche), still essentially xc. Cross-country definitively ends at junction of well-defined roads. Follow road through cattleguard here (E-SE). (CCW if you need water due to last",
+    "section": 4,
+    "elevation": 7655
+  },
+  {
+    "mile": 276.2,
+    "lat": 36.81055,
+    "lon": -105.7934,
+    "name": "S4 43.8 - JL (XC>RD)",
+    "landmark": "source being unexpectedly dry, can continue N on graded road toward water waypoint several miles to N (solar well with 2 troughs.) Left / E onto lesser road, then right (SE) toward water waypoint /",
+    "section": 4,
+    "elevation": 7651
+  },
+  {
+    "mile": 277.5,
+    "lat": 36.80482,
+    "lon": -105.77319,
+    "name": "S4 45.1 - JL",
+    "landmark": "important stock source in this dry volcanic plateau country. 7638 Well' - 4 or 5 full troughs on satellites; historically reliable. Water here for most if not all NNML hikers so far. If happens to be dry, CCW best bet may be to seek out pair of solar troughs 3.5 miles NW on active",
+    "section": 4,
+    "elevation": 7644
+  },
+  {
+    "mile": 277.8,
+    "lat": 36.80277,
+    "lon": -105.76754,
+    "name": "S4 45.4 - W2",
+    "landmark": "grazing allotment. Main road that takes you part-way between here and there carries some vehicle traffic in an emergency. (CW another trough exists roughly 3.5 mi ahead and 0.5 off-route, or can drink from Rio Grande in emergency.)",
+    "section": 4,
+    "elevation": 7641
+  },
+  {
+    "mile": 278,
+    "lat": 36.80076,
+    "lon": -105.76505,
+    "name": "S4 45.6 - JR",
+    "landmark": "Road junction S, then straight through next junction just ahead. 4-way jct. Pass through cattleguard and head E on lesser (fenceline)",
+    "section": 4,
+    "elevation": 7641
+  },
+  {
+    "mile": 279.3,
+    "lat": 36.78555,
+    "lon": -105.75578,
+    "name": "S4 46.9 - JL",
+    "landmark": "track (CW).",
+    "section": 4,
+    "elevation": 7671
+  },
+  {
+    "mile": 279.7,
+    "lat": 36.78554,
+    "lon": -105.74912,
+    "name": "S4 47.3 - JR",
+    "landmark": "Leave fenceline track SE onto another 2-track. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color.",
+    "section": 4,
+    "elevation": 7638
+  },
+  {
+    "mile": 280.6,
+    "lat": 36.78097,
+    "lon": -105.73523,
+    "name": "S4 48.2 - XR",
+    "landmark": "4-way jct. Continue straight (SE).",
+    "section": 4,
+    "elevation": 7637
+  },
+  {
+    "mile": 281.7,
+    "lat": 36.77649,
+    "lon": -105.71677,
+    "name": "S4 49.3 - JR",
+    "landmark": "2-track jct. Continue straight (SE). Complex of roads. Track is accurate. At waypoint, head S on this road",
+    "section": 4,
+    "elevation": 7577
+  },
+  {
+    "mile": 282.1,
+    "lat": 36.77336,
+    "lon": -105.71191,
+    "name": "S4 49.7 - !!",
+    "landmark": "(not on base map).",
+    "section": 4,
+    "elevation": 7575
+  },
+  {
+    "mile": 282.8,
+    "lat": 36.76394,
+    "lon": -105.71153,
+    "name": "S4 50.4 - JL",
+    "landmark": "T-junction with better road (head E).",
+    "section": 4,
+    "elevation": 7569
+  },
+  {
+    "mile": 283.6,
+    "lat": 36.75963,
+    "lon": -105.69936,
+    "name": "S4 51.2 - JL",
+    "landmark": "Road junction. Keep straight (SE).",
+    "section": 4,
+    "elevation": 7568
+  },
+  {
+    "mile": 283.8,
+    "lat": 36.76033,
+    "lon": -105.69667,
+    "name": "S4 51.4 - JR",
+    "landmark": "Road junction, right fork (E-NE).",
+    "section": 4,
+    "elevation": 7530
+  },
+  {
+    "mile": 284.5,
+    "lat": 36.7588,
+    "lon": -105.6859,
+    "name": "S4 52.1 - JR",
+    "landmark": "Road junction. Right fork (SE). Impromptu trailhead for steep, rough trail into Rio Grande Gorge at Sheep Crossing. Historic trail used by sheepherders, more recently by",
+    "section": 4,
+    "elevation": 7507
+  },
+  {
+    "mile": 285.2,
+    "lat": 36.75325,
+    "lon": -105.67607,
+    "name": "S4 52.8 - TH (RD>TR)",
+    "landmark": "ranchers to move livestock (still more recently by elk, who appear to be the primary user group other than the very occasional Northern Looper). (Historic footbridge over Rio Grande no longer exists.) Rio Grande here is typically 50 ft wide, knee deep with a modest current except during times of heavy runoff. Eastbound hikers, in the hopefully unlikely event that you can't wait out a high water event, you may need Rio Grande Sheep",
+    "section": 4,
+    "elevation": 7470
+  },
+  {
+    "mile": 285.3,
+    "lat": 36.75283,
+    "lon": -105.67392,
+    "name": "S4 52.9 - to backtrack up to the trailhead at previous waypoint and then follow",
+    "landmark": "Crossing (W3) roads south to County Rd B007 / Dunn Bridge crossing of the Rio Grande, 20 miles total, then continue 2 mi farther to the village of Arroyo Hondo at NM Hwy 522. End of trail from Sheep Crossing of Rio Grande. Toilet and table here (no water). (CCW if you find the Rio too dangerous to ford, then you may need to backtrack to Cerro or Questa and take an RTD bus around. Bus stops in village of Arroyo Hondo, then hike or hitch down to familiar",
+    "section": 4,
+    "elevation": 7130
+  },
+  {
+    "mile": 285.4,
+    "lat": 36.75191,
+    "lon": -105.6721,
+    "name": "S4 53.0 - TH (TR>RD)",
+    "landmark": "John Dunn Bridge across Rio, then head N on Highwater Bypass. Can connect steps, minus river crossing, then continue W on main route. But hopefully - usually - you shouldn't have to do this, esp if packing a raft in times of known high water) Left (NE) just briefly onto paved Wild Rivers Backcountry Byway, then right (S) on dirt road. (Or hitch S to main Wild Rivers Rec Area with",
+    "section": 4,
+    "elevation": 7426
+  },
+  {
+    "mile": 285.5,
+    "lat": 36.75109,
+    "lon": -105.67085,
+    "name": "S4 53.1 - JL JR",
+    "landmark": "visitor center and interpretive trails overlooking some of the most dramatic portions of Rio Grande Gorge.)",
+    "section": 4,
+    "elevation": 7445
+  },
+  {
+    "mile": 286,
+    "lat": 36.74567,
+    "lon": -105.6663,
+    "name": "S4 53.6 - JR",
+    "landmark": "Continue with main road (S).",
+    "section": 4,
+    "elevation": 7486
+  },
+  {
+    "mile": 286.3,
+    "lat": 36.74339,
+    "lon": -105.66681,
+    "name": "S4 53.9 - W1 0.25SW",
+    "landmark": "Side road SW to circular trough w float valve, visible on satellite",
+    "section": 4,
+    "elevation": 7503
+  },
+  {
+    "mile": 286.7,
+    "lat": 36.73742,
+    "lon": -105.66755,
+    "name": "S4 54.3 - JL",
+    "landmark": "2-track jct (SE). (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. Road meets Las Vistas de Questa Trail at cairn. CW remain on road SE (which is also the trail.) (CCW remain on the road, leaving the marked trail here.) (Special note: CW or CCW hiker could instead follow trail W",
+    "section": 4,
+    "elevation": 7552
+  },
+  {
+    "mile": 287.3,
+    "lat": 36.73151,
+    "lon": -105.66401,
+    "name": "S4 54.9 - TJ (JL)",
+    "landmark": "and S to Wild Rivers Rec Area visitor center and overlook trails, although the main route offers plenty to admire as well in the course of the long journey.)",
+    "section": 4,
+    "elevation": 7811
+  },
+  {
+    "mile": 287.3,
+    "lat": 36.73095,
+    "lon": -105.66275,
+    "name": "S4 54.9 - RD>TR",
+    "landmark": "Las Vistas de Questa Tr becomes singletrack (E). Short side trail E to excellent overlook of Questa and Sangre de Cristo",
+    "section": 4,
+    "elevation": 7860
+  },
+  {
+    "mile": 289.5,
+    "lat": 36.72971,
+    "lon": -105.62954,
+    "name": "S4 57.1 - TJ",
+    "landmark": "Mountains ahead on our route. Vistas - hey it's the trail's namesake feature!",
+    "section": 4,
+    "elevation": 8159
+  },
+  {
+    "mile": 289.8,
+    "lat": 36.72779,
+    "lon": -105.62593,
+    "name": "S4 57.4 - TJ",
+    "landmark": "Another vista point is S here via short side trail. Trail fork (CW head NE). (NW forms a loop trail with our main route, we",
+    "section": 4,
+    "elevation": 7994
+  },
+  {
+    "mile": 289.9,
+    "lat": 36.72915,
+    "lon": -105.62443,
+    "name": "S4 57.5 - JR",
+    "landmark": "think.) Boundary Rio Grande del Norte National Monument. Private (and town)",
+    "section": 4,
+    "elevation": 7919
+  },
+  {
+    "mile": 290.5,
+    "lat": 36.73064,
+    "lon": -105.61719,
+    "name": "S4 58.1 - !!",
+    "landmark": "lands to E (remain on trail / no camping). Las Vistas de Questa trailhead. Leaving parking lot, head S on graded",
+    "section": 4,
+    "elevation": 7681
+  },
+  {
+    "mile": 291.2,
+    "lat": 36.73086,
+    "lon": -105.60499,
+    "name": "S4 58.8 - TH JL",
+    "landmark": "dirt.",
+    "section": 4,
+    "elevation": 7645
+  },
+  {
+    "mile": 291.9,
+    "lat": 36.72241,
+    "lon": -105.6038,
+    "name": "S4 59.5 - JL",
+    "landmark": "E on Gonzales Rd XR (S4 END) (PO G M L swath S to Questa main services area or, if timing right, use nearby RTD",
+    "section": 4,
+    "elevation": 7638
+  },
+  {
+    "mile": 292.4,
+    "lat": 36.72271,
+    "lon": -105.59502,
+    "name": "S4/5 60.0 - Questa",
+    "landmark": "1S) blue bus stop to reach town. (Section 5 begins N here along the ATV swath.)",
+    "section": 4,
+    "elevation": 7648
+  },
+  {
+    "mile": 293.1,
+    "lat": 36.73296,
+    "lon": -105.59511,
+    "name": "S5 0.7 - JR",
+    "landmark": "production facility across the highway here. Do they offer walk-in samples or tours? Ed Road at unnamed dirt track to N. Hopefully not signed against public",
+    "section": 5,
+    "elevation": 7661
+  },
+  {
+    "mile": 293.5,
+    "lat": 36.73299,
+    "lon": -105.58914,
+    "name": "S5 1.1 - JL",
+    "landmark": "use.",
+    "section": 5,
+    "elevation": 7681
+  },
+  {
+    "mile": 293.6,
+    "lat": 36.73425,
+    "lon": -105.58862,
+    "name": "S5 1.2 - JR",
+    "landmark": "Unsigned dirt track at paved Llano Rd. Llano Rd at Cabresto Rd. CW E on Cabresto Rd, which becomes graded dirt and soon enters Carson National Forest (camping privileges return, although a good portion of the road is surrounded with private",
+    "section": 5,
+    "elevation": 7690
+  },
+  {
+    "mile": 294.9,
+    "lat": 36.72883,
+    "lon": -105.56898,
+    "name": "S5 2.5 - JL",
+    "landmark": "inholdings). (CCW note that Cabresto Rd continues into Questa, however this route isn't really recommended due to many loose dogs and a general sense of unease approaching town this direction). Cabresto Creek first access CW. Easy creek access south side of road by",
+    "section": 5,
+    "elevation": 7747
+  },
+  {
+    "mile": 295.1,
+    "lat": 36.72976,
+    "lon": -105.56496,
+    "name": "S5 2.7 - W3",
+    "landmark": "gauging station. (CW Collect here to avoid some private property heading east.) FR 134 at FR 134A. CW left on FR 134A. Cabresto Creek access across",
+    "section": 5,
+    "elevation": 7742
+  },
+  {
+    "mile": 298.5,
+    "lat": 36.73466,
+    "lon": -105.51155,
+    "name": "S5 6.1 - JL (W3 100ydS)",
+    "landmark": "road. (CCW Collect here to avoid some private property heading west.) Lake Fork Tr 82 trailhead at Cabresto Lake. No specific trail name",
+    "section": 5,
+    "elevation": 8396
+  },
+  {
+    "mile": 300.4,
+    "lat": 36.74769,
+    "lon": -105.49948,
+    "name": "S5 8.0 - TH (RD>TR)",
+    "landmark": "reference on signs. Modern vault toilet. Picnic table(s). Signed Latir Peak Wilderness boundary. Occasional access to Cabresto",
+    "section": 5,
+    "elevation": 9177
+  },
+  {
+    "mile": 301,
+    "lat": 36.75115,
+    "lon": -105.49097,
+    "name": "S5 8.6 - W3",
+    "landmark": "Creek CW plus several good areas of side flow across trail. Lake Fork Tr 82 at Bull Creek Tr 85. (Bull Creek Fork meets Lake Fork",
+    "section": 5,
+    "elevation": 9243
+  },
+  {
+    "mile": 302.9,
+    "lat": 36.76861,
+    "lon": -105.46905,
+    "name": "S5 10.5 - JL W3",
+    "landmark": "Cabresto Creek.) (CW Bad weather route avoiding Latir Mesa continues on Tr 82 NE.) Cross wide-ish rock-hoppable Bull Fork Cabresto Creek. Regular creek",
+    "section": 5,
+    "elevation": 10132
+  },
+  {
+    "mile": 303.4,
+    "lat": 36.77498,
+    "lon": -105.47278,
+    "name": "S5 11.0 - W3",
+    "landmark": "access here and above along trail in canyon.",
+    "section": 5,
+    "elevation": 10629
+  },
+  {
+    "mile": 304.8,
+    "lat": 36.77635,
+    "lon": -105.49348,
+    "name": "S5 12.4 - W2",
+    "landmark": "First / last access Bull Fork Cabresto Creek Signed and cairned junction with Trail 88. Remain on Tr 85 (NE). Route",
+    "section": 5,
+    "elevation": 11623
+  },
+  {
+    "mile": 305.2,
+    "lat": 36.78066,
+    "lon": -105.49559,
+    "name": "S5 12.8 - JR",
+    "landmark": "ahead is above treeline and fully exposed to the elements until final descent to Heart Lake. Something of a trail junction here. Remain on Tr 85. (The other trail",
+    "section": 5,
+    "elevation": 12086
+  },
+  {
+    "mile": 305.7,
+    "lat": 36.78596,
+    "lon": -105.49193,
+    "name": "S5 13.3 - TJ",
+    "landmark": "might get a person down into the forest during a weather emergency.) (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. Route is marked with large cairns especially E of here (tread may be faint to non-existent at times). This is also closest / most practical approach point to Latir Peak (Latir Mesa high point) (to NW) for anyone",
+    "section": 5,
+    "elevation": 12157
+  },
+  {
+    "mile": 307,
+    "lat": 36.7959,
+    "lon": -105.47668,
+    "name": "S5 14.6 - !!",
+    "landmark": "interested in attaining such things (offers a commanding view north toward 14'er Blanca Peak in Colorado!) Also of possible note: Latir Lakes, attractive series of tarns to NE, are located on private lands (no access without prior arrangements with Rio Costilla Co-op). Visible / constructed trail returns here at edge of Latir Mesa,",
+    "section": 5,
+    "elevation": 12567
+  },
+  {
+    "mile": 307.8,
+    "lat": 36.79153,
+    "lon": -105.46517,
+    "name": "S5 15.4 - !!",
+    "landmark": "switchbacking off to the south. (CCW, cairns lead the way ahead NW.) Heart Lake. Tr 85 crosses outlet near jct connector Tr 115. (CCW Bad",
+    "section": 5,
+    "elevation": 12245
+  },
+  {
+    "mile": 308.6,
+    "lat": 36.78855,
+    "lon": -105.45577,
+    "name": "S5 16.2 - XT W3",
+    "landmark": "weather route avoiding Latir Mesa uses Tr 115 to Tr 82 S.) Signed junction of trails 85 / 82 / 81. CW, keep straight onto Midnight Trail 81. Baldy Cabin via side trail ahead. Worth a look, maybe not a",
+    "section": 5,
+    "elevation": 11490
+  },
+  {
+    "mile": 309.1,
+    "lat": 36.79131,
+    "lon": -105.44977,
+    "name": "S5 16.7 - JL",
+    "landmark": "night's sleep. (CCW, right fork onto Tr 85. Don't skip Latir Peak Wilderness unless weather forces your hand. And at least visit Heart Lake before bailing out down the alternate.)",
+    "section": 5,
+    "elevation": 11453
+  },
+  {
+    "mile": 309.2,
+    "lat": 36.79233,
+    "lon": -105.44819,
+    "name": "S5 16.8 - W2",
+    "landmark": "Actual crossing of low flow muddy Baldy cabin Creek",
+    "section": 5,
+    "elevation": 11458
+  },
+  {
+    "mile": 310.6,
+    "lat": 36.7808,
+    "lon": -105.43475,
+    "name": "S5 18.2 - !!",
+    "landmark": "Signed Wilderness boundary along Tr 81 (exit Latir Peaks Wild. E).",
+    "section": 5,
+    "elevation": 11851
+  },
+  {
+    "mile": 313.2,
+    "lat": 36.77463,
+    "lon": -105.39665,
+    "name": "S5 20.8 - XT",
+    "landmark": "Trail/road crosses fenceline swath Tr 81 leaves road back to singletrack (right fork). (CCW trail becomes old",
+    "section": 5,
+    "elevation": 10918
+  },
+  {
+    "mile": 313.8,
+    "lat": 36.77786,
+    "lon": -105.38967,
+    "name": "S5 21.4 - JR",
+    "landmark": "road for a bit.) Midnight Tr 81 TH at FR 134. Cabresto Creek across road (somewhat",
+    "section": 5,
+    "elevation": 10861
+  },
+  {
+    "mile": 314.8,
+    "lat": 36.77628,
+    "lon": -105.37714,
+    "name": "S5 22.4 - TH JL W2",
+    "landmark": "seasonal here). (CCW last water until Baldy Cabin / Heart Lake.) Lagunita Saddle. FR 134 at FR 54C. Main route leaves road here, heading xc E along north side of Bitter Creek drainage. (CCW join FR 134 at road bend and head W.) This junction is also the start of the all-new partially- unvetted Valle Vidal Alternate (continuing N on FR 134). This adventurous alt (a semi out-and-back solution for the Northern Loop's former / problematic alignment east of here) tours many of the unique",
+    "section": 5,
+    "elevation": 10227
+  },
+  {
+    "mile": 316.5,
+    "lat": 36.76642,
+    "lon": -105.35779,
+    "name": "S5 24.1 - JR (RD>XC) (S5A START)",
+    "landmark": "highlights of the Valle Vidal Unit of Carson NF, but pack an adventurous attitude, and only attempt during late summer or autumn (when spring / seasonal elk calving public access restrictions are not in place). 28 mi alt (27 mi longer than main route) lacks a set of waypoints at this time but normally has water in major drainages and within Valle Vidal itself. Full track is shown on Avenza and Gaia mapping resources.",
+    "section": 5,
+    "elevation": 10491
+  },
+  {
+    "mile": 317.4,
+    "lat": 36.76539,
+    "lon": -105.34419,
+    "name": "S5 25.0 - W2",
+    "landmark": "Bitter Creek (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note icon color. Junction by Anchor Mine (ruins). Main route continues down Bitter Creek drainage (S), joining faint decommissioned road here (gate to W",
+    "section": 5,
+    "elevation": 10380
+  },
+  {
+    "mile": 317.7,
+    "lat": 36.76319,
+    "lon": -105.33976,
+    "name": "S5 25.3 - !! (XC>RD) (S5A END)",
+    "landmark": "normally keeps ATV traffic from Red River at bay). This is also the end of the Valle Vidal Alt, mentioned in a previous waypoint (which uses another decomm'd road from NE).",
+    "section": 5,
+    "elevation": 10322
+  },
+  {
+    "mile": 320.7,
+    "lat": 36.73348,
+    "lon": -105.34294,
+    "name": "S5 28.3 - W3",
+    "landmark": "Bitter Creek above Memphis mine (historic). Likely perennial here. Private property ahead! CW the old decommissioned forest / mining road reaches a gate, likely warning against remaining on the road ahead. For the next mile, this road forms the northern boundary of a private inholding surrounded by Carson NF land. Private lands are owned by a",
+    "section": 5,
+    "elevation": 9558
+  },
+  {
+    "mile": 321.8,
+    "lat": 36.72642,
+    "lon": -105.3574,
+    "name": "S5 29.4 - GT JR (RD>TR)",
+    "landmark": "various homeowners (some likely gun-nuttier than others) in a rural neighborhood setting. Thankfully there's a signed 'private property bypass' trail hereabouts, directing users onto singletrack NW of the gate and remaining within public land around the problematic section of road ahead. Track of bypass trail is hand-drawn for now and approximate. Somewhere around here should be a junction of so-called Summit Trail",
+    "section": 5,
+    "elevation": 9267
+  },
+  {
+    "mile": 321.9,
+    "lat": 36.72642,
+    "lon": -105.35965,
+    "name": "S5 29.5 - JL",
+    "landmark": "and the main private property bypass trail we've been following. Remain on the bypass trail. Drawn track remains approximate. Somewhere around here the private property bypass trail ends by a sign, at which point we attempt to rejoin the road within the private neighbhorhood (W). In theory the road is open to the public (again, heading west), or at least some sub-set of the public. Our impression is homeowners discouraging motorized use within the neighborhood, with",
+    "section": 5,
+    "elevation": 9322
+  },
+  {
+    "mile": 322.2,
+    "lat": 36.7239,
+    "lon": -105.36378,
+    "name": "S5 29.8 - TH (TR>RD)",
+    "landmark": "foot use permitted along the road. If for some reason your presence appears unwelcome, suggestion would be to head back N up the hillside a short ways, squarely within public land there, and follow an xc countour westward. (CCW if you made it here along the neighborhood road, look for signed start of private property bypass trail ahead, as main road becomes definitively off-limits to the public ahead.) (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. End of private property at vehicle gate. Gate appears to be variably open or closed, and in recent times at least was signed against motorized public use but not closed to pedestrians. In any case, CW pass through the gate (or drop down from your xc perch, if that's what you opted for instead of the road to this point), safely back to Bitter Creek",
+    "section": 5,
+    "elevation": 9220
+  },
+  {
+    "mile": 322.6,
+    "lat": 36.72232,
+    "lon": -105.37099,
+    "name": "S5 30.2 - GT !!",
+    "landmark": "Rd beyond all gates. So long, ornery second-homesteaders. (CCW A gate here likely tells the story of the vehicle-recreating public's non- admittance / persona-non-grata, etc. See next wpt for you, providing more details. To wit, follow road ahead if you're feeling a good vibe, or head N up the hillside onto public land and xc to next waypoint.)",
+    "section": 5,
+    "elevation": 9162
+  },
+  {
+    "mile": 324.8,
+    "lat": 36.70931,
+    "lon": -105.40008,
+    "name": "S5 32.4 - !!",
+    "landmark": "Bitter Creek Rd graded dirt becomes paved (SW). Bitter Creek Rd at High St. Welcome to Red River. A quick right on High,",
+    "section": 5,
+    "elevation": 8734
+  },
+  {
+    "mile": 325,
+    "lat": 36.70734,
+    "lon": -105.40305,
+    "name": "S5 32.6 - JR JL",
+    "landmark": "then left on street named Gilt Edge Tr will get you to NM 38, the main drag in town.",
+    "section": 5,
+    "elevation": 8682
+  },
+  {
+    "mile": 325.4,
+    "lat": 36.70857,
+    "lon": -105.40702,
+    "name": "S5 33.0 - PO",
+    "landmark": "Red River post office Red River began as a purpose-built ski town, later expanding to become a year-round destination. The town makes for a pretty good hiker stop, with lots of eats, motels a-plenty (often filled during peak times), and",
+    "section": 5,
+    "elevation": 8647
+  },
+  {
+    "mile": 325.7,
+    "lat": 36.70964,
+    "lon": -105.40875,
+    "name": "S5/6 33.3 - Red River (PO G M L)",
+    "landmark": "full-service supermarket. The (mostly Texas) tourist scene can get a bit ridiculous during the high summer season though. PO: 120 W Main St, Red River NM 87558.",
+    "section": 5,
+    "elevation": 8638
+  },
+  {
+    "mile": 325.8,
+    "lat": 36.70891,
+    "lon": -105.40975,
+    "name": "S6 0.1 - JR TH",
+    "landmark": "and River St. Trail begins next to base of ski lift and provides a quiet, forested exit from town (CW). Red River Nature Trail end at FR 486 / Goose Creek Trail (4WD road).",
+    "section": 6,
+    "elevation": 8642
+  },
+  {
+    "mile": 327.3,
+    "lat": 36.6947,
+    "lon": -105.39509,
+    "name": "S6 1.6 - W2-3 JL",
+    "landmark": "Placer Creek. CW head E on road.",
+    "section": 6,
+    "elevation": 8789
+  },
+  {
+    "mile": 327.5,
+    "lat": 36.69674,
+    "lon": -105.39248,
+    "name": "S6 1.8 - JR",
+    "landmark": "FR 486 at paved NM 578. CW head S. Paved NM 578 at Goose Creek TH. Reliable water in creek along length",
+    "section": 6,
+    "elevation": 8705
+  },
+  {
+    "mile": 329,
+    "lat": 36.6798,
+    "lon": -105.38044,
+    "name": "S6 3.3 - TH JR W3",
+    "landmark": "of trail with frequent access.",
+    "section": 6,
+    "elevation": 8841
+  },
+  {
+    "mile": 329.2,
+    "lat": 36.6781,
+    "lon": -105.38193,
+    "name": "S6 3.5 - !!",
+    "landmark": "Columbine-Hondo Wilderness boundary",
+    "section": 6,
+    "elevation": 8894
+  },
+  {
+    "mile": 330.7,
+    "lat": 36.67137,
+    "lon": -105.40328,
+    "name": "S6 5.0 - Large meadow with camping prospects",
+    "landmark": "C Large meadow with camping prospects",
+    "section": 6,
+    "elevation": 9485
+  },
+  {
+    "mile": 332.3,
+    "lat": 36.65704,
+    "lon": -105.42246,
+    "name": "S6 6.6 - C W3",
+    "landmark": "Established trailside campsite N side of Goose Creek.",
+    "section": 6,
+    "elevation": 10260
+  },
+  {
+    "mile": 334.4,
+    "lat": 36.638,
+    "lon": -105.44275,
+    "name": "S6 8.7 - W3",
+    "landmark": "Goose Creek last / first access. (Reliable flow throughout canyon) (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. Signed junction remain on Goose Creek Tr 65. (Goose Lake 100 yards N",
+    "section": 6,
+    "elevation": 11359
+  },
+  {
+    "mile": 335,
+    "lat": 36.63477,
+    "lon": -105.44871,
+    "name": "S6 9.3 - JL (W3 100ydsN)",
+    "landmark": "via spur trail, CW last water on main route other than seasonal snowmelt until San Cristobal Creek.) Carsonite post in large cairn at top of switchbacks. End of Goose Creek Tr 65 at nexus of trails. Somewhat confusing on map, and only the main route ahead (W) is really visible on the ground here above treeline. This",
+    "section": 6,
+    "elevation": 11663
+  },
+  {
+    "mile": 335.3,
+    "lat": 36.63235,
+    "lon": -105.45024,
+    "name": "S6 9.6 - TJ (S6A START) (W0)",
+    "landmark": "cairn also represents start of highly recommended Wheeler Peak Loop Alternate. Alt adds 18 mi to distance between Red River and San Cristobal resupply points. (Begin alt by heading S, effectively xc at first, then on visible singletrack tread heading into forest - Gold Creek Tr 64.) Signed trail junction. End of 18-mi Wheeler Peak Loop Alt. CW head N",
+    "section": 6,
+    "elevation": 12013
+  },
+  {
+    "mile": 335.5,
+    "lat": 36.63209,
+    "lon": -105.45295,
+    "name": "S6 9.8 - TJ (S6A END) (W0)",
+    "landmark": "on Gold Hill Tr 64. Cairn here at junction Gold Hill Tr 64 and (faint) Lobo Peak Tr 57 (NW)",
+    "section": 6,
+    "elevation": 12083
+  },
+  {
+    "mile": 335.6,
+    "lat": 36.63374,
+    "lon": -105.45333,
+    "name": "S6 9.9 - JL",
+    "landmark": "which we join (CW). Tr 57 generally follows crest of broad ridge above cirque of Long Canyon.",
+    "section": 6,
+    "elevation": 12182
+  },
+  {
+    "mile": 337,
+    "lat": 36.62243,
+    "lon": -105.46348,
+    "name": "S6 11.3 - !!",
+    "landmark": "Unnamed Peak 12217 on Lobo Peak Tr. Signed and cairned junction. Lobo peak tr straight; Columbine 71 N;",
+    "section": 6,
+    "elevation": 12224
+  },
+  {
+    "mile": 339.4,
+    "lat": 36.61702,
+    "lon": -105.49629,
+    "name": "S6 13.7 - XT W2-3 0.4SE",
+    "landmark": "Gavilan 60 S; Water likely along Gavilan Tr where it reaches drainage 0.4 SE and 500 feet below the ridgeline. Trail 57 atop unnamed peak 11849 following sharp ascent (this portion of trail along ridge seems like quite an engineering feat to have",
+    "section": 6,
+    "elevation": 11182
+  },
+  {
+    "mile": 339.9,
+    "lat": 36.6116,
+    "lon": -105.49992,
+    "name": "S6 14.2 - !!",
+    "landmark": "constructed, and perhaps explains the need to go right over the top here).",
+    "section": 6,
+    "elevation": 11844
+  },
+  {
+    "mile": 341.6,
+    "lat": 36.61599,
+    "lon": -105.52415,
+    "name": "S6 15.9 - JR",
+    "landmark": "TJ / Lobo Peak Trl 57 and Italianos Cyn Tr 59. Keep straight (S) on Tr 57",
+    "section": 6,
+    "elevation": 11400
+  },
+  {
+    "mile": 343.1,
+    "lat": 36.60899,
+    "lon": -105.54396,
+    "name": "S6 17.4 - JR",
+    "landmark": "Signed jct Lobo Peak Tr 57 and Yerba Canyon Tr 61. Remain on Tr 57. Lobo Peak summit. Trail 57 continues obscurely N from here. Essentially",
+    "section": 6,
+    "elevation": 12007
+  },
+  {
+    "mile": 343.2,
+    "lat": 36.61011,
+    "lon": -105.54364,
+    "name": "S6 17.5 - !! (TR>XC)",
+    "landmark": "xc here to next waypoint (CW), dropping and then contouring just W of main ridge. (CCW pick up trail at or below summit of Lobo Peak.) CW head up linear meadow here (N). Trail tread should resume by next",
+    "section": 6,
+    "elevation": 12101
+  },
+  {
+    "mile": 343.5,
+    "lat": 36.61263,
+    "lon": -105.54643,
+    "name": "S6 17.8 - !!",
+    "landmark": "waypoint. Lobo Peak Tr visible tread resumes to N, heading into forest. Trail remains little-used and occasionally obscure but generally follows (or",
+    "section": 6,
+    "elevation": 12026
+  },
+  {
+    "mile": 343.5,
+    "lat": 36.61376,
+    "lon": -105.54584,
+    "name": "S6 17.8 - !! (XC>TR)",
+    "landmark": "quickly returns to) crest of forested ridge. Recorded track is not 100% accurate due to our losing the trail sporadically. Signed jct Lobo Peak Tr 57 and San Cristobal Canyon Tr 78. CW leave ridge crest here onto Tr 78, with visible tread. Potential campsite at",
+    "section": 6,
+    "elevation": 12028
+  },
+  {
+    "mile": 344.8,
+    "lat": 36.62821,
+    "lon": -105.54198,
+    "name": "S6 19.1 - JL C",
+    "landmark": "junction. (CCW head S onto Tr 57, with occasionally obscure tread especially south of next saddle.) (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note icon color. San Cristobal Creek. Last access CW. Small flow here 6-20, more reliable",
+    "section": 6,
+    "elevation": 11653
+  },
+  {
+    "mile": 345.8,
+    "lat": 36.6287,
+    "lon": -105.55284,
+    "name": "S6 20.1 - W2",
+    "landmark": "below. Potential campsite opposite meadow. (Frequent creek crossings in",
+    "section": 6,
+    "elevation": 10697
+  },
+  {
+    "mile": 346.8,
+    "lat": 36.62966,
+    "lon": -105.56516,
+    "name": "S6 21.1 - C W3",
+    "landmark": "narrow canyon below here along trail, minimizing good camping potential.) CW San Cristobal Creek last access. (CCW: flowing and frequent",
+    "section": 6,
+    "elevation": 10188
+  },
+  {
+    "mile": 349.9,
+    "lat": 36.61627,
+    "lon": -105.60736,
+    "name": "S6 24.2 - W3",
+    "landmark": "crossings for 3 miles.) Trailhead for San Cristobal Canyon Tr 78 just beyond Columbine-Hondo",
+    "section": 6,
+    "elevation": 8181
+  },
+  {
+    "mile": 350.1,
+    "lat": 36.61702,
+    "lon": -105.61059,
+    "name": "S6 24.4 - TH (TR>RD)",
+    "landmark": "Wilderness boundary. Join rough dirt FR 439C (SW). FR 439C leaves Carson NF and public land (SW), becomes Camino del",
+    "section": 6,
+    "elevation": 8225
+  },
+  {
+    "mile": 350.5,
+    "lat": 36.61378,
+    "lon": -105.61624,
+    "name": "S6 24.8 - !!",
+    "landmark": "Medio. No camping here to San Cristobal village.",
+    "section": 6,
+    "elevation": 8115
+  },
+  {
+    "mile": 351.2,
+    "lat": 36.60745,
+    "lon": -105.62549,
+    "name": "S6 25.5 - !!",
+    "landmark": "Camino del Medio becomes graded dirt (SW). Acequia access approx here (such as if you'll be hanging out for the post",
+    "section": 6,
+    "elevation": 7852
+  },
+  {
+    "mile": 352.5,
+    "lat": 36.59659,
+    "lon": -105.64016,
+    "name": "S6 26.8 - W1",
+    "landmark": "office and aren't able to obtain water via the postmaster). Definitely treat irrigation water (avoid if at all possible). An historic ranching community of scattered adobe homesteads located in the foothills below Columbine-Hondo Wilderness Area, tiny San Cristobal doesn't feel like a town stop so much as a step back in time. Formerly a small store existed here, but now all that remains for hikers is a post office for sending oneself a maildrop. A fenced (but accessible) area along the east side of the building is ok for hikers to use (according",
+    "section": 6,
+    "elevation": 7451
+  },
+  {
+    "mile": 352.7,
+    "lat": 36.59543,
+    "lon": -105.64353,
+    "name": "S6/7 27.0 - San Cristobal (PO L)",
+    "landmark": "to postmaster Mike) but ask permission first. Bathroom, water, and trash can also con permiso. A little ways back down the road, along the route, is the modest-looking (but not inexpensive) Taos Gogi Eco Lodge in a bucolic setting, with occasional rooms available on short notice. An RTD Blue Bus stop is also within reach, with daily runs to Taos south and Questa north. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. Carsonite post in large cairn at top of switchbacks. End of Goose Creek Tr 65 at nexus of trails. Somewhat confusing on map, and only the main route ahead (W) is really visible on the ground here above treeline. This S6 9.6 TJ (S6A START)",
+    "section": 6,
+    "elevation": 7406
+  },
+  {
+    "mile": 353.1,
+    "lat": 36.59395,
+    "lon": -105.64989,
+    "name": "S7 0.4 - JL",
+    "landmark": "W [via FR 493] out to NM Hwy 522 for the roadside bus stop, 0.8 mi total off-route). Taos Goji Eco Lodge is on the right. May have cabins on short notice.",
+    "section": 7,
+    "elevation": 7330
+  },
+  {
+    "mile": 353.3,
+    "lat": 36.59029,
+    "lon": -105.64843,
+    "name": "S7 0.6 - They have a guest laundry on site, but no food (other than eggs and goji",
+    "landmark": "L They have a guest laundry on site, but no food (other than eggs and goji berries from the farm seasonally). www.taosgoji.com Old Hwy 3 ends at junction with wide graded Lawrence Ranch Rd (aka",
+    "section": 7,
+    "elevation": 7303
+  },
+  {
+    "mile": 353.9,
+    "lat": 36.58437,
+    "lon": -105.65428,
+    "name": "S7 1.2 - JR",
+    "landmark": "San Cristobal Rd aka CR B009). Continue W. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note icon color. Signed County Road B009 ends at NM Hwy 522. Cross highway to roadside pull-out and find de facto (moto) trail heading up bermed embankment here (NW). Then join the main 2-track road above the",
+    "section": 7,
+    "elevation": 7417
+  },
+  {
+    "mile": 354.8,
+    "lat": 36.57924,
+    "lon": -105.66715,
+    "name": "S7 2.1 - XR !!",
+    "landmark": "berm (turns SW, as shown on USFS base map). Solidly within USFS lands again here, no camping restrictions (CCW don't camp heading E to San Cristobal).",
+    "section": 7,
+    "elevation": 7284
+  },
+  {
+    "mile": 354.9,
+    "lat": 36.5782,
+    "lon": -105.67003,
+    "name": "S7 2.2 - JR",
+    "landmark": "CW take the right-most road option here at unsigned jct, heading W. 4 way 2-track junction. Head W and soon cross from USFS into BLM Rio",
+    "section": 7,
+    "elevation": 7303
+  },
+  {
+    "mile": 355.4,
+    "lat": 36.57722,
+    "lon": -105.67642,
+    "name": "S7 2.7 - XR !!",
+    "landmark": "Grande del Norte National Monument without fanfare.",
+    "section": 7,
+    "elevation": 7188
+  },
+  {
+    "mile": 356.2,
+    "lat": 36.57686,
+    "lon": -105.68989,
+    "name": "S7 3.5 - JL",
+    "landmark": "2-track junction. Keep left (SW). Singletrack Horsethief Mesa Trail crosses road but don't join it here",
+    "section": 7,
+    "elevation": 6988
+  },
+  {
+    "mile": 356.3,
+    "lat": 36.57607,
+    "lon": -105.69058,
+    "name": "S7 3.6 - JR",
+    "landmark": "(we'll join it ahead at another spot on its loop journey). Continue short distance S to waypoint, 2-track junction, and take the right fork (SW).",
+    "section": 7,
+    "elevation": 6958
+  },
+  {
+    "mile": 356.4,
+    "lat": 36.57534,
+    "lon": -105.69253,
+    "name": "S7 3.7 - JL",
+    "landmark": "Another 2-track junction (SW). 2-track jct (WNW). (Ignore another jct just before here with fainter road",
+    "section": 7,
+    "elevation": 6932
+  },
+  {
+    "mile": 356.6,
+    "lat": 36.57373,
+    "lon": -105.69417,
+    "name": "S7 3.9 - JR",
+    "landmark": "that heads NNW). Join Horsethief Mesa Loop Tr here (S). Purpose-built (mtb-oriented) loop",
+    "section": 7,
+    "elevation": 6943
+  },
+  {
+    "mile": 356.8,
+    "lat": 36.57438,
+    "lon": -105.69755,
+    "name": "S7 4.1 - JL (RD>TR)",
+    "landmark": "trail, with our half (the western half) arcing sinuously near rim of Rio Grande Gorge with its familiar, superlative scenery. Horsethief Mesa Tr joins 2-track (S). (Side note: although it's possible to",
+    "section": 7,
+    "elevation": 6901
+  },
+  {
+    "mile": 359.9,
+    "lat": 36.54998,
+    "lon": -105.70059,
+    "name": "S7 7.2 - JR (TR>RD)",
+    "landmark": "take a shorter route across this terrain via combinations of old road, the marked trail is more rewarding and less navigationally involving.)",
+    "section": 7,
+    "elevation": 6963
+  },
+  {
+    "mile": 360.2,
+    "lat": 36.54705,
+    "lon": -105.70275,
+    "name": "S7 7.5 - JR (RD>TR)",
+    "landmark": "Horsethief Mesa Tr continues S from road bend, back to singletrack. Cairned trail junction. CW right fork (E). (CCW may be tempting to head",
+    "section": 7,
+    "elevation": 6962
+  },
+  {
+    "mile": 360.8,
+    "lat": 36.54313,
+    "lon": -105.70033,
+    "name": "S7 8.1 - JR",
+    "landmark": "NE here, seemingly more efficient, but trail becomes confused by road network and getting back on track is actually less efficient.) Leave Horsethief Mesa Loop Trail (SE) here where it reaches road at bend and proceed xc downhill through juniper forest. Our goal is to",
+    "section": 7,
+    "elevation": 6887
+  },
+  {
+    "mile": 361.8,
+    "lat": 36.53471,
+    "lon": -105.70206,
+    "name": "S7 9.1 - TR>XC",
+    "landmark": "connect the trail with bridged crossing of Rio Gande via CR B 007 down below rim of mesa. Proceed to next wpt for a reasonable way off the volcanic rim. Start of steep rocky descent off rim of Horsethief Mesa. Track is route",
+    "section": 7,
+    "elevation": 6930
+  },
+  {
+    "mile": 361.9,
+    "lat": 36.53313,
+    "lon": -105.70081,
+    "name": "S7 9.2 - XC !!",
+    "landmark": "we took, which was reasonable if somewhat slow-going. Non-technical. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. At the base of your adventurous descent, tie a bow on the rugged experience by crossing the flowing drainage of Arroyo Hondo. Then climb up to graded road (CR B-007) and head west. (CCW leave road",
+    "section": 7,
+    "elevation": 6813
+  },
+  {
+    "mile": 362,
+    "lat": 36.53181,
+    "lon": -105.70065,
+    "name": "S7 9.3 - JR (XC>RD)",
+    "landmark": "here at waypoint, cross the creek, then find a line up to the rim. This is the first reasonable point to make such an ascent for you, coming from the Rio.) Arroyo Hondo creek access. Should be reliable and of better quality than",
+    "section": 7,
+    "elevation": 6562
+  },
+  {
+    "mile": 362.4,
+    "lat": 36.53414,
+    "lon": -105.70678,
+    "name": "S7 9.7 - W3",
+    "landmark": "the Rio Grande.",
+    "section": 7,
+    "elevation": 6502
+  },
+  {
+    "mile": 362.5,
+    "lat": 36.53498,
+    "lon": -105.70879,
+    "name": "S7 9.8 - Dunn Bridge W3",
+    "landmark": "John Dunn Bridge over Rio Grande Leave graded CR B-007 at small side drainage and head xc up the rocky",
+    "section": 7,
+    "elevation": 6483
+  },
+  {
+    "mile": 363.6,
+    "lat": 36.53787,
+    "lon": -105.7104,
+    "name": "S7 10.9 - JL (RD>XC) (S4B END)",
+    "landmark": "drainage itself or adjacent. This is also the (S) end of the Rio Grande Highwater Bypass, affording a bridged crossing of the river. Leave drainage and head S on 2-track road. (CCW join rocky drainage",
+    "section": 7,
+    "elevation": 6871
+  },
+  {
+    "mile": 363.8,
+    "lat": 36.53864,
+    "lon": -105.71227,
+    "name": "S7 11.1 - JL (XC>RD)",
+    "landmark": "here in order to make connection down toward graded road below to E.)",
+    "section": 7,
+    "elevation": 6957
+  },
+  {
+    "mile": 364.3,
+    "lat": 36.53323,
+    "lon": -105.71835,
+    "name": "S7 11.6 - JL",
+    "landmark": "Jeep road junction (S).",
+    "section": 7,
+    "elevation": 6955
+  },
+  {
+    "mile": 364.9,
+    "lat": 36.52521,
+    "lon": -105.71766,
+    "name": "S7 12.2 - JR",
+    "landmark": "Jeep road junction, right fork (SW). Old fence across the road here at bend. We were able to peel back a",
+    "section": 7,
+    "elevation": 6937
+  },
+  {
+    "mile": 365.3,
+    "lat": 36.52371,
+    "lon": -105.72313,
+    "name": "S7 12.6 - !!",
+    "landmark": "wire or two and proceed (no warning signs, all BLM).",
+    "section": 7,
+    "elevation": 6983
+  },
+  {
+    "mile": 365.5,
+    "lat": 36.52092,
+    "lon": -105.72279,
+    "name": "S7 12.8 - JR",
+    "landmark": "Road junction right (W). Leave the 2-track road around here and head SE to avoid private lands",
+    "section": 7,
+    "elevation": 6966
+  },
+  {
+    "mile": 366.3,
+    "lat": 36.51453,
+    "lon": -105.73187,
+    "name": "S7 13.6 - RD>XC",
+    "landmark": "ahead, (old quarry and such) which we'll walk around on a boundary line. Our route remains within Rio Grande del Norte N.M. Wide gap in N-S fenceline here. Our xc route then proceeds S, in the",
+    "section": 7,
+    "elevation": 7028
+  },
+  {
+    "mile": 366.5,
+    "lat": 36.51328,
+    "lon": -105.72966,
+    "name": "S7 13.8 - !!",
+    "landmark": "spirit of following this fenceline but at whatever distance away from it as dictated by terrain, wash crossings, etc. Fence corner. Use as a guidepost of sorts as xc route turns toward SW here, now leaving fenceline corridor and negotiating some occasionally",
+    "section": 7,
+    "elevation": 7000
+  },
+  {
+    "mile": 367.8,
+    "lat": 36.49511,
+    "lon": -105.72955,
+    "name": "S7 15.1 - !!",
+    "landmark": "rather dense sagebrush in pursuit of next objective, a feasible way across side canyon of the Rio ahead. We headed down off the rim into the Rio side canyon here. Nothing technical about the drop into this dry rocky drainage, at least not here. This is just outside of the national monument boundary, a very minor indiscretion it seemed for a feasible way across. Once in drainage, we",
+    "section": 7,
+    "elevation": 6970
+  },
+  {
+    "mile": 368.6,
+    "lat": 36.48849,
+    "lon": -105.73984,
+    "name": "S7 15.9 - !!",
+    "landmark": "headed down it a little ways and then picked our way back up and out. General rule: the canyon becomes deeper, steeper, and more difficult to negotiate the closer to the main gorge, so don't keep heading down the drainage too long. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. Back atop the side canyon, back within the monument, heading S on a continued xc course. (CCW you'll probably want to tackle this canyon by",
+    "section": 7,
+    "elevation": 6958
+  },
+  {
+    "mile": 368.7,
+    "lat": 36.48771,
+    "lon": -105.73832,
+    "name": "S7 16.0 - !!",
+    "landmark": "first heading W along rim for a bit as the way down in becomes more reasonable that direction.) We found portion of E-W fence that was down here (just E of N-S fence and private boundary). Head on through then carefully cross busy Hwy",
+    "section": 7,
+    "elevation": 6957
+  },
+  {
+    "mile": 369.5,
+    "lat": 36.47655,
+    "lon": -105.73849,
+    "name": "S7 16.8 - !! XR (END XC)",
+    "landmark": "64 into Rio Grande Gorge Bridge rest area. Your extended stint of xc travel ends here. West Rim TH / Gorge rest area. Developed water (drinking fountains) 24/7. Restrooms closed after 5pm. Shade ramadas. Didn’t see vending.",
+    "section": 7,
+    "elevation": 6996
+  },
+  {
+    "mile": 369.7,
+    "lat": 36.47497,
+    "lon": -105.73602,
+    "name": "S7 17.0 - TH W3",
+    "landmark": "A popular spot, and you can follow the tourist throngs out onto the highway bridge for that iconic selfie. Route of NNML heads S from rest area lot onto signed West Rim Trail. Carsonite posted trail junction directs you S, but go left (SE) for best",
+    "section": 7,
+    "elevation": 6991
+  },
+  {
+    "mile": 370.2,
+    "lat": 36.46871,
+    "lon": -105.7327,
+    "name": "S7 17.5 - JL",
+    "landmark": "views of gorge bridge, even a nifty bench at the edge of the abyss. Route meets back up again.",
+    "section": 7,
+    "elevation": 6958
+  },
+  {
+    "mile": 370.8,
+    "lat": 36.46163,
+    "lon": -105.73161,
+    "name": "S7 18.1 - JL",
+    "landmark": "Unsigned jct along West Rim Tr. Take the singletrack option (S).",
+    "section": 7,
+    "elevation": 6959
+  },
+  {
+    "mile": 371.5,
+    "lat": 36.45345,
+    "lon": -105.73318,
+    "name": "S7 18.8 - JL",
+    "landmark": "Cairned junction. Trail heads left (S) onto double-track.",
+    "section": 7,
+    "elevation": 6939
+  },
+  {
+    "mile": 375.8,
+    "lat": 36.3964,
+    "lon": -105.72506,
+    "name": "S7 23.1 - JL",
+    "landmark": "West Rim Trail double-track junction. Left fork (SE). West Rim Tr resumes its south-trending trajectory here after a brief",
+    "section": 7,
+    "elevation": 6841
+  },
+  {
+    "mile": 376.8,
+    "lat": 36.38492,
+    "lon": -105.73032,
+    "name": "S7 24.1 - JL",
+    "landmark": "westerly jaunt with powerlines. Signed side trail to Utopian Vista. CW you've seen a lot of the Rio",
+    "section": 7,
+    "elevation": 6834
+  },
+  {
+    "mile": 378.7,
+    "lat": 36.36202,
+    "lon": -105.73018,
+    "name": "S7 26.0 - !!",
+    "landmark": "Grande Gorge to date but you know you have to check it out. West Rim Tr passes adjacent to trailhead (remains singletrack, turns W",
+    "section": 7,
+    "elevation": 6767
+  },
+  {
+    "mile": 379.2,
+    "lat": 36.35733,
+    "lon": -105.73478,
+    "name": "S7 26.5 - TH JR",
+    "landmark": "here, doesn't enter parking lot).",
+    "section": 7,
+    "elevation": 6748
+  },
+  {
+    "mile": 379.3,
+    "lat": 36.35598,
+    "lon": -105.73654,
+    "name": "S7 26.6 - XR",
+    "landmark": "Carsonite singletrack crossing of W Rim TH entrance road. Signed terminus of West Rim Trail at NM 567. Head left (SE) on this graded dirt road down toward another bridged crossing of the Rio",
+    "section": 7,
+    "elevation": 6758
+  },
+  {
+    "mile": 379.6,
+    "lat": 36.35186,
+    "lon": -105.73789,
+    "name": "S7 26.9 - JL (TR>RD)",
+    "landmark": "Grande. (Signed Petaca Point Tr is across road here but doesn't serve our purposes.)",
+    "section": 7,
+    "elevation": 6758
+  },
+  {
+    "mile": 380.8,
+    "lat": 36.34127,
+    "lon": -105.73658,
+    "name": "S7 28.1 - !!",
+    "landmark": "Signed La Vista Verde TH to N, but our route remains on NM 567. NM 567 Taos Junction Bridge over Rio Grande. Nearby vehicle-oriented",
+    "section": 7,
+    "elevation": 6335
+  },
+  {
+    "mile": 381.5,
+    "lat": 36.33607,
+    "lon": -105.73379,
+    "name": "S7 28.8 - Taos Jct bridge W3",
+    "landmark": "Orilla Verde Campground as well as a boat launch / take-out with vault toilet. Picuris Trail TH. Good flowing spring at roadside (6-2020) is 0.25W.",
+    "section": 7,
+    "elevation": 6079
+  },
+  {
+    "mile": 381.5,
+    "lat": 36.3352,
+    "lon": -105.73306,
+    "name": "S7 28.8 - TH (RD>TR) (W2 0.25W)",
+    "landmark": "Likely better quality than either Rio Grande or Rio Pueblo in vicinity. Picuris Trail splits here. CW take left fork (E). We'll climb out of the gorge",
+    "section": 7,
+    "elevation": 6091
+  },
+  {
+    "mile": 381.6,
+    "lat": 36.33445,
+    "lon": -105.73251,
+    "name": "S7 28.9 - JL",
+    "landmark": "via another trail ahead. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. Signed end of Picuris Trail. Head E briefly on road to lower trailhead for Slide Trail. This is our route back up to the rim, an old road-turned-trail",
+    "section": 7,
+    "elevation": 6163
+  },
+  {
+    "mile": 382,
+    "lat": 36.33737,
+    "lon": -105.72793,
+    "name": "S7 29.3 - JR TH",
+    "landmark": "ascending gradually via side canyon of Rio Grande (which contains the scenic if somewhat hard to access Rio Pueblo, a creek we'll approach again, more leisurely, in the next section of NNML).",
+    "section": 7,
+    "elevation": 6161
+  },
+  {
+    "mile": 382.7,
+    "lat": 36.34454,
+    "lon": -105.72098,
+    "name": "S7 30.0 - W1-2",
+    "landmark": "Light spring flow across Slide Trail among willows 6-20 Upper trailhead for Slide Trail. Popular spot among mtb'ers using new trail network in area (not the Slide Trail so much). Vault toilet here. CW head E on the paved county road (110). You're finally out of the vast Rio",
+    "section": 7,
+    "elevation": 6393
+  },
+  {
+    "mile": 383.4,
+    "lat": 36.34942,
+    "lon": -105.71258,
+    "name": "S7 30.7 - TH JL (TR>RD)",
+    "landmark": "Grande del Norte National Monument for good, along with public lands between here and your upcoming town stop at Ranchos de Taos, so no camping allowed ahead. (CCW note that you want to join the Slide Trail here from the TH, which heads N just W of the toilet.) You don't want the road heading due N here, but rather the lesser utility",
+    "section": 7,
+    "elevation": 6699
+  },
+  {
+    "mile": 385.6,
+    "lat": 36.35057,
+    "lon": -105.67521,
+    "name": "S7 32.9 - JL !!",
+    "landmark": "road heading NE. Leave CR 110 onto this efficient, if undulating, shortcut of a swath. Utility swath ends at graded dirt Los Cordovas Rd. Join it N. You're now",
+    "section": 7,
+    "elevation": 6859
+  },
+  {
+    "mile": 386.6,
+    "lat": 36.36064,
+    "lon": -105.66316,
+    "name": "S7 33.9 - JL",
+    "landmark": "in outskirts-ville of Taos, with uber ranchettes and a golf course dotting the mystical sagebrush plain. Los Cordovas Rd graded dirt becomes pavement to N, adjacent rural fire",
+    "section": 7,
+    "elevation": 6823
+  },
+  {
+    "mile": 387.7,
+    "lat": 36.37375,
+    "lon": -105.65559,
+    "name": "S7 35.0 - !!",
+    "landmark": "department (water?)",
+    "section": 7,
+    "elevation": 6738
+  },
+  {
+    "mile": 387.9,
+    "lat": 36.37689,
+    "lon": -105.65473,
+    "name": "S7 35.2 - JR",
+    "landmark": "Right (SE) off Los Cordovas Rd onto Cuchilla Rd. Left (SE) off Cuchilla Rd onto Tom Holder Rd. Enter acequia (irrigation",
+    "section": 7,
+    "elevation": 6775
+  },
+  {
+    "mile": 390.1,
+    "lat": 36.36989,
+    "lon": -105.62584,
+    "name": "S7 37.4 - JL",
+    "landmark": "district) lands here along with a notable change in scenery from open desert to historic farm and ranch land, treed yards, and the like.",
+    "section": 7,
+    "elevation": 6867
+  },
+  {
+    "mile": 390.5,
+    "lat": 36.37259,
+    "lon": -105.61922,
+    "name": "S7 37.8 - JR",
+    "landmark": "Right (SE) onto Los Cordovas Rd (SR 240) again. Ranchos de Taos is a distinct community apart from Taos proper and located several miles south of the beating heart of that well-known town. Sleepy and agrarian beyond the main 2-lane highway, Ranchos de Taos nonetheless offers a post office along with several good Ranchos de Taos (PO M",
+    "section": 7,
+    "elevation": 6830
+  },
+  {
+    "mile": 391.7,
+    "lat": 36.36029,
+    "lon": -105.60825,
+    "name": "S7/8 39.0 - restaurants in a quintessential small-town Northern New Mexico",
+    "landmark": "BUS) setting. Conveniently for hikers, a free RTD Blue Bus runs hourly from the post office parking lot to any of several stops within full-service Taos, including Taos Plaza - the acclaimed artists' and tourists' hub of town, and Taos Pueblo. Ranchos de Taos (PO M",
+    "section": 7,
+    "elevation": 6919
+  },
+  {
+    "mile": 391.9,
+    "lat": 36.35778,
+    "lon": -105.60651,
+    "name": "S8 0.2 - JL JR",
+    "landmark": "Camino Abajo de la Loma",
+    "section": 8,
+    "elevation": 6931
+  },
+  {
+    "mile": 393.3,
+    "lat": 36.34133,
+    "lon": -105.59697,
+    "name": "S8 1.6 - JR",
+    "landmark": "South at end of Camino Abajo onto NM Hwy 518 (sidewalk available). Left (E) from Hwy 518 onto FR 437, then in 100 yards right (S) on Monte",
+    "section": 8,
+    "elevation": 7048
+  },
+  {
+    "mile": 393.9,
+    "lat": 36.33484,
+    "lon": -105.59108,
+    "name": "S8 2.2 - JL JR",
+    "landmark": "Lindo Rd. Right fork from Monte Lindo leads to solar-powered vehicle gate / private drive with key code. A pedestrian pass-through allows",
+    "section": 8,
+    "elevation": 7101
+  },
+  {
+    "mile": 394,
+    "lat": 36.33469,
+    "lon": -105.59006,
+    "name": "S8 2.3 - JR GT",
+    "landmark": "unfettered access, and until we hear otherwise provides a proper connection to neighborhood portal onto public trail network ahead. Left (SE) off neighborhood road onto Rio Grande del Ranchos Trail #18. Trail enters public (USFS) land within 0.1 mi ahead (CCW no camping",
+    "section": 8,
+    "elevation": 7137
+  },
+  {
+    "mile": 394.3,
+    "lat": 36.33118,
+    "lon": -105.58962,
+    "name": "S8 2.6 - TH JL (RD>TR)",
+    "landmark": "here to town). Trail features occasional 'Tr 8' markers and wooden signs throughout, and is for the most part an old road converted to pseudo- singletrack. Small cairn at unsigned junction with spur trail from highway below.",
+    "section": 8,
+    "elevation": 7173
+  },
+  {
+    "mile": 394.6,
+    "lat": 36.32783,
+    "lon": -105.58645,
+    "name": "S8 2.9 - JL",
+    "landmark": "Stay left (SE) on main Trail 18. Keep south on Trail 18 as another road joins from left. (CCW take left",
+    "section": 8,
+    "elevation": 7218
+  },
+  {
+    "mile": 400.2,
+    "lat": 36.2768,
+    "lon": -105.56905,
+    "name": "S8 8.5 - JR",
+    "landmark": "fork to remain on Tr 18.) Named Trail 18 ends here (S) with carsonite post and 'no vehicles' signs.",
+    "section": 8,
+    "elevation": 7507
+  },
+  {
+    "mile": 400.3,
+    "lat": 36.27516,
+    "lon": -105.56878,
+    "name": "S8 8.6 - TH (TR>RD)",
+    "landmark": "Remain on the now-driven dirt road S.",
+    "section": 8,
+    "elevation": 7493
+  },
+  {
+    "mile": 400.5,
+    "lat": 36.27265,
+    "lon": -105.56926,
+    "name": "S8 8.8 - JR W3",
+    "landmark": "Unnamed road S of Tr 18 at FR 438. Rito de la Olla crossing on bridge",
+    "section": 8,
+    "elevation": 7480
+  },
+  {
+    "mile": 400.8,
+    "lat": 36.26963,
+    "lon": -105.57258,
+    "name": "S8 9.1 - JL",
+    "landmark": "Leave signed graded dirt FR 438, left (S) on signed FR 440.",
+    "section": 8,
+    "elevation": 7479
+  },
+  {
+    "mile": 401.3,
+    "lat": 36.26315,
+    "lon": -105.57279,
+    "name": "S8 9.6 - JR",
+    "landmark": "Right off FR 440 onto unsigned lesser road. Walk around old metal gate. Decommissioned road beyond, essentially",
+    "section": 8,
+    "elevation": 7531
+  },
+  {
+    "mile": 402.1,
+    "lat": 36.25377,
+    "lon": -105.57635,
+    "name": "S8 10.4 - GT",
+    "landmark": "a grassy swath. Cross drainage and return (W) (don't continue E/S). Overgrown road becomes ever more vague approaching creek ahead, eventually use-",
+    "section": 8,
+    "elevation": 7664
+  },
+  {
+    "mile": 402.2,
+    "lat": 36.25277,
+    "lon": -105.57527,
+    "name": "S8 10.5 - JR (RD>TR)",
+    "landmark": "trails through willow thicket to crossing of Rio Grande del Rancho (creek) at next wpt.",
+    "section": 8,
+    "elevation": 7638
+  },
+  {
+    "mile": 402.5,
+    "lat": 36.25247,
+    "lon": -105.57923,
+    "name": "S8 10.8 - W3",
+    "landmark": "First crossing CW of Rio Grande del Rancho (creek in meadow). Use-trails end at guardrail and parking / camping. Join dirt road network",
+    "section": 8,
+    "elevation": 7583
+  },
+  {
+    "mile": 402.6,
+    "lat": 36.25117,
+    "lon": -105.57985,
+    "name": "S8 10.9 - TR>RD",
+    "landmark": "S. Large dispersed vehicle-oriented camping area here and beyond. Keep S through unsigned jct as another dirt road joins from right. You're",
+    "section": 8,
+    "elevation": 7594
+  },
+  {
+    "mile": 402.8,
+    "lat": 36.24902,
+    "lon": -105.58178,
+    "name": "S8 11.1 - JL",
+    "landmark": "now on FR 439. (CCW take the right fork off FR 439.) FR 439 at powerline road. Unbridged crossing of Rio Grande del Rancho",
+    "section": 8,
+    "elevation": 7644
+  },
+  {
+    "mile": 404.4,
+    "lat": 36.22882,
+    "lon": -105.59241,
+    "name": "S8 12.7 - JR W3",
+    "landmark": "W of jct. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. CW last access to Rio Grande del Rancho. 2 track jct. Turn right uphill on",
+    "section": 8,
+    "elevation": 7830
+  },
+  {
+    "mile": 404.8,
+    "lat": 36.22474,
+    "lon": -105.59026,
+    "name": "S8 13.1 - W3 JR",
+    "landmark": "vague secondary utility line 2track. Utility line gradual at first then very steep.",
+    "section": 8,
+    "elevation": 7871
+  },
+  {
+    "mile": 405.9,
+    "lat": 36.21117,
+    "lon": -105.59219,
+    "name": "S8 14.2 - JL",
+    "landmark": "4 way 2-track jct. CW left (E). Old 2-track pops out onto wider road. Turn right (SW) through another road jct to start of Amole Canyon Tr #10, a loop trail we'll take SW here",
+    "section": 8,
+    "elevation": 8568
+  },
+  {
+    "mile": 406.8,
+    "lat": 36.20445,
+    "lon": -105.58662,
+    "name": "S8 15.1 - JR JL TH (RD>TR)",
+    "landmark": "(the right fork). (CCW Tr 10 ends at vehicle road, turn right then quick left and left again onto lesser 2-track N). Left (S) at vague but signed trail jct across meadow. Trail (old logging",
+    "section": 8,
+    "elevation": 8629
+  },
+  {
+    "mile": 407.1,
+    "lat": 36.19993,
+    "lon": -105.58981,
+    "name": "S8 15.4 - JL",
+    "landmark": "swath) becomes better defined once it re-enters forest. Trail (old logging road) junction. Sign here refers to 'snowshoe loops.'",
+    "section": 8,
+    "elevation": 8514
+  },
+  {
+    "mile": 408.4,
+    "lat": 36.18996,
+    "lon": -105.5751,
+    "name": "S8 16.7 - JR",
+    "landmark": "CW take sharp right (W). (CCW sharp left here, don't take the more northerly tack by mistake.) Signed t-jct, keep left (E) now on Tr 182. Rough and occasionally moto-y.",
+    "section": 8,
+    "elevation": 9157
+  },
+  {
+    "mile": 408.9,
+    "lat": 36.18788,
+    "lon": -105.57736,
+    "name": "S8 17.2 - JL",
+    "landmark": "(CCW right fork onto Tr 10.)",
+    "section": 8,
+    "elevation": 9126
+  },
+  {
+    "mile": 409.2,
+    "lat": 36.1889,
+    "lon": -105.57331,
+    "name": "S8 17.5 - JR",
+    "landmark": "Unsigned road junction, take the right fork (E). 4 way trail jct. Sorta signed. CW turn left from Trail (logging road) 182 onto Tio Maes Trail 5. Sucky moto singletrack ahead. (Or go right down",
+    "section": 8,
+    "elevation": 9312
+  },
+  {
+    "mile": 409.5,
+    "lat": 36.1894,
+    "lon": -105.56895,
+    "name": "S8 17.8 - JL",
+    "landmark": "moto trail in search of spring named Ojito Maes (could not find water 6- 20). (CCW turn right onto Tr 182 / old logging road). Signed jct end of Tio Maes Tr 5. Turn left (E) on FR 182. (CCW head right",
+    "section": 8,
+    "elevation": 9318
+  },
+  {
+    "mile": 410,
+    "lat": 36.18907,
+    "lon": -105.56185,
+    "name": "S8 18.3 - JL (TR>RD)",
+    "landmark": "onto Tr 5 moto singletrack.) Multi-way road junction. CW turn right (S) at waypoint (not onto road",
+    "section": 8,
+    "elevation": 9615
+  },
+  {
+    "mile": 410.3,
+    "lat": 36.19055,
+    "lon": -105.5564,
+    "name": "S8 18.6 - JR",
+    "landmark": "just before). Road ahead (Tr 182) is pleasant mtb-oriented affair, though actually open to all vehicles. (CCW turn left / SW at wpt then keep right.) Ignore sign for Trail 4 on right and then take the next right off Trail / Road 182 onto signed Flechado Tr 7 singletrack. Occasional nuisance",
+    "section": 8,
+    "elevation": 9659
+  },
+  {
+    "mile": 412.3,
+    "lat": 36.17973,
+    "lon": -105.53589,
+    "name": "S8 20.6 - JR (RD>TR)",
+    "landmark": "blowdowns ahead 6-20. (CCW Trail 7 ends here; follow road left / N, which is called Trail 182. Ignore signs for Trail 4.)",
+    "section": 8,
+    "elevation": 10052
+  },
+  {
+    "mile": 412.9,
+    "lat": 36.17245,
+    "lon": -105.53226,
+    "name": "S8 21.2 - W2",
+    "landmark": "Flechado Canyon trickling creek 6-20",
+    "section": 8,
+    "elevation": 9629
+  },
+  {
+    "mile": 414.3,
+    "lat": 36.15579,
+    "lon": -105.53594,
+    "name": "S8 22.6 - W2",
+    "landmark": "Flechado Canyon small cascade Trailhead for Flechado Trail 7 at NM Hwy 518. Half mile NW to Sipapu TH JL (TR>RD) (M L 0.5 Ski and Summer Resort (M L maildrop option). Main route turns left (SE)",
+    "section": 8,
+    "elevation": 8990
+  },
+  {
+    "mile": 415,
+    "lat": 36.14872,
+    "lon": -105.54237,
+    "name": "S8 23.3 - Waypoint S8 23.3",
+    "landmark": "N) on highway (parking and vault toilet across the road). Be careful with traffic on this narrow winding 2-lane road. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. It's a mere half mile off-route to the laid-back Sipapu Ski & Summer Resort. True to its name, Sipapu offers year-round services, namely a motel and cabins, restaurant / grill, and something of a convenience- store level grocery option. Sometimes busy, other times a virtual ghost town, Sipapu has agreed to hold hiker packages in the past but call Sipapu resort (M L ahead to confirm current arrangements to ensure a smooth resupply S8 36.15398, -105.54773 8193' maildrop) here. Information has historically been as follows: UPS deliveries only to Sipapu Ski & Summer Resort, Attn Lisa (Please Hold for -hiker's name here-), 5224 Hwy 518, Vadito NM 87579. Contingent upon overnight stay. CALL FIRST 800-587-2240 www.sipapunm.com Or just stop by in hopes of enjoying a quick burger and beer on the back patio built along the banks of the Rio Pueblo. S of paved NM 518, bridged crossing of Rio Pueblo along entrance road",
+    "section": 8,
+    "elevation": 8256
+  },
+  {
+    "mile": 416.9,
+    "lat": 36.13494,
+    "lon": -105.53117,
+    "name": "S8 25.2 - JR W3 JL",
+    "landmark": "to campground. Trailhead for Agua Piedra Trail #19A along campground road. Trail (for",
+    "section": 8,
+    "elevation": 8400
+  },
+  {
+    "mile": 417.3,
+    "lat": 36.13087,
+    "lon": -105.52834,
+    "name": "S8 25.6 - TH JR W3 (RD>TR)",
+    "landmark": "the most part a former logging road) crosses creek several times at intervals ahead.",
+    "section": 8,
+    "elevation": 8532
+  },
+  {
+    "mile": 417.5,
+    "lat": 36.12732,
+    "lon": -105.52868,
+    "name": "S8 25.8 - JR",
+    "landmark": "Ignore junction with Indian Lake Tr 19C to the east.",
+    "section": 8,
+    "elevation": 8659
+  },
+  {
+    "mile": 418.8,
+    "lat": 36.11254,
+    "lon": -105.53055,
+    "name": "S8 27.1 - JR W3",
+    "landmark": "Agua Piedra Creek / TJ Tr 19 / 22A",
+    "section": 8,
+    "elevation": 9081
+  },
+  {
+    "mile": 420.8,
+    "lat": 36.09642,
+    "lon": -105.54606,
+    "name": "S8 29.1 - W3 0.1S",
+    "landmark": "Agua Piedra Creek",
+    "section": 8,
+    "elevation": 10300
+  },
+  {
+    "mile": 422.3,
+    "lat": 36.09424,
+    "lon": -105.56243,
+    "name": "S8 30.6 - W3",
+    "landmark": "Los Esteros pond (tea-colored) Signed jct Comales Tr 22 and Divide Tr 36. CW main route heads S on Tr 36, or continue on Tr 22 via Santa Barbara Divide Bypass Route in order to avoid continuous 12 mi ridge above treeline along main route just",
+    "section": 8,
+    "elevation": 11136
+  },
+  {
+    "mile": 422.8,
+    "lat": 36.09872,
+    "lon": -105.56606,
+    "name": "S8 31.1 - JL (S8A START)",
+    "landmark": "ahead. The alternate and portion of the main route it replaces are almost exactly the same distance (although alternate loses and then regains several thousand feet of elevation).",
+    "section": 8,
+    "elevation": 11427
+  },
+  {
+    "mile": 423.7,
+    "lat": 36.08695,
+    "lon": -105.56721,
+    "name": "S8 32.0 - JL",
+    "landmark": "Approx jct with Indian Creek Tr 27 to W. Remain on Divide Tr 36. Route above treeline for 12 mi (S). Bail-outs via trail (or xc to treeline)",
+    "section": 8,
+    "elevation": 11702
+  },
+  {
+    "mile": 424.5,
+    "lat": 36.07576,
+    "lon": -105.56432,
+    "name": "S8 32.8 - !!",
+    "landmark": "are possible but not always convenient or immediate. Plan for the weather and use Divide Bypass route as needed.",
+    "section": 8,
+    "elevation": 12067
+  },
+  {
+    "mile": 425.1,
+    "lat": 36.06957,
+    "lon": -105.55899,
+    "name": "S8 33.4 - W2",
+    "landmark": "Unsigned Jicarita Spring 200 ft W of and below trail from waypoint. Approx jct with side trail over Jicarita Peak summit (12,835). Enter Pecos",
+    "section": 8,
+    "elevation": 12047
+  },
+  {
+    "mile": 425.7,
+    "lat": 36.06179,
+    "lon": -105.55762,
+    "name": "S8 34.0 - JR",
+    "landmark": "Wilderness not far ahead (CW). Approx jct with side trail returning from Jicarita Peak summit (12,835).",
+    "section": 8,
+    "elevation": 12249
+  },
+  {
+    "mile": 427.1,
+    "lat": 36.05209,
+    "lon": -105.55843,
+    "name": "S8 35.4 - JR",
+    "landmark": "Continue on Divide Tr 36. Divide Tr 36 crosses Serpent Lake / Angostura Tr 19. A spring pool is",
+    "section": 8,
+    "elevation": 12534
+  },
+  {
+    "mile": 428.4,
+    "lat": 36.0396,
+    "lon": -105.54655,
+    "name": "S8 36.7 - XT (W2 0.15E)",
+    "landmark": "often found E via Tr 19, 150 vertical ft below the junction. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color.",
+    "section": 8,
+    "elevation": 12379
+  },
+  {
+    "mile": 432.8,
+    "lat": 35.98809,
+    "lon": -105.54721,
+    "name": "S8 41.1 - JL",
+    "landmark": "Approx jct with E Fork Tr 26 (NW). Remain on Divide Tr 36. Jct Divide Tr 36 and Skyline Tr 251. CW Divide Tr ends here. Join Skyline",
+    "section": 8,
+    "elevation": 12134
+  },
+  {
+    "mile": 433.8,
+    "lat": 35.98086,
+    "lon": -105.56068,
+    "name": "S8 42.1 - JR",
+    "landmark": "Tr (SW). Continue on Skyline Tr 251 at jct with Middle Fork Tr 24 (N) and Pecos Tr",
+    "section": 8,
+    "elevation": 12446
+  },
+  {
+    "mile": 434.2,
+    "lat": 35.9767,
+    "lon": -105.56445,
+    "name": "S8 42.5 - XT",
+    "landmark": "24 (S).",
+    "section": 8,
+    "elevation": 12114
+  },
+  {
+    "mile": 436.8,
+    "lat": 35.96996,
+    "lon": -105.60484,
+    "name": "S8 45.1 - JR",
+    "landmark": "Signed jct with little-used Beatty's Tr 25 (S). Remain on Skyline Tr 251. Return below treeline (more or less) after 12 mi in alpine zone. (CCW route above treeline for 12 mi ahead. Bail-outs via trail (or xc to treeline)",
+    "section": 8,
+    "elevation": 11982
+  },
+  {
+    "mile": 437,
+    "lat": 35.97037,
+    "lon": -105.60771,
+    "name": "S8 45.3 - !!",
+    "landmark": "are possible but not always convenient or immediate. Plan for the weather and use Divide Bypass route as needed.",
+    "section": 8,
+    "elevation": 11945
+  },
+  {
+    "mile": 437.4,
+    "lat": 35.96846,
+    "lon": -105.61416,
+    "name": "S8 45.7 - JL",
+    "landmark": "Beatty's Tr 25 leaves Skyline Tr at right (NW). Remain on Tr 251.",
+    "section": 8,
+    "elevation": 11766
+  },
+  {
+    "mile": 437.9,
+    "lat": 35.97265,
+    "lon": -105.61945,
+    "name": "S8 46.2 - JR",
+    "landmark": "Signed jct with Jacks Creek Tr 257. Remain on Skyline Tr 251.",
+    "section": 8,
+    "elevation": 11617
+  },
+  {
+    "mile": 438,
+    "lat": 35.97313,
+    "lon": -105.62079,
+    "name": "S8 46.3 - W2",
+    "landmark": "Trail crosses seasonal creeklet Junction (possibly obscure) with trail heading N over divide to W Fork Tr 25. This is the end of Santa Barbara Divide Bypass. CW if you took the bypass, rejoin main route here (W). (CCW main route ahead is above treeline for 12 continuous miles. Use bypass route to avoid majority of",
+    "section": 8,
+    "elevation": 11664
+  },
+  {
+    "mile": 438.1,
+    "lat": 35.97304,
+    "lon": -105.62287,
+    "name": "S8 46.4 - JL (S8A END)",
+    "landmark": "exposed miles during anticipated bad weather. The alternate and portion of the main route it replaces are almost exactly the same distance, albeit bypass loses and then regains several thousand feet of elevation.)",
+    "section": 8,
+    "elevation": 11746
+  },
+  {
+    "mile": 438.2,
+    "lat": 35.97286,
+    "lon": -105.625,
+    "name": "S8 46.5 - W2",
+    "landmark": "Trail crosses creeklet",
+    "section": 8,
+    "elevation": 11776
+  },
+  {
+    "mile": 438.4,
+    "lat": 35.973,
+    "lon": -105.62712,
+    "name": "S8 46.7 - W2",
+    "landmark": "Trail crosses seasonal creeklet",
+    "section": 8,
+    "elevation": 11774
+  },
+  {
+    "mile": 438.9,
+    "lat": 35.9701,
+    "lon": -105.63423,
+    "name": "S8 47.2 - XT W3",
+    "landmark": "Jct Rio Quemado Tr 153. Remain on Skyline Tr 251. Truchas Lake outlet.",
+    "section": 8,
+    "elevation": 11870
+  },
+  {
+    "mile": 439.2,
+    "lat": 35.96741,
+    "lon": -105.63534,
+    "name": "S8 47.5 - W2 XT",
+    "landmark": "TJ in wet flowing meadow (6-20). Remain on Skyline Tr 251.",
+    "section": 8,
+    "elevation": 11706
+  },
+  {
+    "mile": 439.3,
+    "lat": 35.96564,
+    "lon": -105.63527,
+    "name": "S8 47.6 - W2",
+    "landmark": "Flow across trail",
+    "section": 8,
+    "elevation": 11722
+  },
+  {
+    "mile": 439.6,
+    "lat": 35.96277,
+    "lon": -105.6356,
+    "name": "S8 47.9 - W2",
+    "landmark": "Small snowmelt creek 6-20",
+    "section": 8,
+    "elevation": 11749
+  },
+  {
+    "mile": 440.2,
+    "lat": 35.95939,
+    "lon": -105.64104,
+    "name": "S8 48.5 - W2",
+    "landmark": "Snowmelt pond 6-20",
+    "section": 8,
+    "elevation": 11939
+  },
+  {
+    "mile": 440.6,
+    "lat": 35.95465,
+    "lon": -105.64024,
+    "name": "S8 48.9 - W2",
+    "landmark": "Trailside tarn and creeklet 6-20 Skyline Tr 251 jct with side trail (S Azul Tr 258). Skyline (main route) heads above treeline again (Trailriders Wall) here to Pecos Baldy Lake.",
+    "section": 8,
+    "elevation": 11775
+  },
+  {
+    "mile": 441.1,
+    "lat": 35.94843,
+    "lon": -105.63728,
+    "name": "S8 49.4 - JR !!",
+    "landmark": "(Can use Tr 258 to Jacks Creek Tr 257 then back to Skyline 251 as a less exposed alternate this area.)",
+    "section": 8,
+    "elevation": 11544
+  },
+  {
+    "mile": 441.4,
+    "lat": 35.94551,
+    "lon": -105.6386,
+    "name": "S8 49.7 - JL",
+    "landmark": "Signed jct with Jose Vigil Tr 351. Remain on Skyline. Signed jct with Tr 164 (alternate route to Pecos Baldy Lake). Main route",
+    "section": 8,
+    "elevation": 11641
+  },
+  {
+    "mile": 442.8,
+    "lat": 35.92593,
+    "lon": -105.63789,
+    "name": "S8 51.1 - JL",
+    "landmark": "remains on Skyline. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. Skyline Tr 251 at Jack's Creek Tr 257. Pecos Baldy Lake access 0.1W.",
+    "section": 8,
+    "elevation": 11874
+  },
+  {
+    "mile": 444.2,
+    "lat": 35.91217,
+    "lon": -105.64469,
+    "name": "S8 52.5 - JL (W3 0.1W)",
+    "landmark": "(Skyline Tr to S not recommended due to heavy damage from 2013 Jaroso Fire along Rito Perro.)",
+    "section": 8,
+    "elevation": 11454
+  },
+  {
+    "mile": 444.5,
+    "lat": 35.91021,
+    "lon": -105.64063,
+    "name": "S8 52.8 - W2",
+    "landmark": "CW First of two crossings of modestly flowing creek 6-20 Enter 2013 Jaroso Fire burn zone (S). Moderate burn damage but trail",
+    "section": 8,
+    "elevation": 11292
+  },
+  {
+    "mile": 445.2,
+    "lat": 35.90143,
+    "lon": -105.63618,
+    "name": "S8 53.5 - !!",
+    "landmark": "receives more routine maintenance.",
+    "section": 8,
+    "elevation": 11011
+  },
+  {
+    "mile": 446.3,
+    "lat": 35.88765,
+    "lon": -105.63509,
+    "name": "S8 54.6 - !!",
+    "landmark": "Leave Jaroso Fire burn zone (S). Signed jct Jacks Creek Tr 257 / Dockweiler Tr 259. CW continue straight",
+    "section": 8,
+    "elevation": 10623
+  },
+  {
+    "mile": 446.4,
+    "lat": 35.8859,
+    "lon": -105.63518,
+    "name": "S8 54.7 - JR",
+    "landmark": "(S) on Jacks (Dockweiler doubles up with Jacks this direction). Jacks Creek Tr 257 at Dockweiler Tr 259. CW do not cross creek. Remain",
+    "section": 8,
+    "elevation": 10554
+  },
+  {
+    "mile": 446.9,
+    "lat": 35.88118,
+    "lon": -105.64085,
+    "name": "S8 55.2 - JR W3 C",
+    "landmark": "on Dockweiler SW. (CCW Jacks Creek Tr joins Dockweiler NE.)",
+    "section": 8,
+    "elevation": 10316
+  },
+  {
+    "mile": 447.7,
+    "lat": 35.87924,
+    "lon": -105.65231,
+    "name": "S8 56.0 - JL",
+    "landmark": "Signed jct with Rito Perro Tr 256. Remain on Dockweiler Tr 259 (W).",
+    "section": 8,
+    "elevation": 10266
+  },
+  {
+    "mile": 448.6,
+    "lat": 35.86863,
+    "lon": -105.65826,
+    "name": "S8 56.9 - W2",
+    "landmark": "Good small flow in meadow across Dockweiler Tr 6-20 Signed jct Dockweiler Tr 259 at Cave Creek Tr 288. CW right (NW) on Tr",
+    "section": 8,
+    "elevation": 10055
+  },
+  {
+    "mile": 451.9,
+    "lat": 35.8391,
+    "lon": -105.67021,
+    "name": "S8 60.2 - JR",
+    "landmark": "288. (CCW N on Tr 259.) First or last good access to Cave Creek (accessible sporadically CW).",
+    "section": 8,
+    "elevation": 8555
+  },
+  {
+    "mile": 452.2,
+    "lat": 35.84189,
+    "lon": -105.67267,
+    "name": "S8 60.5 - W3",
+    "landmark": "Short side trail down into meadow leads to creek.",
+    "section": 8,
+    "elevation": 8522
+  },
+  {
+    "mile": 452.9,
+    "lat": 35.84892,
+    "lon": -105.67886,
+    "name": "S8 61.2 - W3",
+    "landmark": "Panchuela Creek crossing along Cave Creek Tr Cave Creek Tr 288 at Skyline Tr 251. Last / first access to reliable Cave",
+    "section": 8,
+    "elevation": 8644
+  },
+  {
+    "mile": 455.2,
+    "lat": 35.86092,
+    "lon": -105.7109,
+    "name": "S8 63.5 - JL W3",
+    "landmark": "Creek. (Skyline Tr to N not recommended due to heavy fire damage beyond Horsethief Meadow) Skyline Tr 251 passes junction with Johnson Lake Tr 267. Remain on Tr",
+    "section": 8,
+    "elevation": 9808
+  },
+  {
+    "mile": 456.8,
+    "lat": 35.84664,
+    "lon": -105.72109,
+    "name": "S8 65.1 - XT W3",
+    "landmark": "251. Calf deep (easy) crossing of Rito Oscuro.",
+    "section": 8,
+    "elevation": 10304
+  },
+  {
+    "mile": 457,
+    "lat": 35.84478,
+    "lon": -105.7224,
+    "name": "S8 65.3 - W2-3",
+    "landmark": "Fork of Rito Oscuro. Strong flow wet feet 6-20",
+    "section": 8,
+    "elevation": 10287
+  },
+  {
+    "mile": 458,
+    "lat": 35.8323,
+    "lon": -105.71974,
+    "name": "S8 66.3 - JR",
+    "landmark": "Signed jct Winsor Ridge Tr 271 (E). Remain on Skyline Tr 251.",
+    "section": 8,
+    "elevation": 10201
+  },
+  {
+    "mile": 458.2,
+    "lat": 35.83105,
+    "lon": -105.72112,
+    "name": "S8 66.5 - W2",
+    "landmark": "Small pond outlet E of Stewart Lake",
+    "section": 8,
+    "elevation": 10205
+  },
+  {
+    "mile": 458.4,
+    "lat": 35.83043,
+    "lon": -105.7243,
+    "name": "S8 66.7 - W2",
+    "landmark": "Stewart Lake outlet",
+    "section": 8,
+    "elevation": 10236
+  },
+  {
+    "mile": 458.9,
+    "lat": 35.82381,
+    "lon": -105.72717,
+    "name": "S8 67.2 - JR W3",
+    "landmark": "Skyline Tr 251 at Winsor Tr 254. Perennial water from Winsor Creek. Signed jct WInsor Tr 254 / Skyline Tr 251. CW main route follows Winsor",
+    "section": 8,
+    "elevation": 10160
+  },
+  {
+    "mile": 459.5,
+    "lat": 35.82532,
+    "lon": -105.73523,
+    "name": "S8 67.8 - JL (S8B START)",
+    "landmark": "Trail (W) while 6.7-mile Santa Fe Baldy Alt uses continuation of Skyline Tr, offering option to summit namesake peak. Winsor Creek crossing on Tr 254. Can be tricky during peak snowmelt,",
+    "section": 8,
+    "elevation": 10582
+  },
+  {
+    "mile": 459.6,
+    "lat": 35.82547,
+    "lon": -105.73774,
+    "name": "S8 67.9 - W3",
+    "landmark": "but normally a rock-hop.",
+    "section": 8,
+    "elevation": 10663
+  },
+  {
+    "mile": 460.4,
+    "lat": 35.81758,
+    "lon": -105.73923,
+    "name": "S8 68.7 - W3",
+    "landmark": "Spirit Lake outlet. Tanins often present in water here. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. Signed jct Skyline / Winsor (again, thanks to convoluted nature of these two trails). Main route remains on Winsor (straight), while Skyline is W and S. (CW, to try out the 5-mile Lake Peak Alternate, offering a scenic",
+    "section": 8,
+    "elevation": 10813
+  },
+  {
+    "mile": 461.8,
+    "lat": 35.81089,
+    "lon": -105.75356,
+    "name": "S8 70.1 - XT (S8C START)",
+    "landmark": "conclusion to your time in Pecos Wilderness without much crowd pressure, head S on Skyline here. This high route, however, can hold onto snow quite late into spring or early summer and is somewhat exposed, possibly not the best choice for the less snow-savvy hiker.) End of 6.7-mile Santa Fe Baldy Alternate at signed junction. Follow Winsor Tr 254 (W). (CCW Tr 251 heads NE toward Santa Fe Baldy if",
+    "section": 8,
+    "elevation": 11083
+  },
+  {
+    "mile": 462.2,
+    "lat": 35.81356,
+    "lon": -105.76079,
+    "name": "S8 70.5 - JL (S8B END)",
+    "landmark": "you're interested in summiting this well-known peak, otherwise remain E on Winsor Tr 254).",
+    "section": 8,
+    "elevation": 10950
+  },
+  {
+    "mile": 462.9,
+    "lat": 35.81214,
+    "lon": -105.76497,
+    "name": "S8 71.2 - W2",
+    "landmark": "Rock hop crossing of Rio Nambe headwaters.",
+    "section": 8,
+    "elevation": 10584
+  },
+  {
+    "mile": 463,
+    "lat": 35.81226,
+    "lon": -105.76766,
+    "name": "S8 71.3 - JL",
+    "landmark": "Signed jct with Rio Nambe Tr 160 to N. Remain on Winsor Tr 254.",
+    "section": 8,
+    "elevation": 10508
+  },
+  {
+    "mile": 463.8,
+    "lat": 35.81296,
+    "lon": -105.7811,
+    "name": "S8 72.1 - JL",
+    "landmark": "Signed jct with Upper Nambe Tr 101 to N. Remain on WInsor Tr 254.",
+    "section": 8,
+    "elevation": 10363
+  },
+  {
+    "mile": 464.2,
+    "lat": 35.80877,
+    "lon": -105.78403,
+    "name": "S8 72.5 - W3",
+    "landmark": "Rio Nambe crossing Signed jct with Nambe Lake Tr 400. Remain on Winsor Tr 254. (CCW",
+    "section": 8,
+    "elevation": 10404
+  },
+  {
+    "mile": 464.2,
+    "lat": 35.80887,
+    "lon": -105.78452,
+    "name": "S8 72.5 - JR",
+    "landmark": "don't take Nambe Lake Tr by mistake. Turn left - E.)",
+    "section": 8,
+    "elevation": 10423
+  },
+  {
+    "mile": 465.3,
+    "lat": 35.80724,
+    "lon": -105.79995,
+    "name": "S8 73.6 - JL",
+    "landmark": "Signed jct with Lower Nambe Tr 403 (N). Remain on WInsor Tr 254. Main route remains on Winsor Tr 254, while the 5-mile Lake Peak Alternate ends here at unsigned junction with WB Fence Trail (more of a route that follows the fenceline at Pecos Wilderness boundary, which",
+    "section": 8,
+    "elevation": 10684
+  },
+  {
+    "mile": 465.7,
+    "lat": 35.80263,
+    "lon": -105.80297,
+    "name": "S8 74.0 - JR (S8C END)",
+    "landmark": "the main route exits here). (CCW Lake Peak Alt can be a worthwhile route to avoid occasionally large numbers of hikers along main route next several miles, especially in early autumn when snowpack concerns along this high, exposed alternate are typically minimal or nonexistent.) Junction with side trail to Aspen Basin parking (from Santa Fe). NNML",
+    "section": 8,
+    "elevation": 10807
+  },
+  {
+    "mile": 466.4,
+    "lat": 35.79623,
+    "lon": -105.80461,
+    "name": "S8 74.7 - JR (TH 100yd S)",
+    "landmark": "remains on WInsor Tr 254.",
+    "section": 8,
+    "elevation": 10284
+  },
+  {
+    "mile": 466.5,
+    "lat": 35.79517,
+    "lon": -105.80594,
+    "name": "S8 74.8 - W2",
+    "landmark": "Small creek 6-20 Unsigned jct. CW right then thru gate. Then within 250 ft turn left (E)",
+    "section": 8,
+    "elevation": 10237
+  },
+  {
+    "mile": 466.5,
+    "lat": 35.79442,
+    "lon": -105.80584,
+    "name": "S8 74.8 - JR GT JL",
+    "landmark": "remaining on Winsor Tr 254 as Rio en Medio Tr 163 veers off S.",
+    "section": 8,
+    "elevation": 10204
+  },
+  {
+    "mile": 466.6,
+    "lat": 35.7937,
+    "lon": -105.80602,
+    "name": "S8 74.9 - W3",
+    "landmark": "Rio en Medio Winsor Tr 254 passes through trailhead by kiosk, with NM 475 / Hyde",
+    "section": 8,
+    "elevation": 10160
+  },
+  {
+    "mile": 467.1,
+    "lat": 35.78888,
+    "lon": -105.80884,
+    "name": "S8 75.4 - TH",
+    "landmark": "Park Rd nearby (vehicle route between Aspen / Ski Basin and Santa Fe). First of several sections of Winsor Trail ahead that split into two trails,",
+    "section": 8,
+    "elevation": 10286
+  },
+  {
+    "mile": 467.4,
+    "lat": 35.78568,
+    "lon": -105.80983,
+    "name": "S8 75.7 - TJ",
+    "landmark": "one for uphill traffic and one for downhill. Based around bicycle use; hikers could probably use either fork.",
+    "section": 8,
+    "elevation": 10089
+  },
+  {
+    "mile": 467.5,
+    "lat": 35.78456,
+    "lon": -105.81112,
+    "name": "S8 75.8 - TJ",
+    "landmark": "Forks merge back into single trail here (CW). (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color.",
+    "section": 8,
+    "elevation": 9969
+  },
+  {
+    "mile": 467.8,
+    "lat": 35.78367,
+    "lon": -105.81047,
+    "name": "S8 76.1 - W2",
+    "landmark": "Northern fork of Rio Chupadero. Modest flow 6-20",
+    "section": 8,
+    "elevation": 9840
+  },
+  {
+    "mile": 469.1,
+    "lat": 35.77824,
+    "lon": -105.82429,
+    "name": "S8 77.4 - XR",
+    "landmark": "signed Winsor Trail crosses FR 102",
+    "section": 8,
+    "elevation": 9294
+  },
+  {
+    "mile": 469.3,
+    "lat": 35.77631,
+    "lon": -105.82222,
+    "name": "S8 77.6 - W2",
+    "landmark": "Rio Chupadero headwaters. Lightly flowing where trail crosses 6-20.",
+    "section": 8,
+    "elevation": 9244
+  },
+  {
+    "mile": 469.6,
+    "lat": 35.77566,
+    "lon": -105.82721,
+    "name": "S8 77.9 - JR",
+    "landmark": "Jct with Big Tesuque Tr 152 (SE). Remain on Winsor Trail. Switchback at unsigned fork. CW head S as another trail joins from right.",
+    "section": 8,
+    "elevation": 9138
+  },
+  {
+    "mile": 470.1,
+    "lat": 35.77514,
+    "lon": -105.83376,
+    "name": "S8 78.4 - JL",
+    "landmark": "CCW take the right fork (SE). Still on Winsor Trail.",
+    "section": 8,
+    "elevation": 8992
+  },
+  {
+    "mile": 470.9,
+    "lat": 35.76466,
+    "lon": -105.83308,
+    "name": "S8 79.2 - JR",
+    "landmark": "Signed jct with Borrego Tr 150 (S). Remain on Winsor Tr 254.",
+    "section": 8,
+    "elevation": 8505
+  },
+  {
+    "mile": 471.1,
+    "lat": 35.76314,
+    "lon": -105.83565,
+    "name": "S8 79.4 - W3",
+    "landmark": "CW early access to perennial Tesuque Creek",
+    "section": 8,
+    "elevation": 8437
+  },
+  {
+    "mile": 471.7,
+    "lat": 35.76067,
+    "lon": -105.84543,
+    "name": "S8 80.0 - JR",
+    "landmark": "Jct with Bear Wallow Tr 182 (S). Remain on Winsor Tr 254.",
+    "section": 8,
+    "elevation": 8197
+  },
+  {
+    "mile": 472.8,
+    "lat": 35.75266,
+    "lon": -105.8581,
+    "name": "S8 81.1 - W3 JL",
+    "landmark": "CW last access Tesuque Creek. Winsor Tr 254 at Chamisa Tr 183 4 way signed jct at saddle. CW turn right (NW) on Saddleback Tr 232.",
+    "section": 8,
+    "elevation": 7922
+  },
+  {
+    "mile": 473.7,
+    "lat": 35.74264,
+    "lon": -105.8582,
+    "name": "S8 82.0 - JR",
+    "landmark": "(CCW turn left - E - onto Chamisa Tr 133.)",
+    "section": 8,
+    "elevation": 8410
+  },
+  {
+    "mile": 475,
+    "lat": 35.73317,
+    "lon": -105.86992,
+    "name": "S8 83.3 - JR",
+    "landmark": "Unsigned trail jct, CW take right fork. Remain on Saddleback Trail. Trail jct. CW end of Saddleback Tr, join Juan Tr 399 (S). (CCW head E",
+    "section": 8,
+    "elevation": 8467
+  },
+  {
+    "mile": 476.2,
+    "lat": 35.73181,
+    "lon": -105.88528,
+    "name": "S8 84.5 - JL",
+    "landmark": "onto Saddleback.)",
+    "section": 8,
+    "elevation": 7849
+  },
+  {
+    "mile": 476.5,
+    "lat": 35.73025,
+    "lon": -105.88931,
+    "name": "S8 84.8 - JR",
+    "landmark": "TJ. CW leave Juan Tr 399 onto trail heading W.",
+    "section": 8,
+    "elevation": 7728
+  },
+  {
+    "mile": 476.5,
+    "lat": 35.72992,
+    "lon": -105.89053,
+    "name": "S8 84.8 - JR",
+    "landmark": "Another unsigned trail jct. CW right fork (W).",
+    "section": 8,
+    "elevation": 7732
+  },
+  {
+    "mile": 476.8,
+    "lat": 35.73048,
+    "lon": -105.89444,
+    "name": "S8 85.1 - JL",
+    "landmark": "Saddle junction. CW left (S). CW trail from ridge at Little Tesuque Tr. First access Little Tesuque Creek",
+    "section": 8,
+    "elevation": 7556
+  },
+  {
+    "mile": 477,
+    "lat": 35.7277,
+    "lon": -105.89509,
+    "name": "S8 85.3 - JR W1",
+    "landmark": "(seasonal). CW last access Little Tesuque Crk (seasonal). Little Tesuque Trail at La",
+    "section": 8,
+    "elevation": 7425
+  },
+  {
+    "mile": 477.4,
+    "lat": 35.72568,
+    "lon": -105.90119,
+    "name": "S8 85.7 - JL W1",
+    "landmark": "Piedra Tr.",
+    "section": 8,
+    "elevation": 7341
+  },
+  {
+    "mile": 478.1,
+    "lat": 35.72116,
+    "lon": -105.90069,
+    "name": "S8 86.4 - JL",
+    "landmark": "La Piedra Tr splits (for bike traffic uphill vs downhill).",
+    "section": 8,
+    "elevation": 7583
+  },
+  {
+    "mile": 478.4,
+    "lat": 35.71949,
+    "lon": -105.8996,
+    "name": "S8 86.7 - JL",
+    "landmark": "Resumption of La Piedra single trail (S). Another trail split. Dale Ball trail network. Suggested route uses left fork",
+    "section": 8,
+    "elevation": 7716
+  },
+  {
+    "mile": 478.5,
+    "lat": 35.71829,
+    "lon": -105.89913,
+    "name": "S8 86.8 - JL",
+    "landmark": "here (SE).",
+    "section": 8,
+    "elevation": 7731
+  },
+  {
+    "mile": 479.2,
+    "lat": 35.7127,
+    "lon": -105.90095,
+    "name": "S8 87.5 - JL",
+    "landmark": "Dale Ball trail network junction Trail passes E side of Dale Ball trailhead. Then follow trail across NM 495",
+    "section": 8,
+    "elevation": 7690
+  },
+  {
+    "mile": 479.4,
+    "lat": 35.71045,
+    "lon": -105.89929,
+    "name": "S8 87.7 - TH XR",
+    "landmark": "/ Hyde Park Rd to E side. Trail then proceeds S. (CCW cross Hyde Park Rd then take trail N past Dale Ball TH.)",
+    "section": 8,
+    "elevation": 7583
+  },
+  {
+    "mile": 479.9,
+    "lat": 35.70404,
+    "lon": -105.90106,
+    "name": "S8 88.2 - JL",
+    "landmark": "Dale Ball trail network junction. CW left fork (S).",
+    "section": 8,
+    "elevation": 7600
+  },
+  {
+    "mile": 480.3,
+    "lat": 35.69942,
+    "lon": -105.90228,
+    "name": "S8 88.6 - XT",
+    "landmark": "Dale Ball trail junctions. CW continue S. South end of Dale Ball singletrack trail network (multi-use, non-",
+    "section": 8,
+    "elevation": 7510
+  },
+  {
+    "mile": 481.2,
+    "lat": 35.68681,
+    "lon": -105.90362,
+    "name": "S8 89.5 - TH JR (TR>RD)",
+    "landmark": "motorized). CW join paved residential Cerro Gordo Rd (SW).",
+    "section": 8,
+    "elevation": 7290
+  },
+  {
+    "mile": 482.5,
+    "lat": 35.68121,
+    "lon": -105.92203,
+    "name": "S8 90.8 - JL",
+    "landmark": "Cerro Gordo Rd at Gonzales Rd Gonzales Rd at Alameda St / Santa Fe River Park. CW follow sidewalk",
+    "section": 8,
+    "elevation": 7123
+  },
+  {
+    "mile": 482.5,
+    "lat": 35.68037,
+    "lon": -105.92259,
+    "name": "S8 90.8 - JR",
+    "landmark": "trail within park alongside Alameda St (NW). (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. Cross bridge over Santa Fe River (seasonal creek not recommended for",
+    "section": 8,
+    "elevation": 7095
+  },
+  {
+    "mile": 482.8,
+    "lat": 35.68241,
+    "lon": -105.92511,
+    "name": "S8 91.1 - !!",
+    "landmark": "drinking). CW on south side head NW across lot onto singletrack trail. Bridge over Santa Fe River. CW cross to N side then W again on sidewalk",
+    "section": 8,
+    "elevation": 7071
+  },
+  {
+    "mile": 483.2,
+    "lat": 35.6844,
+    "lon": -105.93115,
+    "name": "S8 91.5 - !!",
+    "landmark": "trail. (CCW cross bridge to find dirt urban trail heading E.) Crosswalk over Alameda St. CW leave Santa Fe River Park, cross Alameda St to N side then take Cathedral Place NW. (CCW cross",
+    "section": 8,
+    "elevation": 7025
+  },
+  {
+    "mile": 483.4,
+    "lat": 35.68456,
+    "lon": -105.93536,
+    "name": "S8 91.7 - JR",
+    "landmark": "Alameda St at crosswalk then join sidewalk trail E within Santa Fe River Park.) Historic St Francis of Assisi cathedral at junction Cathedral Place and E",
+    "section": 8,
+    "elevation": 7008
+  },
+  {
+    "mile": 483.6,
+    "lat": 35.68668,
+    "lon": -105.93676,
+    "name": "S8 91.9 - !! JL",
+    "landmark": "San Francisco St. Fe Plaza. Fine arts, native wares, tchotchkes, and plenty of classy restaurants in the vicinity. The famed Georgia O'Keefe Museum is also",
+    "section": 8,
+    "elevation": 7001
+  },
+  {
+    "mile": 483.7,
+    "lat": 35.68736,
+    "lon": -105.93848,
+    "name": "S1/8 92.0 - SANTA FE PLAZA",
+    "landmark": "nearby. Buena suerte! Good luck on your journey! (And for those having just completed the Loop, congratulations!) To begin clockwise along the Loop, from the plaza head west on San Francisco Street. Signed jct Comales Tr 22 and Divide Tr 36. CW main route heads S on Tr 36, or continue on Tr 22 via Santa Barbara Divide Bypass Route in order to avoid continuous 12 mi ridge above treeline along main route just",
+    "section": 8,
+    "elevation": 6991
+  }
+]

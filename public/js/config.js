@@ -1,5 +1,5 @@
 // Section points along the Oregon Desert Trail
-export const sectionPoints = [
+export const odtSectionPoints = [
   // Region 1: Central Oregon Volcanic
   { name: "1: Badlands to Sand Spring", lat: 44.045, lon: -121.038, mile: 0, elevation: 3406, section: 1 },
   { name: "2: Sand Spring to South Reservoir", lat: 43.708, lon: -120.847, mile: 36, elevation: 4944, section: 2 },
@@ -33,6 +33,81 @@ export const sectionPoints = [
   { name: "24: Lambert Rocks to Leslie Gulch", lat: 43.064, lon: -117.681, mile: 684, elevation: 3389, section: 24 },
   { name: "25: Leslie Gulch to Owyhee Reservoir", lat: 43.299, lon: -117.270, mile: 725, elevation: 3517, section: 25 }
 ];
+
+export const nnmlSectionPoints = [
+  { name: "1: Santa Fe to La Cueva", lat: 35.68744, lon: -105.93996, mile: 0, elevation: 6985, section: 1 },
+  { name: "2: La Cueva to Ghost Ranch", lat: 35.86714, lon: -106.63909, mile: 78.4, elevation: 7638, section: 2 },
+  { name: "3: Ghost Ranch to Chama Access", lat: 36.33072, lon: -106.47281, mile: 154.4, elevation: 6470, section: 3 },
+  { name: "4: Chama Access to Questa", lat: 36.92603, lon: -106.35576, mile: 232.4, elevation: 10739, section: 4 },
+  { name: "5: Questa to Red River", lat: 36.72271, lon: -105.59502, mile: 292.4, elevation: 7648, section: 5 },
+  { name: "6: Red River to San Cristobal", lat: 36.70964, lon: -105.40875, mile: 325.7, elevation: 8638, section: 6 },
+  { name: "7: San Cristobal to Ranchos de Taos", lat: 36.59543, lon: -105.64353, mile: 352.7, elevation: 7406, section: 7 },
+  { name: "8: Ranchos de Taos to Santa Fe", lat: 36.36029, lon: -105.60825, mile: 391.7, elevation: 6919, section: 8 }
+];
+
+export const DEFAULT_TRAIL_ID = 'odt';
+
+export const TRAILS = {
+  odt: {
+    id: 'odt',
+    name: 'Oregon Desert Trail',
+    shortName: 'ODT',
+    description: 'Oregon Desert Trail',
+    totalMiles: 750,
+    sectionsLabel: '25 sections',
+    sectionBoundaryType: 'ODT Section Boundary',
+    about: {
+      summary: '<strong>ODT</strong> provides real-time trail data and forecasts for all 25 sections of the 750-mile Oregon Desert Trail.',
+      routeSource: 'ONDA-sourced GPX and KML miles',
+      byTheNumbers: [
+        '852 waypoints with precise GPS coordinates',
+        '325 water sources with reliability ratings',
+        '25 trail sections · 750 miles'
+      ]
+    },
+    data: {
+      waypoints: 'waypoints.json',
+      water: 'water.json',
+      towns: 'towns.json',
+      navigation: 'navigation.json',
+      toilets: 'toilets.json',
+      elevationProfile: 'elevation-profile.json'
+    },
+    sections: odtSectionPoints,
+    center: { lat: 43.5, lon: -118.9 }
+  },
+  nnml: {
+    id: 'nnml',
+    name: 'Northern New Mexico Loop',
+    shortName: 'NNML',
+    description: 'Northern New Mexico Loop',
+    totalMiles: 484,
+    sectionsLabel: '8 sections',
+    sectionBoundaryType: 'NNML Section Boundary',
+    about: {
+      summary: '<strong>NNML</strong> provides real-time trail data and forecasts for the Northern New Mexico Loop.',
+      routeSource: 'Northern New Mexico Loop GPX tracks and Data Book milepoints',
+      byTheNumbers: [
+        '518 parsed milepoint waypoints',
+        '141 water sources with W1/W2/W3 reliability ratings',
+        '8 main-route sections · about 484 miles'
+      ]
+    },
+    data: {
+      waypoints: 'trails/nnml/waypoints.json',
+      water: 'trails/nnml/water.json',
+      towns: 'trails/nnml/towns.json',
+      navigation: 'trails/nnml/navigation.json',
+      toilets: 'trails/nnml/toilets.json',
+      elevationProfile: 'trails/nnml/elevation-profile.json'
+    },
+    sections: nnmlSectionPoints,
+    center: { lat: 36.36, lon: -106.05 }
+  }
+};
+
+// Backward-compatible export for existing tests and modules that still import it.
+export const sectionPoints = odtSectionPoints;
 
 // Weather icons (inline SVG for no external requests)
 export const weatherIcons = {

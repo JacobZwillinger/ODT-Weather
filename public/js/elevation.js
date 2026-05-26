@@ -2,6 +2,7 @@ import { loadElevationProfile, state } from './utils.js';
 
 // ---- State ----
 let _profile = null;       // full elevation-profile.json array
+let _profileTrailId = null;
 let _startMile = 0;        // left edge of the current 20-mile view
 let _windowMiles = 20;     // always 20
 let _canvasId = null;
@@ -507,10 +508,13 @@ export const renderElevationChart = async (startMile, canvasId) => {
   if (!canvas) return;
 
   const [profile] = await Promise.all([
-    _profile ? Promise.resolve(_profile) : loadElevationProfile(),
+    _profile && _profileTrailId === state.trail.id ? Promise.resolve(_profile) : loadElevationProfile(),
     preloadIcons()
   ]);
-  if (!_profile) _profile = profile;
+  if (!_profile || _profileTrailId !== state.trail.id) {
+    _profile = profile;
+    _profileTrailId = state.trail.id;
+  }
   if (!_profile) {
     const ctx = canvas.getContext('2d');
     ctx.fillStyle = '#333';
@@ -534,6 +538,13 @@ export const renderElevationChart = async (startMile, canvasId) => {
   canvas.style.touchAction = 'none';
 
   draw();
+};
+
+export const resetElevationChart = () => {
+  _profile = null;
+  _profileTrailId = null;
+  _startMile = 0;
+  _currentMile = 0;
 };
 
 export const jumpToCurrentMile = () => {

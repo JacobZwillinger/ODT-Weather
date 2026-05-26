@@ -1,7 +1,13 @@
-import { MILE_EPSILON } from './config.js';
+import { DEFAULT_TRAIL_ID, MILE_EPSILON, TRAILS } from './config.js';
+
+export const getSavedTrailId = () => {
+  const saved = localStorage.getItem('activeTrailId');
+  return TRAILS[saved] ? saved : DEFAULT_TRAIL_ID;
+};
 
 // Shared state for data
 export const state = {
+  trail: TRAILS[getSavedTrailId()],
   waterSources: [],
   towns: [],
   allWaypoints: [],
@@ -23,6 +29,15 @@ export const state = {
     sections: true
   }
 };
+
+export const setActiveTrail = (trailId) => {
+  state.trail = TRAILS[trailId] || TRAILS[DEFAULT_TRAIL_ID];
+  localStorage.setItem('activeTrailId', state.trail.id);
+};
+
+export const getSectionPoints = () => state.trail.sections;
+
+export const getTrailStorageKey = (key) => `${state.trail.id}_${key}`;
 
 // Load saved toggle state from localStorage
 export const loadToggleState = () => {
@@ -46,7 +61,7 @@ export const saveToggleState = () => {
 export const loadElevationProfile = async () => {
   if (state.elevationProfile) return state.elevationProfile;
   try {
-    const response = await fetch('elevation-profile.json');
+    const response = await fetch(state.trail.data.elevationProfile);
     if (!response.ok) throw new Error(`HTTP ${response.status}`); // [BUGS] Fixed: missing response.ok check before parsing JSON
     state.elevationProfile = await response.json();
     return state.elevationProfile;
@@ -54,6 +69,10 @@ export const loadElevationProfile = async () => {
     console.error('Failed to load elevation profile:', error);
     return null;
   }
+};
+
+export const clearElevationProfile = () => {
+  state.elevationProfile = null;
 };
 
 // Get waypoint display name

@@ -4,11 +4,12 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 // Tests the getIcon fallback, renderWeatherTable DOM output, and loadForecasts error handling
 
 // Mock config.js
+const mockSectionPoints = [
+  { name: '1: Badlands to Sand Spring', lat: 44.045, lon: -121.038, mile: 0, elevation: 3406, section: 1 },
+  { name: '2: Sand Spring to South Reservoir', lat: 43.708, lon: -120.847, mile: 36, elevation: 4944, section: 2 },
+];
+
 vi.mock('../../public/js/config.js', () => ({
-  sectionPoints: [
-    { name: '1: Badlands to Sand Spring', lat: 44.045, lon: -121.038, mile: 0, elevation: 3406, section: 1 },
-    { name: '2: Sand Spring to South Reservoir', lat: 43.708, lon: -120.847, mile: 36, elevation: 4944, section: 2 },
-  ],
   weatherIcons: {
     'clear-day': '<svg>clear-day</svg>',
     'rain': '<svg>rain</svg>',
@@ -18,6 +19,12 @@ vi.mock('../../public/js/config.js', () => ({
   WATER_WARNING_MILES: 20,
   SCROLL_DELAY_MS: 100,
   MAP_INIT_DELAY_MS: 100,
+}));
+
+vi.mock('../../public/js/utils.js', () => ({
+  getDayHeaders: () => ['Today', 'Tomorrow', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'],
+  getSectionPoints: () => mockSectionPoints,
+  state: { trail: { id: 'odt' } }
 }));
 
 // Set up DOM before importing weather.js

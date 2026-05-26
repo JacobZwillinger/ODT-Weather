@@ -12,6 +12,7 @@ vi.mock('../../public/js/utils.js', () => ({
 
 vi.mock('../../public/js/map.js', () => ({
   showMapInfo: vi.fn(),
+  updateDailyMiles: vi.fn(),
 }));
 
 vi.mock('../../public/js/config.js', () => ({

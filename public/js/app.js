@@ -1,13 +1,13 @@
 // Main application entry point
-import { state, loadToggleState, saveToggleState } from './utils.js';
+import { clearElevationProfile, getSectionPoints, getTrailStorageKey, setActiveTrail, state, loadToggleState, saveToggleState } from './utils.js';
 import { loadForecasts } from './weather.js';
 import { initModals, showWaypointDetail, showWaterDetail, showTownDetail } from './modals.js';
-import { showMapInfo, scheduleMapInit, toggleCategoryLayer, swapCategoryData, onMapReady, resetMapView, saveMapView, restoreMapView, getMileageLog, deleteMileageDay } from './map.js';
+import { applyTrailMapData, showMapInfo, scheduleMapInit, toggleCategoryLayer, swapCategoryData, onMapReady, resetMapView, saveMapView, restoreMapView, getMileageLog, deleteMileageDay } from './map.js';
 import { TEST_DATA } from './test-data.js';
 import { initGpsButton, getLastPosition } from './gps.js';
-import { renderElevationChart, jumpToCurrentMile } from './elevation.js';
+import { renderElevationChart, jumpToCurrentMile, resetElevationChart } from './elevation.js';
 import { getMoonData } from './moon.js';
-import { sectionPoints } from './config.js';
+import { TRAILS } from './config.js';
 
 // Safe fetch with error handling
 const safeFetch = async (url, defaultValue = []) => {
@@ -28,6 +28,55 @@ const safeFetch = async (url, defaultValue = []) => {
 const escapeHtml = (str) => {
   if (str == null) return '';
   return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+};
+
+const buildDataset = (trail, waypoints, water, townData, navigation, toilets) => ({
+  trail,
+  allWaypoints: waypoints,
+  waterSources: water,
+  towns: townData,
+  categories: {
+    'water-reliable': water.filter(s => s.subcategory === 'reliable'),
+    'water-other': water.filter(s => s.subcategory !== 'reliable'),
+    towns: townData,
+    navigation,
+    toilets
+  }
+});
+
+const loadTrailDataset = async (trail) => {
+  const [waypoints, water, townData, navigation, toilets] = await Promise.all([
+    safeFetch(trail.data.waypoints, []),
+    safeFetch(trail.data.water, []),
+    safeFetch(trail.data.towns, []),
+    safeFetch(trail.data.navigation, []),
+    safeFetch(trail.data.toilets, [])
+  ]);
+  return buildDataset(trail, waypoints, water, townData, navigation, toilets);
+};
+
+const updateTrailChrome = () => {
+  document.title = state.trail.name;
+  document.querySelector('meta[name="apple-mobile-web-app-title"]')?.setAttribute('content', state.trail.shortName);
+
+  const trailName = document.getElementById('activeTrailName');
+  if (trailName) trailName.textContent = state.trail.shortName;
+
+  const moonNote = document.querySelector('.moon-location-note');
+  if (moonNote) moonNote.textContent = `Times approximate for ${state.trail.shortName} corridor`;
+
+  const aboutSummary = document.getElementById('aboutTrailSummary');
+  if (aboutSummary) aboutSummary.innerHTML = state.trail.about.summary;
+
+  const aboutRouteSource = document.getElementById('aboutRouteSource');
+  if (aboutRouteSource) aboutRouteSource.textContent = state.trail.about.routeSource;
+
+  const aboutNumbers = document.getElementById('aboutTrailNumbers');
+  if (aboutNumbers) {
+    aboutNumbers.innerHTML = state.trail.about.byTheNumbers
+      .map(item => `<li>${escapeHtml(item)}</li>`)
+      .join('');
+  }
 };
 
 // ========== Overlay Management ==========
@@ -81,7 +130,7 @@ const getItemsForFilter = (filter) => {
     case 'toilets':
       return (state.categories.toilets || []).map(t => ({ ...t, type: 'toilets' }));
     case 'sections':
-      return sectionPoints.map(s => ({
+      return getSectionPoints().map(s => ({
         name: s.name, mile: s.mile, lat: s.lat, lon: s.lon,
         type: 'sections', subcategory: null, landmark: null
       }));
@@ -166,6 +215,7 @@ const initSettingsPopover = () => {
     e.stopPropagation();
     const isOpen = !popover.hidden;
     popover.hidden = isOpen;
+    document.getElementById('trailPopover').hidden = true;
     if (!isOpen) positionSettingsPopover();
   });
 
@@ -203,6 +253,70 @@ const initSettingsPopover = () => {
   });
 };
 
+const syncTrailButtons = () => {
+  document.querySelectorAll('.trail-choice-btn').forEach(btn => {
+    const active = btn.dataset.trailId === state.trail.id;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-pressed', String(active));
+  });
+  updateTrailChrome();
+};
+
+const switchTrail = async (trailId) => {
+  if (!TRAILS[trailId] || trailId === state.trail.id) return;
+
+  setActiveTrail(trailId);
+  localStorage.setItem('testMode', 'false');
+  const testModeBtn = document.getElementById('btnKebabTestMode');
+  testModeBtn?.setAttribute('aria-pressed', 'false');
+  testModeBtn?.classList.remove('active');
+  clearElevationProfile();
+  resetElevationChart();
+  const dataset = await loadTrailDataset(state.trail);
+  applyDataset(dataset);
+  realData = {
+    allWaypoints: state.allWaypoints,
+    waterSources: state.waterSources,
+    towns: state.towns,
+    categories: { ...state.categories },
+    trail: state.trail
+  };
+  await applyTrailMapData({ fitToTrail: true });
+  syncTrailButtons();
+  renderWaypointList([...document.querySelectorAll('.filter-btn.active')].map(b => b.dataset.filter));
+  loadForecasts();
+  closeKebabMenu();
+};
+
+const initTrailSwitcher = () => {
+  const trailBtn = document.getElementById('btnKebabTrail');
+  const popover = document.getElementById('trailPopover');
+  if (!trailBtn || !popover) return;
+
+  trailBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = !popover.hidden;
+    popover.hidden = isOpen;
+    document.getElementById('settingsPopover').hidden = true;
+    if (!isOpen) positionToRightOf(trailBtn, popover);
+  });
+
+  popover.querySelectorAll('.trail-choice-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      switchTrail(btn.dataset.trailId);
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!popover.hidden && !popover.contains(e.target) && !trailBtn.contains(e.target)) {
+      popover.hidden = true;
+    }
+  });
+
+  syncTrailButtons();
+};
+
 // Position a panel to the right of a given button
 const positionToRightOf = (btn, panel) => {
   const rect = btn.getBoundingClientRect();
@@ -226,6 +340,7 @@ let realData = null;
 
 // Build the DC test dataset in the same shape that state expects
 const buildTestDataset = () => ({
+  trail: state.trail,
   allWaypoints: TEST_DATA.waypoints,
   waterSources: TEST_DATA.water,
   towns: TEST_DATA.towns,
@@ -240,6 +355,7 @@ const buildTestDataset = () => ({
 
 // Adapter: atomically swap state + live map GeoJSON sources
 const applyDataset = (dataset) => {
+  if (dataset.trail) state.trail = dataset.trail;
   state.allWaypoints = dataset.allWaypoints;
   state.waterSources = dataset.waterSources;
   state.towns        = dataset.towns;
@@ -255,9 +371,11 @@ const applyDataset = (dataset) => {
 const closeKebabMenu = () => {
   const subButtons = document.getElementById('kebabSubButtons');
   const settingsPopover = document.getElementById('settingsPopover');
+  const trailPopover = document.getElementById('trailPopover');
   const btn = document.getElementById('btnKebab');
   subButtons.hidden = true;
   settingsPopover.hidden = true;
+  trailPopover.hidden = true;
   btn.classList.remove('active');
   btn.setAttribute('aria-expanded', 'false');
 };
@@ -300,7 +418,7 @@ const initKebabMenu = () => {
       window._odtMap?.flyTo({ center: [-77.0148, 38.8728], zoom: 16, duration: 1200 });
     } else {
       if (realData) applyDataset(realData);
-      window._odtMap?.flyTo({ center: [-120.5, 43.5], zoom: 8, duration: 1200 });
+      window._odtMap?.flyTo({ center: [state.trail.center.lon, state.trail.center.lat], zoom: 8, duration: 1200 });
     }
   });
 
@@ -357,9 +475,8 @@ const initUI = () => {
       moonPanel.hidden = true;
       return;
     }
-    // Use central ODT location (Burns, OR area) and current timezone
-    const lat = 43.5;
-    const lon = -118.9;
+    const lat = state.trail.center.lat;
+    const lon = state.trail.center.lon;
     const now = new Date();
     const tzOffsetMin = now.getTimezoneOffset() * -1; // JS returns negative offset, we need positive for west
     const moonData = getMoonData(now, lat, lon, tzOffsetMin);
@@ -383,7 +500,7 @@ const initUI = () => {
             <div class="moon-time-value">${moonData.set}</div>
           </div>
         </div>
-        <div class="moon-location-note">Times approximate for ODT corridor</div>
+        <div class="moon-location-note">Times approximate for ${state.trail.shortName} corridor</div>
         <div class="moon-panel-close-row">
           <button class="moon-panel-close" id="btnMoonClose">Close</button>
         </div>
@@ -432,6 +549,7 @@ const initUI = () => {
 
   // Bottom-right: Settings popover
   initSettingsPopover();
+  initTrailSwitcher();
 
   // Close buttons for all overlays
   document.querySelectorAll('.overlay-close').forEach(btn => {
@@ -485,9 +603,9 @@ const initUI = () => {
     // Build today's live entry from current localStorage state
     const now = new Date();
     const todayKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-    const todayDateSaved = localStorage.getItem('dailyMilesDate') === todayKey;
-    const todayStart = parseFloat(localStorage.getItem('dailyMilesStart'));
-    const todayEnd   = parseFloat(localStorage.getItem('dailyMilesEnd'));
+    const todayDateSaved = localStorage.getItem(getTrailStorageKey('dailyMilesDate')) === todayKey;
+    const todayStart = parseFloat(localStorage.getItem(getTrailStorageKey('dailyMilesStart')));
+    const todayEnd   = parseFloat(localStorage.getItem(getTrailStorageKey('dailyMilesEnd')));
     const todayMiles = (todayDateSaved && !isNaN(todayStart) && !isNaN(todayEnd))
       ? Math.max(0, todayEnd - todayStart)
       : null;
@@ -643,28 +761,11 @@ const init = async () => {
     // Load saved toggle preferences
     loadToggleState();
 
-    // Load all data in parallel with error handling
-    const [waypoints, water, townData, navigation, toilets] = await Promise.all([
-      safeFetch('waypoints.json', []),
-      safeFetch('water.json', []),
-      safeFetch('towns.json', []),
-      safeFetch('navigation.json', []),
-      safeFetch('toilets.json', [])
-    ]);
+    const dataset = await loadTrailDataset(state.trail);
+    applyDataset(dataset);
+    updateTrailChrome();
 
-    // Update shared state
-    state.allWaypoints = waypoints;
-    state.waterSources = water;
-    state.towns = townData;
-    state.categories = {
-      'water-reliable': water.filter(s => s.subcategory === 'reliable'),
-      'water-other': water.filter(s => s.subcategory !== 'reliable'),
-      towns: townData,
-      navigation,
-      toilets
-    };
-
-    console.log('Loaded', state.allWaypoints.length, 'waypoints,', water.length, 'water,', townData.length, 'towns,', navigation.length, 'nav,', toilets.length, 'toilets');
+    console.log('Loaded', state.trail.shortName, state.allWaypoints.length, 'waypoints,', state.waterSources.length, 'water,', state.towns.length, 'towns,', state.categories.navigation.length, 'nav,', state.categories.toilets.length, 'toilets');
     window._odtState = state;
 
     // Stash real data so test mode can restore it
@@ -672,7 +773,8 @@ const init = async () => {
       allWaypoints: state.allWaypoints,
       waterSources: state.waterSources,
       towns: state.towns,
-      categories: { ...state.categories }
+      categories: { ...state.categories },
+      trail: state.trail
     };
 
     // If test mode was left on from a previous session, swap data once map sources exist

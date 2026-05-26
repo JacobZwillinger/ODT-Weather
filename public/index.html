@@ -37,6 +37,14 @@
           </svg>
           <span class="kebab-sub-label">Layers</span>
         </button>
+        <button id="btnKebabTrail" class="kebab-sub-btn" aria-label="Change trail">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 18c4-4 4-10 8-10s4 6 8 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="4" cy="18" r="2" fill="currentColor"/>
+            <circle cx="20" cy="10" r="2" fill="currentColor"/>
+          </svg>
+          <span class="kebab-sub-label" id="activeTrailName">ODT</span>
+        </button>
         <button id="btnKebabTestMode" class="kebab-sub-btn" aria-label="Test Mode" aria-pressed="false">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M9 3v8l-4 8h14l-4-8V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -188,6 +196,12 @@
       </button>
     </div>
 
+    <!-- Trail switcher popover -->
+    <div class="trail-popover" id="trailPopover" hidden>
+      <button class="trail-choice-btn active" data-trail-id="odt" aria-pressed="true">Oregon Desert Trail</button>
+      <button class="trail-choice-btn" data-trail-id="nnml" aria-pressed="false">Northern New Mexico Loop</button>
+    </div>
+
     <!-- Full-screen overlay: Elevation Profile -->
     <div class="fullscreen-overlay" id="elevationOverlay" hidden>
       <div class="overlay-header">
@@ -334,18 +348,18 @@
 
           <!-- App info -->
           <div class="about-info">
-            <p><strong>ODT</strong> provides real-time trail data and forecasts for all 25 sections of the 750-mile Oregon Desert Trail.</p>
+            <p id="aboutTrailSummary"><strong>ODT</strong> provides real-time trail data and forecasts for all 25 sections of the 750-mile Oregon Desert Trail.</p>
 
             <h4>Data Sources</h4>
             <ul>
               <li><strong>Weather:</strong> PirateWeather API</li>
-              <li><strong>Route & Waypoints:</strong> ONDA-sourced GPX and KML miles</li>
+              <li><strong>Route & Waypoints:</strong> <span id="aboutRouteSource">ONDA-sourced GPX and KML miles</span></li>
               <li><strong>Elevation:</strong> USGS DEM data</li>
               <li><strong>Map Tiles:</strong> PMTiles vector basemap</li>
             </ul>
 
             <h4>By the Numbers</h4>
-            <ul>
+            <ul id="aboutTrailNumbers">
               <li>852 waypoints with precise GPS coordinates</li>
               <li>325 water sources with reliability ratings</li>
               <li>25 trail sections · 750 miles</li>

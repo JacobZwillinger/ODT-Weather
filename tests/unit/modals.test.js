@@ -5,6 +5,16 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 // Mock config
 vi.mock('../../public/js/config.js', () => ({
+  DEFAULT_TRAIL_ID: 'odt',
+  TRAILS: {
+    odt: {
+      id: 'odt',
+      shortName: 'ODT',
+      sectionBoundaryType: 'ODT Section Boundary',
+      sections: [],
+      data: { elevationProfile: 'elevation-profile.json' }
+    }
+  },
   SCROLL_DELAY_MS: 0,
   MILE_EPSILON: 0.01,
   WATER_WARNING_MILES: 20,

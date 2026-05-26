@@ -1,0 +1,66 @@
+[
+  {
+    "name": "1: Santa Fe to La Cueva",
+    "lat": 35.68744,
+    "lon": -105.93996,
+    "mile": 0,
+    "elevation": 6985,
+    "section": 1
+  },
+  {
+    "name": "2: La Cueva to Ghost Ranch",
+    "lat": 35.86714,
+    "lon": -106.63909,
+    "mile": 78.4,
+    "elevation": 7638,
+    "section": 2
+  },
+  {
+    "name": "3: Ghost Ranch to Chama Access",
+    "lat": 36.33072,
+    "lon": -106.47281,
+    "mile": 154.4,
+    "elevation": 6470,
+    "section": 3
+  },
+  {
+    "name": "4: Chama Access to Questa",
+    "lat": 36.92603,
+    "lon": -106.35576,
+    "mile": 232.4,
+    "elevation": 10739,
+    "section": 4
+  },
+  {
+    "name": "5: Questa to Red River",
+    "lat": 36.72271,
+    "lon": -105.59502,
+    "mile": 292.4,
+    "elevation": 7648,
+    "section": 5
+  },
+  {
+    "name": "6: Red River to San Cristobal",
+    "lat": 36.70964,
+    "lon": -105.40875,
+    "mile": 325.7,
+    "elevation": 8638,
+    "section": 6
+  },
+  {
+    "name": "7: San Cristobal to Ranchos de Taos",
+    "lat": 36.59543,
+    "lon": -105.64353,
+    "mile": 352.7,
+    "elevation": 7406,
+    "section": 7
+  },
+  {
+    "name": "8: Ranchos de Taos to Santa Fe",
+    "lat": 36.36029,
+    "lon": -105.60825,
+    "mile": 391.7,
+    "elevation": 6919,
+    "section": 8
+  }
+]

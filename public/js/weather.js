@@ -1,5 +1,5 @@
-import { sectionPoints, weatherIcons } from './config.js';
-import { getDayHeaders } from './utils.js';
+import { weatherIcons } from './config.js';
+import { getDayHeaders, getSectionPoints, state } from './utils.js';
 
 const getIcon = (iconName) => {
   return weatherIcons[iconName] || weatherIcons["cloudy"];
@@ -116,6 +116,7 @@ const openHourlyModal = (locationName, periodLabel, hours) => {
 
 export const renderWeatherTable = (forecasts) => {
   const container = document.getElementById("container");
+  const sectionPoints = getSectionPoints();
 
   const sampleForecast = forecasts.find(f => f && f.hourly && f.hourly.length > 0);
   const sampleDays = sampleForecast ? sliceByDay(sampleForecast.hourly) : [];
@@ -222,7 +223,7 @@ export const renderWeatherTable = (forecasts) => {
 // ------- API / Fetch -------
 
 const isAndroid = typeof AndroidBridge !== 'undefined';
-const FORECAST_CACHE_KEY = 'odtForecastCacheV1';
+const getForecastCacheKey = () => `${state.trail.id}ForecastCacheV1`;
 
 const hasUsableForecastData = (forecast) => {
   if (!forecast) return false;
@@ -234,7 +235,7 @@ const hasUsableForecastData = (forecast) => {
 const loadForecastCache = () => {
   if (typeof localStorage === 'undefined') return null;
   try {
-    const raw = localStorage.getItem(FORECAST_CACHE_KEY);
+    const raw = localStorage.getItem(getForecastCacheKey());
     if (!raw) return null;
     const parsed = JSON.parse(raw);
     if (!parsed || !Array.isArray(parsed.forecasts)) return null;
@@ -251,7 +252,7 @@ const saveForecastCache = (forecasts) => {
   if (typeof localStorage === 'undefined') return;
   if (!Array.isArray(forecasts) || !forecasts.some(hasUsableForecastData)) return;
   try {
-    localStorage.setItem(FORECAST_CACHE_KEY, JSON.stringify({
+    localStorage.setItem(getForecastCacheKey(), JSON.stringify({
       savedAt: Date.now(),
       forecasts
     }));
@@ -394,7 +395,7 @@ export const loadForecasts = async () => {
   }
 
   const forecasts = await Promise.all(
-    sectionPoints.map(async (point) => {
+    getSectionPoints().map(async (point) => {
       try {
         return await fetchForecast(point.lat, point.lon);
       } catch (error) {

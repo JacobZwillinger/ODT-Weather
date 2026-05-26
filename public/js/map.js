@@ -1,5 +1,5 @@
-import { sectionPoints, WATER_WARNING_MILES, MAP_INIT_DELAY_MS, CATEGORY_CONFIG } from './config.js';
-import { state, loadElevationProfile, findNearestWaypoint, findMileFromCoords, findNextWater, findNextReliableWater, findNextOtherWater, findNextTown, getWaypointShortName, OFF_TRAIL_THRESHOLD } from './utils.js';
+import { WATER_WARNING_MILES, MAP_INIT_DELAY_MS, CATEGORY_CONFIG } from './config.js';
+import { getSectionPoints, getTrailStorageKey, state, loadElevationProfile, findNearestWaypoint, findMileFromCoords, findNextReliableWater, findNextOtherWater, findNextTown, OFF_TRAIL_THRESHOLD } from './utils.js';
 import { renderElevationChart } from './elevation.js';
 import { showWaypointDetail, showWaterDetail, showTownDetail, showSectionDetail } from './modals.js';
 import { setPositionUpdateCallback, setHeadingUpdateCallback, shouldAllowMapClicks } from './gps.js';
@@ -17,6 +17,54 @@ let pendingMileUpdate = 0;
 // Track off-trail status
 let isOffTrail = false;
 const isMapStyleReady = () => Boolean(map && map.isStyleLoaded && map.isStyleLoaded());
+
+const getRouteCoordinates = () => {
+  const profile = state.elevationProfile;
+  const source = Array.isArray(profile) && profile.length >= 2 ? profile : state.allWaypoints;
+  return (source || [])
+    .filter(point => Number.isFinite(point.lat) && Number.isFinite(point.lon))
+    .map(point => [point.lon, point.lat]);
+};
+
+const buildRouteGeoJson = () => ({
+  type: 'FeatureCollection',
+  features: getRouteCoordinates().length >= 2
+    ? [{
+      type: 'Feature',
+      properties: { trail: state.trail.id },
+      geometry: { type: 'LineString', coordinates: getRouteCoordinates() }
+    }]
+    : []
+});
+
+const buildSectionsGeoJson = () => ({
+  type: 'FeatureCollection',
+  features: getSectionPoints().map((s) => ({
+    type: 'Feature',
+    properties: {
+      name: s.name,
+      mile: s.mile,
+      section: s.section
+    },
+    geometry: {
+      type: 'Point',
+      coordinates: [s.lon, s.lat]
+    }
+  }))
+});
+
+const getTrailBounds = () => {
+  const routeCoords = getRouteCoordinates();
+  const coords = routeCoords.length > 0
+    ? routeCoords
+    : getSectionPoints().map(p => [p.lon, p.lat]);
+  return coords.reduce((acc, coord) => {
+    return [
+      [Math.min(acc[0][0], coord[0]), Math.min(acc[0][1], coord[1])],
+      [Math.max(acc[1][0], coord[0]), Math.max(acc[1][1], coord[1])]
+    ];
+  }, [[coords[0][0], coords[0][1]], [coords[0][0], coords[0][1]]]);
+};
 
 // Update map info panel with current mile data
 // distanceFromTrail is optional - if provided, shows off-trail indicator when > threshold
@@ -86,7 +134,7 @@ export const showMapInfo = (mile, distanceFromTrail = 0) => {
   }
 
   // Current section
-  const currentSection = [...sectionPoints].reverse().find(s => s.mile <= mile);
+  const currentSection = [...getSectionPoints()].reverse().find(s => s.mile <= mile);
   const sectionEl = document.getElementById('mapCurrentSection');
   if (sectionEl) {
     sectionEl.textContent = currentSection ? currentSection.section : '--';
@@ -99,34 +147,38 @@ export const showMapInfo = (mile, distanceFromTrail = 0) => {
 export const updateDailyMiles = (mile) => {
   const d = new Date();
   const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-  const savedDate = localStorage.getItem('dailyMilesDate');
+  const dateKey = getTrailStorageKey('dailyMilesDate');
+  const startKey = getTrailStorageKey('dailyMilesStart');
+  const endKey = getTrailStorageKey('dailyMilesEnd');
+  const logKey = getTrailStorageKey('mileage_log');
+  const savedDate = localStorage.getItem(dateKey);
 
   if (savedDate && savedDate !== today) {
     // New day — archive the completed day before resetting
-    const prevStart = parseFloat(localStorage.getItem('dailyMilesStart'));
-    const prevEnd   = parseFloat(localStorage.getItem('dailyMilesEnd'));
+    const prevStart = parseFloat(localStorage.getItem(startKey));
+    const prevEnd   = parseFloat(localStorage.getItem(endKey));
     if (!isNaN(prevStart) && !isNaN(prevEnd)) {
       const entry = { date: savedDate, startMile: prevStart, endMile: prevEnd, miles: Math.max(0, prevEnd - prevStart) };
       try {
-        const log = JSON.parse(localStorage.getItem('odt_mileage_log') || '[]');
+        const log = JSON.parse(localStorage.getItem(logKey) || '[]');
         const idx = log.findIndex(e => e.date === savedDate);
         if (idx >= 0) log[idx] = entry; else log.push(entry);
-        localStorage.setItem('odt_mileage_log', JSON.stringify(log));
+        localStorage.setItem(logKey, JSON.stringify(log));
       } catch (_) { /* ignore storage errors */ }
     }
     // Reset for new day
-    localStorage.setItem('dailyMilesDate', today);
-    localStorage.setItem('dailyMilesStart', String(mile));
+    localStorage.setItem(dateKey, today);
+    localStorage.setItem(startKey, String(mile));
   } else if (!savedDate) {
     // First ever GPS fix
-    localStorage.setItem('dailyMilesDate', today);
-    localStorage.setItem('dailyMilesStart', String(mile));
+    localStorage.setItem(dateKey, today);
+    localStorage.setItem(startKey, String(mile));
   }
 
   // Always track the latest mile (becomes end-of-day on archive)
-  localStorage.setItem('dailyMilesEnd', String(mile));
+  localStorage.setItem(endKey, String(mile));
 
-  const dayStart = parseFloat(localStorage.getItem('dailyMilesStart'));
+  const dayStart = parseFloat(localStorage.getItem(startKey));
   const start = isNaN(dayStart) ? mile : dayStart;
   const walked = Math.max(0, mile - start);
   const block = document.getElementById('dailyMilesBlock');
@@ -138,7 +190,7 @@ export const updateDailyMiles = (mile) => {
 // Return all past daily log entries, sorted oldest-first
 export const getMileageLog = () => {
   try {
-    const raw = localStorage.getItem('odt_mileage_log');
+    const raw = localStorage.getItem(getTrailStorageKey('mileage_log'));
     if (!raw) return [];
     const log = JSON.parse(raw);
     return Array.isArray(log) ? log.sort((a, b) => a.date.localeCompare(b.date)) : [];
@@ -148,8 +200,9 @@ export const getMileageLog = () => {
 // Remove a specific date entry from the log
 export const deleteMileageDay = (date) => {
   try {
-    const log = JSON.parse(localStorage.getItem('odt_mileage_log') || '[]');
-    localStorage.setItem('odt_mileage_log', JSON.stringify(log.filter(e => e.date !== date)));
+    const key = getTrailStorageKey('mileage_log');
+    const log = JSON.parse(localStorage.getItem(key) || '[]');
+    localStorage.setItem(key, JSON.stringify(log.filter(e => e.date !== date)));
   } catch (_) { /* ignore */ }
 };
 
@@ -162,14 +215,7 @@ export const initMap = () => {
   const protocol = new pmtiles.Protocol();
   maplibregl.addProtocol('pmtiles', protocol.tile);
 
-  // Calculate bounds from route coordinates
-  const routeCoords = sectionPoints.map(p => [p.lon, p.lat]);
-  const bounds = routeCoords.reduce((acc, coord) => {
-    return [
-      [Math.min(acc[0][0], coord[0]), Math.min(acc[0][1], coord[1])],
-      [Math.max(acc[1][0], coord[0]), Math.max(acc[1][1], coord[1])]
-    ];
-  }, [[routeCoords[0][0], routeCoords[0][1]], [routeCoords[0][0], routeCoords[0][1]]]);
+  const bounds = getTrailBounds();
   initialBounds = bounds;
 
   // Create map with vector basemap + overlay
@@ -196,6 +242,10 @@ export const initMap = () => {
         'contours': {
           type: 'vector',
           url: 'pmtiles://contours.pmtiles'
+        },
+        'active-route': {
+          type: 'geojson',
+          data: buildRouteGeoJson()
         }
       },
       layers: []
@@ -385,6 +435,7 @@ export const initMap = () => {
       // Keep trying to load the dense track for distance calculations, but do not
       // block category source/layer creation when this request fails.
       await loadElevationProfile();
+      map.getSource('active-route')?.setData(buildRouteGeoJson());
 
       // Create layers for all categories
       for (const [category, config] of Object.entries(CATEGORY_CONFIG)) {
@@ -577,6 +628,7 @@ export const initMap = () => {
       type: 'line',
       source: 'overlay',
       'source-layer': 'alternates',
+      layout: { visibility: state.trail.id === 'odt' ? 'visible' : 'none' },
       paint: {
         'line-color': '#f97316',
         'line-width': 2,
@@ -585,12 +637,11 @@ export const initMap = () => {
       }
     });
 
-    // Add route line layer from overlay
+    // Add active trail route line from the selected trail dataset.
     map.addLayer({
       id: 'route-line',
       type: 'line',
-      source: 'overlay',
-      'source-layer': 'route',
+      source: 'active-route',
       paint: { 'line-color': '#e11d48', 'line-width': 3, 'line-opacity': 0.9 }
     });
 
@@ -598,21 +649,7 @@ export const initMap = () => {
     // remain visible at low zoom and are not dropped by tile simplification.
     map.addSource('sections-points', {
       type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: sectionPoints.map((s) => ({
-          type: 'Feature',
-          properties: {
-            name: s.name,
-            mile: s.mile,
-            section: s.section
-          },
-          geometry: {
-            type: 'Point',
-            coordinates: [s.lon, s.lat]
-          }
-        }))
-      }
+      data: buildSectionsGeoJson()
     });
 
     map.addLayer({
@@ -896,6 +933,32 @@ export const swapCategoryData = (category, data) => {
       }
     }))
   });
+};
+
+export const applyTrailMapData = async ({ fitToTrail = false } = {}) => {
+  if (!map) return;
+
+  await loadElevationProfile();
+
+  const routeSource = map.getSource('active-route');
+  if (routeSource) routeSource.setData(buildRouteGeoJson());
+
+  const sectionSource = map.getSource('sections-points');
+  if (sectionSource) sectionSource.setData(buildSectionsGeoJson());
+
+  for (const [cat, data] of Object.entries(state.categories)) {
+    swapCategoryData(cat, data);
+  }
+
+  if (map.getLayer('alternates-line')) {
+    map.setLayoutProperty('alternates-line', 'visibility', state.trail.id === 'odt' ? 'visible' : 'none');
+  }
+
+  initialBounds = getTrailBounds();
+  if (fitToTrail) {
+    resetMapView();
+    showMapInfo(0);
+  }
 };
 
 // Toggle map layer visibility for a category

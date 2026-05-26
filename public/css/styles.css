@@ -209,7 +209,8 @@ body {
 }
 
 /* ========== Settings Popover ========== */
-.settings-popover {
+.settings-popover,
+.trail-popover {
   position: fixed;
   left: 92px;  /* default fallback; JS overrides to be right of layers button */
   top: 80px;
@@ -225,7 +226,33 @@ body {
   gap: 6px;
 }
 
-.settings-popover[hidden] { display: none; }
+.settings-popover[hidden],
+.trail-popover[hidden] { display: none; }
+
+.trail-choice-btn {
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: #555;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  min-height: 48px;
+  padding: 10px 14px;
+  text-align: left;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.trail-choice-btn.active {
+  background: rgba(29, 78, 216, 0.08);
+  border-color: #1d4ed8;
+  color: #1d4ed8;
+}
+
+.trail-choice-btn:active {
+  transform: scale(0.97);
+}
 
 /* ========== Kebab Expanding Sub-Buttons ========== */
 

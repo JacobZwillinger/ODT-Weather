@@ -4,6 +4,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 vi.mock('../../public/js/utils.js', () => ({
   loadElevationProfile: vi.fn(),
   state: {
+    trail: { id: 'odt' },
     categories: {
       'water-reliable': [],
       'water-other': [],

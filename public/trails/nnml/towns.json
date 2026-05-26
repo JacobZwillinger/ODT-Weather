@@ -1,0 +1,82 @@
+[
+  {
+    "mile": 0,
+    "lat": 35.68744,
+    "lon": -105.93996,
+    "name": "Santa Fe Plaza",
+    "landmark": "Santa Fe Plaza",
+    "subcategory": "full",
+    "services": "full",
+    "offTrail": ""
+  },
+  {
+    "mile": 78.4,
+    "lat": 35.86714,
+    "lon": -106.63909,
+    "name": "La Cueva",
+    "landmark": "La Cueva",
+    "subcategory": "limited",
+    "services": "limited",
+    "offTrail": ""
+  },
+  {
+    "mile": 154.4,
+    "lat": 36.33072,
+    "lon": -106.47281,
+    "name": "Ghost Ranch Conference Center",
+    "landmark": "Ghost Ranch Conference Center",
+    "subcategory": "limited",
+    "services": "limited",
+    "offTrail": ""
+  },
+  {
+    "mile": 232.4,
+    "lat": 36.92603,
+    "lon": -106.35576,
+    "name": "Chama access",
+    "landmark": "Chama access",
+    "subcategory": "full",
+    "services": "full",
+    "offTrail": "12 miles SW from Cumbres Pass"
+  },
+  {
+    "mile": 292.4,
+    "lat": 36.72271,
+    "lon": -105.59502,
+    "name": "Questa",
+    "landmark": "Questa",
+    "subcategory": "full",
+    "services": "full",
+    "offTrail": ""
+  },
+  {
+    "mile": 325.7,
+    "lat": 36.70964,
+    "lon": -105.40875,
+    "name": "Red River",
+    "landmark": "Red River",
+    "subcategory": "full",
+    "services": "full",
+    "offTrail": ""
+  },
+  {
+    "mile": 352.7,
+    "lat": 36.59543,
+    "lon": -105.64353,
+    "name": "San Cristobal",
+    "landmark": "San Cristobal",
+    "subcategory": "limited",
+    "services": "limited",
+    "offTrail": ""
+  },
+  {
+    "mile": 391.7,
+    "lat": 36.36029,
+    "lon": -105.60825,
+    "name": "Ranchos de Taos / Taos access",
+    "landmark": "Ranchos de Taos / Taos access",
+    "subcategory": "full",
+    "services": "full",
+    "offTrail": ""
+  }
+]
