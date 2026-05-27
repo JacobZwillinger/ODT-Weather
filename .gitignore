@@ -16,8 +16,12 @@ build/narrow_buffer.geojson
 build/*/contours.geojson
 build/*/contours_clipped.geojson
 build/*/narrow_buffer.geojson
+build/*/region.osm.pbf
+build/*/corridor.osm.pbf
 dist/contours.pmtiles
 dist/contours-*.pmtiles
+dist/basemap.pmtiles
+dist/basemap-*.pmtiles
 
 # Data sources (large files, can be re-downloaded)
 data/
