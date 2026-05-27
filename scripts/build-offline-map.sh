@@ -26,42 +26,47 @@ echo "================================================"
 echo ""
 
 # Step 1: Build corridor polygon
-echo "Step 1/6: Building corridor polygon..."
+echo "Step 1/7: Building corridor polygon..."
 node "$SCRIPT_DIR/build-corridor.js" --trail "$TRAIL"
 echo ""
 
 # Step 2: Build overlay tiles (route + waypoints) — currently ODT-only.
 if [ "$TRAIL" = "odt" ]; then
-  echo "Step 2/6: Building overlay tiles..."
+    echo "Step 2/7: Building overlay tiles..."
   node "$SCRIPT_DIR/build-tiles.js"
   echo ""
 else
-  echo "Step 2/6: Skipping overlay build for $TRAIL (uses GeoJSON sources at runtime)."
+    echo "Step 2/7: Skipping overlay build for $TRAIL (uses GeoJSON sources at runtime)."
   echo ""
 fi
 
 # Step 3: Download OSM extract (skip if already exists)
 if [ -f "$TRAIL_BUILD_DIR/region.osm.pbf" ]; then
-  echo "Step 3/6: OSM extract already downloaded, skipping..."
+  echo "Step 3/7: OSM extract already downloaded, skipping..."
   echo ""
 else
-  echo "Step 3/6: Downloading OSM extract..."
+  echo "Step 3/7: Downloading OSM extract..."
   "$SCRIPT_DIR/download-osm.sh" --trail "$TRAIL"
   echo ""
 fi
 
 # Step 4: Extract corridor from OSM
-echo "Step 4/6: Extracting corridor from OSM..."
+echo "Step 4/7: Extracting corridor from OSM..."
 "$SCRIPT_DIR/extract-corridor-osm.sh" --trail "$TRAIL"
 echo ""
 
 # Step 5: Build basemap with Planetiler
-echo "Step 5/6: Building basemap with Planetiler..."
+echo "Step 5/7: Building basemap with Planetiler..."
 "$SCRIPT_DIR/build-basemap.sh" --trail "$TRAIL"
 echo ""
 
-# Step 6: Summary
-echo "Step 6/6: Build Summary"
+# Step 6: Build contours
+echo "Step 6/7: Building contour tiles..."
+"$SCRIPT_DIR/build-contours.sh" --trail "$TRAIL"
+echo ""
+
+# Step 7: Summary
+echo "Step 7/7: Build Summary"
 echo "================================================"
 echo ""
 echo "Output files:"

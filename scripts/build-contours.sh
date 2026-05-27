@@ -71,6 +71,7 @@ echo ""
 # Using SRTM GL1 (30m resolution, global coverage)
 API_URL="https://portal.opentopography.org/API/globaldem"
 API_KEY="demoapikeyot2022"
+DEM_CHUNK_GRID="${DEM_CHUNK_GRID:-4}"
 
 download_dem_single_shot() {
   local out="$1"
@@ -82,32 +83,34 @@ download_dem_single_shot() {
 }
 
 download_dem_chunked() {
-  # Split the bbox into a 2x2 grid, download each, then merge with gdalwarp.
+  # Split the bbox into a grid, download each tile, then merge with gdalwarp.
+  # Override DEM_CHUNK_GRID for larger/smaller requests, e.g. DEM_CHUNK_GRID=6.
   local out="$1"
-  local mid_lon mid_lat
-  mid_lon=$(node -pe "(${WEST} + ${EAST}) / 2")
-  mid_lat=$(node -pe "(${SOUTH} + ${NORTH}) / 2")
+  local grid="$DEM_CHUNK_GRID"
 
   local tmp_dir
   tmp_dir=$(mktemp -d)
-  echo "  Splitting bbox into 4 tiles, output dir: $tmp_dir"
+  echo "  Splitting bbox into ${grid}x${grid} tiles, output dir: $tmp_dir"
 
   local i=0
-  for bounds in \
-    "$WEST $SOUTH $mid_lon $mid_lat" \
-    "$mid_lon $SOUTH $EAST $mid_lat" \
-    "$WEST $mid_lat $mid_lon $NORTH" \
-    "$mid_lon $mid_lat $EAST $NORTH"; do
-    i=$((i + 1))
-    local w s e n
-    read -r w s e n <<<"$bounds"
-    local tile_url="${API_URL}?demtype=SRTMGL1&south=${s}&north=${n}&west=${w}&east=${e}&outputFormat=GTiff&API_Key=${API_KEY}"
-    local tile_file="$tmp_dir/tile_${i}.tif"
-    echo "  [$i/4] $w $s $e $n"
-    curl -L --fail --max-time 300 -o "$tile_file" "$tile_url" || return 1
+  local total=$((grid * grid))
+  local row col
+  for ((row = 0; row < grid; row++)); do
+    for ((col = 0; col < grid; col++)); do
+      i=$((i + 1))
+      local w s e n
+      w=$(node -pe "Number(${WEST}) + (Number(${EAST}) - Number(${WEST})) * ${col} / ${grid}")
+      e=$(node -pe "Number(${WEST}) + (Number(${EAST}) - Number(${WEST})) * (${col} + 1) / ${grid}")
+      s=$(node -pe "Number(${SOUTH}) + (Number(${NORTH}) - Number(${SOUTH})) * ${row} / ${grid}")
+      n=$(node -pe "Number(${SOUTH}) + (Number(${NORTH}) - Number(${SOUTH})) * (${row} + 1) / ${grid}")
+      local tile_url="${API_URL}?demtype=SRTMGL1&south=${s}&north=${n}&west=${w}&east=${e}&outputFormat=GTiff&API_Key=${API_KEY}"
+      local tile_file="$tmp_dir/tile_${i}.tif"
+      echo "  [$i/$total] $w $s $e $n"
+      curl -L --fail --max-time 300 -o "$tile_file" "$tile_url" || return 1
+    done
   done
 
-  echo "  Merging 4 tiles into $out"
+  echo "  Merging $total tiles into $out"
   gdalwarp -overwrite "$tmp_dir"/tile_*.tif "$out" || return 1
   rm -rf "$tmp_dir"
 }
@@ -119,7 +122,7 @@ if [ ! -f "$DEM_FILE" ]; then
 
   if ! download_dem_single_shot "$DEM_FILE" || [ ! -s "$DEM_FILE" ]; then
     echo ""
-    echo "Single-shot download failed or stalled; falling back to 2x2 chunked download..."
+    echo "Single-shot download failed or stalled; falling back to ${DEM_CHUNK_GRID}x${DEM_CHUNK_GRID} chunked download..."
     rm -f "$DEM_FILE"
     if ! download_dem_chunked "$DEM_FILE" || [ ! -s "$DEM_FILE" ]; then
       echo ""

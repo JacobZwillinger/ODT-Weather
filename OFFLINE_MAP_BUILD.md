@@ -1,15 +1,23 @@
 # Offline Map Build Guide
 
-This document explains how to build the offline basemap for the ODT app.
+This document explains how to build the offline basemap and contour tiles for
+each trail in the ODT app.
 
 ## Overview
 
-<!-- [DOCS] Updated: added missing contours.pmtiles to overview -->
-The offline map system consists of three PMTiles files:
+The offline map system consists of trail-specific PMTiles files:
 
 1. **basemap.pmtiles** - OpenStreetMap basemap for the 5km corridor around the trail (~10-30 MB)
 2. **overlay.pmtiles** - Trail route, waypoints, and section markers (~300 KB)
 3. **contours.pmtiles** - Elevation contour lines for the corridor
+
+NNML uses the same pattern with trail suffixes:
+
+- `basemap-nnml.pmtiles`
+- `contours-nnml.pmtiles`
+
+NNML route and waypoint overlays render from GeoJSON at runtime, so there is no
+NNML overlay PMTiles file.
 
 ## Prerequisites
 
@@ -37,13 +45,20 @@ Run the complete build pipeline:
 ./scripts/build-offline-map.sh
 ```
 
+For NNML:
+
+```bash
+./scripts/build-offline-map.sh --trail nnml
+```
+
 This will:
 1. Build 5km corridor polygon around the route
 2. Build overlay tiles (route + waypoints)
 3. Download Oregon OSM extract (~200 MB)
 4. Extract corridor data from OSM
 5. Build basemap with Planetiler
-6. Output files to `dist/` directory
+6. Build 20-foot contour tiles for a true 10-mile route buffer
+7. Output files to `dist/` and mirror PMTiles into `public/`
 
 ## Build Steps (Manual)
 
@@ -54,6 +69,8 @@ node scripts/build-corridor.js
 ```
 
 Creates `build/corridor.geojson` with a 5km buffer around the route.
+
+For NNML, add `--trail nnml`; outputs are written under `build/nnml/`.
 
 ### 2. Build Overlay Tiles
 
@@ -70,6 +87,9 @@ Creates `dist/overlay.pmtiles` from route and waypoint data.
 ```
 
 Downloads Oregon OSM data (~200 MB) to `build/region.osm.pbf`.
+
+For NNML, add `--trail nnml`; this downloads the New Mexico/Colorado extract
+used by the NNML corridor build.
 
 ### 4. Extract Corridor
 
@@ -92,15 +112,28 @@ Runs Planetiler to generate `dist/basemap.pmtiles` with:
 - Place labels
 - Minimal buildings/POIs
 
-### 6. Build Contour Tiles (Optional)
-
-<!-- [DOCS] Updated: added missing contour build step -->
+### 6. Build Contour Tiles
 
 ```bash
 ./scripts/build-contours.sh
 ```
 
 Generates `dist/contours.pmtiles` with elevation contour lines for the corridor.
+For NNML, run:
+
+```bash
+./scripts/build-contours.sh --trail nnml
+```
+
+This generates and mirrors `dist/contours-nnml.pmtiles` and
+`public/contours-nnml.pmtiles`.
+
+If a DEM download stalls, the script falls back to chunked downloads. The
+default fallback is a 4x4 grid; override it when needed:
+
+```bash
+DEM_CHUNK_GRID=6 ./scripts/build-contours.sh --trail nnml
+```
 
 ## Configuration
 
@@ -120,6 +153,17 @@ Edit `scripts/build-corridor.js`:
 const bufferDistance = 5; // kilometers (5km = ~3 miles each side)
 ```
 
+### Contour Width
+
+Edit `scripts/create-narrow-buffer.js` for the contour clipping buffer:
+
+```javascript
+const BUFFER_MILES = 10;
+```
+
+The script projects route geometry to EPSG:5070 before buffering, so the contour
+clip is measured in true miles rather than longitude/latitude degrees.
+
 ## Output Files
 
 ### Development
@@ -130,6 +174,8 @@ const bufferDistance = 5; // kilometers (5km = ~3 miles each side)
 - `dist/basemap.pmtiles` - Basemap for deployment
 - `dist/overlay.pmtiles` - Overlay for deployment
 - `dist/contours.pmtiles` - Contour lines for deployment
+- `dist/basemap-nnml.pmtiles` - NNML basemap for deployment
+- `dist/contours-nnml.pmtiles` - NNML contour lines for deployment
 
 ## File Sizes
 

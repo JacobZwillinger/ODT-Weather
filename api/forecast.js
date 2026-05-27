@@ -1,4 +1,6 @@
-require("dotenv").config();
+if (process.env.NODE_ENV !== "test") {
+  require("dotenv").config();
+}
 const { parseLatLonQuery, fetchForecast } = require("../lib/pirateweather");
 
 module.exports = async function handler(req, res) {

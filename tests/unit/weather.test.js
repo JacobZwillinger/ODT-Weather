@@ -137,8 +137,6 @@ describe('loadForecasts', () => {
     document.getElementById('container').innerHTML = 'Loading...';
     document.getElementById('apiUsage').textContent = '';
     localStorage.clear();
-    // loadForecasts now requires a key — provide a test key so tests reach the fetch path
-    localStorage.setItem('pirateweatherApiKey', 'test-key-for-unit-tests');
   });
 
   afterEach(() => {
@@ -159,22 +157,12 @@ describe('loadForecasts', () => {
 
   // [TEST] Added: verifies API usage display when _usage is present in response
   it('displays API usage when present in forecast response', async () => {
-    // Now fetchForecast calls PirateWeather directly and uses adaptPirateWeatherResponse,
-    // so the mock must return the raw PW format with response.headers.get()
     vi.spyOn(globalThis, 'fetch').mockResolvedValue({
       ok: true,
-      headers: {
-        get: (h) => {
-          if (h === 'x-forecast-api-calls') return '150';
-          if (h === 'ratelimit-limit') return '25000';
-          if (h === 'ratelimit-remaining') return '24850';
-          return null;
-        }
-      },
       json: () => Promise.resolve({
-        currently: { time: 1700000000, icon: 'clear-day', temperature: 70 },
-        daily: { data: Array(7).fill({ temperatureHigh: 70, temperatureLow: 50, icon: 'clear-day', summary: 'Clear' }) },
-        hourly: { data: [] }
+        daily: Array(7).fill({ high: 70, low: 50, icon: 'clear-day', summary: 'Clear' }),
+        hourly: [],
+        _usage: { calls: 150, limit: 25000, remaining: 24850 }
       })
     });
 
@@ -191,6 +179,7 @@ describe('loadForecasts', () => {
       ok: true,
       json: () => Promise.resolve({
         daily: Array(7).fill({ high: 70, low: 50, icon: 'clear-day' }),
+        hourly: [],
         _usage: { calls: null, limit: null, remaining: null }
       })
     });
@@ -251,11 +240,10 @@ describe('loadForecasts', () => {
   it('stores forecasts in cache after successful load', async () => {
     vi.spyOn(globalThis, 'fetch').mockResolvedValue({
       ok: true,
-      headers: { get: () => null },
       json: () => Promise.resolve({
-        currently: { time: 1700000000, icon: 'clear-day', temperature: 70 },
-        daily: { data: Array(7).fill({ temperatureHigh: 70, temperatureLow: 50, icon: 'clear-day', summary: 'Clear' }) },
-        hourly: { data: [] }
+        daily: Array(7).fill({ high: 70, low: 50, icon: 'clear-day', summary: 'Clear' }),
+        hourly: [],
+        _usage: { calls: null, limit: null, remaining: null }
       })
     });
 

@@ -329,7 +329,8 @@ const adaptPirateWeatherResponse = (data, response) => {
   };
 };
 
-// Show API key setup screen in the weather overlay container
+// Show API key setup screen in the weather overlay container. This is only used
+// by the Android bridge path; web builds use the server-side forecast proxy.
 const showApiKeySetup = () => {
   const container = document.getElementById('container');
   container.innerHTML = `
@@ -375,23 +376,18 @@ const fetchForecast = async (lat, lon) => {
     if (!response.ok) throw new Error('Bad response');
     const data = await response.json();
     return adaptPirateWeatherResponse(data, response);
-  } else {
-    const userKey = localStorage.getItem('pirateweatherApiKey');
-    const url = `https://api.pirateweather.net/forecast/${userKey}/${lat},${lon}?exclude=minutely,alerts&units=us&extend=hourly`;
-    const response = await fetch(url);
-    if (!response.ok) throw new Error('Bad response');
-    const data = await response.json();
-    return adaptPirateWeatherResponse(data, response);
   }
+
+  const url = `/api/forecast?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}`;
+  const response = await fetch(url);
+  if (!response.ok) throw new Error('Bad response');
+  return response.json();
 };
 
 export const loadForecasts = async () => {
   if (isAndroid) {
     const apiKey = AndroidBridge.getApiKey();
     if (!apiKey) { showApiKeySetup(); return; }
-  } else {
-    const userKey = localStorage.getItem('pirateweatherApiKey');
-    if (!userKey) { showApiKeySetup(); return; }
   }
 
   const forecasts = await Promise.all(
@@ -419,7 +415,7 @@ export const loadForecasts = async () => {
   }
 
   renderWeatherTable(mergedForecasts);
-  appendChangeKeyLink();
+  if (isAndroid) appendChangeKeyLink();
 
   if (liveCount === 0 && mergedCount === 0) {
     setWeatherStatusBanner('Offline: no cached forecast available yet. Connect once to download forecasts.', 'error');

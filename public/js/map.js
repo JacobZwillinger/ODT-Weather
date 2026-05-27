@@ -94,40 +94,22 @@ const removeContourLayers = () => {
   }
 };
 
-// Track which trail's alternates GeoJSON is loaded so we don't refetch.
-let loadedAlternatesTrailId = null;
+const EMPTY_FEATURE_COLLECTION = { type: 'FeatureCollection', features: [] };
 
-const applyTrailAlternates = async (trailId) => {
+const applyTrailAlternates = (trailId) => {
   if (!map) return;
   const source = map.getSource('trail-alternates');
-  if (!source) return;
 
-  // ODT alternates render via the pmtiles-backed `alternates-line` layer.
-  // Toggle visibility of both layers so only one is active per trail.
+  // ODT alternates still render from overlay.pmtiles. Other trails render every
+  // supplied GPX track from active-route, including alternates, so this legacy
+  // GeoJSON alternate source stays empty to avoid double-drawing segments.
   if (map.getLayer('alternates-line')) {
     map.setLayoutProperty('alternates-line', 'visibility', trailId === 'odt' ? 'visible' : 'none');
   }
   if (map.getLayer('trail-alternates-line')) {
-    map.setLayoutProperty('trail-alternates-line', 'visibility', trailId === 'odt' ? 'none' : 'visible');
+    map.setLayoutProperty('trail-alternates-line', 'visibility', 'none');
   }
-
-  if (trailId === 'odt') {
-    // ODT renders from pmtiles; clear the GeoJSON source so stale NNML alts don't sit in memory.
-    source.setData({ type: 'FeatureCollection', features: [] });
-    loadedAlternatesTrailId = 'odt';
-    return;
-  }
-
-  if (loadedAlternatesTrailId === trailId) return;
-  try {
-    const res = await fetch(`trails/${trailId}/alternates.geojson`);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    source.setData(data);
-    loadedAlternatesTrailId = trailId;
-  } catch (err) {
-    console.warn(`Failed to load alternates for ${trailId}:`, err);
-  }
+  if (source) source.setData(EMPTY_FEATURE_COLLECTION);
 };
 
 const ensureContoursForTrail = (trailId) => {
@@ -500,12 +482,11 @@ export const initMap = () => {
           type: 'geojson',
           data: buildRouteGeoJson()
         },
-        // Per-trail GeoJSON alternates. ODT's alternates also live in
-        // overlay.pmtiles (rendered via the older alternates-line layer); this
-        // GeoJSON source is the canonical home for NNML and any future trail.
+        // Legacy per-trail alternate source. Kept empty because non-ODT GPX
+        // tracks render from active-route, which gives alternates click support.
         'trail-alternates': {
           type: 'geojson',
-          data: { type: 'FeatureCollection', features: [] }
+          data: EMPTY_FEATURE_COLLECTION
         }
       },
       layers: []
@@ -742,7 +723,7 @@ export const initMap = () => {
     addContourLayers();
     loadedContoursTrailId = state.trail.id;
 
-    // Load the active trail's alternates GeoJSON (NNML today; ODT keeps its pmtiles layer).
+    // Sync legacy ODT alternate layer visibility.
     applyTrailAlternates(state.trail.id);
 
     // ODT alternate routes (vector source from overlay.pmtiles).
@@ -760,13 +741,12 @@ export const initMap = () => {
       }
     });
 
-    // Generic per-trail alternates (data swapped via applyTrailAlternates).
-    // Used by NNML today; ODT continues to use the pmtiles-backed layer above.
+    // Legacy alternate layer retained for compatibility, but kept hidden.
     map.addLayer({
       id: 'trail-alternates-line',
       type: 'line',
       source: 'trail-alternates',
-      layout: { visibility: state.trail.id === 'odt' ? 'none' : 'visible' },
+      layout: { visibility: 'none' },
       paint: {
         'line-color': '#f97316',
         'line-width': 2,

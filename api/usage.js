@@ -1,4 +1,6 @@
-require("dotenv").config();
+if (process.env.NODE_ENV !== "test") {
+  require("dotenv").config();
+}
 const { fetchUsage } = require("../lib/pirateweather");
 
 module.exports = async function handler(req, res) {

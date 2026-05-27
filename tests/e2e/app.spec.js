@@ -7,6 +7,30 @@ test.describe('ODT App', () => {
     await page.waitForSelector('#mapContainer');
   });
 
+  const openSettings = async (page) => {
+    await page.click('#btnKebab');
+    await page.evaluate(() => document.getElementById('btnKebabLayers')?.click());
+    await expect(page.locator('#settingsPopover')).toBeVisible();
+  };
+
+  const restartGps = async (page) => {
+    const gpsBtn = page.locator('#btnGpsToggle');
+    if (await gpsBtn.getAttribute('aria-pressed') === 'true') {
+      await gpsBtn.click();
+      await expect(gpsBtn).toHaveAttribute('aria-pressed', 'false');
+    }
+    await gpsBtn.click();
+    await expect(gpsBtn).toHaveAttribute('aria-pressed', 'true');
+  };
+
+  const stopGpsIfActive = async (page) => {
+    const gpsBtn = page.locator('#btnGpsToggle');
+    if (await gpsBtn.getAttribute('aria-pressed') === 'true') {
+      await gpsBtn.click();
+      await expect(gpsBtn).toHaveAttribute('aria-pressed', 'false');
+    }
+  };
+
   test.describe('Page Load', () => {
     test('has correct title', async ({ page }) => {
       await expect(page).toHaveTitle('Oregon Desert Trail');
@@ -43,62 +67,58 @@ test.describe('ODT App', () => {
       await expect(btnGroup).toBeVisible();
 
       await expect(page.locator('#btnWaypointList')).toBeVisible();
-      await expect(page.locator('#btnSettings')).toBeVisible();
       await expect(page.locator('#btnGpsToggle')).toBeVisible();
     });
   });
 
-  test.describe('Water Sources Modal', () => {
+  test.describe('Water Sources Overlay', () => {
     test('opens when water card clicked', async ({ page }) => {
-      await page.click('#nextWaterCard');
+      await page.click('#nextReliableWaterCard');
 
-      const modal = page.locator('#sourcesModal');
-      await expect(modal).toHaveClass(/visible/);
+      const overlay = page.locator('#waypointListOverlay');
+      await expect(overlay).toBeVisible();
 
-      const title = page.locator('#sourcesModalTitle');
-      await expect(title).toContainText('Water Sources');
+      await expect(page.locator('#waypointListOverlay .filter-btn[data-filter="reliable-water"]')).toHaveClass(/active/);
     });
 
     test('displays water source list', async ({ page }) => {
-      await page.click('#nextWaterCard');
+      await page.click('#nextReliableWaterCard');
 
-      const list = page.locator('#sourcesList');
+      const list = page.locator('#waypointListContent');
       // Wait for list to populate
-      await expect(list.locator('.source-item').first()).toBeVisible();
+      await expect(list.locator('.waypoint-list-item').first()).toBeVisible();
 
       // Should have multiple water sources
-      const items = await list.locator('.source-item').count();
+      const items = await list.locator('.waypoint-list-item').count();
       expect(items).toBeGreaterThan(10);
     });
 
     test('closes when close button clicked', async ({ page }) => {
-      await page.click('#nextWaterCard');
-      await page.click('#closeSourcesModal');
+      await page.click('#nextReliableWaterCard');
+      await page.click('#waypointListOverlay .overlay-close');
 
-      const modal = page.locator('#sourcesModal');
-      await expect(modal).not.toHaveClass(/visible/);
+      const overlay = page.locator('#waypointListOverlay');
+      await expect(overlay).not.toBeVisible();
     });
   });
 
-  test.describe('Towns Modal', () => {
+  test.describe('Towns Overlay', () => {
     test('opens when town card clicked', async ({ page }) => {
       await page.click('#nextTownCard');
 
-      const modal = page.locator('#sourcesModal');
-      await expect(modal).toHaveClass(/visible/);
+      const overlay = page.locator('#waypointListOverlay');
+      await expect(overlay).toBeVisible();
 
-      const title = page.locator('#sourcesModalTitle');
-      await expect(title).toContainText('Towns');
+      await expect(page.locator('#waypointListOverlay .filter-btn[data-filter="towns"]')).toHaveClass(/active/);
     });
 
     test('displays town list with services', async ({ page }) => {
       await page.click('#nextTownCard');
 
-      const list = page.locator('#sourcesList');
-      await expect(list.locator('.source-item').first()).toBeVisible();
+      const list = page.locator('#waypointListContent');
+      await expect(list.locator('.waypoint-list-item').first()).toBeVisible();
 
-      // Should contain service information
-      await expect(list).toContainText('Services:');
+      await expect(list.locator('.waypoint-list-item[data-type="towns"]').first()).toBeVisible();
     });
   });
 
@@ -107,7 +127,7 @@ test.describe('ODT App', () => {
       await page.click('#btnWeather');
 
       const overlay = page.locator('#weatherOverlay');
-      await expect(overlay).toHaveClass(/show/);
+      await expect(overlay).toBeVisible();
     });
 
     test('loads weather forecasts in overlay', async ({ page }) => {
@@ -139,10 +159,10 @@ test.describe('ODT App', () => {
 
     test('closes when close button clicked', async ({ page }) => {
       await page.click('#btnWeather');
-      await expect(page.locator('#weatherOverlay')).toHaveClass(/show/);
+      await expect(page.locator('#weatherOverlay')).toBeVisible();
 
       await page.click('#weatherOverlay .overlay-close');
-      await expect(page.locator('#weatherOverlay')).not.toHaveClass(/show/);
+      await expect(page.locator('#weatherOverlay')).not.toBeVisible();
     });
   });
 
@@ -151,7 +171,7 @@ test.describe('ODT App', () => {
       await page.click('#btnElevation');
 
       const overlay = page.locator('#elevationOverlay');
-      await expect(overlay).toHaveClass(/show/);
+      await expect(overlay).toBeVisible();
     });
 
     test('renders elevation chart canvas in overlay', async ({ page }) => {
@@ -163,10 +183,10 @@ test.describe('ODT App', () => {
 
     test('closes when close button clicked', async ({ page }) => {
       await page.click('#btnElevation');
-      await expect(page.locator('#elevationOverlay')).toHaveClass(/show/);
+      await expect(page.locator('#elevationOverlay')).toBeVisible();
 
       await page.click('#elevationOverlay .overlay-close');
-      await expect(page.locator('#elevationOverlay')).not.toHaveClass(/show/);
+      await expect(page.locator('#elevationOverlay')).not.toBeVisible();
     });
   });
 
@@ -188,12 +208,12 @@ test.describe('ODT App', () => {
     });
 
     test('displays next water distance', async ({ page }) => {
-      const water = page.locator('#nextWaterCard span');
+      const water = page.locator('#mapNextReliableWater span');
       await expect(water).toBeVisible();
     });
 
     test('displays next town distance', async ({ page }) => {
-      const town = page.locator('#nextTownCard span');
+      const town = page.locator('#mapNextTown span');
       await expect(town).toBeVisible();
     });
   });
@@ -202,7 +222,7 @@ test.describe('ODT App', () => {
     test('displays GPS toggle button', async ({ page }) => {
       const gpsBtn = page.locator('#btnGpsToggle');
       await expect(gpsBtn).toBeVisible();
-      await expect(gpsBtn).toHaveAttribute('aria-pressed', 'false');
+      await expect(gpsBtn).toHaveAttribute('aria-pressed', 'true');
     });
 
     test('GPS button toggles active state on click', async ({ page, context }) => {
@@ -213,15 +233,15 @@ test.describe('ODT App', () => {
       const gpsBtn = page.locator('#btnGpsToggle');
       await expect(gpsBtn).toBeVisible();
 
-      // Toggle on
-      await gpsBtn.click();
+      // GPS defaults on unless the user explicitly turns it off.
       await expect(gpsBtn).toHaveClass(/active/, { timeout: 2000 });
-      await expect(gpsBtn).toHaveAttribute('aria-pressed', 'true');
-
-      // Toggle off
       await gpsBtn.click();
       await expect(gpsBtn).not.toHaveClass(/active/, { timeout: 2000 });
       await expect(gpsBtn).toHaveAttribute('aria-pressed', 'false');
+
+      await gpsBtn.click();
+      await expect(gpsBtn).toHaveClass(/active/, { timeout: 2000 });
+      await expect(gpsBtn).toHaveAttribute('aria-pressed', 'true');
     });
 
     test('GPS center button is visible', async ({ page }) => {
@@ -268,8 +288,7 @@ test.describe('ODT App', () => {
       const zoomDisplay = page.locator('.zoom-level-display');
       const initialZoom = await zoomDisplay.textContent();
 
-      // Click zoom in button
-      await page.click('.maplibregl-ctrl-zoom-in');
+      await page.evaluate(() => window._odtMap?.zoomIn({ duration: 0 }));
       await page.waitForTimeout(500);
 
       const newZoom = await zoomDisplay.textContent();
@@ -325,7 +344,7 @@ test.describe('ODT App', () => {
       await context.setGeolocation({ latitude: 43.708, longitude: -120.847 });
 
       // Toggle GPS on
-      await page.click('#btnGpsToggle');
+      await restartGps(page);
       await page.waitForTimeout(2000);
 
       // Check that "Mile" label is shown (not "Off Trail")
@@ -345,7 +364,7 @@ test.describe('ODT App', () => {
       await context.setGeolocation({ latitude: 43.708, longitude: -120.80 });
 
       // Toggle GPS on
-      await page.click('#btnGpsToggle');
+      await restartGps(page);
       await page.waitForTimeout(2000);
 
       // Check that "Off Trail" label is shown
@@ -369,7 +388,7 @@ test.describe('ODT App', () => {
       await context.setGeolocation({ latitude: 43.708, longitude: -120.841 });
 
       // Toggle GPS on
-      await page.click('#btnGpsToggle');
+      await restartGps(page);
       await page.waitForTimeout(2000);
 
       // Should still show "Mile" since we're within threshold
@@ -422,8 +441,9 @@ test.describe('ODT App', () => {
           map.once('idle', () => {
             setTimeout(() => {
               // Try all category layers
-              const categoryLayers = ['water-points-unclustered', 'navigation-points-unclustered',
-                                       'towns-points-unclustered', 'toilets-points-unclustered'];
+              const categoryLayers = ['water-reliable-points-unclustered', 'water-other-points-unclustered',
+                                       'navigation-points-unclustered', 'towns-points-unclustered',
+                                       'toilets-points-unclustered'];
               const existingLayers = categoryLayers.filter(id => map.getLayer(id));
 
               let features = [];
@@ -487,6 +507,7 @@ test.describe('ODT App', () => {
     });
 
     test('waypoint click shows consistent mile in modal and info panel', async ({ page }) => {
+      await stopGpsIfActive(page);
       await page.waitForTimeout(3000);
 
       const result = await page.evaluate(() => {
@@ -505,8 +526,9 @@ test.describe('ODT App', () => {
 
           map.once('idle', () => {
             setTimeout(() => {
-              const categoryLayers = ['water-points-unclustered', 'navigation-points-unclustered',
-                                       'towns-points-unclustered', 'toilets-points-unclustered'];
+              const categoryLayers = ['water-reliable-points-unclustered', 'water-other-points-unclustered',
+                                       'navigation-points-unclustered', 'towns-points-unclustered',
+                                       'toilets-points-unclustered'];
               const existingLayers = categoryLayers.filter(id => map.getLayer(id));
               const features = existingLayers.length > 0
                 ? map.queryRenderedFeatures({ layers: existingLayers })
@@ -553,19 +575,21 @@ test.describe('ODT App', () => {
   });
 
   test.describe('Category Toggles in Settings', () => {
-    test('settings button opens popover with all 4 category buttons', async ({ page }) => {
-      await page.click('#btnSettings');
+    test('settings button opens popover with all 6 category buttons', async ({ page }) => {
+      await openSettings(page);
 
       const popover = page.locator('#settingsPopover');
-      await expect(popover).toHaveClass(/show/);
+      await expect(popover).toBeVisible();
 
       const buttons = page.locator('#settingsPopover .category-toggle-btn');
-      await expect(buttons).toHaveCount(4);
+      await expect(buttons).toHaveCount(6);
 
-      await expect(page.locator('#settingsPopover [data-category="water"]')).toBeVisible();
+      await expect(page.locator('#settingsPopover [data-category="water-reliable"]')).toBeVisible();
+      await expect(page.locator('#settingsPopover [data-category="water-other"]')).toBeVisible();
       await expect(page.locator('#settingsPopover [data-category="towns"]')).toBeVisible();
       await expect(page.locator('#settingsPopover [data-category="navigation"]')).toBeVisible();
       await expect(page.locator('#settingsPopover [data-category="toilets"]')).toBeVisible();
+      await expect(page.locator('#settingsPopover [data-category="sections"]')).toBeVisible();
     });
 
     test('default toggle state: water, towns, toilets on; navigation off', async ({ page }) => {
@@ -573,21 +597,23 @@ test.describe('ODT App', () => {
       await page.reload();
       await page.waitForSelector('#mapContainer');
 
-      await page.click('#btnSettings');
+      await openSettings(page);
 
-      await expect(page.locator('#settingsPopover [data-category="water"]')).toHaveClass(/active/);
+      await expect(page.locator('#settingsPopover [data-category="water-reliable"]')).toHaveClass(/active/);
+      await expect(page.locator('#settingsPopover [data-category="water-other"]')).toHaveClass(/active/);
       await expect(page.locator('#settingsPopover [data-category="towns"]')).toHaveClass(/active/);
       await expect(page.locator('#settingsPopover [data-category="toilets"]')).toHaveClass(/active/);
+      await expect(page.locator('#settingsPopover [data-category="sections"]')).toHaveClass(/active/);
       await expect(page.locator('#settingsPopover [data-category="navigation"]')).not.toHaveClass(/active/);
 
-      await expect(page.locator('#settingsPopover [data-category="water"]')).toHaveAttribute('aria-pressed', 'true');
+      await expect(page.locator('#settingsPopover [data-category="water-reliable"]')).toHaveAttribute('aria-pressed', 'true');
       await expect(page.locator('#settingsPopover [data-category="navigation"]')).toHaveAttribute('aria-pressed', 'false');
     });
 
     test('clicking toggle button toggles active state and aria-pressed', async ({ page }) => {
-      await page.click('#btnSettings');
+      await openSettings(page);
 
-      const waterBtn = page.locator('#settingsPopover [data-category="water"]');
+      const waterBtn = page.locator('#settingsPopover [data-category="water-reliable"]');
 
       await expect(waterBtn).toHaveClass(/active/);
       await expect(waterBtn).toHaveAttribute('aria-pressed', 'true');
@@ -604,16 +630,16 @@ test.describe('ODT App', () => {
     test('toggling off a category hides its map layers', async ({ page }) => {
       await page.waitForTimeout(3000);
 
-      await page.click('#btnSettings');
-      await page.click('#settingsPopover [data-category="water"]');
+      await openSettings(page);
+      await page.click('#settingsPopover [data-category="water-reliable"]');
 
       const visibility = await page.evaluate(() => {
         const map = window._odtMap;
         if (!map) return null;
         return {
-          unclustered: map.getLayoutProperty('water-points-unclustered', 'visibility'),
-          clusters: map.getLayoutProperty('water-clusters', 'visibility'),
-          clusterCount: map.getLayoutProperty('water-cluster-count', 'visibility')
+          unclustered: map.getLayoutProperty('water-reliable-points-unclustered', 'visibility'),
+          clusters: map.getLayoutProperty('water-reliable-clusters', 'visibility'),
+          clusterCount: map.getLayoutProperty('water-reliable-cluster-count', 'visibility')
         };
       });
 
@@ -626,7 +652,7 @@ test.describe('ODT App', () => {
     test('toggling on a category shows its map layers', async ({ page }) => {
       await page.waitForTimeout(3000);
 
-      await page.click('#btnSettings');
+      await openSettings(page);
       await page.click('#settingsPopover [data-category="navigation"]');
 
       const visibility = await page.evaluate(() => {
@@ -648,20 +674,22 @@ test.describe('ODT App', () => {
     test('all categories toggled off shows empty map (no category points)', async ({ page }) => {
       await page.waitForTimeout(3000);
 
-      await page.click('#btnSettings');
-      await page.click('#settingsPopover [data-category="water"]');
+      await openSettings(page);
+      await page.click('#settingsPopover [data-category="water-reliable"]');
+      await page.click('#settingsPopover [data-category="water-other"]');
       await page.click('#settingsPopover [data-category="towns"]');
       await page.click('#settingsPopover [data-category="toilets"]');
+      await page.click('#settingsPopover [data-category="sections"]');
 
       const buttons = page.locator('#settingsPopover .category-toggle-btn');
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 6; i++) {
         await expect(buttons.nth(i)).not.toHaveClass(/active/);
       }
 
       const allHidden = await page.evaluate(() => {
         const map = window._odtMap;
         if (!map) return false;
-        const categories = ['water', 'towns', 'navigation', 'toilets'];
+        const categories = ['water-reliable', 'water-other', 'towns', 'navigation', 'toilets'];
         return categories.every(cat => {
           const layer = map.getLayer(`${cat}-points-unclustered`);
           if (!layer) return true;
@@ -674,18 +702,18 @@ test.describe('ODT App', () => {
     test('all categories toggled on shows all category points', async ({ page }) => {
       await page.waitForTimeout(3000);
 
-      await page.click('#btnSettings');
+      await openSettings(page);
       await page.click('#settingsPopover [data-category="navigation"]');
 
       const buttons = page.locator('#settingsPopover .category-toggle-btn');
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 6; i++) {
         await expect(buttons.nth(i)).toHaveClass(/active/);
       }
 
       const allVisible = await page.evaluate(() => {
         const map = window._odtMap;
         if (!map) return false;
-        const categories = ['water', 'towns', 'navigation', 'toilets'];
+        const categories = ['water-reliable', 'water-other', 'towns', 'navigation', 'toilets'];
         return categories.every(cat => {
           const layer = map.getLayer(`${cat}-points-unclustered`);
           if (!layer) return true;
@@ -696,16 +724,16 @@ test.describe('ODT App', () => {
     });
 
     test('toggle state persists across page reload', async ({ page }) => {
-      await page.click('#btnSettings');
-      await page.click('#settingsPopover [data-category="water"]');
-      await expect(page.locator('#settingsPopover [data-category="water"]')).not.toHaveClass(/active/);
+      await openSettings(page);
+      await page.click('#settingsPopover [data-category="water-reliable"]');
+      await expect(page.locator('#settingsPopover [data-category="water-reliable"]')).not.toHaveClass(/active/);
 
       await page.reload();
       await page.waitForSelector('#mapContainer');
 
-      await page.click('#btnSettings');
-      await expect(page.locator('#settingsPopover [data-category="water"]')).not.toHaveClass(/active/);
-      await expect(page.locator('#settingsPopover [data-category="water"]')).toHaveAttribute('aria-pressed', 'false');
+      await openSettings(page);
+      await expect(page.locator('#settingsPopover [data-category="water-reliable"]')).not.toHaveClass(/active/);
+      await expect(page.locator('#settingsPopover [data-category="water-reliable"]')).toHaveAttribute('aria-pressed', 'false');
 
       await page.evaluate(() => localStorage.removeItem('categoryToggles'));
     });
@@ -716,20 +744,21 @@ test.describe('ODT App', () => {
       await page.click('#btnWaypointList');
 
       const overlay = page.locator('#waypointListOverlay');
-      await expect(overlay).toHaveClass(/show/);
+      await expect(overlay).toBeVisible();
     });
 
     test('displays filter buttons for all categories', async ({ page }) => {
       await page.click('#btnWaypointList');
 
       const filterButtons = page.locator('#waypointListOverlay .filter-btn');
-      await expect(filterButtons).toHaveCount(5); // All + 4 categories
+      await expect(filterButtons).toHaveCount(6);
 
-      await expect(page.locator('#waypointListOverlay .filter-btn[data-filter="all"]')).toBeVisible();
-      await expect(page.locator('#waypointListOverlay .filter-btn[data-filter="water"]')).toBeVisible();
+      await expect(page.locator('#waypointListOverlay .filter-btn[data-filter="reliable-water"]')).toBeVisible();
+      await expect(page.locator('#waypointListOverlay .filter-btn[data-filter="other-water"]')).toBeVisible();
       await expect(page.locator('#waypointListOverlay .filter-btn[data-filter="towns"]')).toBeVisible();
       await expect(page.locator('#waypointListOverlay .filter-btn[data-filter="navigation"]')).toBeVisible();
       await expect(page.locator('#waypointListOverlay .filter-btn[data-filter="toilets"]')).toBeVisible();
+      await expect(page.locator('#waypointListOverlay .filter-btn[data-filter="sections"]')).toBeVisible();
     });
 
     test('displays waypoint list items', async ({ page }) => {
@@ -738,7 +767,7 @@ test.describe('ODT App', () => {
       // Wait for list to populate
       await page.waitForTimeout(1000);
 
-      const listItems = page.locator('#waypointListOverlay .waypoint-item');
+      const listItems = page.locator('#waypointListOverlay .waypoint-list-item');
       const count = await listItems.count();
       expect(count).toBeGreaterThan(10); // Should have many waypoints
     });
@@ -746,24 +775,26 @@ test.describe('ODT App', () => {
     test('filter buttons change active state when clicked', async ({ page }) => {
       await page.click('#btnWaypointList');
 
-      const allBtn = page.locator('#waypointListOverlay .filter-btn[data-filter="all"]');
-      const waterBtn = page.locator('#waypointListOverlay .filter-btn[data-filter="water"]');
+      const reliableBtn = page.locator('#waypointListOverlay .filter-btn[data-filter="reliable-water"]');
+      const townBtn = page.locator('#waypointListOverlay .filter-btn[data-filter="towns"]');
 
-      // All should be active by default
-      await expect(allBtn).toHaveClass(/active/);
+      await expect(reliableBtn).toHaveClass(/active/);
 
-      // Click water filter
-      await waterBtn.click();
-      await expect(waterBtn).toHaveClass(/active/);
-      await expect(allBtn).not.toHaveClass(/active/);
+      await townBtn.click();
+      await expect(townBtn).toHaveClass(/active/);
+      await expect(reliableBtn).toHaveClass(/active/);
+
+      await reliableBtn.click();
+      await expect(reliableBtn).not.toHaveClass(/active/);
+      await expect(townBtn).toHaveClass(/active/);
     });
 
     test('closes when close button clicked', async ({ page }) => {
       await page.click('#btnWaypointList');
-      await expect(page.locator('#waypointListOverlay')).toHaveClass(/show/);
+      await expect(page.locator('#waypointListOverlay')).toBeVisible();
 
       await page.click('#waypointListOverlay .overlay-close');
-      await expect(page.locator('#waypointListOverlay')).not.toHaveClass(/show/);
+      await expect(page.locator('#waypointListOverlay')).not.toBeVisible();
     });
   });
 });
