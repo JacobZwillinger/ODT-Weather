@@ -45,6 +45,7 @@ const {
   isGpsEnabled,
   getLastPosition,
   setPositionUpdateCallback,
+  setHeadingUpdateCallback,
   shouldAllowMapClicks,
   initGpsButton,
 } = await import('../../public/js/gps.js');
@@ -59,10 +60,13 @@ describe('GPS module', () => {
     // Reset geolocation mocks
     mockGeolocation.watchPosition.mockReset();
     mockGeolocation.clearWatch.mockReset();
+    localStorage.clear();
     // Make sure GPS is off before each test
     if (isGpsEnabled()) {
       stopGps();
     }
+    setPositionUpdateCallback(null);
+    setHeadingUpdateCallback(null);
   });
 
   afterEach(() => {
@@ -165,14 +169,38 @@ describe('GPS module', () => {
     expect(callback).toHaveBeenCalledWith(null, null, null);
   });
 
-  // [TEST] Added: verifies initGpsButton attaches click handler
-  it('initGpsButton attaches click listener', () => {
+  it('initGpsButton auto-starts GPS by default and attaches click listener', () => {
     mockGeolocation.watchPosition.mockReturnValue(42);
     initGpsButton();
     const btn = document.getElementById('btnGpsToggle');
-    btn.click();
     expect(isGpsEnabled()).toBe(true);
-    // Clean up
-    stopGps();
+    expect(mockGeolocation.watchPosition).toHaveBeenCalledTimes(1);
+
+    btn.click();
+    expect(isGpsEnabled()).toBe(false);
+  });
+
+  it('initGpsButton respects an explicit saved off preference', () => {
+    localStorage.setItem('gpsEnabled', 'false');
+    mockGeolocation.watchPosition.mockReturnValue(42);
+
+    initGpsButton();
+    expect(isGpsEnabled()).toBe(false);
+    expect(mockGeolocation.watchPosition).not.toHaveBeenCalled();
+
+    document.getElementById('btnGpsToggle').click();
+    expect(isGpsEnabled()).toBe(true);
+  });
+
+  it('Android cleanup pauses active watches and resume restarts them', () => {
+    mockGeolocation.watchPosition.mockReturnValueOnce(42).mockReturnValueOnce(84);
+    startGps();
+
+    window._gpsCleanup();
+    expect(mockGeolocation.clearWatch).toHaveBeenCalledWith(42);
+    expect(isGpsEnabled()).toBe(true);
+
+    window._gpsResume();
+    expect(mockGeolocation.watchPosition).toHaveBeenCalledTimes(2);
   });
 });

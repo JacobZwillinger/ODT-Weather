@@ -7,7 +7,7 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html'],
-      include: ['public/js/**/*.js'],
+      include: ['public/js/**/*.js', 'lib/**/*.js', 'api/**/*.js'],
       exclude: ['public/js/app.js'] // Entry point, tested via E2E
     }
   }

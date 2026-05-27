@@ -157,7 +157,7 @@ describe('loadForecasts', () => {
 
   // [TEST] Added: verifies API usage display when _usage is present in response
   it('displays API usage when present in forecast response', async () => {
-    vi.spyOn(globalThis, 'fetch').mockResolvedValue({
+    const fetchSpy = vi.spyOn(globalThis, 'fetch').mockResolvedValue({
       ok: true,
       json: () => Promise.resolve({
         daily: Array(7).fill({ high: 70, low: 50, icon: 'clear-day', summary: 'Clear' }),
@@ -171,6 +171,8 @@ describe('loadForecasts', () => {
     const usage = document.getElementById('apiUsage');
     expect(usage.textContent).toContain('150');
     expect(usage.textContent).toContain('25,000');
+    expect(fetchSpy).toHaveBeenCalledWith('/api/forecast?lat=44.045&lon=-121.038');
+    expect(fetchSpy).toHaveBeenCalledWith('/api/forecast?lat=43.708&lon=-120.847');
   });
 
   // [TEST] Added: verifies API usage not shown when _usage.calls is null
@@ -253,5 +255,37 @@ describe('loadForecasts', () => {
     expect(Array.isArray(cached.forecasts)).toBe(true);
     expect(cached.forecasts.length).toBe(2);
     expect(Number.isFinite(cached.savedAt)).toBe(true);
+  });
+
+  it('uses cached data only for sections that fail to refresh', async () => {
+    localStorage.setItem('odtForecastCacheV1', JSON.stringify({
+      savedAt: 1700000000000,
+      forecasts: [
+        null,
+        {
+          daily: [
+            { high: 61, low: 39, icon: 'rain', summary: 'Cached wet' },
+            ...Array(6).fill({ high: 63, low: 41, icon: 'cloudy', summary: 'Cached cloudy' })
+          ]
+        }
+      ]
+    }));
+    vi.spyOn(globalThis, 'fetch')
+      .mockResolvedValueOnce({
+        ok: true,
+        json: () => Promise.resolve({
+          daily: [{ high: 80, low: 50, icon: 'clear-day', summary: 'Live clear' }],
+          hourly: [],
+          _usage: { calls: null, limit: null, remaining: null }
+        })
+      })
+      .mockRejectedValueOnce(new Error('Network error'));
+
+    await loadForecasts();
+
+    const container = document.getElementById('container');
+    expect(container.innerHTML).toContain('fc-high">80°');
+    expect(container.innerHTML).toContain('fc-high">61°');
+    expect(container.textContent).toContain('Some sections failed to refresh; using cached forecast');
   });
 });
