@@ -91,12 +91,31 @@ const setupModal = (modalId, closeButtonId) => {
   });
 };
 
-// Find waypoint by name (preferred) or by coordinates (fallback)
+// Find waypoint by name (preferred) or by coordinates (fallback).
+//
+// Categories like toilets are not always mirrored into state.allWaypoints
+// (their names don't match the main waypoint list), so we also search every
+// category array as a secondary by-name source. This is the only by-name
+// lookup point in the app; new categories get coverage automatically.
+const findWaypointByNameInCategories = (name) => {
+  const cats = state.categories || {};
+  for (const arr of Object.values(cats)) {
+    if (!Array.isArray(arr)) continue;
+    const hit = arr.find(item => item && item.name === name);
+    if (hit) return hit;
+  }
+  return null;
+};
+
 const findWaypoint = (name, lat, lon) => {
-  // First try to find by exact name match
+  // First try to find by exact name match in the mile-marker backbone.
   if (name) {
     const byName = state.allWaypoints.find(wp => wp.name === name);
     if (byName) return byName;
+    // Then fall back to per-category lookups (toilets, etc.) so the by-name
+    // path works even when a category's entries aren't in allWaypoints.
+    const inCat = findWaypointByNameInCategories(name);
+    if (inCat) return inCat;
     // Name lookup mode should not silently fall back to arbitrary coordinate matching.
     if (!Number.isFinite(lat) || !Number.isFinite(lon)) return null;
   }

@@ -4,19 +4,36 @@
 
 set -e
 
+TRAIL="odt"
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --trail) TRAIL="$2"; shift 2 ;;
+    *) echo "Unknown arg: $1"; exit 1 ;;
+  esac
+done
+
 PROJECT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 BUILD_DIR="$PROJECT_ROOT/build"
 DIST_DIR="$PROJECT_ROOT/dist"
-CORRIDOR_OSM="$BUILD_DIR/corridor.osm.pbf"
+
+if [ "$TRAIL" = "odt" ]; then
+  TRAIL_BUILD_DIR="$BUILD_DIR"
+  BASEMAP_NAME="basemap.pmtiles"
+else
+  TRAIL_BUILD_DIR="$BUILD_DIR/$TRAIL"
+  BASEMAP_NAME="basemap-${TRAIL}.pmtiles"
+fi
+
+CORRIDOR_OSM="$TRAIL_BUILD_DIR/corridor.osm.pbf"
 # Use /tmp to avoid space issues in path
-TEMP_BUILD="/tmp/odt-basemap-build"
-BASEMAP_PMTILES_TEMP="$TEMP_BUILD/basemap.pmtiles"
-BASEMAP_PMTILES="$DIST_DIR/basemap.pmtiles"
+TEMP_BUILD="/tmp/odt-basemap-build-${TRAIL}"
+BASEMAP_PMTILES_TEMP="$TEMP_BUILD/$BASEMAP_NAME"
+BASEMAP_PMTILES="$DIST_DIR/$BASEMAP_NAME"
 PLANETILER_JAR="$BUILD_DIR/planetiler.jar"
 PLANETILER_TMP="$TEMP_BUILD/planetiler-tmp"
 
 # Ensure directories exist
-mkdir -p "$BUILD_DIR"
+mkdir -p "$TRAIL_BUILD_DIR"
 mkdir -p "$DIST_DIR"
 mkdir -p "$TEMP_BUILD"
 
@@ -81,5 +98,9 @@ echo ""
 echo "✓ Basemap created!"
 echo "  Output: $BASEMAP_PMTILES"
 echo "  Size: $OUTPUT_SIZE"
+
+# Mirror into public/ so the dev server + Vercel pick it up automatically.
+cp "$BASEMAP_PMTILES" "$PROJECT_ROOT/public/$BASEMAP_NAME"
+echo "✓ Copied to public/$BASEMAP_NAME"
 echo ""
 echo "Done!"

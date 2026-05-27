@@ -17,7 +17,17 @@ if (!apiKey) {
   );
 }
 
-app.use(compression());
+// Skip compression for .pmtiles files. PMTiles is read via HTTP Range requests
+// and gzip'ing the response body breaks the byte-offset math, producing
+// ERR_CONTENT_DECODING_FAILED in the browser. Also skip whenever the client
+// sends a Range header for the same reason.
+app.use(compression({
+  filter: (req, res) => {
+    if (req.path.endsWith('.pmtiles')) return false;
+    if (req.headers.range) return false;
+    return compression.filter(req, res);
+  }
+}));
 
 app.use((req, res, next) => {
   // No caching for JS/CSS so edits reflect immediately during development

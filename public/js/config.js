@@ -100,7 +100,7 @@ export const TRAILS = {
       navigation: 'trails/nnml/navigation.json',
       toilets: 'trails/nnml/toilets.json',
       routeGeoJson: 'trails/nnml/route.geojson',
-      elevationProfile: null
+      elevationProfile: 'trails/nnml/elevation-profile.json'
     },
     waterReliability: {
       ratings: ['w3', 'w2', 'w1', 'w0'],

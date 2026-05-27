@@ -1,6 +1,6 @@
 // ODT Service Worker
 // Bumping CACHE_VERSION forces all clients to download fresh assets on next visit.
-const CACHE_VERSION = 'odt-v12';
+const CACHE_VERSION = 'odt-v13';
 
 // Assets pre-cached on install — everything needed for full offline use.
 // Large files (contours.pmtiles ~87MB) are included so the map works
@@ -35,7 +35,10 @@ const PRECACHE_URLS = [
   '/trails/nnml/toilets.json',
   '/trails/nnml/route.geojson',
   '/trails/nnml/sections.json',
+  '/trails/nnml/elevation-profile.json',
+  '/trails/nnml/alternates.geojson',
   '/basemap.pmtiles',
+  '/basemap-nnml.pmtiles',
   '/route.pmtiles',
   '/overlay.pmtiles',
   '/contours.pmtiles',

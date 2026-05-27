@@ -1,45 +1,63 @@
 #!/bin/bash
-# Master script to build complete offline map
-# This orchestrates all steps: corridor, OSM download, extraction, and basemap generation
+# Master script to build complete offline map for a trail.
+# Pass --trail nnml (or odt, the default) to pick the trail.
 
 set -e
 
+TRAIL="odt"
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --trail) TRAIL="$2"; shift 2 ;;
+    *) echo "Unknown arg: $1"; exit 1 ;;
+  esac
+done
+
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+if [ "$TRAIL" = "odt" ]; then
+  TRAIL_BUILD_DIR="$PROJECT_ROOT/build"
+else
+  TRAIL_BUILD_DIR="$PROJECT_ROOT/build/$TRAIL"
+fi
 
 echo "================================================"
-echo "ODT Offline Map Build Pipeline"
+echo "Offline Map Build Pipeline  (trail: $TRAIL)"
 echo "================================================"
 echo ""
 
 # Step 1: Build corridor polygon
 echo "Step 1/6: Building corridor polygon..."
-node "$SCRIPT_DIR/build-corridor.js"
+node "$SCRIPT_DIR/build-corridor.js" --trail "$TRAIL"
 echo ""
 
-# Step 2: Build overlay tiles (route + waypoints)
-echo "Step 2/6: Building overlay tiles..."
-node "$SCRIPT_DIR/build-tiles.js"
-echo ""
+# Step 2: Build overlay tiles (route + waypoints) — currently ODT-only.
+if [ "$TRAIL" = "odt" ]; then
+  echo "Step 2/6: Building overlay tiles..."
+  node "$SCRIPT_DIR/build-tiles.js"
+  echo ""
+else
+  echo "Step 2/6: Skipping overlay build for $TRAIL (uses GeoJSON sources at runtime)."
+  echo ""
+fi
 
 # Step 3: Download OSM extract (skip if already exists)
-if [ -f "$PROJECT_ROOT/build/region.osm.pbf" ]; then
+if [ -f "$TRAIL_BUILD_DIR/region.osm.pbf" ]; then
   echo "Step 3/6: OSM extract already downloaded, skipping..."
   echo ""
 else
   echo "Step 3/6: Downloading OSM extract..."
-  "$SCRIPT_DIR/download-osm.sh"
+  "$SCRIPT_DIR/download-osm.sh" --trail "$TRAIL"
   echo ""
 fi
 
 # Step 4: Extract corridor from OSM
 echo "Step 4/6: Extracting corridor from OSM..."
-"$SCRIPT_DIR/extract-corridor-osm.sh"
+"$SCRIPT_DIR/extract-corridor-osm.sh" --trail "$TRAIL"
 echo ""
 
 # Step 5: Build basemap with Planetiler
 echo "Step 5/6: Building basemap with Planetiler..."
-"$SCRIPT_DIR/build-basemap.sh"
+"$SCRIPT_DIR/build-basemap.sh" --trail "$TRAIL"
 echo ""
 
 # Step 6: Summary

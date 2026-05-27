@@ -1,6 +1,6 @@
 [
   {
-    "mile": 0.0,
+    "mile": 0,
     "lat": 44.045438,
     "lon": -121.038164,
     "name": "CV001",
@@ -637,7 +637,7 @@
     "landmark": "join Flat Iron Rock Trail"
   },
   {
-    "mile": 5.0,
+    "mile": 5,
     "lat": 44.003371,
     "lon": -121.051153,
     "name": "CV006",
@@ -714,7 +714,7 @@
     "landmark": ""
   },
   {
-    "mile": 15.0,
+    "mile": 15,
     "lat": 43.902154,
     "lon": -121.057207,
     "name": "CV017",
@@ -777,7 +777,7 @@
     "landmark": ""
   },
   {
-    "mile": 22.0,
+    "mile": 22,
     "lat": 43.844073,
     "lon": -120.993085,
     "name": "CV026",
@@ -882,7 +882,7 @@
     "landmark": "cross road"
   },
   {
-    "mile": 32.0,
+    "mile": 32,
     "lat": 43.754572,
     "lon": -120.893286,
     "name": "CV041",
@@ -931,7 +931,7 @@
     "landmark": "right onto FS 2300-323"
   },
   {
-    "mile": 35.0,
+    "mile": 35,
     "lat": 43.722345,
     "lon": -120.863974,
     "name": "CV048",
@@ -952,7 +952,7 @@
     "landmark": "cross fence at Sand Spring Compensation Station"
   },
   {
-    "mile": 36.0,
+    "mile": 36,
     "lat": 43.713432,
     "lon": -120.850103,
     "name": "CV051",
@@ -966,7 +966,7 @@
     "landmark": "Sand Springs Campground (primitive)"
   },
   {
-    "mile": 37.0,
+    "mile": 37,
     "lat": 43.700552,
     "lon": -120.840985,
     "name": "CV053",
@@ -1085,7 +1085,7 @@
     "landmark": "junction"
   },
   {
-    "mile": 45.0,
+    "mile": 45,
     "lat": 43.619795,
     "lon": -120.805046,
     "name": "CV069",
@@ -1183,7 +1183,7 @@
     "landmark": "left at junction"
   },
   {
-    "mile": 53.0,
+    "mile": 53,
     "lat": 43.521452,
     "lon": -120.780391,
     "name": "CV084",
@@ -1211,7 +1211,7 @@
     "landmark": "join road"
   },
   {
-    "mile": 57.0,
+    "mile": 57,
     "lat": 43.511591,
     "lon": -120.717182,
     "name": "CV089",
@@ -1400,7 +1400,7 @@
     "landmark": "junction"
   },
   {
-    "mile": 73.0,
+    "mile": 73,
     "lat": 43.444915,
     "lon": -120.469274,
     "name": "CV106",
@@ -1449,7 +1449,7 @@
     "landmark": "start x-country"
   },
   {
-    "mile": 78.0,
+    "mile": 78,
     "lat": 43.311707,
     "lon": -120.667933,
     "name": "ALTCV16",
@@ -1519,7 +1519,7 @@
     "landmark": "start x-country"
   },
   {
-    "mile": 84.0,
+    "mile": 84,
     "lat": 43.363551,
     "lon": -120.329198,
     "name": "CV115",
@@ -1596,14 +1596,14 @@
     "landmark": ""
   },
   {
-    "mile": 89.0,
+    "mile": 89,
     "lat": 43.179512,
     "lon": -120.670039,
     "name": "ALTCV24",
     "landmark": ""
   },
   {
-    "mile": 89.0,
+    "mile": 89,
     "lat": 43.312121,
     "lon": -120.28072,
     "name": "CV123",
@@ -1750,7 +1750,7 @@
     "landmark": "Midway Well"
   },
   {
-    "mile": 102.0,
+    "mile": 102,
     "lat": 43.176797,
     "lon": -120.281568,
     "name": "WB005",
@@ -1904,7 +1904,7 @@
     "landmark": "cairn"
   },
   {
-    "mile": 117.0,
+    "mile": 117,
     "lat": 43.036561,
     "lon": -120.431862,
     "name": "WB027",
@@ -1918,7 +1918,7 @@
     "landmark": ""
   },
   {
-    "mile": 119.0,
+    "mile": 119,
     "lat": 43.041115,
     "lon": -120.466178,
     "name": "WB029",
@@ -2261,7 +2261,7 @@
     "landmark": "walk through town of Paisley (all services) 6.2 miles W to Summer Lake Hot springs. 29.3 miles W to town of Summer Lake"
   },
   {
-    "mile": 162.0,
+    "mile": 162,
     "lat": 42.686227,
     "lon": -120.570582,
     "name": "WB079",
@@ -2352,6 +2352,13 @@
     "landmark": "Morgan Butte/short side trip to lookout tower"
   },
   {
+    "mile": 179.1,
+    "lat": 42.53999087088962,
+    "lon": -120.5442935228348,
+    "name": "Pit Toilet",
+    "landmark": ""
+  },
+  {
     "mile": 180.1,
     "lat": 42.53279,
     "lon": -120.541702,
@@ -2392,6 +2399,13 @@
     "lon": -120.499091,
     "name": "WB097",
     "landmark": "Moss Pass - cross road/spring"
+  },
+  {
+    "mile": 187.2,
+    "lat": 42.4705141578479,
+    "lon": -120.4993343353272,
+    "name": "Pit Toilet",
+    "landmark": ""
   },
   {
     "mile": 189.9,
@@ -2478,7 +2492,7 @@
     "landmark": "junction"
   },
   {
-    "mile": 208.0,
+    "mile": 208,
     "lat": 42.309541,
     "lon": -120.340805,
     "name": "WB109",
@@ -2632,7 +2646,7 @@
     "landmark": ""
   },
   {
-    "mile": 230.0,
+    "mile": 230,
     "lat": 42.419699,
     "lon": -120.160292,
     "name": "WB131",
@@ -2744,7 +2758,7 @@
     "landmark": "junction"
   },
   {
-    "mile": 243.0,
+    "mile": 243,
     "lat": 42.507127,
     "lon": -120.180982,
     "name": "WB148",
@@ -2891,7 +2905,7 @@
     "landmark": "junction"
   },
   {
-    "mile": 261.0,
+    "mile": 261,
     "lat": 42.48593,
     "lon": -119.93019,
     "name": "WB169",
@@ -3066,11 +3080,18 @@
     "landmark": "creek"
   },
   {
-    "mile": 299.0,
+    "mile": 299,
     "lat": 42.414308,
     "lon": -119.718476,
     "name": "WB193",
     "landmark": "left at junction"
+  },
+  {
+    "mile": 299,
+    "lat": 42.4129045191013,
+    "lon": -119.7184066194215,
+    "name": "Pit toilet",
+    "landmark": "Closed for the season"
   },
   {
     "mile": 299.6,
@@ -3094,6 +3115,13 @@
     "landmark": "junction"
   },
   {
+    "mile": 300.5,
+    "lat": 42.42981758186221,
+    "lon": -119.7231149834068,
+    "name": "Pit toilet",
+    "landmark": ""
+  },
+  {
     "mile": 301.1,
     "lat": 42.437796,
     "lon": -119.720966,
@@ -3101,11 +3129,18 @@
     "landmark": "creek"
   },
   {
-    "mile": 303.0,
+    "mile": 303,
     "lat": 42.46318,
     "lon": -119.728429,
     "name": "WB198",
     "landmark": "junction"
+  },
+  {
+    "mile": 303,
+    "lat": 42.45017674533252,
+    "lon": -119.7296319905308,
+    "name": "Toilet",
+    "landmark": ""
   },
   {
     "mile": 304.4,
@@ -3136,7 +3171,7 @@
     "landmark": ""
   },
   {
-    "mile": 308.0,
+    "mile": 308,
     "lat": 42.510005,
     "lon": -119.67916,
     "name": "WB203",
@@ -3248,7 +3283,7 @@
     "landmark": "water hole/creek"
   },
   {
-    "mile": 328.0,
+    "mile": 328,
     "lat": 42.71574,
     "lon": -119.494119,
     "name": "WB220",
@@ -3290,14 +3325,14 @@
     "landmark": ""
   },
   {
-    "mile": 334.0,
+    "mile": 334,
     "lat": 42.822926,
     "lon": -119.445186,
     "name": "WB225",
     "landmark": ""
   },
   {
-    "mile": 334.0,
+    "mile": 334,
     "lat": 42.789779,
     "lon": -119.483065,
     "name": "WB224",
@@ -3325,7 +3360,7 @@
     "landmark": "junction"
   },
   {
-    "mile": 341.0,
+    "mile": 341,
     "lat": 42.841184,
     "lon": -119.377083,
     "name": "WB227",
@@ -3346,7 +3381,7 @@
     "landmark": ""
   },
   {
-    "mile": 343.0,
+    "mile": 343,
     "lat": 42.858337,
     "lon": -119.357698,
     "name": "WB230",
@@ -3409,7 +3444,7 @@
     "landmark": ""
   },
   {
-    "mile": 356.0,
+    "mile": 356,
     "lat": 42.812904,
     "lon": -119.143014,
     "name": "WB237",
@@ -3479,21 +3514,21 @@
     "landmark": ""
   },
   {
-    "mile": 367.0,
+    "mile": 367,
     "lat": 42.850384,
     "lon": -119.005773,
     "name": "WB247",
     "landmark": "NE on 2-track road  "
   },
   {
-    "mile": 368.0,
+    "mile": 368,
     "lat": 42.854508,
     "lon": -118.989364,
     "name": "WB248",
     "landmark": "left at junction"
   },
   {
-    "mile": 370.0,
+    "mile": 370,
     "lat": 42.863617,
     "lon": -118.955525,
     "name": "WB249",
@@ -3542,7 +3577,7 @@
     "landmark": "junciton"
   },
   {
-    "mile": 377.0,
+    "mile": 377,
     "lat": 42.8095,
     "lon": -118.870878,
     "name": "EB004&5",
@@ -3554,6 +3589,13 @@
     "lon": -118.871102,
     "name": "EB006",
     "landmark": "junction "
+  },
+  {
+    "mile": 377.3,
+    "lat": 42.8026722263894,
+    "lon": -118.8671944635802,
+    "name": "Pit toilet",
+    "landmark": ""
   },
   {
     "mile": 378.4,
@@ -3640,10 +3682,24 @@
     "landmark": "0.1 before EB018 join maintained road/South Steens Campground -$6, water & pit toilets"
   },
   {
+    "mile": 392.5,
+    "lat": 42.65601400502206,
+    "lon": -118.7271881164909,
+    "name": "Pit toilet",
+    "landmark": ""
+  },
+  {
     "mile": 392.9,
     "lat": 42.656372,
     "lon": -118.722913,
     "name": "EB019",
+    "landmark": ""
+  },
+  {
+    "mile": 392.9,
+    "lat": 42.65640917996468,
+    "lon": -118.7245343630734,
+    "name": "Pit toilet",
     "landmark": ""
   },
   {
@@ -3654,7 +3710,7 @@
     "landmark": "creek"
   },
   {
-    "mile": 397.0,
+    "mile": 397,
     "lat": 42.669489,
     "lon": -118.67173,
     "name": "EB020a",
@@ -3675,7 +3731,7 @@
     "landmark": "climb up ridge"
   },
   {
-    "mile": 402.0,
+    "mile": 402,
     "lat": 42.667651,
     "lon": -118.587483,
     "name": "EB023",
@@ -3766,6 +3822,13 @@
     "landmark": "join road/Alvord Hot Spring 1.7 N on road (bathrooms, $5 hotsprings, camping, store)"
   },
   {
+    "mile": 416.5,
+    "lat": 42.50801906653202,
+    "lon": -118.5326088037961,
+    "name": "Pit toilet",
+    "landmark": ""
+  },
+  {
     "mile": 418.9,
     "lat": 42.48755,
     "lon": -118.54249,
@@ -3773,7 +3836,7 @@
     "landmark": "join 2-track road"
   },
   {
-    "mile": 421.0,
+    "mile": 421,
     "lat": 42.459563,
     "lon": -118.532851,
     "name": "EB035",
@@ -3927,7 +3990,7 @@
     "landmark": "start x-country, follow cairns"
   },
   {
-    "mile": 453.0,
+    "mile": 453,
     "lat": 42.134093,
     "lon": -118.737112,
     "name": "EB069",
@@ -3997,7 +4060,7 @@
     "landmark": ""
   },
   {
-    "mile": 467.0,
+    "mile": 467,
     "lat": 42.002467,
     "lon": -118.633507,
     "name": "EB104",
@@ -4039,7 +4102,7 @@
     "landmark": "left at junction"
   },
   {
-    "mile": 476.0,
+    "mile": 476,
     "lat": 42.061054,
     "lon": -118.494865,
     "name": "EB110",
@@ -4067,7 +4130,7 @@
     "landmark": ""
   },
   {
-    "mile": 481.0,
+    "mile": 481,
     "lat": 42.054083,
     "lon": -118.414708,
     "name": "EB115",
@@ -4207,7 +4270,7 @@
     "landmark": ""
   },
   {
-    "mile": 496.0,
+    "mile": 496,
     "lat": 42.039003,
     "lon": -118.239935,
     "name": "EB135",
@@ -4221,7 +4284,7 @@
     "landmark": "junction"
   },
   {
-    "mile": 498.0,
+    "mile": 498,
     "lat": 42.061896,
     "lon": -118.245318,
     "name": "EB137",
@@ -4354,7 +4417,7 @@
     "landmark": "start x-country"
   },
   {
-    "mile": 518.0,
+    "mile": 518,
     "lat": 42.130427,
     "lon": -117.97806,
     "name": "EB163",
@@ -4403,7 +4466,7 @@
     "landmark": "creek"
   },
   {
-    "mile": 522.0,
+    "mile": 522,
     "lat": 42.179193,
     "lon": -117.983166,
     "name": "EB168",
@@ -4431,7 +4494,7 @@
     "landmark": "creek"
   },
   {
-    "mile": 524.0,
+    "mile": 524,
     "lat": 42.204422,
     "lon": -117.989997,
     "name": "EB171",
@@ -4494,7 +4557,7 @@
     "landmark": "junction"
   },
   {
-    "mile": 528.0,
+    "mile": 528,
     "lat": 42.199067,
     "lon": -117.926108,
     "name": "EB177",
@@ -4529,7 +4592,7 @@
     "landmark": ""
   },
   {
-    "mile": 532.0,
+    "mile": 532,
     "lat": 42.181454,
     "lon": -117.85333,
     "name": "EB181",
@@ -4606,7 +4669,7 @@
     "landmark": "left at junction"
   },
   {
-    "mile": 545.0,
+    "mile": 545,
     "lat": 42.150008,
     "lon": -117.671432,
     "name": "OC006",
@@ -4627,14 +4690,14 @@
     "landmark": "trough  "
   },
   {
-    "mile": 548.0,
+    "mile": 548,
     "lat": 42.115566,
     "lon": -117.58072,
     "name": "OC023",
     "landmark": ""
   },
   {
-    "mile": 548.0,
+    "mile": 548,
     "lat": 42.185444,
     "lon": -117.683969,
     "name": "OC009",
@@ -4662,7 +4725,7 @@
     "landmark": "creek/start x-country"
   },
   {
-    "mile": 551.0,
+    "mile": 551,
     "lat": 42.192831,
     "lon": -117.639748,
     "name": "OC013",
@@ -4823,7 +4886,7 @@
     "landmark": "spring at OC036 off trail"
   },
   {
-    "mile": 570.0,
+    "mile": 570,
     "lat": 42.11724,
     "lon": -117.394226,
     "name": "OC037",
@@ -4900,7 +4963,7 @@
     "landmark": "river/confluence with Dry Canyon"
   },
   {
-    "mile": 583.0,
+    "mile": 583,
     "lat": 42.168695,
     "lon": -117.272546,
     "name": "OC048",
@@ -4935,7 +4998,7 @@
     "landmark": "river"
   },
   {
-    "mile": 590.0,
+    "mile": 590,
     "lat": 42.23383,
     "lon": -117.256714,
     "name": "OC053",
@@ -4984,7 +5047,7 @@
     "landmark": "river"
   },
   {
-    "mile": 597.0,
+    "mile": 597,
     "lat": 42.292632,
     "lon": -117.223299,
     "name": "OC060",
@@ -5012,7 +5075,7 @@
     "landmark": "river"
   },
   {
-    "mile": 602.0,
+    "mile": 602,
     "lat": 42.343308,
     "lon": -117.25031,
     "name": "OC064",
@@ -5047,14 +5110,14 @@
     "landmark": "river"
   },
   {
-    "mile": 609.0,
+    "mile": 609,
     "lat": 42.420219,
     "lon": -117.217487,
     "name": "OC069",
     "landmark": "river"
   },
   {
-    "mile": 611.0,
+    "mile": 611,
     "lat": 42.442799,
     "lon": -117.207838,
     "name": "OC070",
@@ -5096,7 +5159,7 @@
     "landmark": ""
   },
   {
-    "mile": 616.0,
+    "mile": 616,
     "lat": 42.495076,
     "lon": -117.171485,
     "name": "OC076",
@@ -5138,11 +5201,18 @@
     "landmark": "join Owyhee River"
   },
   {
-    "mile": 621.0,
+    "mile": 621,
     "lat": 42.545042,
     "lon": -117.166053,
     "name": "OC077",
     "landmark": "pit toilet"
+  },
+  {
+    "mile": 621,
+    "lat": 42.5449550300801,
+    "lon": -117.1670292963243,
+    "name": "Pit toilet",
+    "landmark": ""
   },
   {
     "mile": 621.7,
@@ -5257,7 +5327,7 @@
     "landmark": ""
   },
   {
-    "mile": 643.0,
+    "mile": 643,
     "lat": 42.767079,
     "lon": -117.36057,
     "name": "OC096",
@@ -5376,7 +5446,7 @@
     "landmark": ""
   },
   {
-    "mile": 664.0,
+    "mile": 664,
     "lat": 42.871209,
     "lon": -117.589666,
     "name": "OC112",
@@ -5411,7 +5481,7 @@
     "landmark": ""
   },
   {
-    "mile": 667.0,
+    "mile": 667,
     "lat": 42.907402,
     "lon": -117.605217,
     "name": "OC115b",
@@ -5432,14 +5502,14 @@
     "landmark": ""
   },
   {
-    "mile": 671.0,
+    "mile": 671,
     "lat": 42.926754,
     "lon": -117.674585,
     "name": "OC117",
     "landmark": "left at junction"
   },
   {
-    "mile": 672.0,
+    "mile": 672,
     "lat": 42.931628,
     "lon": -117.692659,
     "name": "OC118",
@@ -5537,7 +5607,7 @@
     "landmark": "left at fork"
   },
   {
-    "mile": 686.0,
+    "mile": 686,
     "lat": 43.094355,
     "lon": -117.688801,
     "name": "OC133",
@@ -5551,7 +5621,7 @@
     "landmark": ""
   },
   {
-    "mile": 688.0,
+    "mile": 688,
     "lat": 43.112977,
     "lon": -117.709473,
     "name": "OC135",
@@ -5565,7 +5635,7 @@
     "landmark": ""
   },
   {
-    "mile": 689.0,
+    "mile": 689,
     "lat": 43.113768,
     "lon": -117.694442,
     "name": "OC138",
@@ -5600,7 +5670,7 @@
     "landmark": "junction  "
   },
   {
-    "mile": 697.0,
+    "mile": 697,
     "lat": 43.167912,
     "lon": -117.581074,
     "name": "OC143",
@@ -5628,7 +5698,7 @@
     "landmark": ""
   },
   {
-    "mile": 703.0,
+    "mile": 703,
     "lat": 43.177216,
     "lon": -117.467584,
     "name": "OC147",
@@ -5647,6 +5717,13 @@
     "lon": -117.468119,
     "name": "OC149",
     "landmark": "right at junction"
+  },
+  {
+    "mile": 705.3,
+    "lat": 43.22613253669117,
+    "lon": -117.495511293453,
+    "name": "Pit toilet",
+    "landmark": ""
   },
   {
     "mile": 707.2,
@@ -5845,7 +5922,7 @@
     "landmark": ""
   },
   {
-    "mile": 737.0,
+    "mile": 737,
     "lat": 43.438835,
     "lon": -117.271812,
     "name": "OC188",
@@ -5894,7 +5971,7 @@
     "landmark": "start x-country"
   },
   {
-    "mile": 744.0,
+    "mile": 744,
     "lat": 43.518697,
     "lon": -117.252839,
     "name": "OC195",

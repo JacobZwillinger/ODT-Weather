@@ -9,6 +9,13 @@
     "elevation": 6985
   },
   {
+    "mile": 0,
+    "lat": 35.68744,
+    "lon": -105.93996,
+    "name": "Santa Fe Plaza",
+    "landmark": "Santa Fe Plaza"
+  },
+  {
     "mile": 0.3,
     "lat": 35.68827,
     "lon": -105.9434,
@@ -54,6 +61,13 @@
     "elevation": 6656
   },
   {
+    "mile": 4.3,
+    "lat": 35.6649,
+    "lon": -105.99852,
+    "name": "S1 4.3 - T>XC (W3 0.15S)",
+    "landmark": "T>XC (W3 0.15S)"
+  },
+  {
     "mile": 5.2,
     "lat": 35.66031,
     "lon": -106.01347,
@@ -79,6 +93,13 @@
     "landmark": "tables. Developed restrooms with probable running water. Hand standpipe locked. Trash and recycling. Playground and grassy field. Paved Frontage Rd at Caja del Oro Grant Rd (CR 62). Becomes graded",
     "section": 1,
     "elevation": 6575
+  },
+  {
+    "mile": 6.1,
+    "lat": 35.65852,
+    "lon": -106.02677,
+    "name": "S1 6.1 - Toilet",
+    "landmark": "W2 tables. Developed restrooms with probable running water. Hand standpipe locked. Trash and recycling. Playground and grassy field. Paved Frontage Rd at Caja del Oro Grant Rd (CR 62). Becomes graded"
   },
   {
     "mile": 7.3,
@@ -124,6 +145,13 @@
     "landmark": "camping beyond to SF except for one area of state land.) (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. Remain on El Camino Real hiking trail at turn. Spur trail heads SW to trailhead (vault toilet, tables). Road continues beyond to Headquarters",
     "section": 1,
     "elevation": 6473
+  },
+  {
+    "mile": 10.9,
+    "lat": 35.6896,
+    "lon": -106.07745,
+    "name": "S1 10.9 - Toilet",
+    "landmark": "TH C camping beyond to SF except for one area of state land.) (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. Remain on El Camino Real hiking trail at turn. Spur trail heads SW to trailhead (vault toilet, tables). Road continues beyond to Headquarters"
   },
   {
     "mile": 11.9,
@@ -331,6 +359,13 @@
     "landmark": "water here (along with toilets etc). Frey Tr ends here at Pueblo Loop Tr., which is very much worth exploring in full to learn about the ruins and history at Bandelier. Before",
     "section": 1,
     "elevation": 6652
+  },
+  {
+    "mile": 38.6,
+    "lat": 35.79518,
+    "lon": -106.28141,
+    "name": "S1 38.6 - Toilet",
+    "landmark": "TH CG W2 (RD>TR) water here (along with toilets etc). Frey Tr ends here at Pueblo Loop Tr., which is very much worth exploring in full to learn about the ruins and history at Bandelier. Before"
   },
   {
     "mile": 40.4,
@@ -682,6 +717,13 @@
     "landmark": "maildrop) hours, and the La Cueva Lodge (motel) which may accept maildrops contingent upon stay. (575) 829-3200. The store may also accept packages but give them a call first too. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note icon color. Main route (XC) meets start of Frijoles Rim Alt (also XC here). Goal of alt is to exit White Rock Cyn via ridge to W of Frijoles Cyn, thus offering a significant shortcut vs the main route (10 mi shorter, 4+ mi of which are paved on main route). Alt initially very steep and loose (but proven",
     "section": 1,
     "elevation": 7638
+  },
+  {
+    "mile": 78.4,
+    "lat": 35.86714,
+    "lon": -106.63909,
+    "name": "La Cueva",
+    "landmark": "La Cueva"
   },
   {
     "mile": 79.3,
@@ -1116,6 +1158,13 @@
     "elevation": 6470
   },
   {
+    "mile": 154.4,
+    "lat": 36.33072,
+    "lon": -106.47281,
+    "name": "Ghost Ranch Conference Center",
+    "landmark": "Ghost Ranch Conference Center"
+  },
+  {
     "mile": 154.9,
     "lat": 36.33632,
     "lon": -106.46921,
@@ -1404,6 +1453,13 @@
     "elevation": 10107
   },
   {
+    "mile": 182.8,
+    "lat": 36.56387,
+    "lon": -106.32771,
+    "name": "S3 28.4 - Toilet",
+    "landmark": "TH (RD>TR) Trailhead with vault toilet near Upper Canjilon Lakes campground."
+  },
+  {
     "mile": 184.4,
     "lat": 36.58152,
     "lon": -106.32808,
@@ -1537,6 +1593,13 @@
     "landmark": "2017. Campground proper (E) reportedly also has faucets and vault toilets, likely seasonal.",
     "section": 3,
     "elevation": 9885
+  },
+  {
+    "mile": 206.6,
+    "lat": 36.70115,
+    "lon": -106.23807,
+    "name": "S3 52.2 - Toilet",
+    "landmark": "W2 2017. Campground proper (E) reportedly also has faucets and vault toilets, likely seasonal."
   },
   {
     "mile": 207,
@@ -1708,6 +1771,20 @@
     "landmark": "is what we've hiked several times, and may be considered a mostly efficient route down into the drainage of Beaver Creek, which the route next follows.",
     "section": 4,
     "elevation": 10721
+  },
+  {
+    "mile": 232.4,
+    "lat": 36.9261,
+    "lon": -106.35574,
+    "name": "S3/4 78.0 - END Sec 3 (W0)",
+    "landmark": "END Sec 3 (W0)"
+  },
+  {
+    "mile": 232.4,
+    "lat": 36.92603,
+    "lon": -106.35576,
+    "name": "Chama access",
+    "landmark": "Chama access"
   },
   {
     "mile": 235.6,
@@ -2277,6 +2354,20 @@
     "elevation": 7130
   },
   {
+    "mile": 285.3,
+    "lat": 36.75283,
+    "lon": -105.67392,
+    "name": "S4 52.9 - event, you may need to backtrack up to the trailhead at previous",
+    "landmark": "event, you may need to backtrack up to the trailhead at previous"
+  },
+  {
+    "mile": 285.3,
+    "lat": 36.75283,
+    "lon": -105.67392,
+    "name": "S4 52.9 - Toilet",
+    "landmark": "to backtrack up to the trailhead at previous waypoint and then follow Crossing (W3) roads south to County Rd B007 / Dunn Bridge crossing of the Rio Grande, 20 miles total, then continue 2 mi farther to the village of Arroyo Hondo at NM Hwy 522. End of trail from Sheep Crossing of Rio Grande. Toilet and table here (no water). (CCW if you find the Rio too dangerous to ford, then you may need to backtrack to Cerro or Questa and take an RTD bus around. Bus stops in village of Arroyo Hondo, then hike or hitch down to familiar"
+  },
+  {
     "mile": 285.4,
     "lat": 36.75191,
     "lon": -105.6721,
@@ -2403,6 +2494,13 @@
     "elevation": 7648
   },
   {
+    "mile": 292.4,
+    "lat": 36.72271,
+    "lon": -105.59502,
+    "name": "Questa",
+    "landmark": "Questa"
+  },
+  {
     "mile": 293.1,
     "lat": 36.73296,
     "lon": -105.59511,
@@ -2464,6 +2562,13 @@
     "landmark": "reference on signs. Modern vault toilet. Picnic table(s). Signed Latir Peak Wilderness boundary. Occasional access to Cabresto",
     "section": 5,
     "elevation": 9177
+  },
+  {
+    "mile": 300.4,
+    "lat": 36.74769,
+    "lon": -105.49948,
+    "name": "S5 8.0 - Toilet",
+    "landmark": "TH (RD>TR) reference on signs. Modern vault toilet. Picnic table(s). Signed Latir Peak Wilderness boundary. Occasional access to Cabresto"
   },
   {
     "mile": 301,
@@ -2709,6 +2814,13 @@
     "elevation": 8638
   },
   {
+    "mile": 325.7,
+    "lat": 36.70964,
+    "lon": -105.40875,
+    "name": "Red River",
+    "landmark": "Red River"
+  },
+  {
     "mile": 325.8,
     "lat": 36.70891,
     "lon": -105.40975,
@@ -2799,6 +2911,13 @@
     "elevation": 12013
   },
   {
+    "mile": 335.3,
+    "lat": 36.63232,
+    "lon": -105.45027,
+    "name": "S6 9.6 - S6A START (W0)",
+    "landmark": "S6A START (W0)"
+  },
+  {
     "mile": 335.5,
     "lat": 36.63209,
     "lon": -105.45295,
@@ -2806,6 +2925,13 @@
     "landmark": "on Gold Hill Tr 64. Cairn here at junction Gold Hill Tr 64 and (faint) Lobo Peak Tr 57 (NW)",
     "section": 6,
     "elevation": 12083
+  },
+  {
+    "mile": 335.5,
+    "lat": 36.63213,
+    "lon": -105.45296,
+    "name": "S6 9.8 - S6A END (W0)",
+    "landmark": "S6A END (W0)"
   },
   {
     "mile": 335.6,
@@ -2970,6 +3096,20 @@
     "elevation": 7406
   },
   {
+    "mile": 352.7,
+    "lat": 36.59543,
+    "lon": -105.64353,
+    "name": "San Cristobal",
+    "landmark": "San Cristobal"
+  },
+  {
+    "mile": 352.7,
+    "lat": 36.59543,
+    "lon": -105.64353,
+    "name": "S6/7 27.0 - Toilet",
+    "landmark": "San Cristobal (PO L) to postmaster Mike) but ask permission first. Bathroom, water, and trash can also con permiso. A little ways back down the road, along the route, is the modest-looking (but not inexpensive) Taos Gogi Eco Lodge in a bucolic setting, with occasional rooms available on short notice. An RTD Blue Bus stop is also within reach, with daily runs to Taos south and Questa north. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. Carsonite post in large cairn at top of switchbacks. End of Goose Creek Tr 65 at nexus of trails. Somewhat confusing on map, and only the main route ahead (W) is really visible on the ground here above treeline. This S6 9.6 TJ (S6A START)"
+  },
+  {
     "mile": 353.1,
     "lat": 36.59395,
     "lon": -105.64989,
@@ -3132,6 +3272,13 @@
     "elevation": 6502
   },
   {
+    "mile": 362.4,
+    "lat": 36.53498,
+    "lon": -105.70879,
+    "name": "S7 9.7 - Dunn Bridge W3",
+    "landmark": "Dunn Bridge W3"
+  },
+  {
     "mile": 362.5,
     "lat": 36.53498,
     "lon": -105.70879,
@@ -3247,6 +3394,13 @@
     "landmark": "64 into Rio Grande Gorge Bridge rest area. Your extended stint of xc travel ends here. West Rim TH / Gorge rest area. Developed water (drinking fountains) 24/7. Restrooms closed after 5pm. Shade ramadas. Didn’t see vending.",
     "section": 7,
     "elevation": 6996
+  },
+  {
+    "mile": 369.5,
+    "lat": 36.47655,
+    "lon": -105.73849,
+    "name": "S7 16.8 - Toilet",
+    "landmark": "!! XR (END XC) 64 into Rio Grande Gorge Bridge rest area. Your extended stint of xc travel ends here. West Rim TH / Gorge rest area. Developed water (drinking fountains) 24/7. Restrooms closed after 5pm. Shade ramadas. Didn’t see vending."
   },
   {
     "mile": 369.7,
@@ -3366,6 +3520,20 @@
     "elevation": 6091
   },
   {
+    "mile": 381.5,
+    "lat": 36.3352,
+    "lon": -105.73306,
+    "name": "S7 28.8 - TH (W2 0.25W)",
+    "landmark": "TH (W2 0.25W)"
+  },
+  {
+    "mile": 381.5,
+    "lat": 36.33607,
+    "lon": -105.73379,
+    "name": "S7 28.8 - Toilet",
+    "landmark": "Taos Jct bridge W3 Orilla Verde Campground as well as a boat launch / take-out with vault toilet. Picuris Trail TH. Good flowing spring at roadside (6-2020) is 0.25W."
+  },
+  {
     "mile": 381.6,
     "lat": 36.33445,
     "lon": -105.73251,
@@ -3393,6 +3561,13 @@
     "elevation": 6393
   },
   {
+    "mile": 382.7,
+    "lat": 36.34454,
+    "lon": -105.72098,
+    "name": "S7 30.0 - Toilet",
+    "landmark": "W1-2 Light spring flow across Slide Trail among willows 6-20 Upper trailhead for Slide Trail. Popular spot among mtb'ers using new trail network in area (not the Slide Trail so much). Vault toilet here. CW head E on the paved county road (110). You're finally out of the vast Rio"
+  },
+  {
     "mile": 383.4,
     "lat": 36.34942,
     "lon": -105.71258,
@@ -3400,6 +3575,13 @@
     "landmark": "Grande del Norte National Monument for good, along with public lands between here and your upcoming town stop at Ranchos de Taos, so no camping allowed ahead. (CCW note that you want to join the Slide Trail here from the TH, which heads N just W of the toilet.) You don't want the road heading due N here, but rather the lesser utility",
     "section": 7,
     "elevation": 6699
+  },
+  {
+    "mile": 383.4,
+    "lat": 36.34942,
+    "lon": -105.71258,
+    "name": "S7 30.7 - Toilet",
+    "landmark": "TH JL (TR>RD) Grande del Norte National Monument for good, along with public lands between here and your upcoming town stop at Ranchos de Taos, so no camping allowed ahead. (CCW note that you want to join the Slide Trail here from the TH, which heads N just W of the toilet.) You don't want the road heading due N here, but rather the lesser utility"
   },
   {
     "mile": 385.6,
@@ -3463,6 +3645,13 @@
     "landmark": "BUS) setting. Conveniently for hikers, a free RTD Blue Bus runs hourly from the post office parking lot to any of several stops within full-service Taos, including Taos Plaza - the acclaimed artists' and tourists' hub of town, and Taos Pueblo. Ranchos de Taos (PO M",
     "section": 7,
     "elevation": 6919
+  },
+  {
+    "mile": 391.7,
+    "lat": 36.36029,
+    "lon": -105.60825,
+    "name": "Ranchos de Taos / Taos access",
+    "landmark": "Ranchos de Taos / Taos access"
   },
   {
     "mile": 391.9,
@@ -3744,6 +3933,20 @@
     "elevation": 8256
   },
   {
+    "mile": 415,
+    "lat": 36.14872,
+    "lon": -105.54237,
+    "name": "S8 23.3 - Toilet",
+    "landmark": "Waypoint S8 23.3 N) on highway (parking and vault toilet across the road). Be careful with traffic on this narrow winding 2-lane road. (c) Brett Tucker CCW = counter-clockwise (fall hike); JL / JR = junction, turn left or right (for CW travel along the route, reverse for CCW); XR = cross road; XT = cross trail; !! = take note SE CW CCW Shown on Mapset. Shading icon color. It's a mere half mile off-route to the laid-back Sipapu Ski & Summer Resort. True to its name, Sipapu offers year-round services, namely a motel and cabins, restaurant / grill, and something of a convenience- store level grocery option. Sometimes busy, other times a virtual ghost town, Sipapu has agreed to hold hiker packages in the past but call Sipapu resort (M L ahead to confirm current arrangements to ensure a smooth resupply S8 36.15398, -105.54773 8193' maildrop) here. Information has historically been as follows: UPS deliveries only to Sipapu Ski & Summer Resort, Attn Lisa (Please Hold for -hiker's name here-), 5224 Hwy 518, Vadito NM 87579. Contingent upon overnight stay. CALL FIRST 800-587-2240 www.sipapunm.com Or just stop by in hopes of enjoying a quick burger and beer on the back patio built along the banks of the Rio Pueblo. S of paved NM 518, bridged crossing of Rio Pueblo along entrance road"
+  },
+  {
+    "mile": 416.7,
+    "lat": 36.13494,
+    "lon": -105.53117,
+    "name": "S8 25.0 - JR W3 JL",
+    "landmark": "JR W3 JL"
+  },
+  {
     "mile": 416.9,
     "lat": 36.13494,
     "lon": -105.53117,
@@ -3771,6 +3974,13 @@
     "elevation": 8659
   },
   {
+    "mile": 418.6,
+    "lat": 36.11254,
+    "lon": -105.53055,
+    "name": "S8 26.9 - JR W3",
+    "landmark": "JR W3"
+  },
+  {
     "mile": 418.8,
     "lat": 36.11254,
     "lon": -105.53055,
@@ -3780,6 +3990,13 @@
     "elevation": 9081
   },
   {
+    "mile": 420.6,
+    "lat": 36.09642,
+    "lon": -105.54606,
+    "name": "S8 28.9 - W3 0.1S",
+    "landmark": "W3 0.1S"
+  },
+  {
     "mile": 420.8,
     "lat": 36.09642,
     "lon": -105.54606,
@@ -3787,6 +4004,13 @@
     "landmark": "Agua Piedra Creek",
     "section": 8,
     "elevation": 10300
+  },
+  {
+    "mile": 422.1,
+    "lat": 36.09424,
+    "lon": -105.56243,
+    "name": "S8 30.4 - W3",
+    "landmark": "W3"
   },
   {
     "mile": 422.3,
@@ -3825,6 +4049,13 @@
     "elevation": 12067
   },
   {
+    "mile": 424.9,
+    "lat": 36.06957,
+    "lon": -105.55899,
+    "name": "S8 33.2 - W2",
+    "landmark": "W2"
+  },
+  {
     "mile": 425.1,
     "lat": 36.06957,
     "lon": -105.55899,
@@ -3850,6 +4081,13 @@
     "landmark": "Continue on Divide Tr 36. Divide Tr 36 crosses Serpent Lake / Angostura Tr 19. A spring pool is",
     "section": 8,
     "elevation": 12534
+  },
+  {
+    "mile": 428.2,
+    "lat": 36.0396,
+    "lon": -105.54655,
+    "name": "S8 36.5 - XT (W2 0.15E)",
+    "landmark": "XT (W2 0.15E)"
   },
   {
     "mile": 428.4,
@@ -3915,6 +4153,13 @@
     "elevation": 11766
   },
   {
+    "mile": 437.8,
+    "lat": 35.97313,
+    "lon": -105.62079,
+    "name": "S8 46.1 - W2",
+    "landmark": "W2"
+  },
+  {
     "mile": 437.9,
     "lat": 35.97265,
     "lon": -105.61945,
@@ -3942,6 +4187,13 @@
     "elevation": 11746
   },
   {
+    "mile": 438.1,
+    "lat": 35.97286,
+    "lon": -105.625,
+    "name": "S8 46.4 - W2",
+    "landmark": "W2"
+  },
+  {
     "mile": 438.2,
     "lat": 35.97286,
     "lon": -105.625,
@@ -3960,6 +4212,13 @@
     "elevation": 11774
   },
   {
+    "mile": 438.7,
+    "lat": 35.9701,
+    "lon": -105.63423,
+    "name": "S8 47.0 - XT W3",
+    "landmark": "XT W3"
+  },
+  {
     "mile": 438.9,
     "lat": 35.9701,
     "lon": -105.63423,
@@ -3967,6 +4226,13 @@
     "landmark": "Jct Rio Quemado Tr 153. Remain on Skyline Tr 251. Truchas Lake outlet.",
     "section": 8,
     "elevation": 11870
+  },
+  {
+    "mile": 439,
+    "lat": 35.96741,
+    "lon": -105.63534,
+    "name": "S8 47.3 - W2 XT",
+    "landmark": "W2 XT"
   },
   {
     "mile": 439.2,
@@ -3978,6 +4244,13 @@
     "elevation": 11706
   },
   {
+    "mile": 439.2,
+    "lat": 35.96564,
+    "lon": -105.63527,
+    "name": "S8 47.5 - W2",
+    "landmark": "W2"
+  },
+  {
     "mile": 439.3,
     "lat": 35.96564,
     "lon": -105.63527,
@@ -3985,6 +4258,13 @@
     "landmark": "Flow across trail",
     "section": 8,
     "elevation": 11722
+  },
+  {
+    "mile": 439.4,
+    "lat": 35.96277,
+    "lon": -105.6356,
+    "name": "S8 47.7 - W2",
+    "landmark": "W2"
   },
   {
     "mile": 439.6,
@@ -3996,6 +4276,13 @@
     "elevation": 11749
   },
   {
+    "mile": 440,
+    "lat": 35.95939,
+    "lon": -105.64104,
+    "name": "S8 48.3 - W2",
+    "landmark": "W2"
+  },
+  {
     "mile": 440.2,
     "lat": 35.95939,
     "lon": -105.64104,
@@ -4003,6 +4290,13 @@
     "landmark": "Snowmelt pond 6-20",
     "section": 8,
     "elevation": 11939
+  },
+  {
+    "mile": 440.4,
+    "lat": 35.95465,
+    "lon": -105.64024,
+    "name": "S8 48.7 - W2",
+    "landmark": "W2"
   },
   {
     "mile": 440.6,
@@ -4041,6 +4335,13 @@
     "elevation": 11874
   },
   {
+    "mile": 444,
+    "lat": 35.91217,
+    "lon": -105.64469,
+    "name": "S8 52.3 - JL (W3 0.1W)",
+    "landmark": "JL (W3 0.1W)"
+  },
+  {
     "mile": 444.2,
     "lat": 35.91217,
     "lon": -105.64469,
@@ -4048,6 +4349,13 @@
     "landmark": "(Skyline Tr to S not recommended due to heavy damage from 2013 Jaroso Fire along Rito Perro.)",
     "section": 8,
     "elevation": 11454
+  },
+  {
+    "mile": 444.3,
+    "lat": 35.91021,
+    "lon": -105.64063,
+    "name": "S8 52.6 - W2",
+    "landmark": "W2"
   },
   {
     "mile": 444.5,
@@ -4086,6 +4394,13 @@
     "elevation": 10554
   },
   {
+    "mile": 446.8,
+    "lat": 35.88118,
+    "lon": -105.64085,
+    "name": "S8 55.1 - JR W3 C",
+    "landmark": "JR W3 C"
+  },
+  {
     "mile": 446.9,
     "lat": 35.88118,
     "lon": -105.64085,
@@ -4102,6 +4417,13 @@
     "landmark": "Signed jct with Rito Perro Tr 256. Remain on Dockweiler Tr 259 (W).",
     "section": 8,
     "elevation": 10266
+  },
+  {
+    "mile": 448.5,
+    "lat": 35.86863,
+    "lon": -105.65826,
+    "name": "S8 56.8 - W2",
+    "landmark": "W2"
   },
   {
     "mile": 448.6,
@@ -4122,6 +4444,13 @@
     "elevation": 8555
   },
   {
+    "mile": 452,
+    "lat": 35.84189,
+    "lon": -105.67267,
+    "name": "S8 60.3 - W3",
+    "landmark": "W3"
+  },
+  {
     "mile": 452.2,
     "lat": 35.84189,
     "lon": -105.67267,
@@ -4129,6 +4458,13 @@
     "landmark": "Short side trail down into meadow leads to creek.",
     "section": 8,
     "elevation": 8522
+  },
+  {
+    "mile": 452.7,
+    "lat": 35.84892,
+    "lon": -105.67886,
+    "name": "S8 61.0 - W3",
+    "landmark": "W3"
   },
   {
     "mile": 452.9,
@@ -4140,6 +4476,13 @@
     "elevation": 8644
   },
   {
+    "mile": 455,
+    "lat": 35.86092,
+    "lon": -105.7109,
+    "name": "S8 63.3 - JL W3",
+    "landmark": "JL W3"
+  },
+  {
     "mile": 455.2,
     "lat": 35.86092,
     "lon": -105.7109,
@@ -4149,6 +4492,13 @@
     "elevation": 9808
   },
   {
+    "mile": 456.7,
+    "lat": 35.84664,
+    "lon": -105.72109,
+    "name": "S8 65.0 - XT W3",
+    "landmark": "XT W3"
+  },
+  {
     "mile": 456.8,
     "lat": 35.84664,
     "lon": -105.72109,
@@ -4156,6 +4506,13 @@
     "landmark": "251. Calf deep (easy) crossing of Rito Oscuro.",
     "section": 8,
     "elevation": 10304
+  },
+  {
+    "mile": 456.8,
+    "lat": 35.84478,
+    "lon": -105.7224,
+    "name": "S8 65.1 - W2-3",
+    "landmark": "W2-3"
   },
   {
     "mile": 457,
@@ -4176,6 +4533,13 @@
     "elevation": 10201
   },
   {
+    "mile": 458,
+    "lat": 35.83105,
+    "lon": -105.72112,
+    "name": "S8 66.3 - W2",
+    "landmark": "W2"
+  },
+  {
     "mile": 458.2,
     "lat": 35.83105,
     "lon": -105.72112,
@@ -4192,6 +4556,13 @@
     "landmark": "Stewart Lake outlet",
     "section": 8,
     "elevation": 10236
+  },
+  {
+    "mile": 458.8,
+    "lat": 35.82381,
+    "lon": -105.72717,
+    "name": "S8 67.1 - JR W3",
+    "landmark": "JR W3"
   },
   {
     "mile": 458.9,
@@ -4212,6 +4583,13 @@
     "elevation": 10582
   },
   {
+    "mile": 459.5,
+    "lat": 35.82547,
+    "lon": -105.73774,
+    "name": "S8 67.8 - W3",
+    "landmark": "W3"
+  },
+  {
     "mile": 459.6,
     "lat": 35.82547,
     "lon": -105.73774,
@@ -4219,6 +4597,13 @@
     "landmark": "but normally a rock-hop.",
     "section": 8,
     "elevation": 10663
+  },
+  {
+    "mile": 460.2,
+    "lat": 35.81758,
+    "lon": -105.73923,
+    "name": "S8 68.5 - W3",
+    "landmark": "W3"
   },
   {
     "mile": 460.4,
@@ -4248,6 +4633,13 @@
     "elevation": 10950
   },
   {
+    "mile": 462.7,
+    "lat": 35.81214,
+    "lon": -105.76497,
+    "name": "S8 71.0 - W2",
+    "landmark": "W2"
+  },
+  {
     "mile": 462.9,
     "lat": 35.81214,
     "lon": -105.76497,
@@ -4273,6 +4665,13 @@
     "landmark": "Signed jct with Upper Nambe Tr 101 to N. Remain on WInsor Tr 254.",
     "section": 8,
     "elevation": 10363
+  },
+  {
+    "mile": 464,
+    "lat": 35.80877,
+    "lon": -105.78403,
+    "name": "S8 72.3 - W3",
+    "landmark": "W3"
   },
   {
     "mile": 464.2,
@@ -4311,6 +4710,13 @@
     "elevation": 10807
   },
   {
+    "mile": 466.3,
+    "lat": 35.79517,
+    "lon": -105.80594,
+    "name": "S8 74.6 - W2",
+    "landmark": "W2"
+  },
+  {
     "mile": 466.4,
     "lat": 35.79623,
     "lon": -105.80461,
@@ -4318,6 +4724,13 @@
     "landmark": "remains on WInsor Tr 254.",
     "section": 8,
     "elevation": 10284
+  },
+  {
+    "mile": 466.4,
+    "lat": 35.7937,
+    "lon": -105.80602,
+    "name": "S8 74.7 - W3",
+    "landmark": "W3"
   },
   {
     "mile": 466.5,
@@ -4374,6 +4787,13 @@
     "elevation": 9969
   },
   {
+    "mile": 467.6,
+    "lat": 35.78367,
+    "lon": -105.81047,
+    "name": "S8 75.9 - W2",
+    "landmark": "W2"
+  },
+  {
     "mile": 467.8,
     "lat": 35.78367,
     "lon": -105.81047,
@@ -4390,6 +4810,13 @@
     "landmark": "signed Winsor Trail crosses FR 102",
     "section": 8,
     "elevation": 9294
+  },
+  {
+    "mile": 469.1,
+    "lat": 35.77631,
+    "lon": -105.82222,
+    "name": "S8 77.4 - W2",
+    "landmark": "W2"
   },
   {
     "mile": 469.3,
@@ -4428,6 +4855,13 @@
     "elevation": 8505
   },
   {
+    "mile": 470.9,
+    "lat": 35.76314,
+    "lon": -105.83565,
+    "name": "S8 79.2 - W3",
+    "landmark": "W3"
+  },
+  {
     "mile": 471.1,
     "lat": 35.76314,
     "lon": -105.83565,
@@ -4444,6 +4878,13 @@
     "landmark": "Jct with Bear Wallow Tr 182 (S). Remain on Winsor Tr 254.",
     "section": 8,
     "elevation": 8197
+  },
+  {
+    "mile": 472.6,
+    "lat": 35.75266,
+    "lon": -105.8581,
+    "name": "S8 80.9 - W3 JL",
+    "landmark": "W3 JL"
   },
   {
     "mile": 472.8,
@@ -4509,6 +4950,13 @@
     "elevation": 7556
   },
   {
+    "mile": 476.8,
+    "lat": 35.7277,
+    "lon": -105.89509,
+    "name": "S8 85.1 - JR W1",
+    "landmark": "JR W1"
+  },
+  {
     "mile": 477,
     "lat": 35.7277,
     "lon": -105.89509,
@@ -4516,6 +4964,13 @@
     "landmark": "(seasonal). CW last access Little Tesuque Crk (seasonal). Little Tesuque Trail at La",
     "section": 8,
     "elevation": 7425
+  },
+  {
+    "mile": 477.2,
+    "lat": 35.72568,
+    "lon": -105.90119,
+    "name": "S8 85.5 - JL W1",
+    "landmark": "JL W1"
   },
   {
     "mile": 477.4,

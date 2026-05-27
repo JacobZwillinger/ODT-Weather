@@ -182,6 +182,16 @@ def main():
             json.dump(data, f, indent=2)
         print(f"{cat}.json: {len(data)} entries")
 
+    # Ensure category waypoints (notably toilets, which come from a separate
+    # import path) are mirrored into waypoints.json. Without this, the
+    # by-name lookup in modals.js silently misses them.
+    print("\nSyncing category entries into waypoints.json...")
+    import subprocess
+    subprocess.run(
+        ['node', 'scripts/sync-waypoints-with-categories.js', '--trail', 'odt'],
+        check=False
+    )
+
     print("\nDone!")
 
 

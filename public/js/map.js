@@ -21,6 +21,13 @@ let pendingMileUpdate = 0;
 const contoursPmtilesUrl = (trailId) =>
   trailId === 'nnml' ? 'pmtiles://contours-nnml.pmtiles' : 'pmtiles://contours.pmtiles';
 
+// Maps a trail id to its OSM-derived basemap pmtiles. Different trails live in
+// different states, so each gets its own corridor-clipped basemap.
+const basemapPmtilesUrl = (trailId) =>
+  trailId === 'nnml' ? 'pmtiles://basemap-nnml.pmtiles' : 'pmtiles://basemap.pmtiles';
+
+let loadedBasemapTrailId = null;
+
 const CONTOUR_LAYER_IDS = ['contour-lines', 'contour-lines-index', 'contour-labels'];
 
 // Filter that keeps only index contours (every 100 ft). Shared by index lines + labels.
@@ -87,6 +94,42 @@ const removeContourLayers = () => {
   }
 };
 
+// Track which trail's alternates GeoJSON is loaded so we don't refetch.
+let loadedAlternatesTrailId = null;
+
+const applyTrailAlternates = async (trailId) => {
+  if (!map) return;
+  const source = map.getSource('trail-alternates');
+  if (!source) return;
+
+  // ODT alternates render via the pmtiles-backed `alternates-line` layer.
+  // Toggle visibility of both layers so only one is active per trail.
+  if (map.getLayer('alternates-line')) {
+    map.setLayoutProperty('alternates-line', 'visibility', trailId === 'odt' ? 'visible' : 'none');
+  }
+  if (map.getLayer('trail-alternates-line')) {
+    map.setLayoutProperty('trail-alternates-line', 'visibility', trailId === 'odt' ? 'none' : 'visible');
+  }
+
+  if (trailId === 'odt') {
+    // ODT renders from pmtiles; clear the GeoJSON source so stale NNML alts don't sit in memory.
+    source.setData({ type: 'FeatureCollection', features: [] });
+    loadedAlternatesTrailId = 'odt';
+    return;
+  }
+
+  if (loadedAlternatesTrailId === trailId) return;
+  try {
+    const res = await fetch(`trails/${trailId}/alternates.geojson`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    source.setData(data);
+    loadedAlternatesTrailId = trailId;
+  } catch (err) {
+    console.warn(`Failed to load alternates for ${trailId}:`, err);
+  }
+};
+
 const ensureContoursForTrail = (trailId) => {
   if (!map) return;
   if (loadedContoursTrailId === trailId && map.getSource('contours')) return;
@@ -95,6 +138,112 @@ const ensureContoursForTrail = (trailId) => {
   map.addSource('contours', { type: 'vector', url: contoursPmtilesUrl(trailId) });
   addContourLayers();
   loadedContoursTrailId = trailId;
+};
+
+// Basemap layers — all reference the 'basemap' vector source. Extracted so a
+// trail switch can remove + re-add them when the source URL changes (MapLibre
+// has no way to mutate a source URL in place).
+const BASEMAP_LAYER_IDS = [
+  'water', 'landcover', 'park', 'waterway', 'transportation',
+  'place', 'mountain_peak', 'water_name', 'transportation_name'
+];
+
+const addBasemapLayers = () => {
+  map.addLayer({
+    id: 'water', type: 'fill', source: 'basemap', 'source-layer': 'water',
+    paint: { 'fill-color': '#aad3df', 'fill-opacity': 0.7 }
+  });
+  map.addLayer({
+    id: 'landcover', type: 'fill', source: 'basemap', 'source-layer': 'landcover',
+    paint: { 'fill-color': '#d8e8c8', 'fill-opacity': 0.3 }
+  });
+  map.addLayer({
+    id: 'park', type: 'fill', source: 'basemap', 'source-layer': 'park',
+    paint: { 'fill-color': '#d8e8c8', 'fill-opacity': 0.4 }
+  });
+  map.addLayer({
+    id: 'waterway', type: 'line', source: 'basemap', 'source-layer': 'waterway',
+    paint: {
+      'line-color': '#aad3df',
+      'line-width': ['interpolate', ['linear'], ['zoom'], 8, 0.5, 13, 2]
+    }
+  });
+  map.addLayer({
+    id: 'transportation', type: 'line', source: 'basemap', 'source-layer': 'transportation',
+    paint: {
+      'line-color': [
+        'match', ['get', 'class'],
+        'motorway', '#fc8',
+        'trunk', '#ffa',
+        'primary', '#fdd',
+        'secondary', '#fff',
+        'track', '#d4b59e',
+        '#ccc'
+      ],
+      'line-width': [
+        'interpolate', ['exponential', 1.5], ['zoom'],
+        5, 0.5,
+        13, ['match', ['get', 'class'], ['motorway', 'trunk'], 3, ['primary'], 2, ['track'], 1.5, 1]
+      ]
+    }
+  });
+  map.addLayer({
+    id: 'place', type: 'symbol', source: 'basemap', 'source-layer': 'place',
+    layout: {
+      'text-field': ['get', 'name'],
+      'text-size': ['interpolate', ['linear'], ['zoom'], 6, 10, 13, 16],
+      'text-font': ['Noto Sans Regular']
+    },
+    paint: { 'text-color': '#333', 'text-halo-color': '#fff', 'text-halo-width': 2 }
+  });
+  map.addLayer({
+    id: 'mountain_peak', type: 'symbol', source: 'basemap', 'source-layer': 'mountain_peak',
+    minzoom: 11,
+    layout: {
+      'text-field': ['get', 'name'],
+      'text-size': 10,
+      'text-font': ['Noto Sans Regular'],
+      'icon-image': 'triangle-11',
+      'icon-size': 0.8
+    },
+    paint: { 'text-color': '#666', 'text-halo-color': '#fff', 'text-halo-width': 1 }
+  });
+  map.addLayer({
+    id: 'water_name', type: 'symbol', source: 'basemap', 'source-layer': 'water_name',
+    layout: {
+      'text-field': ['get', 'name'],
+      'text-size': 11,
+      'text-font': ['Noto Sans Regular']
+    },
+    paint: { 'text-color': '#5a80a0', 'text-halo-color': '#fff', 'text-halo-width': 1.5 }
+  });
+  map.addLayer({
+    id: 'transportation_name', type: 'symbol', source: 'basemap', 'source-layer': 'transportation_name',
+    minzoom: 10,
+    layout: {
+      'text-field': ['get', 'name'],
+      'text-size': 10,
+      'symbol-placement': 'line',
+      'text-font': ['Noto Sans Regular']
+    },
+    paint: { 'text-color': '#666', 'text-halo-color': '#fff', 'text-halo-width': 2 }
+  });
+};
+
+const removeBasemapLayers = () => {
+  for (const id of BASEMAP_LAYER_IDS) {
+    if (map.getLayer(id)) map.removeLayer(id);
+  }
+};
+
+const ensureBasemapForTrail = (trailId) => {
+  if (!map) return;
+  if (loadedBasemapTrailId === trailId && map.getSource('basemap')) return;
+  removeBasemapLayers();
+  if (map.getSource('basemap')) map.removeSource('basemap');
+  map.addSource('basemap', { type: 'vector', url: basemapPmtilesUrl(trailId) });
+  addBasemapLayers();
+  loadedBasemapTrailId = trailId;
 };
 
 // Track off-trail status
@@ -337,7 +486,7 @@ export const initMap = () => {
         },
         'basemap': {
           type: 'vector',
-          url: 'pmtiles://basemap.pmtiles'
+          url: basemapPmtilesUrl(state.trail.id)
         },
         'overlay': {
           type: 'vector',
@@ -350,6 +499,13 @@ export const initMap = () => {
         'active-route': {
           type: 'geojson',
           data: buildRouteGeoJson()
+        },
+        // Per-trail GeoJSON alternates. ODT's alternates also live in
+        // overlay.pmtiles (rendered via the older alternates-line layer); this
+        // GeoJSON source is the canonical home for NNML and any future trail.
+        'trail-alternates': {
+          type: 'geojson',
+          data: { type: 'FeatureCollection', features: [] }
         }
       },
       layers: []
@@ -578,132 +734,39 @@ export const initMap = () => {
     map.addLayer({ id: 'osm-raster', type: 'raster', source: 'osm-raster', paint: { 'raster-opacity': 1 } });
     map.addLayer({ id: 'background', type: 'background', paint: { 'background-color': '#f8f4f0', 'background-opacity': 0.92 } });
 
-    map.addLayer({
-      id: 'water',
-      type: 'fill',
-      source: 'basemap',
-      'source-layer': 'water',
-      paint: { 'fill-color': '#aad3df', 'fill-opacity': 0.7 }
-    });
-
-    map.addLayer({
-      id: 'landcover',
-      type: 'fill',
-      source: 'basemap',
-      'source-layer': 'landcover',
-      paint: { 'fill-color': '#d8e8c8', 'fill-opacity': 0.3 }
-    });
-
-    map.addLayer({
-      id: 'park',
-      type: 'fill',
-      source: 'basemap',
-      'source-layer': 'park',
-      paint: { 'fill-color': '#d8e8c8', 'fill-opacity': 0.4 }
-    });
-
-    map.addLayer({
-      id: 'waterway',
-      type: 'line',
-      source: 'basemap',
-      'source-layer': 'waterway',
-      paint: {
-        'line-color': '#aad3df',
-        'line-width': ['interpolate', ['linear'], ['zoom'], 8, 0.5, 13, 2]
-      }
-    });
-
-    map.addLayer({
-      id: 'transportation',
-      type: 'line',
-      source: 'basemap',
-      'source-layer': 'transportation',
-      paint: {
-        'line-color': [
-          'match', ['get', 'class'],
-          'motorway', '#fc8',
-          'trunk', '#ffa',
-          'primary', '#fdd',
-          'secondary', '#fff',
-          'track', '#d4b59e',
-          '#ccc'
-        ],
-        'line-width': [
-          'interpolate', ['exponential', 1.5], ['zoom'],
-          5, 0.5,
-          13, ['match', ['get', 'class'], ['motorway', 'trunk'], 3, ['primary'], 2, ['track'], 1.5, 1]
-        ]
-      }
-    });
-
-    map.addLayer({
-      id: 'place',
-      type: 'symbol',
-      source: 'basemap',
-      'source-layer': 'place',
-      layout: {
-        'text-field': ['get', 'name'],
-        'text-size': ['interpolate', ['linear'], ['zoom'], 6, 10, 13, 16],
-        'text-font': ['Noto Sans Regular']
-      },
-      paint: { 'text-color': '#333', 'text-halo-color': '#fff', 'text-halo-width': 2 }
-    });
-
-    map.addLayer({
-      id: 'mountain_peak',
-      type: 'symbol',
-      source: 'basemap',
-      'source-layer': 'mountain_peak',
-      minzoom: 11,
-      layout: {
-        'text-field': ['get', 'name'],
-        'text-size': 10,
-        'text-font': ['Noto Sans Regular'],
-        'icon-image': 'triangle-11',
-        'icon-size': 0.8
-      },
-      paint: { 'text-color': '#666', 'text-halo-color': '#fff', 'text-halo-width': 1 }
-    });
-
-    map.addLayer({
-      id: 'water_name',
-      type: 'symbol',
-      source: 'basemap',
-      'source-layer': 'water_name',
-      layout: {
-        'text-field': ['get', 'name'],
-        'text-size': 11,
-        'text-font': ['Noto Sans Regular']
-      },
-      paint: { 'text-color': '#5a80a0', 'text-halo-color': '#fff', 'text-halo-width': 1.5 }
-    });
-
-    map.addLayer({
-      id: 'transportation_name',
-      type: 'symbol',
-      source: 'basemap',
-      'source-layer': 'transportation_name',
-      minzoom: 10,
-      layout: {
-        'text-field': ['get', 'name'],
-        'text-size': 10,
-        'symbol-placement': 'line',
-        'text-font': ['Noto Sans Regular']
-      },
-      paint: { 'text-color': '#666', 'text-halo-color': '#fff', 'text-halo-width': 2 }
-    });
+    // Trail-specific vector basemap layers (water, transportation, place names, …)
+    addBasemapLayers();
+    loadedBasemapTrailId = state.trail.id;
 
     // Contour layers (sourced from the trail-specific contours pmtiles registered above)
     addContourLayers();
     loadedContoursTrailId = state.trail.id;
 
-    // Add alternate routes (dashed orange, behind main route)
+    // Load the active trail's alternates GeoJSON (NNML today; ODT keeps its pmtiles layer).
+    applyTrailAlternates(state.trail.id);
+
+    // ODT alternate routes (vector source from overlay.pmtiles).
     map.addLayer({
       id: 'alternates-line',
       type: 'line',
       source: 'overlay',
       'source-layer': 'alternates',
       layout: { visibility: state.trail.id === 'odt' ? 'visible' : 'none' },
+      paint: {
+        'line-color': '#f97316',
+        'line-width': 2,
+        'line-opacity': 0.8,
+        'line-dasharray': [5, 3]
+      }
+    });
+
+    // Generic per-trail alternates (data swapped via applyTrailAlternates).
+    // Used by NNML today; ODT continues to use the pmtiles-backed layer above.
+    map.addLayer({
+      id: 'trail-alternates-line',
+      type: 'line',
+      source: 'trail-alternates',
+      layout: { visibility: state.trail.id === 'odt' ? 'none' : 'visible' },
       paint: {
         'line-color': '#f97316',
         'line-width': 2,
@@ -1038,7 +1101,8 @@ export const applyTrailMapData = async ({ fitToTrail = false } = {}) => {
 
   await loadElevationProfile();
 
-  // Swap the contours pmtiles source if the active trail has its own file (ODT vs NNML).
+  // Swap per-trail pmtiles sources (basemap + contours both have NNML variants).
+  ensureBasemapForTrail(state.trail.id);
   ensureContoursForTrail(state.trail.id);
 
   const routeSource = map.getSource('active-route');
@@ -1051,9 +1115,7 @@ export const applyTrailMapData = async ({ fitToTrail = false } = {}) => {
     swapCategoryData(cat, data);
   }
 
-  if (map.getLayer('alternates-line')) {
-    map.setLayoutProperty('alternates-line', 'visibility', state.trail.id === 'odt' ? 'visible' : 'none');
-  }
+  applyTrailAlternates(state.trail.id);
 
   initialBounds = getTrailBounds();
   if (fitToTrail) {

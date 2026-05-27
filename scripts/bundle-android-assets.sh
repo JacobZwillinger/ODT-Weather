@@ -36,7 +36,7 @@ cp "$PUBLIC_DIR/lib/"* "$ASSETS_DIR/lib/"
 
 # Copy PMTiles (basemap, overlay, contours — skip route.pmtiles if it exists)
 echo "5. Copying PMTiles..."
-for f in basemap.pmtiles overlay.pmtiles contours.pmtiles contours-nnml.pmtiles; do
+for f in basemap.pmtiles basemap-nnml.pmtiles overlay.pmtiles contours.pmtiles contours-nnml.pmtiles; do
   if [ -f "$PUBLIC_DIR/$f" ]; then
     cp "$PUBLIC_DIR/$f" "$ASSETS_DIR/$f"
     SIZE=$(du -h "$ASSETS_DIR/$f" | cut -f1)

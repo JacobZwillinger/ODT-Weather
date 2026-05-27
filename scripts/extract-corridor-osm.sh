@@ -1,13 +1,28 @@
 #!/bin/bash
-# Extract OSM data within the corridor polygon
+# Extract OSM data within the trail's corridor polygon.
+# Defaults to ODT; pass --trail nnml for the NNML corridor.
 
 set -e
 
+TRAIL="odt"
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --trail) TRAIL="$2"; shift 2 ;;
+    *) echo "Unknown arg: $1"; exit 1 ;;
+  esac
+done
+
 PROJECT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 BUILD_DIR="$PROJECT_ROOT/build"
-CORRIDOR_GEOJSON="$BUILD_DIR/corridor.geojson"
-REGION_OSM="$BUILD_DIR/region.osm.pbf"
-CORRIDOR_OSM="$BUILD_DIR/corridor.osm.pbf"
+if [ "$TRAIL" = "odt" ]; then
+  TRAIL_BUILD_DIR="$BUILD_DIR"
+else
+  TRAIL_BUILD_DIR="$BUILD_DIR/$TRAIL"
+fi
+
+CORRIDOR_GEOJSON="$TRAIL_BUILD_DIR/corridor.geojson"
+REGION_OSM="$TRAIL_BUILD_DIR/region.osm.pbf"
+CORRIDOR_OSM="$TRAIL_BUILD_DIR/corridor.osm.pbf"
 
 echo "Extracting OSM data for corridor..."
 echo ""
