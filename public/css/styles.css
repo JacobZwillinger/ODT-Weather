@@ -1761,6 +1761,48 @@ thead th.night-header { background: #ebebf7; }
 .waypoint-detail p:last-child { margin-bottom: 0; }
 .waypoint-detail strong { color: #1b1b1b; }
 
+.sheet-comments-panel {
+  border-top: 1px solid #e5e7eb;
+  margin-top: 14px;
+  padding-top: 12px;
+}
+
+.sheet-comments-panel h4 {
+  color: #1b1b1b;
+  font-size: 0.82rem;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+
+.sheet-comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.sheet-comment-item {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 9px 10px;
+}
+
+.sheet-comment-meta {
+  color: #64748b;
+  font-size: 0.72rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.sheet-comment-text {
+  color: #334155;
+  font-size: 0.84rem;
+  line-height: 1.35;
+  white-space: pre-wrap;
+}
+
 .waypoint-comment-panel {
   border-top: 1px solid #e5e7eb;
   margin-top: 14px;

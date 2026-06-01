@@ -160,7 +160,15 @@ describe('showWaterDetail', () => {
         details: 'reliable: seasonal flow',
         onTrail: true,
         offTrailDist: null,
-        distToNext: 12
+        distToNext: 12,
+        sheetComments: [
+          {
+            author: 'Trail Reporter',
+            date: '2025-06-01T12:00:00.00',
+            text: 'Flowing clear in early June.',
+            cell: 'E11'
+          }
+        ]
       },
       {
         name: 'CV002',
@@ -190,6 +198,15 @@ describe('showWaterDetail', () => {
     expect(detail.textContent).toContain('5.2');
     expect(detail.textContent).toContain('reliable: seasonal flow');
     expect(detail.textContent).toContain('Next water: 12 mi');
+  });
+
+  it('renders imported sheet comments for water sources', () => {
+    showWaterDetail('CV001');
+
+    const detail = document.getElementById('waypointDetail');
+    expect(detail.textContent).toContain('Sheet reports (1)');
+    expect(detail.textContent).toContain('Trail Reporter');
+    expect(detail.textContent).toContain('Flowing clear in early June.');
   });
 
   // [TEST] Added: verifies off-trail distance shown for off-trail water sources

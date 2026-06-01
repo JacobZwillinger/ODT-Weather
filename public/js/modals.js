@@ -115,6 +115,43 @@ export const saveOpenWaypointCommentDraft = () => {
   return activeCommentDraftSaver();
 };
 
+const renderSheetComments = (detail, waypoint) => {
+  const comments = Array.isArray(waypoint?.sheetComments) ? waypoint.sheetComments : [];
+  if (comments.length === 0) return;
+
+  const section = document.createElement('section');
+  section.className = 'sheet-comments-panel';
+
+  const heading = document.createElement('h4');
+  heading.textContent = `Sheet reports (${comments.length})`;
+  section.appendChild(heading);
+
+  const list = document.createElement('div');
+  list.className = 'sheet-comments-list';
+
+  comments.forEach(comment => {
+    const item = document.createElement('article');
+    item.className = 'sheet-comment-item';
+
+    const meta = document.createElement('div');
+    meta.className = 'sheet-comment-meta';
+    const author = comment.author || 'Unknown';
+    const date = formatLocalDateTime(comment.date);
+    meta.textContent = date ? `${author} · ${date}` : author;
+    item.appendChild(meta);
+
+    const text = document.createElement('div');
+    text.className = 'sheet-comment-text';
+    text.textContent = comment.text || '';
+    item.appendChild(text);
+
+    list.appendChild(item);
+  });
+
+  section.appendChild(list);
+  detail.appendChild(section);
+};
+
 const renderWaypointCommentEditor = (detail, waypoint, type = 'waypoint') => {
   const existing = getWaypointComment(waypoint, type);
   const section = document.createElement('section');
@@ -322,6 +359,7 @@ export const showWaypointDetail = (latOrName, lon) => {
       detail.appendChild(descPara);
     }
 
+    renderSheetComments(detail, waypoint);
     renderWaypointCommentEditor(detail, waypoint, 'waypoint');
 
     modal.classList.add('visible');
@@ -360,6 +398,7 @@ export const showToiletDetail = (props) => {
     detail.appendChild(descPara);
   }
 
+  renderSheetComments(detail, props);
   renderWaypointCommentEditor(detail, props, 'toilet');
 
   modal.classList.add('visible');
@@ -420,6 +459,7 @@ export const showWaterDetail = (name) => {
     detail.appendChild(nextPara);
   }
 
+  renderSheetComments(detail, source);
   renderWaypointCommentEditor(detail, source, 'water');
 
   modal.classList.add('visible');
@@ -473,6 +513,7 @@ export const showTownDetail = (name) => {
     detail.appendChild(offTrailPara);
   }
 
+  renderSheetComments(detail, town);
   renderWaypointCommentEditor(detail, town, 'town');
 
   modal.classList.add('visible');

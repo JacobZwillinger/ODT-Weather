@@ -9,7 +9,27 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "T>XC (W3 0.15S) (often dry). CCW climb out to join paved trail. Water 0.15 south via paved Siler Rd at Agua Fria St (Speedway c-store). Crosswalk. Romero Park main area to N. Large Ramada with picnic tables. Developed restrooms with probable running water.",
-    "distToNext": 1.8
+    "distToNext": 1.8,
+    "sheetComments": [
+      {
+        "author": "Brett T",
+        "date": "2022-04-27T03:17:58.00",
+        "text": "Example comment: 9/21 Water off due to Covid or Covid-related abject poverty. (Water at Romero Park is off, that part is true at least.)",
+        "cell": "E11"
+      },
+      {
+        "author": "Brett T",
+        "date": "2022-04-27T03:28:09.00",
+        "text": "Be careful not to tap the green (or blue) checkmark, which \"resolves\" comments, making them invisible to others. Instead, use \"x\" or other means of getting out of comment box after commenting.",
+        "cell": "E11"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-05-01T19:06:44.00",
+        "text": "5/1 Santa Fe River has a good spring flow and following the river bed here would require several crossings. To avoid this go one block south and follow Agua Fria to Caja de Oro for a bridge crossing",
+        "cell": "E11"
+      }
+    ]
   },
   {
     "mile": 6.1,
@@ -21,7 +41,21 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Hand standpipe locked. Trash and recycling. Playground and grassy field. Caja del Rio Grant Rd at paved Caja del Rio Rd. and El Camino Real",
-    "distToNext": 3.4
+    "distToNext": 3.4,
+    "sheetComments": [
+      {
+        "author": "Kyle Morris",
+        "date": "2022-08-28T15:38:16.00",
+        "text": "Restrooms locks. Hand standpipe still locked. No water.",
+        "cell": "E12"
+      },
+      {
+        "author": "Dagmar Growe",
+        "date": "2025-05-27T15:33:45.00",
+        "text": "No water at park but river is flowing nicely",
+        "cell": "E12"
+      }
+    ]
   },
   {
     "mile": 9.5,
@@ -33,7 +67,27 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "JR (W3 M 0.25W) bike path (paved). Marty Sanchez golf course with restaurant on premises is 0.25W. Remain on El Camino Real hiking trail at turn. Spur trail heads SW to trailhead (vault toilet, tables). Road continues beyond to",
-    "distToNext": 2.4
+    "distToNext": 2.4,
+    "sheetComments": [
+      {
+        "author": "Kyle Morris",
+        "date": "2022-08-28T17:31:44.00",
+        "text": "Water troughs at county 62 and county 70 intersection",
+        "cell": "E13"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-05-01T19:09:08.00",
+        "text": "Golf Course has a cold water bottle filler. If you want to try to grab lunch here call ahead, as the kitchen was closed. The bar was open with snacks and hotdogs. The golfers were surprised the kitchen wasn't open.",
+        "cell": "E13"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-05-02T23:04:46.00",
+        "text": "Great place to fill up. Water bottle filler is on the outside of the building so should be available 24/7. Took a dirt road on the eastern edge of the golf course that took me back to trail without having to backtrack. Had to hop a fence so idk if it's advisable but it was easy",
+        "cell": "E13"
+      }
+    ]
   },
   {
     "mile": 11.9,
@@ -45,7 +99,27 @@
     "onTrail": false,
     "offTrailDist": "",
     "details": "JR (TH W2-3 0.25SW) Headquarters Well (has been reliable). Troughs located within corral (SW corner). 0.25SW off-route. 4-way 4WD junction. Main route heads right / W. Or head E 0.2mi to 700 Well. Satellite shows a large metal tank, a few cows in a",
-    "distToNext": 6
+    "distToNext": 6,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-07T15:17:40.00",
+        "text": "10/21 cement trough agua is lime green with algae, yet drinkable.",
+        "cell": "E14"
+      },
+      {
+        "author": "Dagmar Growe",
+        "date": "2025-05-27T15:34:29.00",
+        "text": "5/26/2025 Didn't see the troughs but the black tire was overflowing",
+        "cell": "E14"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-19T20:33:36.00",
+        "text": "Circular steel trough full.",
+        "cell": "E14"
+      }
+    ]
   },
   {
     "mile": 17.9,
@@ -57,7 +131,69 @@
     "onTrail": false,
     "offTrailDist": "2.7mi W",
     "details": "JR (w2 0.2E) corral, and a ranching truck alongside. Cows appear to be drinking from a trough. If dry then 1100 Well is 2.7mi W. Turn off to 1100 Well. Satellite shows a huge metal tank with",
-    "distToNext": 2.2
+    "distToNext": 2.2,
+    "sheetComments": [
+      {
+        "author": "Brett T",
+        "date": "2021-09-09T17:52:05.00",
+        "text": "9/21 Coyote forded at or near recommended spot. 400 cfs. Somewhat swift but not an issue.",
+        "cell": "E15"
+      },
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-07T15:19:07.00",
+        "text": "10/21 \"only\" 350 cfs but we found it too muddy/swift to safely cross, both at Water Canyon confluence and upstream.",
+        "cell": "E15"
+      },
+      {
+        "author": "Brett T",
+        "date": "2022-08-27T14:52:42.00",
+        "text": "Note that the new fording spot is not at the location described by Coyote or Jac, partly due to the difficulties these hikers experienced here.",
+        "cell": "E15"
+      },
+      {
+        "author": "Brett T",
+        "date": "2022-08-28T16:43:29.00",
+        "text": "Just realized this comment thread is in the wrong spot. Should be S1 27.6 Rio Grande Ford. Please include relevant comments there and use this comment thread for S1 17.9 '700 Well'",
+        "cell": "E15"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-08-28T21:16:44.00",
+        "text": "Water and cows present",
+        "cell": "E15"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-05-05T15:26:55.00",
+        "text": "5/1 cow water present",
+        "cell": "E15"
+      },
+      {
+        "author": "John W",
+        "date": "2025-04-28T03:10:12.00",
+        "text": "Large full tank but vary heavy with growth. Tire fed from it was full also and clearer. Petted a cow.",
+        "cell": "E15"
+      },
+      {
+        "author": "Dagmar Growe",
+        "date": "2025-05-29T22:47:28.00",
+        "text": "5/27/2025 Tank was green slime 3 feet down. Pipe with clear water running into it but don't think I could have accessed it, it s over the rim 1 1/2 ft in. Murky water in tire.",
+        "cell": "E15"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-19T20:37:03.00",
+        "text": "Concrete trough was empty. Circular one had water but was difficult to reach.",
+        "cell": "E15"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-10-01T02:38:31.00",
+        "text": "One trough and tire were full and had decent water quality. Cows present",
+        "cell": "E15"
+      }
+    ]
   },
   {
     "mile": 20.1,
@@ -69,7 +205,51 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "w2 0.1N water, a cement trough in a corral that appears to be overflowing. No cows present in image. Mandatory unbridged crossing of Rio Grande within White Rock Canyon. Suggested fording location is at bottom of Frijoles Overlook Trail, at a wide-ish spot where river can be up to 300ft across (but shallower and with less current than elsewhere esp upstream). River here is under influence from Cochiti Reservoir downstream. Muddy banks common. Avoid during times of high run-off (CW consider beginning hike in White Rock instead of SF).",
-    "distToNext": 7.5
+    "distToNext": 7.5,
+    "sheetComments": [
+      {
+        "author": "Kyle Morris",
+        "date": "2022-08-29T13:43:54.00",
+        "text": "Water and cows present. Water at 700 well looked of better quality.",
+        "cell": "E16"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-05-05T15:29:51.00",
+        "text": "5/1 Water and occasional cow present, large tank and cistern are difficult to access and don't have any better water than the cow trough itself.",
+        "cell": "E16"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-25T20:15:31.00",
+        "text": "Tire empty, trough half full, greenies but clearish. Agree with equal quality and difficulty of access of large tanks.",
+        "cell": "E16"
+      },
+      {
+        "author": "John W",
+        "date": "2025-04-29T15:06:00.00",
+        "text": "Large full cistern vary green water. Cows present.",
+        "cell": "E16"
+      },
+      {
+        "author": "Dagmar Growe",
+        "date": "2025-05-29T22:47:30.00",
+        "text": "5/27/2025 One tank empty, 1 with green slime 3 feet down. Just go straight for the cow trough. Can be accessed from 2 sides, just go where the cows aren't",
+        "cell": "E16"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-19T20:39:40.00",
+        "text": "Agree with above. Concrete empty, steel one difficult to access, go to small trough in compound.",
+        "cell": "E16"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-10-01T02:36:19.00",
+        "text": "Everything empty except the large, square concrete tank. It was very full and decent water quality. There\u2019s a gate to get in the enclosure and then can step up to access water",
+        "cell": "E16"
+      }
+    ]
   },
   {
     "mile": 27.6,
@@ -81,7 +261,69 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "Rio Grande Ford Check USGS streamflow gage reports for Otowi Bridge (along NM 502 too far / illegal to walk upstream) before starting from Santa Fe. Swimming or an inflatable raft / kayak have historically been required during avg. May / June flow. WB turn around if unsafe! Return toward SF, then RTD bus to White Rock and backtrack via WR Alt Rte to other side of Rio to connect footsteps minus the crossing. (CCW can also use Alt to do same in reverse.) Seasonal water in Frijoles Canyon here, flowing through its alluvial fan near confluence with Rio Grande. XC ends hereabouts.",
-    "distToNext": 0.6
+    "distToNext": 0.6,
+    "sheetComments": [
+      {
+        "author": "Kyle Morris",
+        "date": "2022-08-29T20:58:48.00",
+        "text": "Forded just south of waypoint. Fairly swift and up to bellybutton of 6'6\" man. Probably wouldn't do again.",
+        "cell": "E17"
+      },
+      {
+        "author": "Brett T",
+        "date": "2022-08-30T16:12:58.00",
+        "text": "Looks like 900-1000 cfs at nearest stream gage (Otowi), which is near average for the date. Sounds like most hikers will still want a means of floating across at this location on a late summer or autumn hike (avg cfs comes down to 600-700 by late September).",
+        "cell": "E17"
+      },
+      {
+        "author": "Brett T",
+        "date": "2022-08-30T16:14:58.00",
+        "text": "Assume a \"tall person fording\" would mean a smaller person could safely swim at these flows if needed.",
+        "cell": "E17"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-05-05T15:44:59.00",
+        "text": "5/2/23 Swam the river at over 4000 CFS, which was definitely a true start to this adventure. Here was my strategy. 1) Seal as much as would fit in my pack liner by twisting, folding over, and using some cord to clove hitch this inner bladder (ensure it holds air when you press on it). 2) Tie a ~10' length of paracord to the pack and place the entire pack into a 55 gal contractor garbage bag. Push out excess air and twist the bag opening such that cord comes out of the end. 3) Use the cord to tie off the bag opening ensuring that it holds air. 4) Use the additional cord to make a large tether with a loop that you can slip very easily over your shoulder (I made a double bowline with large loops for each shoulder). 5) Swim like your life depends on it with the pack floating behind you.\nThis worked well for me, but here are some surprises that I had. The river was so high that it was well over the bank and it required significant wading through the flooded brush to get to the main channel. Thankfully this crossing point is mostly thorn free, but my contractor bag still got one small hole poked in it by this brush. I rotated this hole to be above the water before the actual crossing, but this is why the inner pack liner needs to be your backup floatation. The force of this water was amazing I could only walk about a 1/3 of the way across before needing to swim clear to the other bank. Swimming was a relief as I wasn't walking so much as sliding on the bottom at a steep angle. I approached this crossing being prepared to turn back if I wasn't confident in my plan, with my inreach mini secured around my neck, and mentally prepared to lose my backpack if my life depended on it.\u00a0\u00a0\nUltimately I landed safely on the other side 200-300 ft downstream pumped that I had done this and I would do it again.\u00a0\nPlease make your own decision, but since no one can say for sure what the channel will do over time I would recommend you always approach this crossing prepared to swim or with some other plan than just wading.",
+        "cell": "E17"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-05-05T16:27:00.00",
+        "text": "I managed to get drinking water from the Rio Grande by adding some PAC Flocculant in an eye dropper to my water kit. Look up \"Water Wizard for Rafters\" and do the math for your own eye dropper. In 20 minutes the silt had almost completely settled out of a 2L hanging CNOC bladder and after discarding the first 0.5L with the floc in it, I then filtered and purified the remaining 1.5L.\nI did this as I took the S1A shortcut up the canyon, which was very steep and required some scrambling but was definitely worth it. Just go slow and steady.",
+        "cell": "E17"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-25T20:25:20.00",
+        "text": "Hip to knee deep and not that cold with warm weather this week. (CCW)",
+        "cell": "E17"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-05-02T23:04:48.00",
+        "text": "Forded at 700 cfs. Definitely a difficult ford but was doable without a float. Would recommend one. Over my belly button (I'm about 6'ish.) If I was any shorter or the flow was any higher I'd want a float but it was doable without for me",
+        "cell": "E17"
+      },
+      {
+        "author": "Dagmar Growe",
+        "date": "2025-05-29T22:47:33.00",
+        "text": "5/28/2025 It's really difficult to get to the water because of the vegetarion. Fording was difficult because of murky bottom - never knew if I would have ground under my feet. There were sandbanks to give me a break but deeper swift channel close to West Bank.  Wouldn't have made it without a floaty - used my Thermorest Neo stuck between my back and pack. I made it by dumm luck or divine intervention however one wants look at it. Think carefully about it if your not a tall strong dude or a very strong swimmer.",
+        "cell": "E17"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-19T20:47:39.00",
+        "text": "Managed to ford this on a 590 CFS day. Water came up to my middle (I\u2019m 5\u201911\u2019\u2019) you could actually see the sandbanks the water was that low.",
+        "cell": "E17"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-10-01T03:08:04.00",
+        "text": "Took the XC alt, CCW, to get down, which worked OK, minor scrambling. Lucked out with only about 350 cfs. Still used the trash bag and tether method Will described above. Mostly below the waist except for a brief moment when I swam, channel was deep right away on the west side. Plenty of Sand bars. On the other side, willows and brush were awful\u2026 CCW, try to cross where brush looks less intense if you can. Saw bear prints in the mud on both sides, guess it\u2019s not just NNML hikers crossing here!",
+        "cell": "E17"
+      }
+    ]
   },
   {
     "mile": 28.2,
@@ -93,7 +335,27 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W1 (XC>TR) Semi-informal River Trail continues NE, again near banks of Rio, back from riverside brush. Seasonal water where River Trail crosses Ancho Canyon. Good alternative to drinking from the Rio Grande. Just beyond is jct w/ Ancho Rapids Tr, which main route follows N soon climbing out of White Rock Cyn on established trail. White Rock Resupply Loop",
-    "distToNext": 2.5
+    "distToNext": 2.5,
+    "sheetComments": [
+      {
+        "author": "Kyle Morris",
+        "date": "2022-08-29T20:58:47.00",
+        "text": "No flow but puddle at or near waypoint. No silt versus Rio Grande. \n\nExcellent water further on main route. Multiple springs flowing at mouth of Chaquehui Canyon.",
+        "cell": "E18"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-05-05T16:30:17.00",
+        "text": "5/2/23 There was definitely water flowing here as I could see both water falls flowing from the east side of rio grande on the way down.",
+        "cell": "E18"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-05-02T23:04:45.00",
+        "text": "Dry but there's flow in Ancho Canyon in a couple miles",
+        "cell": "E18"
+      }
+    ]
   },
   {
     "mile": 30.7,
@@ -105,7 +367,45 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "w2 (S1B START) instead stays with River Trail, which itself continues to improve heading NE, then joins other established trails up to village of White Rock. Very scenic albeit considerably longer than main route - only really recommended if intending to resupply or to send home a packraft after fording Rio. Trailhead for Frey Trail in Juniper Campground. Should be",
-    "distToNext": 7.9
+    "distToNext": 7.9,
+    "sheetComments": [
+      {
+        "author": "Kyle Morris",
+        "date": "2022-08-29T20:58:47.00",
+        "text": "Strong flow",
+        "cell": "E19"
+      },
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-19T20:14:50.00",
+        "text": "Still good flow.",
+        "cell": "E19"
+      },
+      {
+        "author": "Max Bliss",
+        "date": "2024-06-04T21:39:43.00",
+        "text": "Water flowing here 6/2",
+        "cell": "E19"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-05-02T23:04:47.00",
+        "text": "Flowing. Not a ton so idk how long it'll last but there was plenty for my needs. Flow is stronger slightly uphill before the trail exits the drainage",
+        "cell": "E19"
+      },
+      {
+        "author": "Dagmar Growe",
+        "date": "2025-05-29T22:47:32.00",
+        "text": "5/28/2025 still flowing, especially a little upstream",
+        "cell": "E19"
+      },
+      {
+        "author": "Drew Smith",
+        "date": "2026-05-19T16:41:49.00",
+        "text": "Steady trickle of several L/min",
+        "cell": "E19"
+      }
+    ]
   },
   {
     "mile": 38.6,
@@ -117,7 +417,27 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "TH CG W2 (RD>TR) developed water here (along with toilets etc). Northern New Mexico Loop | Water Chart for Google Sheets app | Add your reports for the hikers behind you! Bandelier NM visitor center / permit office. Get free overnight permit to spend more time in the Bandelier backcountry. This is only place to get a permit to be legal overnight within the park. (And you'll find that A] staying overnight makes taking the main rather roundabout / worthwhile route in the park much easier, while B] the Frijoles Canyon Alt may speed you through the park",
-    "distToNext": 2.2
+    "distToNext": 2.2,
+    "sheetComments": [
+      {
+        "author": "Kyle Morris",
+        "date": "2022-08-30T16:27:40.00",
+        "text": "Water is on",
+        "cell": "E20"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-25T21:58:18.00",
+        "text": "Bottle filler on at TH, heated restrooms with water (no showers), and utility sink.",
+        "cell": "E20"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-05-02T23:07:01.00",
+        "text": "Water faucet right off trail in the campground",
+        "cell": "E20"
+      }
+    ]
   },
   {
     "mile": 40.8,
@@ -129,7 +449,33 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "HQ W3 and avoid the need to camp, which is good since you can't camp in canyon bottoms anyway). You should also pay the entrance fee while at the VC ($15 per indv arriving on foot., good for a week). Shuttles stop in the parking lot seasonally and run to village of White Rock, providing an alternative way to resupply vs walking into town via the Resupply Loop - useful if you took the Frijoles RIM Alt into the park to get here). Jct main route and end of 2.8 mi long Frijoles Rim Alternate. JR (S1A END w3 0.25 (Water and overnight permits from Bandelier visitor center 0.25E.",
-    "distToNext": 4.1
+    "distToNext": 4.1,
+    "sheetComments": [
+      {
+        "author": "Will Emmer",
+        "date": "2023-05-05T16:43:53.00",
+        "text": "Bandelier now encourages you to get a backcountry permit 24 hours in advance of your arrival. This is new for 2024. Details on their website\u00a0https://www.nps.gov/band/planyourvisit/backpacking.htm",
+        "cell": "E21"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-05-05T16:55:38.00",
+        "text": "Excellent Bottle Filler (to the right of the visitor center entrance) and bathrooms, both of which appear to be available 24hrs.\nThere appears to be a restaurant onsite as well, but I don't have any info on it.",
+        "cell": "E21"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-25T22:05:00.00",
+        "text": "CCW, can pay entry fee online but cannot get backcountry camping permit without going to VC in person because of required bear resistant container rules. Cafe and gift shop open and bottle filler on.",
+        "cell": "E21"
+      },
+      {
+        "author": "Dagmar Growe",
+        "date": "2025-05-29T22:47:29.00",
+        "text": "There is no more bus to White Rock. The shuttle just goes visitor center to campground.",
+        "cell": "E21"
+      }
+    ]
   },
   {
     "mile": 44.9,
@@ -141,7 +487,63 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W1 2nd crossing to north. Alamo Canyon 2nd crossing. Seasonal water. More likely here",
-    "distToNext": 5.2
+    "distToNext": 5.2,
+    "sheetComments": [
+      {
+        "author": "Andreas",
+        "date": "2024-06-02T14:08:23.00",
+        "text": "Not a drop to drink",
+        "cell": "E23"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-08-31T00:53:32.00",
+        "text": "Dry",
+        "cell": "E23"
+      },
+      {
+        "author": "Brett T",
+        "date": "2022-08-31T01:45:47.00",
+        "text": "Hey Kyle - Much appreciated, all of it. Could you not delete the previous entries, just for the sake of the historical record. Not entirely sure that's intentional or what Sheets is telling me in the headers on desktop.",
+        "cell": "E23"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-08-31T02:03:10.00",
+        "text": "Hey Brett- yeah totally unintentional. I've been referencing the older stuff myself. My methodology so far has been to double tap and hit comment. I guess I'll need to scroll through the comments to see if there are any other comments then add to that one in the future. Sorry about that. Let me know if this method doesn't help.",
+        "cell": "E23"
+      },
+      {
+        "author": "Brett T",
+        "date": "2022-08-31T04:46:19.00",
+        "text": "It\u2019s mostly working fine. Just the last couple of entries indicated previous comments were deleted. Will monitor and see what happens. It\u2019s probably nothing you\u2019re doing wrong process-wise. Cheers.",
+        "cell": "E23"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-02T14:08:19.00",
+        "text": "Not a drop to drink",
+        "cell": "E23"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-05-02T23:05:11.00",
+        "text": "Dry",
+        "cell": "E23"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-10-01T02:36:20.00",
+        "text": "Dry",
+        "cell": "E23"
+      },
+      {
+        "author": "Drew Smith",
+        "date": "2026-05-23T00:38:43.00",
+        "text": "Dry",
+        "cell": "E23"
+      }
+    ]
   },
   {
     "mile": 50.1,
@@ -153,7 +555,51 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 than at 1st crossing to south.",
-    "distToNext": 7.2
+    "distToNext": 7.2,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-07T15:20:23.00",
+        "text": "10/21 East Fork of Jemez reliable throughout.",
+        "cell": "E24"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-08-31T00:53:31.00",
+        "text": "Strong flow",
+        "cell": "E24"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-02T14:08:19.00",
+        "text": "Good flow. Only a few inches deep. Better drop for collecting slightly up steam",
+        "cell": "E24"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-25T22:07:32.00",
+        "text": "10/21 flowing nicely after recent rain",
+        "cell": "E24"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-05-02T23:05:38.00",
+        "text": "Flowing nicely",
+        "cell": "E24"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-10-01T02:36:20.00",
+        "text": "Good flow. Also, going CCW, pools in drainage about a mile or so before stone lion shrine",
+        "cell": "E24"
+      },
+      {
+        "author": "Drew Smith",
+        "date": "2026-05-23T00:38:42.00",
+        "text": "Low, but flowing well",
+        "cell": "E24"
+      }
+    ]
   },
   {
     "mile": 57.3,
@@ -165,7 +611,69 @@
     "onTrail": false,
     "offTrailDist": "0.1 mile S",
     "details": "W2 0.1S Alamo Spring 0.1 mile S in drainage (or flowing before).",
-    "distToNext": 1.3
+    "distToNext": 1.3,
+    "sheetComments": [
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-03T02:27:31.00",
+        "text": "Good flow on both sides of the road.",
+        "cell": "E25"
+      },
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-19T20:14:51.00",
+        "text": "Light flow on south side of road.",
+        "cell": "E25"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-05-05T16:57:40.00",
+        "text": "5/3/23 Good flow on both sides.",
+        "cell": "E25"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-02T14:08:22.00",
+        "text": "Flow on south side",
+        "cell": "E25"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-05-03T16:20:55.00",
+        "text": "Light flow on downhill side of road. Nothing on the uphill side",
+        "cell": "E25"
+      },
+      {
+        "author": "John W",
+        "date": "2025-05-06T21:44:33.00",
+        "text": "Light flow, heavy cattle impact",
+        "cell": "E25"
+      },
+      {
+        "author": "Dagmar Growe",
+        "date": "2025-06-01T21:11:35.00",
+        "text": "Still flowing",
+        "cell": "E25"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-25T18:24:45.00",
+        "text": "No flow. Odd muddy puddle",
+        "cell": "E25"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-10-01T02:36:24.00",
+        "text": "Nothing at way pt, but pretty decent pools if you go down the drainage a ways",
+        "cell": "E25"
+      },
+      {
+        "author": "Drew Smith",
+        "date": "2026-05-23T00:38:45.00",
+        "text": "Went down about 0.2 mile. Bone dry, not even a damp spot.",
+        "cell": "E25"
+      }
+    ]
   },
   {
     "mile": 58.6,
@@ -177,7 +685,45 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Wildlife tank / pond just E of Alamo Boundary Trail. E Fork Jemez River. First crossing (usu a small creek). Becomes",
-    "distToNext": 5.4
+    "distToNext": 5.4,
+    "sheetComments": [
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-03T02:27:31.00",
+        "text": "Looked to have quite a bit of water. Not as good of quality as before and after this source though.",
+        "cell": "E26"
+      },
+      {
+        "author": "Max Bliss",
+        "date": "2024-06-04T21:36:40.00",
+        "text": "A bit of water here, but the quality didn\u2019t look great. Worthwhile to wait until the east fork Jemez River.",
+        "cell": "E26"
+      },
+      {
+        "author": "John W",
+        "date": "2025-05-06T21:45:03.00",
+        "text": "Had plenty of water. Didn't investigate.",
+        "cell": "E26"
+      },
+      {
+        "author": "Dagmar Growe",
+        "date": "2025-06-01T21:11:33.00",
+        "text": "Swampy pond with some water visible from trail. Might not last much longer",
+        "cell": "E26"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-10-01T02:36:21.00",
+        "text": "Dry",
+        "cell": "E26"
+      },
+      {
+        "author": "Drew Smith",
+        "date": "2026-05-23T00:38:44.00",
+        "text": "Dry",
+        "cell": "E26"
+      }
+    ]
   },
   {
     "mile": 64,
@@ -189,7 +735,57 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2-3 reliable down-canyon. Valles Caldera National Preserve boundary. Re-enter Santa Fe NF",
-    "distToNext": 1
+    "distToNext": 1,
+    "sheetComments": [
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-03T02:27:32.00",
+        "text": "Flowing strong at waypoint",
+        "cell": "E27"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-05-05T17:09:11.00",
+        "text": "5/3/23 High spring flow lead to this portion of the hike being gorgeous, but wetter and more interesting than I had planned for. No swimming this time, but there were well over 20 crossings over the entire length of this hike until the Las Conchas day use area, some of which were 3ft deep and pretty swift flowing. Significant portions of the side trail were also flooded\u00a0with 6-12 inches of water and my footwear\u00a0selection could have been better for what was quite a bit of time being wet and also hiking over boulders at points.\u00a0 Still with all this water there were lots of places to camp once you pass back into SFNF.",
+        "cell": "E27"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-02T14:08:22.00",
+        "text": "Wide and a good flow. Plenty of opportunities to access water in the next three miles between here and waypoint 67.0. More access after 67.0 but it is a very popular trail there with lots of people, dogs, and babies. So upstream of here is likely cleaner water.",
+        "cell": "E27"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-05-03T16:21:13.00",
+        "text": "Flowing!",
+        "cell": "E27"
+      },
+      {
+        "author": "John W",
+        "date": "2025-05-06T21:45:55.00",
+        "text": "Flowing well",
+        "cell": "E27"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-25T18:24:37.00",
+        "text": "Plenty of flow all along the creek",
+        "cell": "E27"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-29T18:48:58.00",
+        "text": "Flowing all along creek",
+        "cell": "E27"
+      },
+      {
+        "author": "Drew Smith",
+        "date": "2026-05-23T00:38:41.00",
+        "text": "Slow and turbid but plenty of water. Tastes fine.",
+        "cell": "E27"
+      }
+    ]
   },
   {
     "mile": 65,
@@ -201,7 +797,15 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "!! W3 to S (legal camping). Use-trail and/or xc continues along canyon bottom of E Fork Jemez River. East Fork Jemez River at highway below Las Conchas day-use",
-    "distToNext": 1.4
+    "distToNext": 1.4,
+    "sheetComments": [
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-29T18:49:02.00",
+        "text": "There was a use trail the whole way, no xc",
+        "cell": "E28"
+      }
+    ]
   },
   {
     "mile": 66.4,
@@ -213,7 +817,33 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "JR W3 area. East Fork Tr 137 TH. Popular and well-established trail heads N",
-    "distToNext": 0.6
+    "distToNext": 0.6,
+    "sheetComments": [
+      {
+        "author": "Max Bliss",
+        "date": "2024-06-04T21:37:38.00",
+        "text": "Great flow all along this canyon. Pit toilets and trash here.",
+        "cell": "E29"
+      },
+      {
+        "author": "John W",
+        "date": "2025-05-06T21:46:27.00",
+        "text": "Excellent flow, trash and pit toilets open",
+        "cell": "E29"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-25T18:24:35.00",
+        "text": "Good flow all along canyon",
+        "cell": "E29"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-29T18:48:57.00",
+        "text": "Flowing! CCW, nice little canyon hike ahead",
+        "cell": "E29"
+      }
+    ]
   },
   {
     "mile": 67,
@@ -225,7 +855,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "JR TH W3 along river. You probably won't even get your feet wet now, due to series of well-constructed bridges.",
-    "distToNext": 1.5
+    "distToNext": 1.5,
+    "sheetComments": [
+      {
+        "author": "Andreas",
+        "date": "2024-06-02T14:08:21.00",
+        "text": "Wide and a good flow. Plenty of opportunities to access water in the prior three miles between here and waypoint 64.0. More access after 67.0 but it is a very popular trail there with lots of people, dogs, and babies. So upstream of here is likely cleaner water.",
+        "cell": "E30"
+      },
+      {
+        "author": "Max Bliss",
+        "date": "2024-06-04T21:35:40.00",
+        "text": "Great flow in the river all along it from first encountering it in Valles Caldera. Multiple signs at this trailhead specify \u2018no camping\u2019 for the next 1.6 miles - basically until the trail exits the canyon.",
+        "cell": "E30"
+      },
+      {
+        "author": "John W",
+        "date": "2025-05-06T21:47:09.00",
+        "text": "Nice trail and lot of water. Popular area.",
+        "cell": "E30"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-25T18:24:38.00",
+        "text": "Great flow",
+        "cell": "E30"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-29T18:48:59.00",
+        "text": "Lots of flow and good little bridges in this section",
+        "cell": "E30"
+      }
+    ]
   },
   {
     "mile": 68.5,
@@ -237,7 +899,33 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 !! CW trail leaves E Fork Jemez River (S)",
-    "distToNext": 4.3
+    "distToNext": 4.3,
+    "sheetComments": [
+      {
+        "author": "Andreas",
+        "date": "2024-06-02T14:08:21.00",
+        "text": "Good flow and the last of the day hikers",
+        "cell": "E31"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-25T18:24:39.00",
+        "text": "Great flow",
+        "cell": "E31"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-29T18:49:00.00",
+        "text": "Flowing!",
+        "cell": "E31"
+      },
+      {
+        "author": "Drew Smith",
+        "date": "2026-05-23T00:38:42.00",
+        "text": "Plenty of water",
+        "cell": "E31"
+      }
+    ]
   },
   {
     "mile": 72.8,
@@ -249,7 +937,57 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 E Fork Jemez River crossing. A quick stop popular on weekend getaways to Jemez Country from the big ABQ, the small village of La Cueva features a convenience / general store (adequate for short-term resupply), a La Cueva (G M L",
-    "distToNext": 9.4
+    "distToNext": 9.4,
+    "sheetComments": [
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-03T02:27:30.00",
+        "text": "Water spigot next to restrooms at TH also on.",
+        "cell": "E32"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-05-05T17:15:50.00",
+        "text": "5/2/23 Confirming that the water spigot just up the hill from this was running, although I think this campground only opens 15 May",
+        "cell": "E32"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-02T14:08:20.00",
+        "text": "Water is flowing well.",
+        "cell": "E32"
+      },
+      {
+        "author": "Max Bliss",
+        "date": "2024-06-04T21:31:05.00",
+        "text": "Water spigot on and delicious. River is flowing great as well.",
+        "cell": "E32"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-05-05T19:43:22.00",
+        "text": "Water spigot up the hill is NOT on. Probably will be before long but \ud83e\udd37\u200d\u2640\ufe0f. River is flowing well. \n\nAlso, shortly after here CW when the route departs trail 137, there is a decent size logging operation going on. I didn't run into any problems because it was later in the evening but that could be an issue. Might be better to follow trail 137 to the end (getting to see the warm springs and Battleship Rock) and then road walk the 3 or 4 miles along the highway into town.",
+        "cell": "E32"
+      },
+      {
+        "author": "John W",
+        "date": "2025-05-06T21:48:40.00",
+        "text": "Confirming spigot not on. River was flowing.",
+        "cell": "E32"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-25T18:24:43.00",
+        "text": "River flowing well",
+        "cell": "E32"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-29T18:49:01.00",
+        "text": "Spigot on at day use area, near restrooms. Also the river! Agree with comment that before this, CCW, it\u2019s a lot of walking in an active logging area. No problem on a Sunday but may impact weekdays",
+        "cell": "E32"
+      }
+    ]
   },
   {
     "mile": 82.2,
@@ -273,7 +1011,45 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 TH JR creekside meadow trail(s) or closed road above creek. Rio Cebolla crossing. Use-trail along creek W side (CW). Creek",
-    "distToNext": 5.9
+    "distToNext": 5.9,
+    "sheetComments": [
+      {
+        "author": "Will Emmer",
+        "date": "2023-07-15T17:24:33.00",
+        "text": "Don't miss the san antonio hot springs up the hill, they have one of the best views around and hopefully don't get too crowded.",
+        "cell": "E49"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-04T15:05:17.00",
+        "text": "Good flow",
+        "cell": "E49"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-18T15:18:56.00",
+        "text": "Bridge. Nice flow.",
+        "cell": "E49"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-25T18:24:40.00",
+        "text": "Good flow",
+        "cell": "E49"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-28T17:59:21.00",
+        "text": "Good flow. Hot springs were nice, just take the trail uphill from the east side of the bridge. A few folks were there early Sunday morning but they were on their way out. Quite a few pools.",
+        "cell": "E49"
+      },
+      {
+        "author": "Drew Smith",
+        "date": "2026-05-27T16:52:25.00",
+        "text": "Good flow, hot springs totally worth the short climb",
+        "cell": "E49"
+      }
+    ]
   },
   {
     "mile": 91,
@@ -285,7 +1061,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2-3 JR nearby for 2 mi. (CCW leave drainage via side canyon E)",
-    "distToNext": 2.4
+    "distToNext": 2.4,
+    "sheetComments": [
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-03T02:27:29.00",
+        "text": "Flowing entire length of canyon.",
+        "cell": "E50"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-04T15:05:18.00",
+        "text": "Good flow for the next two miles",
+        "cell": "E50"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-18T15:20:31.00",
+        "text": "Log crossing. Still flowing.",
+        "cell": "E50"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-25T18:24:41.00",
+        "text": "Good flow all along",
+        "cell": "E50"
+      },
+      {
+        "author": "Drew Smith",
+        "date": "2026-05-27T16:52:31.00",
+        "text": "Good flow at the bottom",
+        "cell": "E50"
+      }
+    ]
   },
   {
     "mile": 93.4,
@@ -297,7 +1105,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "TH W2-3 JL Rio Cebolla TH / join 4WD (N) (CW)",
-    "distToNext": 5.6
+    "distToNext": 5.6,
+    "sheetComments": [
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-18T15:24:59.00",
+        "text": "Flowing throughout.",
+        "cell": "E51"
+      },
+      {
+        "author": "John W",
+        "date": "2025-05-06T21:53:23.00",
+        "text": "Good flow, cold and clear.",
+        "cell": "E51"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-25T18:24:34.00",
+        "text": "Good flow",
+        "cell": "E51"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-28T17:59:18.00",
+        "text": "Excellent",
+        "cell": "E51"
+      },
+      {
+        "author": "Drew Smith",
+        "date": "2026-05-27T16:52:24.00",
+        "text": "Flowing up top",
+        "cell": "E51"
+      }
+    ]
   },
   {
     "mile": 99,
@@ -309,7 +1149,51 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2-3 Rito Penas Negras bridged crossing on FR 527.",
-    "distToNext": 8
+    "distToNext": 8,
+    "sheetComments": [
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-03T02:27:29.00",
+        "text": "Flow beautifully cold.",
+        "cell": "E52"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-04T15:05:18.00",
+        "text": "Good flow",
+        "cell": "E52"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-18T15:27:22.00",
+        "text": "Flowing.",
+        "cell": "E52"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-25T18:24:42.00",
+        "text": "A few muddy puddles",
+        "cell": "E52"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-28T17:59:24.00",
+        "text": "Flowing, but a small creek and a bit silty",
+        "cell": "E52"
+      },
+      {
+        "author": "Drew Smith",
+        "date": "2026-05-27T16:52:32.00",
+        "text": "A few puddles 100 yds upstream",
+        "cell": "E52"
+      },
+      {
+        "author": "Drew Smith",
+        "date": "2026-05-27T16:52:33.00",
+        "text": "~24.2 a swampy pond 100 yds on the right (N)",
+        "cell": "E52"
+      }
+    ]
   },
   {
     "mile": 107,
@@ -321,7 +1205,51 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 seasonal flow Rito de las Perchas. Seasonal snowmelt flow / pools in meadow.",
-    "distToNext": 1.4
+    "distToNext": 1.4,
+    "sheetComments": [
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-03T02:27:31.00",
+        "text": "Dry, but two meadows north, water flowing across trail",
+        "cell": "E53"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-04T15:05:19.00",
+        "text": "Completely dry. \nBlowdowns East of here were a pain in the @$$. If I were to do it again I would try staying on FR70 to Palomas Trail.\nAhead look for wooden posts (4ft tall, 8\" around, pointed tops) to guide you through the meadows. Beware of multiple herd paths that look more like a trail than the actual trail or you'll end up doing a lot of course correction. \nCame across a trail crew working on Penas Negras West of the Penchas trail junction. They have a lot of work ahead of them but maybe by next year this trail will be manageable",
+        "cell": "E53"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-18T15:36:40.00",
+        "text": "Dry. Only about half a mile of blowdowns left and now marked surprisingly well with ribbon for easy navigation. Otherwise, wooden posts, i-blazes, cut logs, and cairns lead the way.",
+        "cell": "E53"
+      },
+      {
+        "author": "Dagmar Growe",
+        "date": "2025-06-07T00:25:46.00",
+        "text": "There was a small creek running at about 28.8. As far as the blow down area goes I thought it was bad from about 27.4 to 28.6. I did see some pink ribbons but a lot of them are gone.",
+        "cell": "E53"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-25T18:24:44.00",
+        "text": "Dry",
+        "cell": "E53"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-28T17:59:25.00",
+        "text": "Dry. Still a lot of blowdowns to manage.",
+        "cell": "E53"
+      },
+      {
+        "author": "Drew Smith",
+        "date": "2026-05-27T16:52:33.00",
+        "text": "Looks like the FS has been all the way through, but trees continue to fall and block the route. Don\u2019t plan on a pace better than 1 mph through here",
+        "cell": "E53"
+      }
+    ]
   },
   {
     "mile": 108.4,
@@ -333,7 +1261,57 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Seasonal pond is 0.2E at edge of meadow. Penas Negras Tr 32 at CDT. CW join CDT nobo. (Rio de las Vacas",
-    "distToNext": 3.8
+    "distToNext": 3.8,
+    "sheetComments": [
+      {
+        "author": "Brett T",
+        "date": "2021-09-09T18:14:53.00",
+        "text": "9/21 Pond was very chocolatey but an unlisted source after 30.9 was amazing",
+        "cell": "E54"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-03T02:27:27.00",
+        "text": "Source after 30.9 flowing again. Most meadows are full of water. See a lot of pools passing by.",
+        "cell": "E54"
+      },
+      {
+        "author": "Brett T",
+        "date": "2022-09-03T03:50:15.00",
+        "text": "Thanks Kyle. Another group of Loopers heading the other direction from Santa Fe has begin adding their water observations as well.",
+        "cell": "E54"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-04T15:05:15.00",
+        "text": "Pools were minimal and would require some effort to extract water. I did not check out the pond.",
+        "cell": "E54"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-18T15:38:23.00",
+        "text": "Dry across trail but accidentally blew by without checking meadow/pond.",
+        "cell": "E54"
+      },
+      {
+        "author": "Dagmar Growe",
+        "date": "2025-06-07T00:25:45.00",
+        "text": "1 or 2 good rains and the upper meadows turn into a water source. There's a deep pool in the lower part of the last one - look for the bank. Might save you the hike to the pond at 33.8.",
+        "cell": "E54"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-25T18:24:36.00",
+        "text": "Nothing at all",
+        "cell": "E54"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-28T17:59:19.00",
+        "text": "Dry, pond was dry too. There was a small pool north of 30.9 next to trail",
+        "cell": "E54"
+      }
+    ]
   },
   {
     "mile": 112.2,
@@ -345,7 +1323,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "JR (W2-3 0.5W) 0.5W via CDT S.)",
-    "distToNext": 7.7
+    "distToNext": 7.7,
+    "sheetComments": [
+      {
+        "author": "Andreas",
+        "date": "2024-06-04T15:05:20.00",
+        "text": "Meadow at 33.2 had a good pool with water falling into it making for easy catchment, so did not need to do the 1.0 round trip to this source.",
+        "cell": "E55"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-18T15:45:06.00",
+        "text": "Meadow to S with nice pools. Friendly reminder if using FarOut to supplement water info, take comments with a grain of salt. I would've drank from at least three sources on the CDT that were described as \"useless\" and the like. Sobos just hitting NM still think in terms of good and bad and nothing in between.",
+        "cell": "E55"
+      },
+      {
+        "author": "Dagmar Growe",
+        "date": "2025-06-07T18:02:30.00",
+        "text": "There is a creek running across the trail near JCT with trail 452.",
+        "cell": "E55"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-28T17:59:22.00",
+        "text": "Pool in meadow was more of a puddle, could barely scoop and had to sink ankle-deep into wet muck. Wished I had filled up at the waypt even if it adds a mile RT",
+        "cell": "E55"
+      },
+      {
+        "author": "Drew Smith",
+        "date": "2026-05-27T16:52:31.00",
+        "text": "Meadow stream 0.2 down running clear and cold.",
+        "cell": "E55"
+      }
+    ]
   },
   {
     "mile": 119.9,
@@ -357,7 +1367,51 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Cecilia Canyon Leave trail SE briefly xc then NE on road to Fuertes Spring (piped",
-    "distToNext": 9.5
+    "distToNext": 9.5,
+    "sheetComments": [
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-03T21:13:33.00",
+        "text": "Good flow. Clear and cold.\n\nThere were at least two flowing, unlisted sources between here and 33.8.",
+        "cell": "E56"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-07-10T03:49:57.00",
+        "text": "Cecilia Canyon water was somewhat silty with spring runoff. Several good water sources between here and San Pedro Parks Wilderness, specifically there was an excellent spring just off trail at\u00a036.177520, -106.797299 with good camping nearby along the old road.",
+        "cell": "E56"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-04T15:05:14.00",
+        "text": "Good strong flowing spring just off trail at 40.1",
+        "cell": "E56"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-04T20:08:56.00",
+        "text": "The trail is closed ahead at 46.8/Hwy 96 to Skull Bridge due to the Indios fire. Coyote Ranger station is 1.5 down the road to the east. In addition to water and camping, Coyote Ranger station is also offering a shuttle that runs at 7 am to either the Abiquiu Dam or Ghost Ranch. They also have filtered water inside and flush toilets during open hours. There are porta potties with hand wash stations in the parking lot. They have a picnic table across from the entrance with some shade, plus water jugs and a table full of snacks, fruit, and hand sanitizer. Camping is anywhere behind the brown fence.",
+        "cell": "E56"
+      },
+      {
+        "author": "Dagmar Growe",
+        "date": "2025-06-07T18:03:03.00",
+        "text": "Flowing",
+        "cell": "E56"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-25T18:24:42.00",
+        "text": "Flowing lovely",
+        "cell": "E56"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-28T17:59:24.00",
+        "text": "Some flow and pools",
+        "cell": "E56"
+      }
+    ]
   },
   {
     "mile": 129.4,
@@ -369,7 +1423,51 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 0.35E trough). Has had water most observations.",
-    "distToNext": 5.6
+    "distToNext": 5.6,
+    "sheetComments": [
+      {
+        "author": "Brett T",
+        "date": "2021-09-09T18:16:11.00",
+        "text": "9/21 Fuertes flowing and cold. Also a piped spring to tire trough just off of waypoint S2 52.3",
+        "cell": "E57"
+      },
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:12:56.00",
+        "text": "10/21 flowing clear and cold",
+        "cell": "E57"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-03T21:14:18.00",
+        "text": "Flowing and cold. About 2L/min.\nPiped spring tire trough mentioned above also flowing, albeit very slow.",
+        "cell": "E57"
+      },
+      {
+        "author": "Dagmar Growe",
+        "date": "2025-06-07T18:03:15.00",
+        "text": "Flowing",
+        "cell": "E57"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-25T18:25:04.00",
+        "text": "Great flow, lovely and cool.",
+        "cell": "E57"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-28T17:59:20.00",
+        "text": "Both this and the tire trough near 52.3 were flowing",
+        "cell": "E57"
+      },
+      {
+        "author": "Drew Smith",
+        "date": "2026-05-27T16:55:12.00",
+        "text": "Nothing at Fuertes, but the trough on the other side of the ridge was trickling at about 4 min/L",
+        "cell": "E57"
+      }
+    ]
   },
   {
     "mile": 135,
@@ -381,7 +1479,51 @@
     "onTrail": false,
     "offTrailDist": "",
     "details": "W1 Ojitos Canyon. Seasonal flow / pools to N for a mile or so. A trough (full and flowing) was present 6-2017 100 ft NW of route",
-    "distToNext": 4.2
+    "distToNext": 4.2,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:13:53.00",
+        "text": "10/21 flowing",
+        "cell": "E58"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-05T19:57:52.00",
+        "text": "Flowing entire length of canyon that trail follows.",
+        "cell": "E58"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-07-10T03:59:12.00",
+        "text": "Lots of excellent water in Spring 2023. Far Out CDT comments might provide more up to date information.",
+        "cell": "E58"
+      },
+      {
+        "author": "John W",
+        "date": "2025-05-06T22:00:41.00",
+        "text": "Lots of water most of the way down the canyon. Heavily burned area.",
+        "cell": "E58"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-25T18:27:27.00",
+        "text": "RAGING! I went through in a thunderstorm and saw my first flash flood, took some getting around though!",
+        "cell": "E58"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-28T17:59:23.00",
+        "text": "Nice creek with good flow in spite of the burn. Lots of fire in this area over recent decades.",
+        "cell": "E58"
+      },
+      {
+        "author": "Drew Smith",
+        "date": "2026-05-27T16:56:24.00",
+        "text": "Low but flowing, less silty farther down",
+        "cell": "E58"
+      }
+    ]
   },
   {
     "mile": 139.2,
@@ -393,7 +1535,51 @@
     "onTrail": false,
     "offTrailDist": "",
     "details": "W1 100ft NW in sagebrush meadow. Rio Chama / Skull Bridge. Footbridge over renowned whitewater",
-    "distToNext": 0.1
+    "distToNext": 0.1,
+    "sheetComments": [
+      {
+        "author": "Brett T",
+        "date": "2021-09-09T18:19:14.00",
+        "text": "9/21 This source might not be producing currently but there are at least 3 other active troughs in the middle of valley approaching Rio Chama",
+        "cell": "E59"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-05T19:57:54.00",
+        "text": "Couldn't locate trough at waypoint. Piped spring to trough roughly .3 SW just off trail was flowing good.",
+        "cell": "E59"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-07-10T04:01:06.00",
+        "text": "Trough 0.5 miles from Rio Chama wasn't flowing in Spring 2023, but trough ~1.1 miles before the chama had excellent water. Trough at\u00a036.31882, -106.64468",
+        "cell": "E59"
+      },
+      {
+        "author": "John W",
+        "date": "2025-05-06T22:01:36.00",
+        "text": "Saw 1 trough from the trail, had plenty of water.",
+        "cell": "E59"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-05-09T16:38:25.00",
+        "text": "Best water around, other stuff was super muddy",
+        "cell": "E59"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-28T17:59:20.00",
+        "text": "Nothing at waypt but trough described as 0.3 mi SW, very close to trail, was good; trough full of algae but around inflow could get good water. The other trough, with coordinates mentioned above, about a mile further SW, also close to trail, was similar; semi-hidden by vegetation.",
+        "cell": "E59"
+      },
+      {
+        "author": "Drew Smith",
+        "date": "2026-05-27T16:57:08.00",
+        "text": "Trough full and clear",
+        "cell": "E59"
+      }
+    ]
   },
   {
     "mile": 139.3,
@@ -405,7 +1591,45 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 river. Questionable water quality though.",
-    "distToNext": 13.5
+    "distToNext": 13.5,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:12:10.00",
+        "text": "10/21 flowing like a champ!",
+        "cell": "E60"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-10-31T19:55:50.00",
+        "text": "I've always seen this flowing, but it's always been silty/muddy",
+        "cell": "E60"
+      },
+      {
+        "author": "John W",
+        "date": "2025-05-06T22:02:01.00",
+        "text": "Lots of water!",
+        "cell": "E60"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-25T18:29:26.00",
+        "text": "Once again, I passed this after heavy rain it was flying through. Wouldn\u2019t want to have drank any though, but, when needs must.",
+        "cell": "E60"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-28T17:59:19.00",
+        "text": "Lots of silty water! Nice spot to cool off under the bridge though",
+        "cell": "E60"
+      },
+      {
+        "author": "Drew Smith",
+        "date": "2026-05-27T16:58:46.00",
+        "text": "Low water (for rafting )but fairly clear, not chocolaty as it sometimes is",
+        "cell": "E60"
+      }
+    ]
   },
   {
     "mile": 152.8,
@@ -417,7 +1641,27 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Suspension bridge over Canjilon Creek. Ghost Ranch Conference Center is a self-contained healing / spiritual / artist's retreat / resort offering a campground / showers, a variety of rustic lodging options (cheap to somewhat Ghost Ranch pricey), a (very) small convenience-type store, and cafeteria-style",
-    "distToNext": 2.7
+    "distToNext": 2.7,
+    "sheetComments": [
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-05T19:57:53.00",
+        "text": "Flowing",
+        "cell": "E61"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-25T18:30:00.00",
+        "text": "Flowing.",
+        "cell": "E61"
+      },
+      {
+        "author": "Drew Smith",
+        "date": "2026-05-27T16:59:29.00",
+        "text": "Dry",
+        "cell": "E61"
+      }
+    ]
   },
   {
     "mile": 155.5,
@@ -429,7 +1673,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W1 Arroyo del Yeso seasonal flow",
-    "distToNext": 5.8
+    "distToNext": 5.8,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:11:44.00",
+        "text": "10/21 did not observe",
+        "cell": "E67"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-05T19:57:53.00",
+        "text": "Flowing well. Cold and clear.",
+        "cell": "E67"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-09-13T23:17:58.00",
+        "text": "Sep 2023. Good Flow through ~ mile 2 when you exit the canyon.",
+        "cell": "E67"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-06T13:06:31.00",
+        "text": "Light flow. Enough to collect but probably not for much longer. There is better flow upstream. \n\nPast here the NNML track varies from the CDT Ghost Ranch Alternate. The Alt is more obvious, more well worn, and marked with blue blazes on trees and an occasional cairn. I suspect there might have been some rerouting and the two might have been previously aligned. I stayed with the Alt to Yeso Tank.",
+        "cell": "E67"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-24T19:21:13.00",
+        "text": "Lots more water upstream along trail. Very scenic.",
+        "cell": "E67"
+      }
+    ]
   },
   {
     "mile": 161.3,
@@ -441,7 +1717,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W1 JL Yeso Tank (often foul). CW follow berm N to road W. Harris Bear Spring troughs located along S side of corral fence 50-",
-    "distToNext": 8.2
+    "distToNext": 8.2,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:11:26.00",
+        "text": "10/21 indeed foul, but would do in a pinch.",
+        "cell": "E68"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-05T19:57:51.00",
+        "text": "Full of water but foul",
+        "cell": "E68"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-09-13T23:19:27.00",
+        "text": "Very muddy, but I successfully pulled 2L that I used flocculant on before filtering.",
+        "cell": "E68"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-06T13:06:30.00",
+        "text": "The tank is fenced in and populated with cows. If you took the CDT Alt there is Dead End Tank before this that is easier to access. \n\nPast here the CDT Alt goes northeast in front of the tank. The NNML heads north to the left of the tank. The NNML North of here has CDT markers so again I suspect some rerouting has occurred. The NNML will bring you to another water source and gets you to the CDT proper faster.",
+        "cell": "E68"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-24T19:20:46.00",
+        "text": "Not the worst tank seen in the trail. Plenty of water.",
+        "cell": "E68"
+      }
+    ]
   },
   {
     "mile": 169.5,
@@ -453,7 +1761,45 @@
     "onTrail": false,
     "offTrailDist": "100yds",
     "details": "W2-3 100yds E 100 yds E of trail.",
-    "distToNext": 12.9
+    "distToNext": 12.9,
+    "sheetComments": [
+      {
+        "author": "Paul Healy",
+        "date": "2021-10-20T16:19:55.00",
+        "text": "Upper trough flowing 10/18",
+        "cell": "E69"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-05T19:58:19.00",
+        "text": "Upper trough is flowing",
+        "cell": "E69"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-09-13T23:20:26.00",
+        "text": "Great water at upper trough, don't get disheartened when you first see the empty lower trough.",
+        "cell": "E69"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-09T19:33:49.00",
+        "text": "Upper trough is filled with a pipe and over flowing",
+        "cell": "E69"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-29T20:06:56.00",
+        "text": "Very good flow here.",
+        "cell": "E69"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-24T00:44:41.00",
+        "text": "Nice inflow at upper trough!",
+        "cell": "E69"
+      }
+    ]
   },
   {
     "mile": 182.4,
@@ -465,7 +1811,45 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 Canjilon Creek crossing. Should be reliable here.",
-    "distToNext": 2
+    "distToNext": 2,
+    "sheetComments": [
+      {
+        "author": "Paul Healy",
+        "date": "2021-10-20T16:19:56.00",
+        "text": "Flowing 10/17",
+        "cell": "E70"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-08T17:51:26.00",
+        "text": "Strong flow",
+        "cell": "E70"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-09-13T23:23:05.00",
+        "text": "Excellent Flow. Sep 23",
+        "cell": "E70"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-09T19:33:52.00",
+        "text": "Strong flow. That's what a river should look like. There's also water flowing across trail in a couple spots a mile to a mile and a half before if in dire need and can't wait",
+        "cell": "E70"
+      },
+      {
+        "author": "Dagmar Growe",
+        "date": "2025-06-22T01:53:51.00",
+        "text": "From mile 27.1 to 72 there is water at all indicated locations and plenty in between. Problem is not to find water but to keep it out of your shoes.",
+        "cell": "E70"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-23T22:38:50.00",
+        "text": "Great flow",
+        "cell": "E70"
+      }
+    ]
   },
   {
     "mile": 184.4,
@@ -477,7 +1861,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W1 Canjilon Creek (unreliable to N)",
-    "distToNext": 6.1
+    "distToNext": 6.1,
+    "sheetComments": [
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-08T17:51:25.00",
+        "text": "Strong flow",
+        "cell": "E71"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-09-13T23:23:56.00",
+        "text": "Acceptable Flow at multiple points between here and mile 28.",
+        "cell": "E71"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-09T19:33:59.00",
+        "text": "Lots of water before and after here",
+        "cell": "E71"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-29T20:07:04.00",
+        "text": "Good glow here as well.",
+        "cell": "E71"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-23T22:38:54.00",
+        "text": "Pools and some flow here",
+        "cell": "E71"
+      }
+    ]
   },
   {
     "mile": 190.5,
@@ -489,7 +1905,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W1 Ojito Azul. Seasonal flow possible in drainage here.",
-    "distToNext": 0.6
+    "distToNext": 0.6,
+    "sheetComments": [
+      {
+        "author": "Paul Healy",
+        "date": "2021-10-20T16:19:54.00",
+        "text": "Tiny pools 10/17",
+        "cell": "E72"
+      },
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-14T13:19:33.00",
+        "text": "Light flow.",
+        "cell": "E72"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-09-13T23:25:04.00",
+        "text": "Good Scoopable Water that you can reach in the upturned culvert. Sep 23",
+        "cell": "E72"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-09T19:33:48.00",
+        "text": "Good flow but further downhill from waypoint past cattle guard",
+        "cell": "E72"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-23T22:38:51.00",
+        "text": "Little bit of water",
+        "cell": "E72"
+      }
+    ]
   },
   {
     "mile": 191.1,
@@ -501,7 +1949,45 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Canada Jarosita crossing footbridge over Rio Vallecitos. (Bridge wiped out in flood 2017,",
-    "distToNext": 5.2
+    "distToNext": 5.2,
+    "sheetComments": [
+      {
+        "author": "Paul Healy",
+        "date": "2021-10-20T16:19:54.00",
+        "text": "Dry 10/17",
+        "cell": "E73"
+      },
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-14T13:18:50.00",
+        "text": "Good flow.",
+        "cell": "E73"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-09-13T23:25:24.00",
+        "text": "Dry. Sept 2023",
+        "cell": "E73"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-09T19:33:58.00",
+        "text": "Light flow the previous one at 36.1 is better and easier to collect from",
+        "cell": "E73"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-29T20:06:57.00",
+        "text": "Very little flow",
+        "cell": "E73"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-23T22:38:51.00",
+        "text": "Dry right at crossing, pools just downstream. Also, there is a spring and trough just a little ways east of here. A bit banged up from a fallen tree, down slope from trail, easy to see, and it looked like it had water.",
+        "cell": "E73"
+      }
+    ]
   },
   {
     "mile": 196.3,
@@ -513,7 +1999,51 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 hopefully since replaced. Can usually ford but use care in finding a safe location.)",
-    "distToNext": 2.4
+    "distToNext": 2.4,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:09:37.00",
+        "text": "10/21 no bridge, but signs pointing the way to a precarious log crossing. Creative rock hop opportunities as well.",
+        "cell": "E74"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-09-13T23:26:22.00",
+        "text": "While high snowmelt caused significant issues crossing this in May 2023, this was an easy rock hop in Sept 2023.",
+        "cell": "E74"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-09T19:33:53.00",
+        "text": "Shin deep, no biggie.",
+        "cell": "E74"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-05-13T22:15:18.00",
+        "text": "No bridge. Sketchy right now because it's so full of snow melt. Waist high, fast, and cold with uneven slippery boulders as footing. Be careful!",
+        "cell": "E74"
+      },
+      {
+        "author": "Dagmar Growe",
+        "date": "2025-06-22T01:53:53.00",
+        "text": "Shin deep. Someone just rock hopped it",
+        "cell": "E74"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-29T20:07:05.00",
+        "text": "Plenty of flow here.",
+        "cell": "E74"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-23T22:38:55.00",
+        "text": "Rock hop, great water",
+        "cell": "E74"
+      }
+    ]
   },
   {
     "mile": 198.7,
@@ -525,7 +2055,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Rock Creek crossing Roadside trough along Hopewell Campground access road / CDT,",
-    "distToNext": 7.9
+    "distToNext": 7.9,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:09:42.00",
+        "text": "10/21 Flowing",
+        "cell": "E75"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-08T17:51:24.00",
+        "text": "Flowing",
+        "cell": "E75"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-09-13T23:26:54.00",
+        "text": "Light Flow, scooping was required.",
+        "cell": "E75"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-09T19:33:57.00",
+        "text": "Light flow but collectable",
+        "cell": "E75"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-23T22:38:55.00",
+        "text": "Some flow and pools, scooping helped, good quality",
+        "cell": "E75"
+      }
+    ]
   },
   {
     "mile": 206.6,
@@ -537,7 +2099,45 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 full 6-2017. Campground proper (E) reportedly also has faucets and vault toilets, likely seasonal.",
-    "distToNext": 0.4
+    "distToNext": 0.4,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:09:44.00",
+        "text": "10/21 all facilities closed for season",
+        "cell": "E76"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-09-13T23:28:06.00",
+        "text": "Sept 2023. Water is off in the campground, but in addition to the lake the campground host told me that he had some water available for hikers and bikers.",
+        "cell": "E76"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-05-13T22:15:16.00",
+        "text": "Faucets off and pit toilets closed",
+        "cell": "E76"
+      },
+      {
+        "author": "Dagmar Growe",
+        "date": "2025-06-22T01:53:50.00",
+        "text": "Toilets open., but no water at camp ground. Trough is unfilterable! (I think it's blood in there). Go to lake .",
+        "cell": "E76"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-29T20:07:07.00",
+        "text": "Toilets open. Faucet not working and trough is nearly empty",
+        "cell": "E76"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-23T22:38:56.00",
+        "text": "Trough empty",
+        "cell": "E76"
+      }
+    ]
   },
   {
     "mile": 207,
@@ -549,7 +2149,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 Hopewell Lake with water from lake or adjacent facilities.",
-    "distToNext": 6.1
+    "distToNext": 6.1,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:09:40.00",
+        "text": "10/21 good quality",
+        "cell": "E77"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-08T17:51:22.00",
+        "text": "Faucets at campground are off.",
+        "cell": "E77"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-09T19:33:55.00",
+        "text": "Faucets are off but CG host at site 4 has water for hikers.",
+        "cell": "E77"
+      },
+      {
+        "author": "Molly Katzman",
+        "date": "2024-09-23T17:16:27.00",
+        "text": "Faucets still off but campground host offered to fill all of our bottles with potable water. He said there's an algae bloom in the lake, so best not to drink from it.",
+        "cell": "E77"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-23T22:38:57.00",
+        "text": "Got water from the lake",
+        "cell": "E77"
+      }
+    ]
   },
   {
     "mile": 213.1,
@@ -561,7 +2193,45 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W1 Jawbone Tank (stock pond)",
-    "distToNext": 2.1
+    "distToNext": 2.1,
+    "sheetComments": [
+      {
+        "author": "Paul Healy",
+        "date": "2021-10-20T16:19:53.00",
+        "text": "Frozen 10/16",
+        "cell": "E78"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-08T17:51:21.00",
+        "text": "Full and decent quality",
+        "cell": "E78"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-10-31T20:04:29.00",
+        "text": "Full, but muddy. Flocculant used to pull 2L. Sept 23",
+        "cell": "E78"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-09T19:33:54.00",
+        "text": "Plenty of water and snow melt flowing in",
+        "cell": "E78"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-29T20:06:59.00",
+        "text": "Plenty of water",
+        "cell": "E78"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-23T22:38:52.00",
+        "text": "Probably better than the previous 2 sources CCW",
+        "cell": "E78"
+      }
+    ]
   },
   {
     "mile": 215.2,
@@ -573,7 +2243,33 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W1-2 Canon Manga (seasonal)",
-    "distToNext": 0.5
+    "distToNext": 0.5,
+    "sheetComments": [
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-14T13:17:17.00",
+        "text": "Scoopable pools.",
+        "cell": "E79"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-10-31T20:07:12.00",
+        "text": "Sept 2023 Dry",
+        "cell": "E79"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-09T19:33:51.00",
+        "text": "Lots of pools of water around",
+        "cell": "E79"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-23T22:38:53.00",
+        "text": "Dry",
+        "cell": "E79"
+      }
+    ]
   },
   {
     "mile": 215.7,
@@ -585,7 +2281,45 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W1-2 Spring Tank (stock pond) Rio San Antonio crossing. Somewhat confusing how the trail crosses the creek, though it does about what the GPS track here",
-    "distToNext": 5.1
+    "distToNext": 5.1,
+    "sheetComments": [
+      {
+        "author": "Paul Healy",
+        "date": "2021-10-20T16:19:53.00",
+        "text": "Frozen 10/16",
+        "cell": "E80"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-08T17:51:26.00",
+        "text": "Full and decent quality",
+        "cell": "E80"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-10-31T20:07:52.00",
+        "text": "Full, but some algae. Sep 23",
+        "cell": "E80"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-09T19:33:59.00",
+        "text": "Full and the frogs are singing",
+        "cell": "E80"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-29T20:07:03.00",
+        "text": "Full and quite clear looking",
+        "cell": "E80"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-23T22:38:53.00",
+        "text": "Shallow, brown and scuzzy",
+        "cell": "E80"
+      }
+    ]
   },
   {
     "mile": 220.8,
@@ -597,7 +2331,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 !! shows (CW climbing steeply up the ridge to the north after crossing).",
-    "distToNext": 3.3
+    "distToNext": 3.3,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:09:41.00",
+        "text": "10/21 flowing well",
+        "cell": "E81"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-08T17:51:23.00",
+        "text": "Good flow. Cold and clear",
+        "cell": "E81"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-10-31T20:12:03.00",
+        "text": "Good flow Sept 23",
+        "cell": "E81"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-09T19:33:56.00",
+        "text": "Flowing well though smaller than I imagined. I'm cutting off section 3 (and the Chama resupply) and following Rio San Antonio to pick up section 4.",
+        "cell": "E81"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-06-29T20:07:06.00",
+        "text": "Flowing well.",
+        "cell": "E81"
+      }
+    ]
   },
   {
     "mile": 224.1,
@@ -609,7 +2375,33 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W1 Lagunitas Creek headwaters",
-    "distToNext": 2.3
+    "distToNext": 2.3,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:09:35.00",
+        "text": "10/21 didn't observe",
+        "cell": "E82"
+      },
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-14T13:16:18.00",
+        "text": "Decent flow.",
+        "cell": "E82"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-10-31T20:12:23.00",
+        "text": "Good Flow Sept 23",
+        "cell": "E82"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-01T00:03:25.00",
+        "text": "Good flow",
+        "cell": "E82"
+      }
+    ]
   },
   {
     "mile": 226.4,
@@ -621,7 +2413,27 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "C W3 Lagunitas Campground. Perennial water from area lakes / ponds. Brazos Ridge Overlook; end Sec.3 at Sec 3A (to N) and Sec 4 (to E). Most hikers will probably want to resupply in Chama by",
-    "distToNext": 6
+    "distToNext": 6,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:09:35.00",
+        "text": "10/21 excellent quality",
+        "cell": "E83"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-10-31T20:13:26.00",
+        "text": "Sept 23. Lots of water along with people fishing and hunting camps",
+        "cell": "E83"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-01T00:04:09.00",
+        "text": "Plenty of water and some good spots to camp.",
+        "cell": "E83"
+      }
+    ]
   },
   {
     "mile": 232.4,
@@ -633,7 +2445,27 @@
     "onTrail": false,
     "offTrailDist": "12 miles",
     "details": "END Sec 3 (W0) continuing north on the CDT to Cumbres Pass CO, then hitchhiking 12 miles SW into this full-service town. USPS address: c/o General Delivery, Chama NM 87520.",
-    "distToNext": 3.2
+    "distToNext": 3.2,
+    "sheetComments": [
+      {
+        "author": "Hannah Meduna",
+        "date": "2025-10-16T16:15:25.00",
+        "text": "If you need water, along road 87 to the west there are 4+ good streams between here and where it connects to the cdt in 3.5 miles",
+        "cell": "E88"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-09-22T12:43:13.00",
+        "text": "Alternatively if you are section hiking and have car access, I left myself a food cache (bear bag hang) at Hopewell Lake and a water cache at 285 to successfully do a combined S3&4. Although Chama is lovely",
+        "cell": "E103"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-18T15:46:37.00",
+        "text": "Friendly reminder if using FarOut to supplement water info, take comments with a grain of salt. I would've drank from at least three sources on the CDT that were described as \"useless\" and the like. Sobos just hitting NM still think in terms of good and bad and nothing in between.",
+        "cell": "E103"
+      }
+    ]
   },
   {
     "mile": 235.6,
@@ -645,7 +2477,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 Beaver Creek accessible nearby for several miles.",
-    "distToNext": 1.2
+    "distToNext": 1.2,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:09:43.00",
+        "text": "10/21 Beaver Creek flowing throughout canyon",
+        "cell": "E104"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-12T01:45:32.00",
+        "text": "Flowing good. Flow starts about .5 miles from ridgeline.",
+        "cell": "E104"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-10-31T20:19:47.00",
+        "text": "Sept 23. Lots of great wter here from first Beaver Creek crossing ~1mi from start of section",
+        "cell": "E104"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-05-13T22:17:37.00",
+        "text": "Lots of water through this section til mile 24 when you leave Rio San Antonio for the last time",
+        "cell": "E104"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-04T13:38:05.00",
+        "text": "Beaver Creek flowing all the way along",
+        "cell": "E104"
+      }
+    ]
   },
   {
     "mile": 236.8,
@@ -657,7 +2521,45 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 Diablo Creek accessible nearby for several miles.",
-    "distToNext": 2.2
+    "distToNext": 2.2,
+    "sheetComments": [
+      {
+        "author": "Paul Healy",
+        "date": "2021-10-12T14:22:37.00",
+        "text": "Good flow 10/10",
+        "cell": "E105"
+      },
+      {
+        "author": "Brett T",
+        "date": "2021-10-12T15:16:57.00",
+        "text": "Thanks Paul! Hey, don\u2019t mark your own comments as Resolved or they\u2019ll be hidden from view. I\u2019ve made that not very obvious mistake myself! :)",
+        "cell": "E105"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-10-31T20:20:51.00",
+        "text": "Sept 23. Tons of water here as well",
+        "cell": "E105"
+      },
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:09:39.00",
+        "text": "10/21 flowing",
+        "cell": "E105"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-08T04:15:24.00",
+        "text": "Flowing.",
+        "cell": "E105"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-04T13:38:06.00",
+        "text": "Flowing full length",
+        "cell": "E105"
+      }
+    ]
   },
   {
     "mile": 239,
@@ -669,7 +2571,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Fork of Diablo Creek. Less reliable upstream.",
-    "distToNext": 3.7
+    "distToNext": 3.7,
+    "sheetComments": [
+      {
+        "author": "Paul Healy",
+        "date": "2021-10-12T14:22:37.00",
+        "text": "Flowing 10/10",
+        "cell": "E106"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-12T01:45:33.00",
+        "text": "Flowing throughout drainage.",
+        "cell": "E106"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-10-31T20:23:36.00",
+        "text": "Sept 23. Good flow up into meadow ahead.",
+        "cell": "E106"
+      },
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:09:45.00",
+        "text": "10/21 Diablo Creek reliable throughout",
+        "cell": "E106"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-08T04:16:01.00",
+        "text": "Flowing.",
+        "cell": "E106"
+      }
+    ]
   },
   {
     "mile": 242.7,
@@ -681,7 +2615,51 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Canon Largo Canon Largo at Rio San Antonio. Continue on use-trails",
-    "distToNext": 1.2
+    "distToNext": 1.2,
+    "sheetComments": [
+      {
+        "author": "Paul Healy",
+        "date": "2021-10-12T14:22:36.00",
+        "text": "Good flow here 10/10",
+        "cell": "E107"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-10-31T20:27:19.00",
+        "text": "Sept 23. Good Flow from where you first enter creek at ~ mile 9 and onward",
+        "cell": "E107"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-08T04:17:35.00",
+        "text": "Flowing.",
+        "cell": "E107"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-04T13:38:04.00",
+        "text": "Flowing well",
+        "cell": "E107"
+      },
+      {
+        "author": "Hannah Meduna",
+        "date": "2025-10-09T18:31:26.00",
+        "text": "Flowing from here downstream to junction with Rio San Antonio. Within .4 upstream, it dissipates and there\u2019s just occasional muddy puddles.",
+        "cell": "E107"
+      },
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:09:41.00",
+        "text": "10/21 flowing",
+        "cell": "E107"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-12T01:45:30.00",
+        "text": "Flow begins just a few hundred yards from North Largo Tank.",
+        "cell": "E107"
+      }
+    ]
   },
   {
     "mile": 243.9,
@@ -693,7 +2671,45 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 along/near drainage bottom.",
-    "distToNext": 4.2
+    "distToNext": 4.2,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:09:40.00",
+        "text": "10/21 flowing",
+        "cell": "E108"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-10-31T20:28:09.00",
+        "text": "Sept 23. Excellent Flow",
+        "cell": "E108"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-09T19:33:55.00",
+        "text": "Flowing good",
+        "cell": "E108"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-08T04:18:10.00",
+        "text": "Flowing.",
+        "cell": "E108"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-04T13:38:08.00",
+        "text": "Flowing well",
+        "cell": "E108"
+      },
+      {
+        "author": "Hannah Meduna",
+        "date": "2025-10-09T18:31:31.00",
+        "text": "Flowing",
+        "cell": "E108"
+      }
+    ]
   },
   {
     "mile": 248.1,
@@ -705,7 +2721,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 Rio San Antonio nearby. CW last access on public land for 2-3 mi",
-    "distToNext": 3.8
+    "distToNext": 3.8,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:09:37.00",
+        "text": "10/21 flowing",
+        "cell": "E109"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-10-31T20:30:13.00",
+        "text": "Sept 23. Cold and Clear. Recommend pulling water here rather than at the road crossing ahead",
+        "cell": "E109"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-09T19:33:51.00",
+        "text": "Flowing good",
+        "cell": "E109"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-08T04:19:04.00",
+        "text": "Flowing.",
+        "cell": "E109"
+      },
+      {
+        "author": "Hannah Meduna",
+        "date": "2025-10-09T18:31:29.00",
+        "text": "Yes, flowing",
+        "cell": "E109"
+      }
+    ]
   },
   {
     "mile": 251.9,
@@ -717,7 +2765,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "JL (W3 0.1S) FR 87 at FR 78. Rio San Antonio access 0.1S via FR 87.",
-    "distToNext": 4.1
+    "distToNext": 4.1,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:09:34.00",
+        "text": "10/21 flowing",
+        "cell": "E110"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-10-31T20:31:31.00",
+        "text": "Sept 23. Flowing",
+        "cell": "E110"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-04T13:38:07.00",
+        "text": "Flowing well. Great shade under some Cottonwoods just before.",
+        "cell": "E110"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-23T22:38:56.00",
+        "text": "A bit shallow, but flowing",
+        "cell": "E110"
+      },
+      {
+        "author": "Hannah Meduna",
+        "date": "2025-10-09T18:31:30.00",
+        "text": "Flowing, but worse quality water than the upstream or downstream options. There\u2019s currently a beaver dam directly upstream.",
+        "cell": "E110"
+      }
+    ]
   },
   {
     "mile": 256,
@@ -729,7 +2809,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 CW reach Rio San Antonio in canyon bottom. CW x-c exit canyon bottom E. Last access Rio San Antonio. CW water warning: in dry times this may be your last likely water for",
-    "distToNext": 0.7
+    "distToNext": 0.7,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:09:38.00",
+        "text": "10/21 flowing",
+        "cell": "E111"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-10-31T20:35:10.00",
+        "text": "Sept 23. Good Flow throughout canyon",
+        "cell": "E111"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-09T19:34:46.00",
+        "text": "Flowing good throughout canyon",
+        "cell": "E111"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-08T04:20:15.00",
+        "text": "Flowing.",
+        "cell": "E111"
+      },
+      {
+        "author": "Hannah Meduna",
+        "date": "2025-10-09T18:31:28.00",
+        "text": "Flowing",
+        "cell": "E111"
+      }
+    ]
   },
   {
     "mile": 256.7,
@@ -741,7 +2853,57 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "JR W2 21 mi, or sure-bet until the Rio Grande in 29 mi. (CCW Rio San Antonio first access here although somewhat less reliable than several miles upstream where next approached.) San Antonio Mtn Tank (seasonal). More likely than Lower San",
-    "distToNext": 3.5
+    "distToNext": 3.5,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:09:36.00",
+        "text": "10/21 Rio San Antonio flowing throughout canyon",
+        "cell": "E112"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-12T01:45:32.00",
+        "text": "Flowing well",
+        "cell": "E112"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-09-22T12:34:57.00",
+        "text": "Sept 23 flowing well throughout canyon.\nRe-opened",
+        "cell": "E112"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-09T19:35:53.00",
+        "text": "Water flowing good through here. There is water ahead on SA",
+        "cell": "E112"
+      },
+      {
+        "author": "Molly Katzman",
+        "date": "2024-09-23T17:03:48.00",
+        "text": "9/13 flowing well",
+        "cell": "E112"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-08T04:20:45.00",
+        "text": "Flowing.",
+        "cell": "E112"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-05-13T22:18:02.00",
+        "text": "Flowing",
+        "cell": "E112"
+      },
+      {
+        "author": "Hannah Meduna",
+        "date": "2025-10-09T18:31:30.00",
+        "text": "Flowing throughout. Heavy cow presence",
+        "cell": "E112"
+      }
+    ]
   },
   {
     "mile": 260.2,
@@ -753,7 +2915,63 @@
     "onTrail": false,
     "offTrailDist": "100ft S",
     "details": "W1-2 100ft S Antone Tank to SE but still unreliable during dry times. Don't count on finding water anywhere on San Antonio Mountain.",
-    "distToNext": 0.6
+    "distToNext": 0.6,
+    "sheetComments": [
+      {
+        "author": "Brett T",
+        "date": "2021-09-18T18:23:44.00",
+        "text": "9/13/21: Full",
+        "cell": "E113"
+      },
+      {
+        "author": "Paul Healy",
+        "date": "2021-10-09T23:08:51.00",
+        "text": "Poor quality, Algae and muddy",
+        "cell": "E113"
+      },
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:09:45.00",
+        "text": "10/21 has water",
+        "cell": "E113"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-12T01:45:33.00",
+        "text": "Has water. Poor quality.",
+        "cell": "E113"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-09-21T15:35:37.00",
+        "text": "20 Sept 2023. Muddy, but a decent amount of water",
+        "cell": "E113"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-09T19:36:15.00",
+        "text": "Full of water.",
+        "cell": "E113"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-08T04:22:37.00",
+        "text": "Half green, half brown, but pretty full still.",
+        "cell": "E113"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-05-13T22:18:41.00",
+        "text": "Not great water but there is a little water",
+        "cell": "E113"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-21T16:39:21.00",
+        "text": "Chocolate milk, and some algae, but it is water",
+        "cell": "E113"
+      }
+    ]
   },
   {
     "mile": 260.8,
@@ -765,7 +2983,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W1 Lower San Antone Tank (less reliable) BLM road junction. Pass through fence / cattleguard. W side of fence, NE along road, 0.25 to Wissmath Crater seasonal stock",
-    "distToNext": 5.4
+    "distToNext": 5.4,
+    "sheetComments": [
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-14T13:14:51.00",
+        "text": "Dry",
+        "cell": "E114"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-09-21T15:33:33.00",
+        "text": "20 Sept 2023. Dry",
+        "cell": "E114"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-11T15:30:09.00",
+        "text": "I went XC to true summit then service road down so I did not pass this one",
+        "cell": "E114"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-05-13T22:19:22.00",
+        "text": "Almost dry",
+        "cell": "E114"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-21T16:17:33.00",
+        "text": "Dry",
+        "cell": "E114"
+      }
+    ]
   },
   {
     "mile": 266.2,
@@ -777,7 +3027,69 @@
     "onTrail": false,
     "offTrailDist": "3.5 miles",
     "details": "JR W1-2 0.25N pond. Not reliable in drier times. Recently dry late June 2020. Also see similar 'crater' pond nearby S of route. 7638 Well' - 4 or 5 full troughs on satellites; historically reliable. Water here for most if not all NNML hikers so far (last visit 6-20). If happens to be dry, CCW best bet may be to seek out pair of solar troughs 3.5 miles NW on active grazing allotment. Main",
-    "distToNext": 11.6
+    "distToNext": 11.6,
+    "sheetComments": [
+      {
+        "author": "Brett T",
+        "date": "2021-09-18T18:23:59.00",
+        "text": "9/13/21: Full",
+        "cell": "E115"
+      },
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:09:35.00",
+        "text": "10/21 still has some water",
+        "cell": "E115"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-12T01:45:31.00",
+        "text": "Tank north of waypoint 31.9 is full. Muddy but better than San Antone tank.",
+        "cell": "E115"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-09-21T15:38:10.00",
+        "text": "20 Sept 23. North pond appeared to have a small puddle still, although it looks like it could dry up shortly without more rain.",
+        "cell": "E115"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-09-22T12:27:09.00",
+        "text": "I left myself a cache of water at hwy 285 before hiking this section to eliminate any water anxiety in this stretch. About 75\u2019 SE of the 285 gate behind the small bush there is some old twisted metal that I used to hide my water. A cache isn\u2019t needed, if you are aggressive at either carrying a lot of water into this stretch or just picking up all the muddy pond water you see and not trusting only in the 7638 well",
+        "cell": "E115"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-09T19:38:07.00",
+        "text": "I left a cache at the hwy crossing to be safe. A quarter after the crossing are three metal troughs that appear new. The rancher was filling as I went by.",
+        "cell": "E115"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-11T15:30:06.00",
+        "text": "South pond is dry, did not check out North pond",
+        "cell": "E115"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-08T04:25:44.00",
+        "text": "Both dry.",
+        "cell": "E115"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-05-16T20:17:43.00",
+        "text": "Dry",
+        "cell": "E115"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-21T13:08:22.00",
+        "text": "Dry. But there are some tanks ahead CCW before the highway. One had some decent looking water in it just a bit of algae.",
+        "cell": "E115"
+      }
+    ]
   },
   {
     "mile": 277.8,
@@ -789,7 +3101,75 @@
     "onTrail": false,
     "offTrailDist": "",
     "details": "W2 road that takes you part-way between here and there carries some vehicle traffic in an emergency. (CW another trough exists roughly 3.5 mi ahead and 0.5 off-route, or can drink from Rio Grande in emergency.) Rio Grande here is typically 50 ft wide, knee deep with a modest current except during times of heavy runoff. Eastbound hikers, in the hopefully unlikely event that you can't wait out a high water Rio Grande Sheep",
-    "distToNext": 7.5
+    "distToNext": 7.5,
+    "sheetComments": [
+      {
+        "author": "Brett T",
+        "date": "2021-09-18T18:25:02.00",
+        "text": "9/13/21: Good. All but one (tire with float valve) is dry.",
+        "cell": "E116"
+      },
+      {
+        "author": "Paul Healy",
+        "date": "2021-10-09T22:41:43.00",
+        "text": "Still one tire full 10/08",
+        "cell": "E116"
+      },
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:09:43.00",
+        "text": "10/10/21 5 empty troughs and one tire with water.",
+        "cell": "E116"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-12T01:45:31.00",
+        "text": "Tire trough with float valve is full. Good water.",
+        "cell": "E116"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-09-21T15:28:57.00",
+        "text": "21 Sept 2023 This site is currently dry except for a small puddle of rainwater in one of the troughs. Maybe 2 liters if you scooped carefully\nThe stock pond at mile 49.5 is full, which might be why this site was allowed to go dry. The water at 49.5 is very muddy.\nAt mile 50 there is another full stock pond 0.1 mi east, which also looks muddy",
+        "cell": "E116"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-11T15:30:07.00",
+        "text": "The tire trough is full",
+        "cell": "E116"
+      },
+      {
+        "author": "Molly Katzman",
+        "date": "2024-09-23T16:55:17.00",
+        "text": "Tire is full and float valve is functional for getting good, clear water.",
+        "cell": "E116"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-08T04:33:30.00",
+        "text": "10/03 Full tire with a wide poop algae moat of sadness around it. But probably fine if you're taller than 5'2\"?",
+        "cell": "E116"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-05-16T20:17:44.00",
+        "text": "All the troughs I looked in were dry but there were cows nearby so maybe there was water somewhere nearby and I just didn't look hard enough. \ud83e\udd37\u200d\u2640\ufe0f Wouldn't count on it",
+        "cell": "E116"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-20T20:11:52.00",
+        "text": "Tire was full of good water, phew! You can also use the valve on the large water tank. Also, fyi, there was a wildlife tank just west of waypt 51.2 marked as W0-1. It had a small collection area, well fenced. Could work in a pinch.",
+        "cell": "E116"
+      },
+      {
+        "author": "Hannah Meduna",
+        "date": "2025-10-05T18:06:29.00",
+        "text": "Tire full, no algae, float valve works.",
+        "cell": "E116"
+      }
+    ]
   },
   {
     "mile": 285.3,
@@ -801,7 +3181,57 @@
     "onTrail": false,
     "offTrailDist": "20 miles",
     "details": "event, you may need to backtrack up to the trailhead at previous Crossing (W3) waypoint and then follow roads south to County Rd B007 / Dunn Bridge crossing of the Rio Grande, 20 miles total, then continue 2 mi farther to the village of Arroyo Hondo at NM Hwy 522.",
-    "distToNext": 1
+    "distToNext": 1,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:09:36.00",
+        "text": "10/21 Thigh deep",
+        "cell": "E117"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-12T01:47:24.00",
+        "text": "Crossed downstream of rapids. 180 CFS. Had to swim but current wasn't really noticable.",
+        "cell": "E117"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-09-22T11:50:17.00",
+        "text": "21 Sep 23. Water quality looked better than anything seen until the Rio San Antonio. See notes about the 7638 well.",
+        "cell": "E117"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-09-22T11:59:55.00",
+        "text": "21 Sep 23. Crossed upstream of the small rapids at the widest spot where the east side switchbacks start. Only 135 CFS and at this spot I couldn\u2019t feel any current, but ended up still having to swim which was easy to do. In retrospect, you can better see where you can likely just walk across from higher up in the canyon by spotting the darker (less silty) water closer to the rapids to the south (the better crossing point had tiny riffles). This difference wasn\u2019t obvious to see at the water level, as it was from some elevation.",
+        "cell": "E117"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-11T15:30:08.00",
+        "text": "Downsteam gauge was at 4.5 ft and 600 cfs. I crossed at widest point between downstream ripples and upstream ones. Aimed for large boulder where trail comes down on the east side. I had to swim 90% of the width. More difficult than I thought but everything came out unscathed. I'm not a strong swimmer and used my inflatable mattress and pillow as flotation devices for myself and my pack.",
+        "cell": "E117"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-08T04:38:50.00",
+        "text": "10/03 Shin deep.",
+        "cell": "E117"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-21T01:55:43.00",
+        "text": "Shin deep, 50cfs and 1.25\u2019 I think lower than normal for Sep",
+        "cell": "E117"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-21T01:56:17.00",
+        "text": ".\nRe-opened",
+        "cell": "E117"
+      }
+    ]
   },
   {
     "mile": 286.3,
@@ -813,7 +3243,33 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W1 0.25SW Side road SW to circular trough w float valve, visible on satellite Northern New Mexico Loop | Water Chart for Google Sheets app | Add your reports for the hikers behind you! Questa is a small, somewhat spread out community a number of miles north of Taos, similarly situated between the Rio Grande Gorge to the west and Sangre de Cristo Mountains to the east. It's Questa (PO G M L notably laid back and non-tourist-oriented, and offers just enough",
-    "distToNext": 8.8
+    "distToNext": 8.8,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-11-02T00:09:40.00",
+        "text": "10/21 didn't check",
+        "cell": "E118"
+      },
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-14T13:13:00.00",
+        "text": "Full. Murky but cool.",
+        "cell": "E118"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-20T16:04:41.00",
+        "text": "A tire tank with decent water, just had to chase the cows away from it",
+        "cell": "E118"
+      },
+      {
+        "author": "Hannah Meduna",
+        "date": "2025-10-05T18:05:06.00",
+        "text": "Dry",
+        "cell": "E118"
+      }
+    ]
   },
   {
     "mile": 295.1,
@@ -825,7 +3281,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 road by gauging station. (CW Collect here to avoid some private property heading east.) FR 134 at FR 134A. CW left on FR 134A. Cabresto Creek access",
-    "distToNext": 3.4
+    "distToNext": 3.4,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:50:40.00",
+        "text": "10/21 strong flow",
+        "cell": "E124"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-10-31T20:42:55.00",
+        "text": "July 2023. Good Flow",
+        "cell": "E124"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-14T17:36:16.00",
+        "text": "Good flow all along the road",
+        "cell": "E124"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-02T22:53:46.00",
+        "text": "Lots of water.",
+        "cell": "E124"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-07T12:21:50.00",
+        "text": "Plenty of water",
+        "cell": "E124"
+      }
+    ]
   },
   {
     "mile": 298.5,
@@ -837,7 +3325,33 @@
     "onTrail": false,
     "offTrailDist": "100ydS",
     "details": "JL (W3 100ydS) across road. (CCW Collect here to avoid some private property heading west.) Signed Latir Peak Wilderness boundary. Occasional access to",
-    "distToNext": 2.5
+    "distToNext": 2.5,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:50:11.00",
+        "text": "10/21 strong flow",
+        "cell": "E125"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-10-31T20:42:36.00",
+        "text": "July 2023. Good Flow",
+        "cell": "E125"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-14T17:36:17.00",
+        "text": "Good flow all along the road",
+        "cell": "E125"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-07T12:27:58.00",
+        "text": "Good flow. Please be aware if you are using the new alt route to avoid the blowdowns up near Mount Baldy this is the last water until Red River.",
+        "cell": "E125"
+      }
+    ]
   },
   {
     "mile": 301,
@@ -849,7 +3363,33 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 Cabresto Creek CW plus several good areas of side flow across trail. Lake Fork Tr 82 at Bull Creek Tr 85. (Bull Creek Fork meets Lake",
-    "distToNext": 1.9
+    "distToNext": 1.9,
+    "sheetComments": [
+      {
+        "author": "Will Emmer",
+        "date": "2023-10-31T20:43:58.00",
+        "text": "Jul 2023. Good Flow",
+        "cell": "E126"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-14T17:36:15.00",
+        "text": "Strong flow and plenty of places to access off the trail",
+        "cell": "E126"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-02T22:47:43.00",
+        "text": "Lots of flow.",
+        "cell": "E126"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-07T12:22:36.00",
+        "text": "Loads of water",
+        "cell": "E126"
+      }
+    ]
   },
   {
     "mile": 302.9,
@@ -861,7 +3401,33 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "JL W3 Fork Cabresto Creek.) (CW Bad weather route avoiding Latir Mesa continues on Tr 82 NE.) Cross wide-ish rock-hoppable Bull Fork Cabresto Creek. Regular",
-    "distToNext": 0.5
+    "distToNext": 0.5,
+    "sheetComments": [
+      {
+        "author": "Will Emmer",
+        "date": "2023-10-31T20:46:23.00",
+        "text": "July 2023. Good Flow",
+        "cell": "E127"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-14T17:36:35.00",
+        "text": "Plenty of water all around",
+        "cell": "E127"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-02T22:48:59.00",
+        "text": "Flowing well.",
+        "cell": "E127"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-07T12:23:07.00",
+        "text": "Good flow",
+        "cell": "E127"
+      }
+    ]
   },
   {
     "mile": 303.4,
@@ -873,7 +3439,33 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 creek access here and above along trail in canyon.",
-    "distToNext": 1.4
+    "distToNext": 1.4,
+    "sheetComments": [
+      {
+        "author": "Will Emmer",
+        "date": "2023-10-31T20:46:37.00",
+        "text": "July 2023. Good Flow",
+        "cell": "E128"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-14T17:37:02.00",
+        "text": "Water everywhere",
+        "cell": "E128"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-07T12:23:43.00",
+        "text": "Plenty of water",
+        "cell": "E128"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-18T23:08:05.00",
+        "text": "Flowing, and, CCW, camp spots just before",
+        "cell": "E128"
+      }
+    ]
   },
   {
     "mile": 304.8,
@@ -885,7 +3477,45 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 First / last access Bull Fork Cabresto Creek Heart Lake. Tr 85 crosses outlet near jct connector Tr 115. (CCW",
-    "distToNext": 3.8
+    "distToNext": 3.8,
+    "sheetComments": [
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-14T22:03:06.00",
+        "text": "Flowing",
+        "cell": "E129"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-07-15T18:26:51.00",
+        "text": "Good flow 11 July 2023",
+        "cell": "E129"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-14T17:37:24.00",
+        "text": "Still plenty of water",
+        "cell": "E129"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-02T22:50:16.00",
+        "text": "Low and narrow but flowing fast.",
+        "cell": "E129"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-07T12:24:02.00",
+        "text": "Plenty of water",
+        "cell": "E129"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-18T23:08:06.00",
+        "text": "Dry at the way point, but lots of water further along (CCW)",
+        "cell": "E129"
+      }
+    ]
   },
   {
     "mile": 308.6,
@@ -897,7 +3527,27 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "XT W3 Bad weather route avoiding Latir Mesa uses Tr 115 to Tr 82 S.)",
-    "distToNext": 0.6
+    "distToNext": 0.6,
+    "sheetComments": [
+      {
+        "author": "Andreas",
+        "date": "2024-06-14T17:38:02.00",
+        "text": "Good flow out of lake",
+        "cell": "E130"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-02T22:51:30.00",
+        "text": "Flowing well.",
+        "cell": "E130"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-18T19:28:20.00",
+        "text": "Pretty little lake, outlet had good flow. CCW, Latir Peak /mesa will be as high as you\u2019ll get the rest of the trip. Soak it up!",
+        "cell": "E130"
+      }
+    ]
   },
   {
     "mile": 309.2,
@@ -909,7 +3559,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Actual crossing of low flow muddy Baldy cabin Creek Midnight Tr 81 TH at FR 134. Cabresto Creek across road",
-    "distToNext": 5.6
+    "distToNext": 5.6,
+    "sheetComments": [
+      {
+        "author": "Paul Healy",
+        "date": "2021-10-08T09:41:33.00",
+        "text": "Passed this source without noticing a flow",
+        "cell": "E131"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-07-12T21:05:40.00",
+        "text": "July 2023. Only a trickle.\nCaution. Between here and Midnight TH 22.4 (CW) there are four Blowdowns (BD) that will slow your progress and require some XC. Here are the rough locations and my best suggestion for the two worst ones (19.5 & 21.8).\nBD 17.2\u00a0 36.789, -105.4416\nBD 19.5\u00a0 36.781, -105.409\u00a0 Avoid by diverting XC to the north over the ridgeline and working your way back to the trail.\nBD 21.2\u00a0\u00a036.776, -105.391\nBD 21.8\u00a0 36.779, -105.384\u00a0 Avoid by going XC to the south and working your way to the forest road and Midnight TH 22.4.\n\nLook for still standing forest and stay in that if possible, the terrain made it difficult to understand the best way past the two large blowdowns and I stupidly climbed into them first before then trying to find a way out of them. Further insights are welcome and needed.",
+        "cell": "E131"
+      },
+      {
+        "author": "Brett T",
+        "date": "2023-07-14T18:47:14.00",
+        "text": "Thanks for the updates Will!",
+        "cell": "E131"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-14T17:39:13.00",
+        "text": "Light flow.",
+        "cell": "E131"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-18T19:28:19.00",
+        "text": "Dry, a little water and mud further down but recommend heart lake instead",
+        "cell": "E131"
+      }
+    ]
   },
   {
     "mile": 314.8,
@@ -921,7 +3603,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "TH JL W2 (somewhat seasonal here). (CCW last water until Baldy Cabin / Heart Lake.)",
-    "distToNext": 2.6
+    "distToNext": 2.6,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:48:29.00",
+        "text": "10/21 Cabresto flowing strong",
+        "cell": "E132"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-14T22:03:05.00",
+        "text": "Flowing strong",
+        "cell": "E132"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-07-12T21:04:38.00",
+        "text": "July 2023 Good Flow.\u00a0\nCaution. Between here and Baldy Cabin (CCW) there are four areas of significant blowdown. See the comment on 16.8 for more details",
+        "cell": "E132"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-02T22:43:01.00",
+        "text": "Flowing nicely here. Called ranger station and blowdowns have not been cleared. Check for private property and slope angle, but water all along 134.",
+        "cell": "E132"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-10-04T00:59:12.00",
+        "text": "There is an alternate trail and a blowdown bypass trail, so you can basically stick with the Midnight Trail. Here is my track for the alternate trail and notes on it and the bypass trail:\u00a0https://caltopo.com/m/G11UERS\n1 total reaction\nWill Emmer reacted with \ud83d\udc4d at 2025-10-04 01:42 AM",
+        "cell": "E132"
+      }
+    ]
   },
   {
     "mile": 317.4,
@@ -933,7 +3647,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Bitter Creek Bitter Creek above Memphis mine (historic). Likely perennial",
-    "distToNext": 3.3
+    "distToNext": 3.3,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:47:55.00",
+        "text": "10/21 excellent flow",
+        "cell": "E133"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-14T22:03:06.00",
+        "text": "Good flow",
+        "cell": "E133"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-07-15T19:50:30.00",
+        "text": "Excellent Flow. Also here is some history on the gold mines along this route.\nhttps://www.rrraven.com/pages/roycepeggyfiles/rr%20gold%20mines/web-content/edison.html",
+        "cell": "E133"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-10-02T22:40:56.00",
+        "text": "Valle Vidal Alt has water everywhere you expect it to be, some with more cows than others. Longest stretch without would be 2 or 3 miles south of Little Costilla Peak.",
+        "cell": "E133"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-18T19:28:19.00",
+        "text": "Valle Vidal CCW: plenty of water in the creeks once you drop in the valley, for you and the cows. After grassy creek, no water till you start the descent from little costilla. I encountered a spring along the old road you go down, maybe a 5 mi dry stretch. Then another 5mi or so to Comanche creek though the XC drainage you descend could work. Streams en route to main trail as you ascend, too. Route spends a lot of time on abandoned roads and some XC, follow the track carefully so you don\u2019t miss turnoffs.",
+        "cell": "E133"
+      }
+    ]
   },
   {
     "mile": 320.7,
@@ -945,7 +3691,27 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 here. Red River began as a purpose-built ski town, later expanding to become a year-round destination. The town makes for a pretty good hiker stop, with lots of eats, motels a-plenty (often filled",
-    "distToNext": 6.6
+    "distToNext": 6.6,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:47:54.00",
+        "text": "10/21 Bitter Creek flowing strong throughout canyon",
+        "cell": "E134"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-10-31T20:51:13.00",
+        "text": "July 2023. Good Flow",
+        "cell": "E134"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-08-24T16:07:58.00",
+        "text": "Good flow",
+        "cell": "E134"
+      }
+    ]
   },
   {
     "mile": 327.3,
@@ -957,7 +3723,51 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2-3 JL Red River Nature Trail at FR 486. Placer Creek. Paved NM 578 at Goose Creek TH. Reliable water in creek along",
-    "distToNext": 1.7
+    "distToNext": 1.7,
+    "sheetComments": [
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-05T23:31:59.00",
+        "text": "Very strong flow.",
+        "cell": "E140"
+      },
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:46:48.00",
+        "text": "10/21 excellent flow",
+        "cell": "E140"
+      },
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-05T23:29:01.00",
+        "text": "Excellent flow",
+        "cell": "E140"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T16:08:05.00",
+        "text": "July 2023 Flowing",
+        "cell": "E140"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-17T21:46:27.00",
+        "text": "Flowing good. Helicopters scooping water out of it",
+        "cell": "E140"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-08-25T14:02:56.00",
+        "text": "Flowing",
+        "cell": "E140"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-09-26T18:42:30.00",
+        "text": "Flowing well.",
+        "cell": "E140"
+      }
+    ]
   },
   {
     "mile": 329,
@@ -969,7 +3779,27 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "TH JR W3 length of trail with frequent access.",
-    "distToNext": 3.3
+    "distToNext": 3.3,
+    "sheetComments": [
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T16:08:49.00",
+        "text": "July 2023. Excellent Flow throughout canyon",
+        "cell": "E141"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-08-25T14:02:59.00",
+        "text": "Flowing good the entire way",
+        "cell": "E141"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-09-26T18:43:54.00",
+        "text": "Flowing from here to the lake.",
+        "cell": "E141"
+      }
+    ]
   },
   {
     "mile": 332.3,
@@ -981,7 +3811,21 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "C W3 Established trailside campsite N side of Goose Creek.",
-    "distToNext": 2.1
+    "distToNext": 2.1,
+    "sheetComments": [
+      {
+        "author": "Molly Katzman",
+        "date": "2024-09-23T16:50:50.00",
+        "text": "Campsite no longer exists/covered in blowdowns.",
+        "cell": "E142"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-16T15:09:20.00",
+        "text": "Flowing well! I was able to find a flat spot on the south side of the creek, across from the blowdowns on the north side",
+        "cell": "E142"
+      }
+    ]
   },
   {
     "mile": 334.4,
@@ -993,7 +3837,45 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 Goose Creek last / first access. (Reliable flow throughout canyon) Signed junction remain on Goose Creek Tr 65. (Goose Lake 100",
-    "distToNext": 0.6
+    "distToNext": 0.6,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:45:13.00",
+        "text": "10/21 excellent/reliable flow throughout canyon",
+        "cell": "E143"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-19T19:13:51.00",
+        "text": "Great flow throughout canyon",
+        "cell": "E143"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-07-15T18:37:36.00",
+        "text": "Caution. Blowdown along Goose Creek Trail starts\u00a0(CW) at around mile 8,\u00a0 36.6442, -105.4376 and continues to Goose Lake. At\u00a0start of blowdown go NW (uphill XC) and join the forest road (36.645, -105.44) for the remainder to Goose Lake.",
+        "cell": "E143"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-08-25T14:02:57.00",
+        "text": "Flowing good. Blowdowns have been recently cut and trail is in excellent shape. There are a few they didn't get to nearing Goose Lake but they can easily be walked around.",
+        "cell": "E143"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-10T04:36:29.00",
+        "text": "Good flow.",
+        "cell": "E143"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-08-16T02:03:08.00",
+        "text": "Good water through the whole canyon. Trail gets a little goofy right at this point. If you're headed CW / uphill on your right you'll see pink flagging tape that looks like it might be marking the trail. It's not. Trails goes to the left. It's a little faint in places and has a few blow downs but it's not too bad",
+        "cell": "E143"
+      }
+    ]
   },
   {
     "mile": 335,
@@ -1005,7 +3887,33 @@
     "onTrail": false,
     "offTrailDist": "100ydsN",
     "details": "JL (W3 100ydsN) yards N via spur trail, CW last water on main route other than seasonal snowmelt until San Cristobal Creek.)",
-    "distToNext": 0.3
+    "distToNext": 0.3,
+    "sheetComments": [
+      {
+        "author": "Will Emmer",
+        "date": "2023-07-15T18:39:53.00",
+        "text": "Caution. Blowdown exists along the upper portion of Goose Creek Trail (going CCW). Recommend using the forest road until\u00a036.645, -105.44 and then returning to the trail by going XC downhill to the southeast.",
+        "cell": "E144"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-17T21:46:28.00",
+        "text": "Plenty of water in the lake and flowing out to Goose Creek. I took Goose Pond Rd over Goose Creek Trail due to the rain earlier in the day and expected in the evening.",
+        "cell": "E144"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-08-25T14:02:58.00",
+        "text": "Flowing near trail, blowdowns have been cut except for a few close to Goose Lake",
+        "cell": "E144"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-10T04:37:20.00",
+        "text": "Good flowing water all along creek",
+        "cell": "E144"
+      }
+    ]
   },
   {
     "mile": 335.3,
@@ -1041,7 +3949,21 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "XT W2-3 0.4SE N; Gavilan 60 S; Water likely along Gavilan Tr where it reaches drainage 0.4SE and 500 feet below the ridgeline. San Cristobal Creek. Last access CW. Small flow here 6-20, more",
-    "distToNext": 6.4
+    "distToNext": 6.4,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:43:41.00",
+        "text": "10/21 didn't seek this source out",
+        "cell": "E147"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-16T15:09:24.00",
+        "text": "Flowing! A leaf helped to collect. Also ran into some local hikers and they called it Gavilan Spring so I think it\u2019s reliable, just a ways down (and back up) from the trail",
+        "cell": "E147"
+      }
+    ]
   },
   {
     "mile": 345.8,
@@ -1053,7 +3975,57 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 reliable below. San Cristobal Creek. CW: flowing and frequent crossings for 3",
-    "distToNext": 4.1
+    "distToNext": 4.1,
+    "sheetComments": [
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-19T19:13:54.00",
+        "text": "Flowing at waypoint",
+        "cell": "E148"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-07-15T18:40:45.00",
+        "text": "Good flow on 14 July",
+        "cell": "E148"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-17T21:46:29.00",
+        "text": "Here and below plenty of water.",
+        "cell": "E148"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-08-26T16:46:56.00",
+        "text": "Good flow entire way",
+        "cell": "E148"
+      },
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:43:38.00",
+        "text": "10/21 nice flow",
+        "cell": "E148"
+      },
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-05T23:30:36.00",
+        "text": "Very strong flow.",
+        "cell": "E148"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-08-18T19:22:41.00",
+        "text": "Dry where you first cross it but about half a mile downhill it's flowing",
+        "cell": "E148"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-14T19:04:17.00",
+        "text": "Just a trickle, could probably use a scoop/cup",
+        "cell": "E148"
+      }
+    ]
   },
   {
     "mile": 349.9,
@@ -1065,7 +4037,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 miles.",
-    "distToNext": 2.6
+    "distToNext": 2.6,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:40:37.00",
+        "text": "10/21 flowing reliably throughout canyon",
+        "cell": "E149"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-07-15T18:46:01.00",
+        "text": "In addition to the larger campsites at 21.1 & 24.2, there is a small campsite for 1 or 2 tents at ~23.5 (36.6194, -105.5862)",
+        "cell": "E149"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-17T21:46:28.00",
+        "text": "Plenty of water. Campsite  after last crossing. Look for path in field while heading towards trailhead. Cross river on makeshift bridge.",
+        "cell": "E149"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-08-26T16:46:55.00",
+        "text": "Good flow at last crossing",
+        "cell": "E149"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-10T04:41:52.00",
+        "text": "Good flow the further down the creek you go.",
+        "cell": "E149"
+      }
+    ]
   },
   {
     "mile": 352.5,
@@ -1077,7 +4081,27 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W1 Acequia access approx here An historic ranching community of scattered adobe homesteads located in the foothills below Columbine-Hondo Wilderness Area, tiny San Cristobal doesn't feel like a town stop so much as a step back in time. Formerly a small store existed here, but now all that remains for hikers is a post office for sending oneself a maildrop. A fenced (but accessible) area along the east side of the building",
-    "distToNext": 9.9
+    "distToNext": 9.9,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:39:17.00",
+        "text": "10/21 running but chose to avoid",
+        "cell": "E150"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-17T21:46:54.00",
+        "text": "Flowing, but didn't touch",
+        "cell": "E150"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-08-26T16:46:54.00",
+        "text": "I guess this is the ditch to the left? It was dry. I didn't see anything else.\n\nThe PO just ahead has a spigot out back accessible 24/7",
+        "cell": "E150"
+      }
+    ]
   },
   {
     "mile": 362.4,
@@ -1089,7 +4113,45 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 quality than the Rio Grande. Northern New Mexico Loop | Water Chart for Google Sheets app | Add your reports for the hikers behind you!",
-    "distToNext": 0
+    "distToNext": 0,
+    "sheetComments": [
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T16:17:26.00",
+        "text": "Oct 2023. Excellent Flow",
+        "cell": "E167"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-17T21:50:49.00",
+        "text": "The crossing was thigh deep. The Gaia track brings you to a good place to cross with easy entry and exit.",
+        "cell": "E167"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-08-26T21:42:06.00",
+        "text": "Good water, shin deep.",
+        "cell": "E167"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-09-23T13:46:21.00",
+        "text": "Knee deep after recent rains.",
+        "cell": "E167"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-12T13:35:19.00",
+        "text": "Good flow",
+        "cell": "E167"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-08-18T19:25:01.00",
+        "text": "Lots of flow. Shin deep",
+        "cell": "E167"
+      }
+    ]
   },
   {
     "mile": 362.4,
@@ -1101,7 +4163,57 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "Dunn Bridge W3 John Dunn Bridge over Rio Grande West Rim TH / Gorge rest area. Developed water (drinking fountains) 24/7. Restrooms closed after 5pm. Shade ramadas.",
-    "distToNext": 7.3
+    "distToNext": 7.3,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:37:42.00",
+        "text": "9/21 excellent flow",
+        "cell": "E168"
+      },
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-04T17:06:03.00",
+        "text": "Bridge is closed until mid Nov, 22. It is probably impassable if construction crews are present. Road on either side is also closed with a new barbed wire fence and \u201cno trespassing \u201c sign. Hikers should consider the rio grande high water route during closure.",
+        "cell": "E168"
+      },
+      {
+        "author": "Brett T",
+        "date": "2022-09-04T20:40:35.00",
+        "text": "The high water route is intended for clockwise hikers unable to ford the Rio west of Questa, relying on this bridged crossing in an emergency. So the high water route can\u2019t serve its intended purpose right now with the bridged closure. Thinking a hiker reaching the bridge would need to attempt the ford here instead or backtrack if dangerous. For a clockwise hiker this might mean finding a ride to Taos Gorge bridge and resuming the route there.",
+        "cell": "E168"
+      },
+      {
+        "author": "Brett T",
+        "date": "2022-09-05T02:37:02.00",
+        "text": "@kyle.morris140@gmail.com",
+        "cell": "E168"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-08T17:54:15.00",
+        "text": "Thanks Brett. Looks like I'll be fording or swimming at the original fording location.",
+        "cell": "E168"
+      },
+      {
+        "author": "Brett T",
+        "date": "2022-09-08T21:31:00.00",
+        "text": "Kyle I think what it means is basically an extra required ford, first the usual one west of Questa, and then fording at Dunn Bridge after you exit the Columbine-Hondo and are on your way to Ranchos de Taos. However, what about crossing the bridge early AM or after 6 PM or whatever to avoid the construction crew.",
+        "cell": "E168"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T16:19:41.00",
+        "text": "Oct 2023. Bridge is open and there are vault toilets. Road up the west side of the canyon\u00a0is accessible to foot traffic, but blocked to vehicles. I didn't check out the\u00a0Black Rock Hot Springs just south on the east side.",
+        "cell": "E168"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-17T21:52:06.00",
+        "text": "Toilets, trash, shade. What else could you want?",
+        "cell": "E168"
+      }
+    ]
   },
   {
     "mile": 369.7,
@@ -1112,8 +4224,64 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "TH W3 Didn’t see vending. A popular spot, and you can follow the tourist throngs out onto the highway bridge for that iconic selfie. Route of NNML heads S from rest area lot onto signed West Rim Trail. NM 567 Taos Junction Bridge over Rio Grande. Nearby vehicle-",
-    "distToNext": 11.8
+    "details": "TH W3 Didn\u2019t see vending. A popular spot, and you can follow the tourist throngs out onto the highway bridge for that iconic selfie. Route of NNML heads S from rest area lot onto signed West Rim Trail. NM 567 Taos Junction Bridge over Rio Grande. Nearby vehicle-",
+    "distToNext": 11.8,
+    "sheetComments": [
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-05T21:26:29.00",
+        "text": "Fountains and bottle filler on.",
+        "cell": "E169"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T16:27:58.00",
+        "text": "Oct 2023. Water on. Note that the Earthship Visitor Center is just 1.5 miles NW of here if you are interested.\u00a0\nhttps://earthship.com/visit/\nTo the north as you walk XC along private property you can see a number of their structures in the distance.",
+        "cell": "E169"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-17T21:53:10.00",
+        "text": "Fountain out of order but bottle filler is working. Taking a siesta at the shaded Ramada",
+        "cell": "E169"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-08-27T17:13:54.00",
+        "text": "Fountains working, nice shade ramadas",
+        "cell": "E169"
+      },
+      {
+        "author": "Brett T",
+        "date": "2021-09-18T22:18:22.00",
+        "text": "9/18/21: Coyote reports water off at gorge rest area but employee turned on a spigot for him. Will have to re-evaluate\u00a0reliability (obv not W3)",
+        "cell": "E169"
+      },
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:21:59.00",
+        "text": "Water was indeed off, talked to employee who said spigots are off for TBD amount of time as they need to be serviced due to leakage/water waste. Also stated new drinking fountains are being installed as we speak- finish date also TBD. Water in bathrooms is of course on, and potable according to same employee.",
+        "cell": "E169"
+      },
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-05T21:13:00.00",
+        "text": "Fountains and bottle fill station on. Toilets open.",
+        "cell": "E169"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-12T13:37:28.00",
+        "text": "Bottle fill station open. Toilets locked.",
+        "cell": "E169"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-08-18T19:26:12.00",
+        "text": "Open and water on",
+        "cell": "E169"
+      }
+    ]
   },
   {
     "mile": 381.5,
@@ -1125,7 +4293,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "Taos Jct bridge W3 oriented Orilla Verde Campground as well as a boat launch / take- out with vault toilet. Picuris Trail at NM 570. Good flowing spring at roadside (6-2020)",
-    "distToNext": 0
+    "distToNext": 0,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:36:47.00",
+        "text": "9/21 all W3's have had water thus far due to recent heavy precipitation/also just being a generally reliable source, I imagine.",
+        "cell": "E170"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-19T19:13:50.00",
+        "text": "Water hydrant at campground is on",
+        "cell": "E170"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-08-28T17:46:51.00",
+        "text": "Spigots on. Up ahead where the Picarus trail ends at the dirt road is a nice primitive campsite, $5. There's another one down the road a bit too. The self pay station is back towards the bridge though so it's kinda a pain to pick an open site and then backtrack. There's a camp host nearby so you need to pay. #1 is a nice quiet site next to the trailhead and surrounded by poison ivy and sumac but avoidable when setting up tent. I mention all this if you need a protected place to camp like we did in thunderstorms, not a lot of other options.",
+        "cell": "E170"
+      },
+      {
+        "author": "Molly Katzman",
+        "date": "2024-09-23T16:42:28.00",
+        "text": "Water spigots on at campground. I should've read Buck 30 and Kyle's comments before collecting from roadside spring which was awkward to collect from and flowing slowly.",
+        "cell": "E170"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-14T02:58:03.00",
+        "text": "Water at the developed campground. The primitive sites are great for camping in this beautiful area before/after Ranchos de Taos",
+        "cell": "E170"
+      }
+    ]
   },
   {
     "mile": 381.5,
@@ -1149,7 +4349,57 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W1-2 Light spring flow across Slide Trail among willows 6-20 Ranchos de Taos is a distinct community apart from Taos proper and located several miles south of the beating heart of that well- known town. Sleepy and agrarian beyond the main 2-lane highway, Ranchos de Taos nonetheless offers a post office along Ranchos de Taos (PO",
-    "distToNext": 17.8
+    "distToNext": 17.8,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:34:12.00",
+        "text": "9/21 light flow across trail",
+        "cell": "E172"
+      },
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-05T21:16:03.00",
+        "text": "Very light flow. It would be difficult to scoop.",
+        "cell": "E172"
+      },
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-05T21:25:42.00",
+        "text": "Very small flow. Difficult to scoop.",
+        "cell": "E172"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-19T19:13:52.00",
+        "text": "Still flowing.",
+        "cell": "E172"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T16:55:53.00",
+        "text": "Oct 2023. Just a trickle. Rio Pueblo at 29.3 miles was easily accessible as well.",
+        "cell": "E172"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-19T04:46:48.00",
+        "text": "Hardly anything. I passed over not thinking that it could be the spring",
+        "cell": "E172"
+      },
+      {
+        "author": "Kerry Stewart",
+        "date": "2024-09-22T16:55:05.00",
+        "text": "Flowing.",
+        "cell": "E172"
+      },
+      {
+        "author": "Molly Katzman",
+        "date": "2024-09-23T17:49:15.00",
+        "text": "9/7 Just a trickle, would've been difficult\u00a0to collect.",
+        "cell": "E172"
+      }
+    ]
   },
   {
     "mile": 400.5,
@@ -1161,7 +4411,27 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "JR W3 bridge",
-    "distToNext": 2
+    "distToNext": 2,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:33:04.00",
+        "text": "9/21 flowing",
+        "cell": "E178"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T16:59:20.00",
+        "text": "Oct 2023. Excellent Flow",
+        "cell": "E178"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:00.00",
+        "text": "Flowing",
+        "cell": "E178"
+      }
+    ]
   },
   {
     "mile": 402.5,
@@ -1173,7 +4443,27 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 First crossing CW of Rio Grande del Rancho (creek in meadow). FR 439 at powerline road. Unbridged crossing of Rio Grande del",
-    "distToNext": 1.9
+    "distToNext": 1.9,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:32:50.00",
+        "text": "9/21 flowing",
+        "cell": "E179"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T17:02:41.00",
+        "text": "Oct 2023. Good Flow",
+        "cell": "E179"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:12.00",
+        "text": "Flowing. Just over ankle deep",
+        "cell": "E179"
+      }
+    ]
   },
   {
     "mile": 404.4,
@@ -1185,7 +4475,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "JR W3 Rancho W of jct. CW last access to Rio Grande del Rancho. 2 track jct. Turn right",
-    "distToNext": 0.4
+    "distToNext": 0.4,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:32:16.00",
+        "text": "9/21 flowing",
+        "cell": "E180"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:18.00",
+        "text": "Flowing. Knee deep",
+        "cell": "E180"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:29:12.00",
+        "text": "This crossing was a large beaver dammed pond, looked deep. We went a minute further on the road and crossed smaller channels to the other side",
+        "cell": "E180"
+      },
+      {
+        "author": "Molly Katzman",
+        "date": "2024-09-23T16:38:53.00",
+        "text": "Beautiful, clear pooled spring flowing from the east side of FR 439, just after joining the road CCW. Better option than the river, what with the abundance of beaver dams 'round here.",
+        "cell": "E180"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-11T18:48:28.00",
+        "text": "Walked across a very solid beaver dam, didn\u2019t have to get wet",
+        "cell": "E180"
+      }
+    ]
   },
   {
     "mile": 404.8,
@@ -1197,7 +4519,45 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 JR uphill on vague secondary utility line 2track. Utility line gradual at first then very steep.",
-    "distToNext": 8.1
+    "distToNext": 8.1,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:32:03.00",
+        "text": "9/21 flowing",
+        "cell": "E181"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T17:04:31.00",
+        "text": "Oct 2023. Flowing with several beaver ponds through here",
+        "cell": "E181"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:02.00",
+        "text": "Flowing. Nice big pine nearby to take a shaded rest under. And dry out from walking in and across the river/bog",
+        "cell": "E181"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:28:50.00",
+        "text": "Good flow",
+        "cell": "E181"
+      },
+      {
+        "author": "Molly Katzman",
+        "date": "2024-09-23T16:38:02.00",
+        "text": "Beautiful, clear pooled spring flowing from the east side of FR 439, just after joining the road CCW. Better option than the river, what with the abundance of beaver dams 'round here.",
+        "cell": "E181"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-08-26T02:30:55.00",
+        "text": "Flowing here and at the other crossings. Pay attention because the junction is easy to miss (CW) and it's not a waypoint on the gaia / gpx. The road is subtle and very overgrown. Had to wade through the beaver pond but it was only knee high. I recommend getting water a little bit downstream where it's actually moving though",
+        "cell": "E181"
+      }
+    ]
   },
   {
     "mile": 412.9,
@@ -1209,7 +4569,51 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Flechado Canyon trickling creek 6-20",
-    "distToNext": 1.4
+    "distToNext": 1.4,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:31:14.00",
+        "text": "9/21 good flow due to recent heavy rainfall",
+        "cell": "E182"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-19T19:13:52.00",
+        "text": "Flowing. Not fast but an easy collection.",
+        "cell": "E182"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T17:06:44.00",
+        "text": "Oct 2023. Flowing",
+        "cell": "E182"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:14.00",
+        "text": "Flowing but not very deep.",
+        "cell": "E182"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:29:06.00",
+        "text": "Small but solid flow, flows all the way to next waypoint",
+        "cell": "E182"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-08-26T02:30:53.00",
+        "text": "Just a trickle but it's flowing",
+        "cell": "E182"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-11T18:48:26.00",
+        "text": "Small pools and trickles",
+        "cell": "E182"
+      }
+    ]
   },
   {
     "mile": 414.3,
@@ -1221,7 +4625,45 @@
     "onTrail": false,
     "offTrailDist": "",
     "details": "W2 Flechado Canyon small cascade It's a mere half mile off-route to the laid-back Sipapu Ski & Summer Resort. True to its name, Sipapu offers year-round services, namely a motel and cabins, restaurant / grill, and something of a convenience-store level grocery option. Sometimes busy, other times a virtual ghost town, Sipapu has agreed to hold hiker packages in the past but call ahead to Sipapu resort (M L",
-    "distToNext": 2.4
+    "distToNext": 2.4,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:30:48.00",
+        "text": "09/21 nice cascade due to recent heavy rainfall",
+        "cell": "E183"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-19T19:22:48.00",
+        "text": "Flowing",
+        "cell": "E183"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T17:07:04.00",
+        "text": "Oct 2023. Flowing",
+        "cell": "E183"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:04.00",
+        "text": "Better flow and easier collection than at 21.2",
+        "cell": "E183"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:28:52.00",
+        "text": "Good flow",
+        "cell": "E183"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-11T18:48:29.00",
+        "text": "Some flow and pools.",
+        "cell": "E183"
+      }
+    ]
   },
   {
     "mile": 416.7,
@@ -1233,7 +4675,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "JR W3 JL road to campground.",
-    "distToNext": 1.9
+    "distToNext": 1.9,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-02T03:00:10.00",
+        "text": "9/21 saw Rio Pueblo quadruple its flow overnight after heavy rains here.",
+        "cell": "E185"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:17.00",
+        "text": "Plenty of flow. Water on tap at vault toilet up hill",
+        "cell": "E185"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:29:10.00",
+        "text": "Good flow, saw some spigots near route at campground.",
+        "cell": "E185"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T13:28:25.00",
+        "text": "Good flow. As others have there were spigots in the campground",
+        "cell": "E185"
+      },
+      {
+        "author": "Aspen Adams",
+        "date": "2025-08-26T02:30:54.00",
+        "text": "Spigots are turned on",
+        "cell": "E185"
+      }
+    ]
   },
   {
     "mile": 418.6,
@@ -1245,7 +4719,33 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "JR W3 Agua Piedra Creek / TJ Tr 19 / 22A",
-    "distToNext": 2
+    "distToNext": 2,
+    "sheetComments": [
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T17:10:44.00",
+        "text": "Oct 2023. Excellent Flow along entire Agua Piedra Creek",
+        "cell": "E186"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:11.00",
+        "text": "Strong flow",
+        "cell": "E186"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:29:01.00",
+        "text": "Good flow all the way",
+        "cell": "E186"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T13:28:20.00",
+        "text": "Flowing",
+        "cell": "E186"
+      }
+    ]
   },
   {
     "mile": 420.6,
@@ -1257,7 +4757,33 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 0.1S Agua Piedra Creek",
-    "distToNext": 1.5
+    "distToNext": 1.5,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-02T02:58:48.00",
+        "text": "9/21 excellent flow",
+        "cell": "E187"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:06.00",
+        "text": "Strong flow",
+        "cell": "E187"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:28:56.00",
+        "text": "Good flow",
+        "cell": "E187"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T13:28:23.00",
+        "text": "Flowing",
+        "cell": "E187"
+      }
+    ]
   },
   {
     "mile": 422.1,
@@ -1269,7 +4795,45 @@
     "onTrail": false,
     "offTrailDist": "200 ft W",
     "details": "W3 Los Esteros pond (tea-colored) Unsigned Jicarita Spring 200 ft W of and below trail from",
-    "distToNext": 2.8
+    "distToNext": 2.8,
+    "sheetComments": [
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-01T20:57:56.00",
+        "text": "8/22 full but tanniny.",
+        "cell": "E188"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T17:13:31.00",
+        "text": "Oct 2023. Full, but water also flowing at creek at mile 30.",
+        "cell": "E188"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:01.00",
+        "text": "Full but no water flowing in or out. More pleasant water flowing along and across the trail 0.5 below here",
+        "cell": "E188"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:28:50.00",
+        "text": "Full, no in or outflow visible",
+        "cell": "E188"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T13:28:22.00",
+        "text": "Plenty of water here",
+        "cell": "E188"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-11T18:48:25.00",
+        "text": "Full, but trail crosses small creek downhill from here, good flow",
+        "cell": "E188"
+      }
+    ]
   },
   {
     "mile": 424.9,
@@ -1281,7 +4845,27 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 waypoint. Northern New Mexico Loop | Water Chart for Google Sheets app | Add your reports for the hikers behind you! Divide Tr 36 crosses Serpent Lake / Angostura Tr 19. A spring pool",
-    "distToNext": 3.3
+    "distToNext": 3.3,
+    "sheetComments": [
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-23T06:08:15.00",
+        "text": "Flowing",
+        "cell": "E189"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:08.00",
+        "text": "Found where it looks like a spring should be but no sight or sound of water, despite heavy rain the night before. I did find some run off up hill from the trail 0.1 to the south that I was able to collect from. \nNote that this is labeled as 33.4 in Gaia and 33.2 here.",
+        "cell": "E189"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-11T18:48:27.00",
+        "text": "Nice little spring and creek. It was more south than west from the waypt",
+        "cell": "E189"
+      }
+    ]
   },
   {
     "mile": 428.2,
@@ -1293,7 +4877,45 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "XT (W2 0.15E) is often found E via Tr 19, 150 vertical ft below the junction.",
-    "distToNext": 9.6
+    "distToNext": 9.6,
+    "sheetComments": [
+      {
+        "author": "Brett T",
+        "date": "2021-09-19T18:15:49.00",
+        "text": "9/17/21: Reportedly just a small muddy pool",
+        "cell": "E190"
+      },
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-02T02:57:15.00",
+        "text": "9/21 didn't check any water sources on Divide Trail due to inclement weather.",
+        "cell": "E190"
+      },
+      {
+        "author": "Brett T",
+        "date": "2021-10-02T23:19:39.00",
+        "text": "@jacshelf@gmail.com Thanks for all the water notes! Trying to get others to add updates in real time for you as well",
+        "cell": "E190"
+      },
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-10T17:28:40.00",
+        "text": "Thanks for your ongoing route support! It's much appreciated.",
+        "cell": "E190"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-23T06:08:14.00",
+        "text": "Full",
+        "cell": "E190"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-11T18:48:26.00",
+        "text": "Just aways down the trail, it was a decent size though not much flow",
+        "cell": "E190"
+      }
+    ]
   },
   {
     "mile": 437.8,
@@ -1305,7 +4927,33 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Trail crosses seasonal creeklet",
-    "distToNext": 0.3
+    "distToNext": 0.3,
+    "sheetComments": [
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:03.00",
+        "text": "Light flow running down the trail. Next one at 46.4 is better",
+        "cell": "E191"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:28:51.00",
+        "text": "Dry",
+        "cell": "E191"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T13:28:24.00",
+        "text": "Bone dry",
+        "cell": "E191"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-09T19:37:05.00",
+        "text": "Dry",
+        "cell": "E191"
+      }
+    ]
   },
   {
     "mile": 438.1,
@@ -1317,7 +4965,33 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Trail crosses creeklet",
-    "distToNext": 0.1
+    "distToNext": 0.1,
+    "sheetComments": [
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:00.00",
+        "text": "Good flow and a nice drop for easy collection.",
+        "cell": "E192"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:28:46.00",
+        "text": "Good flow",
+        "cell": "E192"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T13:28:25.00",
+        "text": "Flowing",
+        "cell": "E192"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-09T19:37:06.00",
+        "text": "Some flow",
+        "cell": "E192"
+      }
+    ]
   },
   {
     "mile": 438.2,
@@ -1329,7 +5003,45 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Trail crosses seasonal creeklet Jct Rio Quemado Tr 153. Remain on Skyline Tr 251. Truchas Lake",
-    "distToNext": 0.5
+    "distToNext": 0.5,
+    "sheetComments": [
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-23T06:08:13.00",
+        "text": "Flowing across trail",
+        "cell": "E193"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T17:32:51.00",
+        "text": "Oct 2023. Flowing",
+        "cell": "E193"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:01.00",
+        "text": "Good flow, but one at 46.4 is best of these three",
+        "cell": "E193"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:28:49.00",
+        "text": "Stronger flow",
+        "cell": "E193"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T13:28:24.00",
+        "text": "Dry",
+        "cell": "E193"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-09T19:37:04.00",
+        "text": "Some flow",
+        "cell": "E193"
+      }
+    ]
   },
   {
     "mile": 438.7,
@@ -1341,7 +5053,33 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "XT W3 outlet.",
-    "distToNext": 0.3
+    "distToNext": 0.3,
+    "sheetComments": [
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:15.00",
+        "text": "Full lake and water flowing out outlet next to trail",
+        "cell": "E194"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:29:07.00",
+        "text": "Outlet flowing",
+        "cell": "E194"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T13:28:23.00",
+        "text": "Flowing",
+        "cell": "E194"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-09T19:37:03.00",
+        "text": "Pretty lake, outlet has some flow",
+        "cell": "E194"
+      }
+    ]
   },
   {
     "mile": 439,
@@ -1353,7 +5091,27 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 XT TJ in wet flowing meadow (6-20). Remain on Skyline Tr 251.",
-    "distToNext": 0.2
+    "distToNext": 0.2,
+    "sheetComments": [
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T17:47:56.00",
+        "text": "Oct 2023. Dry",
+        "cell": "E195"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:13.00",
+        "text": "Flowing across trail",
+        "cell": "E195"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:29:04.00",
+        "text": "Dry",
+        "cell": "E195"
+      }
+    ]
   },
   {
     "mile": 439.2,
@@ -1365,7 +5123,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Flow across trail",
-    "distToNext": 0.2
+    "distToNext": 0.2,
+    "sheetComments": [
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T17:48:05.00",
+        "text": "Oct 2023. Dry",
+        "cell": "E196"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:11.00",
+        "text": "Flowing decently",
+        "cell": "E196"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:29:02.00",
+        "text": "Small flow, not the best",
+        "cell": "E196"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T13:28:19.00",
+        "text": "Slight flow",
+        "cell": "E196"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-09T19:36:58.00",
+        "text": "Not much",
+        "cell": "E196"
+      }
+    ]
   },
   {
     "mile": 439.4,
@@ -1377,7 +5167,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Small snowmelt creek 6-20",
-    "distToNext": 0.6
+    "distToNext": 0.6,
+    "sheetComments": [
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T17:48:53.00",
+        "text": "Oct 2023. Small lake at 47.9, but could only hear the water flowing under the rocks",
+        "cell": "E197"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:06.00",
+        "text": "Flowing well. Nice drop for easy collection. Good size pond just below here with water running under rocks",
+        "cell": "E197"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:28:57.00",
+        "text": "Good flow",
+        "cell": "E197"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T13:28:21.00",
+        "text": "Flowing",
+        "cell": "E197"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-09T19:37:00.00",
+        "text": "Heard water flowing, didn\u2019t see it. Pond looked like good quality.",
+        "cell": "E197"
+      }
+    ]
   },
   {
     "mile": 440,
@@ -1389,7 +5211,27 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Snowmelt pond 6-20",
-    "distToNext": 0.4
+    "distToNext": 0.4,
+    "sheetComments": [
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-01T20:54:22.00",
+        "text": "8/22 dry",
+        "cell": "E198"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T17:52:40.00",
+        "text": "Oct 2023. Dry",
+        "cell": "E198"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:04.00",
+        "text": "Small pond. A couple tenths before here is a creek flowing parallel and just below the trail that would be a much better option",
+        "cell": "E198"
+      }
+    ]
   },
   {
     "mile": 440.4,
@@ -1401,7 +5243,33 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Trailside tarn and creeklet 6-20 Skyline Tr 251 at Jack's Creek Tr 257. Pecos Baldy Lake access 0.1",
-    "distToNext": 3.6
+    "distToNext": 3.6,
+    "sheetComments": [
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-01T20:53:30.00",
+        "text": "Cold, clear tarn",
+        "cell": "E199"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T17:52:31.00",
+        "text": "Oct 2023. Dry",
+        "cell": "E199"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:15.00",
+        "text": "A tarn on either side of the trail but no creeklet (is that even a word) here. There was water flowing next to the trail 0.1 before",
+        "cell": "E199"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:29:06.00",
+        "text": "Very small but good water, no creeklet",
+        "cell": "E199"
+      }
+    ]
   },
   {
     "mile": 444,
@@ -1413,7 +5281,21 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "JL (W3 0.1W) W. (Skyline Tr to S not recommended due to heavy damage from 2013 Jaroso Fire along Rito Perro.)",
-    "distToNext": 0.3
+    "distToNext": 0.3,
+    "sheetComments": [
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:32:50.00",
+        "text": "Pond full of water",
+        "cell": "E200"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:28:42.00",
+        "text": "Tons of cow crap in area and lake, creek up ahead much better",
+        "cell": "E200"
+      }
+    ]
   },
   {
     "mile": 444.3,
@@ -1425,7 +5307,45 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 CW First of two crossings of modestly flowing creek 6-20 Jacks Creek Tr 257 at Dockweiler Tr 259. CW do not cross creek.",
-    "distToNext": 2.5
+    "distToNext": 2.5,
+    "sheetComments": [
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-01T20:52:29.00",
+        "text": "8/22. Water overflowing trail",
+        "cell": "E201"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T17:56:02.00",
+        "text": "Oct 2023. Dry",
+        "cell": "E201"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:05.00",
+        "text": "Creek is flowing",
+        "cell": "E201"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:28:55.00",
+        "text": "Good flow",
+        "cell": "E201"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T13:28:22.00",
+        "text": "Flowing",
+        "cell": "E201"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-09T14:50:41.00",
+        "text": "Flowing",
+        "cell": "E201"
+      }
+    ]
   },
   {
     "mile": 446.8,
@@ -1437,7 +5357,33 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "JR W3 C Remain on Dockweiler SW. (CCW Jacks Creek Tr joins Dockweiler NE.)",
-    "distToNext": 1.7
+    "distToNext": 1.7,
+    "sheetComments": [
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T17:56:26.00",
+        "text": "Oct 2023. Excellent Flow",
+        "cell": "E202"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:32:59.00",
+        "text": "Good flow",
+        "cell": "E202"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:28:45.00",
+        "text": "Good flow",
+        "cell": "E202"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T13:39:08.00",
+        "text": "Good flow",
+        "cell": "E202"
+      }
+    ]
   },
   {
     "mile": 448.5,
@@ -1449,7 +5395,45 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Good small flow in meadow across Dockweiler Tr 6-20 First or last good access to Cave Creek (accessible sporadically",
-    "distToNext": 3.5
+    "distToNext": 3.5,
+    "sheetComments": [
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-01T20:51:45.00",
+        "text": "8/22 great flow",
+        "cell": "E203"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T17:58:06.00",
+        "text": "Oct 2023. Flowing",
+        "cell": "E203"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:13.00",
+        "text": "Moderate flow",
+        "cell": "E203"
+      },
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-02T02:54:01.00",
+        "text": "9/21 dry",
+        "cell": "E203"
+      },
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-01T20:50:33.00",
+        "text": "Good flow",
+        "cell": "E203"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-09T14:50:46.00",
+        "text": "A little flow",
+        "cell": "E203"
+      }
+    ]
   },
   {
     "mile": 452,
@@ -1461,7 +5445,15 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 CW). Short side trail down into meadow leads to creek.",
-    "distToNext": 0.7
+    "distToNext": 0.7,
+    "sheetComments": [
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T13:40:42.00",
+        "text": "Good flow",
+        "cell": "E204"
+      }
+    ]
   },
   {
     "mile": 452.7,
@@ -1473,7 +5465,45 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 Panchuela Creek crossing along Cave Creek Tr Cave Creek Tr 288 at Skyline Tr 251. Last / first access to reliable",
-    "distToNext": 2.3
+    "distToNext": 2.3,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-02T02:51:07.00",
+        "text": "9/21 easy rock hop",
+        "cell": "E205"
+      },
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-01T20:49:56.00",
+        "text": "Shin deep ford",
+        "cell": "E205"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T18:00:40.00",
+        "text": "Oct 2023. Excellent Flow. Don't miss the two sets of caves at ~mile 62 where the creek briefly disappears\u00a0into",
+        "cell": "E205"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:07.00",
+        "text": "Excellent flow",
+        "cell": "E205"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T13:41:01.00",
+        "text": "Great flow",
+        "cell": "E205"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-09T14:50:45.00",
+        "text": "Lots of flow, logs to cross",
+        "cell": "E205"
+      }
+    ]
   },
   {
     "mile": 455,
@@ -1485,7 +5515,45 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "JL W3 Cave Creek. (Skyline Tr to N not recommended due to heavy fire damage beyond Horsethief Meadow) Skyline Tr 251 passes junction with Johnson Lake Tr 267. Remain",
-    "distToNext": 1.7
+    "distToNext": 1.7,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-02T02:50:44.00",
+        "text": "9/21 excellent flow",
+        "cell": "E206"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T18:01:05.00",
+        "text": "Oct 2023. Excellent flow",
+        "cell": "E206"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:16.00",
+        "text": "Excellent flow",
+        "cell": "E206"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:29:08.00",
+        "text": "Good flow",
+        "cell": "E206"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T13:41:20.00",
+        "text": "Great flow",
+        "cell": "E206"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-09T14:50:42.00",
+        "text": "Great flow, logs to cross on",
+        "cell": "E206"
+      }
+    ]
   },
   {
     "mile": 456.7,
@@ -1497,7 +5565,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "XT W3 on Tr 251. Calf deep (easy) crossing of Rito Oscuro.",
-    "distToNext": 0.1
+    "distToNext": 0.1,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-02T02:49:40.00",
+        "text": "9/21 easy rock hop",
+        "cell": "E207"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T18:05:11.00",
+        "text": "Oct 2023. Flowing",
+        "cell": "E207"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:32:59.00",
+        "text": "Just below the knee deep",
+        "cell": "E207"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:28:47.00",
+        "text": "Good flow",
+        "cell": "E207"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-09T14:50:38.00",
+        "text": "Flowing, crossed on logs",
+        "cell": "E207"
+      }
+    ]
   },
   {
     "mile": 456.8,
@@ -1509,7 +5609,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2-3 Fork of Rito Oscuro. Strong flow wet feet 6-20",
-    "distToNext": 1.2
+    "distToNext": 1.2,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-02T02:48:20.00",
+        "text": "9/21 dry feet",
+        "cell": "E208"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T18:05:19.00",
+        "text": "Oct 2023. Dry",
+        "cell": "E208"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:16.00",
+        "text": "Feet got wet",
+        "cell": "E208"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:29:09.00",
+        "text": "Good flow, cross on downed trees",
+        "cell": "E208"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-09T14:50:51.00",
+        "text": "Flowing, mini rock hop to cross",
+        "cell": "E208"
+      }
+    ]
   },
   {
     "mile": 458,
@@ -1521,7 +5653,27 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Small pond outlet E of Stewart Lake",
-    "distToNext": 0.2
+    "distToNext": 0.2,
+    "sheetComments": [
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T18:06:02.00",
+        "text": "Oct 2023. No flow at outlet, but pond full",
+        "cell": "E209"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:02.00",
+        "text": "Pond is full and water is flowing in outlet but tall grasses make access tricky",
+        "cell": "E209"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-09T14:50:52.00",
+        "text": "Not much outlet flow but plenty of water in the pond",
+        "cell": "E209"
+      }
+    ]
   },
   {
     "mile": 458.2,
@@ -1533,7 +5685,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Stewart Lake outlet Skyline Tr 251 at Winsor Tr 254. Perennial water from Winsor",
-    "distToNext": 0.6
+    "distToNext": 0.6,
+    "sheetComments": [
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-01T20:48:44.00",
+        "text": "Good flow",
+        "cell": "E210"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T18:06:25.00",
+        "text": "Oct 2023. Outlet flowing",
+        "cell": "E210"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:07.00",
+        "text": "Strong flow. And a bridge! Could of used that in a few other spots today",
+        "cell": "E210"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:28:57.00",
+        "text": "Good flow",
+        "cell": "E210"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-09T14:50:49.00",
+        "text": "Flowing",
+        "cell": "E210"
+      }
+    ]
   },
   {
     "mile": 458.8,
@@ -1545,7 +5729,33 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "JR W3 Creek. Winsor Creek crossing on Tr 254. Can be tricky during peak",
-    "distToNext": 0.7
+    "distToNext": 0.7,
+    "sheetComments": [
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T18:07:20.00",
+        "text": "Oct 2023. Good Flow",
+        "cell": "E211"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:03.00",
+        "text": "Good flow",
+        "cell": "E211"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:28:53.00",
+        "text": "Good flow",
+        "cell": "E211"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T13:41:49.00",
+        "text": "Good flow",
+        "cell": "E211"
+      }
+    ]
   },
   {
     "mile": 459.5,
@@ -1557,7 +5767,33 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 snowmelt, but normally a rock-hop.",
-    "distToNext": 0.7
+    "distToNext": 0.7,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-02T02:47:00.00",
+        "text": "9/21 chill rock hop",
+        "cell": "E212"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:12.00",
+        "text": "Able to rock hop and log hop my way across",
+        "cell": "E212"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:29:03.00",
+        "text": "Good flow, crossed on downed logs",
+        "cell": "E212"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T13:42:07.00",
+        "text": "Strong flow",
+        "cell": "E212"
+      }
+    ]
   },
   {
     "mile": 460.2,
@@ -1569,7 +5805,21 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 Spirit Lake outlet. Tanins often present in water here.",
-    "distToNext": 2.5
+    "distToNext": 2.5,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-02T02:46:28.00",
+        "text": "09/21 clear and delicious!",
+        "cell": "E213"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:09.00",
+        "text": "Lake looks a bit shallow but there is some flow at the outlet. No tannins detected",
+        "cell": "E213"
+      }
+    ]
   },
   {
     "mile": 462.7,
@@ -1581,7 +5831,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Rock hop crossing of Rio Nambe headwaters.",
-    "distToNext": 1.3
+    "distToNext": 1.3,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-02T02:45:22.00",
+        "text": "9/21 modest flow",
+        "cell": "E214"
+      },
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-01T20:47:16.00",
+        "text": "Strong flow",
+        "cell": "E214"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T18:09:20.00",
+        "text": "Oct 2023. Flowing",
+        "cell": "E214"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:32:58.00",
+        "text": "Flowing and easy rock hop",
+        "cell": "E214"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:28:44.00",
+        "text": "Good flow",
+        "cell": "E214"
+      }
+    ]
   },
   {
     "mile": 464,
@@ -1593,7 +5875,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 Rio Nambe crossing",
-    "distToNext": 2.3
+    "distToNext": 2.3,
+    "sheetComments": [
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T18:09:35.00",
+        "text": "Oct 2023. Excellent Flow",
+        "cell": "E215"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:05.00",
+        "text": "Strong flow and rock hoppable",
+        "cell": "E215"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:28:54.00",
+        "text": "Good flow",
+        "cell": "E215"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T13:42:32.00",
+        "text": "Good flow",
+        "cell": "E215"
+      },
+      {
+        "author": "Hannah Meduna",
+        "date": "2026-04-08T18:31:22.00",
+        "text": "Very strong flow",
+        "cell": "E215"
+      }
+    ]
   },
   {
     "mile": 466.3,
@@ -1605,7 +5919,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Small creek 6-20",
-    "distToNext": 0.1
+    "distToNext": 0.1,
+    "sheetComments": [
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:08.00",
+        "text": "Flowing",
+        "cell": "E216"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:28:58.00",
+        "text": "Good flow",
+        "cell": "E216"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T16:27:33.00",
+        "text": "Flowing",
+        "cell": "E216"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-08T02:23:52.00",
+        "text": "Flowing, also some camp spots near here and more in TH area",
+        "cell": "E216"
+      },
+      {
+        "author": "Hannah Meduna",
+        "date": "2026-04-08T18:31:22.00",
+        "text": "Flowing",
+        "cell": "E216"
+      }
+    ]
   },
   {
     "mile": 466.4,
@@ -1629,7 +5975,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 Northern fork of Rio Chupadero. Modest flow 6-20 Rio Chupadero headwaters. Lightly flowing where trail crosses 6-",
-    "distToNext": 1.5
+    "distToNext": 1.5,
+    "sheetComments": [
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:10.00",
+        "text": "Good flow",
+        "cell": "E218"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:29:00.00",
+        "text": "Good flow",
+        "cell": "E218"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T16:27:32.00",
+        "text": "Flowing well",
+        "cell": "E218"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-08T02:23:51.00",
+        "text": "Good!",
+        "cell": "E218"
+      },
+      {
+        "author": "Hannah Meduna",
+        "date": "2025-10-28T10:27:08.00",
+        "text": "Great flow",
+        "cell": "E218"
+      }
+    ]
   },
   {
     "mile": 469.1,
@@ -1641,7 +6019,51 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W2 20.",
-    "distToNext": 1.8
+    "distToNext": 1.8,
+    "sheetComments": [
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-01T20:45:36.00",
+        "text": "Strong flow",
+        "cell": "E219"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-23T14:58:08.00",
+        "text": "Flowing",
+        "cell": "E219"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:14.00",
+        "text": "Light flow",
+        "cell": "E219"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:29:05.00",
+        "text": "Small flow",
+        "cell": "E219"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T16:27:34.00",
+        "text": "Dry",
+        "cell": "E219"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-08T02:23:57.00",
+        "text": "A little flow",
+        "cell": "E219"
+      },
+      {
+        "author": "Hannah Meduna",
+        "date": "2025-10-28T10:27:16.00",
+        "text": "No flow. Pools visible downstream",
+        "cell": "E219"
+      }
+    ]
   },
   {
     "mile": 470.9,
@@ -1653,7 +6075,39 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 CW early access to perennial Tesuque Creek",
-    "distToNext": 1.7
+    "distToNext": 1.7,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-02T02:43:15.00",
+        "text": "9/21 excellent flow",
+        "cell": "E220"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T18:13:06.00",
+        "text": "Oct 2023. Excellent Flow",
+        "cell": "E220"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:17.00",
+        "text": "Good flow",
+        "cell": "E220"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:29:11.00",
+        "text": "Good flow",
+        "cell": "E220"
+      },
+      {
+        "author": "Alan Tracey",
+        "date": "2025-07-17T16:27:49.00",
+        "text": "Great flow. Nice and shady rest spot as well.",
+        "cell": "E220"
+      }
+    ]
   },
   {
     "mile": 472.6,
@@ -1665,7 +6119,51 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "W3 JL CW last access Tesuque Creek. Winsor Tr 254 at Chamisa Tr 183 CW trail from ridge at Little Tesuque Tr. First access Little Tesuque",
-    "distToNext": 4.2
+    "distToNext": 4.2,
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-01T17:15:04.00",
+        "text": "9/21 flowing nicely",
+        "cell": "E221"
+      },
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-01T20:43:00.00",
+        "text": "Strong flow",
+        "cell": "E221"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T18:13:53.00",
+        "text": "Oct 2023. Excellent Flow",
+        "cell": "E221"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:09.00",
+        "text": "Good flow. Path to water from junction a bit grown in with prickers",
+        "cell": "E221"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:28:59.00",
+        "text": "Good flow, easy access to creek",
+        "cell": "E221"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-08T02:23:56.00",
+        "text": "Flowing",
+        "cell": "E221"
+      },
+      {
+        "author": "Hannah Meduna",
+        "date": "2025-10-28T10:27:11.00",
+        "text": "Great flow throughout",
+        "cell": "E221"
+      }
+    ]
   },
   {
     "mile": 476.8,
@@ -1677,7 +6175,63 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "JR W1 Creek (seasonal). CW last access Little Tesuque Crk (seasonal). Little Tesuque Trail",
-    "distToNext": 0.4
+    "distToNext": 0.4,
+    "sheetComments": [
+      {
+        "author": "Paul Healy",
+        "date": "2021-10-06T02:37:19.00",
+        "text": "Stagnant pools 9/24/21",
+        "cell": "E222"
+      },
+      {
+        "author": "Paul Healy",
+        "date": "2021-10-06T02:37:19.00",
+        "text": "S6 21.1 campsite, creek is dry but flowing down canyon a couple hundred yards. Audible from trail\nShort bush wack down to access",
+        "cell": "E222"
+      },
+      {
+        "author": "Paul Healy",
+        "date": "2021-10-06T02:37:19.00",
+        "text": "S6 20.1 small flow",
+        "cell": "E222"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T18:13:22.00",
+        "text": "Oct 2023. Dry",
+        "cell": "E222"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:33:41.00",
+        "text": "I was surprised to find this W1 is actually flowing!",
+        "cell": "E222"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:31:14.00",
+        "text": "Flowing good. I think this is out of the NF and on county land maybe, but could probably make an ok campspot  as a last decent chance before Santa Fe (or first decent chance out of town CCW). Not sure if it's entirely legal and people do day hike this trail.",
+        "cell": "E222"
+      },
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-01T17:08:13.00",
+        "text": "9/21 dry",
+        "cell": "E222"
+      },
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-01T20:41:54.00",
+        "text": "8/22 great flow",
+        "cell": "E222"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-08T02:23:55.00",
+        "text": "Flowing, tho monsoon 2 days ago",
+        "cell": "E222"
+      }
+    ]
   },
   {
     "mile": 477.2,
@@ -1689,6 +6243,56 @@
     "onTrail": true,
     "offTrailDist": "",
     "details": "JL W1 at La Piedra Tr. Santa Fe Plaza. Fine arts, native wares, tchotchkes, and plenty of classy restaurants in the vicinity. The famed Georgia O'Keefe",
-    "distToNext": "-"
+    "distToNext": "-",
+    "sheetComments": [
+      {
+        "author": "Jac Mitchell",
+        "date": "2021-10-01T17:07:21.00",
+        "text": "9/21 dry",
+        "cell": "E223"
+      },
+      {
+        "author": "Mike Unger",
+        "date": "2022-09-01T14:01:15.00",
+        "text": "8/22 Strong flow.",
+        "cell": "E223"
+      },
+      {
+        "author": "Kyle Morris",
+        "date": "2022-09-23T14:57:18.00",
+        "text": "Strong flow",
+        "cell": "E223"
+      },
+      {
+        "author": "Will Emmer",
+        "date": "2023-11-01T18:13:34.00",
+        "text": "Oct 2023. Dry",
+        "cell": "E223"
+      },
+      {
+        "author": "Andreas",
+        "date": "2024-06-24T18:34:38.00",
+        "text": "I was surprised to find this W1 is actually flowing! Nice shady section to lull you in for one last climb CW",
+        "cell": "E223"
+      },
+      {
+        "author": "Brian Tanzman",
+        "date": "2024-09-04T20:31:33.00",
+        "text": "Good flow",
+        "cell": "E223"
+      },
+      {
+        "author": "Chris Hoffer",
+        "date": "2025-09-08T02:23:53.00",
+        "text": "Good flow, tho monsoon 2 days ago",
+        "cell": "E223"
+      },
+      {
+        "author": "Hannah Meduna",
+        "date": "2025-10-28T10:27:09.00",
+        "text": "Great flow throughout",
+        "cell": "E223"
+      }
+    ]
   }
 ]

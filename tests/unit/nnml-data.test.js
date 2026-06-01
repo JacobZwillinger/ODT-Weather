@@ -85,4 +85,18 @@ describe('NNML water data', () => {
 
     expect(ratings).toEqual(new Set(['w0', 'w1', 'w2', 'w3']));
   });
+
+  it('includes imported water chart comments on matched sources', () => {
+    const commentedSources = water.filter(source => Array.isArray(source.sheetComments) && source.sheetComments.length > 0);
+    const commentCount = commentedSources.reduce((sum, source) => sum + source.sheetComments.length, 0);
+
+    expect(commentedSources.length).toBeGreaterThan(100);
+    expect(commentCount).toBeGreaterThan(700);
+    expect(commentedSources[0].sheetComments[0]).toEqual(expect.objectContaining({
+      author: expect.any(String),
+      date: expect.any(String),
+      text: expect.any(String),
+      cell: expect.stringMatching(/^E\d+$/)
+    }));
+  });
 });
