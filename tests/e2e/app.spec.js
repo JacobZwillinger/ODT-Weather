@@ -71,6 +71,39 @@ test.describe('ODT App', () => {
     });
   });
 
+  test.describe('Trail Switcher', () => {
+    const openTrailSwitcher = async (page) => {
+      await expect.poll(async () => {
+        if (await page.locator('#kebabSubButtons').isVisible()) return true;
+        await page.click('#btnKebab', { timeout: 1000 }).catch(() => {});
+        return page.locator('#kebabSubButtons').isVisible();
+      }, { timeout: 10000 }).toBe(true);
+      await page.click('#btnKebabTrail');
+      await expect(page.locator('#trailPopover')).toBeVisible();
+    };
+
+    test('reflects the saved active trail after reload', async ({ page }) => {
+      await page.evaluate(() => {
+        localStorage.setItem('activeTrailId', 'nnml');
+        localStorage.setItem('testMode', 'false');
+      });
+      await page.reload();
+      await page.waitForSelector('#mapContainer');
+
+      await expect(page.locator('#activeTrailName')).toHaveText('NNML');
+      await openTrailSwitcher(page);
+
+      const odtChoice = page.locator('.trail-choice-btn[data-trail-id="odt"]');
+      const nnmlChoice = page.locator('.trail-choice-btn[data-trail-id="nnml"]');
+      await expect(odtChoice).not.toHaveClass(/active/);
+      await expect(odtChoice).toHaveAttribute('aria-pressed', 'false');
+      await expect(odtChoice).not.toHaveAttribute('aria-current', 'true');
+      await expect(nnmlChoice).toHaveClass(/active/);
+      await expect(nnmlChoice).toHaveAttribute('aria-pressed', 'true');
+      await expect(nnmlChoice).toHaveAttribute('aria-current', 'true');
+    });
+  });
+
   test.describe('Water Sources Overlay', () => {
     test('opens when water card clicked', async ({ page }) => {
       await page.click('#nextReliableWaterCard');

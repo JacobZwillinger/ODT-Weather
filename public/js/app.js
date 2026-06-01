@@ -314,8 +314,16 @@ const syncTrailButtons = () => {
     const active = id === 'test' ? testActive : (!testActive && id === state.trail.id);
     btn.classList.toggle('active', active);
     btn.setAttribute('aria-pressed', String(active));
+    btn.setAttribute('aria-checked', String(active));
+    if (active) {
+      btn.setAttribute('aria-current', 'true');
+    } else {
+      btn.removeAttribute('aria-current');
+    }
   });
   updateTrailChrome();
+  const trailName = document.getElementById('activeTrailName');
+  if (trailName && testActive) trailName.textContent = 'Test';
 };
 
 const toggleTestMode = () => {
@@ -814,6 +822,7 @@ const init = async () => {
   try {
     // Load saved toggle preferences
     loadToggleState();
+    syncTrailButtons();
 
     const dataset = await loadTrailDataset(state.trail);
     applyDataset(dataset);
