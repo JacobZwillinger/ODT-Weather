@@ -469,6 +469,7 @@ const initKebabMenu = () => {
   const btn = document.getElementById('btnKebab');
   const subButtons = document.getElementById('kebabSubButtons');
   const aboutBtn = document.getElementById('btnKebabAbout');
+  const refreshBtn = document.getElementById('btnKebabRefresh');
 
   // Main kebab button: toggle sub-buttons.
   // Test mode lives inside the trail popover now — see initTrailSwitcher / toggleTestMode.
@@ -492,6 +493,11 @@ const initKebabMenu = () => {
     document.getElementById('infoModal').classList.add('visible');
   });
 
+  refreshBtn?.addEventListener('click', async (e) => {
+    e.stopPropagation();
+    await refreshApp(refreshBtn);
+  });
+
   // Close info modal
   document.getElementById('closeInfoModal').addEventListener('click', () => {
     document.getElementById('infoModal').classList.remove('visible');
@@ -503,6 +509,61 @@ const initKebabMenu = () => {
     if (subButtons.hidden) return;
     if (!group.contains(e.target)) closeKebabMenu();
   });
+};
+
+const sendServiceWorkerMessage = (worker, message, timeoutMs = 2500) => new Promise((resolve) => {
+  if (!worker) {
+    resolve(false);
+    return;
+  }
+
+  const channel = new MessageChannel();
+  const timeout = setTimeout(() => resolve(false), timeoutMs);
+  channel.port1.onmessage = () => {
+    clearTimeout(timeout);
+    resolve(true);
+  };
+  worker.postMessage(message, [channel.port2]);
+});
+
+const waitForControllerChange = (timeoutMs = 2500) => new Promise((resolve) => {
+  let settled = false;
+  const finish = () => {
+    if (settled) return;
+    settled = true;
+    resolve();
+  };
+  navigator.serviceWorker.addEventListener('controllerchange', finish, { once: true });
+  setTimeout(finish, timeoutMs);
+});
+
+const refreshApp = async (button) => {
+  if (button) {
+    button.disabled = true;
+    button.setAttribute('aria-busy', 'true');
+  }
+
+  try {
+    if ('serviceWorker' in navigator) {
+      const registration = await navigator.serviceWorker.getRegistration();
+      await registration?.update();
+
+      if (registration?.waiting) {
+        const controllerChanged = waitForControllerChange();
+        registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+        await controllerChanged;
+      }
+
+      const worker = navigator.serviceWorker.controller || registration?.active;
+      await sendServiceWorkerMessage(worker, { type: 'REFRESH_APP_CACHE' });
+    }
+  } catch (error) {
+    console.warn('App refresh fell back to a normal reload:', error);
+  } finally {
+    const url = new URL(window.location.href);
+    url.searchParams.set('refresh', String(Date.now()));
+    window.location.replace(url.toString());
+  }
 };
 
 // ========== Initialize UI ==========

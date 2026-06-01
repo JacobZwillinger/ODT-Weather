@@ -69,6 +69,18 @@ test.describe('ODT App', () => {
       await expect(page.locator('#btnWaypointList')).toBeVisible();
       await expect(page.locator('#btnGpsToggle')).toBeVisible();
     });
+
+    test('exposes an app refresh action in the menu', async ({ page }) => {
+      await expect.poll(async () => {
+        if (await page.locator('#kebabSubButtons').isVisible()) return true;
+        await page.click('#btnKebab', { timeout: 1000 }).catch(() => {});
+        return page.locator('#kebabSubButtons').isVisible();
+      }, { timeout: 10000 }).toBe(true);
+
+      const refreshButton = page.locator('#btnKebabRefresh');
+      await expect(refreshButton).toBeVisible();
+      await expect(refreshButton).toHaveAttribute('aria-label', 'Refresh app data');
+    });
   });
 
   test.describe('Trail Switcher', () => {

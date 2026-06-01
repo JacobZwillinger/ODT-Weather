@@ -46,6 +46,15 @@
           </svg>
           <span class="kebab-sub-label">Layers</span>
         </button>
+        <button id="btnKebabRefresh" class="kebab-sub-btn" aria-label="Refresh app data">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M20 6v5h-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 18v-5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18 9a7 7 0 0 0-11.9-3.1L4 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 15a7 7 0 0 0 11.9 3.1L20 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="kebab-sub-label">Refresh</span>
+        </button>
         <button id="btnKebabAbout" class="kebab-sub-btn" aria-label="About">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"/>
@@ -423,7 +432,11 @@
     <script type="module" src="js/app.js"></script>
     <script>
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js').catch((err) => {
+        navigator.serviceWorker.register('/sw.js').then((registration) => {
+          registration.update().catch((err) => {
+            console.warn('Service worker update check failed:', err);
+          });
+        }).catch((err) => {
           console.warn('Service worker registration failed:', err);
         });
       }

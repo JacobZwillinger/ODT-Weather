@@ -1,6 +1,6 @@
 // ODT Service Worker
 // Bumping CACHE_VERSION forces all clients to download fresh assets on next visit.
-const CACHE_VERSION = 'odt-v13';
+const CACHE_VERSION = 'odt-v14';
 
 // Assets pre-cached on install — everything needed for full offline use.
 // Large files (contours.pmtiles ~87MB) are included so the map works
@@ -45,6 +45,8 @@ const PRECACHE_URLS = [
   '/contours-nnml.pmtiles',
 ];
 
+const REFRESHABLE_URLS = PRECACHE_URLS.filter((url) => !url.endsWith('.pmtiles'));
+
 // ─── Install ──────────────────────────────────────────────────────────────────
 // Open the cache and pre-fetch everything. If any fetch fails the install
 // fails too, so the old SW stays active — safe fallback behaviour.
@@ -69,6 +71,31 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
+// ─── Messages ─────────────────────────────────────────────────────────────────
+// The app can ask the active SW to discard cached app/data files, then reload.
+// PMTiles are intentionally kept so a refresh does not force huge map downloads.
+self.addEventListener('message', (event) => {
+  if (event.data?.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+    return;
+  }
+
+  if (event.data?.type === 'REFRESH_APP_CACHE') {
+    event.waitUntil(
+      refreshAppCache().then(() => {
+        event.ports?.[0]?.postMessage({ ok: true });
+      }).catch((error) => {
+        event.ports?.[0]?.postMessage({ ok: false, error: error.message });
+      })
+    );
+  }
+});
+
+async function refreshAppCache() {
+  const cache = await caches.open(CACHE_VERSION);
+  await Promise.all(REFRESHABLE_URLS.map((url) => cache.delete(url)));
+}
+
 // ─── Fetch ────────────────────────────────────────────────────────────────────
 self.addEventListener('fetch', (event) => {
   const { request } = event;
@@ -86,9 +113,16 @@ self.addEventListener('fetch', (event) => {
   }
 });
 
-// ─── Static assets (cache-first) ──────────────────────────────────────────────
-// JS, CSS, JSON, HTML — serve from cache, fall back to network.
+// ─── Static assets ────────────────────────────────────────────────────────────
+// App shell and data use network-first so synced PWA installs see updates when
+// online. Other assets remain cache-first for fast offline startup.
 async function handleStatic(request) {
+  if (request.method !== 'GET') return fetch(request);
+
+  if (shouldRefreshFromNetwork(request)) {
+    return handleNetworkFirst(request);
+  }
+
   const cached = await caches.match(request);
   if (cached) return cached;
   const response = await fetch(request);
@@ -97,6 +131,25 @@ async function handleStatic(request) {
     cache.put(request, response.clone());
   }
   return response;
+}
+
+function shouldRefreshFromNetwork(request) {
+  const url = new URL(request.url);
+  if (request.mode === 'navigate') return true;
+  if (url.pathname === '/') return true;
+  return /\.(html|js|css|json|geojson)$/.test(url.pathname);
+}
+
+async function handleNetworkFirst(request) {
+  const cache = await caches.open(CACHE_VERSION);
+  try {
+    const response = await fetch(request, { cache: 'no-store' });
+    if (response.ok) cache.put(request, response.clone());
+    return response;
+  } catch {
+    const cached = await cache.match(request);
+    return cached || new Response('Offline — app data not cached', { status: 503 });
+  }
 }
 
 // ─── Weather API (network-first with cache fallback) ──────────────────────────

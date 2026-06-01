@@ -319,6 +319,11 @@ body {
   transform: scale(0.92);
 }
 
+.kebab-sub-btn:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
 /* Active state for stateful sub-buttons (test mode only — layers never shows active) */
 .kebab-sub-btn.active {
   background: #1b1b1b;
