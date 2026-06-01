@@ -130,6 +130,34 @@ test.describe('ODT App', () => {
       await expect(nnmlChoice).toHaveAttribute('aria-pressed', 'true');
       await expect(nnmlChoice).toHaveAttribute('aria-current', 'true');
     });
+
+    test('highlights a newly selected trail while its data loads', async ({ page }) => {
+      await page.route('**/trails/nnml/**', async route => {
+        await new Promise(resolve => setTimeout(resolve, 500));
+        await route.continue();
+      });
+      await page.evaluate(() => {
+        localStorage.setItem('activeTrailId', 'odt');
+        localStorage.setItem('testMode', 'false');
+      });
+      await page.reload();
+      await page.waitForSelector('#mapContainer');
+
+      await expect(page.locator('#activeTrailName')).toHaveText('ODT');
+      await openTrailSwitcher(page);
+
+      const odtChoice = page.locator('.trail-choice-btn[data-trail-id="odt"]');
+      const nnmlChoice = page.locator('.trail-choice-btn[data-trail-id="nnml"]');
+      await expect(odtChoice).toHaveClass(/active/);
+
+      await nnmlChoice.click();
+
+      await expect(nnmlChoice).toHaveClass(/active/);
+      await expect(nnmlChoice).toHaveAttribute('aria-pressed', 'true');
+      await expect(nnmlChoice).toHaveAttribute('aria-current', 'true');
+      await expect(odtChoice).not.toHaveClass(/active/);
+      await expect(page.locator('#activeTrailName')).toHaveText('NNML');
+    });
   });
 
   test.describe('Water Sources Overlay', () => {

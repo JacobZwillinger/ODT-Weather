@@ -346,6 +346,7 @@ const switchTrail = async (trailId) => {
   setActiveTrail(trailId);
   // Switching to a real trail always exits test mode.
   localStorage.setItem('testMode', 'false');
+  syncTrailButtons();
   clearElevationProfile();
   resetElevationChart();
   const dataset = await loadTrailDataset(state.trail);
@@ -376,7 +377,10 @@ const initTrailSwitcher = () => {
     const isOpen = !popover.hidden;
     popover.hidden = isOpen;
     document.getElementById('settingsPopover').hidden = true;
-    if (!isOpen) positionToRightOf(trailBtn, popover);
+    if (!isOpen) {
+      syncTrailButtons();
+      positionToRightOf(trailBtn, popover);
+    }
   });
 
   popover.querySelectorAll('.trail-choice-btn').forEach(btn => {
