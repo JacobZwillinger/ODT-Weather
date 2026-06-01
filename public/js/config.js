@@ -106,6 +106,24 @@ export const TRAILS = {
       ratings: ['w3', 'w2', 'w1', 'w0'],
       defaultReliable: ['w3']
     },
+    streamflowGauges: [
+      {
+        id: '08313000',
+        name: 'Otowi Bridge',
+        river: 'Rio Grande',
+        context: 'White Rock Canyon ford',
+        mile: 27.6,
+        url: 'https://waterdata.usgs.gov/monitoring-location/USGS-08313000/'
+      },
+      {
+        id: '08276500',
+        name: 'Taos Junction Bridge',
+        river: 'Rio Grande',
+        context: 'Taos Gorge crossings',
+        mile: 381.5,
+        url: 'https://waterdata.usgs.gov/nm/nwis/inventory/?agency_cd=USGS&site_no=08276500'
+      }
+    ],
     sections: nnmlSectionPoints,
     center: { lat: 36.36, lon: -106.05 }
   }

@@ -6,7 +6,8 @@ import {
   WATER_WARNING_MILES,
   SCROLL_DELAY_MS,
   MAP_INIT_DELAY_MS,
-  CATEGORY_CONFIG
+  CATEGORY_CONFIG,
+  TRAILS
 } from '../../public/js/config.js';
 
 describe('sectionPoints', () => {
@@ -111,6 +112,25 @@ describe('CATEGORY_CONFIG', () => {
       expect(config.minZoom).toBeGreaterThanOrEqual(5);
       expect(config.minZoom).toBeLessThanOrEqual(15);
     });
+  });
+});
+
+describe('TRAILS', () => {
+  it('configures Rio Grande USGS streamflow gauges for NNML', () => {
+    expect(TRAILS.nnml.streamflowGauges).toEqual([
+      expect.objectContaining({
+        id: '08313000',
+        name: 'Otowi Bridge',
+        river: 'Rio Grande',
+        mile: 27.6
+      }),
+      expect.objectContaining({
+        id: '08276500',
+        name: 'Taos Junction Bridge',
+        river: 'Rio Grande',
+        mile: 381.5
+      })
+    ]);
   });
 });
 

@@ -8,6 +8,7 @@ const mockSectionPoints = [
   { name: '1: Badlands to Sand Spring', lat: 44.045, lon: -121.038, mile: 0, elevation: 3406, section: 1 },
   { name: '2: Sand Spring to South Reservoir', lat: 43.708, lon: -120.847, mile: 36, elevation: 4944, section: 2 },
 ];
+const mockState = { trail: { id: 'odt' } };
 
 vi.mock('../../public/js/config.js', () => ({
   weatherIcons: {
@@ -24,7 +25,7 @@ vi.mock('../../public/js/config.js', () => ({
 vi.mock('../../public/js/utils.js', () => ({
   getDayHeaders: () => ['Today', 'Tomorrow', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'],
   getSectionPoints: () => mockSectionPoints,
-  state: { trail: { id: 'odt' } }
+  state: mockState
 }));
 
 // Set up DOM before importing weather.js
@@ -33,12 +34,13 @@ document.body.innerHTML = `
   <div id="apiUsage"></div>
 `;
 
-const { renderWeatherTable, loadForecasts } = await import('../../public/js/weather.js');
+const { renderWeatherTable, loadForecasts, adaptUsgsStreamflowResponse, renderStreamflowPanel } = await import('../../public/js/weather.js');
 
 describe('renderWeatherTable', () => {
   beforeEach(() => {
     document.getElementById('container').innerHTML = 'Loading...';
     document.getElementById('apiUsage').textContent = '';
+    mockState.trail = { id: 'odt' };
   });
 
   // [TEST] Added: verifies table renders correctly with valid forecast data
@@ -132,11 +134,73 @@ describe('renderWeatherTable', () => {
   });
 });
 
+describe('Rio Grande streamflow panel', () => {
+  const gauges = [
+    {
+      id: '08313000',
+      name: 'Otowi Bridge',
+      context: 'White Rock Canyon ford',
+      mile: 27.6,
+      url: 'https://waterdata.usgs.gov/monitoring-location/USGS-08313000/'
+    }
+  ];
+
+  beforeEach(() => {
+    document.getElementById('container').innerHTML = '<table></table>';
+    mockState.trail = { id: 'nnml', streamflowGauges: gauges };
+  });
+
+  it('adapts USGS discharge and stage readings by gauge', () => {
+    const records = adaptUsgsStreamflowResponse({
+      value: {
+        timeSeries: [
+          {
+            sourceInfo: { siteCode: [{ value: '08313000' }] },
+            variable: { variableCode: [{ value: '00060' }], unit: { unitCode: 'ft3/s' } },
+            values: [{ value: [{ value: '251', dateTime: '2026-05-31T10:00:00.000-06:00', qualifiers: ['P'] }] }]
+          },
+          {
+            sourceInfo: { siteCode: [{ value: '08313000' }] },
+            variable: { variableCode: [{ value: '00065' }], unit: { unitCode: 'ft' } },
+            values: [{ value: [{ value: '2.41', dateTime: '2026-05-31T10:00:00.000-06:00', qualifiers: ['P'] }] }]
+          }
+        ]
+      }
+    }, gauges);
+
+    expect(records).toHaveLength(1);
+    expect(records[0].discharge.value).toBe(251);
+    expect(records[0].stage.value).toBe(2.41);
+    expect(records[0].provisional).toBe(true);
+  });
+
+  it('renders a Rio Grande flow card above the forecast table', () => {
+    renderStreamflowPanel([
+      {
+        ...gauges[0],
+        discharge: { value: 251, unit: 'ft3/s', dateTime: '2026-05-31T10:00:00.000-06:00' },
+        stage: { value: 2.41, unit: 'ft', dateTime: '2026-05-31T10:00:00.000-06:00' },
+        observedAt: '2026-05-31T10:00:00.000-06:00',
+        provisional: true
+      }
+    ]);
+
+    const panel = document.querySelector('.streamflow-panel');
+    expect(panel).not.toBeNull();
+    expect(panel.textContent).toContain('Rio Grande Flow');
+    expect(panel.textContent).toContain('Otowi Bridge');
+    expect(panel.textContent).toContain('251');
+    expect(panel.textContent).toContain('cfs');
+    expect(panel.textContent).toContain('Stage 2.41 ft');
+  });
+});
+
 describe('loadForecasts', () => {
   beforeEach(() => {
     document.getElementById('container').innerHTML = 'Loading...';
     document.getElementById('apiUsage').textContent = '';
     localStorage.clear();
+    mockState.trail = { id: 'odt' };
   });
 
   afterEach(() => {

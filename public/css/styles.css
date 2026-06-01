@@ -1212,6 +1212,119 @@ thead th.night-header { background: #ebebf7; }
   color: #3b82f6;
 }
 
+/* Rio Grande flow panel */
+.streamflow-panel {
+  background: #f8fbff;
+  border-bottom: 1px solid #dbeafe;
+  padding: 10px 12px 12px;
+}
+
+.streamflow-panel-warning {
+  background: #fffbeb;
+  border-bottom-color: #fde68a;
+}
+
+.streamflow-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.streamflow-title {
+  color: #0f172a;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.streamflow-subtitle {
+  color: #64748b;
+  font-size: 0.72rem;
+  margin-top: 1px;
+}
+
+.streamflow-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.streamflow-card {
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: inherit;
+  display: block;
+  min-width: 0;
+  padding: 9px 10px;
+  text-decoration: none;
+}
+
+.streamflow-card-top {
+  align-items: baseline;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.streamflow-name {
+  color: #1e3a8a;
+  font-size: 0.86rem;
+  font-weight: 800;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.streamflow-mile {
+  color: #64748b;
+  flex-shrink: 0;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.streamflow-context {
+  color: #475569;
+  font-size: 0.72rem;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.streamflow-reading {
+  align-items: baseline;
+  display: flex;
+  gap: 5px;
+  margin-top: 6px;
+}
+
+.streamflow-value {
+  color: #0f172a;
+  font-size: 1.18rem;
+  font-weight: 850;
+  line-height: 1;
+}
+
+.streamflow-unit {
+  color: #2563eb;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.streamflow-meta {
+  color: #64748b;
+  font-size: 0.68rem;
+  line-height: 1.25;
+  margin-top: 5px;
+}
+
+@media (max-width: 520px) {
+  .streamflow-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Inline hourly expansion — horizontal filmstrip */
 .hourly-expansion-spacer {
   background: #f0f5ff;

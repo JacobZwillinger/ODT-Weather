@@ -270,6 +270,214 @@ const getCacheTimestampLabel = (savedAt) => {
   }
 };
 
+// ------- Streamflow -------
+
+const STREAMFLOW_PARAMETER_CODES = {
+  discharge: '00060',
+  stage: '00065'
+};
+
+const getStreamflowCacheKey = (trailId = state.trail.id) => `${trailId}StreamflowCacheV1`;
+
+const normalizeSiteCode = (code) => String(code || '').replace(/^USGS-/, '');
+
+const getLatestTimeSeriesValue = (series) => {
+  const values = series?.values?.[0]?.value;
+  if (!Array.isArray(values)) return null;
+
+  for (let i = values.length - 1; i >= 0; i -= 1) {
+    const reading = values[i];
+    const value = Number.parseFloat(reading?.value);
+    if (Number.isFinite(value)) {
+      return {
+        value,
+        dateTime: reading.dateTime || null,
+        qualifiers: Array.isArray(reading.qualifiers) ? reading.qualifiers : []
+      };
+    }
+  }
+
+  return null;
+};
+
+const getTimeSeriesParameterCode = (series) => {
+  const codes = series?.variable?.variableCode;
+  if (!Array.isArray(codes)) return null;
+  return codes.map(code => code?.value).find(Boolean) || null;
+};
+
+const saveStreamflowCache = (records, trailId = state.trail.id) => {
+  if (typeof localStorage === 'undefined' || !Array.isArray(records) || records.length === 0) return;
+  try {
+    localStorage.setItem(getStreamflowCacheKey(trailId), JSON.stringify({
+      savedAt: Date.now(),
+      records
+    }));
+  } catch (error) {
+    // Ignore storage errors.
+  }
+};
+
+const loadStreamflowCache = (trailId = state.trail.id) => {
+  if (typeof localStorage === 'undefined') return null;
+  try {
+    const raw = localStorage.getItem(getStreamflowCacheKey(trailId));
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed || !Array.isArray(parsed.records)) return null;
+    return parsed;
+  } catch (error) {
+    return null;
+  }
+};
+
+const formatStreamflowNumber = (value, maximumFractionDigits = 0) => {
+  if (!Number.isFinite(value)) return '--';
+  return value.toLocaleString(undefined, { maximumFractionDigits });
+};
+
+const formatStreamflowDate = (iso) => {
+  if (!iso) return '';
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return '';
+  return date.toLocaleString(undefined, {
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit'
+  });
+};
+
+export const adaptUsgsStreamflowResponse = (data, gauges) => {
+  const bySite = new Map(gauges.map(gauge => [
+    gauge.id,
+    {
+      ...gauge,
+      discharge: null,
+      stage: null,
+      observedAt: null,
+      provisional: false
+    }
+  ]));
+
+  const seriesList = data?.value?.timeSeries;
+  if (!Array.isArray(seriesList)) return [...bySite.values()];
+
+  seriesList.forEach((series) => {
+    const siteCode = normalizeSiteCode(series?.sourceInfo?.siteCode?.[0]?.value);
+    const record = bySite.get(siteCode);
+    if (!record) return;
+
+    const parameterCode = getTimeSeriesParameterCode(series);
+    const reading = getLatestTimeSeriesValue(series);
+    if (!reading) return;
+
+    const unit = series?.variable?.unit?.unitCode || '';
+    const value = {
+      value: reading.value,
+      unit,
+      dateTime: reading.dateTime
+    };
+
+    if (parameterCode === STREAMFLOW_PARAMETER_CODES.discharge) {
+      record.discharge = value;
+    } else if (parameterCode === STREAMFLOW_PARAMETER_CODES.stage) {
+      record.stage = value;
+    }
+
+    if (!record.observedAt || new Date(reading.dateTime) > new Date(record.observedAt)) {
+      record.observedAt = reading.dateTime;
+    }
+    if (reading.qualifiers.includes('P')) {
+      record.provisional = true;
+    }
+  });
+
+  return [...bySite.values()];
+};
+
+const fetchStreamflowGauges = async (gauges) => {
+  const sites = gauges.map(gauge => gauge.id).join(',');
+  const parameterCd = Object.values(STREAMFLOW_PARAMETER_CODES).join(',');
+  const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${encodeURIComponent(sites)}&parameterCd=${parameterCd}&siteStatus=all&period=P1D`;
+  const response = await fetch(url, { cache: 'no-store' });
+  if (!response.ok) throw new Error('Bad streamflow response');
+  return adaptUsgsStreamflowResponse(await response.json(), gauges);
+};
+
+export const renderStreamflowPanel = (records, { cachedAt = null, error = false } = {}) => {
+  const container = document.getElementById('container');
+  if (!container) return;
+
+  container.querySelector('.streamflow-panel')?.remove();
+  const gauges = state.trail.streamflowGauges || [];
+  if (!gauges.length) return;
+
+  const panel = document.createElement('section');
+  panel.className = `streamflow-panel${error ? ' streamflow-panel-warning' : ''}`;
+  panel.innerHTML = `
+    <div class="streamflow-header">
+      <div>
+        <div class="streamflow-title">Rio Grande Flow</div>
+        <div class="streamflow-subtitle">${error ? 'USGS unavailable' : 'USGS live gauges'}${cachedAt ? ` · cached ${getCacheTimestampLabel(cachedAt)}` : ''}</div>
+      </div>
+    </div>
+    <div class="streamflow-grid">
+      ${records.map(record => {
+        const discharge = record.discharge?.value;
+        const stage = record.stage?.value;
+        const dischargeUnit = record.discharge?.unit || 'ft3/s';
+        const stageUnit = record.stage?.unit || 'ft';
+        const observed = formatStreamflowDate(record.observedAt);
+        return `
+          <a class="streamflow-card" href="${record.url}" target="_blank" rel="noopener">
+            <div class="streamflow-card-top">
+              <span class="streamflow-name">${record.name}</span>
+              <span class="streamflow-mile">Mile ${record.mile}</span>
+            </div>
+            <div class="streamflow-context">${record.context}</div>
+            <div class="streamflow-reading">
+              <span class="streamflow-value">${formatStreamflowNumber(discharge)}</span>
+              <span class="streamflow-unit">${dischargeUnit === 'ft3/s' ? 'cfs' : dischargeUnit}</span>
+            </div>
+            <div class="streamflow-meta">
+              ${Number.isFinite(stage) ? `Stage ${formatStreamflowNumber(stage, 2)} ${stageUnit}` : 'Stage --'}
+              ${observed ? ` · ${observed}` : ''}
+              ${record.provisional ? ' · provisional' : ''}
+            </div>
+          </a>
+        `;
+      }).join('')}
+    </div>
+  `;
+  container.prepend(panel);
+};
+
+const loadStreamflowPanel = async () => {
+  const trailId = state.trail.id;
+  const gauges = state.trail.streamflowGauges || [];
+  if (!gauges.length) {
+    document.getElementById('container')?.querySelector('.streamflow-panel')?.remove();
+    return;
+  }
+
+  renderStreamflowPanel(gauges.map(gauge => ({ ...gauge, discharge: null, stage: null })));
+  try {
+    const records = await fetchStreamflowGauges(gauges);
+    if (state.trail.id !== trailId) return;
+    saveStreamflowCache(records, trailId);
+    renderStreamflowPanel(records);
+  } catch (error) {
+    if (state.trail.id !== trailId) return;
+    const cached = loadStreamflowCache(trailId);
+    if (cached?.records?.length) {
+      renderStreamflowPanel(cached.records, { cachedAt: cached.savedAt, error: true });
+    } else {
+      renderStreamflowPanel(gauges.map(gauge => ({ ...gauge, discharge: null, stage: null })), { error: true });
+    }
+  }
+};
+
 const setWeatherStatusBanner = (message, level = 'info') => {
   const container = document.getElementById('container');
   if (!container) return;
@@ -415,6 +623,7 @@ export const loadForecasts = async () => {
   }
 
   renderWeatherTable(mergedForecasts);
+  loadStreamflowPanel();
   if (isAndroid) appendChangeKeyLink();
 
   if (liveCount === 0 && mergedCount === 0) {
