@@ -108,6 +108,13 @@ const downloadTextFile = (fileName, text, type) => {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 };
 
+let activeCommentDraftSaver = null;
+
+export const saveOpenWaypointCommentDraft = () => {
+  if (typeof activeCommentDraftSaver !== 'function') return null;
+  return activeCommentDraftSaver();
+};
+
 const renderWaypointCommentEditor = (detail, waypoint, type = 'waypoint') => {
   const existing = getWaypointComment(waypoint, type);
   const section = document.createElement('section');
@@ -126,10 +133,16 @@ const renderWaypointCommentEditor = (detail, waypoint, type = 'waypoint') => {
   const saveBtn = section.querySelector('.waypoint-comment-save');
   const deleteBtn = section.querySelector('.waypoint-comment-delete');
 
-  saveBtn.addEventListener('click', () => {
+  const saveDraft = () => {
+    if (!section.isConnected || !section.closest('.visible')) return null;
     const saved = saveWaypointComment(waypoint, type, input.value);
     status.textContent = saved ? `Saved ${formatLocalDateTime(saved.updatedAt)}` : 'Note removed';
-  });
+    return saved;
+  };
+
+  activeCommentDraftSaver = saveDraft;
+
+  saveBtn.addEventListener('click', saveDraft);
 
   deleteBtn.addEventListener('click', () => {
     input.value = '';

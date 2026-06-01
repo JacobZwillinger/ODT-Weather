@@ -1,7 +1,7 @@
 // Main application entry point
 import { clearElevationProfile, getReliableWaterRatings, getSectionPoints, getTrailStorageKey, getWaterRating, isReliableWaterSource, saveReliableWaterRatings, setActiveTrail, state, loadToggleState, saveToggleState } from './utils.js';
 import { loadForecasts } from './weather.js';
-import { initModals, showWaypointCommentsExport, showWaypointDetail, showWaterDetail, showTownDetail } from './modals.js';
+import { initModals, saveOpenWaypointCommentDraft, showWaypointCommentsExport, showWaypointDetail, showWaterDetail, showTownDetail } from './modals.js';
 import { applyTrailMapData, showMapInfo, scheduleMapInit, toggleCategoryLayer, swapCategoryData, onMapReady, resetMapView, saveMapView, restoreMapView, getMileageLog, deleteMileageDay } from './map.js';
 import { TEST_DATA } from './test-data.js';
 import { initGpsButton, getLastPosition } from './gps.js';
@@ -549,6 +549,8 @@ const waitForControllerChange = (timeoutMs = 2500) => new Promise((resolve) => {
 });
 
 const refreshApp = async (button) => {
+  saveOpenWaypointCommentDraft();
+
   if (button) {
     button.disabled = true;
     button.setAttribute('aria-busy', 'true');

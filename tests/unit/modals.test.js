@@ -46,6 +46,7 @@ setupDOM();
 
 const {
   getWaypointComments,
+  saveOpenWaypointCommentDraft,
   showWaypointCommentsExport,
   showWaypointDetail,
   showWaterDetail,
@@ -121,6 +122,21 @@ describe('showWaypointDetail', () => {
       name: 'WP001',
       mile: 10.5,
       comment: 'Flowing clear, easy access.'
+    });
+  });
+
+  it('saves the open field note draft before refresh', () => {
+    showWaypointDetail('WP001');
+
+    const input = document.getElementById('waypointCommentInput');
+    input.value = 'Draft note before refresh.';
+    saveOpenWaypointCommentDraft();
+
+    const comments = getWaypointComments('odt');
+    expect(comments).toHaveLength(1);
+    expect(comments[0]).toMatchObject({
+      name: 'WP001',
+      comment: 'Draft note before refresh.'
     });
   });
 
