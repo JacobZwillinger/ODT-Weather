@@ -5,7 +5,7 @@ import { initModals, saveOpenWaypointCommentDraft, showWaypointCommentsExport, s
 import { applyTrailMapData, showMapInfo, scheduleMapInit, toggleCategoryLayer, swapCategoryData, onMapReady, resetMapView, saveMapView, restoreMapView, getMileageLog, deleteMileageDay } from './map.js';
 import { TEST_DATA } from './test-data.js';
 import { initGpsButton, getLastPosition } from './gps.js';
-import { renderElevationChart, jumpToCurrentMile, resetElevationChart } from './elevation.js';
+import { initElevationWindowControls, renderElevationChart, jumpToCurrentMile, resetElevationChart } from './elevation.js';
 import { getMoonData } from './moon.js';
 import { TRAILS } from './config.js';
 
@@ -596,6 +596,7 @@ const initUI = () => {
   document.getElementById('btnElevJump').addEventListener('click', () => {
     jumpToCurrentMile();
   });
+  initElevationWindowControls();
 
   // Top-right: Weather button
   document.getElementById('btnWeather').addEventListener('click', () => {

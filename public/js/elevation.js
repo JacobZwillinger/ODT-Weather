@@ -1,16 +1,18 @@
-import { loadElevationProfile, state } from './utils.js';
+import { getTrailStorageKey, loadElevationProfile, state } from './utils.js';
 
 // ---- State ----
 let _profile = null;       // full elevation-profile.json array
 let _profileTrailId = null;
-let _startMile = 0;        // left edge of the current 20-mile view
-let _windowMiles = 20;     // always 20
+let _startMile = 0;        // left edge of the current elevation window
+let _windowMiles = 20;
 let _canvasId = null;
 let _currentMile = 0;      // GPS position marker
 let _isDragging = false;
 let _dragStartX = 0;
 let _dragStartMile = 0;
 const STATS_BAR_HEIGHT = 72;
+const WINDOW_MILE_OPTIONS = [5, 10, 20];
+const DEFAULT_WINDOW_MILES = 20;
 
 // Hit-test rects for waypoint icons [ { x, y, size, wp } ]
 let _iconHitRects = [];
@@ -74,6 +76,69 @@ const preloadIcons = () => Promise.all(Object.keys(WAYPOINT_ICON_SVGS).map(getIc
 const getIconKey = (category, subcategory) => {
   if (category === 'water') return subcategory === 'reliable' ? 'water-reliable' : 'water-other';
   return category;
+};
+
+const normalizeWindowMiles = (value) => {
+  const numeric = Number(value);
+  return WINDOW_MILE_OPTIONS.includes(numeric) ? numeric : DEFAULT_WINDOW_MILES;
+};
+
+const getSavedWindowMiles = () => {
+  try {
+    return normalizeWindowMiles(localStorage.getItem(getTrailStorageKey('elevationWindowMiles')));
+  } catch (_) {
+    return DEFAULT_WINDOW_MILES;
+  }
+};
+
+const saveWindowMiles = (windowMiles) => {
+  try {
+    localStorage.setItem(getTrailStorageKey('elevationWindowMiles'), String(windowMiles));
+  } catch (_) {
+    // Ignore storage failures; the current view still updates.
+  }
+};
+
+export const getElevationWindowMiles = () => _windowMiles;
+
+const syncWindowButtons = () => {
+  document.querySelectorAll('.elev-window-btn').forEach(btn => {
+    const active = Number(btn.dataset.elevWindow) === _windowMiles;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-pressed', String(active));
+  });
+};
+
+export const getElevationTickConfig = (windowMiles = _windowMiles) => {
+  if (windowMiles <= 5) return { step: 0.5, labelEvery: 1 };
+  if (windowMiles <= 10) return { step: 1, labelEvery: 2 };
+  return { step: 2.5, labelEvery: 5 };
+};
+
+export const setElevationWindowMiles = (windowMiles) => {
+  const next = normalizeWindowMiles(windowMiles);
+  if (next === _windowMiles) {
+    syncWindowButtons();
+    return _windowMiles;
+  }
+
+  const centerMile = _startMile + _windowMiles / 2;
+  _windowMiles = next;
+  saveWindowMiles(_windowMiles);
+  if (_profile) {
+    const maxMile = _profile[_profile.length - 1].distance;
+    _startMile = Math.max(0, Math.min(centerMile - _windowMiles / 2, maxMile - _windowMiles));
+    draw();
+  }
+  syncWindowButtons();
+  return _windowMiles;
+};
+
+export const initElevationWindowControls = () => {
+  syncWindowButtons();
+  document.querySelectorAll('.elev-window-btn').forEach(btn => {
+    btn.addEventListener('click', () => setElevationWindowMiles(btn.dataset.elevWindow));
+  });
 };
 
 // ---- Gain/loss computation ----
@@ -237,8 +302,8 @@ const draw = () => {
     ctx.fillText(elev.toLocaleString() + ' ft', padding.left - 10, y + 8);
   }
 
-  // X grid lines at 2.5-mile intervals
-  const xStep = 2.5;
+  // X grid lines get denser as the chart zooms in.
+  const { step: xStep, labelEvery } = getElevationTickConfig(_windowMiles);
   const firstXTick = Math.ceil(_startMile / xStep) * xStep;
   for (let mile = firstXTick; mile <= endMile + 0.001; mile += xStep) {
     const x = xScale(mile);
@@ -316,10 +381,8 @@ const draw = () => {
     const mileLabelY = axisBottom + 6 + mileFontSize;  // 6px tick + mileFontSize baseline
     for (let mile = firstXTick; mile <= endMile + 0.001; mile += xStep) {
       const x = xScale(mile);
-      // Label every 5-mile mark (i.e. integer multiples of 5)
       const rounded = Math.round(mile * 10) / 10;
-      const isLabelMile = Math.abs(rounded % 5) < 0.01;
-      // Tick at every 2.5-mile mark
+      const isLabelMile = Math.abs(rounded % labelEvery) < 0.01;
       ctx.strokeStyle = '#aaa'; ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(x, axisBottom);
@@ -410,10 +473,7 @@ const onPointerMove = (e) => {
   const parent = canvas.parentElement;
   const displayWidth = parent ? parent.clientWidth - 32 : window.innerWidth - 32;
   const isMobile = displayWidth < 500;
-  const statsBarHeight = STATS_BAR_HEIGHT;
-  const totalHeight = parent ? Math.max(parent.clientHeight - 32, 300) : Math.max(window.innerHeight * 0.6, 300);
-  const displayHeight = totalHeight - statsBarHeight;
-  const chartWidth = displayWidth - (isMobile ? 108 + 16 : 124 + 20);
+  const chartWidth = displayWidth - (isMobile ? 64 + 12 : 72 + 14);
   const pxPerMile = chartWidth / _windowMiles;
   const deltaMile = -deltaX / pxPerMile;
   const maxMile = _profile[_profile.length - 1].distance;
@@ -514,6 +574,8 @@ export const renderElevationChart = async (startMile, canvasId) => {
   if (!_profile || _profileTrailId !== state.trail.id) {
     _profile = profile;
     _profileTrailId = state.trail.id;
+    _windowMiles = getSavedWindowMiles();
+    syncWindowButtons();
   }
   if (!_profile) {
     const ctx = canvas.getContext('2d');

@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
 // Mock utils.js so we can control state and loadElevationProfile
 vi.mock('../../public/js/utils.js', () => ({
+  getTrailStorageKey: (key) => `odt_${key}`,
   loadElevationProfile: vi.fn(),
   state: {
     trail: { id: 'odt' },
@@ -231,6 +232,40 @@ describe('stats bar GPS vs view split', () => {
     const vStats = computeGainLoss(vPts);
     // These happen to be different sections of the trail
     expect(gStats).not.toEqual(vStats);
+  });
+});
+
+describe('elevation window controls', () => {
+  afterEach(() => {
+    document.body.innerHTML = '';
+    localStorage.clear();
+    vi.resetModules();
+  });
+
+  it('uses denser tick spacing for shorter elevation windows', async () => {
+    const { getElevationTickConfig } = await import('../../public/js/elevation.js');
+
+    expect(getElevationTickConfig(5)).toEqual({ step: 0.5, labelEvery: 1 });
+    expect(getElevationTickConfig(10)).toEqual({ step: 1, labelEvery: 2 });
+    expect(getElevationTickConfig(20)).toEqual({ step: 2.5, labelEvery: 5 });
+  });
+
+  it('syncs active state when a window button is selected', async () => {
+    document.body.innerHTML = `
+      <button class="elev-window-btn" data-elev-window="5" aria-pressed="false">5 mi</button>
+      <button class="elev-window-btn" data-elev-window="10" aria-pressed="false">10 mi</button>
+      <button class="elev-window-btn active" data-elev-window="20" aria-pressed="true">20 mi</button>
+    `;
+    const { getElevationWindowMiles, initElevationWindowControls } = await import('../../public/js/elevation.js');
+
+    initElevationWindowControls();
+    document.querySelector('[data-elev-window="5"]').click();
+
+    expect(getElevationWindowMiles()).toBe(5);
+    expect(document.querySelector('[data-elev-window="5"]').classList.contains('active')).toBe(true);
+    expect(document.querySelector('[data-elev-window="5"]').getAttribute('aria-pressed')).toBe('true');
+    expect(document.querySelector('[data-elev-window="20"]').classList.contains('active')).toBe(false);
+    expect(localStorage.getItem('odt_elevationWindowMiles')).toBe('5');
   });
 });
 

@@ -705,6 +705,38 @@ body {
   align-items: center;
 }
 
+.elev-window-control {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  display: flex;
+  overflow: hidden;
+}
+
+.elev-window-btn {
+  background: transparent;
+  border: 0;
+  border-right: 1px solid #cbd5e1;
+  color: #475569;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 800;
+  min-height: 36px;
+  min-width: 46px;
+  padding: 0 9px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.elev-window-btn:last-child {
+  border-right: 0;
+}
+
+.elev-window-btn.active {
+  background: #1d4ed8;
+  color: #fff;
+}
+
 .elev-jump-btn-top {
   width: 36px;
   height: 36px;
@@ -755,6 +787,27 @@ body {
   width: 100%;
   height: 100%;
   display: block;
+}
+
+@media (max-width: 520px) {
+  #elevationOverlay .overlay-header {
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  #elevationOverlay .overlay-header h3 {
+    font-size: 0.92rem;
+    line-height: 36px;
+  }
+
+  .elev-header-actions {
+    gap: 6px;
+  }
+
+  .elev-window-btn {
+    min-width: 38px;
+    padding: 0 6px;
+  }
 }
 
 /* ========== Waypoint List Filter Bar ========== */

@@ -270,6 +270,21 @@ test.describe('ODT App', () => {
       await expect(canvas).toBeVisible();
     });
 
+    test('changes elevation profile distance window', async ({ page }) => {
+      await page.click('#btnElevation');
+
+      const fiveMileButton = page.locator('.elev-window-btn[data-elev-window="5"]');
+      const twentyMileButton = page.locator('.elev-window-btn[data-elev-window="20"]');
+      await expect(fiveMileButton).toBeVisible();
+      await expect(twentyMileButton).toHaveClass(/active/);
+
+      await fiveMileButton.click();
+      await expect(fiveMileButton).toHaveClass(/active/);
+      await expect(fiveMileButton).toHaveAttribute('aria-pressed', 'true');
+      await expect(twentyMileButton).not.toHaveClass(/active/);
+      await expect(twentyMileButton).toHaveAttribute('aria-pressed', 'false');
+    });
+
     test('closes when close button clicked', async ({ page }) => {
       await page.click('#btnElevation');
       await expect(page.locator('#elevationOverlay')).toBeVisible();
