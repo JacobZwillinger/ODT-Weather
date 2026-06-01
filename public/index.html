@@ -55,6 +55,13 @@
           </svg>
           <span class="kebab-sub-label">Refresh</span>
         </button>
+        <button id="btnKebabComments" class="kebab-sub-btn" aria-label="Export waypoint comments">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 5h14v10H8l-3 3V5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M8 8h8M8 11h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="kebab-sub-label">Notes</span>
+        </button>
         <button id="btnKebabAbout" class="kebab-sub-btn" aria-label="About">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"/>
@@ -390,6 +397,17 @@
           <button class="sources-modal-close" id="closeSourcesModal" aria-label="Close dialog">Close</button>
         </div>
         <div id="sourcesList" class="sources-list"></div>
+      </div>
+    </div>
+
+    <!-- Waypoint Comments Export Modal -->
+    <div id="commentsModal" class="sources-modal" role="dialog" aria-modal="true" aria-labelledby="commentsModalTitle">
+      <div class="sources-modal-content comments-modal-content">
+        <div class="sources-modal-header">
+          <h3 id="commentsModalTitle">Waypoint Notes</h3>
+          <button class="sources-modal-close" id="closeCommentsModal" aria-label="Close dialog">Close</button>
+        </div>
+        <div id="commentsExportBody"></div>
       </div>
     </div>
 

@@ -36,6 +36,7 @@ const setupDOM = () => {
     <div id="infoModal"><button id="closeInfoModal"></button><div class="sources-modal-content"></div></div>
     <div id="sourcesModal"><button id="closeSourcesModal"></button><div id="sourcesModalTitle"></div><div id="sourcesList"></div></div>
     <div id="waypointModal"><button id="closeWaypointModal"></button><div id="waypointModalTitle"></div><div id="waypointDetail"></div></div>
+    <div id="commentsModal"><button id="closeCommentsModal"></button><div id="commentsExportBody"></div></div>
     <div id="nextWaterCard"></div>
     <div id="nextTownCard"></div>
   `;
@@ -43,11 +44,20 @@ const setupDOM = () => {
 
 setupDOM();
 
-const { showWaypointDetail, showWaterDetail, showTownDetail, showSourcesList, initModals } = await import('../../public/js/modals.js');
+const {
+  getWaypointComments,
+  showWaypointCommentsExport,
+  showWaypointDetail,
+  showWaterDetail,
+  showTownDetail,
+  showSourcesList,
+  initModals
+} = await import('../../public/js/modals.js');
 
 describe('showWaypointDetail', () => {
   beforeEach(() => {
     setupDOM();
+    localStorage.clear();
     state.allWaypoints = [
       { name: 'WP001', mile: 10.5, lat: 43.0, lon: -120.0, landmark: 'Test Creek' },
       { name: 'WP002', mile: 25.0, lat: 43.1, lon: -120.1, landmark: '' },
@@ -96,6 +106,24 @@ describe('showWaypointDetail', () => {
     expect(detail.textContent).toContain('Mile: 25.0');
   });
 
+  it('saves a local field note for a waypoint', () => {
+    showWaypointDetail('WP001');
+
+    const input = document.getElementById('waypointCommentInput');
+    input.value = 'Flowing clear, easy access.';
+    document.querySelector('.waypoint-comment-save').click();
+
+    const comments = getWaypointComments('odt');
+    expect(comments).toHaveLength(1);
+    expect(comments[0]).toMatchObject({
+      trailId: 'odt',
+      type: 'waypoint',
+      name: 'WP001',
+      mile: 10.5,
+      comment: 'Flowing clear, easy access.'
+    });
+  });
+
   // [TEST] Added: verifies returns null when allWaypoints is empty
   it('returns null when no waypoints loaded', () => {
     state.allWaypoints = [];
@@ -107,6 +135,7 @@ describe('showWaypointDetail', () => {
 describe('showWaterDetail', () => {
   beforeEach(() => {
     setupDOM();
+    localStorage.clear();
     state.waterSources = [
       {
         name: 'CV001',
@@ -181,6 +210,7 @@ describe('showWaterDetail', () => {
 describe('showTownDetail', () => {
   beforeEach(() => {
     setupDOM();
+    localStorage.clear();
     state.towns = [
       { name: 'Paisley', mile: 160.5, landmark: 'walk through town of Paisley', services: 'full', offTrail: '6.2 miles W' },
       { name: 'Fields', mile: 438.0, landmark: 'Fields station', services: 'limited', offTrail: null },
@@ -230,6 +260,7 @@ describe('showTownDetail', () => {
 describe('showSourcesList', () => {
   beforeEach(() => {
     setupDOM();
+    localStorage.clear();
     state.currentMile = 10;
     state.waterSources = [
       { mile: 5, name: 'W1', landmark: 'Past Spring', details: 'good', distToNext: 10 },
@@ -289,6 +320,53 @@ describe('showSourcesList', () => {
 
     const list = document.getElementById('sourcesList');
     expect(list.innerHTML).toContain('mi ahead');
+  });
+});
+
+describe('showWaypointCommentsExport', () => {
+  beforeEach(() => {
+    setupDOM();
+    localStorage.clear();
+    state.trail = { id: 'odt', shortName: 'ODT', name: 'Oregon Desert Trail' };
+    state.waterSources = [
+      {
+        name: 'CV001',
+        mile: 5.2,
+        lat: 43,
+        lon: -120,
+        landmark: 'Spring Creek',
+        details: 'reliable',
+        onTrail: true,
+        distToNext: '-'
+      }
+    ];
+  });
+
+  it('shows saved notes in an export modal', () => {
+    showWaterDetail('CV001');
+    const input = document.getElementById('waypointCommentInput');
+    input.value = 'Dry on June 1.';
+    document.querySelector('.waypoint-comment-save').click();
+
+    showWaypointCommentsExport();
+
+    const modal = document.getElementById('commentsModal');
+    const body = document.getElementById('commentsExportBody');
+    expect(modal.classList.contains('visible')).toBe(true);
+    expect(body.textContent).toContain('1 saved note');
+    expect(body.textContent).toContain('CV001');
+    expect(body.textContent).toContain('Dry on June 1.');
+    expect(document.getElementById('downloadCommentsJson').disabled).toBe(false);
+    expect(document.getElementById('downloadCommentsCsv').disabled).toBe(false);
+  });
+
+  it('shows an empty export state when no notes exist', () => {
+    showWaypointCommentsExport();
+
+    const body = document.getElementById('commentsExportBody');
+    expect(body.textContent).toContain('0 saved notes');
+    expect(body.textContent).toContain('No waypoint notes yet');
+    expect(document.getElementById('downloadCommentsJson').disabled).toBe(true);
   });
 });
 

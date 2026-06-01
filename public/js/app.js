@@ -1,7 +1,7 @@
 // Main application entry point
 import { clearElevationProfile, getReliableWaterRatings, getSectionPoints, getTrailStorageKey, getWaterRating, isReliableWaterSource, saveReliableWaterRatings, setActiveTrail, state, loadToggleState, saveToggleState } from './utils.js';
 import { loadForecasts } from './weather.js';
-import { initModals, showWaypointDetail, showWaterDetail, showTownDetail } from './modals.js';
+import { initModals, showWaypointCommentsExport, showWaypointDetail, showWaterDetail, showTownDetail } from './modals.js';
 import { applyTrailMapData, showMapInfo, scheduleMapInit, toggleCategoryLayer, swapCategoryData, onMapReady, resetMapView, saveMapView, restoreMapView, getMileageLog, deleteMileageDay } from './map.js';
 import { TEST_DATA } from './test-data.js';
 import { initGpsButton, getLastPosition } from './gps.js';
@@ -470,6 +470,7 @@ const initKebabMenu = () => {
   const subButtons = document.getElementById('kebabSubButtons');
   const aboutBtn = document.getElementById('btnKebabAbout');
   const refreshBtn = document.getElementById('btnKebabRefresh');
+  const commentsBtn = document.getElementById('btnKebabComments');
 
   // Main kebab button: toggle sub-buttons.
   // Test mode lives inside the trail popover now — see initTrailSwitcher / toggleTestMode.
@@ -496,6 +497,12 @@ const initKebabMenu = () => {
   refreshBtn?.addEventListener('click', async (e) => {
     e.stopPropagation();
     await refreshApp(refreshBtn);
+  });
+
+  commentsBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeKebabMenu();
+    showWaypointCommentsExport();
   });
 
   // Close info modal

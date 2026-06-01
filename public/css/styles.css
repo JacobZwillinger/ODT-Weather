@@ -1708,6 +1708,135 @@ thead th.night-header { background: #ebebf7; }
 .waypoint-detail p:last-child { margin-bottom: 0; }
 .waypoint-detail strong { color: #1b1b1b; }
 
+.waypoint-comment-panel {
+  border-top: 1px solid #e5e7eb;
+  margin-top: 14px;
+  padding-top: 12px;
+}
+
+.waypoint-comment-label {
+  color: #1b1b1b;
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.waypoint-comment-input {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111827;
+  font: inherit;
+  min-height: 92px;
+  padding: 9px 10px;
+  resize: vertical;
+  width: 100%;
+}
+
+.waypoint-comment-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.waypoint-comment-actions button,
+.comments-export-actions button {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 800;
+  min-height: 36px;
+  padding: 7px 10px;
+}
+
+.waypoint-comment-save,
+.comments-export-actions button {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+  color: #fff;
+}
+
+.waypoint-comment-delete {
+  background: #fff;
+  color: #64748b;
+}
+
+.comments-export-actions button:disabled {
+  background: #e5e7eb;
+  border-color: #e5e7eb;
+  color: #94a3b8;
+  cursor: default;
+}
+
+.waypoint-comment-status,
+.comments-export-status {
+  color: #64748b;
+  font-size: 0.72rem;
+  min-height: 1em;
+  margin-top: 7px;
+}
+
+.comments-modal-content {
+  max-width: 520px;
+}
+
+.comments-export-summary {
+  color: #334155;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.comments-export-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.comments-export-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.comments-export-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.comments-export-item-head {
+  align-items: baseline;
+  color: #111827;
+  display: flex;
+  font-size: 0.88rem;
+  font-weight: 800;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.comments-export-item-meta {
+  color: #64748b;
+  font-size: 0.72rem;
+  margin-top: 2px;
+}
+
+.comments-export-item-note {
+  color: #334155;
+  font-size: 0.86rem;
+  margin-top: 8px;
+  white-space: pre-wrap;
+}
+
+.comments-export-empty {
+  color: #64748b;
+  font-size: 0.9rem;
+  padding: 10px 0;
+}
+
 .sources-list {
   max-height: calc(100vh - 120px);
   overflow-y: auto;

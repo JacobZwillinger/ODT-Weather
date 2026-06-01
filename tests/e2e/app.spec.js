@@ -81,6 +81,22 @@ test.describe('ODT App', () => {
       await expect(refreshButton).toBeVisible();
       await expect(refreshButton).toHaveAttribute('aria-label', 'Refresh app data');
     });
+
+    test('opens waypoint notes export from the menu', async ({ page }) => {
+      await expect.poll(async () => {
+        if (await page.locator('#kebabSubButtons').isVisible()) return true;
+        await page.click('#btnKebab', { timeout: 1000 }).catch(() => {});
+        return page.locator('#kebabSubButtons').isVisible();
+      }, { timeout: 10000 }).toBe(true);
+
+      const notesButton = page.locator('#btnKebabComments');
+      await expect(notesButton).toBeVisible();
+      await expect(notesButton).toHaveAttribute('aria-label', 'Export waypoint comments');
+
+      await notesButton.click();
+      await expect(page.locator('#commentsModal')).toHaveClass(/visible/);
+      await expect(page.locator('#commentsExportBody')).toContainText('No waypoint notes yet');
+    });
   });
 
   test.describe('Trail Switcher', () => {

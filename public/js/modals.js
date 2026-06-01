@@ -7,6 +7,139 @@ const escapeHtml = (str) => {
   return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 };
 
+const COMMENTS_STORAGE_VERSION = 'waypointCommentsV1';
+const getCommentsStorageKey = (trailId = state.trail.id) => `${trailId}_${COMMENTS_STORAGE_VERSION}`;
+
+const formatLocalDateTime = (timestamp) => {
+  if (!timestamp) return '';
+  try {
+    return new Date(timestamp).toLocaleString();
+  } catch (_) {
+    return '';
+  }
+};
+
+const getCommentKey = (waypoint, type = 'waypoint') => [
+  type || 'waypoint',
+  waypoint?.name || '',
+  Number.isFinite(Number(waypoint?.mile)) ? Number(waypoint.mile).toFixed(1) : '',
+  Number.isFinite(Number(waypoint?.lat)) ? Number(waypoint.lat).toFixed(5) : '',
+  Number.isFinite(Number(waypoint?.lon)) ? Number(waypoint.lon).toFixed(5) : ''
+].join('|');
+
+const readWaypointComments = (trailId = state.trail.id) => {
+  try {
+    const raw = localStorage.getItem(getCommentsStorageKey(trailId));
+    const parsed = raw ? JSON.parse(raw) : {};
+    return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
+  } catch (_) {
+    return {};
+  }
+};
+
+const writeWaypointComments = (comments, trailId = state.trail.id) => {
+  localStorage.setItem(getCommentsStorageKey(trailId), JSON.stringify(comments));
+};
+
+export const getWaypointComments = (trailId = state.trail.id) => {
+  return Object.values(readWaypointComments(trailId))
+    .filter(record => record && record.comment)
+    .sort((a, b) => (a.mile ?? Infinity) - (b.mile ?? Infinity) || String(a.name).localeCompare(String(b.name)));
+};
+
+const getWaypointComment = (waypoint, type = 'waypoint') => {
+  return readWaypointComments()[getCommentKey(waypoint, type)] || null;
+};
+
+export const saveWaypointComment = (waypoint, type = 'waypoint', comment) => {
+  const trimmed = String(comment || '').trim();
+  const key = getCommentKey(waypoint, type);
+  const comments = readWaypointComments();
+
+  if (!trimmed) {
+    delete comments[key];
+    writeWaypointComments(comments);
+    return null;
+  }
+
+  const existing = comments[key];
+  const now = new Date().toISOString();
+  const record = {
+    trailId: state.trail.id,
+    trailName: state.trail.name || state.trail.shortName || state.trail.id,
+    type,
+    name: waypoint?.name || '',
+    mile: Number.isFinite(Number(waypoint?.mile)) ? Number(waypoint.mile) : null,
+    lat: Number.isFinite(Number(waypoint?.lat)) ? Number(waypoint.lat) : null,
+    lon: Number.isFinite(Number(waypoint?.lon)) ? Number(waypoint.lon) : null,
+    landmark: waypoint?.landmark || waypoint?.details || '',
+    comment: trimmed,
+    createdAt: existing?.createdAt || now,
+    updatedAt: now
+  };
+
+  comments[key] = record;
+  writeWaypointComments(comments);
+  return record;
+};
+
+const csvEscape = (value) => {
+  const str = value == null ? '' : String(value);
+  return /[",\n\r]/.test(str) ? `"${str.replace(/"/g, '""')}"` : str;
+};
+
+const commentsToCsv = (records) => {
+  const columns = ['trailId', 'trailName', 'type', 'name', 'mile', 'lat', 'lon', 'comment', 'landmark', 'updatedAt', 'createdAt'];
+  return [
+    columns.join(','),
+    ...records.map(record => columns.map(column => csvEscape(record[column])).join(','))
+  ].join('\n');
+};
+
+const downloadTextFile = (fileName, text, type) => {
+  const blob = new Blob([text], { type });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = fileName;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+};
+
+const renderWaypointCommentEditor = (detail, waypoint, type = 'waypoint') => {
+  const existing = getWaypointComment(waypoint, type);
+  const section = document.createElement('section');
+  section.className = 'waypoint-comment-panel';
+  section.innerHTML = `
+    <label class="waypoint-comment-label" for="waypointCommentInput">Field note</label>
+    <textarea id="waypointCommentInput" class="waypoint-comment-input" rows="4" placeholder="Add source status, water quality, route notes...">${escapeHtml(existing?.comment || '')}</textarea>
+    <div class="waypoint-comment-actions">
+      <button type="button" class="waypoint-comment-save">Save Note</button>
+      <button type="button" class="waypoint-comment-delete">Delete</button>
+    </div>
+    <div class="waypoint-comment-status" aria-live="polite">${existing?.updatedAt ? `Saved ${escapeHtml(formatLocalDateTime(existing.updatedAt))}` : 'Stored only on this device'}</div>
+  `;
+  const input = section.querySelector('.waypoint-comment-input');
+  const status = section.querySelector('.waypoint-comment-status');
+  const saveBtn = section.querySelector('.waypoint-comment-save');
+  const deleteBtn = section.querySelector('.waypoint-comment-delete');
+
+  saveBtn.addEventListener('click', () => {
+    const saved = saveWaypointComment(waypoint, type, input.value);
+    status.textContent = saved ? `Saved ${formatLocalDateTime(saved.updatedAt)}` : 'Note removed';
+  });
+
+  deleteBtn.addEventListener('click', () => {
+    input.value = '';
+    saveWaypointComment(waypoint, type, '');
+    status.textContent = 'Note removed';
+  });
+
+  detail.appendChild(section);
+};
+
 // [UX] Changed: Track the element that triggered the modal so focus can return on close (WCAG 2.4.3)
 let lastFocusedElement = null;
 
@@ -176,6 +309,8 @@ export const showWaypointDetail = (latOrName, lon) => {
       detail.appendChild(descPara);
     }
 
+    renderWaypointCommentEditor(detail, waypoint, 'waypoint');
+
     modal.classList.add('visible');
     focusModalClose(modal); // [UX] Changed: Focus close button on modal open (WCAG 2.4.3)
     return waypoint;
@@ -211,6 +346,8 @@ export const showToiletDetail = (props) => {
     descPara.appendChild(document.createTextNode(props.landmark));
     detail.appendChild(descPara);
   }
+
+  renderWaypointCommentEditor(detail, props, 'toilet');
 
   modal.classList.add('visible');
   focusModalClose(modal);
@@ -270,6 +407,8 @@ export const showWaterDetail = (name) => {
     detail.appendChild(nextPara);
   }
 
+  renderWaypointCommentEditor(detail, source, 'water');
+
   modal.classList.add('visible');
   focusModalClose(modal); // [UX] Changed: Focus close button on modal open (WCAG 2.4.3)
   return source;
@@ -320,6 +459,8 @@ export const showTownDetail = (name) => {
     offTrailPara.appendChild(document.createTextNode(town.offTrail));
     detail.appendChild(offTrailPara);
   }
+
+  renderWaypointCommentEditor(detail, town, 'town');
 
   modal.classList.add('visible');
   focusModalClose(modal);
@@ -410,6 +551,9 @@ export const showSectionDetail = (name, mile) => {
   typePara.innerHTML = `<strong>Type:</strong> ${escapeHtml(state.trail.sectionBoundaryType)}`;
   detail.appendChild(typePara);
 
+  const sectionWaypoint = { name, mile: Number(mile) };
+  renderWaypointCommentEditor(detail, sectionWaypoint, 'section');
+
   modal.classList.add('visible');
   focusModalClose(modal);
   return { name, mile };
@@ -420,6 +564,7 @@ export const initModals = () => {
   setupModal('infoModal', 'closeInfoModal');
   setupModal('sourcesModal', 'closeSourcesModal');
   setupModal('waypointModal', 'closeWaypointModal');
+  setupModal('commentsModal', 'closeCommentsModal');
 
   // Info button opens info modal
   const infoBtn = document.getElementById('infoBtn');
@@ -432,4 +577,55 @@ export const initModals = () => {
   }
 
   // Note: water/town card clicks are handled in app.js to avoid circular imports
+};
+
+export const showWaypointCommentsExport = () => {
+  const modal = document.getElementById('commentsModal');
+  const body = document.getElementById('commentsExportBody');
+  if (!modal || !body) return;
+
+  const records = getWaypointComments();
+  const fileBase = `${state.trail.id}-waypoint-notes-${new Date().toISOString().slice(0, 10)}`;
+  body.innerHTML = `
+    <div class="comments-export-summary">${records.length} saved ${records.length === 1 ? 'note' : 'notes'} for ${escapeHtml(state.trail.shortName || state.trail.id)}</div>
+    <div class="comments-export-actions">
+      <button type="button" id="downloadCommentsJson" ${records.length ? '' : 'disabled'}>Download JSON</button>
+      <button type="button" id="downloadCommentsCsv" ${records.length ? '' : 'disabled'}>Download CSV</button>
+      <button type="button" id="copyCommentsJson" ${records.length ? '' : 'disabled'}>Copy JSON</button>
+    </div>
+    <div class="comments-export-status" aria-live="polite"></div>
+    <div class="comments-export-list">
+      ${records.length ? records.map(record => `
+        <article class="comments-export-item">
+          <div class="comments-export-item-head">
+            <span>${escapeHtml(record.name)}</span>
+            <span>Mi ${record.mile == null ? '--' : Number(record.mile).toFixed(1)}</span>
+          </div>
+          <div class="comments-export-item-meta">${escapeHtml(record.type)} · ${escapeHtml(formatLocalDateTime(record.updatedAt))}</div>
+          <div class="comments-export-item-note">${escapeHtml(record.comment)}</div>
+        </article>
+      `).join('') : '<div class="comments-export-empty">No waypoint notes yet.</div>'}
+    </div>
+  `;
+
+  const status = body.querySelector('.comments-export-status');
+  body.querySelector('#downloadCommentsJson')?.addEventListener('click', () => {
+    downloadTextFile(`${fileBase}.json`, JSON.stringify(records, null, 2), 'application/json');
+    status.textContent = 'JSON download started';
+  });
+  body.querySelector('#downloadCommentsCsv')?.addEventListener('click', () => {
+    downloadTextFile(`${fileBase}.csv`, commentsToCsv(records), 'text/csv');
+    status.textContent = 'CSV download started';
+  });
+  body.querySelector('#copyCommentsJson')?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(JSON.stringify(records, null, 2));
+      status.textContent = 'Copied JSON';
+    } catch (_) {
+      status.textContent = 'Copy unavailable here; use download instead';
+    }
+  });
+
+  modal.classList.add('visible');
+  focusModalClose(modal);
 };
