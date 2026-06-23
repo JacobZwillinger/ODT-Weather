@@ -90,11 +90,66 @@ const localSiderealTime = (jd, lonDeg) => {
   return ((theta0 + lonDeg) % 360 + 360) % 360;
 };
 
-// Hour angle when body rises/sets (h0 = standard altitude in degrees)
-const cosHourAngle = (dec, lat, h0 = -0.833) => {
-  const cosH = (Math.sin(h0 * RAD) - Math.sin(lat * RAD) * Math.sin(dec * RAD))
-    / (Math.cos(lat * RAD) * Math.cos(dec * RAD));
-  return cosH;
+// Low-precision solar RA/Dec for a given Julian day (Meeus ch. 25, ~0.01° good).
+const sunRADec = (jd) => {
+  const n = jd - 2451545.0;
+  const L = ((280.460 + 0.9856474 * n) % 360 + 360) % 360;   // mean longitude
+  const g = (((357.528 + 0.9856003 * n) % 360 + 360) % 360) * RAD; // mean anomaly
+  const lambda = (L + 1.915 * Math.sin(g) + 0.020 * Math.sin(2 * g)) * RAD; // ecliptic lon
+  const eps = (23.439 - 0.0000004 * n) * RAD;                // obliquity
+  let ra = Math.atan2(Math.cos(eps) * Math.sin(lambda), Math.cos(lambda)) * DEG;
+  if (ra < 0) ra += 360;
+  const dec = Math.asin(Math.sin(eps) * Math.sin(lambda)) * DEG;
+  return { ra, dec };
+};
+
+// Altitude (degrees) of a body above the horizon at a given Julian day.
+const altitudeDeg = (radecFn, jd, lat, lon) => {
+  const { ra, dec } = radecFn(jd);
+  const lst = localSiderealTime(jd, lon);          // degrees
+  const H = (((lst - ra) % 360 + 360) % 360) * RAD; // hour angle
+  const latR = lat * RAD, decR = dec * RAD;
+  const sinAlt = Math.sin(latR) * Math.sin(decR) + Math.cos(latR) * Math.cos(decR) * Math.cos(H);
+  return Math.asin(Math.max(-1, Math.min(1, sinAlt))) * DEG;
+};
+
+// Find rise/set for the local calendar date by scanning altitude across the day
+// in small steps and interpolating horizon crossings. Robust for both the fast-
+// moving moon and the sun, and degrades gracefully to circumpolar/below-horizon.
+// Returns { rise, set } as fractional local hours, or null when no crossing.
+const findRiseSet = (radecFn, date, lat, lon, tzOffsetMin, h0) => {
+  // Local midnight of the viewed date, derived from the trail's UTC offset rather
+  // than the runtime's timezone. Shift the instant into "local time as UTC",
+  // truncate to that local day, then shift back to the true UT instant.
+  const shifted = new Date(date.getTime() + tzOffsetMin * 60000);
+  const utMidnightMs = Date.UTC(shifted.getUTCFullYear(), shifted.getUTCMonth(), shifted.getUTCDate())
+    - tzOffsetMin * 60000;
+
+  const altAtLocalHour = (h) => {
+    const jd = julianDay(new Date(utMidnightMs + h * 3600000));
+    return altitudeDeg(radecFn, jd, lat, lon);
+  };
+
+  const step = 0.25; // 15-minute scan resolution
+  let rise = null, set = null;
+  let aboveCount = 0, samples = 0;
+  let prevAlt = altAtLocalHour(0) - h0;
+  if (prevAlt >= 0) aboveCount++;
+  samples++;
+
+  for (let h = step; h <= 24 + 1e-9; h += step) {
+    const alt = altAtLocalHour(h) - h0;
+    if (alt >= 0) aboveCount++;
+    samples++;
+    if (prevAlt < 0 && alt >= 0 && rise === null) {
+      rise = (h - step) + step * (-prevAlt) / (alt - prevAlt);
+    } else if (prevAlt >= 0 && alt < 0 && set === null) {
+      set = (h - step) + step * (prevAlt) / (prevAlt - alt);
+    }
+    prevAlt = alt;
+  }
+
+  return { rise, set, alwaysUp: rise === null && set === null && aboveCount === samples };
 };
 
 // Format fractional hour → "H:MM AM/PM"
@@ -109,62 +164,65 @@ const fmtHour = (h) => {
 
 /**
  * Calculate moon data for a given date and location.
- * @param {Date} date - Local date (will use UTC midnight for calculations)
+ * @param {Date} date - Local date/time
  * @param {number} lat - Latitude in degrees
  * @param {number} lon - Longitude in degrees
  * @param {number} tzOffsetMin - Local timezone offset in minutes (e.g. -420 for PDT)
- * @returns {{ phase, emoji, illumination, rise, set, transitAlt }}
+ * @returns {{ name, emoji, illumination, rise, set, age }}
  */
 export const getMoonData = (date, lat, lon, tzOffsetMin) => {
-  // Phase from current moment
   const age = moonAge(date);
   const phase = phaseInfo(age);
 
-  // For rise/set, use midday of the local date in UT
-  const utcOffset = tzOffsetMin / 60;
-  // Midday UT = noon local - tz offset
-  const localNoon = new Date(date);
-  localNoon.setHours(12, 0, 0, 0);
-  const utNoon = new Date(localNoon.getTime() - tzOffsetMin * 60000);
-  const jd = julianDay(utNoon);
+  // Moon standard altitude at rise/set is ~+0.125° (mean parallax minus refraction
+  // and semidiameter), unlike the sun's -0.833°.
+  const { rise, set, alwaysUp } = findRiseSet(moonRADec, date, lat, lon, tzOffsetMin, 0.125);
 
-  // Moon RA/Dec at transit
-  const { ra, dec } = moonRADec(jd);
+  const result = {
+    ...phase,
+    age: age.toFixed(1),
+    illumination: Math.round(50 * (1 - Math.cos((age / 29.53058867) * 2 * Math.PI)))
+  };
 
-  // Local sidereal time at UT noon
-  const lst = localSiderealTime(jd, lon);
-
-  // Hour angle at transit (H = LST - RA, in hours)
-  const H0 = ((lst - ra) % 360 + 360) % 360; // degrees
-  // Transit time in UT hours from noon: offset by H0
-  // Hour angle in hours (0 at upper transit)
-  const HhrsNoon = H0 > 180 ? (H0 - 360) / 15 : H0 / 15;
-
-  // Transit UT
-  const transitUT = 12 - HhrsNoon; // hours from 0h UT
-
-  // Hour angle for rise/set
-  const cosH = cosHourAngle(dec, lat, -0.833);
-  if (Math.abs(cosH) > 1) {
-    // Moon doesn't rise/set today
-    return { ...phase, rise: cosH < -1 ? 'Circumpolar' : 'Below horizon', set: '--', age: age.toFixed(1) };
+  if (rise === null && set === null) {
+    result.rise = alwaysUp ? 'Circumpolar' : 'Below horizon';
+    result.set = '--';
+  } else {
+    result.rise = rise !== null ? fmtHour(rise) : '--';
+    result.set = set !== null ? fmtHour(set) : '--';
   }
-  const H = Math.acos(cosH) * DEG / 15; // hours
+  return result;
+};
 
-  const riseUT = transitUT - H;
-  const setUT  = transitUT + H;
+/**
+ * Calculate sunrise/sunset for a given date and location.
+ * @param {Date} date - Local date/time
+ * @param {number} lat - Latitude in degrees
+ * @param {number} lon - Longitude in degrees
+ * @param {number} tzOffsetMin - Local timezone offset in minutes (e.g. -420 for PDT)
+ * @returns {{ sunrise, sunset, dayLength }}
+ */
+export const getSunData = (date, lat, lon, tzOffsetMin) => {
+  // Standard altitude for the sun's upper limb, including atmospheric refraction.
+  const { rise, set, alwaysUp } = findRiseSet(sunRADec, date, lat, lon, tzOffsetMin, -0.833);
 
-  // Convert UT to local time
-  const riseLocal = riseUT + utcOffset;
-  const setLocal  = setUT  + utcOffset;
+  if (rise === null && set === null) {
+    return {
+      sunrise: alwaysUp ? 'Up all day' : 'Down all day',
+      sunset: '--',
+      dayLength: alwaysUp ? '24h' : '0h'
+    };
+  }
+
+  let dayLength = '--';
+  if (rise !== null && set !== null) {
+    const hours = ((set - rise) % 24 + 24) % 24;
+    dayLength = `${Math.floor(hours)}h ${Math.round((hours % 1) * 60)}m`;
+  }
 
   return {
-    ...phase,
-    rise: fmtHour(riseLocal),
-    set:  fmtHour(setLocal),
-    age:  age.toFixed(1),
-    illumination: Math.round(
-      50 * (1 - Math.cos((age / 29.53058867) * 2 * Math.PI))
-    )
+    sunrise: rise !== null ? fmtHour(rise) : '--',
+    sunset: set !== null ? fmtHour(set) : '--',
+    dayLength
   };
 };

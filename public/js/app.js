@@ -6,7 +6,7 @@ import { applyTrailMapData, showMapInfo, scheduleMapInit, toggleCategoryLayer, s
 import { TEST_DATA } from './test-data.js';
 import { initGpsButton, getLastPosition } from './gps.js';
 import { initElevationWindowControls, renderElevationChart, jumpToCurrentMile, resetElevationChart } from './elevation.js';
-import { getMoonData } from './moon.js';
+import { getMoonData, getSunData } from './moon.js';
 import { TRAILS } from './config.js';
 
 // Safe fetch with error handling
@@ -617,13 +617,31 @@ const initUI = () => {
       moonPanel.hidden = true;
       return;
     }
-    const lat = state.trail.center.lat;
-    const lon = state.trail.center.lon;
+    // Prefer the hiker's actual GPS position; fall back to the trail centroid.
+    const pos = getLastPosition();
+    const usingGps = !!pos;
+    const lat = usingGps ? pos.latitude : state.trail.center.lat;
+    const lon = usingGps ? pos.longitude : state.trail.center.lon;
     const now = new Date();
     const tzOffsetMin = now.getTimezoneOffset() * -1; // JS returns negative offset, we need positive for west
     const moonData = getMoonData(now, lat, lon, tzOffsetMin);
+    const sunData = getSunData(now, lat, lon, tzOffsetMin);
+    const locationNote = usingGps
+      ? 'Computed for your current GPS location'
+      : `Times approximate for ${state.trail.shortName} corridor`;
     moonPanelContent.innerHTML = `
       <div class="moon-panel-inner">
+        <div class="moon-times-row">
+          <div class="moon-time-card">
+            <div class="moon-time-label">Sunrise</div>
+            <div class="moon-time-value">${sunData.sunrise}</div>
+          </div>
+          <div class="moon-time-card">
+            <div class="moon-time-label">Sunset</div>
+            <div class="moon-time-value">${sunData.sunset}</div>
+          </div>
+        </div>
+        <div class="moon-daylength-note">${sunData.dayLength !== '--' ? `${sunData.dayLength} of daylight` : ''}</div>
         <div class="moon-phase-row">
           <span class="moon-phase-emoji">${moonData.emoji}</span>
           <div class="moon-phase-info">
@@ -642,7 +660,7 @@ const initUI = () => {
             <div class="moon-time-value">${moonData.set}</div>
           </div>
         </div>
-        <div class="moon-location-note">Times approximate for ${state.trail.shortName} corridor</div>
+        <div class="moon-location-note">${locationNote}</div>
         <div class="moon-panel-close-row">
           <button class="moon-panel-close" id="btnMoonClose">Close</button>
         </div>

@@ -1617,6 +1617,17 @@ thead th.night-header { background: #ebebf7; }
   line-height: 1.4;
 }
 
+.moon-daylength-note {
+  font-size: 0.78rem;
+  color: #9890c8;
+  text-align: center;
+  margin-top: -2px;
+}
+
+.moon-daylength-note:empty {
+  display: none;
+}
+
 .moon-panel-close-row {
   display: flex;
   justify-content: center;
