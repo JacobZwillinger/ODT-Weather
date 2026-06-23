@@ -32,13 +32,23 @@ vi.mock('../../public/js/config.js', () => ({
 // ---- Re-implement testable pure logic from elevation.js ----
 // These mirror the module-private functions so we can unit test them independently.
 
-// computeGainLoss — same logic as in elevation.js
-const computeGainLoss = (points) => {
+// computeGainLoss — same hysteresis logic as in elevation.js (threshold = 20 ft)
+const computeGainLoss = (points, threshold = 20) => {
+  if (!points || points.length < 2) return { gain: 0, loss: 0 };
   let gain = 0, loss = 0;
+  let anchor = points[0].elevation;
+  let trend = 0;
   for (let i = 1; i < points.length; i++) {
-    const delta = points[i].elevation - points[i - 1].elevation;
-    if (delta > 0) gain += delta;
-    else loss += Math.abs(delta);
+    const e = points[i].elevation;
+    const diff = e - anchor;
+    if (trend >= 0 && diff > 0) {
+      gain += diff; anchor = e; trend = 1;
+    } else if (trend <= 0 && diff < 0) {
+      loss += -diff; anchor = e; trend = -1;
+    } else if (Math.abs(diff) >= threshold) {
+      if (diff > 0) { gain += diff; trend = 1; } else { loss += -diff; trend = -1; }
+      anchor = e;
+    }
   }
   return { gain: Math.round(gain), loss: Math.round(loss) };
 };
@@ -117,6 +127,22 @@ describe('computeGainLoss', () => {
     ];
     const { gain } = computeGainLoss(pts);
     expect(gain).toBe(1);
+  });
+
+  it('filters sub-threshold noise within a sustained climb', () => {
+    // A steady climb with small ±5 ft jitter should read as ~pure gain,
+    // not inflated by the noise wiggles (old raw-delta logic over-counted).
+    const pts = [
+      { elevation: 3000 },
+      { elevation: 3005 },  // noise up
+      { elevation: 3000 },  // noise down (-5, < 20 → ignored)
+      { elevation: 3300 },  // real climb
+      { elevation: 3295 },  // noise down (-5 from 3300 → ignored)
+      { elevation: 3600 }   // real climb
+    ];
+    const { gain, loss } = computeGainLoss(pts);
+    expect(gain).toBe(600);  // 3000→3600 net, noise dips ignored
+    expect(loss).toBe(0);
   });
 });
 

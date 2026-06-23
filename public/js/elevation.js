@@ -10,9 +10,22 @@ let _currentMile = 0;      // GPS position marker
 let _isDragging = false;
 let _dragStartX = 0;
 let _dragStartMile = 0;
+let _userPanned = false;   // true once the user manually pans; suppresses auto-recenter on GPS fixes
+let _elevDomain = null;    // { min, max } fixed Y-axis domain for the whole profile
 const STATS_BAR_HEIGHT = 72;
 const WINDOW_MILE_OPTIONS = [5, 10, 20];
 const DEFAULT_WINDOW_MILES = 20;
+// Where the current-position marker sits within the window when following:
+// a small fraction from the left so the view is forward-looking (terrain ahead).
+const CURRENT_MILE_LEFT_FRACTION = 0.2;
+// Elevation changes smaller than this (feet) are treated as profile/DEM noise and
+// not counted toward cumulative gain/loss. Tunable; validate against published figures.
+const ELEV_NOISE_THRESHOLD_FT = 20;
+
+// Left edge for a "following" window: current mile anchored near the left edge,
+// clamped to the trail bounds.
+const followStartMile = (mile, windowMiles, maxMile) =>
+  Math.max(0, Math.min(mile - windowMiles * CURRENT_MILE_LEFT_FRACTION, maxMile - windowMiles));
 
 // Hit-test rects for waypoint icons [ { x, y, size, wp } ]
 let _iconHitRects = [];
@@ -127,7 +140,11 @@ export const setElevationWindowMiles = (windowMiles) => {
   saveWindowMiles(_windowMiles);
   if (_profile) {
     const maxMile = _profile[_profile.length - 1].distance;
-    _startMile = Math.max(0, Math.min(centerMile - _windowMiles / 2, maxMile - _windowMiles));
+    // When following, keep current position forward-anchored after a zoom change;
+    // when the user has panned, preserve the view center they were looking at.
+    _startMile = _userPanned
+      ? Math.max(0, Math.min(centerMile - _windowMiles / 2, maxMile - _windowMiles))
+      : followStartMile(_currentMile, _windowMiles, maxMile);
     draw();
   }
   syncWindowButtons();
@@ -142,14 +159,45 @@ export const initElevationWindowControls = () => {
 };
 
 // ---- Gain/loss computation ----
-const computeGainLoss = (points) => {
+// Hysteresis-filtered cumulative gain/loss. Summing every raw sample delta
+// over-counts badly because dense GPX/DEM elevations are noisy: a flat mile of
+// ±5 ft jitter reads as hundreds of feet of "gain". We track a moving anchor
+// and only reverse direction once a move exceeds ELEV_NOISE_THRESHOLD_FT, so
+// sub-threshold wiggles within a climb or descent are ignored.
+export const computeGainLoss = (points, threshold = ELEV_NOISE_THRESHOLD_FT) => {
+  if (!points || points.length < 2) return { gain: 0, loss: 0 };
   let gain = 0, loss = 0;
+  let anchor = points[0].elevation;  // last confirmed extremum
+  let trend = 0;                     // +1 rising, -1 falling, 0 unknown
   for (let i = 1; i < points.length; i++) {
-    const delta = points[i].elevation - points[i - 1].elevation;
-    if (delta > 0) gain += delta;
-    else loss += Math.abs(delta);
+    const e = points[i].elevation;
+    const diff = e - anchor;
+    if (trend >= 0 && diff > 0) {
+      // Extending an uphill run (or first move up).
+      gain += diff; anchor = e; trend = 1;
+    } else if (trend <= 0 && diff < 0) {
+      // Extending a downhill run (or first move down).
+      loss += -diff; anchor = e; trend = -1;
+    } else if (Math.abs(diff) >= threshold) {
+      // Reversal larger than noise — start a new run the other way.
+      if (diff > 0) { gain += diff; trend = 1; } else { loss += -diff; trend = -1; }
+      anchor = e;
+    }
+    // Sub-threshold reversal: ignore, keep the anchor at the run's extremum.
   }
   return { gain: Math.round(gain), loss: Math.round(loss) };
+};
+
+// Fixed Y-axis domain computed once over the whole profile so the scale does
+// not jump every time the user pans. Cached per profile load.
+const computeElevDomain = (profile) => {
+  let min = Infinity, max = -Infinity;
+  for (const p of profile) {
+    if (p.elevation < min) min = p.elevation;
+    if (p.elevation > max) max = p.elevation;
+  }
+  if (!Number.isFinite(min) || !Number.isFinite(max)) return null;
+  return { min, max };
 };
 
 // ---- Draw ----
@@ -269,9 +317,11 @@ const draw = () => {
   const chartWidth  = displayWidth - padding.left - padding.right;
   const chartHeight = displayHeight - padding.top - padding.bottom;
 
-  const elevations      = segmentProfile.map(p => p.elevation);
-  const minElev         = Math.min(...elevations);
-  const maxElev         = Math.max(...elevations);
+  // Fixed Y-axis: use the whole-profile domain (cached) so the scale stays put
+  // as the user pans, rather than rescaling to each window's local min/max.
+  const domain          = _elevDomain || computeElevDomain(segmentProfile);
+  const minElev         = domain.min;
+  const maxElev         = domain.max;
   const elevPad         = Math.max((maxElev - minElev) * 0.08, 100);
   const minElevRounded  = Math.floor((minElev - elevPad) / 100) * 100;
   const maxElevRounded  = Math.ceil((maxElev + elevPad) / 100) * 100;
@@ -469,6 +519,7 @@ const onPointerMove = (e) => {
   const deltaX = clientX - _dragStartX;
   if (!_isDragging && Math.abs(deltaX) < 4) return;
   _isDragging = true;
+  _userPanned = true;  // stop GPS fixes from yanking the view back to current position
 
   const parent = canvas.parentElement;
   const displayWidth = parent ? parent.clientWidth - 32 : window.innerWidth - 32;
@@ -575,6 +626,8 @@ export const renderElevationChart = async (startMile, canvasId) => {
     _profile = profile;
     _profileTrailId = state.trail.id;
     _windowMiles = getSavedWindowMiles();
+    _elevDomain = profile ? computeElevDomain(profile) : null;
+    _userPanned = false;
     syncWindowButtons();
   }
   if (!_profile) {
@@ -586,7 +639,11 @@ export const renderElevationChart = async (startMile, canvasId) => {
   }
 
   const maxMile = _profile[_profile.length - 1].distance;
-  _startMile = Math.max(0, Math.min(startMile - _windowMiles / 2, maxMile - _windowMiles));
+  // Only follow the GPS position when the user hasn't manually panned away.
+  // Anchor current near the left edge so the window is forward-looking.
+  if (!_userPanned) {
+    _startMile = followStartMile(startMile, _windowMiles, maxMile);
+  }
 
   canvas.removeEventListener('pointerdown', onPointerDown);
   canvas.removeEventListener('pointermove', onPointerMove);
@@ -607,11 +664,15 @@ export const resetElevationChart = () => {
   _profileTrailId = null;
   _startMile = 0;
   _currentMile = 0;
+  _userPanned = false;
+  _elevDomain = null;
 };
 
 export const jumpToCurrentMile = () => {
   if (!_profile) return;
   const maxMile = _profile[_profile.length - 1].distance;
-  _startMile = Math.max(0, Math.min(_currentMile - _windowMiles / 2, maxMile - _windowMiles));
+  // Re-engage following and snap the forward-looking window to current position.
+  _userPanned = false;
+  _startMile = followStartMile(_currentMile, _windowMiles, maxMile);
   draw();
 };
