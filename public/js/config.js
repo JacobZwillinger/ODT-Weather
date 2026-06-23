@@ -82,6 +82,7 @@ export const TRAILS = {
     shortName: 'NNML',
     description: 'Northern New Mexico Loop',
     totalMiles: 484,
+    loop: true,  // route returns to its start (Santa Fe); next-resource lookups wrap around
     sectionsLabel: '8 sections',
     sectionBoundaryType: 'NNML Section Boundary',
     about: {

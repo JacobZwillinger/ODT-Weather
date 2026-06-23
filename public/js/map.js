@@ -1,5 +1,5 @@
 import { WATER_WARNING_MILES, MAP_INIT_DELAY_MS, CATEGORY_CONFIG } from './config.js';
-import { getSectionPoints, getTrailStorageKey, state, loadElevationProfile, findNearestWaypoint, findMileFromCoords, findNextReliableWater, findNextOtherWater, findNextTown, OFF_TRAIL_THRESHOLD } from './utils.js';
+import { getSectionPoints, getTrailStorageKey, state, loadElevationProfile, findNearestWaypoint, findMileFromCoords, findNextReliableWater, findNextOtherWater, findNextTown, trailDistanceAhead, OFF_TRAIL_THRESHOLD } from './utils.js';
 import { renderElevationChart } from './elevation.js';
 import { showWaypointDetail, showWaterDetail, showTownDetail, showSectionDetail, showToiletDetail } from './modals.js';
 import { setPositionUpdateCallback, setHeadingUpdateCallback, shouldAllowMapClicks } from './gps.js';
@@ -338,7 +338,7 @@ export const showMapInfo = (mile, distanceFromTrail = 0) => {
   const reliableEl = document.getElementById('mapNextReliableWater');
   if (reliableEl) {
     if (nextReliable) {
-      const dist = nextReliable.mile - mile;
+      const dist = trailDistanceAhead(mile, nextReliable.mile);
       const isWarning = dist >= WATER_WARNING_MILES;
       reliableEl.querySelector('span').textContent = dist < 0.05 ? '<0.1' : dist.toFixed(1);
       reliableEl.className = isWarning ? 'info-value warning' : 'info-value';
@@ -353,7 +353,7 @@ export const showMapInfo = (mile, distanceFromTrail = 0) => {
   const otherEl = document.getElementById('mapNextOtherWater');
   if (otherEl) {
     if (nextOther) {
-      const dist = nextOther.mile - mile;
+      const dist = trailDistanceAhead(mile, nextOther.mile);
       otherEl.querySelector('span').textContent = dist < 0.05 ? '<0.1' : dist.toFixed(1);
     } else {
       otherEl.querySelector('span').textContent = '--';
@@ -362,7 +362,7 @@ export const showMapInfo = (mile, distanceFromTrail = 0) => {
 
   const nextTown = findNextTown(mile);
   if (nextTown) {
-    const dist = nextTown.mile - mile;
+    const dist = trailDistanceAhead(mile, nextTown.mile);
     document.getElementById('mapNextTown').querySelector('span').textContent = dist < 0.05 ? '<0.1' : dist.toFixed(1);
   } else {
     document.getElementById('mapNextTown').querySelector('span').textContent = '--';
@@ -439,6 +439,42 @@ export const deleteMileageDay = (date) => {
     const log = JSON.parse(localStorage.getItem(key) || '[]');
     localStorage.setItem(key, JSON.stringify(log.filter(e => e.date !== date)));
   } catch (_) { /* ignore */ }
+};
+
+// Manually override the miles for a logged day. Keeps startMile and shifts
+// endMile so the range stays self-consistent. Used when GPS missed the start
+// or end of a day's hike.
+export const updateMileageDay = (date, miles) => {
+  const value = Math.max(0, Number(miles));
+  if (!Number.isFinite(value)) return;
+  try {
+    const key = getTrailStorageKey('mileage_log');
+    const log = JSON.parse(localStorage.getItem(key) || '[]');
+    const entry = log.find(e => e.date === date);
+    if (!entry) return;
+    entry.miles = value;
+    entry.endMile = entry.startMile + value;
+    localStorage.setItem(key, JSON.stringify(log));
+  } catch (_) { /* ignore */ }
+};
+
+// Manually override today's live mileage. Anchors the day's start so that
+// (current end − start) equals the entered value; continued GPS tracking then
+// grows the total naturally from there.
+export const setTodayMiles = (miles) => {
+  const value = Math.max(0, Number(miles));
+  if (!Number.isFinite(value)) return;
+  const d = new Date();
+  const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const startKey = getTrailStorageKey('dailyMilesStart');
+  const endKey = getTrailStorageKey('dailyMilesEnd');
+  const end = parseFloat(localStorage.getItem(endKey));
+  const anchorEnd = isNaN(end) ? value : end;
+  localStorage.setItem(getTrailStorageKey('dailyMilesDate'), today);
+  localStorage.setItem(startKey, String(anchorEnd - value));
+  localStorage.setItem(endKey, String(anchorEnd));
+  const el = document.getElementById('dailyMilesDisplay');
+  if (el) el.textContent = value.toFixed(1) + ' mi';
 };
 
 // Initialize the map

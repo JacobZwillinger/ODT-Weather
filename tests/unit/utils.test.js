@@ -9,6 +9,7 @@ import {
   findNextReliableWater,
   findNextOtherWater,
   findNextTown,
+  trailDistanceAhead,
   getDayHeaders,
   getMapUrl,
   loadElevationProfile,
@@ -140,6 +141,58 @@ describe('findNextTown', () => {
   it('returns null when past last town', () => {
     const result = findNextTown(350);
     expect(result).toBeNull();
+  });
+});
+
+describe('loop trail next-resource wrapping', () => {
+  const originalTrail = state.trail;
+  const originalLoopLength = state.loopLength;
+
+  beforeEach(() => {
+    state.trail = { id: 'nnml', loop: true };
+    state.loopLength = 484;
+    state.towns = [
+      { mile: 0, name: 'Santa Fe' },
+      { mile: 150, name: 'Ghost Ranch' },
+      { mile: 391.7, name: 'Ranchos de Taos' }
+    ];
+    state.waterSources = [
+      { mile: 4.3, name: 'Spring A', subcategory: 'reliable' },
+      { mile: 300, name: 'Spring B', subcategory: 'reliable' }
+    ];
+  });
+
+  afterEach(() => {
+    state.trail = originalTrail;
+    state.loopLength = originalLoopLength;
+  });
+
+  it('wraps to the first town when past the last one on a loop', () => {
+    // At mile 450 (in section 8, past Ranchos de Taos) the next town is the
+    // start/finish at Santa Fe, reached by closing the loop.
+    const result = findNextTown(450);
+    expect(result.name).toBe('Santa Fe');
+  });
+
+  it('computes wrapped distance around the closure', () => {
+    // mile 450 -> Santa Fe (mile 0): (484 - 450) + 0 = 34
+    expect(trailDistanceAhead(450, 0)).toBeCloseTo(34, 5);
+  });
+
+  it('still measures forward distance normally before the closure', () => {
+    expect(trailDistanceAhead(100, 150)).toBeCloseTo(50, 5);
+  });
+
+  it('wraps reliable water past the last source', () => {
+    const result = findNextReliableWater(400);
+    expect(result.mile).toBe(4.3);
+  });
+
+  it('does not wrap on a non-loop trail', () => {
+    state.trail = { id: 'odt' };  // no loop flag
+    state.loopLength = 484;
+    expect(findNextTown(450)).toBeNull();
+    expect(trailDistanceAhead(450, 0)).toBeCloseTo(-450, 5);
   });
 });
 

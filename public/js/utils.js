@@ -14,6 +14,7 @@ export const state = {
   routeGeoJson: null,
   elevationProfile: null,
   currentMile: 0,
+  loopLength: 0,  // for loop trails: mile where the route closes back on its start (0 = not a loop)
   categories: {
     'water-reliable': [],
     'water-other': [],
@@ -299,25 +300,39 @@ export const findMileFromCoords = (lat, lon) => {
   };
 };
 
-// Find next water source after given mile
-export const findNextWater = (mile) => {
-  return state.waterSources.find(s => s.mile > mile + MILE_EPSILON) || null;
+// Loop closure mile for loop trails (0 when not a loop). Set at data load.
+export const getLoopLength = () => (state.trail.loop ? state.loopLength : 0);
+
+// Trail distance from one mile marker to another in the direction of travel.
+// On a loop, a destination "behind" the current mile wraps forward around the
+// closure instead of reading as a negative distance.
+export const trailDistanceAhead = (fromMile, toMile) => {
+  let d = toMile - fromMile;
+  const loop = getLoopLength();
+  if (loop > 0 && d < 0) d += loop;
+  return d;
 };
+
+// Find the next item ahead in a mile-sorted list, wrapping to the first item
+// on a loop trail when nothing remains ahead before the closure.
+const findNextAhead = (items, mile, predicate = () => true) => {
+  const ahead = items.find(item => item.mile > mile + MILE_EPSILON && predicate(item));
+  if (ahead) return ahead;
+  if (getLoopLength() > 0) return items.find(predicate) || null;
+  return null;
+};
+
+// Find next water source after given mile
+export const findNextWater = (mile) => findNextAhead(state.waterSources, mile);
 
 // Find next reliable water source after given mile
-export const findNextReliableWater = (mile) => {
-  return state.waterSources.find(s => s.mile > mile + MILE_EPSILON && isReliableWaterSource(s)) || null;
-};
+export const findNextReliableWater = (mile) => findNextAhead(state.waterSources, mile, isReliableWaterSource);
 
 // Find next non-reliable water source after given mile
-export const findNextOtherWater = (mile) => {
-  return state.waterSources.find(s => s.mile > mile + MILE_EPSILON && !isReliableWaterSource(s)) || null;
-};
+export const findNextOtherWater = (mile) => findNextAhead(state.waterSources, mile, s => !isReliableWaterSource(s));
 
 // Find next town after given mile
-export const findNextTown = (mile) => {
-  return state.towns.find(t => t.mile > mile + MILE_EPSILON) || null;
-};
+export const findNextTown = (mile) => findNextAhead(state.towns, mile);
 
 // Get next 7 days starting from today
 export const getDayHeaders = () => {

@@ -521,6 +521,35 @@ body {
 
 .mileage-delete-btn:hover { color: #e11d48; background: #fff0f3; }
 
+.mileage-actions {
+  display: flex;
+  gap: 2px;
+  justify-content: flex-end;
+}
+
+.mileage-edit-btn {
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  line-height: 1;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mileage-edit-btn:hover { color: #2563eb; background: #eff4ff; }
+
+.mileage-edit-input {
+  width: 4.5em;
+  font-size: 0.9rem;
+  padding: 2px 4px;
+  border: 1px solid #2563eb;
+  border-radius: 4px;
+  text-align: right;
+}
+
 .mileage-summary-row {
   padding: 10px 16px;
   font-size: 0.85rem;

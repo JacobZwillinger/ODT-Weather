@@ -2,7 +2,7 @@
 import { clearElevationProfile, getReliableWaterRatings, getSectionPoints, getTrailStorageKey, getWaterRating, isReliableWaterSource, saveReliableWaterRatings, setActiveTrail, state, loadToggleState, saveToggleState } from './utils.js';
 import { loadForecasts } from './weather.js';
 import { initModals, saveOpenWaypointCommentDraft, showWaypointCommentsExport, showWaypointDetail, showWaterDetail, showTownDetail } from './modals.js';
-import { applyTrailMapData, showMapInfo, scheduleMapInit, toggleCategoryLayer, swapCategoryData, onMapReady, resetMapView, saveMapView, restoreMapView, getMileageLog, deleteMileageDay } from './map.js';
+import { applyTrailMapData, showMapInfo, scheduleMapInit, toggleCategoryLayer, swapCategoryData, onMapReady, resetMapView, saveMapView, restoreMapView, getMileageLog, deleteMileageDay, updateMileageDay, setTodayMiles } from './map.js';
 import { TEST_DATA } from './test-data.js';
 import { initGpsButton, getLastPosition } from './gps.js';
 import { initElevationWindowControls, renderElevationChart, jumpToCurrentMile, resetElevationChart } from './elevation.js';
@@ -445,6 +445,11 @@ const buildTestDataset = () => ({
 const applyDataset = (dataset) => {
   if (dataset.trail) state.trail = dataset.trail;
   state.allWaypoints = dataset.allWaypoints;
+  // For loop trails, the closure mile is the largest waypoint mile; resource
+  // lookups wrap around it. Non-loop trails keep loopLength at 0.
+  state.loopLength = state.trail.loop
+    ? dataset.allWaypoints.reduce((max, w) => (Number.isFinite(w.mile) && w.mile > max ? w.mile : max), 0)
+    : 0;
   state.routeGeoJson = dataset.routeGeoJson || null;
   state.waterSources = dataset.waterSources;
   state.towns        = dataset.towns;
@@ -784,10 +789,10 @@ const initUI = () => {
           ? `${todayStart.toFixed(0)}→${todayEnd.toFixed(0)}` : '--';
         html += `<tr class="mileage-today-row">
           <td><span class="mileage-live-badge">Live</span> Today</td>
-          <td>${todayMiles.toFixed(1)}</td>
+          <td class="mileage-miles-cell" data-miles="${todayMiles.toFixed(1)}">${todayMiles.toFixed(1)}</td>
           <td class="mileage-range">${rangeStr}</td>
           <td>--</td>
-          <td></td>
+          <td><button class="mileage-edit-btn" data-edit="today" aria-label="Edit today's miles">✎</button></td>
         </tr>`;
       }
 
@@ -797,10 +802,13 @@ const initUI = () => {
         const avg = filtered.length >= 5 ? rollingAvg(filtered, origIdx) : null;
         html += `<tr>
           <td>${fmt(entry.date)}</td>
-          <td>${entry.miles.toFixed(1)}</td>
+          <td class="mileage-miles-cell" data-miles="${entry.miles.toFixed(1)}">${entry.miles.toFixed(1)}</td>
           <td class="mileage-range">${entry.startMile.toFixed(0)}→${entry.endMile.toFixed(0)}</td>
           <td>${avg !== null ? avg.toFixed(1) : '--'}</td>
-          <td><button class="mileage-delete-btn" data-date="${entry.date}" aria-label="Delete ${entry.date}">×</button></td>
+          <td class="mileage-actions">
+            <button class="mileage-edit-btn" data-edit="${entry.date}" aria-label="Edit ${entry.date}">✎</button>
+            <button class="mileage-delete-btn" data-date="${entry.date}" aria-label="Delete ${entry.date}">×</button>
+          </td>
         </tr>`;
       });
 
@@ -820,13 +828,45 @@ const initUI = () => {
         document.getElementById('mileageTo').value
       );
     });
+    const rerender = () => renderMileageLog(
+      document.getElementById('mileageFrom')?.value || '',
+      document.getElementById('mileageTo')?.value || ''
+    );
+
     body.querySelectorAll('.mileage-delete-btn').forEach(btn => {
       btn.addEventListener('click', () => {
+        const label = btn.getAttribute('aria-label')?.replace(/^Delete\s+/, '') || 'this day';
+        if (!confirm(`Delete the mileage entry for ${label}? This can't be undone.`)) return;
         deleteMileageDay(btn.dataset.date);
-        renderMileageLog(
-          document.getElementById('mileageFrom')?.value || '',
-          document.getElementById('mileageTo')?.value || ''
-        );
+        rerender();
+      });
+    });
+
+    body.querySelectorAll('.mileage-edit-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cell = btn.closest('tr')?.querySelector('.mileage-miles-cell');
+        if (!cell) return;
+        const target = btn.dataset.edit;  // 'today' or a date string
+        const current = cell.dataset.miles ?? '';
+        // Swap the cell to an inline number editor.
+        cell.innerHTML = `<input type="number" class="mileage-edit-input" inputmode="decimal"
+          min="0" step="0.1" value="${current}" aria-label="Miles" />`;
+        const input = cell.querySelector('input');
+        input.focus();
+        input.select();
+        const commit = () => {
+          const miles = parseFloat(input.value);
+          if (!isNaN(miles) && miles >= 0) {
+            if (target === 'today') setTodayMiles(miles);
+            else updateMileageDay(target, miles);
+          }
+          rerender();
+        };
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') { e.preventDefault(); commit(); }
+          else if (e.key === 'Escape') { e.preventDefault(); rerender(); }
+        });
+        input.addEventListener('blur', commit);
       });
     });
   };
