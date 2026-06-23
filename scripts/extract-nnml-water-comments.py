@@ -69,7 +69,12 @@ def threaded_comments(zf: zipfile.ZipFile) -> dict[str, list[dict[str, str]]]:
     by_ref: dict[str, list[dict[str, str]]] = defaultdict(list)
     for comment in root.findall(f"{{{THREAD_NS}}}threadedComment"):
         ref = comment.attrib.get("ref", "")
-        text = "".join(node.text or "" for node in comment.findall(f"{{{THREAD_NS}}}text")).strip()
+        # Use itertext() so any inline child nodes (e.g. rich-text runs) inside a
+        # <text> element are captured rather than truncated at the first child.
+        text = "".join(
+            "".join(node.itertext())
+            for node in comment.findall(f"{{{THREAD_NS}}}text")
+        ).strip()
         if not ref or not text or text.strip().lower() in STATUS_TEXT:
             continue
         by_ref[ref].append({

@@ -115,6 +115,17 @@ export const saveOpenWaypointCommentDraft = () => {
   return activeCommentDraftSaver();
 };
 
+// Classify a sheet comment by the season it was reported in, so hikers can
+// weigh water reports against the time of year. Reports through July reflect
+// spring/snowmelt conditions; August onward reflects the dry late season.
+const commentSeason = (dateStr) => {
+  if (!dateStr) return null;
+  const d = new Date(dateStr);
+  if (isNaN(d)) return null;
+  const month = d.getMonth() + 1; // 1–12
+  return month <= 7 ? 'spring' : 'fall';
+};
+
 const renderSheetComments = (detail, waypoint) => {
   const comments = Array.isArray(waypoint?.sheetComments) ? waypoint.sheetComments : [];
   if (comments.length === 0) return;
@@ -131,13 +142,22 @@ const renderSheetComments = (detail, waypoint) => {
 
   comments.forEach(comment => {
     const item = document.createElement('article');
-    item.className = 'sheet-comment-item';
+    const season = commentSeason(comment.date);
+    item.className = `sheet-comment-item${season ? ` sheet-comment-${season}` : ''}`;
 
     const meta = document.createElement('div');
     meta.className = 'sheet-comment-meta';
     const author = comment.author || 'Unknown';
     const date = formatLocalDateTime(comment.date);
-    meta.textContent = date ? `${author} · ${date}` : author;
+    if (season) {
+      const tag = document.createElement('span');
+      tag.className = `sheet-comment-season sheet-comment-season-${season}`;
+      tag.textContent = season === 'spring' ? 'Spring' : 'Fall';
+      meta.appendChild(tag);
+    }
+    const metaText = document.createElement('span');
+    metaText.textContent = date ? `${author} · ${date}` : author;
+    meta.appendChild(metaText);
     item.appendChild(meta);
 
     const text = document.createElement('div');

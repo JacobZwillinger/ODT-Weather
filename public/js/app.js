@@ -609,6 +609,22 @@ const initUI = () => {
     openOverlay('weatherOverlay');
   });
 
+  // In-app weather refresh: re-fetch forecasts without reloading the whole app.
+  const weatherRefreshBtn = document.getElementById('btnWeatherRefresh');
+  if (weatherRefreshBtn) {
+    weatherRefreshBtn.addEventListener('click', async () => {
+      if (weatherRefreshBtn.classList.contains('refreshing')) return;
+      weatherRefreshBtn.classList.add('refreshing');
+      weatherRefreshBtn.disabled = true;
+      try {
+        await loadForecasts();
+      } finally {
+        weatherRefreshBtn.classList.remove('refreshing');
+        weatherRefreshBtn.disabled = false;
+      }
+    });
+  }
+
   // Moon panel
   const moonPanel = document.getElementById('moonPanel');
   const moonPanelContent = document.getElementById('moonPanelContent');

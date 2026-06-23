@@ -1517,6 +1517,32 @@ thead th.night-header { background: #ebebf7; }
 }
 .moon-btn:active { filter: brightness(1.2); }
 
+.weather-refresh-btn {
+  background: rgba(30, 27, 75, 0.9);
+  border: none;
+  border-radius: 8px;
+  padding: 6px 8px;
+  cursor: pointer;
+  min-height: 36px;
+  min-width: 36px;
+  line-height: 1;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.weather-refresh-btn svg { width: 20px; height: 20px; display: block; }
+.weather-refresh-btn:active { filter: brightness(1.2); }
+.weather-refresh-btn:disabled { opacity: 0.7; cursor: default; }
+.weather-refresh-btn.refreshing svg { animation: weather-refresh-spin 0.9s linear infinite; }
+
+@keyframes weather-refresh-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
 /* Modal backdrop */
 .moon-panel {
   position: fixed;
@@ -1834,7 +1860,28 @@ thead th.night-header { background: #ebebf7; }
   font-size: 0.72rem;
   font-weight: 800;
   margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
 }
+
+/* Season accent: spring/snowmelt reports (through July) vs late-season (Aug+). */
+.sheet-comment-spring { border-left: 4px solid #22a060; }
+.sheet-comment-fall   { border-left: 4px solid #d97706; }
+
+.sheet-comment-season {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-size: 0.66rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.sheet-comment-season-spring { background: #dcfce7; color: #15803d; }
+.sheet-comment-season-fall   { background: #fef3c7; color: #b45309; }
 
 .sheet-comment-text {
   color: #334155;
