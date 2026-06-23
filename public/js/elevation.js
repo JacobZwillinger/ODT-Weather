@@ -11,7 +11,8 @@ let _isDragging = false;
 let _dragStartX = 0;
 let _dragStartMile = 0;
 let _userPanned = false;   // true once the user manually pans; suppresses auto-recenter on GPS fixes
-let _elevDomain = null;    // { min, max } fixed Y-axis domain for the whole profile
+let _spanFt = null;        // constant vertical span (feet) for the current trail + window size
+let _spanForWindow = null; // window size _spanFt was computed for
 const STATS_BAR_HEIGHT = 72;
 const WINDOW_MILE_OPTIONS = [5, 10, 20];
 const DEFAULT_WINDOW_MILES = 20;
@@ -188,16 +189,48 @@ export const computeGainLoss = (points, threshold = ELEV_NOISE_THRESHOLD_FT) => 
   return { gain: Math.round(gain), loss: Math.round(loss) };
 };
 
-// Fixed Y-axis domain computed once over the whole profile so the scale does
-// not jump every time the user pans. Cached per profile load.
-const computeElevDomain = (profile) => {
-  let min = Infinity, max = -Infinity;
-  for (const p of profile) {
-    if (p.elevation < min) min = p.elevation;
-    if (p.elevation > max) max = p.elevation;
+// Largest elevation relief (max − min) of any window of `windowMiles` across the
+// whole profile, via a single O(n) pass with monotonic deques. Used to size a
+// constant vertical span so the scale never changes while panning, yet the band
+// is tall enough that no window ever clips.
+const maxWindowRelief = (profile, windowMiles) => {
+  let lo = 0, maxRelief = 0;
+  const maxDq = [], minDq = []; // indices; maxDq elevations decreasing, minDq increasing
+  for (let hi = 0; hi < profile.length; hi++) {
+    const e = profile[hi].elevation;
+    while (maxDq.length && profile[maxDq[maxDq.length - 1]].elevation <= e) maxDq.pop();
+    maxDq.push(hi);
+    while (minDq.length && profile[minDq[minDq.length - 1]].elevation >= e) minDq.pop();
+    minDq.push(hi);
+    while (profile[hi].distance - profile[lo].distance > windowMiles) {
+      if (maxDq[0] === lo) maxDq.shift();
+      if (minDq[0] === lo) minDq.shift();
+      lo++;
+    }
+    const relief = profile[maxDq[0]].elevation - profile[minDq[0]].elevation;
+    if (relief > maxRelief) maxRelief = relief;
   }
-  if (!Number.isFinite(min) || !Number.isFinite(max)) return null;
-  return { min, max };
+  return maxRelief;
+};
+
+// Constant vertical span (feet) for the current window size: the worst-case
+// window relief rounded up to a tidy step, with headroom and a readable floor.
+// Constant across panning (no scale jitter) and auto-sized to the trail —
+// adapts to high routes like the NNML and to the chosen zoom level.
+const computeSpanFt = (profile, windowMiles) => {
+  const relief = maxWindowRelief(profile, windowMiles);
+  const padded = relief * 1.12 + 80;          // headroom so the line never touches the edges
+  const step = 100;
+  return Math.max(400, Math.ceil(padded / step) * step);
+};
+
+// Cache the span for the active profile + window size.
+const getSpanFt = () => {
+  if (_spanFt == null || _spanForWindow !== _windowMiles) {
+    _spanFt = computeSpanFt(_profile, _windowMiles);
+    _spanForWindow = _windowMiles;
+  }
+  return _spanFt;
 };
 
 // ---- Draw ----
@@ -317,15 +350,16 @@ const draw = () => {
   const chartWidth  = displayWidth - padding.left - padding.right;
   const chartHeight = displayHeight - padding.top - padding.bottom;
 
-  // Fixed Y-axis: use the whole-profile domain (cached) so the scale stays put
-  // as the user pans, rather than rescaling to each window's local min/max.
-  const domain          = _elevDomain || computeElevDomain(segmentProfile);
-  const minElev         = domain.min;
-  const maxElev         = domain.max;
-  const elevPad         = Math.max((maxElev - minElev) * 0.08, 100);
-  const minElevRounded  = Math.floor((minElev - elevPad) / 100) * 100;
-  const maxElevRounded  = Math.ceil((maxElev + elevPad) / 100) * 100;
-  const elevRange       = maxElevRounded - minElevRounded;
+  // Constant-scale Y-axis that pans vertically: the span (ft/pixel) is fixed for
+  // this window size, so steepness reads consistently and the grid never
+  // rescales while panning. The band slides up/down to keep the visible window's
+  // terrain centred, snapped to 100 ft so labels stay tidy.
+  const spanFt          = getSpanFt();
+  const winElevs        = segmentProfile.map(p => p.elevation);
+  const winMid          = (Math.min(...winElevs) + Math.max(...winElevs)) / 2;
+  const minElevRounded  = Math.round((winMid - spanFt / 2) / 100) * 100;
+  const maxElevRounded  = minElevRounded + spanFt;
+  const elevRange       = spanFt;
 
   const xScale = (mile) => padding.left + ((mile - _startMile) / _windowMiles) * chartWidth;
   const yScale = (elev) => {
@@ -626,7 +660,7 @@ export const renderElevationChart = async (startMile, canvasId) => {
     _profile = profile;
     _profileTrailId = state.trail.id;
     _windowMiles = getSavedWindowMiles();
-    _elevDomain = profile ? computeElevDomain(profile) : null;
+    _spanFt = null;  // recomputed lazily for the new profile + window size
     _userPanned = false;
     syncWindowButtons();
   }
@@ -665,7 +699,8 @@ export const resetElevationChart = () => {
   _startMile = 0;
   _currentMile = 0;
   _userPanned = false;
-  _elevDomain = null;
+  _spanFt = null;
+  _spanForWindow = null;
 };
 
 export const jumpToCurrentMile = () => {
