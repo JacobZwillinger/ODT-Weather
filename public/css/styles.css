@@ -1960,6 +1960,22 @@ thead th.night-header { background: #ebebf7; }
   margin-top: 7px;
 }
 
+.waypoint-comment-done {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  border: 1px solid #1d4ed8;
+  border-radius: 8px;
+  background: #1d4ed8;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 800;
+  min-height: 44px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.waypoint-comment-done:active { filter: brightness(1.1); }
+
 .comments-modal-content {
   max-width: 520px;
 }

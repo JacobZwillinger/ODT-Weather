@@ -184,11 +184,13 @@ const renderWaypointCommentEditor = (detail, waypoint, type = 'waypoint') => {
       <button type="button" class="waypoint-comment-delete">Delete</button>
     </div>
     <div class="waypoint-comment-status" aria-live="polite">${existing?.updatedAt ? `Saved ${escapeHtml(formatLocalDateTime(existing.updatedAt))}` : 'Stored only on this device'}</div>
+    <button type="button" class="waypoint-comment-done">Save &amp; Close</button>
   `;
   const input = section.querySelector('.waypoint-comment-input');
   const status = section.querySelector('.waypoint-comment-status');
   const saveBtn = section.querySelector('.waypoint-comment-save');
   const deleteBtn = section.querySelector('.waypoint-comment-delete');
+  const doneBtn = section.querySelector('.waypoint-comment-done');
 
   const saveDraft = () => {
     if (!section.isConnected || !section.closest('.visible')) return null;
@@ -205,6 +207,13 @@ const renderWaypointCommentEditor = (detail, waypoint, type = 'waypoint') => {
     input.value = '';
     saveWaypointComment(waypoint, type, '');
     status.textContent = 'Note removed';
+  });
+
+  // Save & Close lives at the bottom next to the editor, so the user doesn't
+  // have to scroll back up to the header Close button after writing a note.
+  doneBtn.addEventListener('click', () => {
+    saveDraft();
+    document.getElementById('closeWaypointModal')?.click();
   });
 
   detail.appendChild(section);
