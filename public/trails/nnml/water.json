@@ -8,7 +8,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "T>XC (W3 0.15S) (often dry). CCW climb out to join paved trail. Water 0.15 south via paved Siler Rd at Agua Fria St (Speedway c-store). Crosswalk. Romero Park main area to N. Large Ramada with picnic tables. Developed restrooms with probable running water.",
+    "details": "Trail closed / unfinished to west. Join Santa Fe River drainage (often dry). CCW climb out to join paved trail. Water 0.15 south via paved Siler Rd at Agua Fria St (Speedway c-store).",
     "distToNext": 1.8,
     "sheetComments": [
       {
@@ -40,7 +40,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Hand standpipe locked. Trash and recycling. Playground and grassy field. Caja del Rio Grant Rd at paved Caja del Rio Rd. and El Camino Real",
+    "details": "Crosswalk. Romero Park main area to N. Large Ramada with picnic tables. Developed restrooms with probable running water. Hand standpipe locked. Trash and recycling. Playground and grassy field.",
     "distToNext": 3.4,
     "sheetComments": [
       {
@@ -66,7 +66,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "JR (W3 M 0.25W) bike path (paved). Marty Sanchez golf course with restaurant on premises is 0.25W. Remain on El Camino Real hiking trail at turn. Spur trail heads SW to trailhead (vault toilet, tables). Road continues beyond to",
+    "details": "Caja del Rio Grant Rd at paved Caja del Rio Rd. and El Camino Real bike path (paved). Marty Sanchez golf course with restaurant on premises is 0.25W.",
     "distToNext": 2.4,
     "sheetComments": [
       {
@@ -98,7 +98,7 @@
     "subcategory": "seasonal",
     "onTrail": false,
     "offTrailDist": "",
-    "details": "JR (TH W2-3 0.25SW) Headquarters Well (has been reliable). Troughs located within corral (SW corner). 0.25SW off-route. 4-way 4WD junction. Main route heads right / W. Or head E 0.2mi to 700 Well. Satellite shows a large metal tank, a few cows in a",
+    "details": "Remain on El Camino Real hiking trail at turn. Spur trail heads SW to trailhead (vault toilet, tables). Road continues beyond to Headquarters Well (has been reliable). Troughs located within corral (SW corner). 0.25 SW off-route.",
     "distToNext": 6,
     "sheetComments": [
       {
@@ -130,7 +130,7 @@
     "subcategory": "seasonal",
     "onTrail": false,
     "offTrailDist": "2.7mi W",
-    "details": "JR (w2 0.2E) corral, and a ranching truck alongside. Cows appear to be drinking from a trough. If dry then 1100 Well is 2.7mi W. Turn off to 1100 Well. Satellite shows a huge metal tank with",
+    "details": "4-way 4WD junction. Main route heads right / W. Or head E 0.2mi to 700 Well. Satellite shows a large metal tank, a few cows in a corral, and a ranching truck alongside. Cows appear to be drinking from a trough. If dry then 1100 Well is 2.7mi W.",
     "distToNext": 2.2,
     "sheetComments": [
       {
@@ -204,7 +204,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "w2 0.1N water, a cement trough in a corral that appears to be overflowing. No cows present in image. Mandatory unbridged crossing of Rio Grande within White Rock Canyon. Suggested fording location is at bottom of Frijoles Overlook Trail, at a wide-ish spot where river can be up to 300ft across (but shallower and with less current than elsewhere esp upstream). River here is under influence from Cochiti Reservoir downstream. Muddy banks common. Avoid during times of high run-off (CW consider beginning hike in White Rock instead of SF).",
+    "details": "Turn off to 1100 Well. Satellite shows a huge metal tank with water, a cement trough in a corral that appears to be overflowing. No cows present in image.",
     "distToNext": 7.5,
     "sheetComments": [
       {
@@ -260,7 +260,7 @@
     "subcategory": "unreliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "Rio Grande Ford Check USGS streamflow gage reports for Otowi Bridge (along NM 502 too far / illegal to walk upstream) before starting from Santa Fe. Swimming or an inflatable raft / kayak have historically been required during avg. May / June flow. WB turn around if unsafe! Return toward SF, then RTD bus to White Rock and backtrack via WR Alt Rte to other side of Rio to connect footsteps minus the crossing. (CCW can also use Alt to do same in reverse.) Seasonal water in Frijoles Canyon here, flowing through its alluvial fan near confluence with Rio Grande. XC ends hereabouts.",
+    "details": "Mandatory unbridged crossing of Rio Grande within White Rock Canyon. Suggested fording location is at bottom of Frijoles Overlook Trail, at a wide-ish spot where river can be up to 300ft across (but shallower and with less current than elsewhere esp upstream). River here is under influence from Cochiti Reservoir downstream. Muddy banks common. Avoid during times of high run-off (CW consider beginning hike in White Rock instead of SF). Check USGS streamflow gage reports for Otowi Bridge (along NM 502 too far / illegal to walk upstream) before starting from Santa Fe. Swimming or an inflatable raft / kayak have historically been required during avg. May / June flow. WB turn around if unsafe! Return toward SF, then RTD bus to White Rock and backtrack via WR Alt Rte to other side of Rio to connect footsteps minus the crossing. (CCW can also use Alt to do same in reverse.)",
     "distToNext": 0.6,
     "sheetComments": [
       {
@@ -334,7 +334,7 @@
     "subcategory": "unreliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W1 (XC>TR) Semi-informal River Trail continues NE, again near banks of Rio, back from riverside brush. Seasonal water where River Trail crosses Ancho Canyon. Good alternative to drinking from the Rio Grande. Just beyond is jct w/ Ancho Rapids Tr, which main route follows N soon climbing out of White Rock Cyn on established trail. White Rock Resupply Loop",
+    "details": "Seasonal water in Frijoles Canyon here, flowing through its alluvial fan near confluence with Rio Grande. XC ends hereabouts. Semi-informal River Trail continues NE, again near banks of Rio, back from riverside brush.",
     "distToNext": 2.5,
     "sheetComments": [
       {
@@ -366,7 +366,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "w2 (S1B START) instead stays with River Trail, which itself continues to improve heading NE, then joins other established trails up to village of White Rock. Very scenic albeit considerably longer than main route - only really recommended if intending to resupply or to send home a packraft after fording Rio. Trailhead for Frey Trail in Juniper Campground. Should be",
+    "details": "Seasonal water where River Trail crosses Ancho Canyon. Good alternative to drinking from the Rio Grande. Just beyond is jct w/ Ancho Rapids Tr, which main route follows N soon climbing out of White Rock Cyn on established trail. White Rock Resupply Loop instead stays with River Trail, which itself continues to improve heading NE, then joins other established trails up to village of White Rock. Very scenic albeit considerably longer than main route - only really recommended if intending to resupply or to send home a packraft after fording Rio.",
     "distToNext": 7.9,
     "sheetComments": [
       {
@@ -416,7 +416,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "TH CG W2 (RD>TR) developed water here (along with toilets etc). Northern New Mexico Loop | Water Chart for Google Sheets app | Add your reports for the hikers behind you! Bandelier NM visitor center / permit office. Get free overnight permit to spend more time in the Bandelier backcountry. This is only place to get a permit to be legal overnight within the park. (And you'll find that A] staying overnight makes taking the main rather roundabout / worthwhile route in the park much easier, while B] the Frijoles Canyon Alt may speed you through the park",
+    "details": "Trailhead for Frey Trail in Juniper Campground. Should be developed water here (along with toilets etc).",
     "distToNext": 2.2,
     "sheetComments": [
       {
@@ -448,7 +448,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "HQ W3 and avoid the need to camp, which is good since you can't camp in canyon bottoms anyway). You should also pay the entrance fee while at the VC ($15 per indv arriving on foot., good for a week). Shuttles stop in the parking lot seasonally and run to village of White Rock, providing an alternative way to resupply vs walking into town via the Resupply Loop - useful if you took the Frijoles RIM Alt into the park to get here). Jct main route and end of 2.8 mi long Frijoles Rim Alternate. JR (S1A END w3 0.25 (Water and overnight permits from Bandelier visitor center 0.25E.",
+    "details": "Bandelier NM visitor center / permit office. Get free overnight permit to spend more time in the Bandelier backcountry. This is only place to get a permit to be legal overnight within the park. (And you'll find that A] staying overnight makes taking the main rather roundabout / worthwhile route in the park much easier, while B] the Frijoles Canyon Alt may speed you through the park and avoid the need to camp, which is good since you can't camp in canyon bottoms anyway). You should also pay the entrance fee while at the VC ($15 per indv arriving on foot., good for a week). Shuttles stop in the parking lot seasonally and run to village of White Rock, providing an alternative way to resupply vs walking into town via the Resupply Loop - useful if you took the Frijoles RIM Alt into the park to get here).",
     "distToNext": 4.1,
     "sheetComments": [
       {
@@ -486,7 +486,7 @@
     "subcategory": "unreliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W1 2nd crossing to north. Alamo Canyon 2nd crossing. Seasonal water. More likely here",
+    "details": "Alamo Canyon crossing. Very seasonal water here. More likely at 2nd crossing to north.",
     "distToNext": 5.2,
     "sheetComments": [
       {
@@ -554,7 +554,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 than at 1st crossing to south.",
+    "details": "Alamo Canyon 2nd crossing. Seasonal water. More likely here than at 1st crossing to south.",
     "distToNext": 7.2,
     "sheetComments": [
       {
@@ -610,7 +610,7 @@
     "subcategory": "seasonal",
     "onTrail": false,
     "offTrailDist": "0.1 mile S",
-    "details": "W2 0.1S Alamo Spring 0.1 mile S in drainage (or flowing before).",
+    "details": "Alamo Spring 0.1 mile S in drainage (or flowing before).",
     "distToNext": 1.3,
     "sheetComments": [
       {
@@ -684,7 +684,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Wildlife tank / pond just E of Alamo Boundary Trail. E Fork Jemez River. First crossing (usu a small creek). Becomes",
+    "details": "Wildlife tank / pond just E of Alamo Boundary Trail.",
     "distToNext": 5.4,
     "sheetComments": [
       {
@@ -734,7 +734,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2-3 reliable down-canyon. Valles Caldera National Preserve boundary. Re-enter Santa Fe NF",
+    "details": "E Fork Jemez River. First crossing (usu a small creek). Becomes reliable down-canyon.",
     "distToNext": 1,
     "sheetComments": [
       {
@@ -796,7 +796,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "!! W3 to S (legal camping). Use-trail and/or xc continues along canyon bottom of E Fork Jemez River. East Fork Jemez River at highway below Las Conchas day-use",
+    "details": "Valles Caldera National Preserve boundary. Re-enter Santa Fe NF to S (legal camping). Use-trail and/or xc continues along canyon bottom of E Fork Jemez River.",
     "distToNext": 1.4,
     "sheetComments": [
       {
@@ -816,7 +816,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "JR W3 area. East Fork Tr 137 TH. Popular and well-established trail heads N",
+    "details": "East Fork Jemez River at highway below Las Conchas day-use area.",
     "distToNext": 0.6,
     "sheetComments": [
       {
@@ -854,7 +854,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "JR TH W3 along river. You probably won't even get your feet wet now, due to series of well-constructed bridges.",
+    "details": "East Fork Tr 137 TH. Popular and well-established trail heads N along river. You probably won't even get your feet wet now, due to series of well-constructed bridges.",
     "distToNext": 1.5,
     "sheetComments": [
       {
@@ -898,7 +898,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 !! CW trail leaves E Fork Jemez River (S)",
+    "details": "CW trail leaves E Fork Jemez River (S)",
     "distToNext": 4.3,
     "sheetComments": [
       {
@@ -936,7 +936,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 E Fork Jemez River crossing. A quick stop popular on weekend getaways to Jemez Country from the big ABQ, the small village of La Cueva features a convenience / general store (adequate for short-term resupply), a La Cueva (G M L",
+    "details": "E Fork Jemez River crossing.",
     "distToNext": 9.4,
     "sheetComments": [
       {
@@ -998,7 +998,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 JL 132). CW join trail N. CCW leave trail xc. Trail crosses Rio San Antonio. CW N from trailhead either along",
+    "details": "XC crossing of San Antonio Creek W of Hot Spring Tr (former FR 132). CW join trail N. CCW leave trail xc.",
     "distToNext": 2.9
   },
   {
@@ -1010,7 +1010,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 TH JR creekside meadow trail(s) or closed road above creek. Rio Cebolla crossing. Use-trail along creek W side (CW). Creek",
+    "details": "Trail crosses Rio San Antonio. CW N from trailhead either along creekside meadow trail(s) or closed road above creek.",
     "distToNext": 5.9,
     "sheetComments": [
       {
@@ -1060,7 +1060,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2-3 JR nearby for 2 mi. (CCW leave drainage via side canyon E)",
+    "details": "Rio Cebolla crossing. Use-trail along creek W side (CW). Creek nearby for 2 mi. (CCW leave drainage via side canyon E)",
     "distToNext": 2.4,
     "sheetComments": [
       {
@@ -1104,7 +1104,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "TH W2-3 JL Rio Cebolla TH / join 4WD (N) (CW)",
+    "details": "Rio Cebolla TH / join 4WD (N) (CW)",
     "distToNext": 5.6,
     "sheetComments": [
       {
@@ -1148,7 +1148,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2-3 Rito Penas Negras bridged crossing on FR 527.",
+    "details": "Rito Penas Negras bridged crossing on FR 527.",
     "distToNext": 8,
     "sheetComments": [
       {
@@ -1204,7 +1204,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 seasonal flow Rito de las Perchas. Seasonal snowmelt flow / pools in meadow.",
+    "details": "seasonal flow",
     "distToNext": 1.4,
     "sheetComments": [
       {
@@ -1260,7 +1260,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Seasonal pond is 0.2E at edge of meadow. Penas Negras Tr 32 at CDT. CW join CDT nobo. (Rio de las Vacas",
+    "details": "Rito de las Perchas. Seasonal snowmelt flow / pools in meadow. Seasonal pond is 0.2E at edge of meadow.",
     "distToNext": 3.8,
     "sheetComments": [
       {
@@ -1322,7 +1322,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "JR (W2-3 0.5W) 0.5W via CDT S.)",
+    "details": "Penas Negras Tr 32 at CDT. CW join CDT nobo. (Rio de las Vacas 0.5W via CDT S.)",
     "distToNext": 7.7,
     "sheetComments": [
       {
@@ -1366,7 +1366,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Cecilia Canyon Leave trail SE briefly xc then NE on road to Fuertes Spring (piped",
+    "details": "Cecilia Canyon",
     "distToNext": 9.5,
     "sheetComments": [
       {
@@ -1422,7 +1422,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 0.35E trough). Has had water most observations.",
+    "details": "Leave trail SE briefly xc then NE on road to Fuertes Spring (piped trough). Has had water most observations.",
     "distToNext": 5.6,
     "sheetComments": [
       {
@@ -1478,7 +1478,7 @@
     "subcategory": "unreliable",
     "onTrail": false,
     "offTrailDist": "",
-    "details": "W1 Ojitos Canyon. Seasonal flow / pools to N for a mile or so. A trough (full and flowing) was present 6-2017 100 ft NW of route",
+    "details": "Ojitos Canyon. Seasonal flow / pools to N for a mile or so.",
     "distToNext": 4.2,
     "sheetComments": [
       {
@@ -1534,7 +1534,7 @@
     "subcategory": "unreliable",
     "onTrail": false,
     "offTrailDist": "",
-    "details": "W1 100ft NW in sagebrush meadow. Rio Chama / Skull Bridge. Footbridge over renowned whitewater",
+    "details": "A trough (full and flowing) was present 6-2017 100 ft NW of route in sagebrush meadow.",
     "distToNext": 0.1,
     "sheetComments": [
       {
@@ -1590,7 +1590,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 river. Questionable water quality though.",
+    "details": "Rio Chama / Skull Bridge. Footbridge over renowned whitewater river. Questionable water quality though.",
     "distToNext": 13.5,
     "sheetComments": [
       {
@@ -1640,7 +1640,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Suspension bridge over Canjilon Creek. Ghost Ranch Conference Center is a self-contained healing / spiritual / artist's retreat / resort offering a campground / showers, a variety of rustic lodging options (cheap to somewhat Ghost Ranch pricey), a (very) small convenience-type store, and cafeteria-style",
+    "details": "Suspension bridge over Canjilon Creek.",
     "distToNext": 2.7,
     "sheetComments": [
       {
@@ -1672,7 +1672,7 @@
     "subcategory": "unreliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W1 Arroyo del Yeso seasonal flow",
+    "details": "Arroyo del Yeso seasonal flow",
     "distToNext": 5.8,
     "sheetComments": [
       {
@@ -1716,7 +1716,7 @@
     "subcategory": "unreliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W1 JL Yeso Tank (often foul). CW follow berm N to road W. Harris Bear Spring troughs located along S side of corral fence 50-",
+    "details": "Yeso Tank (often foul). CW follow berm N to road W.",
     "distToNext": 8.2,
     "sheetComments": [
       {
@@ -1760,7 +1760,7 @@
     "subcategory": "seasonal",
     "onTrail": false,
     "offTrailDist": "100yds",
-    "details": "W2-3 100yds E 100 yds E of trail.",
+    "details": "Harris Bear Spring troughs located along S side of corral fence 50-100 yds E of trail.",
     "distToNext": 12.9,
     "sheetComments": [
       {
@@ -1810,7 +1810,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 Canjilon Creek crossing. Should be reliable here.",
+    "details": "Canjilon Creek crossing. Should be reliable here.",
     "distToNext": 2,
     "sheetComments": [
       {
@@ -1860,7 +1860,7 @@
     "subcategory": "unreliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W1 Canjilon Creek (unreliable to N)",
+    "details": "Canjilon Creek (unreliable to N)",
     "distToNext": 6.1,
     "sheetComments": [
       {
@@ -1904,7 +1904,7 @@
     "subcategory": "unreliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W1 Ojito Azul. Seasonal flow possible in drainage here.",
+    "details": "Ojito Azul. Seasonal flow possible in drainage here.",
     "distToNext": 0.6,
     "sheetComments": [
       {
@@ -1948,7 +1948,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Canada Jarosita crossing footbridge over Rio Vallecitos. (Bridge wiped out in flood 2017,",
+    "details": "Canada Jarosita crossing",
     "distToNext": 5.2,
     "sheetComments": [
       {
@@ -1998,7 +1998,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 hopefully since replaced. Can usually ford but use care in finding a safe location.)",
+    "details": "footbridge over Rio Vallecitos. (Bridge wiped out in flood 2017, hopefully since replaced. Can usually ford but use care in finding a safe location.)",
     "distToNext": 2.4,
     "sheetComments": [
       {
@@ -2054,7 +2054,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Rock Creek crossing Roadside trough along Hopewell Campground access road / CDT,",
+    "details": "Rock Creek crossing",
     "distToNext": 7.9,
     "sheetComments": [
       {
@@ -2098,7 +2098,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 full 6-2017. Campground proper (E) reportedly also has faucets and vault toilets, likely seasonal.",
+    "details": "Roadside trough along Hopewell Campground access road / CDT, full 6- 2017. Campground proper (E) reportedly also has faucets and vault toilets, likely seasonal.",
     "distToNext": 0.4,
     "sheetComments": [
       {
@@ -2148,7 +2148,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 Hopewell Lake with water from lake or adjacent facilities.",
+    "details": "Hopewell Lake with water from lake or adjacent facilities.",
     "distToNext": 6.1,
     "sheetComments": [
       {
@@ -2192,7 +2192,7 @@
     "subcategory": "unreliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W1 Jawbone Tank (stock pond)",
+    "details": "Jawbone Tank (stock pond)",
     "distToNext": 2.1,
     "sheetComments": [
       {
@@ -2242,7 +2242,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W1-2 Canon Manga (seasonal)",
+    "details": "Canon Manga (seasonal)",
     "distToNext": 0.5,
     "sheetComments": [
       {
@@ -2280,7 +2280,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W1-2 Spring Tank (stock pond) Rio San Antonio crossing. Somewhat confusing how the trail crosses the creek, though it does about what the GPS track here",
+    "details": "Spring Tank (stock pond)",
     "distToNext": 5.1,
     "sheetComments": [
       {
@@ -2330,7 +2330,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 !! shows (CW climbing steeply up the ridge to the north after crossing).",
+    "details": "Rio San Antonio crossing. Somewhat confusing how the trail crosses the creek, though it does about what the GPS track here shows (CW climbing steeply up the ridge to the north after crossing).",
     "distToNext": 3.3,
     "sheetComments": [
       {
@@ -2374,7 +2374,7 @@
     "subcategory": "unreliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W1 Lagunitas Creek headwaters",
+    "details": "Lagunitas Creek headwaters",
     "distToNext": 2.3,
     "sheetComments": [
       {
@@ -2412,7 +2412,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "C W3 Lagunitas Campground. Perennial water from area lakes / ponds. Brazos Ridge Overlook; end Sec.3 at Sec 3A (to N) and Sec 4 (to E). Most hikers will probably want to resupply in Chama by",
+    "details": "Lagunitas Campground. Perennial water from area lakes / ponds.",
     "distToNext": 6,
     "sheetComments": [
       {
@@ -2444,7 +2444,7 @@
     "subcategory": "unreliable",
     "onTrail": false,
     "offTrailDist": "12 miles",
-    "details": "END Sec 3 (W0) continuing north on the CDT to Cumbres Pass CO, then hitchhiking 12 miles SW into this full-service town. USPS address: c/o General Delivery, Chama NM 87520.",
+    "details": "Brazos Ridge Overlook; end Sec.3 at Sec 3A (to N) and Sec 4 (to E). Most hikers will probably want to resupply in Chama by continuing north on the CDT 17 mi to Cumbres Pass CO, then hitchhiking 12 miles SW into this full-service town. Section 4 begins here (SE), after returning from Chama either via repeat of S3A alternate southbound or (when train from Chama to Osier is running), S4A southbound.",
     "distToNext": 3.2,
     "sheetComments": [
       {
@@ -2476,7 +2476,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 Beaver Creek accessible nearby for several miles.",
+    "details": "Beaver Creek accessible nearby for several miles.",
     "distToNext": 1.2,
     "sheetComments": [
       {
@@ -2520,7 +2520,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 Diablo Creek accessible nearby for several miles.",
+    "details": "Diablo Creek accessible nearby for several miles.",
     "distToNext": 2.2,
     "sheetComments": [
       {
@@ -2570,7 +2570,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Fork of Diablo Creek. Less reliable upstream.",
+    "details": "Fork of Diablo Creek. Less reliable upstream.",
     "distToNext": 3.7,
     "sheetComments": [
       {
@@ -2614,7 +2614,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Canon Largo Canon Largo at Rio San Antonio. Continue on use-trails",
+    "details": "Canon Largo",
     "distToNext": 1.2,
     "sheetComments": [
       {
@@ -2670,7 +2670,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 along/near drainage bottom.",
+    "details": "Canon Largo at Rio San Antonio. Continue on use-trails along/near drainage bottom.",
     "distToNext": 4.2,
     "sheetComments": [
       {
@@ -2720,7 +2720,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 Rio San Antonio nearby. CW last access on public land for 2-3 mi",
+    "details": "Rio San Antonio nearby. CW last access on public land for 2-3 mi",
     "distToNext": 3.8,
     "sheetComments": [
       {
@@ -2764,7 +2764,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "JL (W3 0.1S) FR 87 at FR 78. Rio San Antonio access 0.1S via FR 87.",
+    "details": "FR 87 at FR 78. Rio San Antonio access 0.1S via FR 87.",
     "distToNext": 4.1,
     "sheetComments": [
       {
@@ -2808,7 +2808,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 CW reach Rio San Antonio in canyon bottom. CW x-c exit canyon bottom E. Last access Rio San Antonio. CW water warning: in dry times this may be your last likely water for",
+    "details": "CW reach Rio San Antonio in canyon bottom.",
     "distToNext": 0.7,
     "sheetComments": [
       {
@@ -2852,7 +2852,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "JR W2 21 mi, or sure-bet until the Rio Grande in 29 mi. (CCW Rio San Antonio first access here although somewhat less reliable than several miles upstream where next approached.) San Antonio Mtn Tank (seasonal). More likely than Lower San",
+    "details": "CW x-c exit canyon bottom E. Last access Rio San Antonio. CW water warning: in dry times this may be your last likely water for 21 mi, or sure-bet until the Rio Grande in 29 mi. (CCW Rio San Antonio first access here although somewhat less reliable than several miles upstream where next approached.)",
     "distToNext": 3.5,
     "sheetComments": [
       {
@@ -2914,7 +2914,7 @@
     "subcategory": "seasonal",
     "onTrail": false,
     "offTrailDist": "100ft S",
-    "details": "W1-2 100ft S Antone Tank to SE but still unreliable during dry times. Don't count on finding water anywhere on San Antonio Mountain.",
+    "details": "San Antonio Mtn Tank (seasonal). More likely than Lower San Antone Tank to SE but still unreliable during dry times. Don't count on finding water anywhere on San Antonio Mountain.",
     "distToNext": 0.6,
     "sheetComments": [
       {
@@ -2982,7 +2982,7 @@
     "subcategory": "unreliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W1 Lower San Antone Tank (less reliable) BLM road junction. Pass through fence / cattleguard. W side of fence, NE along road, 0.25 to Wissmath Crater seasonal stock",
+    "details": "Lower San Antone Tank (less reliable)",
     "distToNext": 5.4,
     "sheetComments": [
       {
@@ -3026,7 +3026,7 @@
     "subcategory": "seasonal",
     "onTrail": false,
     "offTrailDist": "3.5 miles",
-    "details": "JR W1-2 0.25N pond. Not reliable in drier times. Recently dry late June 2020. Also see similar 'crater' pond nearby S of route. 7638 Well' - 4 or 5 full troughs on satellites; historically reliable. Water here for most if not all NNML hikers so far (last visit 6-20). If happens to be dry, CCW best bet may be to seek out pair of solar troughs 3.5 miles NW on active grazing allotment. Main",
+    "details": "BLM road junction. Pass through fence / cattleguard. W side of fence, NE along road, 0.25 to Wissmath Crater seasonal stock pond. Not reliable in drier times. Recently dry late June 2020. Also see similar 'crater' pond nearby S of route.",
     "distToNext": 11.6,
     "sheetComments": [
       {
@@ -3100,7 +3100,7 @@
     "subcategory": "seasonal",
     "onTrail": false,
     "offTrailDist": "",
-    "details": "W2 road that takes you part-way between here and there carries some vehicle traffic in an emergency. (CW another trough exists roughly 3.5 mi ahead and 0.5 off-route, or can drink from Rio Grande in emergency.) Rio Grande here is typically 50 ft wide, knee deep with a modest current except during times of heavy runoff. Eastbound hikers, in the hopefully unlikely event that you can't wait out a high water Rio Grande Sheep",
+    "details": "7638 Well' - 4 or 5 full troughs on satellites; historically reliable. Water here for most if not all NNML hikers so far. If happens to be dry, CCW best bet may be to seek out pair of solar troughs 3.5 miles NW on active grazing allotment. Main road that takes you part-way between here and there carries some vehicle traffic in an emergency. (CW another trough exists roughly 3.5 mi ahead and 0.5 off-route, or can drink from Rio Grande in emergency.)",
     "distToNext": 7.5,
     "sheetComments": [
       {
@@ -3180,7 +3180,7 @@
     "subcategory": "reliable",
     "onTrail": false,
     "offTrailDist": "20 miles",
-    "details": "event, you may need to backtrack up to the trailhead at previous Crossing (W3) waypoint and then follow roads south to County Rd B007 / Dunn Bridge crossing of the Rio Grande, 20 miles total, then continue 2 mi farther to the village of Arroyo Hondo at NM Hwy 522.",
+    "details": "Rio Grande here is typically 50 ft wide, knee deep with a modest current except during times of heavy runoff. Eastbound hikers, in the hopefully unlikely event that you can't wait out a high water event, you may need to backtrack up to the trailhead at previous waypoint and then follow roads south to County Rd B007 / Dunn Bridge crossing of the Rio Grande, 20 miles total, then continue 2 mi farther to the village of Arroyo Hondo at NM Hwy 522.",
     "distToNext": 1,
     "sheetComments": [
       {
@@ -3242,7 +3242,7 @@
     "subcategory": "unreliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W1 0.25SW Side road SW to circular trough w float valve, visible on satellite Northern New Mexico Loop | Water Chart for Google Sheets app | Add your reports for the hikers behind you! Questa is a small, somewhat spread out community a number of miles north of Taos, similarly situated between the Rio Grande Gorge to the west and Sangre de Cristo Mountains to the east. It's Questa (PO G M L notably laid back and non-tourist-oriented, and offers just enough",
+    "details": "Side road SW to circular trough w float valve, visible on satellite",
     "distToNext": 8.8,
     "sheetComments": [
       {
@@ -3280,7 +3280,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 road by gauging station. (CW Collect here to avoid some private property heading east.) FR 134 at FR 134A. CW left on FR 134A. Cabresto Creek access",
+    "details": "Cabresto Creek first access CW. Easy creek access south side of road by gauging station. (CW Collect here to avoid some private property heading east.)",
     "distToNext": 3.4,
     "sheetComments": [
       {
@@ -3324,7 +3324,7 @@
     "subcategory": "reliable",
     "onTrail": false,
     "offTrailDist": "100ydS",
-    "details": "JL (W3 100ydS) across road. (CCW Collect here to avoid some private property heading west.) Signed Latir Peak Wilderness boundary. Occasional access to",
+    "details": "FR 134 at FR 134A. CW left on FR 134A. Cabresto Creek access across road. (CCW Collect here to avoid some private property heading west.)",
     "distToNext": 2.5,
     "sheetComments": [
       {
@@ -3362,7 +3362,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 Cabresto Creek CW plus several good areas of side flow across trail. Lake Fork Tr 82 at Bull Creek Tr 85. (Bull Creek Fork meets Lake",
+    "details": "Signed Latir Peak Wilderness boundary. Occasional access to Cabresto Creek CW plus several good areas of side flow across trail.",
     "distToNext": 1.9,
     "sheetComments": [
       {
@@ -3400,7 +3400,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "JL W3 Fork Cabresto Creek.) (CW Bad weather route avoiding Latir Mesa continues on Tr 82 NE.) Cross wide-ish rock-hoppable Bull Fork Cabresto Creek. Regular",
+    "details": "Lake Fork Tr 82 at Bull Creek Tr 85. (Bull Creek Fork meets Lake Fork Cabresto Creek.) (CW Bad weather route avoiding Latir Mesa continues on Tr 82 NE.)",
     "distToNext": 0.5,
     "sheetComments": [
       {
@@ -3438,7 +3438,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 creek access here and above along trail in canyon.",
+    "details": "Cross wide-ish rock-hoppable Bull Fork Cabresto Creek. Regular creek access here and above along trail in canyon.",
     "distToNext": 1.4,
     "sheetComments": [
       {
@@ -3476,7 +3476,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 First / last access Bull Fork Cabresto Creek Heart Lake. Tr 85 crosses outlet near jct connector Tr 115. (CCW",
+    "details": "First / last access Bull Fork Cabresto Creek",
     "distToNext": 3.8,
     "sheetComments": [
       {
@@ -3526,7 +3526,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "XT W3 Bad weather route avoiding Latir Mesa uses Tr 115 to Tr 82 S.)",
+    "details": "Heart Lake. Tr 85 crosses outlet near jct connector Tr 115. (CCW Bad weather route avoiding Latir Mesa uses Tr 115 to Tr 82 S.)",
     "distToNext": 0.6,
     "sheetComments": [
       {
@@ -3558,7 +3558,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Actual crossing of low flow muddy Baldy cabin Creek Midnight Tr 81 TH at FR 134. Cabresto Creek across road",
+    "details": "Actual crossing of low flow muddy Baldy cabin Creek",
     "distToNext": 5.6,
     "sheetComments": [
       {
@@ -3602,7 +3602,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "TH JL W2 (somewhat seasonal here). (CCW last water until Baldy Cabin / Heart Lake.)",
+    "details": "Midnight Tr 81 TH at FR 134. Cabresto Creek across road (somewhat seasonal here). (CCW last water until Baldy Cabin / Heart Lake.)",
     "distToNext": 2.6,
     "sheetComments": [
       {
@@ -3646,7 +3646,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Bitter Creek Bitter Creek above Memphis mine (historic). Likely perennial",
+    "details": "Bitter Creek",
     "distToNext": 3.3,
     "sheetComments": [
       {
@@ -3690,7 +3690,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 here. Red River began as a purpose-built ski town, later expanding to become a year-round destination. The town makes for a pretty good hiker stop, with lots of eats, motels a-plenty (often filled",
+    "details": "Bitter Creek above Memphis mine (historic). Likely perennial here.",
     "distToNext": 6.6,
     "sheetComments": [
       {
@@ -3722,7 +3722,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2-3 JL Red River Nature Trail at FR 486. Placer Creek. Paved NM 578 at Goose Creek TH. Reliable water in creek along",
+    "details": "Red River Nature Trail end at FR 486 / Goose Creek Trail (4WD road). Placer Creek. CW head E on road.",
     "distToNext": 1.7,
     "sheetComments": [
       {
@@ -3778,7 +3778,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "TH JR W3 length of trail with frequent access.",
+    "details": "Paved NM 578 at Goose Creek TH. Reliable water in creek along length of trail with frequent access.",
     "distToNext": 3.3,
     "sheetComments": [
       {
@@ -3810,7 +3810,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "C W3 Established trailside campsite N side of Goose Creek.",
+    "details": "Established trailside campsite N side of Goose Creek.",
     "distToNext": 2.1,
     "sheetComments": [
       {
@@ -3836,7 +3836,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 Goose Creek last / first access. (Reliable flow throughout canyon) Signed junction remain on Goose Creek Tr 65. (Goose Lake 100",
+    "details": "Goose Creek last / first access. (Reliable flow throughout canyon)",
     "distToNext": 0.6,
     "sheetComments": [
       {
@@ -3886,7 +3886,7 @@
     "subcategory": "reliable",
     "onTrail": false,
     "offTrailDist": "100ydsN",
-    "details": "JL (W3 100ydsN) yards N via spur trail, CW last water on main route other than seasonal snowmelt until San Cristobal Creek.)",
+    "details": "Signed junction remain on Goose Creek Tr 65. (Goose Lake 100 yards N via spur trail, CW last water on main route other than seasonal snowmelt until San Cristobal Creek.)",
     "distToNext": 0.3,
     "sheetComments": [
       {
@@ -3924,7 +3924,7 @@
     "subcategory": "unreliable",
     "onTrail": false,
     "offTrailDist": "",
-    "details": "S6A START (W0) Start of 18 mi Wheeler Peak Loop alternate (see below)",
+    "details": "Carsonite post in large cairn at top of switchbacks. End of Goose Creek Tr 65 at nexus of trails. Somewhat confusing on map, and only the main route ahead (W) is really visible on the ground here above treeline. This cairn also represents start of highly recommended Wheeler Peak Loop Alternate. Alt adds 18 mi to distance between Red River and San Cristobal resupply points. (Begin alt by heading S, effectively xc at first, then on visible singletrack tread heading into forest - Gold Creek Tr 64.)",
     "distToNext": 0.2
   },
   {
@@ -3936,7 +3936,7 @@
     "subcategory": "unreliable",
     "onTrail": false,
     "offTrailDist": "",
-    "details": "S6A END (W0) End of 18 mi Wheeler Peak Loop alternate Northern New Mexico Loop | Water Chart for Google Sheets app | Add your reports for the hikers behind you! Signed and cairned junction. Lobo peak tr straight; Columbine 71",
+    "details": "Signed trail junction. End of 18-mi Wheeler Peak Loop Alt. CW head N on Gold Hill Tr 64.",
     "distToNext": 3.9
   },
   {
@@ -3948,7 +3948,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "XT W2-3 0.4SE N; Gavilan 60 S; Water likely along Gavilan Tr where it reaches drainage 0.4SE and 500 feet below the ridgeline. San Cristobal Creek. Last access CW. Small flow here 6-20, more",
+    "details": "Signed and cairned junction. Lobo peak tr straight; Columbine 71 N; Gavilan 60 S; Water likely along Gavilan Tr where it reaches drainage 0.4 SE and 500 feet below the ridgeline.",
     "distToNext": 6.4,
     "sheetComments": [
       {
@@ -3974,7 +3974,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 reliable below. San Cristobal Creek. CW: flowing and frequent crossings for 3",
+    "details": "San Cristobal Creek. Last access CW. Small flow here 6-20, more reliable below.",
     "distToNext": 4.1,
     "sheetComments": [
       {
@@ -4036,7 +4036,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 miles.",
+    "details": "CW San Cristobal Creek last access. (CCW: flowing and frequent crossings for 3 miles.)",
     "distToNext": 2.6,
     "sheetComments": [
       {
@@ -4080,7 +4080,7 @@
     "subcategory": "unreliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W1 Acequia access approx here An historic ranching community of scattered adobe homesteads located in the foothills below Columbine-Hondo Wilderness Area, tiny San Cristobal doesn't feel like a town stop so much as a step back in time. Formerly a small store existed here, but now all that remains for hikers is a post office for sending oneself a maildrop. A fenced (but accessible) area along the east side of the building",
+    "details": "Acequia access approx here (such as if you'll be hanging out for the post office and aren't able to obtain water via the postmaster). Definitely treat irrigation water (avoid if at all possible).",
     "distToNext": 9.9,
     "sheetComments": [
       {
@@ -4112,7 +4112,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 quality than the Rio Grande. Northern New Mexico Loop | Water Chart for Google Sheets app | Add your reports for the hikers behind you!",
+    "details": "Arroyo Hondo creek access. Should be reliable and of better quality than the Rio Grande.",
     "distToNext": 0,
     "sheetComments": [
       {
@@ -4162,7 +4162,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "Dunn Bridge W3 John Dunn Bridge over Rio Grande West Rim TH / Gorge rest area. Developed water (drinking fountains) 24/7. Restrooms closed after 5pm. Shade ramadas.",
+    "details": "John Dunn Bridge over Rio Grande",
     "distToNext": 7.3,
     "sheetComments": [
       {
@@ -4224,7 +4224,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "TH W3 Didn\u2019t see vending. A popular spot, and you can follow the tourist throngs out onto the highway bridge for that iconic selfie. Route of NNML heads S from rest area lot onto signed West Rim Trail. NM 567 Taos Junction Bridge over Rio Grande. Nearby vehicle-",
+    "details": "West Rim TH / Gorge rest area. Developed water (drinking fountains) 24/7. Restrooms closed after 5pm. Shade ramadas. Didn\u2019t see vending. A popular spot, and you can follow the tourist throngs out onto the highway bridge for that iconic selfie. Route of NNML heads S from rest area lot onto signed West Rim Trail.",
     "distToNext": 11.8,
     "sheetComments": [
       {
@@ -4292,7 +4292,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "Taos Jct bridge W3 oriented Orilla Verde Campground as well as a boat launch / take- out with vault toilet. Picuris Trail at NM 570. Good flowing spring at roadside (6-2020)",
+    "details": "NM 567 Taos Junction Bridge over Rio Grande. Nearby vehicle-oriented Orilla Verde Campground as well as a boat launch / take-out with vault toilet.",
     "distToNext": 0,
     "sheetComments": [
       {
@@ -4336,7 +4336,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "TH (W2 0.25W) is 0.25W. Likely better quality than either Rio Grande or Rio Pueblo in vicinity.",
+    "details": "Picuris Trail TH. Good flowing spring at roadside (6-2020) is 0.25W. Likely better quality than either Rio Grande or Rio Pueblo in vicinity.",
     "distToNext": 1.2
   },
   {
@@ -4348,7 +4348,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W1-2 Light spring flow across Slide Trail among willows 6-20 Ranchos de Taos is a distinct community apart from Taos proper and located several miles south of the beating heart of that well- known town. Sleepy and agrarian beyond the main 2-lane highway, Ranchos de Taos nonetheless offers a post office along Ranchos de Taos (PO",
+    "details": "Light spring flow across Slide Trail among willows 6-20",
     "distToNext": 17.8,
     "sheetComments": [
       {
@@ -4410,7 +4410,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "JR W3 bridge",
+    "details": "Unnamed road S of Tr 18 at FR 438. Rito de la Olla crossing on bridge",
     "distToNext": 2,
     "sheetComments": [
       {
@@ -4442,7 +4442,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 First crossing CW of Rio Grande del Rancho (creek in meadow). FR 439 at powerline road. Unbridged crossing of Rio Grande del",
+    "details": "First crossing CW of Rio Grande del Rancho (creek in meadow).",
     "distToNext": 1.9,
     "sheetComments": [
       {
@@ -4474,7 +4474,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "JR W3 Rancho W of jct. CW last access to Rio Grande del Rancho. 2 track jct. Turn right",
+    "details": "FR 439 at powerline road. Unbridged crossing of Rio Grande del Rancho W of jct.",
     "distToNext": 0.4,
     "sheetComments": [
       {
@@ -4518,7 +4518,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 JR uphill on vague secondary utility line 2track. Utility line gradual at first then very steep.",
+    "details": "CW last access to Rio Grande del Rancho. 2 track jct. Turn right uphill on vague secondary utility line 2track. Utility line gradual at first then very steep.",
     "distToNext": 8.1,
     "sheetComments": [
       {
@@ -4568,7 +4568,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Flechado Canyon trickling creek 6-20",
+    "details": "Flechado Canyon trickling creek 6-20",
     "distToNext": 1.4,
     "sheetComments": [
       {
@@ -4624,7 +4624,7 @@
     "subcategory": "seasonal",
     "onTrail": false,
     "offTrailDist": "",
-    "details": "W2 Flechado Canyon small cascade It's a mere half mile off-route to the laid-back Sipapu Ski & Summer Resort. True to its name, Sipapu offers year-round services, namely a motel and cabins, restaurant / grill, and something of a convenience-store level grocery option. Sometimes busy, other times a virtual ghost town, Sipapu has agreed to hold hiker packages in the past but call ahead to Sipapu resort (M L",
+    "details": "Flechado Canyon small cascade",
     "distToNext": 2.4,
     "sheetComments": [
       {
@@ -4674,7 +4674,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "JR W3 JL road to campground.",
+    "details": "S of paved NM 518, bridged crossing of Rio Pueblo along entrance road to campground.",
     "distToNext": 1.9,
     "sheetComments": [
       {
@@ -4718,7 +4718,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "JR W3 Agua Piedra Creek / TJ Tr 19 / 22A",
+    "details": "Agua Piedra Creek / TJ Tr 19 / 22A",
     "distToNext": 2,
     "sheetComments": [
       {
@@ -4756,7 +4756,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 0.1S Agua Piedra Creek",
+    "details": "Agua Piedra Creek",
     "distToNext": 1.5,
     "sheetComments": [
       {
@@ -4794,7 +4794,7 @@
     "subcategory": "reliable",
     "onTrail": false,
     "offTrailDist": "200 ft W",
-    "details": "W3 Los Esteros pond (tea-colored) Unsigned Jicarita Spring 200 ft W of and below trail from",
+    "details": "Los Esteros pond (tea-colored)",
     "distToNext": 2.8,
     "sheetComments": [
       {
@@ -4844,7 +4844,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 waypoint. Northern New Mexico Loop | Water Chart for Google Sheets app | Add your reports for the hikers behind you! Divide Tr 36 crosses Serpent Lake / Angostura Tr 19. A spring pool",
+    "details": "Unsigned Jicarita Spring 200 ft W of and below trail from waypoint.",
     "distToNext": 3.3,
     "sheetComments": [
       {
@@ -4876,7 +4876,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "XT (W2 0.15E) is often found E via Tr 19, 150 vertical ft below the junction.",
+    "details": "Divide Tr 36 crosses Serpent Lake / Angostura Tr 19. A spring pool is often found E via Tr 19, 150 vertical ft below the junction.",
     "distToNext": 9.6,
     "sheetComments": [
       {
@@ -4926,7 +4926,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Trail crosses seasonal creeklet",
+    "details": "Trail crosses seasonal creeklet",
     "distToNext": 0.3,
     "sheetComments": [
       {
@@ -4964,7 +4964,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Trail crosses creeklet",
+    "details": "Trail crosses creeklet",
     "distToNext": 0.1,
     "sheetComments": [
       {
@@ -5002,7 +5002,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Trail crosses seasonal creeklet Jct Rio Quemado Tr 153. Remain on Skyline Tr 251. Truchas Lake",
+    "details": "Trail crosses seasonal creeklet",
     "distToNext": 0.5,
     "sheetComments": [
       {
@@ -5052,7 +5052,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "XT W3 outlet.",
+    "details": "Jct Rio Quemado Tr 153. Remain on Skyline Tr 251. Truchas Lake outlet.",
     "distToNext": 0.3,
     "sheetComments": [
       {
@@ -5090,7 +5090,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 XT TJ in wet flowing meadow (6-20). Remain on Skyline Tr 251.",
+    "details": "TJ in wet flowing meadow (6-20). Remain on Skyline Tr 251.",
     "distToNext": 0.2,
     "sheetComments": [
       {
@@ -5122,7 +5122,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Flow across trail",
+    "details": "Flow across trail",
     "distToNext": 0.2,
     "sheetComments": [
       {
@@ -5166,7 +5166,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Small snowmelt creek 6-20",
+    "details": "Small snowmelt creek 6-20",
     "distToNext": 0.6,
     "sheetComments": [
       {
@@ -5210,7 +5210,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Snowmelt pond 6-20",
+    "details": "Snowmelt pond 6-20",
     "distToNext": 0.4,
     "sheetComments": [
       {
@@ -5242,7 +5242,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Trailside tarn and creeklet 6-20 Skyline Tr 251 at Jack's Creek Tr 257. Pecos Baldy Lake access 0.1",
+    "details": "Trailside tarn and creeklet 6-20",
     "distToNext": 3.6,
     "sheetComments": [
       {
@@ -5280,7 +5280,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "JL (W3 0.1W) W. (Skyline Tr to S not recommended due to heavy damage from 2013 Jaroso Fire along Rito Perro.)",
+    "details": "Skyline Tr 251 at Jack's Creek Tr 257. Pecos Baldy Lake access 0.1W. (Skyline Tr to S not recommended due to heavy damage from 2013 Jaroso Fire along Rito Perro.)",
     "distToNext": 0.3,
     "sheetComments": [
       {
@@ -5306,7 +5306,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 CW First of two crossings of modestly flowing creek 6-20 Jacks Creek Tr 257 at Dockweiler Tr 259. CW do not cross creek.",
+    "details": "CW First of two crossings of modestly flowing creek 6-20",
     "distToNext": 2.5,
     "sheetComments": [
       {
@@ -5356,7 +5356,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "JR W3 C Remain on Dockweiler SW. (CCW Jacks Creek Tr joins Dockweiler NE.)",
+    "details": "Jacks Creek Tr 257 at Dockweiler Tr 259. CW do not cross creek. Remain on Dockweiler SW. (CCW Jacks Creek Tr joins Dockweiler NE.)",
     "distToNext": 1.7,
     "sheetComments": [
       {
@@ -5394,7 +5394,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Good small flow in meadow across Dockweiler Tr 6-20 First or last good access to Cave Creek (accessible sporadically",
+    "details": "Good small flow in meadow across Dockweiler Tr 6-20",
     "distToNext": 3.5,
     "sheetComments": [
       {
@@ -5444,7 +5444,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 CW). Short side trail down into meadow leads to creek.",
+    "details": "First or last good access to Cave Creek (accessible sporadically CW). Short side trail down into meadow leads to creek.",
     "distToNext": 0.7,
     "sheetComments": [
       {
@@ -5464,7 +5464,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 Panchuela Creek crossing along Cave Creek Tr Cave Creek Tr 288 at Skyline Tr 251. Last / first access to reliable",
+    "details": "Panchuela Creek crossing along Cave Creek Tr",
     "distToNext": 2.3,
     "sheetComments": [
       {
@@ -5514,7 +5514,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "JL W3 Cave Creek. (Skyline Tr to N not recommended due to heavy fire damage beyond Horsethief Meadow) Skyline Tr 251 passes junction with Johnson Lake Tr 267. Remain",
+    "details": "Cave Creek Tr 288 at Skyline Tr 251. Last / first access to reliable Cave Creek. (Skyline Tr to N not recommended due to heavy fire damage beyond Horsethief Meadow)",
     "distToNext": 1.7,
     "sheetComments": [
       {
@@ -5564,7 +5564,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "XT W3 on Tr 251. Calf deep (easy) crossing of Rito Oscuro.",
+    "details": "Skyline Tr 251 passes junction with Johnson Lake Tr 267. Remain on Tr 251. Calf deep (easy) crossing of Rito Oscuro.",
     "distToNext": 0.1,
     "sheetComments": [
       {
@@ -5608,7 +5608,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2-3 Fork of Rito Oscuro. Strong flow wet feet 6-20",
+    "details": "Fork of Rito Oscuro. Strong flow wet feet 6-20",
     "distToNext": 1.2,
     "sheetComments": [
       {
@@ -5652,7 +5652,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Small pond outlet E of Stewart Lake",
+    "details": "Small pond outlet E of Stewart Lake",
     "distToNext": 0.2,
     "sheetComments": [
       {
@@ -5684,7 +5684,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Stewart Lake outlet Skyline Tr 251 at Winsor Tr 254. Perennial water from Winsor",
+    "details": "Stewart Lake outlet",
     "distToNext": 0.6,
     "sheetComments": [
       {
@@ -5728,7 +5728,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "JR W3 Creek. Winsor Creek crossing on Tr 254. Can be tricky during peak",
+    "details": "Skyline Tr 251 at Winsor Tr 254. Perennial water from Winsor Creek.",
     "distToNext": 0.7,
     "sheetComments": [
       {
@@ -5766,7 +5766,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 snowmelt, but normally a rock-hop.",
+    "details": "Winsor Creek crossing on Tr 254. Can be tricky during peak snowmelt, but normally a rock-hop.",
     "distToNext": 0.7,
     "sheetComments": [
       {
@@ -5804,7 +5804,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 Spirit Lake outlet. Tanins often present in water here.",
+    "details": "Spirit Lake outlet. Tanins often present in water here.",
     "distToNext": 2.5,
     "sheetComments": [
       {
@@ -5830,7 +5830,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Rock hop crossing of Rio Nambe headwaters.",
+    "details": "Rock hop crossing of Rio Nambe headwaters.",
     "distToNext": 1.3,
     "sheetComments": [
       {
@@ -5874,7 +5874,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 Rio Nambe crossing",
+    "details": "Rio Nambe crossing",
     "distToNext": 2.3,
     "sheetComments": [
       {
@@ -5918,7 +5918,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Small creek 6-20",
+    "details": "Small creek 6-20",
     "distToNext": 0.1,
     "sheetComments": [
       {
@@ -5962,7 +5962,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 Rio en Medio",
+    "details": "Rio en Medio",
     "distToNext": 1.2
   },
   {
@@ -5974,7 +5974,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 Northern fork of Rio Chupadero. Modest flow 6-20 Rio Chupadero headwaters. Lightly flowing where trail crosses 6-",
+    "details": "Northern fork of Rio Chupadero. Modest flow 6-20",
     "distToNext": 1.5,
     "sheetComments": [
       {
@@ -6018,7 +6018,7 @@
     "subcategory": "seasonal",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W2 20.",
+    "details": "Rio Chupadero headwaters. Lightly flowing where trail crosses 6-20.",
     "distToNext": 1.8,
     "sheetComments": [
       {
@@ -6074,7 +6074,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 CW early access to perennial Tesuque Creek",
+    "details": "CW early access to perennial Tesuque Creek",
     "distToNext": 1.7,
     "sheetComments": [
       {
@@ -6118,7 +6118,7 @@
     "subcategory": "reliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "W3 JL CW last access Tesuque Creek. Winsor Tr 254 at Chamisa Tr 183 CW trail from ridge at Little Tesuque Tr. First access Little Tesuque",
+    "details": "CW last access Tesuque Creek. Winsor Tr 254 at Chamisa Tr 183",
     "distToNext": 4.2,
     "sheetComments": [
       {
@@ -6174,7 +6174,7 @@
     "subcategory": "unreliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "JR W1 Creek (seasonal). CW last access Little Tesuque Crk (seasonal). Little Tesuque Trail",
+    "details": "CW trail from ridge at Little Tesuque Tr. First access Little Tesuque Creek (seasonal).",
     "distToNext": 0.4,
     "sheetComments": [
       {
@@ -6242,7 +6242,7 @@
     "subcategory": "unreliable",
     "onTrail": true,
     "offTrailDist": "",
-    "details": "JL W1 at La Piedra Tr. Santa Fe Plaza. Fine arts, native wares, tchotchkes, and plenty of classy restaurants in the vicinity. The famed Georgia O'Keefe",
+    "details": "CW last access Little Tesuque Crk (seasonal). Little Tesuque Trail at La Piedra Tr.",
     "distToNext": "-",
     "sheetComments": [
       {
