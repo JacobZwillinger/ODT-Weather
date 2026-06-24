@@ -127,7 +127,14 @@ const ensureContoursForTrail = (trailId) => {
 // has no way to mutate a source URL in place).
 const BASEMAP_LAYER_IDS = [
   'water', 'landcover', 'park', 'waterway', 'transportation',
+  'trails-line', 'trails-label',
   'place', 'mountain_peak', 'water_name', 'transportation_name'
+];
+
+// Expression matching foot/trail ways in the OpenMapTiles transportation schema.
+const TRAIL_FILTER = ['any',
+  ['match', ['get', 'class'], ['path', 'track'], true, false],
+  ['match', ['get', 'subclass'], ['footway', 'path', 'cycleway', 'bridleway', 'pedestrian'], true, false]
 ];
 
 const addBasemapLayers = () => {
@@ -168,6 +175,34 @@ const addBasemapLayers = () => {
         13, ['match', ['get', 'class'], ['motorway', 'trunk'], 3, ['primary'], 2, ['track'], 1.5, 1]
       ]
     }
+  });
+  // Gaia-style trail overlay (off by default; toggled via the Layers panel).
+  // Surfaces the foot/trail network that the base road styling renders almost
+  // invisibly. Uses the same basemap PMTiles, so it works offline.
+  const trailsVisible = state.visibleCategories.trails ? 'visible' : 'none';
+  map.addLayer({
+    id: 'trails-line', type: 'line', source: 'basemap', 'source-layer': 'transportation',
+    filter: TRAIL_FILTER,
+    layout: { visibility: trailsVisible, 'line-join': 'round', 'line-cap': 'round' },
+    paint: {
+      'line-color': '#b3402f',
+      'line-width': ['interpolate', ['linear'], ['zoom'], 11, 1, 14, 2.2, 16, 3.2],
+      'line-dasharray': [2, 1.5],
+      'line-opacity': 0.9
+    }
+  });
+  map.addLayer({
+    id: 'trails-label', type: 'symbol', source: 'basemap', 'source-layer': 'transportation_name',
+    minzoom: 13,
+    filter: TRAIL_FILTER,
+    layout: {
+      visibility: trailsVisible,
+      'text-field': ['get', 'name'],
+      'text-size': 10,
+      'symbol-placement': 'line',
+      'text-font': ['Noto Sans Regular']
+    },
+    paint: { 'text-color': '#8a2f24', 'text-halo-color': '#fff', 'text-halo-width': 1.5 }
   });
   map.addLayer({
     id: 'place', type: 'symbol', source: 'basemap', 'source-layer': 'place',
@@ -1144,10 +1179,15 @@ export const applyTrailMapData = async ({ fitToTrail = false } = {}) => {
 export const toggleCategoryLayer = (category, visible) => {
   if (!map) return;
   const visibility = visible ? 'visible' : 'none';
-  // Sections use custom layer IDs (sourced from PMTiles overlay, not GeoJSON)
-  const layerIds = category === 'sections'
-    ? ['section-circles', 'section-numbers', 'section-labels']
-    : [`${category}-clusters`, `${category}-cluster-count`, `${category}-points-unclustered`];
+  // Sections and trails use custom layer IDs (sourced from PMTiles, not GeoJSON).
+  let layerIds;
+  if (category === 'sections') {
+    layerIds = ['section-circles', 'section-numbers', 'section-labels'];
+  } else if (category === 'trails') {
+    layerIds = ['trails-line', 'trails-label'];
+  } else {
+    layerIds = [`${category}-clusters`, `${category}-cluster-count`, `${category}-points-unclustered`];
+  }
   for (const id of layerIds) {
     if (map.getLayer(id)) {
       map.setLayoutProperty(id, 'visibility', visibility);

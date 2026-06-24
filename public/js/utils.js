@@ -28,7 +28,8 @@ export const state = {
     towns: true,
     navigation: false,
     toilets: true,
-    sections: true
+    sections: true,
+    trails: false
   }
 };
 
