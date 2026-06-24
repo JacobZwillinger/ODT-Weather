@@ -1,6 +1,6 @@
-// ODT Service Worker
+// Trail Navigator Service Worker
 // Bumping CACHE_VERSION forces all clients to download fresh assets on next visit.
-const CACHE_VERSION = 'odt-v14';
+const CACHE_VERSION = 'trail-navigator-v15';
 
 // Assets pre-cached on install — everything needed for full offline use.
 // Large files (contours.pmtiles ~87MB) are included so the map works

@@ -33,7 +33,7 @@ test.describe('ODT App', () => {
 
   test.describe('Page Load', () => {
     test('has correct title', async ({ page }) => {
-      await expect(page).toHaveTitle('Oregon Desert Trail');
+      await expect(page).toHaveTitle('Trail Navigator');
     });
 
     test('displays map container fullscreen', async ({ page }) => {

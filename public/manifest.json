@@ -1,7 +1,7 @@
 {
   "name": "Trail Navigator",
   "short_name": "Trails",
-  "description": "Interactive map and trail data platform for ODT and NNML",
+  "description": "Interactive maps, water sources, and forecasts for long-distance hiking trails",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
